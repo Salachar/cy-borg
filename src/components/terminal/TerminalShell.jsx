@@ -1,12 +1,4 @@
-// TerminalShell.jsx - RCD Interface styling
-// Modern gray-blue shell with classic terminal content
-
 import { useEffect, useState } from 'react';
-import backgroundImage from '../../images/rcdbg3.jpg';
-
-// ============================================================================
-// COLOR PALETTE
-// ============================================================================
 
 const COLORS = {
   // Background colors
@@ -61,16 +53,6 @@ export default function TerminalShell({
       className="flex-1 flex flex-col font-mono relative overflow-hidden"
       style={{ backgroundColor: COLORS.bg.main }}
     >
-      {/* <div
-        className="absolute z-1 inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-          backgroundSize: 'cover',
-          filter: 'blur(3px)',
-          opacity: '0.7',
-        }}
-          absolute z-2 inset-0
-      /> */}
       <div className="flex-1 flex flex-col max-w-5xl mx-auto w-full p-4 relative">
         {header}
         {historyArea}
