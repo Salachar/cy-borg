@@ -171,8 +171,8 @@ export default function Dice({
                       className="relative flex items-center justify-center select-none cursor-pointer"
                       style={{
                         background: 'var(--color-class)',
-                        width: sides === 6 ? '48px' : '64px',
-                        height: sides === 6 ? '48px' : '64px',
+                        width: sides === 6 ? '32px' : '40px',
+                        height: sides === 6 ? '32px' : '40px',
                         borderRadius: sides === 6 ? '0.25rem' : '0',
                         clipPath: sides === 12 ? 'polygon(50% 0, 100% 38%, 81% 100%, 19% 100%, 0 38%)' : 'none',
                       }}

@@ -356,6 +356,15 @@ export default function Terminal() {
       discoveredPasswords,
     });
 
+    if (result.type === 'reset') {
+      setDiscoveredPasswords({});
+      setDiscoveredSecrets([]);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify([]));
+      localStorage.setItem(PASSWORD_STORAGE_KEY, JSON.stringify({}));
+      setHistory([]);
+      return true;
+    }
+
     if (result.type === 'clear') {
       setHistory([]);
       return true;

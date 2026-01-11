@@ -45,7 +45,7 @@ export const SYSTEM_COMMANDS = {
           <Line neon><CommandLink command="about" onClick={setInputCallback} /> - System information</Line>
           <Line neon><CommandLink command="uptime" onClick={setInputCallback} /> - Display system uptime</Line>
           <Line neon><CommandLink command="date" onClick={setInputCallback} /> - Display current date/time</Line>
-          <Line neon><CommandLink command="echo" onClick={setInputCallback} /> [text] - Echo input text</Line>
+          <Line neon><CommandLink command="reset" onClick={setInputCallback} /> - Reset RetComDevice</Line>
         </Section>
 
         <Section title="NAVIGATION:">
@@ -175,6 +175,10 @@ export const SYSTEM_COMMANDS = {
   date: () => ({
     content: new Date().toString()
   }),
+
+  reset: () => ({
+    type: 'reset',
+  })
 };
 
 export default SYSTEM_COMMANDS;
