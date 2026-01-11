@@ -1,0 +1,188 @@
+import {
+  GLITCHES,
+  WEAPONS_TABLE,
+  ARMOR_TABLE,
+} from "./tables";
+
+import BaseClass from "./base";
+export default class DischargedCorpKiller extends BaseClass {
+  constructor (data = {}) {
+    super(data);
+  }
+
+  static id = "corp_killer";
+  static color = "#FF0080"; // Hot pink/magenta for discharged killer
+  static class = "Discharged Corp Killer";
+
+  static description = [
+    <>
+      A good soldier in bad company, always fighting someone else's war in the name of greed.
+    </>,
+    <>
+      Capitalism crushed your enthusiasm quickly enough, and you were discharged without severance. The Corp wants you dead.
+    </>,
+  ];
+
+  static components = [
+    {
+      type: "definitions",
+      name: "class_info",
+      entries: [
+        {
+          id: "hp",
+          label: "Hit Points",
+          die: "Toughness + d8",
+          description: "Roll this at character creation",
+        },
+        // {
+        //   id: "glitches",
+        //   label: "Glitches",
+        //   die: "d2",
+        //   description: "Roll for starting Glitches",
+        // },
+        // {
+        //   id: "credits",
+        //   label: "Starting Credits",
+        //   die: "2d6×10¤",
+        //   description: "Money on your credstick",
+        // },
+        {
+          id: "ability_scarred_jarhead",
+          label: "EMOTIONALLY SCARRED JARHEAD",
+          description: "Roll 3d6-1 for Knowledge and Presence.",
+        },
+        {
+          id: "ability_tough_as_nails",
+          label: "TOUGH AS NAILS",
+          description: "Roll 3d6+2 for Toughness.",
+        },
+        {
+          id: "armor_bonus",
+          label: "Armor Roll",
+          die: "d4+1",
+          description: "You roll d4+1 for armor instead of normal armor roll",
+        },
+        {
+          id: "autofire_bonus",
+          label: "Autofire Specialist",
+          description: "Your autofire tests are always -1DR (easier)",
+        },
+        {
+          id: "enemy",
+          label: "Enemy",
+          description: "The Corp wants you dead",
+        },
+      ],
+    },
+    {
+      preview: false,
+      type: "definitions",
+      name: "glitches_reference",
+      h3: "Glitches Uses",
+      entries: GLITCHES,
+      before: <div className="divider small" />,
+    },
+    {
+      type: "rollable",
+      name: "weapon",
+      label: "Weapon",
+      select_mode: "single",
+      entries: WEAPONS_TABLE.slice(0, 8),
+      before: <div className="divider small" />,
+    },
+    {
+      type: "rollable",
+      name: "armor",
+      label: "Armor",
+      select_mode: "single",
+      entries: ARMOR_TABLE.slice(0, 5),
+      before: <div className="divider small" />,
+      note: (
+        <span>Cost only applies to armor not rolled for initial character creation.</span>
+      ),
+    },
+    {
+      type: "rollable",
+      name: "stolen_gear",
+      label: "You Took Something From Your Employer When You Left the Force...",
+      select_mode: "single",
+      entries: [
+        {
+          id: "heavy_mg",
+          label: "Old-School Heavy Machine Gun",
+          die: "d12a",
+          description: <>Damage, but breaks down after a damage roll of 1. You can fix it if you get 10 minutes of quiet time.</>,
+        },
+        {
+          id: "smart_rifle",
+          label: "Prototype Smart™ Assault Rifle",
+          die: "d10a",
+          description: <>Around-the-corner shooting, camera sight, grenade launcher, the works.</>,
+        },
+        {
+          id: "grenades",
+          label: "Toughness+5 Hand Grenades and 5 Flashbangs",
+          description: <>You throw grenades with -2DR.</>,
+        },
+        {
+          id: "laser_cannon",
+          label: "Heavy Laser Cannon",
+          die: "d12",
+          description: <>Damage, Presence DR14 against people, bots and animals. 3d12 damage, Presence DR10 against vehicles, turrets or similar targets.</>,
+        },
+        {
+          id: "air_cannon",
+          label: "Crowd-Control Air Cannon",
+          die: "d6",
+          description: <>Damage, can hit up to d3 targets close to each other.</>,
+        },
+        {
+          id: "incendiary_shotgun",
+          label: "Incendiary Shotgun",
+          die: "d10",
+          description: <>Damage and test Agility DR12 or flammable materials are ignited for +d6 damage the following round.</>,
+        },
+      ],
+      before: <div className="divider small" />,
+    },
+    {
+      type: "rollable",
+      name: "deployment",
+      label: "Your Deployment...",
+      select_mode: "single",
+      entries: [
+        {
+          id: "urban_infiltration",
+          label: "Urban Infiltration in Cy Central",
+          description: <>You know the area well.</>,
+        },
+        {
+          id: "orbital_grunt",
+          label: "Orbital Station Grunt",
+          description: <>Zero-G wall breaches and airlock executions were your idea of fun.</>,
+        },
+        {
+          id: "maritime_raider",
+          label: "Maritime Raider",
+          description: <>Blowing up drilling rigs, underwater labs and the occasional ship.</>,
+        },
+        {
+          id: "wasteland_rig",
+          label: "Mobile Wasteland Rig Corps",
+          description: <>Mowing down roadrunners, sabotaging rival infrastructure, burning what little nature was left.</>,
+        },
+        {
+          id: "periglacial",
+          label: "Periglacial SecCorp",
+          description: <>Plundering released gas and bioweapons for your employer.</>,
+        },
+        {
+          id: "washed_out",
+          label: "Didn't Get That Far. Washed Out.",
+          description: <>Capitalism crushed your enthusiasm quickly enough.</>,
+        },
+      ],
+      before: <div className="divider small" />,
+    },
+  ];
+}
