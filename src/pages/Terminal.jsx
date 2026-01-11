@@ -213,7 +213,6 @@ export default function Terminal() {
   // Load discovered secrets and passwords on mount
   useEffect(() => {
     if (hasBootedRef.current) return;
-
     const secrets = getDiscoveredSecrets();
     const passwords = getDiscoveredPasswords();
     setDiscoveredSecrets(secrets);
@@ -357,11 +356,13 @@ export default function Terminal() {
     });
 
     if (result.type === 'reset') {
-      setDiscoveredPasswords({});
-      setDiscoveredSecrets([]);
       localStorage.setItem(STORAGE_KEY, JSON.stringify([]));
       localStorage.setItem(PASSWORD_STORAGE_KEY, JSON.stringify({}));
+      setDiscoveredPasswords({});
+      setDiscoveredSecrets([]);
       setHistory([]);
+      setIsBooting(true);
+      bootSequence();
       return true;
     }
 
