@@ -33,8 +33,16 @@ const CAMPAIGN_COMMANDS = {
   ...LUCKY_FLIGHT_TAKEDOWN,
 };
 
+const CAMPAIGN_COMMANDS_LIST = Object.entries(CAMPAIGN_COMMANDS).map(([id, cmdDef]) => ({
+  id,
+  password: cmdDef.password,
+  related_commands: cmdDef.related_commands,
+}));
+
+
 const STORAGE_KEY = 'cyborg_terminal_secrets';
 const PASSWORD_STORAGE_KEY = 'cyborg_terminal_passwords';
+const HISTORY_KEY = 'cyborg_terminal_history';
 
 // ============================================================================
 // UTILITY FUNCTIONS
@@ -139,47 +147,39 @@ function RelatedCommands({ commands, onSelect }) {
 
 // History Entry Component
 function HistoryEntry({ entry, index, onCommandSelect }) {
-  if (entry.type === 'password_prompt' || entry.type === 'component') {
-    return entry.content;
+  switch (entry.type) {
+    case 'password_prompt':
+    case 'component':
+      return entry.content;
+    case 'user':
+      return (
+        <Line neon>
+          <Line teal inline>{`CY_NET://>`}</Line> {entry.content}
+        </Line>
+      );
+    case 'error':
+      return (
+        <div className="whitespace-pre-wrap" style={{ color: 'rgb(252, 129, 129)' }}>
+          {entry.content}
+        </div>
+      );
+    case 'related_commands':
+      return (
+        <RelatedCommands
+          commands={entry.commands}
+          onSelect={onCommandSelect}
+        />
+      );
+    default: // generally "system"
+      return (
+        <Line neon>
+          {typeof entry.content === 'string'
+            ? <div className="whitespace-pre-wrap">{entry.content}</div>
+            : entry.content
+          }
+        </Line>
+      );
   }
-
-  if (entry.type === 'user') {
-    return (
-      <Line neon>
-        <Line teal inline>{`CY_NET://>`}</Line> {entry.content}
-      </Line>
-    );
-  }
-
-  if (entry.type === 'system') {
-    return (
-      <Line neon>
-        {typeof entry.content === 'string'
-          ? <div className="whitespace-pre-wrap">{entry.content}</div>
-          : entry.content
-        }
-      </Line>
-    );
-  }
-
-  if (entry.type === 'error') {
-    return (
-      <div className="whitespace-pre-wrap" style={{ color: 'rgb(252, 129, 129)' }}>
-        {entry.content}
-      </div>
-    );
-  }
-
-  if (entry.type === 'related_commands') {
-    return (
-      <RelatedCommands
-        commands={entry.commands}
-        onSelect={onCommandSelect}
-      />
-    );
-  }
-
-  return null;
 }
 
 // ============================================================================
@@ -213,11 +213,67 @@ export default function Terminal() {
   // Load discovered secrets and passwords on mount
   useEffect(() => {
     if (hasBootedRef.current) return;
-    const secrets = getDiscoveredSecrets();
-    const passwords = getDiscoveredPasswords();
-    setDiscoveredSecrets(secrets);
-    setDiscoveredPasswords(passwords);
-    bootSequence();
+
+    const initializeTerminal = async () => {
+      const secrets = getDiscoveredSecrets();
+      const passwords = getDiscoveredPasswords();
+      setDiscoveredSecrets(secrets);
+      setDiscoveredPasswords(passwords);
+
+      // Pull saved history before boot sequence modifies it
+      let savedHistory = [];
+      try {
+        savedHistory = JSON.parse(localStorage.getItem(HISTORY_KEY));
+        if (!Array.isArray(savedHistory)) savedHistory = [];
+      } catch (e) {
+        savedHistory = [];
+      }
+
+      await bootSequence(savedHistory.length >= 1);
+
+      savedHistory.forEach((entry) => {
+        const type = entry.cmd || entry.type;
+
+        if (type === 'user') {
+          addToHistory({
+            type,
+            content: entry.content,
+          });
+          return;
+        }
+
+        const command = flatCommands[type] || SYSTEM_COMMANDS[type];
+
+
+        if (!command) {
+          console.warn('No command found for', type)
+          return;
+        }
+
+        let displayContent = null;
+        if (typeof command === 'function') {
+          displayContent = command({
+            discoveredSecrets,
+            campaignCommandList: CAMPAIGN_COMMANDS_LIST,
+            setInputCallback: setInput,
+            discoveredPasswords,
+          }).content;
+        } else if (typeof command.content === 'function') {
+          displayContent = command.content();
+        } else {
+          displayContent = command.content;
+        }
+
+        if (!displayContent) return;
+
+        addToHistory({
+          type,
+          content: displayContent,
+        });
+      });
+    };
+
+    initializeTerminal();
     hasBootedRef.current = true;
   }, []);
 
@@ -238,6 +294,23 @@ export default function Terminal() {
   // Auto-scroll to bottom
   useEffect(() => {
     if (historyContainerRef.current) {
+      const savable_history = [];
+      for (let i = 0; i < history.length; ++i) {
+        const save = {};
+        const entry = history[i];
+        if (typeof entry.content === 'string') {
+          save.content = entry.content;
+        }
+        if (!save.content && entry.type === 'system') {
+          // System ties to no command with content, so there if there is no
+          // content for it, there is nothing to display
+          continue;
+        }
+        save.type = entry.type;
+        savable_history.push(save);
+      }
+      localStorage.setItem(HISTORY_KEY, JSON.stringify(savable_history));
+
       // Use setTimeout to ensure DOM has updated
       setTimeout(() => {
         historyContainerRef.current.scrollTo({
@@ -256,11 +329,11 @@ export default function Terminal() {
     setHistory(prev => [...prev, { ...entry, timestamp: Date.now() }]);
   };
 
-  const bootSequence = async () => {
+  const bootSequence = async (hasHistory) => {
     const bootMessages = getBootMessages(setInput);
 
     for (let i = 0; i < bootMessages.length; i++) {
-      await new Promise(resolve => setTimeout(resolve, 100));
+      await new Promise(resolve => setTimeout(resolve, hasHistory ? 0 : 200));
       addToHistory({
         type: 'system',
         content: bootMessages[i].content,
@@ -287,8 +360,9 @@ export default function Terminal() {
       setHistory([]);
       return;
     }
+
     addToHistory({
-      type: endCmd.type || 'system',
+      type: cmd || 'system',
       content: endCmd.content,
     });
     // Don't automatically unlock sub-commands - they'll be discovered when accessed
@@ -341,16 +415,9 @@ export default function Terminal() {
   const handleSystemCommand = (cmd) => {
     if (!SYSTEM_COMMANDS[cmd]) return false;
 
-    // Prepare campaign commands list for help/list commands (object to array)
-    const campaignCommandList = Object.entries(CAMPAIGN_COMMANDS).map(([id, cmdDef]) => ({
-      id,
-      password: cmdDef.password,
-      related_commands: cmdDef.related_commands,
-    }));
-
     const result = SYSTEM_COMMANDS[cmd]({
       discoveredSecrets,
-      campaignCommandList,
+      campaignCommandList: CAMPAIGN_COMMANDS_LIST,
       setInputCallback: setInput,
       discoveredPasswords,
     });
@@ -372,29 +439,14 @@ export default function Terminal() {
     }
 
     addToHistory({
-      type: 'system',
+      type: cmd || result.type || 'system',
       content: result.content,
     });
 
     return true;
   };
 
-  // const checkEnableDisable = (cmd) => {
-  //   if (cmd === "enable" || cmd === "disable" || cmd === "enable_dm" || cmd === "disable_dm") {
-  //     const content = cmd === "enable" ? <Line neon large>ENABLED</Line> : <Line red large>DISABLED</Line>;
-  //     executeCommandWithResult(cmd, { content: (
-  //       <>
-  //         {content}
-  //         {cmd.match(/_dm/) && <Line yellow large pulse>Notify DM of device toggle</Line>}
-  //       </>
-  //     ) }, false);
-  //     return true;
-  //   }
-  // }
-
   const handleCampaignCommand = (cmd) => {
-    // if (checkEnableDisable(cmd)) return true;
-
     // Look up in flattened commands (includes parent + all related sub-commands)
     if (!flatCommands[cmd]) return false;
 
@@ -422,7 +474,7 @@ export default function Terminal() {
             onCancel={() => {
               setPasswordMode(false);
               addToHistory({
-                type: 'system',
+                type: cmd || 'system',
                 content: 'Password entry cancelled',
               });
             }}

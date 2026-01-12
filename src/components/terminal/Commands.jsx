@@ -8,7 +8,7 @@ import {
 import MinesweeperGame from './MinesweeperGame';
 
 export const MINIGAME_COMMANDS = {
-  play_nanobomb_defusal: {
+  "Play Nanobomb Defusal": {
     type: "component",
     content: <MinesweeperGame width={20} height={10} tileSize={2} />,
   },
