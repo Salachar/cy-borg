@@ -1,6 +1,8 @@
 import { Routes, Route, NavLink } from 'react-router-dom';
 
 import Home from './pages/Home';
+import Rules from './pages/Rules';
+import Combat from './pages/Combat';
 import Classes from './pages/Classes';
 import Terminal from './pages/Terminal';
 
@@ -22,99 +24,83 @@ export default function App() {
         />
 
         <div className="relative flex items-center h-16 px-4">
-          <NavLink
-            to="/"
-            end
-            className={({ isActive }) => `
-              relative px-6 py-3 mr-2
-              font-bold uppercase tracking-wider text-sm
-              transition-all duration-300
-              ${isActive
-                ? 'text-cy-cyan'
-                : 'text-gray-400 hover:text-gray-200'
-              }
-            `}
-          >
-            {({ isActive }) => (
-              <>
-                {/* Slanted background for active state */}
-                {isActive && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-cy-cyan/20 to-cy-cyan/10 transform -skew-x-12 border border-cy-cyan/50"
-                    style={{
-                      boxShadow: '0 0 20px rgba(0, 255, 255, 0.3), inset 0 0 20px rgba(0, 255, 255, 0.1)'
-                    }}
-                  />
-                )}
-                <span className="relative z-10">Home</span>
-              </>
-            )}
-          </NavLink>
-
-          <NavLink
-            to="/classes"
-            className={({ isActive }) => `
-              relative px-6 py-3 mr-2
-              font-bold uppercase tracking-wider text-sm
-              transition-all duration-300
-              ${isActive
-                ? 'text-cy-pink'
-                : 'text-gray-400 hover:text-gray-200'
-              }
-            `}
-          >
-            {({ isActive }) => (
-              <>
-                {/* Slanted background for active state */}
-                {isActive && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-cy-pink/20 to-cy-pink/10 transform -skew-x-12 border border-cy-pink/50"
-                    style={{
-                      boxShadow: '0 0 20px rgba(255, 0, 128, 0.3), inset 0 0 20px rgba(255, 0, 128, 0.1)'
-                    }}
-                  />
-                )}
-                <span className="relative z-10">Classes</span>
-              </>
-            )}
-          </NavLink>
-
-          <NavLink
-            to="/retcomdevice"
-            className={({ isActive }) => `
-              relative px-6 py-3
-              font-bold uppercase tracking-wider text-sm
-              transition-all duration-300
-              ${isActive
-                ? 'text-cy-green'
-                : 'text-gray-400 hover:text-gray-200'
-              }
-            `}
-          >
-            {({ isActive }) => (
-              <>
-                {/* Slanted background for active state */}
-                {isActive && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-cy-green/20 to-cy-green/10 transform -skew-x-12 border border-cy-green/50"
-                    style={{
-                      boxShadow: '0 0 20px rgba(0, 255, 65, 0.3), inset 0 0 20px rgba(0, 255, 65, 0.1)'
-                    }}
-                  />
-                )}
-                <span className="relative z-10">RetComDevice</span>
-              </>
-            )}
-          </NavLink>
+          <CyNavLink to="/" label="Home" color="cyan" end />
+          <CyNavLink to="/rules" label="Rules" color="yellow" />
+          <CyNavLink to="/combat" label="Combat" color="pink" />
+          <CyNavLink to="/classes" label="Classes" color="pink" />
+          <CyNavLink to="/retcomdevice" label="RetComDevice" color="green" />
         </div>
 
         {/* Bottom glowing line */}
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cy-cyan to-transparent" />
       </nav>
+
       <div className="flex-1 flex flex-col">
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/classes/:slug?" element={<Classes />} />
-        <Route path="/retcomdevice" element={<Terminal />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/rules" element={<Rules />} />
+          <Route path="/combat" element={<Combat />} />
+          <Route path="/classes/:slug?" element={<Classes />} />
+          <Route path="/retcomdevice" element={<Terminal />} />
+        </Routes>
       </div>
     </div>
+  );
+}
+
+// Reusable CY_BORG nav link component
+function CyNavLink({ to, label, color, end = false }) {
+  const colorMap = {
+    cyan: {
+      active: 'text-cy-cyan',
+      bg: 'from-cy-cyan/20 to-cy-cyan/10',
+      border: 'border-cy-cyan/50',
+      shadow: '0 0 20px rgba(0, 255, 255, 0.3), inset 0 0 20px rgba(0, 255, 255, 0.1)'
+    },
+    pink: {
+      active: 'text-cy-pink',
+      bg: 'from-cy-pink/20 to-cy-pink/10',
+      border: 'border-cy-pink/50',
+      shadow: '0 0 20px rgba(255, 0, 128, 0.3), inset 0 0 20px rgba(255, 0, 128, 0.1)'
+    },
+    yellow: {
+      active: 'text-cy-yellow',
+      bg: 'from-cy-yellow/20 to-cy-yellow/10',
+      border: 'border-cy-yellow/50',
+      shadow: '0 0 20px rgba(255, 255, 0, 0.3), inset 0 0 20px rgba(255, 255, 0, 0.1)'
+    },
+    green: {
+      active: 'text-cy-green',
+      bg: 'from-cy-green/20 to-cy-green/10',
+      border: 'border-cy-green/50',
+      shadow: '0 0 20px rgba(0, 255, 65, 0.3), inset 0 0 20px rgba(0, 255, 65, 0.1)'
+    }
+  };
+
+  const colors = colorMap[color];
+
+  return (
+    <NavLink
+      to={to}
+      end={end}
+      className={({ isActive }) => `
+        relative px-6 py-3 mr-2
+        font-bold uppercase tracking-wider text-sm
+        transition-all duration-300
+        ${isActive ? colors.active : 'text-gray-400 hover:text-gray-200'}
+      `}
+    >
+      {({ isActive }) => (
+        <>
+          {isActive && (
+            <div
+              className={`absolute inset-0 bg-gradient-to-r ${colors.bg} transform -skew-x-12 border ${colors.border}`}
+              style={{ boxShadow: colors.shadow }}
+            />
+          )}
+          <span className="relative z-10">{label}</span>
+        </>
+      )}
+    </NavLink>
   );
 }
