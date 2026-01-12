@@ -31,7 +31,7 @@ import PasswordPrompt from '../components/terminal/PasswordPrompt';
 
 const CAMPAIGN_COMMANDS = {
   ...MINIGAME_COMMANDS,
-  ...TUTORIAL_APARTMENT_COMPLEX,
+  // ...TUTORIAL_APARTMENT_COMPLEX,
   ...CY_CITY_COMMANDS,
   ...LUCKY_FLIGHT_TAKEDOWN,
 };
