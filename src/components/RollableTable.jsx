@@ -146,8 +146,6 @@ export default function RollableTable({
                   tags = [],
                 } = entry || {};
 
-                console.log(tags)
-
                 const entryId = id || label;
                 const isSelected = selected[entryId];
                 const isHighlighted = highlightedIndex === index;

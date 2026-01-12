@@ -5,12 +5,43 @@ import {
   CommandLink,
 } from './TerminalComponents';
 
-import MinesweeperGame from './MinesweeperGame';
+import MinesweeperGame from './Games/MinesweeperGame';
+import MemoryGame from './Games/MemoryGame';
+import BreakoutGame from './Games/BreakoutGame';
+import PipeDreamGame from './Games/PipeDreamGame';
 
 export const MINIGAME_COMMANDS = {
   "Play Nanobomb Defusal": {
     type: "component",
     content: <MinesweeperGame width={20} height={10} tileSize={2} />,
+  },
+
+  "Play Netrunner Memory Deck": {
+    type: "component",
+    content: <MemoryGame gridSize={4} tileSize={4} />,
+  },
+
+  "Play Netrunner Memory Deck (Hard)": {
+    type: "component",
+    content: <MemoryGame gridSize={6} tileSize={3.5} />,
+  },
+
+  "Play Firewall Breach": {
+    type: "component",
+    content: <BreakoutGame boardWidth={600} boardHeight={500} />,
+  },
+
+  "Play Signal Router": {
+    type: "component",
+    content: (
+      <PipeDreamGame
+        gridWidth={8}
+        gridHeight={6}
+        tileSize={60}
+        prepTime={10}      // Seconds to place pipes
+        flowDelay={400}    // Ms between tile advancement
+      />
+    )
   },
 
   // play_nanobomb_defusal_quick: {

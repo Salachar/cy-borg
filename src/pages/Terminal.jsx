@@ -18,6 +18,9 @@ import TerminalShell, {
 import {
   getBootMessages,
   Line,
+  Box,
+  Divider,
+  CommandLink,
 } from "../components/terminal/TerminalComponents";
 
 import PasswordPrompt from '../components/terminal/PasswordPrompt';
@@ -103,50 +106,83 @@ function flattenCommands(commands, flat = {}) {
 // ============================================================================
 
 // Related Commands Component
-function RelatedCommands({ commands, onSelect }) {
+// function RelatedCommands({ commands, onSelect }) {
+//   return (
+//     <div
+//       className="border-2 p-4 my-2"
+//       style={{
+//         borderColor: 'rgb(77, 167, 188)',
+//         backgroundColor: 'rgba(0, 0, 0, 0.5)',
+//       }}
+//     >
+//       <div
+//         className="font-bold mb-2"
+//         style={{ color: 'rgb(79, 209, 197)' }}
+//       >
+//         ━━━ COMMANDS AVAILABLE ━━━
+//       </div>
+//       <div className="space-y-1">
+//         {commands.map(cmd => (
+//           <div key={cmd}>
+//             <span
+//               className="cursor-pointer hover:underline"
+//               style={{ color: 'rgb(0, 170, 40)' }}
+//               onClick={() => onSelect(cmd)}
+//             >
+//               → {cmd}
+//             </span>
+//             <span className="text-xs ml-2"
+//                   style={{ color: 'rgba(0, 170, 40, 0.5)' }}>
+//               [Click to execute]
+//             </span>
+//           </div>
+//         ))}
+//       </div>
+//       <div
+//         className="text-xs mt-3 italic"
+//         style={{ color: 'rgb(0, 170, 40)' }}
+//       >
+//         Available via 'list'
+//       </div>
+//     </div>
+//   );
+// }
+
+// Related Commands Component
+function RelatedCommands({ commands, onSelect, flatCommands }) {
   return (
-    <div
-      className="border-2 p-4 my-2"
-      style={{
-        borderColor: 'rgb(77, 167, 188)',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      }}
-    >
-      <div
-        className="font-bold mb-2"
-        style={{ color: 'rgb(79, 209, 197)' }}
-      >
-        ━━━ COMMANDS AVAILABLE ━━━
-      </div>
+    <Box color="cyan" className="my-2">
+      <Line teal bold>━━━ RELATED COMMANDS AVAILABLE ━━━</Line>
+      <Divider />
       <div className="space-y-1">
-        {commands.map(cmd => (
-          <div key={cmd}>
-            <span
-              className="cursor-pointer hover:underline"
-              style={{ color: 'rgb(0, 170, 40)' }}
-              onClick={() => onSelect(cmd)}
-            >
-              → {cmd}
-            </span>
-            <span className="text-xs ml-2"
-                  style={{ color: 'rgba(0, 170, 40, 0.5)' }}>
-              [Click to execute]
-            </span>
-          </div>
-        ))}
+        {commands.map(cmd => {
+          const commandDef = flatCommands[cmd];
+          const hasPassword = commandDef?.password;
+
+          return (
+            <div key={cmd}>
+              <Line neon>
+                → <CommandLink command={cmd} onClick={onSelect} />
+                {hasPassword && (
+                  <span className="text-xs ml-2" style={{ color: 'rgb(250, 204, 21)' }}>
+                    [PW]
+                  </span>
+                )}
+              </Line>
+            </div>
+          );
+        })}
       </div>
-      <div
-        className="text-xs mt-3 italic"
-        style={{ color: 'rgb(0, 170, 40)' }}
-      >
-        Available via 'list'
-      </div>
-    </div>
+      <Divider />
+      <Line neon small>
+        These commands are now available via 'list'
+      </Line>
+    </Box>
   );
 }
 
 // History Entry Component
-function HistoryEntry({ entry, index, onCommandSelect }) {
+function HistoryEntry({ entry, index, onCommandSelect, flatCommands }) {
   switch (entry.type) {
     case 'password_prompt':
     case 'component':
@@ -168,6 +204,7 @@ function HistoryEntry({ entry, index, onCommandSelect }) {
         <RelatedCommands
           commands={entry.commands}
           onSelect={onCommandSelect}
+          flatCommands={flatCommands}
         />
       );
     default: // generally "system"
@@ -196,6 +233,8 @@ export default function Terminal() {
   const [discoveredPasswords, setDiscoveredPasswords] = useState({});
   const [isBooting, setIsBooting] = useState(true);
   const [passwordMode, setPasswordMode] = useState(false); // Track if password prompt is active
+
+  const [hasLoadedHistory, setHasLoadedHistory] = useState(false);
 
   // Refs
   const hasBootedRef = useRef(false);
@@ -244,7 +283,6 @@ export default function Terminal() {
 
         const command = flatCommands[type] || SYSTEM_COMMANDS[type];
 
-
         if (!command) {
           console.warn('No command found for', type)
           return;
@@ -252,11 +290,12 @@ export default function Terminal() {
 
         let displayContent = null;
         if (typeof command === 'function') {
+          // System level commands are special funcions to take extra shit
           displayContent = command({
-            discoveredSecrets,
+            discoveredSecrets: secrets,
             campaignCommandList: CAMPAIGN_COMMANDS_LIST,
             setInputCallback: setInput,
-            discoveredPasswords,
+            discoveredPasswords: passwords,
           }).content;
         } else if (typeof command.content === 'function') {
           displayContent = command.content();
@@ -274,6 +313,9 @@ export default function Terminal() {
     };
 
     initializeTerminal();
+    setTimeout(() => {
+      setHasLoadedHistory(true);
+    }, 100)
     hasBootedRef.current = true;
   }, []);
 
@@ -312,12 +354,19 @@ export default function Terminal() {
       localStorage.setItem(HISTORY_KEY, JSON.stringify(savable_history));
 
       // Use setTimeout to ensure DOM has updated
-      setTimeout(() => {
+      if (!hasLoadedHistory) {
         historyContainerRef.current.scrollTo({
           top: historyContainerRef.current.scrollHeight,
-          behavior: 'smooth'
+          behavior: 'instant',
         });
-      }, 100);
+      } else {
+        setTimeout(() => {
+          historyContainerRef.current.scrollTo({
+            top: historyContainerRef.current.scrollHeight,
+            behavior: 'smooth',
+          });
+        }, 100);
+      }
     }
   }, [history]);
 
@@ -331,9 +380,10 @@ export default function Terminal() {
 
   const bootSequence = async (hasHistory) => {
     const bootMessages = getBootMessages(setInput);
-
     for (let i = 0; i < bootMessages.length; i++) {
-      await new Promise(resolve => setTimeout(resolve, hasHistory ? 0 : 200));
+      if (!hasHistory) {
+        await new Promise(resolve => setTimeout(resolve, 200));
+      }
       addToHistory({
         type: 'system',
         content: bootMessages[i].content,
@@ -357,6 +407,7 @@ export default function Terminal() {
 
     // Add result to history
     if (endCmd.type === 'clear') {
+      localStorage.setItem(HISTORY_KEY, JSON.stringify([]));
       setHistory([]);
       return;
     }
@@ -425,6 +476,7 @@ export default function Terminal() {
     if (result.type === 'reset') {
       localStorage.setItem(STORAGE_KEY, JSON.stringify([]));
       localStorage.setItem(PASSWORD_STORAGE_KEY, JSON.stringify({}));
+      localStorage.setItem(HISTORY_KEY, JSON.stringify([]));
       setDiscoveredPasswords({});
       setDiscoveredSecrets([]);
       setHistory([]);
@@ -587,6 +639,7 @@ export default function Terminal() {
                 entry={entry}
                 index={index}
                 onCommandSelect={setInput}
+                flatCommands={flatCommands}
               />
             </div>
           ))}
