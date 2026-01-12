@@ -1,4 +1,5 @@
-import { Routes, Route, NavLink } from 'react-router-dom';
+import { Routes, Route, NavLink, useLocation } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
 
 import Home from './pages/Home';
 import Rules from './pages/Rules';
@@ -6,11 +7,44 @@ import Combat from './pages/Combat';
 import Classes from './pages/Classes';
 import Terminal from './pages/Terminal';
 
+// Scroll position storage
+const scrollPositions = {};
+
 export default function App() {
+  const location = useLocation();
+  const contentRef = useRef(null);
+
+  // Save scroll position before route changes
+  useEffect(() => {
+    const currentPath = location.pathname;
+
+    // Skip scroll management for Terminal and Classes routes (they have dynamic/complex layouts)
+    const isTerminal = currentPath === '/retcomdevice';
+    const isClasses = currentPath.startsWith('/classes');
+
+    if (isTerminal || isClasses) return;
+
+    // Restore scroll position for this route (with slight delay to ensure DOM is ready)
+    if (contentRef.current && scrollPositions[currentPath] !== undefined) {
+      requestAnimationFrame(() => {
+        if (contentRef.current) {
+          contentRef.current.scrollTop = scrollPositions[currentPath];
+        }
+      });
+    }
+
+    // Save scroll position when navigating away
+    return () => {
+      if (contentRef.current && !isTerminal && !isClasses) {
+        scrollPositions[currentPath] = contentRef.current.scrollTop;
+      }
+    };
+  }, [location.pathname]);
+
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Cyberpunk Nav */}
-      <nav className="relative bg-black border-b border-cy-cyan/30 overflow-hidden">
+    <div className="flex flex-col h-screen overflow-hidden">
+      {/* Fixed Cyberpunk Nav */}
+      <nav className="relative bg-black border-b border-cy-cyan/30 overflow-hidden flex-shrink-0">
         {/* Background grid pattern */}
         <div
           className="absolute inset-0 opacity-5"
@@ -35,15 +69,21 @@ export default function App() {
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cy-cyan to-transparent" />
       </nav>
 
-      <div className="flex-1 flex flex-col">
+      {/* Scrollable content area - except for Terminal which manages its own scroll */}
+      {location.pathname === '/retcomdevice' ? (
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/rules" element={<Rules />} />
-          <Route path="/combat" element={<Combat />} />
-          <Route path="/classes/:slug?" element={<Classes />} />
           <Route path="/retcomdevice" element={<Terminal />} />
         </Routes>
-      </div>
+      ) : (
+        <div ref={contentRef} className="flex-1 overflow-y-auto overflow-x-hidden">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/rules" element={<Rules />} />
+            <Route path="/combat" element={<Combat />} />
+            <Route path="/classes/:slug?" element={<Classes />} />
+          </Routes>
+        </div>
+      )}
     </div>
   );
 }

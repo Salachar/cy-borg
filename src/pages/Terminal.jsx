@@ -105,50 +105,6 @@ function flattenCommands(commands, flat = {}) {
 // SUB-COMPONENTS
 // ============================================================================
 
-// Related Commands Component
-// function RelatedCommands({ commands, onSelect }) {
-//   return (
-//     <div
-//       className="border-2 p-4 my-2"
-//       style={{
-//         borderColor: 'rgb(77, 167, 188)',
-//         backgroundColor: 'rgba(0, 0, 0, 0.5)',
-//       }}
-//     >
-//       <div
-//         className="font-bold mb-2"
-//         style={{ color: 'rgb(79, 209, 197)' }}
-//       >
-//         ━━━ COMMANDS AVAILABLE ━━━
-//       </div>
-//       <div className="space-y-1">
-//         {commands.map(cmd => (
-//           <div key={cmd}>
-//             <span
-//               className="cursor-pointer hover:underline"
-//               style={{ color: 'rgb(0, 170, 40)' }}
-//               onClick={() => onSelect(cmd)}
-//             >
-//               → {cmd}
-//             </span>
-//             <span className="text-xs ml-2"
-//                   style={{ color: 'rgba(0, 170, 40, 0.5)' }}>
-//               [Click to execute]
-//             </span>
-//           </div>
-//         ))}
-//       </div>
-//       <div
-//         className="text-xs mt-3 italic"
-//         style={{ color: 'rgb(0, 170, 40)' }}
-//       >
-//         Available via 'list'
-//       </div>
-//     </div>
-//   );
-// }
-
-// Related Commands Component
 function RelatedCommands({ commands, onSelect, flatCommands }) {
   return (
     <Box color="cyan" className="my-2">
@@ -541,6 +497,12 @@ export default function Terminal() {
     return true;
   };
 
+  // Quick command execution (bypasses input field)
+  const executeQuickCommand = (cmd) => {
+    if (passwordMode || isBooting) return;
+    executeCommand(cmd);
+  };
+
   // ============================================================================
   // EVENT HANDLERS
   // ============================================================================
@@ -624,6 +586,15 @@ export default function Terminal() {
   const promptPrefix = 'CY_NET://>';
   const inputPlaceholder = passwordMode ? 'Password prompt active...' : 'Enter command...';
 
+  // Quick command buttons for system commands
+  const quickCommands = [
+    { label: 'HELP', onClick: () => executeQuickCommand('help'), disabled: isBooting || passwordMode },
+    { label: 'LIST', onClick: () => executeQuickCommand('list'), disabled: isBooting || passwordMode },
+    { label: 'CLEAR', onClick: () => executeQuickCommand('clear'), disabled: isBooting || passwordMode },
+    { label: 'ABOUT', onClick: () => executeQuickCommand('about'), disabled: isBooting || passwordMode },
+    // { label: 'RESET', onClick: () => executeQuickCommand('reset'), disabled: isBooting || passwordMode },
+  ];
+
   return (
     <TerminalShell
       header={<TerminalHeader />}
@@ -662,6 +633,8 @@ export default function Terminal() {
       }
 
       helpText={<TerminalHelpText passwordMode={passwordMode} />}
+
+      quickCommands={quickCommands}
     />
   );
 }

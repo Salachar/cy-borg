@@ -73,6 +73,16 @@ html, body {
   background-color: var(--color-bg-black);
   color: #e0e0e0;
   font-family: "Courier New", monospace;
+  height: 100%;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+/* Prevent overscroll bounce on iOS/Safari */
+body {
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 h1, h2, h3, h4, h5 {
@@ -108,7 +118,7 @@ h3 {
 
 #root {
   max-width: 1200px;
-  min-height: 100vh;
+  height: 100vh;
   margin: 0 auto;
   background-color: var(--color-bg-dark);
   box-shadow:

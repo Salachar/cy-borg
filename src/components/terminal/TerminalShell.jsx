@@ -42,24 +42,62 @@ const COLORS = {
 // ============================================================================
 
 export default function TerminalShell({
-  children,
   header,
   historyArea,
   inputArea,
   helpText,
+  quickCommands = [],
 }) {
   return (
     <div
-      className="flex-1 flex flex-col font-mono relative overflow-hidden"
+      className="flex-1 flex overflow-hidden"
       style={{ backgroundColor: COLORS.bg.main }}
     >
-      <div className="flex-1 flex flex-col max-w-5xl mx-auto w-full p-4 relative">
-        {header}
-        {historyArea}
-        {inputArea}
-        {helpText}
+      {/* Main terminal area - left aligned, slight offset */}
+      <div className="flex-1 flex flex-col font-mono overflow-hidden">
+        <div className="flex-1 flex flex-col p-4 pl-8 overflow-hidden">
+          {header}
+          {historyArea}
+          {inputArea}
+          {helpText}
+        </div>
       </div>
+
+      {/* Right sidebar for quick command buttons */}
+      {quickCommands.length > 0 && (
+        <div className="w-32 flex-shrink-0 p-4 pl-0 pr-8 flex flex-col gap-2 overflow-y-auto">
+          {quickCommands.map((cmd, i) => (
+            <QuickCommandButton
+              key={i}
+              label={cmd.label}
+              onClick={cmd.onClick}
+              disabled={cmd.disabled}
+            />
+          ))}
+        </div>
+      )}
     </div>
+  );
+}
+
+// Quick command button component
+function QuickCommandButton({ label, onClick, disabled = false }) {
+  return (
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      className="p-2 rounded border font-bold text-xs transition-all disabled:opacity-30 flex-shrink-0"
+      style={{
+        backgroundColor: COLORS.bg.panel,
+        borderColor: COLORS.border.default,
+        color: COLORS.accent.teal,
+        minHeight: '2.5rem',
+      }}
+      onMouseEnter={(e) => !disabled && (e.target.style.backgroundColor = COLORS.bg.panelHover)}
+      onMouseLeave={(e) => !disabled && (e.target.style.backgroundColor = COLORS.bg.panel)}
+    >
+      {label}
+    </button>
   );
 }
 
@@ -100,7 +138,7 @@ export function TerminalHeader() {
 
   return (
     <div
-      className="rounded-lg mb-4 p-4 border"
+      className="rounded-lg mb-4 p-4 border flex-shrink-0"
       style={{
         backgroundColor: COLORS.bg.panel,
         borderColor: COLORS.border.default,
@@ -147,10 +185,9 @@ export function TerminalHistoryArea({ children, historyContainerRef, historyEndR
   return (
     <div
       ref={historyContainerRef}
-      className="rounded-lg p-4 mb-4 overflow-y-auto border"
+      className="flex-1 rounded-lg p-4 mb-4 overflow-y-auto border"
       style={{
-        height: 'calc(100vh - 350px)',
-        minHeight: '400px',
+        minHeight: 0, // Critical for proper flexbox behavior
         textShadow: '0 0 5px rgba(0, 255, 65, 0.5)',
         backgroundColor: COLORS.bg.panel,
         borderColor: COLORS.border.default,
@@ -179,7 +216,7 @@ export function TerminalInputArea({
   return (
     <form
       onSubmit={onSubmit}
-      className="rounded-lg p-4 border"
+      className="rounded-lg p-4 border flex-shrink-0"
       style={{
         backgroundColor: COLORS.bg.panel,
         borderColor: COLORS.border.default,
@@ -210,7 +247,7 @@ export function TerminalInputArea({
         <button
           type="submit"
           disabled={isBooting}
-          className="px-6 py-2 font-bold transition-colors disabled:opacity-50 rounded"
+          className="px-6 py-2 font-bold transition-colors disabled:opacity-50 rounded flex-shrink-0"
           style={{
             backgroundColor: COLORS.accent.teal,
             color: COLORS.bg.main,
@@ -224,14 +261,20 @@ export function TerminalInputArea({
           <button
             type="button"
             onClick={onCancelPassword}
-            className="px-4 py-2 font-bold transition-colors rounded"
+            className="px-4 py-2 font-bold transition-colors rounded flex-shrink-0"
             style={{
               backgroundColor: COLORS.bg.panelHover,
               color: COLORS.accent.red,
               border: `1px solid ${COLORS.accent.red}`,
             }}
-            onMouseEnter={(e) => e.target.style.backgroundColor = COLORS.accent.red}
-            onMouseLeave={(e) => e.target.style.backgroundColor = COLORS.bg.panelHover}
+            onMouseEnter={(e) => {
+              e.target.style.backgroundColor = COLORS.accent.red;
+              e.target.style.color = COLORS.bg.main;
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.backgroundColor = COLORS.bg.panelHover;
+              e.target.style.color = COLORS.accent.red;
+            }}
           >
             X
           </button>
@@ -244,7 +287,7 @@ export function TerminalInputArea({
 // Pre-built help text
 export function TerminalHelpText({ passwordMode }) {
   return (
-    <div className="mt-4 text-center text-xs" style={{ color: COLORS.text.secondary }}>
+    <div className="mt-4 text-center text-xs flex-shrink-0" style={{ color: COLORS.text.secondary }}>
       {passwordMode
         ? 'Enter password or press [X] to cancel'
         : 'Type \'help\' for usage | Type \'list\' for access points | Tab for autocomplete | ↑↓ for history'
