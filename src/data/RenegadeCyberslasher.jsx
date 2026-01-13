@@ -79,14 +79,6 @@ export default class RenegadeCyberslasher extends BaseClass {
     },
     {
       type: "rollable",
-      name: "starting_cybertech",
-      label: "Random Cybertech",
-      select_mode: "multiple",
-      entries: CYBERTECH,
-      before: <div className="divider small" />,
-    },
-    {
-      type: "rollable",
       name: "signature_weapon",
       label: "Your Trenchcoat Hides Most of Your...",
       select_mode: "single",
@@ -167,6 +159,14 @@ export default class RenegadeCyberslasher extends BaseClass {
           description: <>Embracing the darkness within.</>,
         },
       ],
+      before: <div className="divider small" />,
+    },
+    {
+      type: "rollable",
+      name: "starting_cybertech",
+      label: "Random Cybertech",
+      select_mode: "multiple",
+      entries: CYBERTECH,
       before: <div className="divider small" />,
     },
   ];

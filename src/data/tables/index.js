@@ -4,6 +4,7 @@ export { NANO_POWERS } from './nanoPowers';
 export { NANO_INFESTATIONS } from './nanoInfestations';
 export { CYBERTECH } from './cybertech';
 export { APPS } from './apps';
+export { APP_FUMBLES } from './app_fumbles';
 export { GLITCHES } from './glitches';
 export { WEAPONS_TABLE, ARMOR_TABLE } from './sharedTables';
 

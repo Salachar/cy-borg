@@ -1,7 +1,6 @@
 import Definitions from "./Definitions";
 import RollableTable from "./RollableTable";
 import CharacterStats from "./CharacterStats";
-import CharacterTracker from "./CharacterTracker";
 import HealthBar from "./HealthBar";
 import CharacterName from "./CharacterName";
 import { Callout } from "./PageComponents";
@@ -122,7 +121,7 @@ export default function CharacterTemplate({
             onUpdate();
           }}
           className="
-            fixed top-0 right-0 z-50
+            fixed top-1 right-1 z-50
             w-28 h-10
             bg-gray-800 hover:bg-gray-700
             border-2 border-cy-cyan
