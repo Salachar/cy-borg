@@ -54,7 +54,8 @@
   --color-cy-blue: #0080ff;
   --color-cy-purple: #bf00ff;
   --color-cy-green: #00ff41;
-  --color-cy-neon-green: #00ff41
+  --color-cy-neon-green: #00ff41;
+  --color-cy-smoke: #9cc0f0;
 }
 
 /* Global resets */
@@ -86,13 +87,13 @@ body {
 }
 
 h1, h2, h3, h4, h5 {
-  padding: 0;
-  margin: 0;
-  font-weight: 700;
-  letter-spacing: -0.025em;
+  /* padding: 0; */
+  /* margin: 0; */
+  /* font-weight: 700; */
+  /* letter-spacing: -0.025em; */
 }
 
-h1 {
+/* h1 {
   font-size: 2.5rem;
   color: var(--color-neon-cyan);
   text-transform: uppercase;
@@ -106,7 +107,7 @@ h2 {
 h3 {
   font-size: 1.5rem;
   color: #ffffff;
-}
+} */
 
 .bold {
   font-weight: bold !important;

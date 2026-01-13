@@ -1,53 +1,41 @@
+import {
+  Page,
+  PageHeader,
+  PageBox,
+  Callout,
+} from "../components/PageComponents";
+
 export default function Home() {
   return (
-    <div className="max-w-5xl mx-auto px-6 py-8">
-      {/* Hero Section */}
-      <div className="mb-12 relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-cy-cyan/5 via-cy-pink/5 to-cy-yellow/5 blur-3xl -z-10" />
-        <h1 className="text-7xl font-black text-cy-cyan mb-3 tracking-tight uppercase glitch-text">
-          CY_BORG
-        </h1>
-        <p className="text-2xl text-cy-pink font-bold mb-6">Character Creator & Combat Assistant</p>
-        <div className="h-1 w-32 bg-gradient-to-r from-cy-cyan via-cy-pink to-cy-yellow" />
-      </div>
+    <Page>
+      <PageHeader
+        title="CY_BORG"
+        subtitle="Character Creator & Combat Assistant"
+      />
 
-      {/* Welcome to the End */}
-      <section className="mb-12">
-        <div className="bg-gradient-to-br from-gray-900/90 to-black border-2 border-cy-cyan/30 p-8 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-cy-pink/5 blur-3xl" />
-          <div className="relative z-10">
-            <h2 className="text-3xl font-black text-cy-yellow mb-4 uppercase">
-              Welcome to 20X3_
-            </h2>
-            <p className="text-lg text-gray-300 leading-relaxed mb-4">
-              The City of Cy writhes in its death throes. The world ended. Then it ended again.
-              And again. It keeps ending, keeps reborn, always worse.
-            </p>
-            <p className="text-lg text-gray-300 leading-relaxed mb-4">
-              You're a <span className="text-cy-cyan font-bold">punk</span> — infected,
-              injected, infested with something that won't let you die quietly. The megacorps
-              own everything. The cops are corpo thugs. The system is rigged.
-            </p>
-            <p className="text-lg text-cy-pink font-bold">
-              You are the enemy of all of them.
-            </p>
-          </div>
-        </div>
-      </section>
+      <PageBox title="Welcome to 20X3_">
+        <p className="text-lg text-gray-300 leading-relaxed mb-4">
+          The City of Cy writhes in its death throes. The world ended. Then it ended again.
+          And again. It keeps ending, keeps reborn, always worse.
+        </p>
+        <p className="text-lg text-gray-300 leading-relaxed mb-4">
+          You're a <span className="text-cy-cyan font-bold">punk</span> — infected,
+          injected, infested with something that won't let you die quietly. The megacorps
+          own everything. The cops are corpo thugs. The system is rigged.
+        </p>
+        <p className="text-lg text-red-400 font-bold">
+          You are the enemy of all of them.
+        </p>
+      </PageBox>
 
       {/* Rule Zero */}
-      <section className="mb-12">
-        <div className="bg-gradient-to-r from-cy-pink/20 via-red-900/20 to-cy-pink/20 border-l-4 border-cy-pink p-6">
-          <p className="text-xl font-black text-cy-pink mb-2 uppercase tracking-wide">
-            [RULE #00]
-          </p>
-          <p className="text-gray-300 leading-relaxed">
-            Player Characters <span className="text-cy-pink font-bold">cannot</span> be loyal to
-            or have sympathy for the corps, the cops, or the capitalist system. You might be
-            forced to do missions for them. But make no mistake — <span className="text-cy-yellow font-bold">they are the enemy</span>.
-          </p>
-        </div>
-      </section>
+      <Callout title="[RULE #00]">
+        <p className="text-gray-300 leading-relaxed">
+          Player Characters <span className="text-red-400 font-bold">cannot</span> be loyal to
+          or have sympathy for the corps, the cops, or the capitalist system. You might be
+          forced to do missions for them. But make no mistake — <span className="text-cy-yellow font-bold">they are the enemy</span>.
+        </p>
+      </Callout>
 
       {/* The Megacorps */}
       <section className="mb-12">
@@ -158,17 +146,17 @@ export default function Home() {
               <span className="text-cy-cyan font-bold">Rules</span> tab for complete mechanics
             </p>
             <p className="text-lg">
-              <span className="text-cy-pink font-bold">→</span> Use the{" "}
-              <span className="text-cy-pink font-bold">Combat</span> tab during fights (step-by-step flow)
+              <span className="text-cy-yellow font-bold">→</span> Use the{" "}
+              <span className="text-cy-yellow font-bold">Combat</span> tab during fights (step-by-step flow)
             </p>
             <p className="text-lg">
-              <span className="text-cy-yellow font-bold">→</span> Hit{" "}
-              <span className="text-cy-yellow font-bold">Classes</span> when you're ready to roll (it's also the character creator)
+              <span className="text-cy-cyan font-bold">→</span> Hit{" "}
+              <span className="text-cy-cyan font-bold">Classes</span> when you're ready to roll (it's also the character creator)
             </p>
           </div>
         </div>
       </section>
-    </div>
+    </Page>
   );
 }
 
@@ -176,7 +164,7 @@ export default function Home() {
 function CorpCard({ name, tagline, detail }) {
   return (
     <div className="bg-gray-900/70 border border-gray-700 p-4 hover:border-cy-cyan/50 transition-all group">
-      <h3 className="text-lg font-black text-cy-cyan mb-1 group-hover:text-cy-pink transition-colors">
+      <h3 className="text-lg font-black text-cy-cyan mb-1 group-hover:text-cy-yellow transition-colors">
         {name}
       </h3>
       <p className="text-sm text-cy-yellow mb-2 font-bold">{tagline}</p>
@@ -203,8 +191,8 @@ function ConceptBox({ icon, title, description }) {
 // Component: District Card
 function DistrictCard({ name, vibe }) {
   return (
-    <div className="bg-black/50 border border-gray-800 p-4 hover:border-cy-pink/50 transition-all">
-      <h3 className="text-sm font-black text-cy-pink mb-2 uppercase tracking-wide">
+    <div className="bg-black/50 border border-gray-800 p-4 hover:border-cy-cyan/50 transition-all">
+      <h3 className="text-sm font-black text-cy-cyan mb-2 uppercase tracking-wide">
         {name}
       </h3>
       <p className="text-xs text-gray-400 italic">{vibe}</p>

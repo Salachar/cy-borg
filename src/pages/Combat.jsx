@@ -1,16 +1,20 @@
+import {
+  Page,
+  PageHeader,
+  DefinitionBox,
+} from "../components/PageComponents";
+
 export default function Combat() {
   return (
-    <div className="max-w-5xl mx-auto px-6 py-8">
-      <div className="mb-8">
-        <h1 className="text-5xl font-black text-cy-cyan mb-2 tracking-tight uppercase">
-          Combat Flow
-        </h1>
-        <p className="text-xl text-gray-400">Step-by-step guide for running combat encounters</p>
-      </div>
+    <Page>
+      <PageHeader
+        title="Combat Flow"
+        subtitle="Step-by-step guide for running combat encounters"
+      />
 
       {/* Quick Reference Box */}
-      <div className="bg-gradient-to-r from-red-900/20 to-cy-pink/20 border-2 border-cy-pink p-6 mb-8">
-        <h2 className="text-2xl font-black text-cy-pink mb-3 uppercase">Quick Reference</h2>
+      <div className="bg-gradient-to-r from-red-900/20 to-gray-900/20 border-2 border-red-500 p-6 mb-8">
+        <h2 className="text-2xl font-black text-red-400 mb-3 uppercase">Quick Reference</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
           <div className="text-gray-300">
             <span className="text-cy-cyan font-bold">Melee Attack:</span> Strength DR12
@@ -48,8 +52,8 @@ export default function Combat() {
                 <strong className="text-cy-yellow">Roll d6:</strong>
               </p>
               <ul className="space-y-1 text-gray-400 text-sm">
-                <li>• <strong className="text-cy-pink">1-3:</strong> Enemies act first</li>
-                <li>• <strong className="text-cy-pink">4-6:</strong> PCs act first</li>
+                <li>• <strong className="text-cy-cyan">1-3:</strong> Enemies act first</li>
+                <li>• <strong className="text-cy-cyan">4-6:</strong> PCs act first</li>
               </ul>
             </div>
             <p className="text-gray-400 text-sm">
@@ -62,7 +66,7 @@ export default function Combat() {
         <CombatStep
           number="02"
           title="Your Turn: Choose Your Action"
-          color="pink"
+          color="cyan"
         >
           <div className="space-y-3">
             <ActionOption
@@ -150,7 +154,7 @@ export default function Combat() {
         <CombatStep
           number="04"
           title="Roll Damage (If You Hit)"
-          color="pink"
+          color="yellow"
         >
           <div className="space-y-3">
             <p className="text-gray-300">
@@ -162,12 +166,12 @@ export default function Combat() {
               </p>
               <p className="text-gray-400 text-sm">
                 You hit with a pistol (d8 damage). You roll 6. Enemy has -d2 armor and rolls 1.
-                Final damage: <strong className="text-cy-pink">5 HP</strong>
+                Final damage: <strong className="text-cy-cyan">5 HP</strong>
               </p>
             </div>
             <div className="bg-cy-cyan/10 border border-cy-cyan p-3 rounded">
               <p className="text-cy-cyan text-sm">
-                <strong>💡 Glitch Tip:</strong> Spend a Glitch to deal maximum weapon damage (no roll needed).
+                <strong>Glitch Tip:</strong> Spend a Glitch to deal maximum weapon damage (no roll needed).
               </p>
             </div>
           </div>
@@ -210,7 +214,7 @@ export default function Combat() {
 
             <div className="bg-cy-cyan/10 border border-cy-cyan p-3 rounded">
               <p className="text-cy-cyan text-sm">
-                <strong>💡 Glitch Tip:</strong> Spend a Glitch to reduce incoming damage by d6.
+                <strong>Glitch Tip:</strong> Spend a Glitch to reduce incoming damage by d6.
               </p>
             </div>
           </div>
@@ -277,8 +281,8 @@ export default function Combat() {
                 For each weapon you fired, roll:
               </p>
               <ul className="space-y-1 text-gray-400 text-sm">
-                <li>• <strong className="text-cy-pink">d8</strong> (if you used single shot or melee)</li>
-                <li>• <strong className="text-cy-pink">d6</strong> (if you used autofire)</li>
+                <li>• <strong className="text-cy-cyan">d8</strong> (if you used single shot or melee)</li>
+                <li>• <strong className="text-cy-cyan">d6</strong> (if you used autofire)</li>
               </ul>
               <p className="text-gray-400 text-sm mt-2">
                 <strong className="text-red-400">1-3:</strong> Magazine is empty. Must reload.
@@ -289,7 +293,7 @@ export default function Combat() {
               <p className="text-cy-yellow font-bold mb-2">Catch Your Breath</p>
               <p className="text-gray-300 text-sm">
                 If there's still time and it's safe: sit down, hydrate, breathe.
-                Restore <strong className="text-cy-pink">d4 HP</strong>.
+                Restore <strong className="text-green-400">d4 HP</strong>.
               </p>
             </div>
 
@@ -313,39 +317,34 @@ export default function Combat() {
           </div>
         </CombatStep>
 
-        {/* Glitch Reference */}
-        <div className="bg-gradient-to-br from-cy-cyan/10 via-cy-pink/10 to-cy-yellow/10 border-2 border-cy-cyan p-6 mt-8">
-          <h2 className="text-2xl font-black text-cy-cyan mb-4 uppercase">Using Glitches in Combat</h2>
+        <DefinitionBox
+          title="Using Glitches in Combat"
+          definitions={[
+            {
+              label: "Reduce DR by 4",
+              description: "Use before rolling a test",
+            }, {
+              label: "Neutralize Crit/Fumble",
+              description: "Cancel the special effect",
+            }, {
+              label: "Reduce Damage by d6",
+              description: "Lower incoming damage",
+            }, {
+              label: "Deal Max Damage",
+              description: "No roll needed for damage",
+            }, {
+              label: "Reroll Any Die",
+              description: "Yours or someone else's",
+            }
+          ]}
+        >
           <p className="text-gray-300 mb-4 text-sm">
             Reality glitches in your favor. You start with d2 Glitches (or class die).
             Regain them by rolling again after spending all and resting.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            <GlitchOption
-              name="Reduce DR by 4"
-              description="Use before rolling a test"
-            />
-            <GlitchOption
-              name="Neutralize Crit/Fumble"
-              description="Cancel the special effect"
-            />
-            <GlitchOption
-              name="Reduce Damage by d6"
-              description="Lower incoming damage"
-            />
-            <GlitchOption
-              name="Deal Max Damage"
-              description="No roll needed for damage"
-            />
-            <GlitchOption
-              name="Reroll Any Die"
-              description="Yours or someone else's"
-            />
-          </div>
-        </div>
-
+        </DefinitionBox>
       </div>
-    </div>
+    </Page>
   );
 }
 
@@ -353,7 +352,6 @@ export default function Combat() {
 function CombatStep({ number, title, color, children }) {
   const colorMap = {
     cyan: "border-cy-cyan bg-cy-cyan/5",
-    pink: "border-cy-pink bg-cy-pink/5",
     yellow: "border-cy-yellow bg-cy-yellow/5",
     red: "border-red-500 bg-red-900/10",
     green: "border-green-500 bg-green-900/10",
@@ -361,7 +359,6 @@ function CombatStep({ number, title, color, children }) {
 
   const textColorMap = {
     cyan: "text-cy-cyan",
-    pink: "text-cy-pink",
     yellow: "text-cy-yellow",
     red: "text-red-400",
     green: "text-green-400",
@@ -389,12 +386,12 @@ function ActionOption({ action, test, description, warning }) {
   return (
     <div className="bg-black/30 p-4 rounded">
       <div className="flex items-start justify-between mb-2">
-        <h3 className="text-lg font-bold text-cy-pink">{action}</h3>
+        <h3 className="text-lg font-bold text-cy-cyan">{action}</h3>
         <span className="text-sm text-cy-yellow font-mono">{test}</span>
       </div>
       <p className="text-gray-400 text-sm mb-2">{description}</p>
       {warning && (
-        <p className="text-red-400 text-xs">⚠️ {warning}</p>
+        <p className="text-red-400 text-xs"><b>!</b> {warning}</p>
       )}
     </div>
   );
@@ -422,22 +419,12 @@ function BatteredResult({ roll, outcome, description }) {
   return (
     <div className="bg-black/40 border border-gray-700 p-3 rounded">
       <div className="flex items-start gap-3">
-        <span className="text-cy-pink font-bold font-mono text-sm">{roll}</span>
+        <span className="text-cy-cyan font-bold font-mono text-sm">{roll}</span>
         <div>
           <p className="text-cy-yellow font-bold text-sm mb-1">{outcome}</p>
           <p className="text-gray-400 text-xs">{description}</p>
         </div>
       </div>
-    </div>
-  );
-}
-
-// Component: Glitch Option
-function GlitchOption({ name, description }) {
-  return (
-    <div className="bg-black/30 p-3 rounded">
-      <p className="text-cy-cyan font-bold text-sm mb-1">{name}</p>
-      <p className="text-gray-400 text-xs">{description}</p>
     </div>
   );
 }

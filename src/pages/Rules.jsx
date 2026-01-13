@@ -1,3 +1,11 @@
+import {
+  Page,
+  PageHeader,
+  PageBox,
+  DefinitionBox,
+  ListBox,
+} from "../components/PageComponents";
+
 import Definitions from "../components/Definitions";
 
 const GLITCHES_USES = [
@@ -51,16 +59,6 @@ const CY_RAGE = {
   description: <>Someone in CY-RAGE goes berserk, temporarily gains +d8 HP and attacks random targets twice per round with their most effective weapon. Attacks are DR10 and defense DR14. This doesn't stop until Battered, Dead, or otherwise sedated.</>,
 };
 
-const DIFFICULTY_RATINGS = [
-  { label: "DR6", description: "Simple" },
-  { label: "DR8", description: "Routine" },
-  { label: "DR10", description: "Easy" },
-  { label: "DR12", description: "Normal" },
-  { label: "DR14", description: "Difficult" },
-  { label: "DR16", description: "Really Hard" },
-  { label: "DR18", description: "Almost Impossible" },
-];
-
 const COMBAT_BASICS = [
   {
     label: "Initiative",
@@ -99,60 +97,71 @@ const ARMOR_TIERS = [
   { label: "-d6 Armor", description: "Reduces incoming damage by d6" },
 ];
 
+const ABILITIES = [
+  {
+    label: "Strength",
+    description: "Melee attacks, physical force, grappling",
+  },
+  {
+    label: "Agility",
+    description: "Defense, autofire, dodging, sneaking",
+  },
+  {
+    label: "Presence",
+    description: "Ranged attacks, social interaction, Cy-rage resistance",
+  },
+  {
+    label: "Toughness",
+    description: "Physical resilience, determines starting HP",
+  },
+  {
+    label: "Knowledge",
+    description: "Information, hacking, technical skills, using Apps",
+  }
+];
+
 export default function Rules() {
   return (
-    <div className="max-w-5xl mx-auto px-6 py-8">
-      <div className="mb-8">
-        <h1 className="text-5xl font-black text-cy-cyan mb-2 tracking-tight uppercase">
-          Rules Reference
-        </h1>
-        <p className="text-xl text-gray-400">Complete game mechanics</p>
-      </div>
+    <Page>
+      <PageHeader
+        title="Rules Reference"
+        subtitle="And Core Mechanics"
+      />
 
-      {/* Core Mechanics */}
-      <section className="mb-8">
-        <h2 className="text-3xl font-black text-cy-yellow mb-4 uppercase">Core Mechanics</h2>
-
-        <div className="bg-gray-900/50 border border-gray-800 p-6 mb-6">
-          <h3 className="text-xl font-bold text-cy-pink mb-1">Tests</h3>
-          <p className="mb-4 leading-relaxed text-gray-300">
-            To succeed on a test, roll <strong className="text-cy-yellow">d20 ± your Ability Score</strong> with a result equal to or
-            greater than the <strong className="text-cy-yellow">Difficulty Rating (DR)</strong>.
-          </p>
-          <p className="text-gray-400 text-sm">
-            Enemies and opponents don't roll to attack. Instead, the player character rolls to defend or resist.
-          </p>
-        </div>
-
-        <Definitions definitions={DIFFICULTY_RATINGS} />
-      </section>
+      <DefinitionBox
+        title="Tests"
+        definitions={ [
+          { label: "DR6", description: "Simple" },
+          { label: "DR8", description: "Routine" },
+          { label: "DR10", description: "Easy" },
+          { label: "DR12", description: "Normal" },
+          { label: "DR14", description: "Difficult" },
+          { label: "DR16", description: "Really Hard" },
+          { label: "DR18", description: "Almost Impossible" },
+        ]}
+      >
+        <p className="mb-4 leading-relaxed text-gray-300">
+          To succeed on a test, roll <strong className="text-cy-yellow">d20 ± your Ability Score</strong> with a result equal to or
+          greater than the <strong className="text-cy-yellow">Difficulty Rating (DR)</strong>.
+        </p>
+        <p className="text-gray-400 text-sm">
+          Enemies and opponents don't roll to attack. Instead, the player character rolls to defend or resist.
+        </p>
+      </DefinitionBox>
 
       <div className="divider" />
 
-      {/* Abilities */}
       <section className="mb-8">
         <h2 className="text-3xl font-black text-cy-yellow mb-4 uppercase">Abilities</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div className="bg-gray-900/50 border border-gray-800 p-4 hover:border-gray-700 transition-colors">
-            <h3 className="text-lg font-bold text-cy-cyan mb-2">Strength</h3>
-            <p className="text-sm text-gray-400">Melee attacks, physical force, grappling</p>
-          </div>
-          <div className="bg-gray-900/50 border border-gray-800 p-4 hover:border-gray-700 transition-colors">
-            <h3 className="text-lg font-bold text-cy-cyan mb-2">Agility</h3>
-            <p className="text-sm text-gray-400">Defense, autofire, dodging, sneaking</p>
-          </div>
-          <div className="bg-gray-900/50 border border-gray-800 p-4 hover:border-gray-700 transition-colors">
-            <h3 className="text-lg font-bold text-cy-cyan mb-2">Presence</h3>
-            <p className="text-sm text-gray-400">Ranged attacks, social interaction, Cy-rage resistance</p>
-          </div>
-          <div className="bg-gray-900/50 border border-gray-800 p-4 hover:border-gray-700 transition-colors">
-            <h3 className="text-lg font-bold text-cy-cyan mb-2">Toughness</h3>
-            <p className="text-sm text-gray-400">Physical resilience, determines starting HP</p>
-          </div>
-          <div className="bg-gray-900/50 border border-gray-800 p-4 hover:border-gray-700 transition-colors">
-            <h3 className="text-lg font-bold text-cy-cyan mb-2">Knowledge</h3>
-            <p className="text-sm text-gray-400">Information, hacking, technical skills, using Apps</p>
-          </div>
+          {ABILITIES.map((abi) => {
+            return (
+              <div className="bg-gray-900/50 border border-gray-800 p-4 hover:border-gray-700 transition-colors">
+                <h3 className="text-lg font-bold text-cy-cyan mb-2">{abi.label}</h3>
+                <p className="text-sm text-gray-400">{abi.description}</p>
+              </div>
+            );
+          })}
         </div>
       </section>
 
@@ -294,22 +303,36 @@ export default function Rules() {
 
       <div className="divider" />
 
-      {/* Getting Started */}
-      <section className="mb-8">
-        <div className="bg-cy-yellow/10 border-2 border-cy-yellow p-8">
-          <h2 className="text-3xl font-black text-cy-yellow mb-6 uppercase">Creating a Character</h2>
-          <ol className="space-y-3 list-decimal list-inside text-gray-300">
-            <li><strong className="text-cy-yellow">Choose a Class:</strong> Select from 6 optional classes or create a custom punk</li>
-            <li><strong className="text-cy-yellow">Roll Abilities:</strong> Generate your ability scores based on your class</li>
-            <li><strong className="text-cy-yellow">Determine HP:</strong> Roll Toughness + d8 (minimum 1)</li>
-            <li><strong className="text-cy-yellow">Roll Glitches:</strong> Roll d2 (or your class die) for starting Glitches</li>
-            <li><strong className="text-cy-yellow">Select Starting Gear:</strong> Roll for weapons, armor, and equipment</li>
-            <li><strong className="text-cy-yellow">Add Flavor:</strong> Roll for Style, Features, Wants, Quirks, and Obsessions</li>
-            <li><strong className="text-cy-yellow">Choose Starting Items:</strong> Roll d8 and d12 tables for additional gear</li>
-            <li><strong className="text-cy-yellow">Calculate Debt:</strong> Roll for who you owe and how much (if applicable)</li>
-          </ol>
-        </div>
-      </section>
-    </div>
+      <ListBox
+        title="Creating a Character"
+        list={[
+          {
+            label: "Choose a Class",
+            description: "elect from 6 optional classes or create a custom punk",
+          }, {
+            label: "Roll Abilities",
+            description: "Generate your ability scores based on your class",
+          }, {
+            label: "Determine HP",
+            description: "Roll Toughness + d8 (minimum 1)",
+          }, {
+            label: "Roll Glitches",
+            description: "Roll d2 (or your class die) for starting Glitches",
+          }, {
+            label: "Select Starting Gear",
+            description: "Roll for weapons, armor, and equipment",
+          }, {
+            label: "Add Flavor",
+            description: "Roll for Style, Features, Wants, Quirks, and Obsessions",
+          }, {
+            label: "Choose Starting Items",
+            description: "Roll d8 and d12 tables for additional gear",
+          }, {
+            label: "Calculate Debt",
+            description: "Roll for who you owe and how much (if applicable)",
+          }
+        ]}
+      />
+    </Page>
   );
 }
