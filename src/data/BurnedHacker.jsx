@@ -17,6 +17,18 @@ export default class BurnedHacker extends BaseClass {
   static color = "#00FFFF"; // Cyan/electric blue for hacker
   static class = "Burned Hacker";
 
+  static die = {
+    health: "d6",
+    glitches: "d2",
+    stats: {
+      STR: { mod: -1 },
+      AGI: { mod: 0 },
+      PRE: { mod: 0 },
+      TOU: { mod: -1 },
+      KNO: { mod: 2 },
+    }
+  }
+
   static description = [
     <>
       You were one of the sharpest deckers in Cy. No one could use tech or warp the world with an App like you could.
@@ -31,24 +43,6 @@ export default class BurnedHacker extends BaseClass {
       type: "definitions",
       name: "class_info",
       entries: [
-        {
-          id: "hp",
-          label: "Hit Points",
-          die: "Toughness + d6",
-          description: "Roll this at character creation",
-        },
-        // {
-        //   id: "glitches",
-        //   label: "Glitches",
-        //   die: "d2",
-        //   description: "Roll for starting Glitches",
-        // },
-        // {
-        //   id: "credits",
-        //   label: "Starting Credits",
-        //   die: "2d6×10¤",
-        //   description: "Money on your credstick",
-        // },
         {
           id: "debt",
           label: "Starting Debt",
@@ -71,14 +65,6 @@ export default class BurnedHacker extends BaseClass {
           description: "Start with a cyberdeck with Knowledge+4 slots and a random App. Any rolled Nano or cybertech is replaced with a new random App.",
         },
       ],
-    },
-    {
-      preview: false,
-      type: "definitions",
-      name: "glitches_reference",
-      h3: "Glitches Uses",
-      entries: GLITCHES,
-      before: <div className="divider small" />,
     },
     {
       type: "rollable",

@@ -1,5 +1,6 @@
 import React from "react";
 import Dice from "./Dice";
+import SegmentedDice from "./SegmentedDice";
 
 export default function CharacterTracker({
   character,
@@ -43,8 +44,7 @@ export default function CharacterTracker({
               placeholder="0"
               className="mr-8 w-40 px-3 py-2 border-2 border-gray-300 rounded focus:outline-none focus:border-gray-600"
             />
-            <Dice
-              type={trait}
+            <SegmentedDice
               character_id={character.id}
               dice={diceFormula}
               multiplier={multiplier}

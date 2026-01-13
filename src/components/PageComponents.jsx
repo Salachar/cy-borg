@@ -81,12 +81,27 @@ export const ListBox = ({
 }) => {
   return (
     <section className="mb-8">
-      <div className="bg-cy-yellow/10 border-2 border-cy-yellow p-8">
+      <div className="bg-cy-yellow/10 border-2 border-cy-yellow p-6 md:p-8">
         <h2 className="text-3xl font-black text-cy-yellow mb-6 uppercase">{title}</h2>
-        <ol className="space-y-3 list-decimal list-inside text-gray-300">
+        <ol className="space-y-4 text-gray-300">
           {list.map((listItem, i) => {
             return (
-              <li key={i}><strong className="text-cy-yellow">{listItem.label}:</strong> {listItem.description}</li>
+              <li key={i} className="flex gap-4">
+                {/* Number */}
+                <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center bg-cy-yellow/20 border border-cy-yellow/50 font-bold text-cy-yellow">
+                  {i + 1}
+                </div>
+
+                {/* Content */}
+                <div className="flex-1 pt-1">
+                  <div className="font-bold text-cy-yellow mb-1 text-lg">
+                    {listItem.label}
+                  </div>
+                  <div className="text-sm text-gray-400 leading-relaxed">
+                    {listItem.description}
+                  </div>
+                </div>
+              </li>
             )
           })}
         </ol>

@@ -16,6 +16,20 @@ export default class ShunnedNanomancer extends BaseClass {
   static color = "#8B4789"; // Purple/bio-mutant color
   static class = "Shunned Nanomancer";
 
+  static health_die = "d4";
+
+  static die = {
+    health: "d4",
+    glitches: "d2",
+    stats: {
+      STR: { mod: 0 },
+      AGI: { mod: 0 },
+      PRE: { mod: 2 },
+      TOU: { mod: -2 },
+      KNO: { mod: 0 },
+    }
+  }
+
   static description = [
     <>
       It's inside you. Infesting your brain, warping your flesh. People are afraid of you now. They're afraid of the power that poisons you. You're scared too.
@@ -31,24 +45,6 @@ export default class ShunnedNanomancer extends BaseClass {
       name: "class_info",
       entries: [
         {
-          id: "hp",
-          label: "Hit Points",
-          die: "Toughness + d4",
-          description: "Roll this at character creation",
-        },
-        // {
-        //   id: "glitches",
-        //   label: "Glitches",
-        //   die: "d2",
-        //   description: "Roll for starting Glitches",
-        // },
-        // {
-        //   id: "credits",
-        //   label: "Credits",
-        //   die: "2d6×10¤",
-        //   description: "Money on your credstick",
-        // },
-        {
           id: "ability_weird",
           label: "WEIRD",
           description: "Roll 3d6+2 for Presence.",
@@ -59,14 +55,6 @@ export default class ShunnedNanomancer extends BaseClass {
           description: "Roll 3d6-2 for Toughness. Roll 3d6 for all other abilities.",
         },
       ],
-    },
-    {
-      preview: false,
-      type: "definitions",
-      name: "glitches_reference",
-      h3: "Glitches Uses",
-      entries: GLITCHES,
-      before: <div className="divider" />,
     },
     {
       type: "rollable",
@@ -91,8 +79,11 @@ export default class ShunnedNanomancer extends BaseClass {
       type: "rollable",
       name: "nano_power",
       label: "Nano Power",
-      select_mode: "single",
+      select_mode: "multiple",
       entries: NANO_POWERS,
+      note: (
+        <p>Any starting App or Cybertech is replaced with a random Nano. Each power is linked to an Infestation you roll for on the Infestation table. You might have to track that link yourself at the moment.</p>
+      ),
       before: <div className="divider" />,
     },
     {
@@ -101,6 +92,9 @@ export default class ShunnedNanomancer extends BaseClass {
       label: "Linked Infestation",
       select_mode: "single",
       entries: NANO_INFESTATIONS,
+      note: (
+        <p>Infestations not linked to a Nano power are triggered whenever you’re dealt 5+ damage by a single attack and fail a Presence DR10 test. The bold text is a permanent,The italicized is what happens when the infestation is triggered.</p>
+      ),
       before: <div className="divider" />,
     },
     {

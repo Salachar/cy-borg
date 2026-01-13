@@ -8,6 +8,7 @@ class BaseClass {
   _current_health = 0;
   _stat_points = 0; // For manual adjustment if needed
   _credits = 0;
+  _max_glitches = 0;
   _glitches = 0;
 
   _stats = {
@@ -92,6 +93,7 @@ class BaseClass {
     this._locked = !this._locked;
     if (this._locked) {
       this._max_health = this._current_health;
+      this._max_glitches = this._glitches;
     }
   }
 
@@ -134,7 +136,9 @@ class BaseClass {
   }
 
   set current_health(new_health) {
-    if (new_health < 0) new_health = 0;
+    // "Locked/live" can have health go below 0
+    if (!this._locked && new_health < 0) new_health = 0;
+    if (this._locked && new_health > this._max_health) new_health = this._max_health;
     this._current_health = new_health;
   }
 
@@ -148,13 +152,19 @@ class BaseClass {
     this._credits = new_credits;
   }
 
+  get max_glitches() {
+    if (!this._locked) return this._glitches;
+    return this._max_glitches;
+  }
+
   // Glitches
   get glitches() {
     return this._glitches;
   }
 
   set glitches(new_glitches) {
-    if (new_glitches < 0) new_glitches = 0;
+    if (!this._locked && new_glitches < 0) new_glitches = 0;
+    if (this._locked && new_glitches > this._max_glitches) new_glitches = this._max_glitches;
     this._glitches = new_glitches;
   }
 

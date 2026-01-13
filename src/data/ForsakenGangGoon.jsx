@@ -16,6 +16,18 @@ export default class ForsakenGangGoon extends BaseClass {
   static color = "#FF0000"; // Red for gang violence
   static class = "Forsaken Gang-Goon";
 
+  static die = {
+    health: "d6",
+    glitches: "d3",
+    stats: {
+      STR: { mod: -2 },
+      AGI: { mod: 0 },
+      PRE: { mod: 0 },
+      TOU: { mod: 0 },
+      KNO: { mod: 0 },
+    }
+  }
+
   static description = [
     <>
       You ran with the only gang to have your back and treat you like more than slum trash. They were your family, and you bled, stole, fought and killed for them.
@@ -30,24 +42,6 @@ export default class ForsakenGangGoon extends BaseClass {
       type: "definitions",
       name: "class_info",
       entries: [
-        {
-          id: "hp",
-          label: "Hit Points",
-          die: "Toughness + d6",
-          description: "Roll this at character creation",
-        },
-        // {
-        //   id: "glitches",
-        //   label: "Glitches",
-        //   die: "d3",
-        //   description: "Roll for starting Glitches",
-        // },
-        // {
-        //   id: "credits",
-        //   label: "Starting Credits",
-        //   die: "3d6-2×10¤",
-        //   description: "Money on your credstick",
-        // },
         {
           id: "ability_small",
           label: "SMALL",
@@ -64,14 +58,6 @@ export default class ForsakenGangGoon extends BaseClass {
           description: "Roll d6 for weapon and d2 for armor.",
         },
       ],
-    },
-    {
-      preview: false,
-      type: "definitions",
-      name: "glitches_reference",
-      h3: "Glitches Uses",
-      entries: GLITCHES,
-      before: <div className="divider small" />,
     },
     {
       type: "rollable",

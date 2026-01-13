@@ -2,6 +2,10 @@ import Definitions from "./Definitions";
 import RollableTable from "./RollableTable";
 import CharacterStats from "./CharacterStats";
 import CharacterTracker from "./CharacterTracker";
+import HealthBar from "./HealthBar";
+import CharacterName from "./CharacterName";
+import { Callout } from "./PageComponents";
+import { CreditsTracker, GlitchesTracker } from "./ResourceTrackers";
 
 import StartingItems from "./StartingItems";
 import Gear from "./Gear";
@@ -110,147 +114,72 @@ export default function CharacterTemplate({
         </div>
       )}
 
-      {/* Character Header with Lock Button */}
-      <div className="mb-8 relative">
-        {/* Lock Button - Top right of character sheet */}
-        {builder && (
-          <button
-            type="button"
-            onClick={() => {
-              character.toggleLock();
-              onUpdate();
-            }}
-            className="
-              fixed top-4 right-4 z-50
-              w-28 h-10
-              bg-gray-800 hover:bg-gray-700
-              border-2 border-cy-cyan
-              text-cy-cyan font-bold uppercase text-sm
-              transition-all
-              shadow-lg shadow-cy-cyan/30
-            "
-          >
-            {character.locked ? "🔒 Locked" : "🔓 Unlocked"}
-          </button>
-        )}
-
-        {/* Class Name */}
-        <h1
-          className="text-xl font-black uppercase mb-4"
-          style={{ color: character.color }}
-        >
-          {character.class}
-        </h1>
-
-        {/* Character Name Input (builder mode) */}
-        {builder && !character.locked && (
-          <input
-            type="text"
-            className="
-              w-full h-12 px-4
-              bg-gray-900 border-2 border-gray-700 focus:border-cy-pink
-              text-2xl font-bold text-white
-              placeholder-gray-600
-              transition-colors
-              outline-none
-            "
-            placeholder="Character Name"
-            value={character.name}
-            onChange={(e) => {
-              character.name = e.target.value;
-              onUpdate();
-            }}
-          />
-        )}
-
-        {/* Character Name Display (locked) */}
-        {builder && character.locked && (
-          <div className="h-12 flex items-center">
-            <h1
-              className="text-3xl font-bold"
-              style={{ color: character.color }}
-            >
-              {character.name || "No Name"}
-            </h1>
-          </div>
-        )}
-      </div>
-
-      {/* Health Bar (builder mode) */}
       {builder && (
-        <>
-          <h3 className="text-2xl font-bold text-cy-cyan">Health</h3>
-          <div className="relative mb-6 h-16 flex items-center overflow-hidden bg-red-900/30 border border-red-900">
-            {/* Background bar */}
-            <div
-              className="absolute inset-0 bg-red-900 transition-all duration-200"
-              style={{
-                width: `${(character.current_health / character.max_health) * 100}%`
-              }}
-            />
-
-            {/* Buttons and Text */}
-            <button
-              onClick={() => {
-                character.current_health = Math.max(0, character.current_health - 1);
-                onUpdate();
-              }}
-              className="relative z-10 flex-1 h-full text-3xl font-bold text-white/70 hover:text-white transition-colors text-left pl-6"
-            >
-              −
-            </button>
-
-            <div className="relative z-10 px-6 font-mono text-2xl font-bold text-white tracking-wider">
-              <span>{character.current_health}</span>
-              <span className="mx-2 text-white/50">/</span>
-              <span>{character.max_health}</span>
-            </div>
-
-            <button
-              onClick={() => {
-                character.current_health = character.current_health + 1;
-                onUpdate();
-              }}
-              className="relative z-10 flex-1 h-full text-3xl font-bold text-white/70 hover:text-white transition-colors text-right pr-6"
-            >
-              +
-            </button>
-          </div>
-        </>
+        <button
+          type="button"
+          onClick={() => {
+            character.toggleLock();
+            onUpdate();
+          }}
+          className="
+            fixed top-0 right-0 z-50
+            w-28 h-10
+            bg-gray-800 hover:bg-gray-700
+            border-2 border-cy-cyan
+            text-cy-cyan font-bold uppercase text-sm
+            transition-all
+            shadow-lg shadow-cy-cyan/30
+          "
+        >
+          {character.locked ? "Locked" : "Unlocked"}
+        </button>
       )}
+
+      <CharacterName
+        character={character}
+        builder={builder}
+        locked={character.locked}
+        onUpdate={onUpdate}
+      />
 
       {/* Character Stats (builder mode) */}
       {builder && (
         <>
+          {!character.locked && (
+            <>
+              <div className="divider" />
+              <Callout title="STARTING GEAR!">
+                <p className="text-gray-300 leading-relaxed">
+                  Its actually important to roll Starting Gear first, though you'll find it near the bottom. Please do that first before continuing.
+                </p>
+              </Callout>
+            </>
+          )}
+          <div className="divider" />
           <CharacterStats
             character={character}
             locked={character.locked}
             onUpdate={onUpdate}
           />
           <div className="divider" />
-          <CharacterTracker
+          <HealthBar
             character={character}
-            trait="credits"
-            label="Credits (2d6x10)"
-            diceFormula="2d6"
-            multiplier={10}
-            displayFormat={(val) => `${val}¤`}
-            onUpdate={(newValue) => {
-              character.credits = newValue;
-              onUpdate();
-            }}
+            locked={character.locked}
+            onUpdate={onUpdate}
           />
-          <CharacterTracker
-            character={character}
-            trait="glitches"
-            label="Glitches (1d2)"
-            diceFormula="1d2"
-            multiplier={1}
-            onUpdate={(newValue) => {
-              character.glitches = newValue;
-              onUpdate();
-            }}
-          />
+          <div className="divider" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+            <CreditsTracker
+              character={character}
+              locked={character.locked}
+              onUpdate={onUpdate}
+            />
+            <GlitchesTracker
+              character={character}
+              locked={character.locked}
+              onUpdate={onUpdate}
+            />
+          </div>
           <div className="divider" />
         </>
       )}

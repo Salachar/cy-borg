@@ -307,27 +307,34 @@ export default function Rules() {
         title="Creating a Character"
         list={[
           {
+            label: "Roll Starting Items",
+            description: "Roll d8 and d12 tables for starting gear. Kind DMs might let you pick.",
+          },
+          {
             label: "Choose a Class",
-            description: "elect from 6 optional classes or create a custom punk",
-          }, {
+            description: "Select a class, some have notes pertaining to starting gear, take notice.",
+          },
+          {
             label: "Roll Abilities",
-            description: "Generate your ability scores based on your class",
-          }, {
+            description: "Generate your ability scores.",
+          },
+          {
             label: "Determine HP",
-            description: "Roll Toughness + d8 (minimum 1)",
-          }, {
+            description: "Roll Toughness + Class Health Die, min of 1 don't worry.",
+          },
+          {
             label: "Roll Glitches",
-            description: "Roll d2 (or your class die) for starting Glitches",
-          }, {
-            label: "Select Starting Gear",
-            description: "Roll for weapons, armor, and equipment",
-          }, {
+            description: "Roll d2 for starting Glitches, think of these as your Inspirations if you're familiar with D&D",
+          },
+          {
+            label: "Buy Additional Equipment",
+            description: "If you're not completely broke, you might be able to afford some real things!",
+          },
+          {
             label: "Add Flavor",
-            description: "Roll for Style, Features, Wants, Quirks, and Obsessions",
-          }, {
-            label: "Choose Starting Items",
-            description: "Roll d8 and d12 tables for additional gear",
-          }, {
+            description: "Roll for Style, Features, Wants, Quirks, and Obsessions.",
+          },
+          {
             label: "Calculate Debt",
             description: "Roll for who you owe and how much (if applicable)",
           }

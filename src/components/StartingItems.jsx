@@ -10,7 +10,7 @@ export default function StartingItems({
   if (!character || !sections.length) return null;
 
   return (
-    <CollapsibleSection title="Starting Items" startOpen={false}>
+    <CollapsibleSection title="Starting Items" startOpen={true}>
       {sections.map((section, index) => {
         const { name, label, entries } = section;
         const selections = character.getStartingItemsSelections?.(name) || character.getTableSelections(name);
@@ -24,7 +24,7 @@ export default function StartingItems({
             rollable={true}
             compact={true}
             collapsible={true}
-            startCollapsed={true}
+            startCollapsed={false}
             label={label}
             entries={entries}
             selected={selections}

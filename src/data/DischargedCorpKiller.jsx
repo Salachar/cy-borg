@@ -14,6 +14,18 @@ export default class DischargedCorpKiller extends BaseClass {
   static color = "#FF0080"; // Hot pink/magenta for discharged killer
   static class = "Discharged Corp Killer";
 
+  static die = {
+    health: "d8",
+    glitches: "d2",
+    stats: {
+      STR: { mod: 0 },
+      AGI: { mod: 0 },
+      PRE: { mod: -1 },
+      TOU: { mod: 2 },
+      KNO: { mod: -1 },
+    }
+  }
+
   static description = [
     <>
       A good soldier in bad company, always fighting someone else's war in the name of greed.
@@ -28,24 +40,6 @@ export default class DischargedCorpKiller extends BaseClass {
       type: "definitions",
       name: "class_info",
       entries: [
-        {
-          id: "hp",
-          label: "Hit Points",
-          die: "Toughness + d8",
-          description: "Roll this at character creation",
-        },
-        // {
-        //   id: "glitches",
-        //   label: "Glitches",
-        //   die: "d2",
-        //   description: "Roll for starting Glitches",
-        // },
-        // {
-        //   id: "credits",
-        //   label: "Starting Credits",
-        //   die: "2d6×10¤",
-        //   description: "Money on your credstick",
-        // },
         {
           id: "ability_scarred_jarhead",
           label: "EMOTIONALLY SCARRED JARHEAD",
@@ -73,14 +67,6 @@ export default class DischargedCorpKiller extends BaseClass {
           description: "The Corp wants you dead",
         },
       ],
-    },
-    {
-      preview: false,
-      type: "definitions",
-      name: "glitches_reference",
-      h3: "Glitches Uses",
-      entries: GLITCHES,
-      before: <div className="divider small" />,
     },
     {
       type: "rollable",

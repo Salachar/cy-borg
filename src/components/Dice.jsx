@@ -2,9 +2,55 @@ import React, { useEffect, useState } from "react";
 
 import { rollDie } from "../utils/dice";
 
-const SUPPORTED_DIE = {
-  6: true,
-  12: true,
+const DICE_SHAPES = {
+  2: {
+    // Coin flip
+    shape: 'circle',
+    size: 32,
+    clipPath: 'none',
+  },
+  4: {
+    // Tetrahedron (pyramid)
+    shape: 'pyramid',
+    size: 36,
+    clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
+  },
+  6: {
+    // Cube
+    shape: 'cube',
+    size: 32,
+    clipPath: 'none',
+  },
+  8: {
+    // Octahedron (diamond)
+    shape: 'diamond',
+    size: 36,
+    clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)',
+  },
+  10: {
+    // Pentagonal trapezohedron (kite)
+    shape: 'kite',
+    size: 38,
+    clipPath: 'polygon(50% 0%, 90% 40%, 75% 100%, 25% 100%, 10% 40%)',
+  },
+  12: {
+    // Dodecahedron (pentagon)
+    shape: 'pentagon',
+    size: 40,
+    clipPath: 'polygon(50% 0, 100% 38%, 81% 100%, 19% 100%, 0 38%)',
+  },
+  20: {
+    // Icosahedron (hexagon for simplicity)
+    shape: 'hexagon',
+    size: 40,
+    clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)',
+  },
+  100: {
+    // Percentile (larger pentagon)
+    shape: 'pentagon-large',
+    size: 44,
+    clipPath: 'polygon(50% 0, 100% 38%, 81% 100%, 19% 100%, 0 38%)',
+  },
 };
 
 export default function Dice({
@@ -18,10 +64,12 @@ export default function Dice({
   rollable = false,
   displayFormat = null, // Function to format the total display (e.g., val => val + '¤')
   onRollComplete = null, // Callback when roll finishes: (total) => {}
+  basicMode = false, // If true, show simple calculation without die shapes
 }) {
   const [currentId, setCurrentId] = useState(character_id);
   const [diceStates, setDiceStates] = useState([]);
   const [dieMax, setDieMax] = useState(6);
+  const [diceCount, setDiceCount] = useState(1);
   const [rolled, setRolled] = useState(false);
   const [rollingCount, setRollingCount] = useState(0);
 
@@ -35,6 +83,7 @@ export default function Dice({
       max = isNaN(sides) ? 6 : sides;
     }
 
+    setDiceCount(amount);
     setDieMax(max);
     setDiceStates(Array.from({ length: amount }, () => ""));
   }, [dice]);
@@ -137,78 +186,134 @@ export default function Dice({
     return value;
   }
 
-  return (
-    <>
-      {label && (
-        <h3 className="font-bold text-lg mb-2">{label}</h3>
-      )}
-      {rollable && (
-        <div className="flex items-center gap-4">
+  const getCalculationString = () => {
+    let parts = [];
+
+    if (diceCount > 0) {
+      parts.push(`${diceCount}d${dieMax}`);
+    }
+
+    if (mod !== 0) {
+      parts.push(mod > 0 ? `+${mod}` : `${mod}`);
+    }
+
+    if (multiplier !== 1) {
+      parts.push(`×${multiplier}`);
+    }
+
+    return parts.join(' ');
+  }
+
+  if (!rollable) return null;
+
+  // Basic mode: simple calculation display
+  if (basicMode) {
+    return (
+      <>
+        {label && (
+          <h3 className="font-bold text-lg mb-2 text-cy-cyan">{label}</h3>
+        )}
+        <div className="flex items-center gap-3">
           <button
-            className="w-12 h-12 border-2 border-black bg-transparent font-bold cursor-pointer hover:bg-gray-100"
+            className="px-4 py-2 bg-gray-800 hover:bg-gray-700 border border-cy-cyan/50 text-cy-cyan font-bold uppercase text-sm transition-colors"
             onClick={rerollAll}
           >
             Roll
           </button>
 
-          <div className="flex flex-wrap items-center gap-2">
-            {diceStates.map((value, idx) => {
-              const supported = SUPPORTED_DIE[dieMax];
-              // Use a d6 for any unsupported die, the max is still accurate
-              let sides = supported ? dieMax : 6;
+          <div className="flex items-center gap-2">
+            <span className="text-gray-400 font-mono text-sm">
+              {getCalculationString()}
+            </span>
 
-              return (
-                <React.Fragment key={`key_${type}_dice+${idx}`}>
-                  {idx !== 0 && (
-                    <span className="font-bold text-xl">+</span>
-                  )}
-                  <div
-                    className="relative cursor-pointer"
-                    onClick={() => animateDie(idx)}
-                    title="Click to reroll"
-                  >
-                    <div
-                      className="relative flex items-center justify-center select-none cursor-pointer"
-                      style={{
-                        background: 'var(--color-class)',
-                        width: sides === 6 ? '32px' : '40px',
-                        height: sides === 6 ? '32px' : '40px',
-                        borderRadius: sides === 6 ? '0.25rem' : '0',
-                        clipPath: sides === 12 ? 'polygon(50% 0, 100% 38%, 81% 100%, 19% 100%, 0 38%)' : 'none',
-                      }}
-                    >
-                      <div
-                        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white font-bold text-xl pointer-events-none font-sans ${isIgnored(value) ? "text-red-500" : ""}`}
-                        style={{ paddingTop: sides === 12 ? '0.25rem' : '0' }}
-                      >
-                        {rolled ? value : ""}
-                      </div>
-                    </div>
-                  </div>
-                </React.Fragment>
-              );
-            })}
-            {mod !== 0 && (
-              <>
-                <span className="font-bold text-xl">+</span>
-                <span className="font-bold text-xl">{mod}</span>
-              </>
-            )}
-            {multiplier !== 1 && (
-              <>
-                <span className="font-bold text-xl">×</span>
-                <span className="font-bold text-xl">{multiplier}</span>
-              </>
-            )}
             {rolled && (
               <>
-                <span className="font-bold text-xl">=</span>
-                <span className="font-bold text-xl">{formatTotal(getTotal() * multiplier)}</span>
+                <span className="text-gray-600">=</span>
+                <span className="text-2xl font-bold text-cy-yellow font-mono">
+                  {formatTotal(getTotal() * multiplier)}
+                </span>
               </>
             )}
           </div>
         </div>
+      </>
+    );
+  }
+
+  // Visual mode: show die shapes
+  const diceShape = DICE_SHAPES[dieMax] || DICE_SHAPES[6];
+
+  return (
+    <>
+      {label && (
+        <h3 className="font-bold text-lg mb-2 text-cy-cyan">{label}</h3>
       )}
+      <div className="flex items-center gap-3">
+        <button
+          className="px-3 py-2 bg-gray-800 hover:bg-gray-700 border border-cy-cyan/50 text-cy-cyan font-bold uppercase text-xs transition-colors flex-shrink-0"
+          onClick={rerollAll}
+        >
+          Roll
+        </button>
+
+        <div className="flex flex-wrap items-center gap-2">
+          {diceStates.map((value, idx) => {
+            const isCircle = dieMax === 2;
+
+            return (
+              <React.Fragment key={`key_${type}_dice+${idx}`}>
+                {idx !== 0 && (
+                  <span className="font-bold text-lg text-gray-500">+</span>
+                )}
+                <div
+                  className="relative cursor-pointer hover:scale-110 transition-transform"
+                  onClick={() => animateDie(idx)}
+                  title="Click to reroll"
+                >
+                  <div
+                    className="relative flex items-center justify-center select-none cursor-pointer"
+                    style={{
+                      background: 'var(--color-class)',
+                      width: `${diceShape.size}px`,
+                      height: `${diceShape.size}px`,
+                      borderRadius: isCircle ? '50%' : (diceShape.shape === 'cube' ? '0.25rem' : '0'),
+                      clipPath: diceShape.clipPath,
+                    }}
+                  >
+                    <div
+                      className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white font-bold pointer-events-none font-sans ${isIgnored(value) ? "text-red-500" : ""}`}
+                      style={{
+                        fontSize: dieMax === 100 ? '0.7rem' : (diceShape.size > 36 ? '1.125rem' : '1rem'),
+                        paddingTop: ['pyramid', 'pentagon', 'pentagon-large'].includes(diceShape.shape) ? '0.25rem' : '0',
+                      }}
+                    >
+                      {rolled ? value : ""}
+                    </div>
+                  </div>
+                </div>
+              </React.Fragment>
+            );
+          })}
+          {mod !== 0 && (
+            <>
+              <span className="font-bold text-lg text-gray-500">+</span>
+              <span className="font-bold text-lg text-gray-400">{mod}</span>
+            </>
+          )}
+          {multiplier !== 1 && (
+            <>
+              <span className="font-bold text-lg text-gray-500">×</span>
+              <span className="font-bold text-lg text-gray-400">{multiplier}</span>
+            </>
+          )}
+          {rolled && (
+            <>
+              <span className="font-bold text-lg text-gray-600">=</span>
+              <span className="font-bold text-2xl text-cy-yellow font-mono">{formatTotal(getTotal() * multiplier)}</span>
+            </>
+          )}
+        </div>
+      </div>
     </>
   );
 }

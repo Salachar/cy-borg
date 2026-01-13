@@ -14,6 +14,18 @@ export default class OrphanedGearhead extends BaseClass {
   static color = "#FFA500"; // Orange for gearhead/engineer
   static class = "Orphaned Gearhead";
 
+  static die = {
+    health: "d8",
+    glitches: "d4",
+    stats: {
+      STR: { mod: 0 },
+      AGI: { mod: 0 },
+      PRE: { mod: -2 },
+      TOU: { mod: 0 },
+      KNO: { mod: 2 },
+    }
+  }
+
   static description = [
     <>
       People are unreliable. Socially. Physically. Emotionally. Weak bodies and weaker wills. They are worn down, unfixable.
@@ -29,24 +41,6 @@ export default class OrphanedGearhead extends BaseClass {
       name: "class_info",
       entries: [
         {
-          id: "hp",
-          label: "Hit Points",
-          die: "Toughness + d8",
-          description: "Roll this at character creation",
-        },
-        // {
-        //   id: "glitches",
-        //   label: "Glitches",
-        //   die: "d4",
-        //   description: "Roll for starting Glitches",
-        // },
-        // {
-        //   id: "credits",
-        //   label: "Starting Credits",
-        //   die: "2d6×10¤",
-        //   description: "Money on your credstick",
-        // },
-        {
           id: "ability_engineer",
           label: "ENGINEER",
           description: "Roll 3d6+2 for Knowledge.",
@@ -57,14 +51,6 @@ export default class OrphanedGearhead extends BaseClass {
           description: "Roll 3d6-2 for Presence. You test Knowledge DR10 when you try to repair a piece of tech or to pilot a vehicle, drone or other machine.",
         },
       ],
-    },
-    {
-      preview: false,
-      type: "definitions",
-      name: "glitches_reference",
-      h3: "Glitches Uses",
-      entries: GLITCHES,
-      before: <div className="divider small" />,
     },
     {
       type: "rollable",

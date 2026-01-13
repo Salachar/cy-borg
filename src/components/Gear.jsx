@@ -44,7 +44,7 @@ export default function Gear({
   };
 
   return (
-    <CollapsibleSection title="Gear" startOpen={false}>
+    <CollapsibleSection title="Additional Gear" startOpen={false}>
       {sections.map((section, index) => {
         const { name, label, note, entries } = section;
         const selections = character.getGearSelections?.(name) || character.getTableSelections(name);

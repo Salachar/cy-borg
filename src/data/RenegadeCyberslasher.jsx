@@ -15,6 +15,18 @@ export default class RenegadeCyberslasher extends BaseClass {
   static color = "#FF00FF"; // Magenta/hot pink for cyberslasher
   static class = "Renegade Cyberslasher";
 
+  static die = {
+    health: "d10",
+    glitches: "d3",
+    stats: {
+      STR: { mod: 1 },
+      AGI: { mod: 0 },
+      PRE: { mod: 1 },
+      TOU: { mod: 0 },
+      KNO: { mod: -2 },
+    }
+  }
+
   static description = [
     <>
       You are DEATH incarnate—a frenzied flurry of chrome, murder and blood-stained steel. But yours is no mindless rage.
@@ -29,24 +41,6 @@ export default class RenegadeCyberslasher extends BaseClass {
       type: "definitions",
       name: "class_info",
       entries: [
-        {
-          id: "hp",
-          label: "Hit Points",
-          die: "Toughness + d10",
-          description: "Roll this at character creation",
-        },
-        // {
-        //   id: "glitches",
-        //   label: "Glitches",
-        //   die: "d3",
-        //   description: "Roll for starting Glitches",
-        // },
-        // {
-        //   id: "credits",
-        //   label: "Starting Credits",
-        //   die: "2d6×10¤",
-        //   description: "Money on your credstick",
-        // },
         {
           id: "ability_body_and_soul",
           label: "BODY AND SOUL",
@@ -63,14 +57,6 @@ export default class RenegadeCyberslasher extends BaseClass {
           description: "Start with one d12 roll for a random Cybertech. Replace any App or Nano with another d12 cybertech roll.",
         },
       ],
-    },
-    {
-      preview: false,
-      type: "definitions",
-      name: "glitches_reference",
-      h3: "Glitches Uses",
-      entries: GLITCHES,
-      before: <div className="divider small" />,
     },
     {
       type: "rollable",
