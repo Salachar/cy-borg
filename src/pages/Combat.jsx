@@ -69,6 +69,11 @@ export default function Combat() {
           color="cyan"
         >
           <div className="space-y-3">
+            <div className="bg-cy-cyan/10 border border-cy-cyan p-3 rounded">
+              <p className="text-cy-cyan text-sm">
+                <strong>Cybertech Tip:</strong> Check for attack options on any cybertech you might have.
+              </p>
+            </div>
             <ActionOption
               action="Melee Attack"
               test="Strength DR12"
