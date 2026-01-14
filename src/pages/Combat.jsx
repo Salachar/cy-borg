@@ -74,6 +74,19 @@ export default function Combat() {
                 <strong>Cybertech Tip:</strong> Check for attack options on any cybertech you might have.
               </p>
             </div>
+
+            <ActionOption
+              action="Take Cover (Optional)"
+              test="No roll"
+              description="Position yourself behind cover. Increase DR to hit you, or lower DR to defend while covered."
+              optional={true}
+            />
+            <div className="ml-8 space-y-1 text-xs text-gray-400 mb-2">
+              <p>• <strong className="text-blue-400">Light cover ±2DR</strong> - office cubicle, car door, hostage, explosive gas tank</p>
+              <p>• <strong className="text-blue-600">Heavy cover ±4DR</strong> - concrete wall, cyberbike, bulletproof glass, reactor</p>
+              <p className="text-gray-500 italic mt-2">When an attack misses: Heavy → Light, Light → Destroyed</p>
+            </div>
+
             <ActionOption
               action="Melee Attack"
               test="Strength DR12"
@@ -85,9 +98,21 @@ export default function Combat() {
               description="Aim and fire. Roll to hit, then roll weapon damage."
             />
             <ActionOption
+              action="Aim at Target (Optional)"
+              test="No roll (1 round)"
+              description="Spend one round aiming. Next attack gets either -2DR to hit OR +2 damage."
+              optional={true}
+            />
+            <ActionOption
               action="Autofire"
               test="Agility DR12"
               description="Spray and pray. On hit: roll damage, then you can attack again (same or different target). Max 3 attacks total. Check armor for each hit."
+            />
+            <ActionOption
+              action="Suppressive Fire (Optional)"
+              test="Agility (spend mag)"
+              description="Suppress up to d3 targets with automatic weapon. Suppressed targets must either get out of the way (+4DR to next action) or stand their ground (defend DR14 autofire)."
+              optional={true}
             />
             <ActionOption
               action="Use App"
@@ -106,6 +131,18 @@ export default function Combat() {
               test="Varies"
               description="Move, reload, use item, help ally, etc. GM determines if a test is needed."
             />
+
+            {/* Range Note */}
+            <div className="bg-gray-900/50 border border-gray-700 p-3 rounded mt-4">
+              <p className="text-cy-yellow font-bold text-sm mb-2">Range Modifiers (Optional)</p>
+              <p className="text-gray-400 text-xs mb-2">
+                <strong>Close range</strong> = arm's length or less • <strong>Long range</strong> = farther than a room away
+              </p>
+              <ul className="space-y-1 text-gray-400 text-xs">
+                <li>• <strong className="text-red-400">+2DR</strong> when firing at close range</li>
+                <li>• Autofire: <strong className="text-green-400">+2 damage</strong> at close, <strong className="text-red-400">-2 damage</strong> at long</li>
+              </ul>
+            </div>
           </div>
         </CombatStep>
 
@@ -177,6 +214,14 @@ export default function Combat() {
             <div className="bg-cy-cyan/10 border border-cy-cyan p-3 rounded">
               <p className="text-cy-cyan text-sm">
                 <strong>Glitch Tip:</strong> Spend a Glitch to deal maximum weapon damage (no roll needed).
+              </p>
+            </div>
+
+            {/* Hits Always Hurt */}
+            <div className="bg-gray-900/50 border border-gray-700 p-3 rounded mt-4">
+              <p className="text-cy-yellow font-bold text-sm mb-2">Hits Always Hurt (Optional)</p>
+              <p className="text-gray-300 text-xs">
+                Hits always deal a minimum of <strong className="text-cy-yellow">1 damage</strong> regardless of armor reduction or other negative damage modifiers <span className="text-gray-500 italic">unless that would bring a character down to 0 HP</span>.
               </p>
             </div>
           </div>
@@ -387,9 +432,9 @@ function CombatStep({ number, title, color, children }) {
 }
 
 // Component: Action Option
-function ActionOption({ action, test, description, warning }) {
+function ActionOption({ action, test, description, warning, optional }) {
   return (
-    <div className="bg-black/30 p-4 rounded">
+    <div className={`bg-black/30 p-4 rounded ${optional ? 'border-l-2 border-cy-yellow' : ''}`}>
       <div className="flex items-start justify-between mb-2">
         <h3 className="text-lg font-bold text-cy-cyan">{action}</h3>
         <span className="text-sm text-cy-yellow font-mono">{test}</span>

@@ -14,6 +14,7 @@ import Infestations from "./Infestations";
 import Apps from "./Apps";
 import Cyberware from "./Cyberware";
 import Cyberdeck from "./Cyberdeck";
+import Services from "./Services";
 
 import {
   WEAPONS_FOR_SALE,
@@ -248,6 +249,9 @@ export default function CharacterTemplate({
             character={character}
             sections={GEAR_SECTIONS}
             onUpdate={onUpdate}
+          />
+          <Services
+            character={character}
           />
         </>
       )}
