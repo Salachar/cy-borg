@@ -16,6 +16,7 @@ export default class RenegadeCyberslasher extends BaseClass {
   static die = {
     health: "d10",
     glitches: "d3",
+    debt: "3d6x1000",
     stats: {
       STR: { mod: 1 },
       AGI: { mod: 0 },
@@ -63,6 +64,9 @@ export default class RenegadeCyberslasher extends BaseClass {
       select_mode: "single",
       entries: WEAPONS_TABLE.slice(0, 8),
       before: <div className="divider small" />,
+      note: (
+        <span>You get d4 Basic Mags for free (in shop) if applicable to the weapon.</span>
+      ),
     },
     {
       type: "rollable",

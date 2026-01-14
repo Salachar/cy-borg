@@ -2,10 +2,12 @@ import {
   Line,
 } from '../TerminalComponents';
 
+
 import { BODEGA_COMMANDS } from './bodega';
 import { STONE_EELS_COMMANDS } from './stone_eels';
 import { LUCKY_FLIGHT_CASINO } from './casino';
 import { NEIGHBORHOOD_COMMANDS } from './neighborhood';
+import { FUN_COMMANDS } from './fun';
 
 export const LUCKY_FLIGHT_TAKEDOWN = {
   "Local Access Points": {
@@ -22,6 +24,7 @@ export const LUCKY_FLIGHT_TAKEDOWN = {
       ...NEIGHBORHOOD_COMMANDS,
       ...LUCKY_FLIGHT_CASINO,
       ...STONE_EELS_COMMANDS,
+      ...FUN_COMMANDS,
     },
   },
 }

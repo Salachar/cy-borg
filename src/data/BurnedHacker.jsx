@@ -18,6 +18,7 @@ export default class BurnedHacker extends BaseClass {
   static die = {
     health: "d6",
     glitches: "d2",
+    debt: "6d10x1000",
     stats: {
       STR: { mod: -1 },
       AGI: { mod: 0 },
@@ -87,6 +88,9 @@ export default class BurnedHacker extends BaseClass {
       select_mode: "single",
       entries: WEAPONS_TABLE.slice(0, 8),
       before: <div className="divider small" />,
+      note: (
+        <span>You get d4 Basic Mags for free (in shop) if applicable to the weapon.</span>
+      ),
     },
     {
       type: "rollable",

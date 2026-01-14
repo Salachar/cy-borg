@@ -18,6 +18,7 @@ export default class ShunnedNanomancer extends BaseClass {
   static die = {
     health: "d4",
     glitches: "d2",
+    debt: "3d6x1000",
     stats: {
       STR: { mod: 0 },
       AGI: { mod: 0 },
@@ -60,6 +61,9 @@ export default class ShunnedNanomancer extends BaseClass {
       select_mode: "single",
       entries: WEAPONS_TABLE.slice(0, 6),
       before: <div className="divider" />,
+      note: (
+        <span>You get d4 Basic Mags for free (in shop) if applicable to the weapon.</span>
+      ),
     },
     {
       type: "rollable",

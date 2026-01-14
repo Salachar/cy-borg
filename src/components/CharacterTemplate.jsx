@@ -3,7 +3,6 @@ import RollableTable from "./RollableTable";
 import CharacterStats from "./CharacterStats";
 import HealthBar from "./HealthBar";
 import CharacterName from "./CharacterName";
-import { Callout } from "./PageComponents";
 import { CreditsTracker, GlitchesTracker } from "./ResourceTrackers";
 import GearInventory from "./GearInventory";
 import GearShop from "./GearShop";
@@ -15,6 +14,7 @@ import Apps from "./Apps";
 import Cyberware from "./Cyberware";
 import Cyberdeck from "./Cyberdeck";
 import Services from "./Services";
+import Debt from "./Debt";
 
 import {
   WEAPONS_FOR_SALE,
@@ -33,6 +33,8 @@ import {
   STARTING_ITEMS_1,
   STARTING_ITEMS_2,
   STARTING_ITEMS_3,
+  DEBT_TO_WHOM,
+  DEBT_URGENCY,
 } from "../data/tables";
 
 const GEAR_SECTIONS = [
@@ -236,6 +238,13 @@ export default function CharacterTemplate({
       {character.constructor.components && character.constructor.components.map((component, index) =>
         renderComponent(component, index)
       )}
+
+      <Debt
+        character={character}
+        creditorsList={DEBT_TO_WHOM}
+        urgencyList={DEBT_URGENCY}
+        onUpdate={onUpdate}
+      />
 
       {builder && (
         <>

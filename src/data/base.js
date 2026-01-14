@@ -36,6 +36,11 @@ class BaseClass {
     slots: 4,
     loaded_apps: [] // Array of app_ids currently loaded
   };
+  _debt = {
+    amount: 0,
+    creditor: null,
+    urgency: null,
+  };
 
   _locked = false;
 
@@ -112,6 +117,14 @@ class BaseClass {
         jacked_in: data.cyberdeck.jacked_in || false,
         slots: data.cyberdeck.slots || 4,
         loaded_apps: data.cyberdeck.loaded_apps || []
+      };
+    }
+
+    if (data.debt) {
+      this._debt = {
+        amount: data.debt.amount || 0,
+        creditor: data.debt.creditor || null,
+        urgency: data.debt.urgency || null
       };
     }
 
@@ -571,6 +584,11 @@ class BaseClass {
         jacked_in: false,
         slots: 4,
         loaded_apps: []
+      },
+      debt: this._debt || {
+        amount: 0,
+        creditor: null,
+        urgency: null,
       },
     };
   }

@@ -134,18 +134,18 @@ export function GlitchesTracker({
       </div>
 
       {/* Quick Adjust Buttons */}
-      <div className="grid grid-cols-2 gap-2 mb-4">
+      <div className="grid grid-cols-2 gap-2 mb-16">
         <button
           onClick={() => adjustGlitches(-1)}
           disabled={glitches === 0}
-          className="h-12 bg-gray-800 hover:bg-gray-700 disabled:opacity-30 border border-gray-600 text-cy-cyan font-bold text-xl transition-colors"
+          className="h-10 bg-gray-800 hover:bg-gray-700 disabled:opacity-30 border border-gray-600 text-cy-cyan font-bold text-xl transition-colors"
         >
           − 1
         </button>
         <button
           onClick={() => adjustGlitches(1)}
           disabled={locked && glitches >= maxGlitches}
-          className="h-12 bg-gray-800 hover:bg-gray-700 disabled:opacity-30 border border-gray-600 text-cy-cyan font-bold text-xl transition-colors"
+          className="h-10 bg-gray-800 hover:bg-gray-700 disabled:opacity-30 border border-gray-600 text-cy-cyan font-bold text-xl transition-colors"
         >
           + 1
         </button>
