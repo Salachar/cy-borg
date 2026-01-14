@@ -1,5 +1,4 @@
 import {
-  GLITCHES,
   WEAPONS_TABLE,
   ARMOR_TABLE,
 } from "./tables";

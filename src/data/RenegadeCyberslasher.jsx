@@ -1,8 +1,6 @@
 import {
-  GLITCHES,
   WEAPONS_TABLE,
   ARMOR_TABLE,
-  CYBERTECH,
 } from "./tables";
 
 import BaseClass from "./base";
@@ -159,14 +157,6 @@ export default class RenegadeCyberslasher extends BaseClass {
           description: <>Embracing the darkness within.</>,
         },
       ],
-      before: <div className="divider small" />,
-    },
-    {
-      type: "rollable",
-      name: "starting_cybertech",
-      label: "Random Cybertech",
-      select_mode: "multiple",
-      entries: CYBERTECH,
       before: <div className="divider small" />,
     },
   ];

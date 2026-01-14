@@ -90,7 +90,6 @@ export function GlitchesTracker({
   const glitches = character.glitches || 0;
   const maxGlitches = character.max_glitches || 0;
   const glitchDie = character.constructor.die?.glitches || "d2";
-  console.log(glitchDie)
 
   const adjustGlitches = (amount) => {
     const newValue = Math.max(0, character.glitches + amount);
@@ -99,7 +98,6 @@ export function GlitchesTracker({
   };
 
   const handleRollComplete = (total) => {
-    character.max_glitches = total;
     character.glitches = total;
     onUpdate();
   };

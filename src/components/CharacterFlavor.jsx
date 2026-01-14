@@ -3,7 +3,7 @@ import CollapsibleSection from './CollapsibleSection';
 
 const rollDie = (sides) => Math.floor(Math.random() * sides) + 1;
 
-function StartingItemSection({
+function FlavorSection({
   label,
   entries,
   selected,
@@ -16,8 +16,7 @@ function StartingItemSection({
   const [highlightedIndex, setHighlightedIndex] = useState(null);
 
   const selectedEntry = entries.find(e => selected[e.id || e.label]);
-  const selectedLabel = selectedEntry ? selectedEntry.label : null;
-  const isRequired = !selectedLabel;
+  const selectedLabel = selectedEntry ? selectedEntry.label : "None selected";
 
   const handleRoll = () => {
     if (locked || isRolling) return;
@@ -36,10 +35,12 @@ function StartingItemSection({
       if (elapsed >= duration) {
         clearInterval(intervalId);
 
+        // Brief delay before finalizing
         setTimeout(() => {
           setIsRolling(false);
           setHighlightedIndex(null);
 
+          // Auto-select the rolled result
           const rolledEntry = entries[finalIndex];
           onSelect(rolledEntry);
         }, 150);
@@ -53,11 +54,6 @@ function StartingItemSection({
       <div className="flex items-center justify-between mb-2">
         <h4 className="text-sm font-bold text-gray-400 uppercase tracking-wide">
           {label}
-          {isRequired && (
-            <span className="ml-2 text-xs text-red-400 border border-red-700 px-2 py-0.5 bg-red-900/20">
-              Required
-            </span>
-          )}
         </h4>
         {!locked && (
           <button
@@ -79,19 +75,13 @@ function StartingItemSection({
       </div>
 
       {/* Selected Item Box */}
-      <div className={`bg-gray-900 border p-3 mb-2 ${isRequired ? 'border-red-700' : 'border-gray-700'}`}>
+      <div className="bg-gray-900 border border-gray-700 p-3 mb-2">
         <div className="flex items-center justify-between">
           <div className="flex-1">
             <div className="text-xs text-gray-500 uppercase mb-1">Selected:</div>
-            {selectedLabel ? (
-              <div className="text-base text-cy-cyan font-bold">
-                {selectedLabel}
-              </div>
-            ) : (
-              <div className="text-base text-red-400 italic">
-                Nothing selected - roll or choose
-              </div>
-            )}
+            <div className="text-base text-cy-cyan font-bold">
+              {selectedLabel}
+            </div>
           </div>
           {!locked && (
             <button
@@ -148,7 +138,7 @@ function StartingItemSection({
   );
 }
 
-export default function StartingItems({
+export default function CharacterFlavor({
   character = null,
   sections = [],
   onUpdate = () => {},
@@ -157,19 +147,19 @@ export default function StartingItems({
 
   return (
     <CollapsibleSection
-      title="Starting Items"
+      title="Character Flavor"
       character={character}
-      headerClass="bg-gradient-to-r from-green-900/20 via-gray-900 to-green-900/20 border-2 border-green-600/50 p-4 mb-4"
-      headerTextClass="text-green-400"
+      headerClass="bg-gradient-to-r from-cy-pink/20 via-gray-900 to-cy-pink/20 border-2 border-cy-pink/50 p-4 mb-4"
+      headerTextClass="text-cy-pink"
     >
       <div className="space-y-2">
         {sections.map((section, index) => {
           const { name, label, entries } = section;
-          const selections = character.getStartingItemsSelections?.(name) || character.getTableSelections(name);
+          const selections = character.getStyleSelections?.(name) || character.getTableSelections(name);
 
           return (
-            <StartingItemSection
-              key={`starting_${name}_${index}`}
+            <FlavorSection
+              key={`flavor_${name}_${index}`}
               label={label}
               entries={entries}
               selected={selections}
@@ -177,8 +167,8 @@ export default function StartingItems({
               character_id={character.id}
               onSelect={(entry) => {
                 if (!entry) return;
-                if (character.setStartingItemsSelection) {
-                  character.setStartingItemsSelection(name, entry);
+                if (character.setStyleSelection) {
+                  character.setStyleSelection(name, entry);
                 } else {
                   character.setTableSelection(name, entry, "single");
                 }

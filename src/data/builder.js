@@ -80,6 +80,18 @@ class BuilderManager {
 
   deleteCharacter (id) {
     delete this._characters[id];
+    try {
+      const COLLAPSE_STORAGE_KEY = "cyborg_collapse_states";
+      const stored = localStorage.getItem(COLLAPSE_STORAGE_KEY);
+      if (stored) {
+        const states = JSON.parse(stored);
+        delete states[id];
+        localStorage.setItem(COLLAPSE_STORAGE_KEY, JSON.stringify(states));
+      }
+    } catch (e) {
+      console.error("Error cleaning up collapse states:", e);
+    }
+
     this.save();
   }
 
@@ -91,6 +103,7 @@ class BuilderManager {
         const c = chars[c_id];
         charJSON[c.id] = c.toJSON();
       })
+
       localStorage.setItem('cyborg_saved_characters', JSON.stringify(charJSON));
     } catch (e) {
       console.log("Failed to save characters", e);

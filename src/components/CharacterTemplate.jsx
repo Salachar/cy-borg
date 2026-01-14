@@ -5,15 +5,21 @@ import HealthBar from "./HealthBar";
 import CharacterName from "./CharacterName";
 import { Callout } from "./PageComponents";
 import { CreditsTracker, GlitchesTracker } from "./ResourceTrackers";
-
+import GearInventory from "./GearInventory";
+import GearShop from "./GearShop";
+import CharacterFlavor from "./CharacterFlavor";
 import StartingItems from "./StartingItems";
-import Gear from "./Gear";
-import Style from "./Style";
+import NanoPowers from "./NanoPowers";
+import Infestations from "./Infestations";
+import Apps from "./Apps";
+import Cyberware from "./Cyberware";
+import Cyberdeck from "./Cyberdeck";
 
 import {
   WEAPONS_FOR_SALE,
   EQUIPMENT,
   CYBERTECH,
+  APPS,
   DRUGS,
   AMMO_BOOSTERS,
   STYLES,
@@ -21,10 +27,49 @@ import {
   WANTS,
   QUIRKS,
   CURRENT_OBSESSIONS,
+  NANO_POWERS,
+  NANO_INFESTATIONS,
   STARTING_ITEMS_1,
   STARTING_ITEMS_2,
   STARTING_ITEMS_3,
 } from "../data/tables";
+
+const GEAR_SECTIONS = [
+  {
+    name: "weapons",
+    label: "Weapons",
+    note: (
+      <span>You get d4 Basic Mags for free (in shop) if applicable to the weapon.</span>
+    ),
+    entries: WEAPONS_FOR_SALE,
+  },
+  {
+    name: "ammo",
+    label: "Ammo & Boosters",
+    entries: AMMO_BOOSTERS,
+  },
+  {
+    name: "equipment",
+    label: "Equipment",
+    note: (
+      <span>Illegal items require a Security Operative License. Without it, SecOps are authorized to shoot to kill.</span>
+    ),
+    entries: EQUIPMENT,
+  },
+  {
+    name: "cybertech",
+    label: "Cybertech",
+    entries: CYBERTECH,
+  },
+  {
+    name: "drugs",
+    label: "Drugs",
+    note: (
+      <span>Cost after the / is for weaker, recreational doses</span>
+    ),
+    entries: DRUGS,
+  },
+]
 
 export default function CharacterTemplate({
   builder = false,
@@ -140,20 +185,23 @@ export default function CharacterTemplate({
         locked={character.locked}
         onUpdate={onUpdate}
       />
+      <div className="divider" />
+
+      {builder && (
+        <StartingItems
+          character={character}
+          sections={[
+            { name: "d8", label: "Starting Items", entries: STARTING_ITEMS_1 },
+            { name: "d12_1", label: "Starting Items", entries: STARTING_ITEMS_2 },
+            { name: "d12_2", label: "Starting Items", entries: STARTING_ITEMS_3 },
+          ]}
+          onUpdate={onUpdate}
+        />
+      )}
 
       {/* Character Stats (builder mode) */}
       {builder && (
         <>
-          {!character.locked && (
-            <>
-              <div className="divider" />
-              <Callout title="STARTING GEAR!">
-                <p className="text-gray-300 leading-relaxed">
-                  Its actually important to roll Starting Gear first, though you'll find it near the bottom. Please do that first before continuing.
-                </p>
-              </Callout>
-            </>
-          )}
           <div className="divider" />
           <CharacterStats
             character={character}
@@ -190,67 +238,64 @@ export default function CharacterTemplate({
 
       {builder && (
         <>
-          <StartingItems
+          <div className="divider" />
+          <GearInventory
             character={character}
-            sections={[
-              { name: "d8", label: "Starting Items", entries: STARTING_ITEMS_1 },
-              { name: "d12_1", label: "Starting Items", entries: STARTING_ITEMS_2 },
-              { name: "d12_2", label: "Starting Items", entries: STARTING_ITEMS_3 },
-            ]}
+            sections={GEAR_SECTIONS}
             onUpdate={onUpdate}
           />
-          <Gear
+          <GearShop
             character={character}
-            sections={[
-              {
-                name: "weapons",
-                label: "Weapons",
-                note: (
-                  <span>You get d4 mags if applicable to the weapon</span>
-                ),
-                entries: WEAPONS_FOR_SALE,
-              },
-              {
-                name: "equipment",
-                label: "Equipment",
-                note: (
-                  <span>Illegal items require a Security Operative License. Without it, SecOps are authorized to shoot to kill.</span>
-                ),
-                entries: EQUIPMENT,
-              },
-              {
-                name: "cybertech",
-                label: "Cybertech",
-                entries: CYBERTECH,
-              },
-              {
-                name: "drugs",
-                label: "Drugs",
-                note: (
-                  <span>Cost after the / is for weaker, recreational doses</span>
-                ),
-                entries: DRUGS,
-              },
-              {
-                name: "ammo",
-                label: "Ammo & Boosters",
-                entries: AMMO_BOOSTERS,
-              },
-            ]}
-            onUpdate={onUpdate}
-          />
-          <Style
-            character={character}
-            sections={[
-              { name: "style", label: "Style", entries: STYLES },
-              { name: "feature", label: "Feature", entries: FEATURES },
-              { name: "wants", label: "Wants", entries: WANTS },
-              { name: "quirk", label: "Quirk", entries: QUIRKS },
-              { name: "obsession", label: "Obsession", entries: CURRENT_OBSESSIONS },
-            ]}
+            sections={GEAR_SECTIONS}
             onUpdate={onUpdate}
           />
         </>
+      )}
+
+      <div className="divider" />
+      <NanoPowers
+        character={character}
+        allPowers={NANO_POWERS}
+        allInfestations={NANO_INFESTATIONS}
+        onUpdate={onUpdate}
+      />
+      <div className="divider" />
+      <Infestations
+        character={character}
+        allInfestations={NANO_INFESTATIONS}
+        onUpdate={onUpdate}
+      />
+      <div className="divider" />
+      <Apps
+        character={character}
+        allApps={APPS}
+        onUpdate={onUpdate}
+      />
+      <Cyberdeck
+        character={character}
+        allApps={APPS}
+        onUpdate={onUpdate}
+      />
+      <div className="divider" />
+      <Cyberware
+        character={character}
+        allCyberware={CYBERTECH}
+        onUpdate={onUpdate}
+      />
+      <div className="divider" />
+
+      {builder && (
+        <CharacterFlavor
+          character={character}
+          sections={[
+            { name: "style", label: "Style", entries: STYLES },
+            { name: "feature", label: "Feature", entries: FEATURES },
+            { name: "wants", label: "Wants", entries: WANTS },
+            { name: "quirk", label: "Quirk", entries: QUIRKS },
+            { name: "obsession", label: "Obsession", entries: CURRENT_OBSESSIONS },
+          ]}
+          onUpdate={onUpdate}
+        />
       )}
     </div>
   );

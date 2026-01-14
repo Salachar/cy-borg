@@ -6,23 +6,36 @@ class BaseClass {
   _name = "";
   _max_health = 0;
   _current_health = 0;
-  _stat_points = 0; // For manual adjustment if needed
+  _stat_points = 0;
   _credits = 0;
   _max_glitches = 0;
   _glitches = 0;
 
   _stats = {
-    AGI: 0, // Agility - Sneak, dodge, drive, autofire
-    KNO: 0, // Knowledge - Science, use tech or App
-    PRE: 0, // Presence - Snipe/shoot, use Nano, charm
-    STR: 0, // Strength - Strike, grapple, lift, throw
-    TOU: 0, // Toughness - Survive falling, poison, and elements
+    AGI: 0,
+    KNO: 0,
+    PRE: 0,
+    STR: 0,
+    TOU: 0,
   };
 
-  _selected_tables = {}; // Generic table selections: { table_name: { entry_name: true } }
-  _gear = {}; // Gear selections: { section_name: { item_id: { quantity: 1, selected: true } } }
-  _style = {}; // Style selections: { section_name: { item_id: true } }
-  _starting_items = {}; // Starting items selections: { section_name: { item_id: true } }
+  _selected_tables = {};
+  _gear = {}; // Actual inventory: { section_name: { item_id: { quantity: 1, selected: true } } }
+  _shop_cart = {}; // Shopping cart: { section_name: { item_id: { quantity: 1 } } }
+  _style = {};
+  _starting_items = {};
+
+  // New properties for live play tracking
+  _nano_powers = {}; // { power_id: { infestation: "infestation_id" } }
+  _infestations = {}; // { infestation_id: true } - standalone infestations
+  _apps = {}; // { app_id: true } - owned apps
+  _cyberware = {}; // { cyberware_id: true } - installed cyberware
+  _cyberdeck = {
+    unlocked: false,
+    jacked_in: false,
+    slots: 4,
+    loaded_apps: [] // Array of app_ids currently loaded
+  };
 
   _locked = false;
 
@@ -41,7 +54,6 @@ class BaseClass {
     if (typeof data.current_health === "number") {
       this._current_health = data.current_health;
     } else {
-      // Start with a reasonable default (will be set manually based on Toughness + die roll)
       this._current_health = 1;
     }
 
@@ -65,6 +77,10 @@ class BaseClass {
       this._gear = data.gear;
     }
 
+    if (data.shop_cart && Object.keys(data.shop_cart).length) {
+      this._shop_cart = data.shop_cart;
+    }
+
     if (data.style && Object.keys(data.style).length) {
       this._style = data.style;
     }
@@ -73,13 +89,38 @@ class BaseClass {
       this._starting_items = data.starting_items;
     }
 
+    // New properties
+    if (data.nano_powers && Object.keys(data.nano_powers).length) {
+      this._nano_powers = data.nano_powers;
+    }
+
+    if (data.infestations && Object.keys(data.infestations).length) {
+      this._infestations = data.infestations;
+    }
+
+    if (data.apps && Object.keys(data.apps).length) {
+      this._apps = data.apps;
+    }
+
+    if (data.cyberware && Object.keys(data.cyberware).length) {
+      this._cyberware = data.cyberware;
+    }
+
+    if (data.cyberdeck) {
+      this._cyberdeck = {
+        unlocked: data.cyberdeck.unlocked || false,
+        jacked_in: data.cyberdeck.jacked_in || false,
+        slots: data.cyberdeck.slots || 4,
+        loaded_apps: data.cyberdeck.loaded_apps || []
+      };
+    }
+
     if (data.locked) {
       this._locked = true;
     }
   }
 
   #checkStatPoints(stat, new_value) {
-    // CY_BORG allows -3 to +3
     if (new_value < -3 || new_value > 3) return false;
     return true;
   }
@@ -125,10 +166,12 @@ class BaseClass {
 
   // Health
   get max_health() {
-    // In CY_BORG, max health is set at character creation (Toughness + die roll)
-    // We use current_health as max since it's manually set
     if (!this._locked) return this._current_health;
     return this._max_health;
+  }
+
+  set max_health(new_max) {
+    this._max_health = new_max;
   }
 
   get current_health() {
@@ -136,7 +179,6 @@ class BaseClass {
   }
 
   set current_health(new_health) {
-    // "Locked/live" can have health go below 0
     if (!this._locked && new_health < 0) new_health = 0;
     if (this._locked && new_health > this._max_health) new_health = this._max_health;
     this._current_health = new_health;
@@ -148,7 +190,6 @@ class BaseClass {
   }
 
   set credits(new_credits) {
-    if (new_credits < 0) new_credits = 0;
     this._credits = new_credits;
   }
 
@@ -173,7 +214,6 @@ class BaseClass {
     return this._stats;
   }
 
-  // Agility
   get agi() {
     return this._stats.AGI;
   }
@@ -184,7 +224,6 @@ class BaseClass {
     this._stats.AGI = new_value;
   }
 
-  // Knowledge
   get kno() {
     return this._stats.KNO;
   }
@@ -195,7 +234,6 @@ class BaseClass {
     this._stats.KNO = new_value;
   }
 
-  // Presence
   get pre() {
     return this._stats.PRE;
   }
@@ -206,7 +244,6 @@ class BaseClass {
     this._stats.PRE = new_value;
   }
 
-  // Strength
   get str() {
     return this._stats.STR;
   }
@@ -217,7 +254,6 @@ class BaseClass {
     this._stats.STR = new_value;
   }
 
-  // Toughness
   get tou() {
     return this._stats.TOU;
   }
@@ -247,41 +283,34 @@ class BaseClass {
   }
 
   setTableSelection(table_name, entry, select_mode = "single") {
-    // Get entry identifier - prefer id, fall back to label or name
     const entry_id = entry.id || entry.label || entry.name;
     if (!entry_id) return;
 
-    // Initialize table if it doesn't exist
     if (!this._selected_tables[table_name]) {
       this._selected_tables[table_name] = {};
     }
 
     const current = this._selected_tables[table_name];
 
-    // If already selected, deselect it
     if (current[entry_id]) {
       delete current[entry_id];
       return;
     }
 
-    // Handle selection based on mode
     if (select_mode === "single") {
-      // Single mode: clear all others and set this one
       this._selected_tables[table_name] = { [entry_id]: true };
     } else if (select_mode === "multiple") {
-      // Multiple mode: just add this one
       current[entry_id] = true;
     }
   }
 
-  // Gear system (with quantities for future-proofing)
+  // Gear system (actual inventory)
   get gear() {
     return this._gear;
   }
 
   getGearSelections(section_name) {
     const section = this._gear[section_name] || {};
-    // Convert to simple {id: true} format for compatibility with RollableTable
     const selections = {};
     Object.keys(section).forEach((id) => {
       if (section[id].selected) {
@@ -295,25 +324,175 @@ class BaseClass {
     const entry_id = entry.id || entry.label || entry.name;
     if (!entry_id) return;
 
-    // Initialize section if it doesn't exist
     if (!this._gear[section_name]) {
       this._gear[section_name] = {};
     }
 
     const current = this._gear[section_name][entry_id];
 
-    // Toggle selection
     if (current && current.selected) {
       delete this._gear[section_name][entry_id];
     } else {
       this._gear[section_name][entry_id] = {
-        quantity: 1, // Future-proof for multiple items
+        quantity: 1,
         selected: true,
       };
     }
   }
 
-  // Style/flavor system (single selection per section)
+  // Shopping cart system
+  get shop_cart() {
+    return this._shop_cart;
+  }
+
+  addToCart(section_name, entry, quantity = 1) {
+    const entry_id = entry.id || entry.label || entry.name;
+    if (!entry_id) return;
+
+    if (!this._shop_cart[section_name]) {
+      this._shop_cart[section_name] = {};
+    }
+
+    this._shop_cart[section_name][entry_id] = { quantity };
+  }
+
+  removeFromCart(section_name, entry) {
+    const entry_id = entry.id || entry.label || entry.name;
+    if (!entry_id || !this._shop_cart[section_name]) return;
+
+    delete this._shop_cart[section_name][entry_id];
+
+    // Clean up empty sections
+    if (Object.keys(this._shop_cart[section_name]).length === 0) {
+      delete this._shop_cart[section_name];
+    }
+  }
+
+  updateCartQuantity(section_name, entry, quantity) {
+    const entry_id = entry.id || entry.label || entry.name;
+    if (!entry_id || !this._shop_cart[section_name]) return;
+
+    if (quantity <= 0) {
+      this.removeFromCart(section_name, entry);
+    } else {
+      this._shop_cart[section_name][entry_id].quantity = quantity;
+    }
+  }
+
+  getCartItems() {
+    // Returns flat array of cart items with section info
+    const items = [];
+    Object.keys(this._shop_cart).forEach(section => {
+      Object.keys(this._shop_cart[section]).forEach(itemId => {
+        items.push({
+          section,
+          itemId,
+          quantity: this._shop_cart[section][itemId].quantity
+        });
+      });
+    });
+    return items;
+  }
+
+  getCartTotal(allEntries) {
+    // allEntries is an object: { section_name: [entries] }
+    let total = 0;
+
+    Object.keys(this._shop_cart).forEach(section => {
+      const sectionEntries = allEntries[section] || [];
+
+      Object.keys(this._shop_cart[section]).forEach(itemId => {
+        const entry = sectionEntries.find(e => (e.id || e.label) === itemId);
+        if (!entry) return;
+
+        const quantity = this._shop_cart[section][itemId].quantity;
+        const costStr = entry.cost || "0¤";
+        const match = costStr.match(/^(\d+(?:\.\d+)?[kM]?)¤/);
+
+        if (match) {
+          let value = match[1];
+          if (value.includes('k')) {
+            value = parseFloat(value) * 1000;
+          } else if (value.includes('M')) {
+            value = parseFloat(value) * 1000000;
+          } else {
+            value = parseFloat(value);
+          }
+          total += value * quantity;
+        }
+      });
+    });
+
+    return total;
+  }
+
+  checkout(allEntries) {
+    const total = this.getCartTotal(allEntries);
+
+    if (this._credits < total) {
+      return false; // Not enough credits
+    }
+
+    // Deduct credits
+    this._credits -= total;
+
+    // Move cart items to gear
+    Object.keys(this._shop_cart).forEach(section => {
+      if (!this._gear[section]) {
+        this._gear[section] = {};
+      }
+
+      Object.keys(this._shop_cart[section]).forEach(itemId => {
+        const cartItem = this._shop_cart[section][itemId];
+
+        if (this._gear[section][itemId]) {
+          // Add to existing quantity
+          this._gear[section][itemId].quantity += cartItem.quantity;
+        } else {
+          // Add new item
+          this._gear[section][itemId] = {
+            quantity: cartItem.quantity,
+            selected: true
+          };
+        }
+      });
+    });
+
+    // Clear cart
+    this._shop_cart = {};
+    return true;
+  }
+
+  addFreeToInventory() {
+    // Move cart items to gear without deducting credits
+    Object.keys(this._shop_cart).forEach(section => {
+      if (!this._gear[section]) {
+        this._gear[section] = {};
+      }
+
+      Object.keys(this._shop_cart[section]).forEach(itemId => {
+        const cartItem = this._shop_cart[section][itemId];
+
+        if (this._gear[section][itemId]) {
+          this._gear[section][itemId].quantity += cartItem.quantity;
+        } else {
+          this._gear[section][itemId] = {
+            quantity: cartItem.quantity,
+            selected: true
+          };
+        }
+      });
+    });
+
+    // Clear cart
+    this._shop_cart = {};
+  }
+
+  clearCart() {
+    this._shop_cart = {};
+  }
+
+  // Style/flavor system
   get style() {
     return this._style;
   }
@@ -326,23 +505,20 @@ class BaseClass {
     const entry_id = entry.id || entry.label || entry.name;
     if (!entry_id) return;
 
-    // Initialize section if it doesn't exist
     if (!this._style[section_name]) {
       this._style[section_name] = {};
     }
 
     const current = this._style[section_name];
 
-    // If already selected, deselect it
     if (current[entry_id]) {
       delete this._style[section_name][entry_id];
     } else {
-      // Single selection: clear all others and set this one
       this._style[section_name] = { [entry_id]: true };
     }
   }
 
-  // Starting items system (single selection per section)
+  // Starting items system
   get starting_items() {
     return this._starting_items;
   }
@@ -355,18 +531,15 @@ class BaseClass {
     const entry_id = entry.id || entry.label || entry.name;
     if (!entry_id) return;
 
-    // Initialize section if it doesn't exist
     if (!this._starting_items[section_name]) {
       this._starting_items[section_name] = {};
     }
 
     const current = this._starting_items[section_name];
 
-    // If already selected, deselect it
     if (current[entry_id]) {
       delete this._starting_items[section_name][entry_id];
     } else {
-      // Single selection: clear all others and set this one
       this._starting_items[section_name] = { [entry_id]: true };
     }
   }
@@ -383,10 +556,22 @@ class BaseClass {
       glitches: this.glitches,
       selected_tables: this.selected_tables,
       gear: this.gear,
+      shop_cart: this.shop_cart,
       style: this.style,
       starting_items: this.starting_items,
       stats: this.stats,
       stat_points: this.stat_points,
+      // New properties
+      nano_powers: this._nano_powers || {},
+      infestations: this._infestations || {},
+      apps: this._apps || {},
+      cyberware: this._cyberware || {},
+      cyberdeck: this._cyberdeck || {
+        unlocked: false,
+        jacked_in: false,
+        slots: 4,
+        loaded_apps: []
+      },
     };
   }
 }

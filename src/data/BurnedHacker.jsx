@@ -1,7 +1,4 @@
 import {
-  APPS,
-  APP_FUMBLES,
-  GLITCHES,
   DEBT_TO_WHOM,
   DEBT_URGENCY,
   WEAPONS_TABLE,
@@ -178,22 +175,6 @@ export default class BurnedHacker extends BaseClass {
           description: <>In Cy's major data nodes. No hackers have claimed credit.</>,
         },
       ],
-      before: <div className="divider small" />,
-    },
-    {
-      type: "rollable",
-      name: "starting_apps",
-      label: "Apps",
-      select_mode: "multiple",
-      entries: APPS,
-      before: <div className="divider small" />,
-    },
-    {
-      type: "rollable",
-      name: "app_backlashes",
-      label: "App Backlashes",
-      select_mode: "single",
-      entries: APP_FUMBLES,
       before: <div className="divider small" />,
     },
   ];

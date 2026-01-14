@@ -1,7 +1,4 @@
 import {
-  NANO_POWERS,
-  NANO_INFESTATIONS,
-  GLITCHES,
   WEAPONS_TABLE,
   ARMOR_TABLE,
 } from "./tables";
@@ -152,28 +149,6 @@ export default class ShunnedNanomancer extends BaseClass {
           description: <>You were born.</>,
         },
       ],
-      before: <div className="divider" />,
-    },
-    {
-      type: "rollable",
-      name: "nano_power",
-      label: "Nano Power",
-      select_mode: "multiple",
-      entries: NANO_POWERS,
-      note: (
-        <p>Any starting App or Cybertech is replaced with a random Nano. Each power is linked to an Infestation you roll for on the Infestation table. You might have to track that link yourself at the moment.</p>
-      ),
-      before: <div className="divider" />,
-    },
-    {
-      type: "rollable",
-      name: "nano_infestation",
-      label: "Linked Infestation",
-      select_mode: "single",
-      entries: NANO_INFESTATIONS,
-      note: (
-        <p>Infestations not linked to a Nano power are triggered whenever you’re dealt 5+ damage by a single attack and fail a Presence DR10 test. The bold text is a permanent,The italicized is what happens when the infestation is triggered.</p>
-      ),
       before: <div className="divider" />,
     },
   ];

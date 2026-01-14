@@ -2,6 +2,12 @@
 
 export const AMMO_BOOSTERS = [
   {
+    id: "basic_mags",
+    label: "Basic Mags",
+    cost: "10¤",
+    description: <>Standard ammo. (Take these when rolling d4 for mags)</>,
+  },
+  {
     id: "inferno",
     label: "Inferno",
     cost: "80¤",

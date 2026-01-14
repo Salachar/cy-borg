@@ -1,42 +1,95 @@
-import { useState } from 'react';
+import React, { useEffect } from "react";
 
-export default function CollapsibleSection({
-  title,
-  startOpen = false,
-  children
+// Helper functions for collapse state management
+const COLLAPSE_STORAGE_KEY = "cyborg_collapse_states";
+
+function getCollapseStates() {
+  try {
+    const stored = localStorage.getItem(COLLAPSE_STORAGE_KEY);
+    return stored ? JSON.parse(stored) : {};
+  } catch (e) {
+    console.error("Error reading collapse states:", e);
+    return {};
+  }
+}
+
+function setCollapseState(characterId, sectionKey, isOpen) {
+  try {
+    const states = getCollapseStates();
+    if (!states[characterId]) {
+      states[characterId] = {};
+    }
+    states[characterId][sectionKey] = isOpen;
+    localStorage.setItem(COLLAPSE_STORAGE_KEY, JSON.stringify(states));
+  } catch (e) {
+    console.error("Error saving collapse state:", e);
+  }
+}
+
+function getCollapseState(characterId, sectionKey, defaultState = false) {
+  const states = getCollapseStates();
+  return states[characterId]?.[sectionKey] ?? defaultState;
+}
+
+export default function CollapsibleSectionWithState({
+  title = "Section Title",
+  character = null,
+  headerClass = "",
+  headerTextClass = "",
+  headerChildrenEnabled = false,
+  headerChildren,
+  children,
+  defaultOpen = false,
 }) {
-  const [isOpen, setIsOpen] = useState(startOpen);
+  const characterId = character?.id || "default";
+  const sectionKey = title.trim().replace(/ /g, "");
+
+  const [isOpen, setIsOpen] = React.useState(() => {
+    return getCollapseState(characterId, sectionKey, defaultOpen);
+  });
+
+  useEffect(() => {
+    const savedState = getCollapseState(characterId, sectionKey, defaultOpen);
+    setIsOpen(savedState);
+  }, [characterId, sectionKey, defaultOpen]);
+
+  const handleToggle = (e) => {
+    if (e.defaultPrevented) return;
+    const newState = !isOpen;
+    setIsOpen(newState);
+    setCollapseState(characterId, sectionKey, newState);
+  };
 
   return (
-    <div className="mb-6">
-      {/* Header - clickable to toggle */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="
-          w-full flex items-center justify-between
-          mb-4 pb-2
-          border-b-2 border-cy-cyan
-          text-left
-          group
-        "
-      >
-        <h2 className="text-2xl font-bold text-cy-cyan group-hover:text-cy-cyan/80 transition-colors">
-          {title}
-        </h2>
-        <span className="text-cy-cyan text-2xl group-hover:text-cy-cyan/80 transition-all">
-          {isOpen ? '−' : '+'}
-        </span>
-      </button>
-
-      {/* Content - slides in/out */}
+    <div className="mb-8">
       <div
-        className={`
-          overflow-hidden transition-all duration-300
-          ${isOpen ? 'max-h-[10000px] opacity-100' : 'max-h-0 opacity-0'}
-        `}
+        className={`cursor-pointer hover:opacity-80 transition-opacity ${headerClass}`}
+        onClick={handleToggle}
       >
-        {children}
+        <div className="flex items-center justify-between">
+          <h2 className={`text-2xl font-black uppercase tracking-wider ${headerTextClass}`}>
+            {title}
+          </h2>
+
+          <div className="text-center px-4">
+            <div className="text-xs text-gray-500 uppercase">
+              {isOpen ? 'Tap to Close' : 'Tap to Open'}
+            </div>
+          </div>
+
+          {isOpen && headerChildrenEnabled && headerChildren && (
+            <div onClick={(e) => e.stopPropagation()}>
+              {headerChildren}
+            </div>
+          )}
+        </div>
       </div>
+
+      {isOpen && (
+        <>
+          {children}
+        </>
+      )}
     </div>
   );
 }
