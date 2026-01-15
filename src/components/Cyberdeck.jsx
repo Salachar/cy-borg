@@ -1,5 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import CollapsibleSection from './CollapsibleSection';
+
+import BacklashRoller from './BacklashRoller';
+
+import { APP_FUMBLES } from "../data/tables";
 
 export default function Cyberdeck({
   character = null,
@@ -256,6 +260,10 @@ export default function Cyberdeck({
             While jacked in, you can use loaded Apps by testing Knowledge DR12. Each App use adds +1 fumble risk until the next day.
             All non-App actions are +2DR while jacked in.
           </div>
+
+          <div className="divider"/>
+
+          <BacklashRoller backlashes={APP_FUMBLES} />
         </div>
       )}
     </CollapsibleSection>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 
 const rollDie = (sides) => Math.floor(Math.random() * sides) + 1;
 
@@ -6,7 +6,6 @@ export default function RollableTable({
   character_id = "",
   locked = false,
   selectable = true,
-  rollable = true,
   compact = false,
   collapsible = false,
   startCollapsed = false,
@@ -23,30 +22,37 @@ export default function RollableTable({
   const [currentId, setCurrentId] = useState(character_id);
   const [highlightedIndex, setHighlightedIndex] = useState(null);
   const [isCollapsed, setIsCollapsed] = useState(startCollapsed);
+  const intervalRef = useRef(null);
 
   if (!entries.length) return null;
 
-  const rollTable = (e) => {
+  const rollTable = useCallback((e) => {
     if (e) {
       e.preventDefault();
       e.stopPropagation();
     }
 
-    if (!rollable || locked || !selectable) return;
+    if (locked) return;
+
+    // Clear any existing interval
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
 
     const duration = 500;
     const interval = 50;
     let elapsed = 0;
     let finalIndex = null;
 
-    const intervalId = setInterval(() => {
+    intervalRef.current = setInterval(() => {
       elapsed += interval;
       const randomIndex = rollDie(entries.length) - 1;
       finalIndex = randomIndex;
       setHighlightedIndex(randomIndex);
 
       if (elapsed >= duration) {
-        clearInterval(intervalId);
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
 
         // Auto-select the final result after a brief delay
         setTimeout(() => {
@@ -58,7 +64,16 @@ export default function RollableTable({
         }, 150);
       }
     }, interval);
-  };
+  }, [locked, entries.length, select_mode, onClick]);
+
+  // Cleanup interval on unmount
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (character_id === currentId) return;
@@ -66,7 +81,7 @@ export default function RollableTable({
     setCurrentId(character_id);
   }, [character_id, currentId]);
 
-  const canInteract = (selectable && select_mode !== "none") || rollable;
+  const canInteract = (selectable && select_mode !== "none");
 
   return (
     <>
@@ -98,7 +113,7 @@ export default function RollableTable({
             )}
 
             {/* Roll Button */}
-            {rollable && !locked && !isCollapsed && (
+            {selectable && !locked && !isCollapsed && (
               <button
                 type="button"
                 onClick={(e) => {

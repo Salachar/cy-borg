@@ -44,17 +44,20 @@ export default class DischargedCorpKiller extends BaseClass {
           id: "ability_scarred_jarhead",
           label: "EMOTIONALLY SCARRED JARHEAD",
           description: "Roll 3d6-1 for Knowledge and Presence.",
+          applied: true,
         },
         {
           id: "ability_tough_as_nails",
           label: "TOUGH AS NAILS",
           description: "Roll 3d6+2 for Toughness.",
+          applied: true,
         },
         {
           id: "armor_bonus",
           label: "Armor Roll",
           die: "d4+1",
           description: "You roll d4+1 for armor instead of normal armor roll",
+          applied: true,
         },
         {
           id: "autofire_bonus",

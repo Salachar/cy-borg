@@ -44,12 +44,19 @@ export default class OrphanedGearhead extends BaseClass {
           id: "ability_engineer",
           label: "ENGINEER",
           description: "Roll 3d6+2 for Knowledge.",
+          applied: true,
         },
         {
           id: "ability_prefers_machines",
           label: "PREFERS MACHINES",
-          description: "Roll 3d6-2 for Presence. You test Knowledge DR10 when you try to repair a piece of tech or to pilot a vehicle, drone or other machine.",
+          description: "Roll 3d6-2 for Presence.",
+          applied: true,
         },
+        {
+          id: "ability_repair",
+          label: "MASTER FIXER",
+          description: "You test Knowledge DR10 when you try to repair a piece of tech or to pilot a vehicle, drone or other machine.",
+        }
       ],
     },
     {

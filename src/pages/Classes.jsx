@@ -7,7 +7,7 @@ import BuilderManager from "../data/builder";
 import ClassButtons from "../components/ClassButtons";
 import CharacterTabs from "../components/CharacterTabs";
 import CharacterTemplate from "../components/CharacterTemplate";
-
+import AppDataExportImport from "../components/CharacterExportImport";
 
 const setClassColor = (classData) => {
   let data = classData;
@@ -136,6 +136,7 @@ export default function Classes () {
                 onUpdate();
               }}
             />
+            <AppDataExportImport />
           </div>
         )}
 

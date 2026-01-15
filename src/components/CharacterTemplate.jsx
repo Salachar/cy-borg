@@ -102,6 +102,7 @@ export default function CharacterTemplate({
             definitions={component.entries}
             before={component.before}
             after={component.after}
+            builder={builder}
           />
         );
 
@@ -113,7 +114,6 @@ export default function CharacterTemplate({
             character_id={character.id}
             locked={character.locked}
             selectable={builder}
-            rollable={builder}
             label={component.label}
             note={component.note}
             entries={component.entries}
@@ -239,15 +239,15 @@ export default function CharacterTemplate({
         renderComponent(component, index)
       )}
 
-      <Debt
-        character={character}
-        creditorsList={DEBT_TO_WHOM}
-        urgencyList={DEBT_URGENCY}
-        onUpdate={onUpdate}
-      />
-
       {builder && (
         <>
+          <div className="divider" />
+          <Debt
+            character={character}
+            creditorsList={DEBT_TO_WHOM}
+            urgencyList={DEBT_URGENCY}
+            onUpdate={onUpdate}
+          />
           <div className="divider" />
           <GearInventory
             character={character}
@@ -262,53 +262,49 @@ export default function CharacterTemplate({
           <Services
             character={character}
           />
+          <div className="divider" />
+          <NanoPowers
+            character={character}
+            allPowers={NANO_POWERS}
+            allInfestations={NANO_INFESTATIONS}
+            onUpdate={onUpdate}
+          />
+          <div className="divider" />
+          <Infestations
+            character={character}
+            allInfestations={NANO_INFESTATIONS}
+            onUpdate={onUpdate}
+          />
+          <div className="divider" />
+          <Apps
+            character={character}
+            allApps={APPS}
+            onUpdate={onUpdate}
+          />
+          <Cyberdeck
+            character={character}
+            allApps={APPS}
+            onUpdate={onUpdate}
+          />
+          <div className="divider" />
+          <Cyberware
+            character={character}
+            allCyberware={CYBERTECH}
+            onUpdate={onUpdate}
+          />
+          <div className="divider" />
+          <CharacterFlavor
+            character={character}
+            sections={[
+              { name: "style", label: "Style", entries: STYLES },
+              { name: "feature", label: "Feature", entries: FEATURES },
+              { name: "wants", label: "Wants", entries: WANTS },
+              { name: "quirk", label: "Quirk", entries: QUIRKS },
+              { name: "obsession", label: "Obsession", entries: CURRENT_OBSESSIONS },
+            ]}
+            onUpdate={onUpdate}
+          />
         </>
-      )}
-
-      <div className="divider" />
-      <NanoPowers
-        character={character}
-        allPowers={NANO_POWERS}
-        allInfestations={NANO_INFESTATIONS}
-        onUpdate={onUpdate}
-      />
-      <div className="divider" />
-      <Infestations
-        character={character}
-        allInfestations={NANO_INFESTATIONS}
-        onUpdate={onUpdate}
-      />
-      <div className="divider" />
-      <Apps
-        character={character}
-        allApps={APPS}
-        onUpdate={onUpdate}
-      />
-      <Cyberdeck
-        character={character}
-        allApps={APPS}
-        onUpdate={onUpdate}
-      />
-      <div className="divider" />
-      <Cyberware
-        character={character}
-        allCyberware={CYBERTECH}
-        onUpdate={onUpdate}
-      />
-      <div className="divider" />
-
-      {builder && (
-        <CharacterFlavor
-          character={character}
-          sections={[
-            { name: "style", label: "Style", entries: STYLES },
-            { name: "feature", label: "Feature", entries: FEATURES },
-            { name: "wants", label: "Wants", entries: WANTS },
-            { name: "quirk", label: "Quirk", entries: QUIRKS },
-            { name: "obsession", label: "Obsession", entries: CURRENT_OBSESSIONS },
-          ]}
-          onUpdate={onUpdate}
-        />
       )}
     </div>
   );

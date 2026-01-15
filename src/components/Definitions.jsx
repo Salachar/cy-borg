@@ -3,6 +3,7 @@ export default function Definitions({
   h3 = "",
   before = null,
   after = null,
+  builder = false,
 }) {
   if (!definitions.length) return null;
 
@@ -19,6 +20,7 @@ export default function Definitions({
             die = "",
             cost = "",
             description = "",
+            applied = false,
           } = definition || {};
 
           const displayLabel = label || name;
@@ -39,6 +41,11 @@ export default function Definitions({
                 {cost && (
                   <span className="text-yellow-400 opacity-90 ml-1">
                     [{cost}]
+                  </span>
+                )}
+                {builder && applied && (
+                  <span className="text-cy-yellow opacity-90 ml-1">
+                    (APPLIED)
                   </span>
                 )}
                 :

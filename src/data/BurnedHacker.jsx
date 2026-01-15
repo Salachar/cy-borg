@@ -46,17 +46,19 @@ export default class BurnedHacker extends BaseClass {
           id: "debt",
           label: "Starting Debt",
           die: "6d10×1k¤",
-          description: "You owe someone a lot of money",
+          description: "You owe someone a lot of money.",
         },
         {
           id: "ability_cutting_edge",
           label: "CUTTING EDGE",
           description: "Roll 3d6+2 for Knowledge.",
+          applied: true,
         },
         {
           id: "ability_unhealthy_living",
           label: "UNHEALTHY LIVING",
           description: "Roll 3d6-1 for Strength and Toughness.",
+          applied: true,
         },
         {
           id: "starting_gear",

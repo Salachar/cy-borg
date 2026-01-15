@@ -1,6 +1,3 @@
-// Glitches - Resource/currency system
-// Not a rollable table - these are the uses for Glitches points
-
 export const GLITCHES = [
   {
     id: "reduce_dr",

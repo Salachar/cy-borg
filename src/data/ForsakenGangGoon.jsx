@@ -45,16 +45,12 @@ export default class ForsakenGangGoon extends BaseClass {
           id: "ability_small",
           label: "SMALL",
           description: "Roll 3d6-2 for Strength.",
+          applied: true,
         },
         {
           id: "ability_stealthy",
           label: "STEALTHY",
           description: "All Presence and Agility tests are -2DR.",
-        },
-        {
-          id: "starting_gear",
-          label: "Starting Gear",
-          description: "Roll d6 for weapon and d2 for armor.",
         },
       ],
     },
