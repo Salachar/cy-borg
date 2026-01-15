@@ -6,6 +6,7 @@ import Rules from './pages/Rules';
 import Combat from './pages/Combat';
 import Classes from './pages/Classes';
 import Terminal from './pages/Terminal';
+import Artwork from './pages/Artwork';
 
 // Scroll position storage
 const scrollPositions = {};
@@ -62,6 +63,7 @@ export default function App() {
           <CyNavLink to="/rules" label="Rules" color="yellow" />
           <CyNavLink to="/combat" label="Combat" color="pink" />
           <CyNavLink to="/classes" label="Classes" color="pink" />
+          <CyNavLink to="/artwork" label="Artwork" color="yellow" />
           <CyNavLink to="/retcomdevice" label="RetComDevice" color="green" />
         </div>
 
@@ -81,6 +83,7 @@ export default function App() {
             <Route path="/rules" element={<Rules />} />
             <Route path="/combat" element={<Combat />} />
             <Route path="/classes/:slug?" element={<Classes />} />
+            <Route path="/artwork" element={<Artwork />} />
           </Routes>
         </div>
       )}
