@@ -191,18 +191,30 @@ export default function CharacterTemplate({
         locked={character.locked}
         onUpdate={onUpdate}
       />
-      <div className="divider" />
 
       {builder && (
-        <StartingItems
-          character={character}
-          sections={[
-            { name: "d8", label: "Starting Items", entries: STARTING_ITEMS_1 },
-            { name: "d12_1", label: "Starting Items", entries: STARTING_ITEMS_2 },
-            { name: "d12_2", label: "Starting Items", entries: STARTING_ITEMS_3 },
-          ]}
-          onUpdate={onUpdate}
-        />
+        <div className="divider" />
+      )}
+
+      <Definitions
+        h3={"Class Uniques"}
+        definitions={character.class_uniques}
+        builder={builder}
+      />
+
+      {builder && (
+        <>
+          <div className="divider" />
+          <StartingItems
+            character={character}
+            sections={[
+              { name: "d8", label: "Starting Items", entries: STARTING_ITEMS_1 },
+              { name: "d12_1", label: "Starting Items", entries: STARTING_ITEMS_2 },
+              { name: "d12_2", label: "Starting Items", entries: STARTING_ITEMS_3 },
+            ]}
+            onUpdate={onUpdate}
+          />
+        </>
       )}
 
       {/* Character Stats (builder mode) */}

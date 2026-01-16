@@ -3,8 +3,9 @@ import {
   ARMOR_TABLE,
 } from "./tables";
 
-import BaseClass from "./base";
+import class_image from "../images/classes/ganggoon.png";
 
+import BaseClass from "./base";
 export default class ForsakenGangGoon extends BaseClass {
   constructor(data = {}) {
     super(data);
@@ -13,7 +14,7 @@ export default class ForsakenGangGoon extends BaseClass {
   static id = "gang_goon";
   static color = "#FF0000"; // Red for gang violence
   static class = "Forsaken Gang-Goon";
-  static artwork = "src/images/classes/ganggoon.png";
+  static artwork = class_image;
 
   static die = {
     health: "d6",
@@ -37,24 +38,21 @@ export default class ForsakenGangGoon extends BaseClass {
     </>,
   ];
 
-  static components = [
+  static class_uniques = [
     {
-      type: "definitions",
-      name: "class_info",
-      entries: [
-        {
-          id: "ability_small",
-          label: "SMALL",
-          description: "Roll 3d6-2 for Strength.",
-          applied: true,
-        },
-        {
-          id: "ability_stealthy",
-          label: "STEALTHY",
-          description: "All Presence and Agility tests are -2DR.",
-        },
-      ],
+      id: "ability_small",
+      label: "SMALL",
+      description: "Roll 3d6-2 for Strength.",
+      applied: true,
     },
+    {
+      id: "ability_stealthy",
+      label: "STEALTHY",
+      description: "All Presence and Agility tests are -2DR.",
+    }
+  ];
+
+  static components = [
     {
       type: "rollable",
       name: "weapon",

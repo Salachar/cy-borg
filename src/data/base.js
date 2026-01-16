@@ -164,6 +164,10 @@ class BaseClass {
     return this.constructor.class;
   }
 
+  get class_uniques() {
+    return this.constructor.class_uniques;
+  }
+
   get description() {
     return this.constructor.description;
   }

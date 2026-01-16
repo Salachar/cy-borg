@@ -3,6 +3,8 @@ import {
   ARMOR_TABLE,
 } from "./tables";
 
+import class_image from "../images/classes/gearhead.png";
+
 import BaseClass from "./base";
 export default class OrphanedGearhead extends BaseClass {
   constructor (data = {}) {
@@ -12,7 +14,7 @@ export default class OrphanedGearhead extends BaseClass {
   static id = "gearhead";
   static color = "#FFA500"; // Orange for gearhead/engineer
   static class = "Orphaned Gearhead";
-  static artwork = "src/images/classes/gearhead.png";
+  static artwork = class_image;
 
   static die = {
     health: "d8",
@@ -36,30 +38,27 @@ export default class OrphanedGearhead extends BaseClass {
     </>,
   ];
 
-  static components = [
+  static class_uniques = [
     {
-      type: "definitions",
-      name: "class_info",
-      entries: [
-        {
-          id: "ability_engineer",
-          label: "ENGINEER",
-          description: "Roll 3d6+2 for Knowledge.",
-          applied: true,
-        },
-        {
-          id: "ability_prefers_machines",
-          label: "PREFERS MACHINES",
-          description: "Roll 3d6-2 for Presence.",
-          applied: true,
-        },
-        {
-          id: "ability_repair",
-          label: "MASTER FIXER",
-          description: "You test Knowledge DR10 when you try to repair a piece of tech or to pilot a vehicle, drone or other machine.",
-        }
-      ],
+      id: "ability_engineer",
+      label: "ENGINEER",
+      description: "Roll 3d6+2 for Knowledge.",
+      applied: true,
     },
+    {
+      id: "ability_prefers_machines",
+      label: "PREFERS MACHINES",
+      description: "Roll 3d6-2 for Presence.",
+      applied: true,
+    },
+    {
+      id: "ability_repair",
+      label: "MASTER FIXER",
+      description: "You test Knowledge DR10 when you try to repair a piece of tech or to pilot a vehicle, drone or other machine.",
+    }
+  ];
+
+  static components = [
     {
       type: "rollable",
       name: "weapon",

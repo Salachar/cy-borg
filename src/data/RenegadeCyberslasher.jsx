@@ -3,6 +3,8 @@ import {
   ARMOR_TABLE,
 } from "./tables";
 
+import class_image from "../images/classes/cyberslasher.png";
+
 import BaseClass from "./base";
 export default class RenegadeCyberslasher extends BaseClass {
   constructor (data = {}) {
@@ -12,7 +14,7 @@ export default class RenegadeCyberslasher extends BaseClass {
   static id = "cyberslasher";
   static color = "#FF00FF"; // Magenta/hot pink for cyberslasher
   static class = "Renegade Cyberslasher";
-  static artwork = "src/images/classes/cyberslasher.png";
+  static artwork = class_image;
 
   static die = {
     health: "d10",
@@ -36,30 +38,27 @@ export default class RenegadeCyberslasher extends BaseClass {
     </>,
   ];
 
-  static components = [
+  static class_uniques = [
     {
-      type: "definitions",
-      name: "class_info",
-      entries: [
-        {
-          id: "ability_body_and_soul",
-          label: "BODY AND SOUL",
-          description: "Roll 3d6+1 for Strength and Presence.",
-          applied: true,
-        },
-        {
-          id: "ability_not_a_reader",
-          label: "NOT A READER",
-          description: "Roll 3d6-2 for Knowledge.",
-          applied: true,
-        },
-        {
-          id: "starting_cybertech",
-          label: "Starting Cybertech",
-          description: "Start with one d12 roll for a random Cybertech. Replace any App or Nano with another d12 cybertech roll.",
-        },
-      ],
+      id: "ability_body_and_soul",
+      label: "BODY AND SOUL",
+      description: "Roll 3d6+1 for Strength and Presence.",
+      applied: true,
     },
+    {
+      id: "ability_not_a_reader",
+      label: "NOT A READER",
+      description: "Roll 3d6-2 for Knowledge.",
+      applied: true,
+    },
+    {
+      id: "starting_cybertech",
+      label: "Starting Cybertech",
+      description: "Start with one d12 roll for a random Cybertech. Replace any App or Nano with another d12 cybertech roll.",
+    },
+  ];
+
+  static components = [
     {
       type: "rollable",
       name: "weapon",

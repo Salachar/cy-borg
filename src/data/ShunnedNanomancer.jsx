@@ -3,6 +3,8 @@ import {
   ARMOR_TABLE,
 } from "./tables";
 
+import class_image from "../images/classes/nanomancer.png";
+
 import BaseClass from "./base";
 export default class ShunnedNanomancer extends BaseClass {
   constructor (data = {}) {
@@ -12,7 +14,7 @@ export default class ShunnedNanomancer extends BaseClass {
   static id = "nanomancer";
   static color = "#8B4789"; // Purple/bio-mutant color
   static class = "Shunned Nanomancer";
-  static artwork = "src/images/classes/nanomancer.png";
+  static artwork = class_image;
 
   static health_die = "d4";
 
@@ -38,25 +40,22 @@ export default class ShunnedNanomancer extends BaseClass {
     </>,
   ];
 
-  static components = [
+  static class_uniques = [
     {
-      type: "definitions",
-      name: "class_info",
-      entries: [
-        {
-          id: "ability_weird",
-          label: "WEIRD",
-          description: "Roll 3d6+2 for Presence.",
-          applied: true,
-        },
-        {
-          id: "ability_ill",
-          label: "ILL",
-          description: "Roll 3d6-2 for Toughness.",
-          applied: true,
-        },
-      ],
+      id: "ability_weird",
+      label: "WEIRD",
+      description: "Roll 3d6+2 for Presence.",
+      applied: true,
     },
+    {
+      id: "ability_ill",
+      label: "ILL",
+      description: "Roll 3d6-2 for Toughness.",
+      applied: true,
+    },
+  ];
+
+  static components = [
     {
       type: "rollable",
       name: "weapon",

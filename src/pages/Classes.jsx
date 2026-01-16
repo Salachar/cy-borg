@@ -72,9 +72,19 @@ export default function Classes () {
           setIsBuilder(true);
           setTabIndex(null);
           setCharAndColor(chars[char_key]);
+          BuilderManager.setLastSelected(char_key);
           return;
         }
       }
+    }
+
+    // Check for last selected first
+    const lastSelectedId = BuilderManager.lastSelectedId;
+    if (lastSelectedId && chars[lastSelectedId]) {
+      setIsBuilder(true);
+      setTabIndex(null);
+      setCharAndColor(chars[lastSelectedId]);
+      return;
     }
 
     const firstChar = chars[char_keys[0]];
@@ -82,6 +92,7 @@ export default function Classes () {
       setIsBuilder(true);
       setTabIndex(null);
       setCharAndColor(firstChar);
+      BuilderManager.setLastSelected(firstChar.id);
     }
   }
 

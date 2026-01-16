@@ -37,8 +37,35 @@ export default function Combat() {
         </div>
       </div>
 
+      <DefinitionBox
+        title="Using Glitches in Combat"
+        definitions={[
+          {
+            label: "Reduce DR by 4",
+            description: "Use before rolling a test",
+          }, {
+            label: "Neutralize Crit/Fumble",
+            description: "Cancel the special effect",
+          }, {
+            label: "Reduce Damage by d6",
+            description: "Lower incoming damage",
+          }, {
+            label: "Deal Max Damage",
+            description: "No roll needed for damage",
+          }, {
+            label: "Reroll Any Die",
+            description: "Yours or someone else's",
+          }
+        ]}
+      >
+        <p className="text-gray-300 mb-4 text-sm">
+          Reality glitches in your favor. You start with d2 Glitches (or class die).
+          Regain them by rolling again after spending all and resting.
+        </p>
+      </DefinitionBox>
+
       {/* Combat Steps */}
-      <div className="space-y-6">
+      <div className="space-y-6 mt-8">
 
         {/* Step 1 */}
         <CombatStep
@@ -366,33 +393,6 @@ export default function Combat() {
             </div>
           </div>
         </CombatStep>
-
-        <DefinitionBox
-          title="Using Glitches in Combat"
-          definitions={[
-            {
-              label: "Reduce DR by 4",
-              description: "Use before rolling a test",
-            }, {
-              label: "Neutralize Crit/Fumble",
-              description: "Cancel the special effect",
-            }, {
-              label: "Reduce Damage by d6",
-              description: "Lower incoming damage",
-            }, {
-              label: "Deal Max Damage",
-              description: "No roll needed for damage",
-            }, {
-              label: "Reroll Any Die",
-              description: "Yours or someone else's",
-            }
-          ]}
-        >
-          <p className="text-gray-300 mb-4 text-sm">
-            Reality glitches in your favor. You start with d2 Glitches (or class die).
-            Regain them by rolling again after spending all and resting.
-          </p>
-        </DefinitionBox>
       </div>
     </Page>
   );

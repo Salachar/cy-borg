@@ -56,6 +56,7 @@ export const CLASSES = [
 
 class BuilderManager {
   _characters = {};
+  _last_selected_id = null;
 
   constructor (opts = {}) {
     this.load();
@@ -63,6 +64,19 @@ class BuilderManager {
 
   get characters () {
     return this._characters;
+  }
+
+  get lastSelectedId() {
+    return this._last_selected_id;
+  }
+
+  setLastSelected(id) {
+    this._last_selected_id = id;
+    try {
+      localStorage.setItem('cyborg_last_selected', id);
+    } catch (e) {
+      console.error("Failed to save last selected:", e);
+    }
   }
 
   addCharacter (new_character) {
@@ -80,6 +94,12 @@ class BuilderManager {
 
   deleteCharacter (id) {
     delete this._characters[id];
+
+    if (this._last_selected_id === id) {
+      this._last_selected_id = null;
+      localStorage.removeItem('cyborg_last_selected');
+    }
+
     try {
       const COLLAPSE_STORAGE_KEY = "cyborg_collapse_states";
       const stored = localStorage.getItem(COLLAPSE_STORAGE_KEY);
@@ -111,6 +131,16 @@ class BuilderManager {
   }
 
   load () {
+    // Load last selected
+    try {
+      const lastSelected = localStorage.getItem('cyborg_last_selected');
+      if (lastSelected) {
+        this._last_selected_id = lastSelected;
+      }
+    } catch (e) {
+      console.error("Failed to load last selected:", e);
+    }
+
     try {
       const chars = localStorage.getItem('cyborg_saved_characters');
       if (!chars) return;

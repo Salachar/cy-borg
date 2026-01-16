@@ -3,6 +3,8 @@ import {
   ARMOR_TABLE,
 } from "./tables";
 
+import class_image from "../images/classes/corp_killer.png";
+
 import BaseClass from "./base";
 export default class DischargedCorpKiller extends BaseClass {
   constructor (data = {}) {
@@ -12,7 +14,7 @@ export default class DischargedCorpKiller extends BaseClass {
   static id = "corp_killer";
   static color = "#FF0080"; // Hot pink/magenta for discharged killer
   static class = "Discharged Corp Killer";
-  static artwork = "src/images/classes/corp_killer.png";
+  static artwork = class_image;
 
   static die = {
     health: "d8",
@@ -36,42 +38,39 @@ export default class DischargedCorpKiller extends BaseClass {
     </>,
   ];
 
-  static components = [
+  static class_uniques = [
     {
-      type: "definitions",
-      name: "class_info",
-      entries: [
-        {
-          id: "ability_scarred_jarhead",
-          label: "EMOTIONALLY SCARRED JARHEAD",
-          description: "Roll 3d6-1 for Knowledge and Presence.",
-          applied: true,
-        },
-        {
-          id: "ability_tough_as_nails",
-          label: "TOUGH AS NAILS",
-          description: "Roll 3d6+2 for Toughness.",
-          applied: true,
-        },
-        {
-          id: "armor_bonus",
-          label: "Armor Roll",
-          die: "d4+1",
-          description: "You roll d4+1 for armor instead of normal armor roll",
-          applied: true,
-        },
-        {
-          id: "autofire_bonus",
-          label: "Autofire Specialist",
-          description: "Your autofire tests are always -1DR (easier)",
-        },
-        {
-          id: "enemy",
-          label: "Enemy",
-          description: "The Corp wants you dead",
-        },
-      ],
+      id: "ability_scarred_jarhead",
+      label: "EMOTIONALLY SCARRED JARHEAD",
+      description: "Roll 3d6-1 for Knowledge and Presence.",
+      applied: true,
     },
+    {
+      id: "ability_tough_as_nails",
+      label: "TOUGH AS NAILS",
+      description: "Roll 3d6+2 for Toughness.",
+      applied: true,
+    },
+    {
+      id: "armor_bonus",
+      label: "Armor Roll",
+      die: "d4+1",
+      description: "You roll d4+1 for armor instead of normal armor roll",
+      applied: true,
+    },
+    {
+      id: "autofire_bonus",
+      label: "Autofire Specialist",
+      description: "Your autofire tests are always -1DR (easier)",
+    },
+    {
+      id: "enemy",
+      label: "Enemy",
+      description: "The Corp wants you dead",
+    },
+  ];
+
+  static components = [
     {
       type: "rollable",
       name: "weapon",

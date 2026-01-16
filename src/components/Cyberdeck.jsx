@@ -87,7 +87,7 @@ export default function Cyberdeck({
         /* Locked State - Need to unlock */
         <div className="border border-gray-800 bg-gray-900/20 p-8 text-center">
           <div className="mb-4 text-gray-400">
-            You need a cyberdeck to use Apps. Purchase one from the Market or acquire during gameplay.
+            You need a cyberdeck to use Apps or Hack. Purchase one from the Market or acquire during gameplay.
           </div>
           <button
             onClick={handleUnlock}
@@ -133,6 +133,25 @@ export default function Cyberdeck({
 
           {/* Slots Management */}
           <div className="mb-4 pb-4 border-b border-gray-800">
+            {/* Info Section - Enhanced */}
+            <div className="bg-cy-cyan/5 border-l-4 border-cy-cyan p-4 mb-4 space-y-3">
+              <div className="text-sm text-gray-300 leading-relaxed">
+                <span className="text-cy-cyan font-bold">Custom-made cartridges and cassettes</span> with the ability to hack tech and physically affect your surroundings when slotted into a cyberdeck.
+              </div>
+
+              <div className="text-sm text-gray-300">
+                <span className="text-cy-cyan font-bold">Using Apps:</span> You must be jacked into your deck with the App loaded into a slot. Test <span className="text-cy-yellow font-bold">Knowledge DR12</span> to activate. While jacked in, all <span className="text-red-400">non-App actions are +2DR</span>.
+              </div>
+
+              <div className="text-sm text-gray-300">
+                <span className="text-red-400 font-bold">Fumbles:</span> A fumble burns the App for the day and triggers a Backlash. Each App use adds <span className="text-red-400 font-bold">+1 to fumble risk</span> until the next day.
+              </div>
+
+              <div className="text-sm text-gray-300 pt-2 border-t border-gray-800">
+                <span className="text-cy-cyan font-bold">Hacking Without Apps:</span> Gathering information through non-App hacking is a time-consuming downtime activity. Test Knowledge to break into data nodes. Failing means you're discovered and data owners will respond. A fumble triggers a Backlash.
+              </div>
+            </div>
+
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-bold text-gray-400 uppercase">Deck Slots:</span>
               {!character.locked && (
@@ -254,14 +273,6 @@ export default function Cyberdeck({
               </div>
             )}
           </div>
-
-          {/* Info */}
-          <div className="text-xs text-gray-500 bg-gray-900/30 border border-gray-800 p-3">
-            While jacked in, you can use loaded Apps by testing Knowledge DR12. Each App use adds +1 fumble risk until the next day.
-            All non-App actions are +2DR while jacked in.
-          </div>
-
-          <div className="divider"/>
 
           <BacklashRoller backlashes={APP_FUMBLES} />
         </div>

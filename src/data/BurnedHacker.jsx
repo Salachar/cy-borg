@@ -1,9 +1,9 @@
 import {
-  DEBT_TO_WHOM,
-  DEBT_URGENCY,
   WEAPONS_TABLE,
   ARMOR_TABLE,
 } from "./tables";
+
+import class_image from "../images/classes/burned_hacker.png";
 
 import BaseClass from "./base";
 export default class BurnedHacker extends BaseClass {
@@ -14,7 +14,7 @@ export default class BurnedHacker extends BaseClass {
   static id = "hacker";
   static color = "#00FFFF"; // Cyan/electric blue for hacker
   static class = "Burned Hacker";
-  static artwork = "src/images/classes/burned_hacker.png";
+  static artwork = class_image;
 
   static die = {
     health: "d6",
@@ -38,52 +38,33 @@ export default class BurnedHacker extends BaseClass {
     </>,
   ];
 
+  static class_uniques = [
+    {
+      id: "debt",
+      label: "Starting Debt",
+      die: "6d10×1k¤",
+      description: "You owe someone a lot of money.",
+    },
+    {
+      id: "ability_cutting_edge",
+      label: "CUTTING EDGE",
+      description: "Roll 3d6+2 for Knowledge.",
+      applied: true,
+    },
+    {
+      id: "ability_unhealthy_living",
+      label: "UNHEALTHY LIVING",
+      description: "Roll 3d6-1 for Strength and Toughness.",
+      applied: true,
+    },
+    {
+      id: "starting_gear",
+      label: "Starting Gear",
+      description: "Start with a cyberdeck with Knowledge+4 slots and a random App. Any rolled Nano or cybertech is replaced with a new random App.",
+    },
+  ]
+
   static components = [
-    {
-      type: "definitions",
-      name: "class_info",
-      entries: [
-        {
-          id: "debt",
-          label: "Starting Debt",
-          die: "6d10×1k¤",
-          description: "You owe someone a lot of money.",
-        },
-        {
-          id: "ability_cutting_edge",
-          label: "CUTTING EDGE",
-          description: "Roll 3d6+2 for Knowledge.",
-          applied: true,
-        },
-        {
-          id: "ability_unhealthy_living",
-          label: "UNHEALTHY LIVING",
-          description: "Roll 3d6-1 for Strength and Toughness.",
-          applied: true,
-        },
-        {
-          id: "starting_gear",
-          label: "Starting Gear",
-          description: "Start with a cyberdeck with Knowledge+4 slots and a random App. Any rolled Nano or cybertech is replaced with a new random App.",
-        },
-      ],
-    },
-    {
-      type: "rollable",
-      name: "debts",
-      label: "Debt",
-      select_mode: "single",
-      entries: DEBT_TO_WHOM,
-      before: <div className="divider small" />,
-    },
-    {
-      type: "rollable",
-      name: "debts_urgency",
-      label: "Debt Urgency",
-      select_mode: "single",
-      entries: DEBT_URGENCY,
-      before: <div className="divider small" />,
-    },
     {
       type: "rollable",
       name: "weapon",
