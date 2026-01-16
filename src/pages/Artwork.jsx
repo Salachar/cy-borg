@@ -4,7 +4,7 @@ import { X } from 'lucide-react';
 
 export default function Artwork() {
   const [selectedImage, setSelectedImage] = useState(null);
-  const totalImages = 57;
+  const totalImages = 42;
 
   // Import all images using Vite's glob import
   const imageModules = useMemo(() => {

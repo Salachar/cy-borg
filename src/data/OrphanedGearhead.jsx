@@ -12,6 +12,7 @@ export default class OrphanedGearhead extends BaseClass {
   static id = "gearhead";
   static color = "#FFA500"; // Orange for gearhead/engineer
   static class = "Orphaned Gearhead";
+  static artwork = "src/images/classes/gearhead.png";
 
   static die = {
     health: "d8",

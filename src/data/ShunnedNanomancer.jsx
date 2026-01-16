@@ -12,6 +12,7 @@ export default class ShunnedNanomancer extends BaseClass {
   static id = "nanomancer";
   static color = "#8B4789"; // Purple/bio-mutant color
   static class = "Shunned Nanomancer";
+  static artwork = "src/images/classes/nanomancer.png";
 
   static health_die = "d4";
 

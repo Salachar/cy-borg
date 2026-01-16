@@ -15,6 +15,7 @@ import Cyberware from "./Cyberware";
 import Cyberdeck from "./Cyberdeck";
 import Services from "./Services";
 import Debt from "./Debt";
+import ClassArtwork from "./ClassArtwork";
 
 import {
   WEAPONS_FOR_SALE,
@@ -150,15 +151,17 @@ export default function CharacterTemplate({
 
   return (
     <div className="relative">
-      {/* Class Description (non-builder mode) */}
       {!builder && (
-        <div className="mb-8 p-6 bg-gray-900/50 border border-gray-800 space-y-3">
-          {character.description.map((paragraph, index) => (
-            <p key={`${character.class}_desc_${index}`} className="text-gray-300 leading-relaxed">
-              {paragraph}
-            </p>
-          ))}
-        </div>
+        <>
+          <div className="mb-8 p-6 bg-gray-900/50 border border-gray-800 space-y-3">
+            {character.description.map((paragraph, index) => (
+              <p key={`${character.class}_desc_${index}`} className="text-gray-300 leading-relaxed">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+          <ClassArtwork character={character} />
+        </>
       )}
 
       {builder && (
