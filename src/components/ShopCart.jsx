@@ -31,7 +31,7 @@ export default function ShopCart({
         {/* Cart Header */}
         <div className="bg-gradient-to-r from-yellow-900/30 to-gray-900 border-b-2 border-yellow-600/50 px-4 py-3">
           <h3 className="text-xl font-black text-yellow-400 uppercase tracking-wider">
-            🛒 Cart
+            Cart
           </h3>
         </div>
 
@@ -125,7 +125,7 @@ export default function ShopCart({
                 shadow-lg disabled:shadow-none
               "
             >
-              💳 Checkout
+              Checkout
             </button>
 
             <button
@@ -141,7 +141,7 @@ export default function ShopCart({
                 transition-colors
               "
             >
-              ⚡ Add Free
+              Add Free
             </button>
 
             <button

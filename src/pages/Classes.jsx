@@ -135,6 +135,7 @@ export default function Classes () {
                 setTabIndex(null);
                 setCharAndColor(character);
                 setIsBuilder(true);
+                BuilderManager.setLastSelected(character.id);
                 navigate(`/classes/${character.id}`);
               }}
               onClose={(character, id) => {
@@ -147,7 +148,9 @@ export default function Classes () {
                 onUpdate();
               }}
             />
-            <AppDataExportImport />
+            {isBuilder && (
+              <AppDataExportImport />
+            )}
           </div>
         )}
 

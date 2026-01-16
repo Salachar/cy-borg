@@ -172,12 +172,23 @@ export default function GearShop({
                         >
                           {/* Top Row: Name + Price */}
                           <div className="flex items-center justify-between mb-1">
-                            <span className="font-bold text-cy-cyan">
-                              {entry.label}
-                              {entry.die && (
-                                <span className="text-cy-yellow ml-1">({entry.die})</span>
+                            <div className="flex gap-2">
+                              <span className="font-bold text-cy-cyan">
+                                {entry.label}
+                                {entry.die && (
+                                  <span className="text-cy-yellow ml-1">({entry.die})</span>
+                                )}
+                              </span>
+                              {entry.tags && entry.tags.length > 0 && (
+                                <div className="flex gap-2">
+                                  {entry.tags.map((tag, tagIdx) => (
+                                    <span key={tagIdx} className="text-xs px-2 py-1 text-cy-pink uppercase">
+                                      {tag}
+                                    </span>
+                                  ))}
+                                </div>
                               )}
-                            </span>
+                            </div>
                             <span className="text-yellow-400 font-mono font-bold">
                               {entry.cost || "0¤"}
                             </span>
@@ -187,17 +198,6 @@ export default function GearShop({
                           {entry.description && (
                             <div className="text-sm text-gray-400">
                               {entry.description}
-                            </div>
-                          )}
-
-                          {/* Tags */}
-                          {entry.tags && entry.tags.length > 0 && (
-                            <div className="flex gap-2">
-                              {entry.tags.map((tag, tagIdx) => (
-                                <span key={tagIdx} className="text-xs px-2 py-1 bg-cy-pink/20 border border-cy-pink/50 text-cy-pink uppercase">
-                                  {tag}
-                                </span>
-                              ))}
                             </div>
                           )}
 
