@@ -5,9 +5,8 @@ import {
   MINIGAME_COMMANDS,
 } from "../components/terminal/Commands";
 
-import TUTORIAL_APARTMENT_COMPLEX from '../components/terminal/cy_city/tutorial';
 import CY_CITY_COMMANDS from '../components/terminal/cy_city';
-import { LUCKY_FLIGHT_TAKEDOWN } from "../components/terminal/lucky_flight";
+import LUCKY_FLIGHT_TAKEDOWN_COMMANDS from "../components/terminal/lucky_flight_campaign";
 
 import TerminalShell, {
   TerminalHeader,
@@ -30,10 +29,9 @@ import PasswordPrompt from '../components/terminal/PasswordPrompt';
 // ============================================================================
 
 const CAMPAIGN_COMMANDS = {
-  ...MINIGAME_COMMANDS,
-  // ...TUTORIAL_APARTMENT_COMPLEX,
   ...CY_CITY_COMMANDS,
-  ...LUCKY_FLIGHT_TAKEDOWN,
+  ...LUCKY_FLIGHT_TAKEDOWN_COMMANDS,
+  ...MINIGAME_COMMANDS,
 };
 
 const CAMPAIGN_COMMANDS_LIST = Object.entries(CAMPAIGN_COMMANDS).map(([id, cmdDef]) => ({
@@ -200,6 +198,8 @@ export default function Terminal() {
 
   // Flatten campaign commands once for lookup
   const flatCommands = useRef(flattenCommands(CAMPAIGN_COMMANDS)).current;
+
+  const [terminalActivity, setTerminalActivity] = useState(0);
 
   // ============================================================================
   // EFFECTS
@@ -510,6 +510,7 @@ export default function Terminal() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!passwordMode) {
+      setTerminalActivity(prev => prev + 1);
       executeCommand(input);
       setInput('');
     }
@@ -597,6 +598,7 @@ export default function Terminal() {
 
   return (
     <TerminalShell
+      terminalActivity={terminalActivity}
       header={<TerminalHeader />}
 
       historyArea={

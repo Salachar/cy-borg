@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import { TerminalMascotController } from './mascots/TerminalMascot';
+
 const COLORS = {
   // Background colors
   bg: {
@@ -47,10 +49,11 @@ export default function TerminalShell({
   inputArea,
   helpText,
   quickCommands = [],
+  terminalActivity = 0, // NEW PROP - pass activity counter from parent
 }) {
   return (
     <div
-      className="flex-1 flex overflow-hidden pb-6"
+      className="flex-1 flex overflow-hidden relative pb-6"
       style={{ backgroundColor: COLORS.bg.main }}
     >
       {/* Main terminal area - left aligned, slight offset */}
@@ -63,9 +66,10 @@ export default function TerminalShell({
         </div>
       </div>
 
-      {/* Right sidebar for quick command buttons */}
+      {/* Right sidebar for quick command buttons + mascot */}
       {quickCommands.length > 0 && (
-        <div className="w-32 flex-shrink-0 p-4 pl-0 pr-8 flex flex-col gap-2 overflow-y-auto">
+        <div className="w-32 flex-shrink-0 p-4 pl-0 pr-8 flex flex-col gap-2 overflow-y-auto relative">
+          {/* Quick command buttons */}
           {quickCommands.map((cmd, i) => (
             <QuickCommandButton
               key={i}
@@ -74,6 +78,19 @@ export default function TerminalShell({
               disabled={cmd.disabled}
             />
           ))}
+
+          <div style={{
+            marginTop: 'auto',
+            position: 'relative',
+            minHeight: '12rem',
+            marginBottom: '2rem',
+            overflowX: 'hidden',
+          }}>
+            <TerminalMascotController
+              animal="fox-red"
+              onTerminalActivity={terminalActivity}
+            />
+          </div>
         </div>
       )}
     </div>

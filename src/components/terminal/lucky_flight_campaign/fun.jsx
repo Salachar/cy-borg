@@ -1,0 +1,1119 @@
+import {
+  Line,
+  Box,
+  Section,
+  ListItem,
+  Warning,
+  Divider,
+  KeyValue,
+  DataTable,
+} from '../TerminalComponents';
+
+export const FUN_COMMANDS = {
+
+  // ============================================================================
+  // APARTMENT COMPLEXES
+  // ============================================================================
+
+  "Silverpeak Residences": {
+    content: (
+      <>
+        <Line cyan large bold>SILVERPEAK RESIDENCES</Line>
+        <Line yellow>"Modern Living. Classic Community."</Line>
+        <Divider />
+        <Line neon>Accessing building management...</Line>
+        <Line cyan>[RESIDENT PORTAL]</Line>
+        <Divider />
+        <DataTable data={[
+          { label: "Units", value: "32 (8 floors, 4 per floor)" },
+          { label: "Occupancy", value: "94% (2 vacancies)" },
+          { label: "Built", value: "2073" },
+          { label: "Condition", value: "Good (routine maintenance)" },
+        ]} />
+        <Divider />
+        <Section title="AMENITIES:">
+          <Line neon>• Fitness center (24/7 access, basic equipment)</Line>
+          <Line neon>• Laundry room (ground floor) - 6¤ wash, 4¤ dry</Line>
+          <Line neon>• Community lounge (coffee station, work tables)</Line>
+          <Line neon>• Roof deck (residents only, city views)</Line>
+          <Line neon>• Package lockers (lobby, secure)</Line>
+        </Section>
+        <Divider />
+        <Section title="RENT INFO:">
+          <KeyValue label="Studio" value="420¤/month" />
+          <KeyValue label="1-bedroom" value="580¤/month" />
+          <KeyValue label="2-bedroom" value="800¤/month" />
+          <Line yellow>Utilities: Additional 100-140¤/month</Line>
+        </Section>
+        <Divider />
+        <Section title="BUILDING CULTURE:">
+          <Line pink>• Monthly resident mixer (first Friday, community lounge)</Line>
+          <Line pink>• Book exchange shelf (lobby, honor system)</Line>
+          <Line pink>• Quiet hours enforced: 22:00-07:00</Line>
+        </Section>
+        <Divider />
+        <Line pink>"Good neighbors make good neighborhoods."</Line>
+      </>
+    ),
+    related_commands: {
+      "Fitness Center Console (Silverpeak)": {
+        content: (
+          <>
+            <Line smoke large bold>[ENTERTAINMENT CONSOLE - FITNESS CENTER]</Line>
+            <Line cyan>Location: Community fitness center, mounted on wall</Line>
+            <Divider />
+            <DataTable data={[
+              { label: "Model", value: "FitScreen Pro" },
+              { label: "Status", value: "ON (workout mode)" },
+              { label: "Last Used", value: "45 minutes ago" },
+              { label: "Primary Function", value: "Workout programs & streaming" },
+            ]} />
+            <Divider />
+            <Section title="INSTALLED PROGRAMS:">
+              <Line neon>→ CardioClimb Challenge (treadmill sync enabled)</Line>
+              <Line neon>→ Strength Training Guide (video tutorials)</Line>
+              <Line neon>→ Yoga Flow Sequences (morning routines popular)</Line>
+              <Line neon>→ Combat Training Sim (VR compatible, 3 residents use regularly)</Line>
+              <Line neon>→ Meditation & Recovery (cool-down programs)</Line>
+            </Section>
+            <Divider />
+            <Section title="USAGE STATS (This Week):">
+              <Line yellow>Total sessions: 47</Line>
+              <Line yellow>Most popular: CardioClimb (23 sessions)</Line>
+              <Line yellow>Average session: 38 minutes</Line>
+              <Line yellow>Peak usage: 06:00-08:00, 18:00-20:00</Line>
+            </Section>
+            <Divider />
+            <Line pink>"Your body is your temple. Also your weapon."</Line>
+          </>
+        ),
+      },
+
+      "Unit 6C Safe (Silverpeak)": {
+        password: {
+          pw: "marathon",
+          hint: "Fitness goal mentioned in apartment lease application",
+          hintStrength: 2,
+        },
+        content: (
+          <>
+            <Line smoke large bold>[DIGITAL SAFE - MODEL DS-400]</Line>
+            <Line cyan>Location: Unit 6C, bedroom closet shelf</Line>
+            <Divider />
+            <DataTable data={[
+              { label: "Status", value: "LOCKED" },
+              { label: "Security", value: "Digital keypad + biometric" },
+              { label: "Last Access", value: "3 days ago" },
+              { label: "Owner", value: "Mira Chen (fitness instructor)" },
+            ]} />
+            <Divider />
+            <Section title="PHYSICAL CONTENTS (Requires presence):">
+              <Line yellow>→ Cash: 180¤ (emergency fund, small bills)</Line>
+              <Line yellow>→ Documents: Instructor certifications, passport</Line>
+              <Line yellow>→ Jewelry: Gold necklace (gift from grandmother)</Line>
+              <Line yellow>→ USB drive: Workout program files (backup)</Line>
+            </Section>
+            <Divider />
+            <Section title="DIGITAL CONTENTS (Extractable remotely):">
+              <Line cyan>→ Credchip: 65¤ (transferable)</Line>
+              <Line cyan>→ Coupon code: FITLIFE20 (20% off nutrition supplements, expires in 2 weeks)</Line>
+              <Line cyan>→ App: "Calorie Counter Basic" (0.3¤ value, ad-supported version)</Line>
+              <Line cyan>→ Data file: Client contact list (sellable to competitors for 30-50¤)</Line>
+            </Section>
+            <Divider />
+            <Line neon>Safe installed 18 months ago, biometric recently added</Line>
+          </>
+        ),
+      },
+
+      access_silverpeak_management: {
+        password: {
+          pw: "community",
+          hint: "What the building emphasizes in its culture",
+          hintStrength: 2,
+        },
+        content: (
+          <>
+            <Line smoke large bold>[BUILDING MANAGEMENT SYSTEM]</Line>
+            <Line cyan>[MANAGER ACCESS]</Line>
+            <Divider />
+            <Section title="RECENT ISSUES:">
+              <Line yellow>Unit 3A: Package delivery complaint (resolved)</Line>
+              <Line yellow>Floor 7: Elevator maintenance needed (scheduled next week)</Line>
+              <Line yellow>Unit 2B: Noise complaint during quiet hours (warning issued)</Line>
+              <Line red>Roof deck: Lock mechanism damaged (repair pending)</Line>
+            </Section>
+            <Divider />
+            <Section title="RESIDENT NOTES:">
+              <Line cyan>Unit 6C: Fitness instructor, hosts informal classes in lounge</Line>
+              <Line cyan>Unit 4A: Works night shift, requested noise considerations</Line>
+              <Line cyan>Unit 8D: Monthly mixer organizer, excellent tenant</Line>
+            </Section>
+          </>
+        ),
+      },
+    },
+  },
+
+  "Cascade Heights": {
+    content: (
+      <>
+        <Line cyan large bold>CASCADE HEIGHTS</Line>
+        <Line yellow>"Waterfront Views. Urban Convenience."</Line>
+        <Divider />
+        <Line neon>Connecting to building network...</Line>
+        <Line cyan>[RESIDENT ACCESS]</Line>
+        <Divider />
+        <DataTable data={[
+          { label: "Units", value: "20 (5 floors, 4 per floor)" },
+          { label: "Occupancy", value: "85% (3 vacancies)" },
+          { label: "Built", value: "2070" },
+          { label: "Condition", value: "Fair (water damage repairs ongoing)" },
+        ]} />
+        <Divider />
+        <Section title="AMENITIES:">
+          <Line neon>• Canal dock access (residents only, small boats permitted)</Line>
+          <Line neon>• Shared workspace (floor 1, wifi included)</Line>
+          <Line neon>• Laundry facilities (coin-operated, frequent breakdowns)</Line>
+          <Line neon>• Security cameras (lobby, hallways, dock)</Line>
+        </Section>
+        <Divider />
+        <Section title="RENT INFO:">
+          <KeyValue label="Studio" value="380¤/month" />
+          <KeyValue label="1-bedroom" value="520¤/month" />
+          <KeyValue label="2-bedroom (canal view)" value="750¤/month" />
+          <Line yellow>Utilities: Additional 90-130¤/month</Line>
+        </Section>
+        <Divider />
+        <Section title="KNOWN ISSUES:">
+          <Line pink>• Basement floods during heavy rain (monthly occurrence)</Line>
+          <Line pink>• Elevator out of service (repair estimate: 3 months)</Line>
+          <Line pink>• Dock gate lock broken (residents prop it open)</Line>
+        </Section>
+        <Divider />
+        <Line pink>"Character building. Literally."</Line>
+      </>
+    ),
+    related_commands: {
+      "Dock Security Camera (Cascade)": {
+        content: (
+          <>
+            <Line smoke large bold>[SECURITY CAMERA - CANAL DOCK]</Line>
+            <Line cyan>Location: Cascade Heights rear dock</Line>
+            <Divider />
+            <DataTable data={[
+              { label: "Status", value: "ACTIVE (weather-damaged lens)" },
+              { label: "Coverage", value: "Dock entrance, partial water view" },
+              { label: "Recording", value: "YES (14-day loop, frequently overwrites)" },
+              { label: "Storage", value: "Local server (basement, often offline)" },
+            ]} />
+            <Divider />
+            <Section title="BLIND SPOTS:">
+              <Line yellow>→ Left side of dock (camera angle issue)</Line>
+              <Line yellow>→ Under dock platform (structural obstruction)</Line>
+              <Line yellow>→ Water approach from east (lens damage)</Line>
+            </Section>
+            <Divider />
+            <Section title="RECENT ACTIVITY (Last 24h):">
+              <Line neon>08:15 → Resident departed by small boat</Line>
+              <Line neon>14:30 → Delivery boat docked (package dropoff)</Line>
+              <Line neon>19:45 → Resident returned, boat secured</Line>
+              <Line yellow>23:00 → Unknown individual near dock (obscured by lens damage)</Line>
+            </Section>
+            <Divider />
+            <Line red>Last maintenance: 8 months ago (overdue for cleaning/repair)</Line>
+          </>
+        ),
+      },
+
+      "Unit 2A Safe (Cascade)": {
+        password: {
+          pw: "tides",
+          hint: "What the canal experiences twice daily",
+          hintStrength: 2,
+        },
+        content: (
+          <>
+            <Line smoke large bold>[DIGITAL SAFE - MODEL PS-250]</Line>
+            <Line cyan>Location: Unit 2A, hall closet upper shelf</Line>
+            <Divider />
+            <DataTable data={[
+              { label: "Status", value: "LOCKED" },
+              { label: "Security", value: "Combination lock (mechanical + digital)" },
+              { label: "Last Access", value: "1 week ago" },
+              { label: "Owner", value: "Jonas Verne (boat repair technician)" },
+            ]} />
+            <Divider />
+            <Section title="PHYSICAL CONTENTS (Requires presence):">
+              <Line yellow>→ Cash: 95¤ (mixed bills, rent savings)</Line>
+              <Line yellow>→ Documents: Boat registration, repair licenses</Line>
+              <Line yellow>→ Tools: Precision screwdriver set (professional quality)</Line>
+              <Line yellow>→ Personal: Wedding ring (divorced, kept for sentimental reasons)</Line>
+            </Section>
+            <Divider />
+            <Section title="DIGITAL CONTENTS (Extractable remotely):">
+              <Line cyan>→ Credchip: 42¤ (transferable)</Line>
+              <Line cyan>→ Coupon code: BOATPARTS15 (15% off marine supplies)</Line>
+              <Line cyan>→ App: "Tide Tracker Pro" (1¤ value, actually useful for canal navigation)</Line>
+              <Line cyan>→ Data file: Client repair records (sellable to competitors for 25-40¤)</Line>
+            </Section>
+            <Divider />
+            <Line neon>Safe showing signs of water damage (external), still functional</Line>
+          </>
+        ),
+      },
+    },
+  },
+
+  // ============================================================================
+  // SHOPS & SERVICES
+  // ============================================================================
+
+  "Sanchez Electronics & Repair": {
+    content: (
+      <>
+        <Line cyan large bold>SANCHEZ ELECTRONICS & REPAIR</Line>
+        <Line yellow>"Interdimensional Selection. Dimensional Prices."</Line>
+        <Divider />
+        <Line neon>Connecting to shop network...</Line>
+        <Line cyan>[CUSTOMER ACCESS]</Line>
+        <Divider />
+        <Section title="SERVICES:">
+          <Line neon>• Electronics sales (TVs, tablets, phones)</Line>
+          <Line neon>• Device repair (no warranty questions asked)</Line>
+          <Line neon>• Custom installations (specialty work)</Line>
+          <Line neon>• "Unique" equipment (ask owner for details)</Line>
+        </Section>
+        <Divider />
+        <Section title="FEATURED PRODUCTS:">
+          <KeyValue label="Smart TV (Refurbished)" value="380¤" />
+          <KeyValue label="Tablet (Various brands)" value="150-300¤" />
+          <KeyValue label="Phone (Unlocked)" value="100-250¤" />
+          <KeyValue label="Mystery Box" value="50¤ (contents vary)" />
+        </Section>
+        <Divider />
+        <Section title="HOURS & LOCATION:">
+          <Line neon>Hours: 11:00-23:00 (Mon-Sat), 12:00-20:00 (Sun)</Line>
+          <Line neon>Location: Market district, corner unit</Line>
+          <Line neon>Owner: R. Sanchez (often smells like alcohol, burps frequently)</Line>
+        </Section>
+        <Divider />
+        <Section title="STORE POLICIES:">
+          <Line yellow>• All sales final (seriously, don't even try)</Line>
+          <Line yellow>• Repairs: 3-5 day turnaround (maybe longer)</Line>
+          <Line red>• Management not responsible for existential side effects</Line>
+        </Section>
+        <Divider />
+        <Line pink>"W-we've got everything you need, *burp* probably."</Line>
+      </>
+    ),
+    related_commands: {
+      access_shop_inventory: {
+        password: {
+          pw: "portal",
+          hint: "Device in back room (broken, parts only)",
+          hintStrength: 2,
+        },
+        content: (
+          <>
+            <Line smoke large bold>[INVENTORY DATABASE]</Line>
+            <Line yellow>Last updated: 2 hours ago</Line>
+            <Divider />
+            <Section title="STANDARD STOCK:">
+              <Line neon>Smart TVs: 8 units (refurbished, various brands)</Line>
+              <Line neon>Tablets: 15 units (mixed condition)</Line>
+              <Line neon>Phones: 22 units (unlocked, some carrier-locked)</Line>
+              <Line neon>Cables & adapters: High stock (universal compatibility)</Line>
+            </Section>
+            <Divider />
+            <Section title="BACK ROOM (Special Items):">
+              <Line cyan>Weird cable boxes: 3 units (claim to receive "infinite channels")</Line>
+              <Line cyan>Portal device: 1 unit (BROKEN - parts only, DO NOT ACTIVATE)</Line>
+              <Line cyan>Strange blue boxes: 4 units (unknown purpose, owner won't sell)</Line>
+              <Line yellow>Green vials: Unknown quantity (locked cabinet, do not touch)</Line>
+            </Section>
+            <Divider />
+            <Section title="REPAIR QUEUE:">
+              <Line yellow>Smart fridge: Firmware issue (waiting for parts)</Line>
+              <Line yellow>Game console: Overheating problem (in progress)</Line>
+              <Line yellow>Cyberdeck: Unknown fault (customer waiting, frustrated)</Line>
+            </Section>
+            <Divider />
+            <Line red>Note: Back room inventory NOT for sale under any circumstances</Line>
+          </>
+        ),
+      },
+
+      "Demo Console (Sanchez Electronics)": {
+        content: (
+          <>
+            <Line smoke large bold>[DEMO CONSOLE - SHOP FLOOR]</Line>
+            <Line cyan>Location: Display near front counter</Line>
+            <Divider />
+            <DataTable data={[
+              { label: "Model", value: "CyStation Pro (Modified - unknown alterations)" },
+              { label: "Status", value: "ON (demo mode, glitches occasionally)" },
+              { label: "Last Reset", value: "Yesterday" },
+              { label: "Purpose", value: "Customer testing & owner's personal use" },
+            ]} />
+            <Divider />
+            <Section title="INSTALLED GAMES:">
+              <Line neon>→ Life Simulator VR (suspiciously realistic, 200+ playthroughs)</Line>
+              <Line neon>→ Cosmic Horror Adventure (banned in 3 districts, owner doesn't care)</Line>
+              <Line neon>→ Dimension Jumper (physics seem wrong, makes players dizzy)</Line>
+              <Line neon>→ Cable Surfing Simulator (connects to weird cable boxes?)</Line>
+              <Line neon>→ Pocket Creatures (creature collection game, complete collection)</Line>
+            </Section>
+            <Divider />
+            <Section title="HIGH SCORES:">
+              <Line yellow>Life Simulator VR: "R_Sanchez" - 55 years (off the grid ending)</Line>
+              <Line yellow>Dimension Jumper: "Morty" - 2.4M points (second place)</Line>
+              <Line yellow>Pocket Creatures: "BirdPrsn" - All 151 captured</Line>
+            </Section>
+            <Divider />
+            <Line pink>"Don't ask about the modifications. Just... don't."</Line>
+          </>
+        ),
+      },
+
+      "Back Room Safe (Sanchez)": {
+        password: {
+          pw: "C137",
+          hint: "Dimension number written on portal device",
+          hintStrength: 3,
+        },
+        content: (
+          <>
+            <Line smoke large bold>[DIGITAL SAFE - MODEL ???]</Line>
+            <Line cyan>Location: Back room, behind shelving unit</Line>
+            <Divider />
+            <DataTable data={[
+              { label: "Status", value: "LOCKED" },
+              { label: "Security", value: "Unknown technology (not standard)" },
+              { label: "Last Access", value: "Unknown (no logs available)" },
+              { label: "Owner", value: "R. Sanchez" },
+            ]} />
+            <Divider />
+            <Section title="PHYSICAL CONTENTS (Requires presence):">
+              <Line yellow>→ Cash: Unknown amount (safe makes weird noises)</Line>
+              <Line yellow>→ Documents: Patents? Blueprints? (language unrecognizable)</Line>
+              <Line yellow>→ Vials: Green liquid (DO NOT CONSUME)</Line>
+              <Line yellow>→ Device components: Unknown purpose (possibly dangerous)</Line>
+            </Section>
+            <Divider />
+            <Section title="DIGITAL CONTENTS (Extractable remotely):">
+              <Line cyan>→ Credchip: 88¤ (transferable, standard currency)</Line>
+              <Line cyan>→ App: "Inter-D Cable Guide" (0¤ value, completely non-functional)</Line>
+              <Line cyan>→ App: "Portal Calculator" (??? value, probably shouldn't run this)</Line>
+              <Line cyan>→ Data file: "Definitely_Not_Schematics.enc" (encrypted, unknown contents)</Line>
+            </Section>
+            <Divider />
+            <Warning>Safe appears to phase in and out of visibility occasionally</Warning>
+          </>
+        ),
+      },
+    },
+  },
+
+  "Gilded Oddities Pawn": {
+    content: (
+      <>
+        <Line cyan large bold>GILDED ODDITIES PAWN</Line>
+        <Line yellow>"Treasures. Trash. Tales."</Line>
+        <Divider />
+        <Line neon>Accessing shop systems...</Line>
+        <Line cyan>[CUSTOMER PORTAL]</Line>
+        <Divider />
+        <Section title="SERVICES:">
+          <Line neon>• Buy used goods (we'll buy almost anything)</Line>
+          <Line neon>• Sell items (cash offers, same day)</Line>
+          <Line neon>• Pawn items (30-90 day terms, 18% interest)</Line>
+          <Line neon>• Appraisals (free for first 3 items)</Line>
+        </Section>
+        <Divider />
+        <Section title="CURRENT INVENTORY (Highlights):">
+          <Line cyan>Jewelry: Various pieces (rings, watches, chains)</Line>
+          <Line cyan>Electronics: Tablets, phones, older cyberware</Line>
+          <Line cyan>Tools: Power tools, precision equipment</Line>
+          <Line cyan>Curiosities: Antiques, collectibles, weird stuff</Line>
+          <Line yellow>Display: Golden statue (NOT FOR SALE - shop mascot)</Line>
+        </Section>
+        <Divider />
+        <Section title="HOURS & LOCATION:">
+          <Line neon>Hours: 09:00-19:00 (Mon-Sat), Closed Sunday</Line>
+          <Line neon>Location: Near waterfront, industrial district edge</Line>
+          <Line neon>Owner: Changes frequently (current: "Roger Smith")</Line>
+        </Section>
+        <Divider />
+        <Section title="STORE LORE:">
+          <Line pink>The golden statue has been here for 15 years</Line>
+          <Line pink>Previous owners: 8 total (all left under unusual circumstances)</Line>
+          <Line pink>Current owner refuses to sell statue despite high offers</Line>
+          <Line red>Locals claim the shop is cursed (owner says it's "character")</Line>
+        </Section>
+        <Divider />
+        <Line pink>"Every item tells a story. Most of them are sad."</Line>
+      </>
+    ),
+    related_commands: {
+      "Shop Safe (Gilded Oddities)": {
+        password: {
+          pw: "persona",
+          hint: "What the owner seems to change regularly",
+          hintStrength: 2,
+        },
+        content: (
+          <>
+            <Line smoke large bold>[DIGITAL SAFE - MODEL DS-350]</Line>
+            <Line cyan>Location: Behind counter, floor-mounted</Line>
+            <Divider />
+            <DataTable data={[
+              { label: "Status", value: "LOCKED" },
+              { label: "Security", value: "Combination + voice recognition" },
+              { label: "Last Access", value: "This morning (opening)" },
+              { label: "Owner", value: "Roger Smith (this week's name)" },
+            ]} />
+            <Divider />
+            <Section title="PHYSICAL CONTENTS (Requires presence):">
+              <Line yellow>→ Cash: 520¤ (daily receipts + emergency fund)</Line>
+              <Line yellow>→ High-value jewelry: Wedding rings (3), gold chains (2)</Line>
+              <Line yellow>→ Documents: Business license, insurance papers</Line>
+              <Line yellow>→ Personal items: Collection of disguises (wigs, glasses, prosthetics)</Line>
+            </Section>
+            <Divider />
+            <Section title="DIGITAL CONTENTS (Extractable remotely):">
+              <Line cyan>→ Credchip: 78¤ (transferable)</Line>
+              <Line cyan>→ Coupon code: PAWN20 (20% bonus on next pawn, expires in 1 month)</Line>
+              <Line cyan>→ App: "Voice Modulator Lite" (0.8¤ value, basic functionality)</Line>
+              <Line cyan>→ Data file: Customer database (sellable to competitors for 40-60¤)</Line>
+            </Section>
+            <Divider />
+            <Line neon>Voice recognition changes weekly (matches current "persona")</Line>
+          </>
+        ),
+      },
+
+      access_pawn_records: {
+        password: {
+          pw: "goldenturd",
+          hint: "What locals call the shop mascot statue",
+          hintStrength: 2,
+        },
+        content: (
+          <>
+            <Line smoke large bold>[PAWN RECORDS]</Line>
+            <Line cyan>Active loans & recent transactions</Line>
+            <Divider />
+            <Section title="RECENT PAWNS (Last 7 days):">
+              <Line neon>Item: Electric guitar, Loan: 75¤, Due: 28 days</Line>
+              <Line neon>Item: Smartwatch, Loan: 50¤, Due: 24 days</Line>
+              <Line neon>Item: Antique camera, Loan: 60¤, Due: 19 days</Line>
+              <Line yellow>Item: Wedding dress, Loan: 40¤, Due: 45 days (extended term)</Line>
+            </Section>
+            <Divider />
+            <Section title="HIGH-VALUE INVENTORY:">
+              <Line cyan>Vintage sword collection: 420¤ (display case)</Line>
+              <Line cyan>Refurbished cyberware: 280¤ (various components)</Line>
+              <Line cyan>Antique music box: 180¤ (plays haunting melody)</Line>
+            </Section>
+            <Divider />
+            <Section title="BACK ROOM (Not For Sale):">
+              <Line pink>The golden statue (shop mascot, mysterious origins)</Line>
+              <Line pink>Owner's personal effects (changes with each owner)</Line>
+              <Line pink>Previous owners' belongings (unclaimed)</Line>
+            </Section>
+            <Divider />
+            <Section title="OWNER HISTORY:">
+              <Line yellow>2067-2068: Original owner (disappeared)</Line>
+              <Line yellow>2068-2070: Second owner (committed suicide)</Line>
+              <Line yellow>2070-2072: Third owner (killed in robbery)</Line>
+              <Line yellow>2072-2074: Fourth owner (vanished overnight)</Line>
+              <Line yellow>2074-2076: Fifth owner (fatal accident)</Line>
+              <Line yellow>2076-2078: Sixth owner (murdered)</Line>
+              <Line yellow>2078-2080: Seventh owner (heart attack)</Line>
+              <Line yellow>2080-Present: Current owner (Roger Smith)</Line>
+            </Section>
+          </>
+        ),
+      },
+    },
+  },
+
+  "Cipher Solutions": {
+    content: (
+      <>
+        <Line cyan large bold>CIPHER SOLUTIONS</Line>
+        <Line yellow>"Data Recovery. System Security. Discretion Guaranteed."</Line>
+        <Divider />
+        <Line neon>Connecting to business terminal...</Line>
+        <Line cyan>[PUBLIC ACCESS]</Line>
+        <Divider />
+        <Section title="SERVICES OFFERED:">
+          <Line neon>• Data recovery (deleted files, damaged drives)</Line>
+          <Line neon>• Security consulting (personal & small business)</Line>
+          <Line neon>• Network setup & maintenance</Line>
+          <Line neon>• Digital forensics (legal & private investigations)</Line>
+          <Line neon>• "Special projects" (consultation required)</Line>
+        </Section>
+        <Divider />
+        <Section title="PRICING:">
+          <KeyValue label="Data Recovery" value="150-500¤" />
+          <KeyValue label="Security Audit" value="300¤" />
+          <KeyValue label="Network Setup" value="200-600¤" />
+          <KeyValue label="Forensics" value="400¤+/day" />
+          <Line yellow>Special projects: Quote upon consultation</Line>
+        </Section>
+        <Divider />
+        <Section title="HOURS & LOCATION:">
+          <Line neon>Hours: 10:00-18:00 (Mon-Fri), Appointments only</Line>
+          <Line neon>Location: Office building, 3rd floor, Suite 307</Line>
+          <Line neon>Proprietor: "Cipher" (no real name provided)</Line>
+        </Section>
+        <Divider />
+        <Section title="POLICIES:">
+          <Line yellow>• Confidentiality guaranteed (no records shared)</Line>
+          <Line yellow>• Payment upfront for new clients</Line>
+          <Line yellow>• No corporate contracts (independents only)</Line>
+          <Line red>• Illegal requests declined (officially)</Line>
+        </Section>
+        <Divider />
+        <Line pink>"Your secrets are safe. From everyone except me."</Line>
+      </>
+    ),
+    related_commands: {
+      "Office Workstation (Cipher Solutions)": {
+        password: {
+          pw: "encryption",
+          hint: "What Cipher specializes in for security",
+          hintStrength: 2,
+        },
+        content: (
+          <>
+            <Line smoke large bold>[WORKSTATION - MAIN TERMINAL]</Line>
+            <Line cyan>Location: Office Suite 307, primary desk</Line>
+            <Divider />
+            <DataTable data={[
+              { label: "Model", value: "Custom-built (high-end components)" },
+              { label: "Status", value: "ON (multiple VMs running)" },
+              { label: "Security", value: "Military-grade encryption" },
+              { label: "Last Login", value: "4 hours ago" },
+            ]} />
+            <Divider />
+            <Section title="ACTIVE PROJECTS:">
+              <Line neon>→ Data recovery: Corporate exec's deleted emails (80% complete)</Line>
+              <Line neon>→ Security audit: Small business network (in progress)</Line>
+              <Line neon>→ Forensics: Divorce case evidence (waiting on payment)</Line>
+              <Line yellow>→ Special project: [ENCRYPTED] (no details visible)</Line>
+            </Section>
+            <Divider />
+            <Section title="RECENT FILES:">
+              <Line cyan>Client_447_Recovery.log (2 days ago)</Line>
+              <Line cyan>NetworkMap_SmallBiz_082.png (yesterday)</Line>
+              <Line cyan>Invoice_Template.docx (this morning)</Line>
+              <Line yellow>Personal_Notes_Encrypted.txt (unknown date)</Line>
+            </Section>
+            <Divider />
+            <Section title="INSTALLED TOOLS:">
+              <Line neon>Professional data recovery suite</Line>
+              <Line neon>Network analysis & penetration testing tools</Line>
+              <Line neon>Forensic imaging software</Line>
+              <Line neon>Custom scripts (proprietary)</Line>
+            </Section>
+          </>
+        ),
+      },
+
+      "Office Safe (Cipher Solutions)": {
+        password: {
+          pw: "decryption",
+          hint: "Opposite of encryption",
+          hintStrength: 1,
+        },
+        content: (
+          <>
+            <Line smoke large bold>[DIGITAL SAFE - MODEL DS-500X]</Line>
+            <Line cyan>Location: Suite 307, wall-mounted behind desk</Line>
+            <Divider />
+            <DataTable data={[
+              { label: "Status", value: "LOCKED" },
+              { label: "Security", value: "Biometric + quantum encryption" },
+              { label: "Last Access", value: "Yesterday evening" },
+              { label: "Owner", value: "Cipher (proprietor)" },
+            ]} />
+            <Divider />
+            <Section title="PHYSICAL CONTENTS (Requires presence):">
+              <Line yellow>→ Cash: 680¤ (client payments, emergency fund)</Line>
+              <Line yellow>→ USB drives: Client data backups (3 drives, encrypted)</Line>
+              <Line yellow>→ Documents: Business license, insurance, client NDAs</Line>
+              <Line yellow>→ Personal credchip: Unknown amount (separate from business)</Line>
+            </Section>
+            <Divider />
+            <Section title="DIGITAL CONTENTS (Extractable remotely):">
+              <Line cyan>→ Credchip: 95¤ (business account, transferable)</Line>
+              <Line cyan>→ App: "Secure Messenger Pro" (12¤ value, enterprise version)</Line>
+              <Line cyan>→ App: "Password Manager Elite" (8¤ value, unlimited vaults)</Line>
+              <Line cyan>→ Data file: Client contact database (sellable for 60-100¤, ethically questionable)</Line>
+            </Section>
+            <Divider />
+            <Line red>Safe features quantum encryption - extremely difficult to crack</Line>
+          </>
+        ),
+      },
+    },
+  },
+
+  // ============================================================================
+  // ENTERTAINMENT & VENUES
+  // ============================================================================
+
+  "The Compiler Bar": {
+    content: (
+      <>
+        <Line cyan large bold>THE COMPILER BAR</Line>
+        <Line yellow>"Where Code Meets Culture."</Line>
+        <Divider />
+        <Line neon>Connecting to bar terminal...</Line>
+        <Line cyan>[PUBLIC ACCESS]</Line>
+        <Divider />
+        <Section title="BAR MENU:">
+          <KeyValue label="Beer (craft local)" value="10¤" />
+          <KeyValue label="Coffee (actually good)" value="6¤" />
+          <KeyValue label="Whiskey (imported)" value="15¤" />
+          <KeyValue label="Energy Drink" value="7¤" />
+          <KeyValue label="The Infinite Loop" value="12¤ (house special)" />
+        </Section>
+        <Divider />
+        <Section title="FOOD MENU:">
+          <Line neon>Code-fuel nachos: 12¤</Line>
+          <Line neon>Syntax error sandwich: 14¤</Line>
+          <Line neon>Debugging pizza (personal): 16¤</Line>
+          <Line neon>Stack overflow fries: 8¤</Line>
+        </Section>
+        <Divider />
+        <Section title="HOURS & LOCATION:">
+          <Line neon>Open: 14:00-02:00 (every day)</Line>
+          <Line neon>Location: Tech district, near startup corridor</Line>
+          <Line neon>Atmosphere: Casual, tech-heavy crowd</Line>
+        </Section>
+        <Divider />
+        <Section title="FEATURES:">
+          <Line yellow>• Free wifi (gigabit fiber, no restrictions)</Line>
+          <Line yellow>• Charging stations at every table</Line>
+          <Line yellow>• Weekly coding meetups (Thursdays, 19:00)</Line>
+          <Line yellow>• Whiteboard wall (collaborative problem-solving)</Line>
+        </Section>
+        <Divider />
+        <Line pink>"// TODO: Get another drink"</Line>
+      </>
+    ),
+    related_commands: {
+      "Bar Jukebox (Compiler)": {
+        content: (
+          <>
+            <Line smoke large bold>[JUKEBOX - MODEL JB-808]</Line>
+            <Line cyan>Location: Near pool table, corner booth area</Line>
+            <Divider />
+            <DataTable data={[
+              { label: "Status", value: "ONLINE" },
+              { label: "Network", value: "Connected to local music server" },
+              { label: "Cost", value: "2¤ per song, 5¤ for 3 songs" },
+              { label: "Queue", value: "4 songs currently queued" },
+            ]} />
+            <Divider />
+            <Section title="NOW PLAYING:">
+              <Line neon>Track: "Recursion Blues" - The Stack Overflow</Line>
+              <Line neon>Genre: Synthwave-rock fusion</Line>
+              <Line neon>Requested by: Table 7</Line>
+            </Section>
+            <Divider />
+            <Section title="POPULAR SELECTIONS:">
+              <Line pink>1. "Infinite Loop" - Compiled Dreams</Line>
+              <Line pink>2. "Garbage Collection" - Memory Leaks</Line>
+              <Line pink>3. "404 Not Found" - Error State</Line>
+              <Line pink>4. "Binary Sunset" - Digital Horizons</Line>
+              <Line pink>5. "Middle Out" - Compression Algorithm</Line>
+            </Section>
+            <Divider />
+            <Section title="QUEUE:">
+              <Line yellow>Next: "Stack Trace" - Debug Mode</Line>
+              <Line yellow>Then: "Kernel Panic" - System Crash</Line>
+              <Line yellow>Then: "Git Gud" - Version Control</Line>
+              <Line yellow>Last: "Coffee.exe" - Runtime Error</Line>
+            </Section>
+          </>
+        ),
+      },
+
+      "Bar Safe (Compiler)": {
+        password: {
+          pw: "algorithm",
+          hint: "What programmers write to solve problems",
+          hintStrength: 2,
+        },
+        content: (
+          <>
+            <Line smoke large bold>[DIGITAL SAFE - MODEL DS-300]</Line>
+            <Line cyan>Location: Behind bar, under counter</Line>
+            <Divider />
+            <DataTable data={[
+              { label: "Status", value: "LOCKED" },
+              { label: "Security", value: "Electronic keypad" },
+              { label: "Last Access", value: "6 hours ago (shift change)" },
+              { label: "Owner", value: "Morgan Patel (bar owner)" },
+            ]} />
+            <Divider />
+            <Section title="PHYSICAL CONTENTS (Requires presence):">
+              <Line yellow>→ Cash: 340¤ (daily receipts from card payments)</Line>
+              <Line yellow>→ Documents: Liquor license, business permits</Line>
+              <Line yellow>→ Personal credchip: Unknown amount (owner's personal funds)</Line>
+            </Section>
+            <Divider />
+            <Section title="DIGITAL CONTENTS (Extractable remotely):">
+              <Line cyan>→ Credchip: 52¤ (bar petty cash, transferable)</Line>
+              <Line cyan>→ Coupon code: COMPILER25 (25% off next meetup event)</Line>
+              <Line cyan>→ App: "Inventory Manager Lite" (0.4¤ value, basic stock tracking)</Line>
+              <Line cyan>→ Data file: Regular customer list (sellable to marketers for 20-35¤)</Line>
+            </Section>
+            <Divider />
+            <Line neon>Safe checked at opening (14:00) and closing (02:00)</Line>
+          </>
+        ),
+      },
+
+      access_bar_internal: {
+        password: {
+          pw: "debug",
+          hint: "What programmers do when code doesn't work",
+          hintStrength: 1,
+        },
+        content: (
+          <>
+            <Line smoke large bold>[BAR INTERNAL SYSTEMS]</Line>
+            <Line cyan>[STAFF ACCESS]</Line>
+            <Divider />
+            <Section title="TODAY'S METRICS:">
+              <Line neon>Transactions: 67 (as of current time)</Line>
+              <Line neon>Revenue: 823¤ (above average for weekday)</Line>
+              <Line neon>Most ordered: Coffee (32), Beer (28), Energy drinks (18)</Line>
+              <Line neon>Occupancy: 24 customers (moderate)</Line>
+            </Section>
+            <Divider />
+            <Section title="INVENTORY ALERTS:">
+              <Line yellow>Low stock: Imported whiskey, craft beer (IPA)</Line>
+              <Line yellow>Reorder needed: Coffee beans, energy drinks</Line>
+              <Line red>Out of stock: The Infinite Loop ingredients (signature drink)</Line>
+            </Section>
+            <Divider />
+            <Section title="UPCOMING EVENTS:">
+              <Line cyan>Tomorrow: Coding meetup (expected 15-20 attendees)</Line>
+              <Line cyan>This weekend: Live music - "The Exception Handlers"</Line>
+              <Line cyan>Next week: Startup pitch night (reserved area)</Line>
+            </Section>
+          </>
+        ),
+      },
+    },
+  },
+
+  // ============================================================================
+  // CITY INFRASTRUCTURE & DEVICES
+  // ============================================================================
+
+  "Public Terminal (Tech District)": {
+    content: (
+      <>
+        <Line smoke large bold>[PUBLIC INFORMATION TERMINAL]</Line>
+        <Line cyan>Location: Tech district plaza, near transit stop</Line>
+        <Divider />
+        <DataTable data={[
+          { label: "Status", value: "OPERATIONAL" },
+          { label: "Purpose", value: "City directory, maps, internet access" },
+          { label: "Cost", value: "10¤ per 15 minutes (internet)" },
+          { label: "Condition", value: "Good (regular maintenance)" },
+        ]} />
+        <Divider />
+        <Section title="AVAILABLE SERVICES:">
+          <Line neon>• City maps & navigation</Line>
+          <Line neon>• Transit schedules & routes</Line>
+          <Line neon>• Business directory</Line>
+          <Line neon>• Emergency contacts</Line>
+          <Line neon>• Public announcements</Line>
+          <Line neon>• Internet access (paid)</Line>
+        </Section>
+        <Divider />
+        <Section title="RECENT SEARCHES (Anonymous):">
+          <Line pink>→ "cipher solutions reviews"</Line>
+          <Line pink>→ "data recovery success rate"</Line>
+          <Line pink>→ "is AI sentient yet"</Line>
+          <Line pink>→ "best bars near me"</Line>
+          <Line pink>→ "how to leave cy permanently"</Line>
+        </Section>
+        <Divider />
+        <Line yellow>Terminal serviced weekly by Cynergy infrastructure division</Line>
+      </>
+    ),
+  },
+
+  "Smart Vending Machine (District Plaza)": {
+    content: (
+      <>
+        <Line smoke large bold>[SMART VENDING MACHINE - MODEL SVM-700]</Line>
+        <Line cyan>Location: Tech district plaza, near benches</Line>
+        <Divider />
+        <DataTable data={[
+          { label: "Status", value: "OPERATIONAL" },
+          { label: "Payment", value: "Credchip or cash" },
+          { label: "Stock Level", value: "78% (recently restocked)" },
+          { label: "Last Service", value: "2 days ago" },
+        ]} />
+        <Divider />
+        <Section title="CURRENT INVENTORY:">
+          <Line neon>Row A: Energy drinks (8 remaining) - 6¤ each</Line>
+          <Line neon>Row B: Water bottles (12 remaining) - 4¤ each</Line>
+          <Line neon>Row C: Protein bars (6 remaining) - 5¤ each</Line>
+          <Line neon>Row D: Synth-chips (4 remaining) - 5¤ each</Line>
+          <Line yellow>Row E: "Mystery Snack" (2 remaining) - 8¤ each</Line>
+        </Section>
+        <Divider />
+        <Section title="SALES DATA (Today):">
+          <Line cyan>Transactions: 34</Line>
+          <Line cyan>Revenue: 186¤</Line>
+          <Line cyan>Most popular: Energy drinks (14 sold)</Line>
+        </Section>
+        <Divider />
+        <Section title="MACHINE STATUS:">
+          <Line green>Payment system: ONLINE</Line>
+          <Line green>Cooling: FUNCTIONAL</Line>
+          <Line green>Display: CLEAR</Line>
+          <Line yellow>Cash box: Estimated 220¤ (not secured against hacking)</Line>
+        </Section>
+      </>
+    ),
+  },
+
+  "ATM (Tech District Corner)": {
+    content: (
+      <>
+        <Line smoke large bold>[ATM - MODEL ATM-600]</Line>
+        <Line cyan>Location: Tech district, corner of Innovation Ave & 7th</Line>
+        <Divider />
+        <DataTable data={[
+          { label: "Status", value: "ONLINE" },
+          { label: "Network", value: "CityBank Network" },
+          { label: "Cash Available", value: "~1,800¤ (estimated)" },
+          { label: "Last Service", value: "5 days ago" },
+        ]} />
+        <Divider />
+        <Section title="RECENT TRANSACTIONS (Last 12h):">
+          <Line neon>08:15 → Withdrawal: 100¤</Line>
+          <Line neon>09:42 → Balance inquiry</Line>
+          <Line neon>11:18 → Withdrawal: 60¤</Line>
+          <Line yellow>13:05 → Failed transaction (insufficient funds)</Line>
+          <Line neon>14:33 → Withdrawal: 200¤</Line>
+          <Line neon>16:08 → Withdrawal: 40¤</Line>
+          <Line neon>17:52 → Balance inquiry</Line>
+        </Section>
+        <Divider />
+        <Section title="MAINTENANCE SCHEDULE:">
+          <Line cyan>Cash replenishment: Thursdays, 09:00</Line>
+          <Line cyan>Receipt paper: Checked weekly</Line>
+          <Line cyan>Software updates: Monthly (last: 2 weeks ago)</Line>
+        </Section>
+        <Divider />
+        <Line yellow>Security: Standard bank encryption, camera monitored</Line>
+      </>
+    ),
+  },
+
+  "Traffic Signal Control (Innovation & 7th)": {
+    content: (
+      <>
+        <Line smoke large bold>[TRAFFIC SIGNAL - INNOVATION AVE & 7TH ST]</Line>
+        <Line cyan>Automated signal control system</Line>
+        <Divider />
+        <DataTable data={[
+          { label: "Operation Mode", value: "AUTOMATED (adaptive timing)" },
+          { label: "Cycle Time", value: "80 seconds (adjusts to traffic)" },
+          { label: "Last Malfunction", value: "6 weeks ago (resolved)" },
+          { label: "Pedestrian Signals", value: "FUNCTIONAL" },
+        ]} />
+        <Divider />
+        <Section title="CURRENT TIMING:">
+          <Line neon>Innovation Ave (East-West): 40 seconds green</Line>
+          <Line neon>7th St (North-South): 30 seconds green</Line>
+          <Line neon>All-red phase: 5 seconds (safety buffer)</Line>
+          <Line neon>Pedestrian crossing: 20 seconds</Line>
+        </Section>
+        <Divider />
+        <Section title="TRAFFIC METRICS (Last Hour):">
+          <Line cyan>Vehicles: 287 (Innovation Ave), 156 (7th St)</Line>
+          <Line cyan>Pedestrians: 67 crossings</Line>
+          <Line cyan>Emergency vehicle overrides: 1</Line>
+          <Line cyan>Average wait time: 32 seconds</Line>
+        </Section>
+        <Divider />
+        <Line yellow>Maintained by: Cynergy Infrastructure Division</Line>
+      </>
+    ),
+  },
+
+  "Streetlight Grid (Innovation Ave)": {
+    content: (
+      <>
+        <Line smoke large bold>[STREETLIGHT CONTROL - INNOVATION AVENUE]</Line>
+        <Line cyan>Grid management system (45 units)</Line>
+        <Divider />
+        <Section title="CURRENT STATUS:">
+          <DataTable data={[
+            { label: "Active lights", value: "43/45 (95.6%)" },
+            { label: "Malfunctioning", value: "2 units (repair scheduled)" },
+            { label: "Power consumption", value: "Normal (energy-saving mode active)" },
+            { label: "Brightness", value: "75% (adaptive based on ambient light)" },
+          ]} />
+        </Section>
+        <Divider />
+        <Section title="SCHEDULED OPERATIONS:">
+          <Line neon>Auto-on: 18:30 (dusk sensor)</Line>
+          <Line neon>Auto-off: 06:00 (dawn sensor)</Line>
+          <Line neon>Dimming: 23:00-05:00 (reduced brightness during low traffic)</Line>
+        </Section>
+        <Divider />
+        <Section title="MAINTENANCE LOG:">
+          <Line yellow>Last service: 3 weeks ago</Line>
+          <Line yellow>Next scheduled: 5 weeks</Line>
+          <Line yellow>Failed units: #23 (ballast issue), #37 (vandalism)</Line>
+          <Line red>Vandalism incidents: 2 this quarter</Line>
+        </Section>
+        <Divider />
+        <Line cyan>System managed by Cynergy Water & Power Co.</Line>
+      </>
+    ),
+  },
+
+  // ============================================================================
+  // GAME REFERENCES & EASTER EGGS
+  // ============================================================================
+
+  "NetBattler Arcade (Tech Mall)": {
+    content: (
+      <>
+        <Line cyan large bold>NETBATTLER ARCADE</Line>
+        <Line yellow>"Jack In. Battle. Win."</Line>
+        <Divider />
+        <Line neon>Connecting to arcade network...</Line>
+        <Line cyan>[PLAYER ACCESS]</Line>
+        <Divider />
+        <Section title="ARCADE INFO:">
+          <Line neon>Location: Tech district shopping mall, 2nd floor</Line>
+          <Line neon>Hours: 10:00-22:00 (every day)</Line>
+          <Line neon>Cost: 5¤ per game, 20¤ for 5 games</Line>
+          <Line neon>Players online: 18 (across 12 terminals)</Line>
+        </Section>
+        <Divider />
+        <Section title="AVAILABLE GAMES:">
+          <Line pink>→ NetBattle Arena (PvP virus busting)</Line>
+          <Line pink>→ Chip Trader Simulator (collect & trade)</Line>
+          <Line pink>→ Cyber World Explorer (story mode)</Line>
+          <Line pink>→ Tournament Mode (weekly competitions)</Line>
+        </Section>
+        <Divider />
+        <Section title="LEADERBOARD (This Week):">
+          <Line yellow>1st: "MegaFan_42" - 2,847 points</Line>
+          <Line yellow>2nd: "Roll_Backup" - 2,301 points</Line>
+          <Line yellow>3rd: "HubStyle" - 1,998 points</Line>
+        </Section>
+        <Divider />
+        <Section title="UPCOMING TOURNAMENT:">
+          <Line cyan>Date: This Saturday, 14:00</Line>
+          <Line cyan>Prize: 200¤ + Rare chip code</Line>
+          <Line cyan>Registration: Open (12/16 slots filled)</Line>
+        </Section>
+        <Divider />
+        <Line pink>"Jack in! MegaMan, execute!"</Line>
+      </>
+    ),
+  },
+
+  "Trauma Response Station (Medical District)": {
+    content: (
+      <>
+        <Line cyan large bold>TRAUMA RESPONSE COORDINATION</Line>
+        <Line yellow>"Critical Care. Rapid Deployment."</Line>
+        <Divider />
+        <Line neon>Accessing public information...</Line>
+        <Line cyan>[EMERGENCY SERVICES PORTAL]</Line>
+        <Divider />
+        <Section title="SERVICE OVERVIEW:">
+          <Line neon>Emergency medical response (platinum tier)</Line>
+          <Line neon>Air & ground ambulance services</Line>
+          <Line neon>Combat trauma specialists</Line>
+          <Line neon>Corporate contract coverage</Line>
+        </Section>
+        <Divider />
+        <Section title="RESPONSE TIMES:">
+          <KeyValue label="Platinum Members" value="<3 minutes (air), <5 minutes (ground)" />
+          <KeyValue label="Gold Members" value="<5 minutes (air), <8 minutes (ground)" />
+          <KeyValue label="Silver Members" value="<10 minutes (ground only)" />
+          <KeyValue label="Non-Members" value="Standard emergency services apply" />
+        </Section>
+        <Divider />
+        <Section title="MEMBERSHIP FEES:">
+          <Line yellow>Platinum: 5,000¤/month (individual), 15,000¤/month (family)</Line>
+          <Line yellow>Gold: 2,500¤/month (individual), 7,500¤/month (family)</Line>
+          <Line yellow>Silver: 800¤/month (individual), 2,000¤/month (family)</Line>
+        </Section>
+        <Divider />
+        <Section title="COVERAGE AREAS:">
+          <Line cyan>Central districts: Full air coverage</Line>
+          <Line cyan>Mid-tier districts: Ground priority</Line>
+          <Line cyan>Outer districts: Limited (contract dependent)</Line>
+          <Line red>Slums: No service (corporate policy)</Line>
+        </Section>
+        <Divider />
+        <Line pink>"Your life. Our priority. Their profit."</Line>
+      </>
+    ),
+  },
+
+  "Samurai Memorabilia Shop": {
+    content: (
+      <>
+        <Line cyan large bold>CHROME & STEEL COLLECTIBLES</Line>
+        <Line yellow>"Legends Never Die. They Just Get Merchandised."</Line>
+        <Divider />
+        <Line neon>Connecting to shop catalog...</Line>
+        <Line cyan>[CUSTOMER ACCESS]</Line>
+        <Divider />
+        <Section title="FEATURED COLLECTIONS:">
+          <Line pink>→ "Samurai" band merchandise (vintage & reproductions)</Line>
+          <Line pink>→ Rockerboy memorabilia (various artists)</Line>
+          <Line pink>→ Corporate war artifacts (authenticated pieces)</Line>
+          <Line pink>→ Cyberpunk culture items (books, posters, media)</Line>
+        </Section>
+        <Divider />
+        <Section title="HIGHLIGHTED ITEMS:">
+          <KeyValue label="Samurai concert poster (2020)" value="450¤ (reproduction)" />
+          <KeyValue label="Johnny's guitar replica" value="1,200¤ (limited edition)" />
+          <KeyValue label="Alt Cunningham biography" value="35¤ (signed copy)" />
+          <KeyValue label="Arasaka War memorabilia" value="Varies (ask owner)" />
+        </Section>
+        <Divider />
+        <Section title="SPECIAL DRINKS (Bar Area):">
+          <Line neon>"Johnny Silverhand Special": 18¤ (whiskey, ice, attitude)</Line>
+          <Line neon>"Relic Runner": 15¤ (mystery cocktail, glows slightly)</Line>
+          <Line neon>"Netrunner's Choice": 12¤ (energy drink + vodka)</Line>
+        </Section>
+        <Divider />
+        <Section title="HOURS & LOCATION:">
+          <Line cyan>Hours: 12:00-midnight (Mon-Sat), 14:00-22:00 (Sun)</Line>
+          <Line cyan>Location: Entertainment district, near music venues</Line>
+          <Line cyan>Atmosphere: Dark, nostalgic, chrome everywhere</Line>
+        </Section>
+        <Divider />
+        <Line pink>"Wake the fuck up, samurai. We have merch to sell."</Line>
+      </>
+    ),
+  },
+};
+
+export default FUN_COMMANDS;

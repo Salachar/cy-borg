@@ -1,21 +1,23 @@
 import Definitions from "./Definitions";
 import RollableTable from "./RollableTable";
-import CharacterStats from "./CharacterStats";
-import HealthBar from "./HealthBar";
-import CharacterName from "./CharacterName";
-import { CreditsTracker, GlitchesTracker } from "./ResourceTrackers";
-import GearInventory from "./GearInventory";
-import GearShop from "./GearShop";
-import CharacterFlavor from "./CharacterFlavor";
-import StartingItems from "./StartingItems";
-import NanoPowers from "./NanoPowers";
-import Infestations from "./Infestations";
-import Apps from "./Apps";
-import Cyberware from "./Cyberware";
-import Cyberdeck from "./Cyberdeck";
-import Services from "./Services";
-import Debt from "./Debt";
 import ClassArtwork from "./ClassArtwork";
+
+import Stats from "./character/Stats";
+import HealthBar from "./character/HealthBar";
+import Name from "./character/Name";
+import CreditsTracker from "./character/Credits";
+import GlitchesTracker from "./character/Glitches";
+import Inventory from "./character/Inventory";
+import Market from "./character/Market";
+import Flavor from "./character/Flavor";
+import StartingItems from "./character/StartingItems";
+import NanoPowers from "./character/NanoPowers";
+import Infestations from "./character/Infestations";
+import Apps from "./character/Apps";
+import Cyberware from "./character/Cyberware";
+import Cyberdeck from "./character/Cyberdeck";
+import Services from "./character/Services";
+import Debt from "./character/Debt";
 
 import {
   WEAPONS_FOR_SALE,
@@ -185,7 +187,7 @@ export default function CharacterTemplate({
         </button>
       )}
 
-      <CharacterName
+      <Name
         character={character}
         builder={builder}
         locked={character.locked}
@@ -221,7 +223,7 @@ export default function CharacterTemplate({
       {builder && (
         <>
           <div className="divider" />
-          <CharacterStats
+          <Stats
             character={character}
             locked={character.locked}
             onUpdate={onUpdate}
@@ -264,12 +266,12 @@ export default function CharacterTemplate({
             onUpdate={onUpdate}
           />
           <div className="divider" />
-          <GearInventory
+          <Inventory
             character={character}
             sections={GEAR_SECTIONS}
             onUpdate={onUpdate}
           />
-          <GearShop
+          <Market
             character={character}
             sections={GEAR_SECTIONS}
             onUpdate={onUpdate}
@@ -308,7 +310,7 @@ export default function CharacterTemplate({
             onUpdate={onUpdate}
           />
           <div className="divider" />
-          <CharacterFlavor
+          <Flavor
             character={character}
             sections={[
               { name: "style", label: "Style", entries: STYLES },
