@@ -719,31 +719,24 @@ export const NEIGHBORHOOD_COMMANDS = {
           hintStrength: 1,
         },
         content: (
-          <>
-            <Line smoke large bold>[PERSONAL SAFE - MODEL PS-150]</Line>
-            <Line cyan>Location: Unit 3B, bedroom closet</Line>
-            <Divider />
-            <DataTable data={[
-              { label: "Status", value: "LOCKED" },
-              { label: "Security", value: "4-digit PIN" },
-              { label: "Last Access", value: "2 days ago" },
-              { label: "Owner", value: "Marco Silva" },
-            ]} />
-            <Divider />
-            <Section title="PHYSICAL CONTENTS (Requires presence):">
-              <Line yellow>→ Cash: 95¤ (emergency fund, mixed bills)</Line>
-              <Line yellow>→ Documents: Passport, birth certificate</Line>
-              <Line yellow>→ Jewelry: Gold bracelet (family heirloom)</Line>
-            </Section>
-            <Divider />
-            <Section title="DIGITAL CONTENTS (Extractable remotely):">
-              <Line cyan>→ Credchip: 40¤ (transferable)</Line>
-              <Line cyan>→ Coupon code: TORRES10 (10% off building maintenance services)</Line>
-              <Line cyan>→ App: "Rent Reminder" (0.2¤ value, basic timer)</Line>
-            </Section>
-            <Divider />
-            <Line neon>Safe mounted to wall, relatively new installation</Line>
-          </>
+          <Safe
+            id="torres-unit3b-silva"
+            model="PS-150"
+            location="Unit 3B, bedroom closet"
+            owner="Marco Silva"
+            security="4-digit PIN"
+            lastAccess="2 days ago"
+            physical={[
+              { item: "Cash", desc: "95¤ (emergency fund, mixed bills)" },
+              { item: "Documents", desc: "Passport, birth certificate" },
+              { item: "Jewelry", desc: "Gold bracelet (family heirloom)" },
+            ]}
+            digital={[
+              { item: "Credchip", desc: "40¤ (transferable)" },
+              { item: "Coupon code", desc: "TORRES10 (10% off building maintenance services, expires in 3 months)" },
+            ]}
+            notes="Safe mounted to wall, relatively new installation"
+          />
         ),
       },
 
@@ -769,7 +762,6 @@ export const NEIGHBORHOOD_COMMANDS = {
             ]}
             digital={[
               { item: "Credchip", desc: "95¤ (personal spending money, transferable)" },
-              { item: "Schedule app", desc: "Shift calendar (next 2 weeks visible)" },
             ]}
             notes="Safe checked daily before and after casino shifts"
           />
@@ -827,13 +819,12 @@ export const NEIGHBORHOOD_COMMANDS = {
                 physical={[
                   { item: "Work coveralls", desc: "Lucky Flight maintenance uniform (dirty, needs washing)" },
                   { item: "Staff keycard", desc: "Maintenance access (service corridors, mechanical rooms, roof access)" },
-                  { item: "Master keys", desc: "Physical key ring (utility rooms, electrical panels, storage)" },
                   { item: "Tools", desc: "Personal toolkit (screwdrivers, multimeter, duct tape)" },
                   { item: "Cash", desc: "120¤ (emergency fund, small bills)" },
                 ]}
                 digital={[
                   { item: "Credchip", desc: "85¤ (weekly pay, transferable)" },
-                  { item: "Building schematics", desc: "Casino floor plans (HVAC, electrical, plumbing)" },
+                  { item: "LFC Facilities PW", desc: "architecture" },
                 ]}
                 notes="Maintenance worker has extensive building access - keys rarely logged"
               />

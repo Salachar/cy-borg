@@ -12,6 +12,7 @@ import ATM from '../../ATM';
 import VendingMachine from '../../VendingMachine';
 import Safe from '../../Safe';
 import Camera from "../../Camera";
+import Menu from '../../Menu';
 
 import BatusBodegaAd from './ad'
 
@@ -39,6 +40,67 @@ export const BODEGA_COMMANDS = {
       </>
     ),
     related_commands: {
+      "Bodega Menu": {
+        content: (
+          <Menu
+            title="DAILY SPECIALS"
+            subtitle="Batu's Bodega - Corner Store Deals"
+            signType="sandwich"
+            categories={[
+              {
+                name: "FOOD & SNACKS:",
+                items: [
+                  { name: "Synth-Ramen Cup", price: "3¤" },
+                  { name: "Protein Bar", price: "2¤" },
+                  { name: "Synth-Burger (heated)", price: "5¤" },
+                  { name: "Candy Mix", price: "1¤" },
+                ],
+              },
+              {
+                name: "DRINKS:",
+                items: [
+                  { name: "Energy Drink", price: "4¤" },
+                  { name: "Water Bottle", price: "2¤" },
+                  { name: "Coffee (hot)", price: "3¤" },
+                  { name: "Synth-Soda", price: "2¤" },
+                ],
+              },
+            ]}
+            footer="Free wifi with any purchase!"
+          />
+        ),
+      },
+
+      "Coffee Selections": {
+        content: (
+          <Menu
+            title="BREW MENU"
+            subtitle="Open 06:00-22:00"
+            signType="coffee"
+            categories={[
+              {
+                name: "HOT DRINKS:",
+                items: [
+                  { name: "Black Coffee", price: "3¤" },
+                  { name: "Synth-Latte", price: "5¤" },
+                  { name: "Cyber-Mocha", price: "6¤" },
+                  { name: "Green Tea", price: "4¤" },
+                ],
+              },
+              {
+                name: "PASTRIES:",
+                items: [
+                  { name: "Vat-Croissant", price: "4¤" },
+                  { name: "Synth-Muffin", price: "3¤" },
+                  { name: "Protein Cookie", price: "2¤" },
+                ],
+              },
+            ]}
+            footer="Buy 5 coffees, get 1 free!"
+          />
+        ),
+      },
+
       "Bodega ATM": {
         content: (
           <ATM

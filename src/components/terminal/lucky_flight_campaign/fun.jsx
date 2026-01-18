@@ -94,7 +94,7 @@ export const FUN_COMMANDS = {
         password: {
           pw: "marathon",
           hint: "Fitness goal mentioned in apartment lease application",
-          hintStrength: 2,
+          hintStrength: 3,
         },
         content: (
           <Safe
@@ -216,33 +216,25 @@ export const FUN_COMMANDS = {
           hintStrength: 2,
         },
         content: (
-          <>
-            <Line smoke large bold>[DIGITAL SAFE - MODEL PS-250]</Line>
-            <Line cyan>Location: Unit 2A, hall closet upper shelf</Line>
-            <Divider />
-            <DataTable data={[
-              { label: "Status", value: "LOCKED" },
-              { label: "Security", value: "Combination lock (mechanical + digital)" },
-              { label: "Last Access", value: "1 week ago" },
-              { label: "Owner", value: "Jonas Verne (boat repair technician)" },
-            ]} />
-            <Divider />
-            <Section title="PHYSICAL CONTENTS (Requires presence):">
-              <Line yellow>→ Cash: 95¤ (mixed bills, rent savings)</Line>
-              <Line yellow>→ Documents: Boat registration, repair licenses</Line>
-              <Line yellow>→ Tools: Precision screwdriver set (professional quality)</Line>
-              <Line yellow>→ Personal: Wedding ring (divorced, kept for sentimental reasons)</Line>
-            </Section>
-            <Divider />
-            <Section title="DIGITAL CONTENTS (Extractable remotely):">
-              <Line cyan>→ Credchip: 42¤ (transferable)</Line>
-              <Line cyan>→ Coupon code: BOATPARTS15 (15% off marine supplies)</Line>
-              <Line cyan>→ App: "Tide Tracker Pro" (1¤ value, actually useful for canal navigation)</Line>
-              <Line cyan>→ Data file: Client repair records (sellable to competitors for 25-40¤)</Line>
-            </Section>
-            <Divider />
-            <Line neon>Safe showing signs of water damage (external), still functional</Line>
-          </>
+          <Safe
+            id="cascade-unit2a-verne"
+            model="PS-250"
+            location="Unit 2A, hall closet upper shelf"
+            owner="Jonas Verne (boat repair technician)"
+            security="Combination lock (mechanical + digital)"
+            lastAccess="1 week ago"
+            physical={[
+              { item: "Cash", desc: "95¤ (mixed bills, rent savings)" },
+              { item: "Documents", desc: "Boat registration, repair licenses" },
+              { item: "Tools", desc: "Precision screwdriver set (professional quality)" },
+              { item: "Personal", desc: "Wedding ring (divorced, kept for sentimental reasons)" },
+            ]}
+            digital={[
+              { item: "Credchip", desc: "42¤ (transferable)" },
+              { item: "Coupon code", desc: "BOATPARTS15 (15% off marine supplies, expires in 2 months)" },
+            ]}
+            notes="Safe showing signs of water damage (external), still functional"
+          />
         ),
       },
     },
@@ -293,9 +285,9 @@ export const FUN_COMMANDS = {
     related_commands: {
       access_shop_inventory: {
         password: {
-          pw: "portal",
+          pw: "portalgun",
           hint: "Device in back room (broken, parts only)",
-          hintStrength: 2,
+          hintStrength: 1,
         },
         content: (
           <>
@@ -363,7 +355,7 @@ export const FUN_COMMANDS = {
         password: {
           pw: "C137",
           hint: "Dimension number written on portal device",
-          hintStrength: 3,
+          hintStrength: 1,
         },
         content: (
           <Safe
@@ -382,8 +374,7 @@ export const FUN_COMMANDS = {
             digital={[
               { item: "Credchip", desc: "88¤ (transferable, standard currency)" },
               { item: "App", desc: "Inter-D Cable Guide (0¤ value, completely non-functional)" },
-              { item: "App", desc: "Portal Calculator (??? value, probably shouldn't run this)" },
-              { item: "Data file", desc: "Definitely_Not_Schematics.enc (encrypted, unknown contents)" },
+              { item: "Data file", desc: "boogeraids_aidsbooger.enc (encrypted, unknown contents)" },
             ]}
             notes="⚠ Safe appears to phase in and out of visibility occasionally"
           />
@@ -437,7 +428,7 @@ export const FUN_COMMANDS = {
         password: {
           pw: "persona",
           hint: "What the owner seems to change regularly",
-          hintStrength: 2,
+          hintStrength: 1,
         },
         content: (
           <Safe
@@ -456,8 +447,6 @@ export const FUN_COMMANDS = {
             digital={[
               { item: "Credchip", desc: "78¤ (transferable)" },
               { item: "Coupon code", desc: "PAWN20 (20% bonus on next pawn, expires in 1 month)" },
-              { item: "App", desc: "Voice Modulator Lite (0.8¤ value, basic functionality)" },
-              { item: "Data file", desc: "Customer database (sellable to competitors for 40-60¤)" },
             ]}
             notes="Voice recognition changes weekly (matches current 'persona')"
           />
@@ -468,7 +457,7 @@ export const FUN_COMMANDS = {
         password: {
           pw: "goldenturd",
           hint: "What locals call the shop mascot statue",
-          hintStrength: 2,
+          hintStrength: 3,
         },
         content: (
           <>
@@ -601,33 +590,24 @@ export const FUN_COMMANDS = {
           hintStrength: 1,
         },
         content: (
-          <>
-            <Line smoke large bold>[DIGITAL SAFE - MODEL DS-500X]</Line>
-            <Line cyan>Location: Suite 307, wall-mounted behind desk</Line>
-            <Divider />
-            <DataTable data={[
-              { label: "Status", value: "LOCKED" },
-              { label: "Security", value: "Biometric + quantum encryption" },
-              { label: "Last Access", value: "Yesterday evening" },
-              { label: "Owner", value: "Cipher (proprietor)" },
-            ]} />
-            <Divider />
-            <Section title="PHYSICAL CONTENTS (Requires presence):">
-              <Line yellow>→ Cash: 680¤ (client payments, emergency fund)</Line>
-              <Line yellow>→ USB drives: Client data backups (3 drives, encrypted)</Line>
-              <Line yellow>→ Documents: Business license, insurance, client NDAs</Line>
-              <Line yellow>→ Personal credchip: Unknown amount (separate from business)</Line>
-            </Section>
-            <Divider />
-            <Section title="DIGITAL CONTENTS (Extractable remotely):">
-              <Line cyan>→ Credchip: 95¤ (business account, transferable)</Line>
-              <Line cyan>→ App: "Secure Messenger Pro" (12¤ value, enterprise version)</Line>
-              <Line cyan>→ App: "Password Manager Elite" (8¤ value, unlimited vaults)</Line>
-              <Line cyan>→ Data file: Client contact database (sellable for 60-100¤, ethically questionable)</Line>
-            </Section>
-            <Divider />
-            <Line red>Safe features quantum encryption - extremely difficult to crack</Line>
-          </>
+          <Safe
+            id="cipher-suite-307"
+            model="DS-500X"
+            location="Suite 307, wall-mounted behind desk"
+            owner="Cipher (proprietor)"
+            security="Biometric + quantum encryption"
+            lastAccess="Yesterday evening"
+            physical={[
+              { item: "Cash", desc: "680¤ (client payments, emergency fund)" },
+              { item: "USB drives", desc: "Client data backups (3 drives, encrypted)" },
+              { item: "Documents", desc: "Business license, insurance, client NDAs" },
+              { item: "Personal credchip", desc: "Unknown amount (separate from business)" },
+            ]}
+            digital={[
+              { item: "Credchip", desc: "95¤ (business account, transferable)" },
+            ]}
+            notes="⚠ Safe features quantum encryption - extremely difficult to crack"
+          />
         ),
       },
     },
@@ -722,32 +702,24 @@ export const FUN_COMMANDS = {
           hintStrength: 2,
         },
         content: (
-          <>
-            <Line smoke large bold>[DIGITAL SAFE - MODEL DS-300]</Line>
-            <Line cyan>Location: Behind bar, under counter</Line>
-            <Divider />
-            <DataTable data={[
-              { label: "Status", value: "LOCKED" },
-              { label: "Security", value: "Electronic keypad" },
-              { label: "Last Access", value: "6 hours ago (shift change)" },
-              { label: "Owner", value: "Morgan Patel (bar owner)" },
-            ]} />
-            <Divider />
-            <Section title="PHYSICAL CONTENTS (Requires presence):">
-              <Line yellow>→ Cash: 340¤ (daily receipts from card payments)</Line>
-              <Line yellow>→ Documents: Liquor license, business permits</Line>
-              <Line yellow>→ Personal credchip: Unknown amount (owner's personal funds)</Line>
-            </Section>
-            <Divider />
-            <Section title="DIGITAL CONTENTS (Extractable remotely):">
-              <Line cyan>→ Credchip: 52¤ (bar petty cash, transferable)</Line>
-              <Line cyan>→ Coupon code: COMPILER25 (25% off next meetup event)</Line>
-              <Line cyan>→ App: "Inventory Manager Lite" (0.4¤ value, basic stock tracking)</Line>
-              <Line cyan>→ Data file: Regular customer list (sellable to marketers for 20-35¤)</Line>
-            </Section>
-            <Divider />
-            <Line neon>Safe checked at opening (14:00) and closing (02:00)</Line>
-          </>
+          <Safe
+            id="compiler-bar-safe"
+            model="DS-300"
+            location="Behind bar, under counter"
+            owner="Morgan Patel (bar owner)"
+            security="Electronic keypad"
+            lastAccess="6 hours ago (shift change)"
+            physical={[
+              { item: "Cash", desc: "340¤ (daily receipts from card payments)" },
+              { item: "Documents", desc: "Liquor license, business permits" },
+              { item: "Personal credchip", desc: "Unknown amount (owner's personal funds)" },
+            ]}
+            digital={[
+              { item: "Credchip", desc: "52¤ (bar petty cash, transferable)" },
+              { item: "Coupon code", desc: "COMPILER25 (25% off next meetup event, expires in 1 month)" },
+            ]}
+            notes="Safe checked at opening (14:00) and closing (02:00)"
+          />
         ),
       },
 

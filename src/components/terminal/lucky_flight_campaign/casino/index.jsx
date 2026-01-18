@@ -11,6 +11,7 @@ import {
 import VendingMachine from '../../VendingMachine';
 import Safe from '../../Safe';
 import ATM from '../../ATM';
+import Menu from '../../Menu';
 
 import LuckyFlightAd from './ad'
 import LuckyFlightBasement from './LuckyFlightBasement';
@@ -74,26 +75,32 @@ export const LUCKY_FLIGHT_CASINO = {
 
       "Happy Hour Specials! (lfc)": {
         content: (
-          <>
-            <Line yellow large bold>🍹 HAPPY HOUR 🍹</Line>
-            <Line cyan>Every night 18:00-22:00</Line>
-            <Divider />
-            <Section title="BAR SPECIALS:">
-              <KeyValue label="Synth-Whiskey" value="5¤" />
-              <KeyValue label="NeoVodka Shots" value="3¤" />
-              <KeyValue label="Chrome-Tini" value="8¤" />
-              <KeyValue label="Energy Drink Combo" value="6¤" />
-            </Section>
-            <Divider />
-            <Section title="FOOD MENU:">
-              <KeyValue label="Synth-Burger Basket" value="12¤" />
-              <KeyValue label="Noodle Bowl" value="8¤" />
-              <KeyValue label="Fried Protein Sticks" value="6¤" />
-              <KeyValue label="Vat-Grown Wings" value="10¤" />
-            </Section>
-            <Divider />
-            <Line pink>★ VIP members get 20% off all night! ★</Line>
-          </>
+          <Menu
+            title="HAPPY HOUR"
+            subtitle="Every night 18:00-22:00"
+            signType="cocktail"
+            categories={[
+              {
+                name: "BAR SPECIALS:",
+                items: [
+                  { name: "Synth-Whiskey", price: "5¤" },
+                  { name: "NeoVodka Shots", price: "3¤" },
+                  { name: "Chrome-Tini", price: "8¤" },
+                  { name: "Energy Drink Combo", price: "6¤" },
+                ],
+              },
+              {
+                name: "FOOD MENU:",
+                items: [
+                  { name: "Synth-Burger Basket", price: "12¤" },
+                  { name: "Noodle Bowl", price: "8¤" },
+                  { name: "Fried Protein Sticks", price: "6¤" },
+                  { name: "Vat-Grown Wings", price: "10¤" },
+                ],
+              },
+            ]}
+            footer="★ VIP members get 20% off all night! ★"
+          />
         ),
       },
 
@@ -236,7 +243,7 @@ export const LUCKY_FLIGHT_CASINO = {
         password: {
           pw: "flyaway",
           hint: "What casino staff say when someone hits the jackpot",
-          hintStrength: 2,
+          hintStrength: 1,
         },
         content: (
           <>
@@ -255,7 +262,7 @@ export const LUCKY_FLIGHT_CASINO = {
           </>
         ),
         related_commands: {
-          access_facility_blueprints: {
+          access_facility_files: {
             password: {
               pw: "architecture",
               hint: "What blueprints are a form of",

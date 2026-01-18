@@ -10,6 +10,7 @@ import { STONE_EELS_COMMANDS } from './stone_eels';
 import { LUCKY_FLIGHT_CASINO } from './casino';
 import { NEIGHBORHOOD_COMMANDS } from './neighborhood';
 import { FUN_COMMANDS } from './fun';
+import { WAREHOUSE_COMMANDS } from './warehouse';
 
 export const LUCKY_FLIGHT_TAKEDOWN_COMMANDS = {
   "Local Access Points": {
@@ -54,6 +55,7 @@ export const LUCKY_FLIGHT_TAKEDOWN_COMMANDS = {
       ...STONE_EELS_COMMANDS,
       ...NEIGHBORHOOD_COMMANDS,
       ...FUN_COMMANDS,
+      ...WAREHOUSE_COMMANDS,
     },
   },
 }
