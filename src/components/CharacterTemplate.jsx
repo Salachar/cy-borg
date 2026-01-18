@@ -247,7 +247,6 @@ export default function CharacterTemplate({
               onUpdate={onUpdate}
             />
           </div>
-          <div className="divider" />
         </>
       )}
 

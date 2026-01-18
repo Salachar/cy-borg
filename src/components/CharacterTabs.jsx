@@ -6,7 +6,7 @@ export default function CharacterTabs({
   onClose = () => {},
 }) {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-2 mb-4">
       {Object.keys(BuilderManager.characters).map((id) => {
         const character = BuilderManager.characters[id];
         const isActive = currentCharacter && currentCharacter.id === id;

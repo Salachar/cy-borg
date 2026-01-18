@@ -54,7 +54,7 @@ export default function TerminalShell({
   // Mascot state with localStorage persistence
   const [mascotEnabled, setMascotEnabled] = useState(() => {
     const saved = localStorage.getItem('terminal-mascot-enabled');
-    return saved !== null ? saved === 'true' : true; // Default enabled
+    return saved !== null ? saved === 'true' : false; // Default enabled
   });
 
   const [currentAnimal, setCurrentAnimal] = useState(() => {
