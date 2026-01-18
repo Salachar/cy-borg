@@ -177,7 +177,7 @@ export default function TerminalMascot({
  * Handles idle behaviors, click interactions, and terminal activity responses.
  */
 export function TerminalMascotController({
-  animal = 'fox-red',
+  animal = 'fox',
   initialAnimation = 'idle',
   onTerminalActivity,
   onClick: onClickProp,

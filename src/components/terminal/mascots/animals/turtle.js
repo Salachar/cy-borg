@@ -129,6 +129,4 @@ export const TURTLE_SPRITE = {
       returnTo: 'idle',
     },
   },
-
-  variants: ['brown'], // Could add: 'green', 'sea', etc.
 };

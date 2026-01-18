@@ -49,8 +49,54 @@ export default function TerminalShell({
   inputArea,
   helpText,
   quickCommands = [],
-  terminalActivity = 0, // NEW PROP - pass activity counter from parent
+  terminalActivity = 0,
 }) {
+  // Mascot state with localStorage persistence
+  const [mascotEnabled, setMascotEnabled] = useState(() => {
+    const saved = localStorage.getItem('terminal-mascot-enabled');
+    return saved !== null ? saved === 'true' : true; // Default enabled
+  });
+
+  const [currentAnimal, setCurrentAnimal] = useState(() => {
+    const saved = localStorage.getItem('terminal-mascot-animal');
+    return saved || 'fox'; // Default to fox
+  });
+
+  // Available animals
+  const animals = ['fox', 'turtle', 'cat-tiger'];
+
+  // Persist to localStorage
+  useEffect(() => {
+    localStorage.setItem('terminal-mascot-enabled', mascotEnabled);
+  }, [mascotEnabled]);
+
+  useEffect(() => {
+    localStorage.setItem('terminal-mascot-animal', currentAnimal);
+  }, [currentAnimal]);
+
+  // Animal navigation
+  const nextAnimal = () => {
+    const currentIndex = animals.indexOf(currentAnimal);
+    const nextIndex = (currentIndex + 1) % animals.length;
+    setCurrentAnimal(animals[nextIndex]);
+  };
+
+  const prevAnimal = () => {
+    const currentIndex = animals.indexOf(currentAnimal);
+    const prevIndex = (currentIndex - 1 + animals.length) % animals.length;
+    setCurrentAnimal(animals[prevIndex]);
+  };
+
+  // Get display name for current animal
+  const getAnimalDisplayName = () => {
+    const names = {
+      'fox': 'FOX',
+      'turtle': 'TURTLE',
+      'cat-tiger': 'CAT',
+    };
+    return names[currentAnimal] || currentAnimal.toUpperCase();
+  };
+
   return (
     <div
       className="flex-1 flex overflow-hidden relative pb-6"
@@ -79,18 +125,69 @@ export default function TerminalShell({
             />
           ))}
 
+          {/* Divider */}
           <div style={{
-            marginTop: 'auto',
-            position: 'relative',
-            minHeight: '12rem',
-            marginBottom: '2rem',
-            overflowX: 'hidden',
-          }}>
-            <TerminalMascotController
-              animal="fox-red"
-              onTerminalActivity={terminalActivity}
-            />
-          </div>
+            height: '1px',
+            backgroundColor: COLORS.border.default,
+            opacity: 0.3,
+            margin: '0.5rem 0',
+          }} />
+
+          {/* Mascot toggle button */}
+          <QuickCommandButton
+            label={mascotEnabled ? "MASCOT" : "MASCOT OFF"}
+            onClick={() => setMascotEnabled(!mascotEnabled)}
+          />
+
+          {/* Animal selector - only show if mascot enabled */}
+          {mascotEnabled && (
+            <div className="flex items-center gap-1">
+              <button
+                onClick={prevAnimal}
+                className="p-2 rounded border font-bold text-xs transition-all flex-1"
+                style={{
+                  backgroundColor: COLORS.bg.panel,
+                  borderColor: COLORS.border.default,
+                  color: COLORS.accent.teal,
+                  minHeight: '2rem',
+                }}
+                onMouseEnter={(e) => e.target.style.backgroundColor = COLORS.bg.panelHover}
+                onMouseLeave={(e) => e.target.style.backgroundColor = COLORS.bg.panel}
+              >
+                ←
+              </button>
+              <button
+                onClick={nextAnimal}
+                className="p-2 rounded border font-bold text-xs transition-all flex-1"
+                style={{
+                  backgroundColor: COLORS.bg.panel,
+                  borderColor: COLORS.border.default,
+                  color: COLORS.accent.teal,
+                  minHeight: '2rem',
+                }}
+                onMouseEnter={(e) => e.target.style.backgroundColor = COLORS.bg.panelHover}
+                onMouseLeave={(e) => e.target.style.backgroundColor = COLORS.bg.panel}
+              >
+                →
+              </button>
+            </div>
+          )}
+
+          {/* Mascot render area */}
+          {mascotEnabled && (
+            <div style={{
+              marginTop: 'auto',
+              position: 'relative',
+              minHeight: '12rem',
+              marginBottom: '2rem',
+              overflowX: 'hidden',
+            }}>
+              <TerminalMascotController
+                animal={currentAnimal}
+                onTerminalActivity={terminalActivity}
+              />
+            </div>
+          )}
         </div>
       )}
     </div>

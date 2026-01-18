@@ -67,6 +67,4 @@ export const FOX_SPRITE = {
       returnTo: 'idle',
     },
   },
-
-  variants: ['red'], // Could expand: 'arctic', 'gray', etc.
 };

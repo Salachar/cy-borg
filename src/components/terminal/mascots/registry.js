@@ -1,33 +1,22 @@
-/**
- * Animal Registry
- *
- * Central registry for all available mascot sprites.
- * Maps animal IDs to their sprite definitions.
- */
-
 import { FOX_SPRITE } from './animals/fox';
 import { TURTLE_SPRITE } from './animals/turtle';
+import { CAT_TIGER_SPRITE } from './animals/cat-tiger';
 
 export const ANIMAL_REGISTRY = {
-  'fox-red': {
+  'fox': {
     ...FOX_SPRITE,
-    variant: 'red',
-    displayName: 'Red Fox',
+    displayName: 'Fox',
   },
-  'turtle-brown': {
+  'turtle': {
     ...TURTLE_SPRITE,
-    variant: 'brown',
-    displayName: 'Brown Turtle',
+    displayName: 'Turtle',
   },
-  // Future animals can be added here:
-  // 'cat-black': { ...CAT_SPRITE, variant: 'black', spriteSheet: '/sprites/cat-black.png' },
-  // 'cat-white': { ...CAT_SPRITE, variant: 'white', spriteSheet: '/sprites/cat-white.png' },
-  // 'dog-brown': { ...DOG_SPRITE, variant: 'brown', spriteSheet: '/sprites/dog-brown.png' },
+  'cat-tiger': {
+    ...CAT_TIGER_SPRITE,
+    displayName: 'Tiger Cat',
+  },
 };
 
-/**
- * Get sprite config by animal ID
- */
 export function getAnimalSprite(animalId) {
   const sprite = ANIMAL_REGISTRY[animalId];
   if (!sprite) {
@@ -37,9 +26,6 @@ export function getAnimalSprite(animalId) {
   return sprite;
 }
 
-/**
- * Get all available animal IDs
- */
 export function getAvailableAnimals() {
   return Object.keys(ANIMAL_REGISTRY);
 }
