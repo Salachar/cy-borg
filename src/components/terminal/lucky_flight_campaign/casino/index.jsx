@@ -54,6 +54,11 @@ export const LUCKY_FLIGHT_CASINO = {
     ),
     related_commands: {
       "Lucky Flight Lobby ATM": {
+        password: {
+          pw: "liquidity",
+          hint: "You don’t need more money. You need to move it.",
+          hintStrength: 1,
+        },
         content: (
           <ATM
             id="lfc-lobby-atm"

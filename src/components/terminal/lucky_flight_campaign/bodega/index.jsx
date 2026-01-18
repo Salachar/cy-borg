@@ -102,6 +102,11 @@ export const BODEGA_COMMANDS = {
       },
 
       "Bodega ATM": {
+        password: {
+          pw: "compound",
+          hint: "It grows faster than work ever could",
+          hintStrength: 1,
+        },
         content: (
           <ATM
             id="bodega-corner-atm"

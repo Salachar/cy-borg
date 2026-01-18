@@ -761,7 +761,7 @@ export const NEIGHBORHOOD_COMMANDS = {
               { item: "Documents", desc: "Pay stubs, employee handbook, locker key" },
             ]}
             digital={[
-              { item: "Credchip", desc: "95¤ (personal spending money, transferable)" },
+              { item: "Credchip", desc: "15¤ (personal spending money, transferable)" },
             ]}
             notes="Safe checked daily before and after casino shifts"
           />

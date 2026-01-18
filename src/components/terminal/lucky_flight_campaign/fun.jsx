@@ -108,7 +108,7 @@ export const FUN_COMMANDS = {
               { item: "Cash", desc: "180¤ (emergency fund)" },
             ]}
             digital={[
-              { item: "Credchip", desc: "65¤ (transferable)" },
+              { item: "Credchip", desc: "25¤ (transferable)" },
             ]}
             notes="Safe installed 18 months ago"
           />
@@ -230,7 +230,7 @@ export const FUN_COMMANDS = {
               { item: "Personal", desc: "Wedding ring (divorced, kept for sentimental reasons)" },
             ]}
             digital={[
-              { item: "Credchip", desc: "42¤ (transferable)" },
+              { item: "Credchip", desc: "22¤ (transferable)" },
               { item: "Coupon code", desc: "BOATPARTS15 (15% off marine supplies, expires in 2 months)" },
             ]}
             notes="Safe showing signs of water damage (external), still functional"
@@ -372,7 +372,7 @@ export const FUN_COMMANDS = {
               { item: "Device components", desc: "Unknown purpose (possibly dangerous)" },
             ]}
             digital={[
-              { item: "Credchip", desc: "88¤ (transferable, standard currency)" },
+              { item: "Credchip", desc: "28¤ (transferable, standard currency)" },
               { item: "App", desc: "Inter-D Cable Guide (0¤ value, completely non-functional)" },
               { item: "Data file", desc: "boogeraids_aidsbooger.enc (encrypted, unknown contents)" },
             ]}
@@ -445,7 +445,7 @@ export const FUN_COMMANDS = {
               { item: "Personal items", desc: "Collection of disguises (wigs, glasses, prosthetics)" },
             ]}
             digital={[
-              { item: "Credchip", desc: "78¤ (transferable)" },
+              { item: "Credchip", desc: "18¤ (transferable)" },
               { item: "Coupon code", desc: "PAWN20 (20% bonus on next pawn, expires in 1 month)" },
             ]}
             notes="Voice recognition changes weekly (matches current 'persona')"
@@ -715,7 +715,7 @@ export const FUN_COMMANDS = {
               { item: "Personal credchip", desc: "Unknown amount (owner's personal funds)" },
             ]}
             digital={[
-              { item: "Credchip", desc: "52¤ (bar petty cash, transferable)" },
+              { item: "Credchip", desc: "32¤ (bar petty cash, transferable)" },
               { item: "Coupon code", desc: "COMPILER25 (25% off next meetup event, expires in 1 month)" },
             ]}
             notes="Safe checked at opening (14:00) and closing (02:00)"
@@ -835,6 +835,11 @@ export const FUN_COMMANDS = {
   },
 
   "ATM (Tech District Corner)": {
+    password: {
+      pw: "fiatvalue",
+      hint: "It’s worth something because everyone agrees it is",
+      hintStrength: 1,
+    },
     content: (
       <ATM
         id="tech-district-atm"
