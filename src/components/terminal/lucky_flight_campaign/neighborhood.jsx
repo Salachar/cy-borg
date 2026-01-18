@@ -6,7 +6,12 @@ import {
   KeyValue,
   DataTable,
 } from '../TerminalComponents';
+
+import Safe from '../Safe';
 import LocalAd from '../LocalAd';
+import GameConsole from '../GameConsole';
+import Camera from '../Camera';
+import Tenet from '../Tenet';
 
 export const NEIGHBORHOOD_COMMANDS = {
   "Dice_Emporium_Ad": {
@@ -590,25 +595,21 @@ export const NEIGHBORHOOD_COMMANDS = {
           hintStrength: 1,
         },
         content: (
-          <>
-            <Line smoke large bold>[DIGITAL SAFE - MODEL DS-300]</Line>
-            <Line cyan>Location: Behind bar, under counter</Line>
-            <Divider />
-            <DataTable data={[
-              { label: "Status", value: "LOCKED" },
-              { label: "Security", value: "Electronic keypad" },
-              { label: "Last Access", value: "6 hours ago" },
-              { label: "Owner", value: "Voss (bar owner)" },
-            ]} />
-            <Divider />
-            <Section title="ESTIMATED CONTENTS:">
-              <Line yellow>Daily receipts (cash): 200-400¤</Line>
-              <Line yellow>Personal credchip: Unknown amount</Line>
-              <Line yellow>Bar license & documents</Line>
-            </Section>
-            <Divider />
-            <Line red>Safe checked at closing (02:00) and opening (14:00)</Line>
-          </>
+          <Safe
+            id="rusty-anchor-bar"
+            model="DS-300"
+            location="Behind bar, under counter"
+            owner="Voss (bar owner)"
+            security="Electronic keypad"
+            lastAccess="6 hours ago"
+            physical={[
+              { item: "Daily receipts", desc: "200-400¤ (cash, mixed bills)" },
+              { item: "Personal credchip", desc: "Unknown amount" },
+              { item: "Bar license & documents", desc: "Business papers, permits" },
+            ]}
+            digital={[]}
+            notes="Safe checked at closing (02:00) and opening (14:00)"
+          />
         ),
       },
 
@@ -688,24 +689,26 @@ export const NEIGHBORHOOD_COMMANDS = {
     related_commands: {
       "Lobby Camera (Torres)": {
         content: (
-          <>
-            <Line smoke large bold>[SECURITY CAMERA - LOBBY]</Line>
-            <Line cyan>Torres Apartments - Entrance view</Line>
-            <Divider />
-            <DataTable data={[
-              { label: "Status", value: "ACTIVE" },
-              { label: "Coverage", value: "Front entrance, mailboxes, stairs" },
-              { label: "Recording", value: "YES (7-day loop)" },
-              { label: "Storage", value: "Local server (basement)" },
-            ]} />
-            <Divider />
-            <Section title="BLIND SPOTS:">
-              <Line yellow>→ Side entrance (emergency exit only)</Line>
-              <Line yellow>→ Package locker area (partially blocked)</Line>
-            </Section>
-            <Divider />
-            <Line neon>Last maintenance: 3 months ago</Line>
-          </>
+          <Camera
+            id="torres-lobby-cam"
+            location="Torres Apartments - Entrance view"
+            coverage="Front entrance, mailboxes, stairs"
+            status="ACTIVE"
+            recording={true}
+            storage="Local server (basement)"
+            timeline={[
+              "Yesterday, 18:45 → Resident entered with groceries",
+              "Yesterday, 20:15 → Pizza delivery (Unit 4B)",
+              "Today, 07:30 → Multiple residents departing for work",
+              "Today, 12:00 → Mail carrier delivery",
+              "Today, 15:45 → Maintenance worker entered (scheduled repair)",
+            ]}
+            blindSpots={[
+              "Side entrance (emergency exit only)",
+              "Package locker area (partially blocked)",
+            ]}
+            lastMaintenance="3 months ago"
+          />
         ),
       },
 
@@ -742,6 +745,101 @@ export const NEIGHBORHOOD_COMMANDS = {
             <Line neon>Safe mounted to wall, relatively new installation</Line>
           </>
         ),
+      },
+
+      "Unit 4B Safe": {
+        password: {
+          pw: "dealer",
+          hint: "The resident's job at the casino",
+          hintStrength: 2,
+        },
+        content: (
+          <Safe
+            id="apartment-4b-dealer"
+            model="DS-250"
+            location="Unit 4B, bedroom closet shelf"
+            owner="Marcus Reeves (blackjack dealer)"
+            security="Digital keypad"
+            lastAccess="Yesterday evening"
+            physical={[
+              { item: "Staff uniform", desc: "Lucky Flight dealer vest and badge (clean, ready for shift)" },
+              { item: "Staff keycard", desc: "Employee access (gaming floor, break room, employee entrance)" },
+              { item: "Cash", desc: "280¤ (tips from last 2 weeks, unbanked)" },
+              { item: "Documents", desc: "Pay stubs, employee handbook, locker key" },
+            ]}
+            digital={[
+              { item: "Credchip", desc: "95¤ (personal spending money, transferable)" },
+              { item: "Schedule app", desc: "Shift calendar (next 2 weeks visible)" },
+            ]}
+            notes="Safe checked daily before and after casino shifts"
+          />
+        ),
+      },
+
+      "Unit 2A": {
+        content: (
+          <Tenet
+            id="CIT-2847-JT"
+            name="Jake Torres"
+            age={34}
+            dob="05/12/2048"
+            occupation="Facilities Maintenance Technician"
+            employer="Lucky Flight Casino"
+            district="Ports (Torres Apartments, Unit 2A)"
+            bio="Keeping the machines running so you can keep losing. Night shift life. Coffee addict. Builder of things."
+            interests={['Gaming', 'Electronics', 'DIY Projects', 'Mechanical Repair', 'Coffee', 'Cyberpunk Media']}
+            connections={47}
+            status="ACTIVE"
+            privacy="PUBLIC"
+          />
+        ),
+        related_commands: {
+          "Unit 2A Console": {
+            content: (
+              <GameConsole
+                model="CyberDeck Pro X"
+                owner="xXShadowHackerXx"
+                gameLoaded="Cyberpunk 2077: Ultra Edition"
+                friends={[
+                  { name: 'NoobMaster69', status: 'online', game: 'Call of Cyber' },
+                  { name: 'Elite_Sniper', status: 'offline' },
+                  { name: 'RazorEdge', status: 'online', game: 'Netrunner Arena' },
+                  { name: 'GhostReaper', status: 'offline' },
+                ]}
+              />
+            )
+          },
+
+          "Unit 2A Safe": {
+            password: {
+              pw: "maintenance",
+              hint: "The resident's department at the casino",
+              hintStrength: 2,
+            },
+            content: (
+              <Safe
+                id="apartment-2a-maintenance"
+                model="DS-200"
+                location="Unit 2A, kitchen cabinet (hidden)"
+                owner="Jake Torres (facilities maintenance)"
+                security="Combination lock (mechanical)"
+                lastAccess="2 days ago"
+                physical={[
+                  { item: "Work coveralls", desc: "Lucky Flight maintenance uniform (dirty, needs washing)" },
+                  { item: "Staff keycard", desc: "Maintenance access (service corridors, mechanical rooms, roof access)" },
+                  { item: "Master keys", desc: "Physical key ring (utility rooms, electrical panels, storage)" },
+                  { item: "Tools", desc: "Personal toolkit (screwdrivers, multimeter, duct tape)" },
+                  { item: "Cash", desc: "120¤ (emergency fund, small bills)" },
+                ]}
+                digital={[
+                  { item: "Credchip", desc: "85¤ (weekly pay, transferable)" },
+                  { item: "Building schematics", desc: "Casino floor plans (HVAC, electrical, plumbing)" },
+                ]}
+                notes="Maintenance worker has extensive building access - keys rarely logged"
+              />
+            ),
+          },
+        }
       },
 
       access_building_management: {

@@ -1,13 +1,14 @@
 import {
   Line,
-  Box,
   Section,
-  ListItem,
-  Warning,
   Divider,
   KeyValue,
   DataTable,
 } from '../TerminalComponents';
+
+import Safe from '../Safe';
+import ATM from '../ATM';
+import Camera from '../Camera';
 
 export const FUN_COMMANDS = {
 
@@ -96,33 +97,21 @@ export const FUN_COMMANDS = {
           hintStrength: 2,
         },
         content: (
-          <>
-            <Line smoke large bold>[DIGITAL SAFE - MODEL DS-400]</Line>
-            <Line cyan>Location: Unit 6C, bedroom closet shelf</Line>
-            <Divider />
-            <DataTable data={[
-              { label: "Status", value: "LOCKED" },
-              { label: "Security", value: "Digital keypad + biometric" },
-              { label: "Last Access", value: "3 days ago" },
-              { label: "Owner", value: "Mira Chen (fitness instructor)" },
-            ]} />
-            <Divider />
-            <Section title="PHYSICAL CONTENTS (Requires presence):">
-              <Line yellow>→ Cash: 180¤ (emergency fund, small bills)</Line>
-              <Line yellow>→ Documents: Instructor certifications, passport</Line>
-              <Line yellow>→ Jewelry: Gold necklace (gift from grandmother)</Line>
-              <Line yellow>→ USB drive: Workout program files (backup)</Line>
-            </Section>
-            <Divider />
-            <Section title="DIGITAL CONTENTS (Extractable remotely):">
-              <Line cyan>→ Credchip: 65¤ (transferable)</Line>
-              <Line cyan>→ Coupon code: FITLIFE20 (20% off nutrition supplements, expires in 2 weeks)</Line>
-              <Line cyan>→ App: "Calorie Counter Basic" (0.3¤ value, ad-supported version)</Line>
-              <Line cyan>→ Data file: Client contact list (sellable to competitors for 30-50¤)</Line>
-            </Section>
-            <Divider />
-            <Line neon>Safe installed 18 months ago, biometric recently added</Line>
-          </>
+          <Safe
+            id="silverpeak-6c"
+            model="DS-400"
+            location="Unit 6C, bedroom closet shelf"
+            owner="Mira Chen (fitness instructor)"
+            security="Digital keypad + biometric"
+            lastAccess="3 days ago"
+            physical={[
+              { item: "Cash", desc: "180¤ (emergency fund)" },
+            ]}
+            digital={[
+              { item: "Credchip", desc: "65¤ (transferable)" },
+            ]}
+            notes="Safe installed 18 months ago"
+          />
         ),
       },
 
@@ -197,32 +186,26 @@ export const FUN_COMMANDS = {
     related_commands: {
       "Dock Security Camera (Cascade)": {
         content: (
-          <>
-            <Line smoke large bold>[SECURITY CAMERA - CANAL DOCK]</Line>
-            <Line cyan>Location: Cascade Heights rear dock</Line>
-            <Divider />
-            <DataTable data={[
-              { label: "Status", value: "ACTIVE (weather-damaged lens)" },
-              { label: "Coverage", value: "Dock entrance, partial water view" },
-              { label: "Recording", value: "YES (14-day loop, frequently overwrites)" },
-              { label: "Storage", value: "Local server (basement, often offline)" },
-            ]} />
-            <Divider />
-            <Section title="BLIND SPOTS:">
-              <Line yellow>→ Left side of dock (camera angle issue)</Line>
-              <Line yellow>→ Under dock platform (structural obstruction)</Line>
-              <Line yellow>→ Water approach from east (lens damage)</Line>
-            </Section>
-            <Divider />
-            <Section title="RECENT ACTIVITY (Last 24h):">
-              <Line neon>08:15 → Resident departed by small boat</Line>
-              <Line neon>14:30 → Delivery boat docked (package dropoff)</Line>
-              <Line neon>19:45 → Resident returned, boat secured</Line>
-              <Line yellow>23:00 → Unknown individual near dock (obscured by lens damage)</Line>
-            </Section>
-            <Divider />
-            <Line red>Last maintenance: 8 months ago (overdue for cleaning/repair)</Line>
-          </>
+          <Camera
+            id="cascade-dock-cam"
+            location="Cascade Heights - Rear dock entrance"
+            coverage="Dock entrance, partial water view"
+            status="ACTIVE"
+            recording={true}
+            storage="Local server (basement, often offline)"
+            timeline={[
+              "08:15 → Resident departed by small boat",
+              "14:30 → Delivery boat docked (package dropoff)",
+              "19:45 → Resident returned, boat secured",
+              "23:00 → Unknown individual near dock (obscured by lens damage)",
+            ]}
+            blindSpots={[
+              "Left side of dock (camera angle issue)",
+              "Under dock platform (structural obstruction)",
+              "Water approach from east (lens damage)",
+            ]}
+            lastMaintenance="8 months ago (overdue for cleaning/repair)"
+          />
         ),
       },
 
@@ -383,33 +366,27 @@ export const FUN_COMMANDS = {
           hintStrength: 3,
         },
         content: (
-          <>
-            <Line smoke large bold>[DIGITAL SAFE - MODEL ???]</Line>
-            <Line cyan>Location: Back room, behind shelving unit</Line>
-            <Divider />
-            <DataTable data={[
-              { label: "Status", value: "LOCKED" },
-              { label: "Security", value: "Unknown technology (not standard)" },
-              { label: "Last Access", value: "Unknown (no logs available)" },
-              { label: "Owner", value: "R. Sanchez" },
-            ]} />
-            <Divider />
-            <Section title="PHYSICAL CONTENTS (Requires presence):">
-              <Line yellow>→ Cash: Unknown amount (safe makes weird noises)</Line>
-              <Line yellow>→ Documents: Patents? Blueprints? (language unrecognizable)</Line>
-              <Line yellow>→ Vials: Green liquid (DO NOT CONSUME)</Line>
-              <Line yellow>→ Device components: Unknown purpose (possibly dangerous)</Line>
-            </Section>
-            <Divider />
-            <Section title="DIGITAL CONTENTS (Extractable remotely):">
-              <Line cyan>→ Credchip: 88¤ (transferable, standard currency)</Line>
-              <Line cyan>→ App: "Inter-D Cable Guide" (0¤ value, completely non-functional)</Line>
-              <Line cyan>→ App: "Portal Calculator" (??? value, probably shouldn't run this)</Line>
-              <Line cyan>→ Data file: "Definitely_Not_Schematics.enc" (encrypted, unknown contents)</Line>
-            </Section>
-            <Divider />
-            <Warning>Safe appears to phase in and out of visibility occasionally</Warning>
-          </>
+          <Safe
+            id="sanchez-garage-backroom"
+            model="???"
+            location="Back room, behind shelving unit"
+            owner="R. Sanchez"
+            security="Unknown technology (not standard)"
+            lastAccess="Unknown (no logs available)"
+            physical={[
+              { item: "Cash", desc: "Unknown amount (safe makes weird noises)" },
+              { item: "Documents", desc: "Patents? Blueprints? (language unrecognizable)" },
+              { item: "Vials", desc: "Green liquid (DO NOT CONSUME)" },
+              { item: "Device components", desc: "Unknown purpose (possibly dangerous)" },
+            ]}
+            digital={[
+              { item: "Credchip", desc: "88¤ (transferable, standard currency)" },
+              { item: "App", desc: "Inter-D Cable Guide (0¤ value, completely non-functional)" },
+              { item: "App", desc: "Portal Calculator (??? value, probably shouldn't run this)" },
+              { item: "Data file", desc: "Definitely_Not_Schematics.enc (encrypted, unknown contents)" },
+            ]}
+            notes="⚠ Safe appears to phase in and out of visibility occasionally"
+          />
         ),
       },
     },
@@ -463,33 +440,27 @@ export const FUN_COMMANDS = {
           hintStrength: 2,
         },
         content: (
-          <>
-            <Line smoke large bold>[DIGITAL SAFE - MODEL DS-350]</Line>
-            <Line cyan>Location: Behind counter, floor-mounted</Line>
-            <Divider />
-            <DataTable data={[
-              { label: "Status", value: "LOCKED" },
-              { label: "Security", value: "Combination + voice recognition" },
-              { label: "Last Access", value: "This morning (opening)" },
-              { label: "Owner", value: "Roger Smith (this week's name)" },
-            ]} />
-            <Divider />
-            <Section title="PHYSICAL CONTENTS (Requires presence):">
-              <Line yellow>→ Cash: 520¤ (daily receipts + emergency fund)</Line>
-              <Line yellow>→ High-value jewelry: Wedding rings (3), gold chains (2)</Line>
-              <Line yellow>→ Documents: Business license, insurance papers</Line>
-              <Line yellow>→ Personal items: Collection of disguises (wigs, glasses, prosthetics)</Line>
-            </Section>
-            <Divider />
-            <Section title="DIGITAL CONTENTS (Extractable remotely):">
-              <Line cyan>→ Credchip: 78¤ (transferable)</Line>
-              <Line cyan>→ Coupon code: PAWN20 (20% bonus on next pawn, expires in 1 month)</Line>
-              <Line cyan>→ App: "Voice Modulator Lite" (0.8¤ value, basic functionality)</Line>
-              <Line cyan>→ Data file: Customer database (sellable to competitors for 40-60¤)</Line>
-            </Section>
-            <Divider />
-            <Line neon>Voice recognition changes weekly (matches current "persona")</Line>
-          </>
+          <Safe
+            id="pawn-shop-counter"
+            model="DS-350"
+            location="Behind counter, floor-mounted"
+            owner="Roger Smith (this week's name)"
+            security="Combination + voice recognition"
+            lastAccess="This morning (opening)"
+            physical={[
+              { item: "Cash", desc: "520¤ (daily receipts + emergency fund)" },
+              { item: "High-value jewelry", desc: "Wedding rings (3), gold chains (2)" },
+              { item: "Documents", desc: "Business license, insurance papers" },
+              { item: "Personal items", desc: "Collection of disguises (wigs, glasses, prosthetics)" },
+            ]}
+            digital={[
+              { item: "Credchip", desc: "78¤ (transferable)" },
+              { item: "Coupon code", desc: "PAWN20 (20% bonus on next pawn, expires in 1 month)" },
+              { item: "App", desc: "Voice Modulator Lite (0.8¤ value, basic functionality)" },
+              { item: "Data file", desc: "Customer database (sellable to competitors for 40-60¤)" },
+            ]}
+            notes="Voice recognition changes weekly (matches current 'persona')"
+          />
         ),
       },
 
@@ -893,35 +864,22 @@ export const FUN_COMMANDS = {
 
   "ATM (Tech District Corner)": {
     content: (
-      <>
-        <Line smoke large bold>[ATM - MODEL ATM-600]</Line>
-        <Line cyan>Location: Tech district, corner of Innovation Ave & 7th</Line>
-        <Divider />
-        <DataTable data={[
-          { label: "Status", value: "ONLINE" },
-          { label: "Network", value: "CityBank Network" },
-          { label: "Cash Available", value: "~1,800¤ (estimated)" },
-          { label: "Last Service", value: "5 days ago" },
-        ]} />
-        <Divider />
-        <Section title="RECENT TRANSACTIONS (Last 12h):">
-          <Line neon>08:15 → Withdrawal: 100¤</Line>
-          <Line neon>09:42 → Balance inquiry</Line>
-          <Line neon>11:18 → Withdrawal: 60¤</Line>
-          <Line yellow>13:05 → Failed transaction (insufficient funds)</Line>
-          <Line neon>14:33 → Withdrawal: 200¤</Line>
-          <Line neon>16:08 → Withdrawal: 40¤</Line>
-          <Line neon>17:52 → Balance inquiry</Line>
-        </Section>
-        <Divider />
-        <Section title="MAINTENANCE SCHEDULE:">
-          <Line cyan>Cash replenishment: Thursdays, 09:00</Line>
-          <Line cyan>Receipt paper: Checked weekly</Line>
-          <Line cyan>Software updates: Monthly (last: 2 weeks ago)</Line>
-        </Section>
-        <Divider />
-        <Line yellow>Security: Standard bank encryption, camera monitored</Line>
-      </>
+      <ATM
+        id="tech-district-atm"
+        model="ATM-600"
+        location="Tech district, corner of Innovation Ave & 7th"
+        network="CityBank Network"
+        accountHolder="Sarah Chen (tech worker)"
+        balance="847¤"
+        recentTransactions={[
+          "08:15 → Withdrawal: 100¤",
+          "09:42 → Balance inquiry",
+          "11:18 → Withdrawal: 60¤",
+          "14:33 → Deposit: 200¤ (paycheck)",
+          "16:08 → Withdrawal: 40¤",
+        ]}
+        lastService="5 days ago"
+      />
     ),
   },
 

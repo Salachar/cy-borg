@@ -8,6 +8,10 @@ import {
   DataTable,
 } from '../../TerminalComponents';
 
+import VendingMachine from '../../VendingMachine';
+import Safe from '../../Safe';
+import ATM from '../../ATM';
+
 import LuckyFlightAd from './ad'
 import LuckyFlightBasement from './LuckyFlightBasement';
 import LuckyFlightFloor1 from './LuckyFlightFloor1';
@@ -48,6 +52,26 @@ export const LUCKY_FLIGHT_CASINO = {
       </>
     ),
     related_commands: {
+      "Lucky Flight Lobby ATM": {
+        content: (
+          <ATM
+            id="lfc-lobby-atm"
+            model="ATM-700X"
+            location="Lucky Flight Casino - Main lobby (near entrance)"
+            network="CasinoBlizzFunds Network"
+            cashAvailable="5,000¤ (high capacity)"
+            lastService="Yesterday"
+            transactions={[
+              "2 hours ago → Withdrawal: 200¤",
+              "3 hours ago → Withdrawal: 500¤",
+              "4 hours ago → Failed transaction (insufficient funds)",
+              "5 hours ago → Withdrawal: 100¤",
+              "6 hours ago → Withdrawal: 1,000¤",
+            ]}
+          />
+        ),
+      },
+
       "Happy Hour Specials! (lfc)": {
         content: (
           <>
@@ -122,30 +146,90 @@ export const LUCKY_FLIGHT_CASINO = {
         ),
       },
 
-      "NukaCola_vending_frg_003 (lfc_lobby)": {
-        password: {
-          pw: "nukacola",
-          hint: "It's the soda this dispenses! CHANGE ME!",
-          hintStrength: 3,
-        },
+      "NukaCola Vending (Lucky Flight Lobby)": {
         content: (
-          <>
-            <Line cyan pulse>[ACCESSING...]</Line>
-            <Line neon>Maintenance Connection Established</Line>
-          </>
+          <VendingMachine
+            id="lfc-lobby-nuka"
+            model="NukaCola Dispenser 3000"
+            location="Lucky Flight Casino - Main lobby"
+            drinks={[
+              { name: 'NUKA COLA', pattern: 'circles', color: 'red', available: true },
+              { name: 'NUKA CHERRY', pattern: 'dots', color: 'red', available: true },
+              { name: 'NUKA ORANGE', pattern: 'circles', color: 'orange', available: true },
+              { name: 'NUKA QUANTUM', pattern: 'waves', color: 'blue', available: false }, // Sold out
+              { name: 'NUKA GRAPE', pattern: 'blocks', color: 'purple', available: true },
+              { name: 'WATER', pattern: 'lines', color: 'blue', available: true },
+            ]}
+          />
         ),
         related_commands: {
-          "dispense_NukaCola_vending_frg_003": {
+          "Maintenance Access": {
+            password: {
+              pw: "refresh",
+              hint: "What you do to restock the machine",
+              hintStrength: 2,
+            },
             content: (
               <>
-                <Line cyan>[ACCESSING...]</Line>
-                <Line neon>Bypassing payment...</Line>
-                <Line cyan>Dispensing Nuka Cola...</Line>
-                <Line neon>🥤 Enjoy!</Line>
+                <Line smoke large bold>[MAINTENANCE MENU]</Line>
+                <Line cyan>[EMPLOYEE ACCESS GRANTED]</Line>
+                <Divider />
+                <Section title="AVAILABLE OPTIONS:">
+                  <Line neon>→ Restock inventory</Line>
+                  <Line neon>→ Access internal safe</Line>
+                  <Line neon>→ Debug mode</Line>
+                </Section>
               </>
             ),
-          }
-        }
+            related_commands: {
+              "Internal Safe": {
+                password: {
+                  pw: "coins",
+                  hint: "What accumulates in the cash box",
+                  hintStrength: 1,
+                },
+                content: (
+                  <Safe
+                    id="nukacola-lfc-lobby"
+                    model="VM-CASH-200"
+                    location="Internal cash collection box"
+                    owner="Lucky Flight Casino (vending services)"
+                    security="Maintenance keypad"
+                    lastAccess="Yesterday (routine collection)"
+                    physical={[
+                      { item: "Coins", desc: "120¤ in change (heavy, mixed denominations)" },
+                      { item: "Service log", desc: "Paper logbook (last 3 months)" },
+                    ]}
+                    digital={[
+                      { item: "Credchip", desc: "85¤ (daily receipts, transferable)" },
+                      { item: "Transaction log", desc: "Last 500 purchases logged" },
+                    ]}
+                    notes="Machine empties automatically to casino vault nightly at 03:00"
+                  />
+                ),
+              },
+              "Debug Mode": {
+                password: {
+                  pw: "freevend",
+                  hint: "The mode that gives away drinks",
+                  hintStrength: 2,
+                },
+                content: (
+                  <>
+                    <Line smoke large bold>[DEBUG MODE ACTIVATED]</Line>
+                    <Divider />
+                    <Line yellow large>⚠ FREE VEND MODE ENABLED</Line>
+                    <Line cyan>All payment verification disabled</Line>
+                    <Line cyan>All selections available without credchip</Line>
+                    <Divider />
+                    <Line neon>Dispense drinks via main interface - no charge</Line>
+                    <Line yellow>Warning: Leaves audit trail in transaction log</Line>
+                  </>
+                ),
+              },
+            },
+          },
+        },
       },
 
       "access_casino_internal_network (lfc)": {
@@ -494,13 +578,6 @@ export const LUCKY_FLIGHT_CASINO = {
                       <KeyValue label="Outstanding Debts" value="12,000¤" />
                       <KeyValue label="Creditors" value="Multiple (lifestyle expenses)" />
                       <Line red>⚠ Financial pressure noted by corporate oversight</Line>
-                    </Section>
-                    <Divider color="yellow" />
-                    <Section title="ACCESS & EQUIPMENT:">
-                      <Line yellow>Master keycard: All areas except Power Core</Line>
-                      <Line yellow>Office safe: Contains additional 750¤ on anonymous credchip</Line>
-                      <Line yellow>Vault key: Kept in office (desk drawer or jacket pocket)</Line>
-                      <Line yellow>Personal weapon: Ancient revolver (8 rounds, rarely carried)</Line>
                     </Section>
                     <Divider color="yellow" />
                     <Section title="RECENT ACTIVITY:">

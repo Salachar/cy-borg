@@ -8,6 +8,8 @@ import {
   DataTable,
 } from '../../TerminalComponents';
 
+import Safe from '../../Safe';
+
 import StoneEelsAd from './ad';
 
 export const STONE_EELS_COMMANDS = {
@@ -317,39 +319,28 @@ export const STONE_EELS_COMMANDS = {
               hintStrength: 3,
             },
             content: (
-              <>
-                <Line smoke large bold>[DIGITAL SAFE - MODEL DS-500X]</Line>
-                <Line cyan>Location: Management office, back room (behind poster)</Line>
-                <Divider />
-                <DataTable data={[
-                  { label: "Status", value: "LOCKED" },
-                  { label: "Security", value: "Biometric (fingerprint) + keypad" },
-                  { label: "Last Access", value: "Yesterday evening (21:30)" },
-                  { label: "Owner", value: "Stone Eels leadership" },
-                ]} />
-                <Divider />
-
-                <Section title="PHYSICAL CONTENTS (Requires presence):">
-                  <Line yellow>→ Cash: 1,200¤ (nightly bar receipts, mixed bills)</Line>
-                  <Line yellow>→ Documents: Property deed, business licenses, insurance</Line>
-                  <Line yellow>→ Weapons: 2 backup handguns (emergency stash, 9mm)</Line>
-                  <Line yellow>→ Product samples: Quality control inventory (Stone Eels brand)</Line>
-                  <Line yellow>→ Keys: Access to 3 safe houses, storage units</Line>
-                </Section>
-
-                <Divider />
-
-                <Section title="DIGITAL CONTENTS (Extractable remotely):">
-                  <Line cyan>→ Credchip: 85¤ (petty cash fund, transferable)</Line>
-                  <Line cyan>→ Coupon code: CAVECLUB50 (50% off cover charge, expires in 1 month)</Line>
-                  <Line cyan>→ App: "Event Scheduler Pro" (2¤ value, booking management)</Line>
-                  <Line cyan>→ Data file: VIP guest list with contact info (sellable to rivals for 60-100¤)</Line>
-                </Section>
-
-                <Divider />
-                <Line red>⚠ Safe alarm connected to security station (silent trigger)</Line>
-                <Line yellow>Biometric access: Saša + 2 senior members</Line>
-              </>
+              <Safe
+                id="cave-club-backoffice"
+                model="DS-500X"
+                location="Management office, back room (behind poster)"
+                owner="Stone Eels leadership"
+                security="Biometric (fingerprint) + keypad"
+                lastAccess="Yesterday evening (21:30)"
+                physical={[
+                  { item: "Cash", desc: "1,200¤ (nightly bar receipts, mixed bills)" },
+                  { item: "Documents", desc: "Property deed, business licenses, insurance" },
+                  { item: "Weapons", desc: "2 backup handguns (emergency stash, 9mm)" },
+                  { item: "Product samples", desc: "Quality control inventory (Stone Eels brand)" },
+                  { item: "Keys", desc: "Access to 3 safe houses, storage units" },
+                ]}
+                digital={[
+                  { item: "Credchip", desc: "85¤ (petty cash fund, transferable)" },
+                  { item: "Coupon code", desc: "CAVECLUB50 (50% off cover charge, expires in 1 month)" },
+                  { item: "App", desc: "Event Scheduler Pro (2¤ value, booking management)" },
+                  { item: "Data file", desc: "VIP guest list with contact info (sellable to rivals for 60-100¤)" },
+                ]}
+                notes="⚠ Safe alarm connected to security station (silent trigger) | Biometric access: Saša + 2 senior members"
+              />
             ),
           },
 

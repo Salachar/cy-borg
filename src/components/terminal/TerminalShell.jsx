@@ -63,7 +63,7 @@ export default function TerminalShell({
   });
 
   // Available animals
-  const animals = ['fox', 'turtle', 'cat-tiger'];
+  const animals = ['fox', 'turtle', 'cat-tiger', 'wolf'];
 
   // Persist to localStorage
   useEffect(() => {
@@ -85,16 +85,6 @@ export default function TerminalShell({
     const currentIndex = animals.indexOf(currentAnimal);
     const prevIndex = (currentIndex - 1 + animals.length) % animals.length;
     setCurrentAnimal(animals[prevIndex]);
-  };
-
-  // Get display name for current animal
-  const getAnimalDisplayName = () => {
-    const names = {
-      'fox': 'FOX',
-      'turtle': 'TURTLE',
-      'cat-tiger': 'CAT',
-    };
-    return names[currentAnimal] || currentAnimal.toUpperCase();
   };
 
   return (

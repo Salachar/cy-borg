@@ -1,7 +1,7 @@
-import SPRITE_SHEET from "../../../../images/mascots/red-fox.png"
+import SPRITE_SHEET from "../../../../images/mascots/wolf.png"
 
-export const FOX_SPRITE = {
-  name: 'fox',
+export const WOLF_SPRITE = {
+  name: 'wolf',
   spriteSheet: SPRITE_SHEET,
   frameWidth: 32,
   frameHeight: 32,

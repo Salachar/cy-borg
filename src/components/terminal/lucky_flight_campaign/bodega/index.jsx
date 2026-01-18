@@ -8,6 +8,11 @@ import {
   DataTable,
 } from '../../TerminalComponents';
 
+import ATM from '../../ATM';
+import VendingMachine from '../../VendingMachine';
+import Safe from '../../Safe';
+import Camera from "../../Camera";
+
 import BatusBodegaAd from './ad'
 
 export const BODEGA_COMMANDS = {
@@ -34,6 +39,106 @@ export const BODEGA_COMMANDS = {
       </>
     ),
     related_commands: {
+      "Bodega ATM": {
+        content: (
+          <ATM
+            id="bodega-corner-atm"
+            model="ATM-350"
+            location="Inside Batu's Bodega - Near entrance"
+            network="CityBank"
+            cashAvailable="800¤ (estimated)"
+            lastService="2 weeks ago"
+            transactions={[
+              "3 days ago, 19:42 → Withdrawal: 40¤",
+              "3 days ago, 18:15 → Withdrawal: 20¤",
+              "3 days ago, 16:33 → Balance inquiry",
+              "4 days ago, 20:01 → Withdrawal: 60¤",
+            ]}
+          />
+        ),
+      },
+
+      "Bodega Vending Machine": {
+        content: (
+          <VendingMachine
+            id="bodega-outside-vending"
+            model="QuickDrinx 2000"
+            location="Outside Batu's Bodega - Street side"
+            drinks={[
+              { name: 'ENERGY Z++', pattern: 'lines', color: 'yellow', available: true },
+              { name: 'COLA SYNTH', pattern: 'blocks', color: 'red', available: true },
+              { name: 'CYBORANGE', pattern: 'circles', color: 'orange', available: true },
+              { name: 'WATER', pattern: 'waves', color: 'blue', available: false }, // Sold out
+              { name: 'COFFEE STIM', pattern: 'dots', color: 'purple', available: true },
+            ]}
+          />
+        ),
+        related_commands: {
+          "Maintenance Access": {
+            password: {
+              pw: "refresh",
+              hint: "What you do to restock the machine",
+              hintStrength: 2,
+            },
+            content: (
+              <>
+                <Line smoke large bold>[MAINTENANCE MENU]</Line>
+                <Line cyan>[EMPLOYEE ACCESS GRANTED]</Line>
+                <Divider />
+                <Section title="AVAILABLE OPTIONS:">
+                  <Line neon>→ Restock inventory</Line>
+                  <Line neon>→ Access internal safe</Line>
+                  <Line neon>→ Debug mode</Line>
+                </Section>
+              </>
+            ),
+            related_commands: {
+              "Internal Safe": {
+                password: {
+                  pw: "coins",
+                  hint: "What accumulates in the cash box",
+                  hintStrength: 1,
+                },
+                content: (
+                  <Safe
+                    id="bodega-vending-machine"
+                    model="VM-CASH-100"
+                    location="Internal cash collection box"
+                    owner="Beverage Corp (vending division)"
+                    security="Maintenance keypad"
+                    lastAccess="2 weeks ago (missed last service)"
+                    physical={[
+                      { item: "Coins", desc: "95¤ in change (neglected, getting full)" },
+                    ]}
+                    digital={[
+                      { item: "Credchip", desc: "62¤ (2 weeks of receipts, transferable)" },
+                    ]}
+                    notes="Machine service overdue - cash box nearly full"
+                  />
+                ),
+              },
+              "Debug Mode": {
+                password: {
+                  pw: "freevend",
+                  hint: "The mode that gives away drinks",
+                  hintStrength: 2,
+                },
+                content: (
+                  <>
+                    <Line smoke large bold>[DEBUG MODE ACTIVATED]</Line>
+                    <Divider />
+                    <Line yellow large>⚠ FREE VEND MODE ENABLED</Line>
+                    <Line cyan>All payment verification disabled</Line>
+                    <Divider />
+                    <Line neon>Dispense drinks via main interface - no charge</Line>
+                  </>
+                ),
+              },
+            },
+          },
+        },
+      },
+
       "Deals!": {
         content: (
           <>
@@ -150,35 +255,38 @@ export const BODEGA_COMMANDS = {
         related_commands: {
           access_bodega_security_cam: {
             content: (
-              <>
-                <Line smoke large bold>[SECURITY FOOTAGE ARCHIVE]</Line>
-                <Line cyan>[ACCESSING LAST 72 HOURS...]</Line>
-                <Divider />
-                <Section title="3 DAYS AGO (Timeline):">
-                  <Line neon>19:15 → Batu closes register (earlier than usual)</Line>
-                  <Line neon>19:30 → Last customers exit</Line>
-                  <Line neon>19:45 → Batu locks front door, exits</Line>
-                  <Line neon>19:47 → Batu walks north on Drech Ave (direction: casino)</Line>
-                  <Line yellow>20:00-22:00 → Store empty, lights remain on</Line>
-                  <Line yellow>22:15 → Unidentified individual tries door, leaves</Line>
-                  <Line red>22:30 → FEED LOST (power outage to building)</Line>
-                </Section>
-                <Divider />
-                <Section title="2 DAYS AGO:">
-                  <Line red>No footage - camera offline</Line>
-                </Section>
-                <Divider />
-                <Section title="YESTERDAY:">
-                  <Line cyan>07:00 → Power restored, camera active</Line>
-                  <Line red>07:15 → Front window shattered (impact visible)</Line>
-                  <Line neon>07:16 → Three individuals enter through broken window</Line>
-                  <Line neon>07:17-07:45 → Store looted (shelves cleared, register opened)</Line>
-                  <Line yellow>07:46 → Stone Eels gang tag spray-painted on wall</Line>
-                  <Line neon>07:47 → Individuals exit, head east on foot</Line>
-                </Section>
-                <Divider />
-                <Line yellow>Note: Camera angle doesn't capture Lucky Flight Casino entrance</Line>
-              </>
+              <Camera
+                id="bodega-main-cam"
+                location="Batu's Bodega - Main room (above counter)"
+                coverage="Front entrance, counter, register, main aisles"
+                status="ACTIVE"
+                recording={true}
+                storage="Local server (basement)"
+                timeline={[
+                  "19:15 → Batu closes register (earlier than usual)",
+                  "19:30 → Last customers exit",
+                  "19:45 → Batu locks front door, exits",
+                  "19:47 → Batu walks north on Drech Ave (direction: casino)",
+                  "20:00-22:00 → Store empty, lights remain on",
+                  "22:15 → Unidentified individual tries door, leaves",
+                  "22:30 → FEED LOST (power outage to building)",
+                  "--- 2 DAYS AGO ---",
+                  "No footage - camera offline",
+                  "--- YESTERDAY ---",
+                  "07:00 → Power restored, camera active",
+                  "07:15 → Front window shattered (impact visible)",
+                  "07:16 → Three individuals enter through broken window",
+                  "07:17-07:45 → Store looted (shelves cleared, register opened)",
+                  "07:46 → Stone Eels gang tag spray-painted on wall",
+                  "07:47 → Individuals exit, head east on foot",
+                ]}
+                blindSpots={[
+                  "Side entrance (emergency exit only)",
+                  "Back storage room",
+                  "Batu's office area",
+                ]}
+                lastMaintenance="3 months ago"
+              />
             ),
           },
 
@@ -329,6 +437,35 @@ export const BODEGA_COMMANDS = {
                 <Line cyan>Store layout unchanged - familiar to regulars</Line>
                 <Line yellow>Free wifi still active</Line>
               </>
+            ),
+          },
+
+          "Batu's Office Safe": {
+            password: {
+              pw: "zara",
+              hint: "His niece's name",
+              hintStrength: 2,
+            },
+            content: (
+              <Safe
+                id="bodega-office-safe"
+                model="DS-200"
+                location="Batu's office - Behind framed bodega opening photo"
+                owner="Batu Khamidov"
+                security="4-digit PIN"
+                lastAccess="3 days ago (before disappearance)"
+                physical={[
+                  { item: "Emergency cash", desc: "180¤ (small bills, last reserves)" },
+                  { item: "Documents", desc: "Bodega deed, Zara's medical records" },
+                  { item: "Personal items", desc: "Family photos, wedding ring (deceased wife)" },
+                  { item: "Casino chip", desc: "Lucky Flight 100¤ chip (never cashed, sentimental)" },
+                ]}
+                digital={[
+                  { item: "Credchip", desc: "22¤ (personal savings, transferable)" },
+                  { item: "Note", desc: "Goodbye letter to Zara (unsent, dated 3 days ago)" },
+                ]}
+                notes="Safe contains Batu's last personal effects before confronting casino"
+              />
             ),
           },
         },

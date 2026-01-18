@@ -1,6 +1,7 @@
 import { FOX_SPRITE } from './animals/fox';
 import { TURTLE_SPRITE } from './animals/turtle';
 import { CAT_TIGER_SPRITE } from './animals/cat-tiger';
+import { WOLF_SPRITE } from './animals/wolf';
 
 export const ANIMAL_REGISTRY = {
   'fox': {
@@ -14,6 +15,10 @@ export const ANIMAL_REGISTRY = {
   'cat-tiger': {
     ...CAT_TIGER_SPRITE,
     displayName: 'Tiger Cat',
+  },
+  'wolf': {
+    ...WOLF_SPRITE,
+    displayName: 'Wolf',
   },
 };
 
