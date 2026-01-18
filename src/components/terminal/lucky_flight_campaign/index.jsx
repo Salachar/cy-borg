@@ -12,6 +12,8 @@ import { NEIGHBORHOOD_COMMANDS } from './neighborhood';
 import { FUN_COMMANDS } from './fun';
 import { WAREHOUSE_COMMANDS } from './warehouse';
 
+import Briefing from '../Briefing';
+
 export const LUCKY_FLIGHT_TAKEDOWN_COMMANDS = {
   "Local Access Points": {
     password: {
@@ -25,29 +27,41 @@ export const LUCKY_FLIGHT_TAKEDOWN_COMMANDS = {
     related_commands: {
       "Charlie's Mission Brief": {
         content: (
-          <Box color="cyan">
-            <Line cyan bold>[MISSION - CHARLIE SAND]</Line>
-            <Divider />
-            <Section title="PRIMARY:">
-              <Line red>Destroy debt records</Line>
-              <Line smoke>Records are stored in an offline database</Line>
-              <Line smoke>Likely located on/near the 2nd Floor tech room</Line>
-            </Section>
-            <Divider />
-            <Section title="SECONDARY:">
-              <Line yellow>Find Batu</Line>
-              <Line cyan>Bonus: If rescued alive</Line>
-              <Line yellow>Permanently close the casino</Line>
-              <Line smoke>Likely located in the basement security room</Line>
-            </Section>
-            <Divider />
-            <Section title="PAYMENT:">
-              <Line neon>Decommissioned patrol car</Line>
-              <Line cyan>+ Bonus for Batu</Line>
-            </Section>
-            <Divider />
-            <Line red>Keep it QUIET. NO mass murder.</Line>
-          </Box>
+          <Briefing
+            title="Operation Lucky Strike"
+            issuer="Charlie Sand"
+            classification="CLASSIFIED"
+            primary={[
+              {
+                text: "Destroy debt records",
+                note: "Records stored in offline database - somewhere above the 1st floor.",
+                priority: "critical",
+              },
+            ]}
+            secondary={[
+              {
+                text: "Find Batu",
+                note: "Bonus payment if rescued alive",
+                priority: "high",
+              },
+              {
+                text: "Permanently close the casino",
+                note: "Secondary priority - after primary objective complete",
+                priority: "normal",
+              },
+            ]}
+            payment={[
+              "Decommissioned patrol car (fully functional)",
+              "Bonus: +500¤ if Batu rescued alive",
+              "Neighborhood goodwill (priceless)",
+            ]}
+            warnings={[
+              "Keep it QUIET. NO mass murder.",
+              "SecOps has casino on watchlist - heavy response if alerted",
+              "Casino employees are not the enemy - avoid unnecessary casualties",
+            ]}
+            footer="Remember: We're doing this for the neighborhood, some of them have to work there."
+          />
         ),
       },
       ...BODEGA_COMMANDS,

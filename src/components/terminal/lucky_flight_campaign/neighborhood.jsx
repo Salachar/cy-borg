@@ -512,8 +512,8 @@ export const NEIGHBORHOOD_COMMANDS = {
 
       access_shop_internal: {
         password: {
-          pw: "mira",
-          hint: "Shop owner's first name",
+          pw: "boxesboxesboxes",
+          hint: "So many boxes",
           hintStrength: 1,
         },
         content: (
@@ -590,9 +590,9 @@ export const NEIGHBORHOOD_COMMANDS = {
     related_commands: {
       access_bar_safe: {
         password: {
-          pw: "anchor",
-          hint: "The bar's name",
-          hintStrength: 1,
+          pw: "crustacean",
+          hint: "Crabs and such",
+          hintStrength: 2,
         },
         content: (
           <Safe
@@ -714,8 +714,8 @@ export const NEIGHBORHOOD_COMMANDS = {
 
       "Unit 3B Safe": {
         password: {
-          pw: "torres",
-          hint: "Building name",
+          pw: "localhost",
+          hint: "This terminal doesn’t trust the outside world",
           hintStrength: 1,
         },
         content: (
@@ -835,8 +835,8 @@ export const NEIGHBORHOOD_COMMANDS = {
 
       access_building_management: {
         password: {
-          pw: "mendez",
-          hint: "Building manager's last name",
+          pw: "blind",
+          hint: "You pay before you see",
           hintStrength: 2,
         },
         content: (
@@ -938,8 +938,8 @@ export const NEIGHBORHOOD_COMMANDS = {
 
       access_pawn_records: {
         password: {
-          pw: "lucky",
-          hint: "Shop owner's nickname",
+          pw: "thehouse",
+          hint: "It always wins",
           hintStrength: 1,
         },
         content: (

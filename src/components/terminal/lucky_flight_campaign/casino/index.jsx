@@ -172,8 +172,8 @@ export const LUCKY_FLIGHT_CASINO = {
         related_commands: {
           "Maintenance Access": {
             password: {
-              pw: "refresh",
-              hint: "What you do to restock the machine",
+              pw: "quantum",
+              hint: "Top selling soda",
               hintStrength: 2,
             },
             content: (
@@ -241,8 +241,8 @@ export const LUCKY_FLIGHT_CASINO = {
 
       "access_casino_internal_network (lfc)": {
         password: {
-          pw: "flyaway",
-          hint: "What casino staff say when someone hits the jackpot",
+          pw: "loadeddice",
+          hint: "Better not get caught",
           hintStrength: 1,
         },
         content: (
@@ -555,9 +555,9 @@ export const LUCKY_FLIGHT_CASINO = {
               // ====== VASKA JORDAN ======
               profile_vaska_jordan: {
                 password: {
-                  pw: "manager",
-                  hint: "His position at the casino",
-                  hintStrength: 1,
+                  pw: "fixedgame",
+                  hint: "Fairness is a marketing term",
+                  hintStrength: 3,
                 },
                 content: (
                   <Box color="yellow">
@@ -614,9 +614,9 @@ export const LUCKY_FLIGHT_CASINO = {
               // ====== WATTANA ======
               profile_wattana: {
                 password: {
-                  pw: "security",
-                  hint: "His department at the casino",
-                  hintStrength: 1,
+                  pw: "stackedodds",
+                  hint: "Luck is manufactured",
+                  hintStrength: 3,
                 },
                 content: (
                   <Box color="red">

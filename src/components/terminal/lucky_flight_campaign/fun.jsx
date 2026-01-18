@@ -93,7 +93,7 @@ export const FUN_COMMANDS = {
       "Unit 6C Safe (Silverpeak)": {
         password: {
           pw: "marathon",
-          hint: "Fitness goal mentioned in apartment lease application",
+          hint: "Fitness goal for the new year!",
           hintStrength: 3,
         },
         content: (
@@ -213,7 +213,7 @@ export const FUN_COMMANDS = {
         password: {
           pw: "tides",
           hint: "What the canal experiences twice daily",
-          hintStrength: 2,
+          hintStrength: 1,
         },
         content: (
           <Safe
@@ -727,7 +727,7 @@ export const FUN_COMMANDS = {
         password: {
           pw: "debug",
           hint: "What programmers do when code doesn't work",
-          hintStrength: 1,
+          hintStrength: 3,
         },
         content: (
           <>

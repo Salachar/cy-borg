@@ -243,8 +243,8 @@ export const STONE_EELS_COMMANDS = {
 
           query_vip_management: {
             password: {
-              pw: "gibos",
-              hint: "Nickname of the cyborg grandpa high roller",
+              pw: "clearance",
+              hint: "You don’t have it",
               hintStrength: 3,
             },
             content: (
