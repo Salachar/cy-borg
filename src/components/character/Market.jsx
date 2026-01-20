@@ -43,6 +43,8 @@ export default function Market({
 
   const characterId = character?.id || "default";
 
+  const [searchQuery, setSearchQuery] = React.useState("");
+
   // Track collapse state for each section
   const [sectionStates, setSectionStates] = React.useState(() => {
     const initial = {};
@@ -100,6 +102,53 @@ export default function Market({
     onUpdate();
   };
 
+  // Add this helper function near the top of the file, after the collapse state functions
+
+  function extractTextFromReactNode(node) {
+    if (!node) return '';
+
+    // If it's a string or number, return it directly
+    if (typeof node === 'string' || typeof node === 'number') {
+      return String(node);
+    }
+
+    // If it's a React element, extract children
+    if (React.isValidElement(node)) {
+      return extractTextFromReactNode(node.props.children);
+    }
+
+    // If it's an array, process each element
+    if (Array.isArray(node)) {
+      return node.map(extractTextFromReactNode).join(' ');
+    }
+
+    return '';
+  }
+
+  // Then update the filterEntries function:
+
+  const filterEntries = (entries) => {
+    if (!searchQuery.trim()) return entries;
+
+    const query = searchQuery.toLowerCase();
+    return entries.filter(entry => {
+      const labelMatch = entry.label?.toLowerCase().includes(query);
+
+      // Extract text from description (handles both strings and React components)
+      const descText = extractTextFromReactNode(entry.description);
+      const descMatch = descText.toLowerCase().includes(query);
+
+      const tagsMatch = entry.tags?.some(tag => tag.toLowerCase().includes(query));
+      return labelMatch || descMatch || tagsMatch;
+    });
+  };
+
+  // Check if section has matching items
+  const sectionHasMatches = (entries) => {
+    if (!searchQuery.trim()) return true;
+    return filterEntries(entries).length > 0;
+  };
+
   return (
     <CollapsibleSection
       title="Market"
@@ -117,10 +166,55 @@ export default function Market({
       <div className="flex gap-4">
         {/* Main Shop Area */}
         <div className="flex-1">
+          {/* Search Box */}
+          <div className="mb-4 sticky top-0 z-10 bg-gray-950 pb-3">
+            <div className="relative">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search items..."
+                className="
+                  w-full h-12 px-4 pr-10
+                  bg-black border-2 border-gray-700
+                  focus:border-yellow-500 focus:shadow-[0_0_20px_rgba(234,179,8,0.2)]
+                  text-white placeholder-gray-600
+                  transition-all
+                  outline-none
+                "
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="
+                    absolute right-2 top-1/2 -translate-y-1/2
+                    w-8 h-8
+                    flex items-center justify-center
+                    text-gray-500 hover:text-gray-300
+                    transition-colors
+                  "
+                  title="Clear search"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+            {searchQuery && (
+              <div className="mt-2 text-xs text-gray-500">
+                Showing results for "{searchQuery}"
+              </div>
+            )}
+          </div>
+
           {sections.map((section, sectionIndex) => {
             const { name, label, note, entries } = section;
             const cartSection = character.shop_cart[name] || {};
             const isOpen = sectionStates[name] || false;
+            const filteredEntries = filterEntries(entries);
+            const hasMatches = sectionHasMatches(entries);
+
+            // Hide section if no matches when searching
+            if (!hasMatches) return null;
 
             return (
               <div key={`shop_section_${name}_${sectionIndex}`}>
@@ -134,6 +228,11 @@ export default function Market({
                   <div className="flex items-center justify-between">
                     <h4 className="text-lg font-black text-yellow-400 uppercase tracking-wide">
                       {label}
+                      {searchQuery && (
+                        <span className="text-xs text-gray-500 ml-2 font-normal">
+                          ({filteredEntries.length} match{filteredEntries.length !== 1 ? 'es' : ''})
+                        </span>
+                      )}
                     </h4>
                     <div className="text-xs text-gray-500 uppercase">
                       {isOpen ? '▼' : '▶'}
@@ -150,7 +249,12 @@ export default function Market({
                 {/* Items List */}
                 {isOpen && (
                   <div className="space-y-2">
-                    {entries.map((entry, index) => {
+                    {filteredEntries.length === 0 && searchQuery && (
+                      <div className="p-4 text-center text-gray-500 italic">
+                        No items match your search
+                      </div>
+                    )}
+                    {filteredEntries.map((entry, index) => {
                       const entry_id = entry.id || entry.label;
                       const inCart = cartSection[entry_id];
                       const cartQuantity = inCart ? inCart.quantity : 0;
@@ -241,6 +345,13 @@ export default function Market({
               </div>
             );
           })}
+
+          {searchQuery && sections.every(s => !sectionHasMatches(s.entries)) && (
+            <div className="text-center py-12 text-gray-500">
+              <div className="text-xl mb-2">No items found</div>
+              <div className="text-sm">Try a different search term</div>
+            </div>
+          )}
         </div>
 
         {/* Sticky Cart Sidebar */}
