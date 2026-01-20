@@ -120,7 +120,7 @@ export default function Market({
           {sections.map((section, sectionIndex) => {
             const { name, label, note, entries } = section;
             const cartSection = character.shop_cart[name] || {};
-            const isOpen = sectionStates[name] ?? true;
+            const isOpen = sectionStates[name] || false;
 
             return (
               <div key={`shop_section_${name}_${sectionIndex}`}>

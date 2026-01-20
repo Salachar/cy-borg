@@ -144,7 +144,10 @@ export default function Flavor({
   sections = [],
   onUpdate = () => {},
 }) {
+  // Check for basic characters and sections data
   if (!character || !sections.length) return null;
+  // Don't show if locked, when locked, style data is now display in the name section
+  if (character.locked) return null;
 
   return (
     <CollapsibleSection

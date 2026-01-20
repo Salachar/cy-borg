@@ -80,7 +80,7 @@ export default function Cyberware({
 
   return (
     <CollapsibleSection
-      title="Cyberware"
+      title="Cybertech"
       character={character}
       headerClass="bg-gradient-to-r from-gray-700/20 via-gray-900 to-gray-700/20 border-2 border-gray-600/50 p-4 mb-4"
       headerTextClass="text-gray-400"

@@ -18,6 +18,7 @@ function StartingItemSection({
 
   const selectedEntry = entries.find(e => selected[e.id || e.label]);
   const selectedLabel = selectedEntry ? selectedEntry.label : null;
+  const selectedDescription = selectedEntry ? selectedEntry.description : null;
   const isRequired = !selectedLabel;
 
   const handleRoll = () => {
@@ -81,7 +82,7 @@ function StartingItemSection({
 
       {/* Selected Item Box */}
       <div className={`bg-gray-900 border p-3 mb-2 ${isRequired ? 'border-red-700' : 'border-gray-700'}`}>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mb-2">
           <div className="flex-1">
             <div className="text-xs text-gray-500 uppercase mb-1">Selected:</div>
             {selectedLabel ? (
@@ -109,6 +110,13 @@ function StartingItemSection({
             </button>
           )}
         </div>
+
+        {/* Description (if exists) */}
+        {selectedDescription && (
+          <div className="text-sm text-gray-400 border-t border-gray-800 pt-2 mt-2">
+            {selectedDescription}
+          </div>
+        )}
       </div>
 
       {/* Expandable List */}
@@ -129,7 +137,7 @@ function StartingItemSection({
                     setIsExpanded(false);
                   }}
                   className={`
-                    p-2 cursor-pointer transition-all text-sm
+                    p-2 cursor-pointer transition-all
                     ${isHighlighted
                       ? 'bg-cy-cyan/40 border-l-2 border-cy-cyan text-white ring-2 ring-cy-cyan/50'
                       : isSelected
@@ -138,7 +146,12 @@ function StartingItemSection({
                     }
                   `}
                 >
-                  {entry.label}
+                  <div className="text-sm font-medium">{entry.label}</div>
+                  {entry.description && (
+                    <div className="text-xs text-gray-500 mt-1">
+                      {entry.description}
+                    </div>
+                  )}
                 </div>
               );
             })}

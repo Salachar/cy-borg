@@ -71,20 +71,64 @@ export default function Stats({
   const stats = character.stats;
   const statKeys = Object.keys(STAT_INFO);
 
+  // Locked view - compact grid
+  if (locked) {
+    return (
+      <div className="w-full mb-6">
+        <h3 className="text-2xl font-bold text-cy-cyan mb-3">ABILITIES</h3>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+          {statKeys.map((statKey) => {
+            const info = STAT_INFO[statKey];
+            const value = stats[statKey];
+
+            return (
+              <div
+                key={statKey}
+                className="bg-gray-900/50 border border-gray-800 p-3"
+              >
+                {/* Stat name and abbreviation */}
+                <div className="flex items-baseline justify-between mb-2">
+                  <span className="text-sm font-bold text-cy-cyan uppercase">
+                    {statKey}
+                  </span>
+                  <span className="text-xs text-gray-500">
+                    {info.name}
+                  </span>
+                </div>
+
+                {/* Large modifier value */}
+                <div className="text-center mb-2">
+                  <span className="text-4xl font-black text-cy-cyan font-mono">
+                    {value >= 0 ? '+' : ''}{value}
+                  </span>
+                </div>
+
+                {/* Description */}
+                <div className="text-xs text-gray-500 text-center leading-tight">
+                  {info.description}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
+  // Unlocked view - full cards with rollers
   return (
     <div className="w-full">
       <h3 className="text-2xl font-bold text-cy-cyan mb-3">ABILITIES</h3>
 
-      {!locked && (
-        <div className="mb-6 bg-cy-yellow/10 border border-cy-yellow/30 p-4">
-          <p className="text-sm text-gray-300 leading-relaxed">
-            <span className="font-bold text-cy-yellow">Roll 3d6 per ability:</span>{' '}
-            <span className="font-mono text-xs block mt-2 text-gray-400">
-              1-4 = -3 | 5-6 = -2 | 7-8 = -1 | 9-12 = ±0 | 13-14 = +1 | 15-16 = +2 | 17-20 = +3
-            </span>
-          </p>
-        </div>
-      )}
+      <div className="mb-6 bg-cy-yellow/10 border border-cy-yellow/30 p-4">
+        <p className="text-sm text-gray-300 leading-relaxed">
+          <span className="font-bold text-cy-yellow">Roll 3d6 per ability:</span>{' '}
+          <span className="font-mono text-xs block mt-2 text-gray-400">
+            1-4 = -3 | 5-6 = -2 | 7-8 = -1 | 9-12 = ±0 | 13-14 = +1 | 15-16 = +2 | 17-20 = +3
+          </span>
+        </p>
+      </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
         {statKeys.map((statKey) => {
@@ -128,30 +172,28 @@ export default function Stats({
                   />
                 </div>
 
-                {/* Dice Roller (only when unlocked) */}
-                {!locked && (
-                  <div className="flex-1 flex items-center pl-2">
-                    <SegmentedDice
-                      dice="3d6"
-                      mod={statMod}
-                      onRollComplete={(total) => {
-                        // Map the 3d6 total (3-18) to stat modifier (-3 to +3)
-                        let modifier = 0;
-                        if (total <= 4) modifier = -3;
-                        else if (total <= 6) modifier = -2;
-                        else if (total <= 8) modifier = -1;
-                        else if (total <= 12) modifier = 0;
-                        else if (total <= 14) modifier = +1;
-                        else if (total <= 16) modifier = +2;
-                        else modifier = +3;
+                {/* Dice Roller */}
+                <div className="flex-1 flex items-center pl-2">
+                  <SegmentedDice
+                    dice="3d6"
+                    mod={statMod}
+                    onRollComplete={(total) => {
+                      // Map the 3d6 total (3-18) to stat modifier (-3 to +3)
+                      let modifier = 0;
+                      if (total <= 4) modifier = -3;
+                      else if (total <= 6) modifier = -2;
+                      else if (total <= 8) modifier = -1;
+                      else if (total <= 12) modifier = 0;
+                      else if (total <= 14) modifier = +1;
+                      else if (total <= 16) modifier = +2;
+                      else modifier = +3;
 
-                        // Update the character stat
-                        character[statKey.toLowerCase()] = modifier;
-                        onUpdate();
-                      }}
-                    />
-                  </div>
-                )}
+                      // Update the character stat
+                      character[statKey.toLowerCase()] = modifier;
+                      onUpdate();
+                    }}
+                  />
+                </div>
               </div>
             </div>
           );

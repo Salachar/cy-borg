@@ -166,27 +166,6 @@ export default function CharacterTemplate({
         </>
       )}
 
-      {builder && (
-        <button
-          type="button"
-          onClick={() => {
-            character.toggleLock();
-            onUpdate();
-          }}
-          className="
-            fixed top-1 right-1 z-50
-            w-28 h-10
-            bg-gray-800 hover:bg-gray-700
-            border-2 border-cy-cyan
-            text-cy-cyan font-bold uppercase text-sm
-            transition-all
-            shadow-lg shadow-cy-cyan/30
-          "
-        >
-          {character.locked ? "Locked" : "Unlocked"}
-        </button>
-      )}
-
       <Name
         character={character}
         builder={builder}
@@ -204,7 +183,7 @@ export default function CharacterTemplate({
         builder={builder}
       />
 
-      {builder && (
+      {builder && !character.locked && (
         <>
           <div className="divider" />
           <StartingItems

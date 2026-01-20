@@ -1,6 +1,9 @@
 import { useRef, useState } from 'react';
 
-export default function AppDataExportImport() {
+export default function AppDataExportImport({
+  character,
+  onUpdate = () => {},
+}) {
   const fileInputRef = useRef(null);
   const [importStatus, setImportStatus] = useState(null); // 'success' | 'error' | null
   const [errorMessage, setErrorMessage] = useState('');
@@ -138,6 +141,24 @@ export default function AppDataExportImport() {
             className="hidden"
           />
         </label>
+
+        <button
+          type="button"
+          onClick={() => {
+            character.toggleLock();
+            onUpdate();
+          }}
+          className="
+            w-28 h-10
+            bg-gray-800 hover:bg-gray-700
+            border-2 border-cy-cyan
+            text-cy-cyan font-bold uppercase text-sm
+            transition-all
+            shadow-lg shadow-cy-cyan/30
+          "
+        >
+          {character.locked ? "Locked" : "Unlocked"}
+        </button>
       </div>
 
       {/* Success Message */}

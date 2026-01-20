@@ -149,7 +149,10 @@ export default function Classes () {
               }}
             />
             {isBuilder && (
-              <AppDataExportImport />
+              <AppDataExportImport
+                character={currentCharacter}
+                onUpdate={onUpdate}
+              />
             )}
           </div>
         )}

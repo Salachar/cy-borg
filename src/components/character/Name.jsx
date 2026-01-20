@@ -10,6 +10,25 @@ export default function Name({
 
   const displayName = character.name?.trim() || "No Name";
 
+  // Get flavor selections from character.style
+  const getFlavorText = () => {
+    if (!locked || !character.style) return [];
+
+    const flavorTexts = [];
+
+    Object.keys(character.style).forEach(category => {
+      const selections = character.style[category];
+      if (selections && typeof selections === 'object') {
+        const selected = Object.keys(selections).find(key => selections[key]);
+        if (selected) {
+          flavorTexts.push({ label: category, value: selected });
+        }
+      }
+    });
+
+    return flavorTexts;
+  };
+
   return (
     <div className="mb-8">
       {/* Unlocked: Editable name input */}
@@ -52,11 +71,18 @@ export default function Name({
               uppercase
             "
             placeholder="Enter Name"
-            value={character.name}
+            value={character.name || ""}
             onChange={(e) => {
               character.name = e.target.value;
               onUpdate();
             }}
+            onFocus={(e) => e.target.select()}
+            disabled={locked}
+            readOnly={locked}
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="characters"
+            spellCheck="false"
           />
         </div>
       )}
@@ -95,7 +121,7 @@ export default function Name({
             </h1>
 
             {/* Class subtitle */}
-            <div className="flex items-center justify-center gap-3">
+            <div className="flex items-center justify-center gap-3 mb-3">
               <div
                 className="h-px w-20"
                 style={{ backgroundColor: character.color, opacity: 0.5 }}
@@ -107,6 +133,23 @@ export default function Name({
                 className="h-px w-20"
                 style={{ backgroundColor: character.color, opacity: 0.5 }}
               />
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-6 mb-3">
+              {/* Flavor text */}
+              {getFlavorText().map((flavor, index) => (
+                <div key={index} className="mt-2 flex flex-col gap-0">
+                  <span className="text-xs text-gray-600 uppercase tracking-wide mr-2">
+                    {flavor.label}
+                  </span>
+                  <span
+                    className="text-lg font-bold uppercase tracking-wide"
+                    style={{ color: character.color }}
+                  >
+                    {flavor.value}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
 

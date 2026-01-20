@@ -24,6 +24,7 @@ class BaseClass {
   _shop_cart = {}; // Shopping cart: { section_name: { item_id: { quantity: 1 } } }
   _style = {};
   _starting_items = {};
+  _custom_items = [];
 
   // New properties for live play tracking
   _nano_powers = {}; // { power_id: { infestation: "infestation_id" } }
@@ -118,6 +119,12 @@ class BaseClass {
         slots: data.cyberdeck.slots || 4,
         loaded_apps: data.cyberdeck.loaded_apps || []
       };
+    }
+
+    if (data.custom_items && Array.isArray(data.custom_items)) {
+      this._custom_items = data.custom_items;
+    } else {
+      this._custom_items = [];
     }
 
     if (data.debt) {
@@ -582,6 +589,7 @@ class BaseClass {
       nano_powers: this._nano_powers || {},
       infestations: this._infestations || {},
       apps: this._apps || {},
+      custom_items: this._custom_items || [],
       cyberware: this._cyberware || {},
       cyberdeck: this._cyberdeck || {
         unlocked: false,
