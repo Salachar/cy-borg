@@ -3,26 +3,25 @@ import { useEffect, useRef, useState } from 'react';
 import {
   SYSTEM_COMMANDS,
   MINIGAME_COMMANDS,
-} from "../components/terminal/Commands";
-
-import CY_CITY_COMMANDS from '../components/terminal/cy_city';
-import LUCKY_FLIGHT_TAKEDOWN_COMMANDS from "../components/terminal/lucky_flight_campaign";
+} from "@terminal/commands/Commands";
+import CY_CITY_COMMANDS from '@terminal/commands/cy_city';
+import LUCKY_FLIGHT_TAKEDOWN_COMMANDS from "@terminal/commands/lucky_flight_campaign";
 
 import TerminalShell, {
   TerminalHeader,
   TerminalHistoryArea,
   TerminalInputArea,
   TerminalHelpText,
-} from '../components/terminal/TerminalShell';
+} from '@terminal/TerminalShell';
 import {
   getBootMessages,
   Line,
   Box,
   Divider,
   CommandLink,
-} from "../components/terminal/TerminalComponents";
+} from "@terminal/TerminalComponents";
 
-import PasswordPrompt from '../components/terminal/PasswordPrompt';
+import PasswordPrompt from '@terminal/retcomdevice/PasswordPrompt';
 
 // ============================================================================
 // ALL COMMANDS - Comment out what you don't need

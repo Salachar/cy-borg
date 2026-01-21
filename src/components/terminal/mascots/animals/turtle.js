@@ -1,13 +1,13 @@
-import ATTACK_SPRITE from "../../../../images/mascots/turtle/Attack.png"
-import DIE_SPRITE from "../../../../images/mascots/turtle/Die.png"
-import HIDE_SPRITE from "../../../../images/mascots/turtle/Hide.png"
-import HURT_SPRITE from "../../../../images/mascots/turtle/Hurt.png"
-import IDLE_SPRITE from "../../../../images/mascots/turtle/Idle.png"
-import JUMP_SPRITE from "../../../../images/mascots/turtle/Jump.png"
-import LIEDOWN_SPRITE from "../../../../images/mascots/turtle/LieDown.png"
-import SIT_SPRITE from "../../../../images/mascots/turtle/Sit.png"
-import SLEEP_SPRITE from "../../../../images/mascots/turtle/Sleep.png"
-import WALKING_SPRITE from "../../../../images/mascots/turtle/Walking.png"
+import ATTACK_SPRITE from "@images/mascots/turtle/Attack.png"
+import DIE_SPRITE from "@images/mascots/turtle/Die.png"
+import HIDE_SPRITE from "@images/mascots/turtle/Hide.png"
+import HURT_SPRITE from "@images/mascots/turtle/Hurt.png"
+import IDLE_SPRITE from "@images/mascots/turtle/Idle.png"
+import JUMP_SPRITE from "@images/mascots/turtle/Jump.png"
+import LIEDOWN_SPRITE from "@images/mascots/turtle/LieDown.png"
+import SIT_SPRITE from "@images/mascots/turtle/Sit.png"
+import SLEEP_SPRITE from "@images/mascots/turtle/Sleep.png"
+import WALKING_SPRITE from "@images/mascots/turtle/Walking.png"
 
 export const TURTLE_SPRITE = {
   name: 'turtle',

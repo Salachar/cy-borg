@@ -1,4 +1,4 @@
-import SPRITE_SHEET from "../../../../images/mascots/wolf.png"
+import SPRITE_SHEET from "@images/mascots/wolf.png"
 
 export const WOLF_SPRITE = {
   name: 'wolf',

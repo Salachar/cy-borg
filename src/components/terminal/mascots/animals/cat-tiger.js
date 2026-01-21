@@ -1,9 +1,9 @@
-import ATTACK_SPRITE from "../../../../images/mascots/cat-tiger/Attack.png"
-import IDLE_SPRITE from "../../../../images/mascots/cat-tiger/Idle.png"
-import JUMP_SPRITE from "../../../../images/mascots/cat-tiger/Jump.png"
-import SIT_SPRITE from "../../../../images/mascots/cat-tiger/Sit.png"
-import SLEEP_SPRITE from "../../../../images/mascots/cat-tiger/Sleep.png"
-import WALKING_SPRITE from "../../../../images/mascots/cat-tiger/Run.png"
+import ATTACK_SPRITE from "@images/mascots/cat-tiger/Attack.png"
+import IDLE_SPRITE from "@images/mascots/cat-tiger/Idle.png"
+import JUMP_SPRITE from "@images/mascots/cat-tiger/Jump.png"
+import SIT_SPRITE from "@images/mascots/cat-tiger/Sit.png"
+import SLEEP_SPRITE from "@images/mascots/cat-tiger/Sleep.png"
+import WALKING_SPRITE from "@images/mascots/cat-tiger/Run.png"
 
 export const CAT_TIGER_SPRITE = {
   name: 'cat-tiger',

@@ -64,7 +64,11 @@ export default class ShunnedNanomancer extends BaseClass {
       entries: WEAPONS_TABLE.slice(0, 6),
       before: <div className="divider" />,
       note: (
-        <span>You get d4 Basic Mags for free (in shop) if applicable to the weapon.</span>
+        <div className="bg-gray-900/50 border border-gray-800 p-3 mb-6">
+          <p className="text-sm text-gray-300">
+            You get d4 <strong className="text-cy-yellow">Basic Mags</strong> for free (in Market below) if applicable to the weapon
+          </p>
+        </div>
       ),
     },
     {
@@ -74,7 +78,11 @@ export default class ShunnedNanomancer extends BaseClass {
       select_mode: "single",
       entries: ARMOR_TABLE.slice(0, 2),
       note: (
-        <span>Cost only applies to armor not rolled for initial character creation.</span>
+        <div className="bg-gray-900/50 border border-gray-800 p-3 mb-6">
+          <p className="text-sm text-gray-300">
+            Cost only applies to armor not rolled for initial character creation
+          </p>
+        </div>
       ),
       before: <div className="divider" />,
     },

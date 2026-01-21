@@ -2,6 +2,8 @@ import Definitions from "./Definitions";
 import RollableTable from "./RollableTable";
 import ClassArtwork from "./ClassArtwork";
 
+import { Callout } from "./PageComponents";
+
 import Stats from "./character/Stats";
 import HealthBar from "./character/HealthBar";
 import Name from "./character/Name";
@@ -258,6 +260,18 @@ export default function CharacterTemplate({
             character={character}
           />
           <div className="divider" />
+
+          {!character.locked && (
+            <>
+              <Callout title="NanoPaower, Infestations, Cyberdeck, Cybertech">
+                <p className="text-gray-300 leading-relaxed">
+                  You don't get these by default, unless your class uniques explicity state so. Any class can be acquire them during gameplay though.
+                </p>
+              </Callout>
+              <div className="divider" />
+            </>
+          )}
+
           <NanoPowers
             character={character}
             allPowers={NANO_POWERS}
