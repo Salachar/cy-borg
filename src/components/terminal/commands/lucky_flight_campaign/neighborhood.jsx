@@ -7,11 +7,13 @@ import {
   DataTable,
 } from '@terminal/TerminalComponents';
 import {
+  ATM,
   Safe,
   LocalAd,
   GameConsole,
   Camera,
   Tenet,
+  Jukebox,
 } from "@terminal/retcomdevice"
 
 export const NEIGHBORHOOD_COMMANDS = {
@@ -81,10 +83,6 @@ export const NEIGHBORHOOD_COMMANDS = {
     ),
   },
 
-  // ============================================================================
-  // PROPAGANDA & PUBLIC SERVICE
-  // ============================================================================
-
   "SecOps_Recruitment": {
     content: (
       <LocalAd
@@ -152,10 +150,6 @@ export const NEIGHBORHOOD_COMMANDS = {
     ),
   },
 
-  // ============================================================================
-  // ENTERTAINMENT & CULTURE
-  // ============================================================================
-
   "Samurai_Concert_Ad": {
     content: (
       <LocalAd
@@ -204,10 +198,6 @@ export const NEIGHBORHOOD_COMMANDS = {
     ),
   },
 
-  // ============================================================================
-  // DISTRICT INFO
-  // ============================================================================
-
   "Ports District Guide": {
     content: (
       <>
@@ -244,9 +234,6 @@ export const NEIGHBORHOOD_COMMANDS = {
     ),
   },
 
-  // ============================================================================
-  // STREET DOC
-  // ============================================================================
 
   "Fingers' Clinic": {
     content: (
@@ -282,7 +269,7 @@ export const NEIGHBORHOOD_COMMANDS = {
       </>
     ),
     related_commands: {
-      access_patient_records: {
+      access_fingers_patient_records: {
         password: {
           pw: "scalpel",
           hint: "Surgical cutting tool",
@@ -314,10 +301,6 @@ export const NEIGHBORHOOD_COMMANDS = {
       },
     },
   },
-
-  // ============================================================================
-  // CHOP SHOP
-  // ============================================================================
 
   "Razor's Garage": {
     content: (
@@ -355,7 +338,7 @@ export const NEIGHBORHOOD_COMMANDS = {
       </>
     ),
     related_commands: {
-      access_inventory_system: {
+      access_razors_inventory_system: {
         password: {
           pw: "razor",
           hint: "The shop owner's nickname",
@@ -394,10 +377,6 @@ export const NEIGHBORHOOD_COMMANDS = {
       },
     },
   },
-
-  // ============================================================================
-  // WATER TAXI
-  // ============================================================================
 
   "Canal Water Taxi Network": {
     content: (
@@ -484,8 +463,9 @@ export const NEIGHBORHOOD_COMMANDS = {
         <Line pink>"Mira knows everyone's business. Don't give her more to talk about."</Line>
       </>
     ),
+
     related_commands: {
-      "Community Bulletin": {
+      "Mira's Community Bulletin": {
         content: (
           <>
             <Line smoke large bold>[COMMUNITY BOARD]</Line>
@@ -511,7 +491,7 @@ export const NEIGHBORHOOD_COMMANDS = {
         ),
       },
 
-      access_shop_internal: {
+      access_miras_shop_internal: {
         password: {
           pw: "boxesboxesboxes",
           hint: "So many boxes",
@@ -589,7 +569,7 @@ export const NEIGHBORHOOD_COMMANDS = {
       </>
     ),
     related_commands: {
-      access_bar_safe: {
+      access_rusty_anchor_bar_safe: {
         password: {
           pw: "crustacean",
           hint: "Crabs and such",
@@ -614,29 +594,20 @@ export const NEIGHBORHOOD_COMMANDS = {
         ),
       },
 
-      "Jukebox Terminal": {
+      "Jukebox Terminal (JB-707-F4)": {
         content: (
-          <>
-            <Line smoke large bold>[JUKEBOX - MODEL JB-707]</Line>
-            <Line cyan>Location: Corner near pool table</Line>
-            <Divider />
-            <Section title="NOW PLAYING:">
-              <Line neon>Track: "Canal Blues" - The Ports Drifters</Line>
-              <Line neon>Genre: Industrial folk-rock</Line>
-              <Line neon>Queue: 3 songs remaining</Line>
-            </Section>
-            <Divider />
-            <Section title="POPULAR SELECTIONS:">
-              <Line pink>1. "Rusty Water" - Steel Tide</Line>
-              <Line pink>2. "Corporate Collapse" - System Down</Line>
-              <Line pink>3. "Whiskey Nights" - Dock Workers Union</Line>
-              <Line pink>4. "Canal Blues" - The Ports Drifters</Line>
-              <Line pink>5. "Chrome Dreams" - Synapse</Line>
-            </Section>
-            <Divider />
-            <Line yellow>Cost: 2¤ per song, 5¤ for 3 songs</Line>
-            <Line cyan>Payment: Credchip or coins accepted</Line>
-          </>
+          <Jukebox
+            model="JB-707"
+            location="Corner near pool table"
+            cost="2¤"
+            songs={[
+              { title: "Rusty Water", artist: "Steel Tide", genre: "Industrial rock", color: 'blue' },
+              { title: "Corporate Collapse", artist: "System Down", genre: "Punk", color: 'red' },
+              { title: "Whiskey Nights", artist: "Dock Workers Union", genre: "Folk", color: 'orange' },
+              { title: "Canal Blues", artist: "The Ports Drifters", genre: "Industrial folk-rock", color: 'cyan' },
+              { title: "Chrome Dreams", artist: "Synapse", genre: "Synthwave", color: 'purple' },
+            ]}
+          />
         ),
       },
     },
@@ -646,7 +617,7 @@ export const NEIGHBORHOOD_COMMANDS = {
   // APARTMENT BUILDING
   // ============================================================================
 
-  "Torres Apartments (Building)": {
+  "Torres Apartments": {
     content: (
       <>
         <Line cyan large bold>TORRES APARTMENTS</Line>
@@ -688,7 +659,7 @@ export const NEIGHBORHOOD_COMMANDS = {
       </>
     ),
     related_commands: {
-      "Lobby Camera (Torres)": {
+      "Camera - Lobby (Torres)": {
         content: (
           <Camera
             id="torres-lobby-cam"
@@ -713,7 +684,7 @@ export const NEIGHBORHOOD_COMMANDS = {
         ),
       },
 
-      "Unit 3B Safe": {
+      "Unit 3B Safe (Torres)": {
         password: {
           pw: "localhost",
           hint: "This terminal doesn’t trust the outside world",
@@ -741,7 +712,7 @@ export const NEIGHBORHOOD_COMMANDS = {
         ),
       },
 
-      "Unit 4B Safe": {
+      "Unit 4B Safe (Torres)": {
         password: {
           pw: "dealer",
           hint: "The resident's job at the casino",
@@ -769,7 +740,7 @@ export const NEIGHBORHOOD_COMMANDS = {
         ),
       },
 
-      "Unit 2A": {
+      "Unit 2A (Torres)": {
         content: (
           <Tenet
             id="CIT-2847-JT"
@@ -787,7 +758,7 @@ export const NEIGHBORHOOD_COMMANDS = {
           />
         ),
         related_commands: {
-          "Unit 2A Console": {
+          "Unit 2A Console (Torres)": {
             content: (
               <GameConsole
                 model="CyberDeck Pro X"
@@ -803,7 +774,7 @@ export const NEIGHBORHOOD_COMMANDS = {
             )
           },
 
-          "Unit 2A Safe": {
+          "Unit 2A Safe (Torres)": {
             password: {
               pw: "maintenance",
               hint: "The resident's department at the casino",
@@ -834,7 +805,7 @@ export const NEIGHBORHOOD_COMMANDS = {
         }
       },
 
-      access_building_management: {
+      access_torres_building_management: {
         password: {
           pw: "blind",
           hint: "You pay before you see",
@@ -911,33 +882,33 @@ export const NEIGHBORHOOD_COMMANDS = {
       </>
     ),
     related_commands: {
-      "Pawn Shop ATM": {
+      "Lucky Pawn ATM": {
+        password: {
+          pw: "cash",
+          hint: "What everyone wants from an ATM",
+          hintStrength: 1,
+        },
         content: (
-          <>
-            <Line smoke large bold>[ATM - MODEL ATM-500]</Line>
-            <Line cyan>Location: Inside Lucky's Pawn (by entrance)</Line>
-            <Divider />
-            <DataTable data={[
-              { label: "Status", value: "ONLINE" },
-              { label: "Cash Available", value: "1,200¤ (estimated)" },
-              { label: "Last Service", value: "1 week ago" },
-              { label: "Network", value: "CityBank" },
-            ]} />
-            <Divider />
-            <Section title="RECENT TRANSACTIONS (Last 6h):">
-              <Line neon>14:32 → Withdrawal: 40¤</Line>
-              <Line neon>15:18 → Withdrawal: 100¤</Line>
-              <Line neon>16:05 → Balance inquiry</Line>
-              <Line yellow>16:47 → Failed transaction (insufficient funds)</Line>
-              <Line neon>17:23 → Withdrawal: 20¤</Line>
-            </Section>
-            <Divider />
-            <Line yellow>ATM restocked weekly (Thursdays, 10:00)</Line>
-          </>
+          <ATM
+            id="lucky-pawn-atm"
+            model="ATM-500"
+            location="Inside Lucky's Pawn (by entrance)"
+            network="CityBank"
+            accountHolder="Marcus Chen (last accessed)"
+            balance="287¤"
+            transactions={[
+              "14:32 → Withdrawal: 40¤",
+              "15:18 → Withdrawal: 100¤",
+              "16:05 → Balance inquiry",
+              "16:47 → Failed transaction (insufficient funds)",
+              "17:23 → Withdrawal: 20¤",
+            ]}
+            lastService="1 week ago"
+          />
         ),
       },
 
-      access_pawn_records: {
+      access_luck_pawn_records: {
         password: {
           pw: "thehouse",
           hint: "It always wins",

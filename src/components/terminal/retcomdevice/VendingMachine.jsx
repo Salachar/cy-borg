@@ -195,18 +195,6 @@ export default function VendingMachine({
                   transition: 'all 0.2s',
                   opacity: drink.available ? (isDispensing ? 0.7 : 1) : 0.4,
                 }}
-                onMouseEnter={(e) => {
-                  if (drink.available && !isDispensing) {
-                    e.target.style.transform = 'scale(1.02)';
-                    e.target.style.boxShadow = `0 0 10px ${colors.bg}`;
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (drink.available && !isDispensing) {
-                    e.target.style.transform = 'scale(1)';
-                    e.target.style.boxShadow = 'none';
-                  }
-                }}
               >
                 {/* Pattern overlay */}
                 {drink.available && getPattern(drink.pattern, drink.color)}

@@ -7,34 +7,37 @@ import {
 import {
   Camera,
   Safe,
-  Tenet,
+  PersonnelFile,
+  InternalAccess,
+  ShiftSchedule,
+  Workstation,
+  VendingMachine,
+  FacilityPortal,
 } from "@terminal/retcomdevice"
 
 export const WAREHOUSE_COMMANDS = {
   "Alliansen Inc. Warehouse (Ports)": {
     content: (
-      <>
-        <Line cyan large bold>✦ ALLIANSEN INC. WAREHOUSE ✦</Line>
-        <Line yellow>"Ports Industrial District - Facility #47"</Line>
-        <Divider />
-        <Line neon>Scanning for network access...</Line>
-        <Line cyan>[WEAK WIFI SIGNAL DETECTED]</Line>
-        <Divider />
-        <DataTable data={[
-          { label: "Location", value: "Ports industrial district" },
-          { label: "Owner", value: "Alliansen Inc." },
-          { label: "Function", value: "Storage & distribution hub" },
-          { label: "Current Shift", value: "Night crew (6 personnel)" },
-          { label: "Network", value: "Corporate WAN (limited external access)" },
-        ]} />
-        <Divider />
-        <Line pink>⚠ Active security systems detected</Line>
-        <Line yellow>* Limited RCD access from outside perimeter</Line>
-        <Line yellow>* Full systems require physical network access inside</Line>
-      </>
+      <FacilityPortal
+        companyName="Alliansen Inc."
+        facilityId="Facility #47"
+        tagline="Ports Industrial District - Storage & Distribution Hub"
+        location="Ports industrial district"
+        owner="Alliansen Inc."
+        function="Storage & distribution hub"
+        personnel="Night crew (6 personnel)"
+        networkStatus="Corporate WAN (limited external access)"
+        securityLevel="HIGH"
+        warnings={[
+          "Active security systems detected",
+          "Limited RCD access from outside perimeter",
+          "Full systems require physical network access inside",
+        ]}
+        theme="industrial"
+      />
     ),
     related_commands: {
-      "Shipping Manifests": {
+      "Shipping Manifests (AIW)": {
         content: (
           <>
             <Line smoke large bold>[SHIPPING DATABASE]</Line>
@@ -60,7 +63,7 @@ export const WAREHOUSE_COMMANDS = {
         ),
       },
 
-      "Employee Roster": {
+      "Employee Roster (AIW)": {
         content: (
           <>
             <Line smoke large bold>[PERSONNEL DATABASE]</Line>
@@ -106,7 +109,7 @@ export const WAREHOUSE_COMMANDS = {
         ),
       },
 
-      "External Security Camera": {
+      "External Security Camera (AIW)": {
         content: (
           <Camera
             id="alliansen-warehouse-external"
@@ -133,30 +136,44 @@ export const WAREHOUSE_COMMANDS = {
         ),
       },
 
-      access_warehouse_internal_network: {
+      access_alliansen_warehouse_internal_network: {
         password: {
           pw: "logistics47",
-          hint: "Facility number + department name",
+          hint: "Facility number + warehouse function (all lowercase)",
           hintStrength: 2,
         },
         content: (
-          <>
-            <Line smoke large bold>[ALLIANSEN INTERNAL NETWORK]</Line>
-            <Line cyan>[EMPLOYEE ACCESS GRANTED]</Line>
-            <Divider />
-            <Section title="AVAILABLE SYSTEMS:">
-              <Line neon>→ Security camera system</Line>
-              <Line neon>→ Personnel records (detailed)</Line>
-              <Line neon>→ Supervisor's terminal</Line>
-              <Line neon>→ Secure Cargo manifest</Line>
-            </Section>
-            <Divider />
-            <Line yellow>⚠ Network access logged - Connection ID: RCD-#8834</Line>
-            <Line yellow>⚠ Suspicious activity may trigger security review</Line>
-          </>
+          <InternalAccess
+            businessName="ALLIANSEN WAREHOUSE"
+            welcomeMessage="EMPLOYEE NETWORK CONNECTED"
+            networkInfo="⚠ All access logged to corporate security | Connection: RCD-#8834"
+            theme="corporate"
+          />
         ),
         related_commands: {
-          "Security Camera System": {
+
+          // NEW - Shift schedule
+          "Current Shift Schedule (AIW)": {
+            content: (
+              <ShiftSchedule
+                location="Alliansen Warehouse"
+                shift="Night Shift"
+                shiftTime="22:00 - 06:00"
+                currentTime="23:15"
+                personnel={[
+                  { name: 'Marcus Webb', role: 'Night Supervisor', location: 'Main Office', status: 'ACTIVE' },
+                  { name: 'David Chen', role: 'Security Guard', location: 'Main Security Room', status: 'MONITORING' },
+                  { name: 'Sofia Martinez', role: 'Security Guard', location: 'Warehouse Floor', status: 'PATROL' },
+                  { name: 'James Park', role: 'Security Guard', location: 'Rec Room', status: 'BREAK', breakTime: '15 min' },
+                  { name: 'Andre Foster', role: 'Security Guard', location: 'Secure Cargo Gate', status: 'ACTIVE' },
+                  { name: 'Nina Volkov', role: 'Security Guard', location: 'Secure Cargo Interior', status: 'ACTIVE' },
+                ]}
+                nextShift="06:00 (Day Shift)"
+              />
+            ),
+          },
+
+          "Security Camera System (AIW)": {
             content: (
               <Camera
                 id="alliansen-warehouse-main"
@@ -182,10 +199,10 @@ export const WAREHOUSE_COMMANDS = {
               />
             ),
             related_commands: {
-              "Secure Cargo Camera (RESTRICTED)": {
+              "Secure Cargo Camera (AIW)": {
                 password: {
                   pw: "secops2082",
-                  hint: "Who authorized tonight's classified shipment?",
+                  hint: "Who authorized tonight's classified shipment? (Check manifest)",
                   hintStrength: 2,
                 },
                 content: (
@@ -213,7 +230,7 @@ export const WAREHOUSE_COMMANDS = {
             },
           },
 
-          "Personnel Records (Detailed)": {
+          "Personnel Records (AIW)": {
             content: (
               <>
                 <Line smoke large bold>[PERSONNEL FILES]</Line>
@@ -221,98 +238,204 @@ export const WAREHOUSE_COMMANDS = {
                 <Divider />
                 <Section title="QUICK ACCESS:">
                   <Line neon>→ Marcus Webb (Supervisor)</Line>
-                  <Line neon>→ Security team members (5)</Line>
+                  <Line neon>→ David Chen (Security)</Line>
+                  <Line neon>→ Sofia Martinez (Security)</Line>
+                  <Line neon>→ James Park (Security)</Line>
+                  <Line neon>→ Andre Foster (Security)</Line>
+                  <Line neon>→ Nina Volkov (Security)</Line>
                 </Section>
               </>
             ),
             related_commands: {
-              "Marcus Webb (Supervisor)": {
+              "Marcus Webb": {
                 content: (
-                  <Tenet
-                    id="CIT-4721-MW"
+                  <PersonnelFile
+                    employeeId="ALI-NS-4721"
                     name="Marcus Webb"
                     age={41}
                     dob="08/23/2041"
-                    occupation="Night Supervisor"
-                    employer="Alliansen Inc. (Warehouse Division)"
+                    position="Night Shift Supervisor"
+                    department="Warehouse Operations"
+                    hireDate="March 2067 (15 years)"
+                    supervisor="Regional Manager - Linda Torres"
+                    clearanceLevel={3}
                     district="Bigmosse (commutes to Ports)"
-                    bio="15 years with Alliansen. Reliable, by-the-book. Just wants to get through shifts without incident. Saving up for early retirement."
-                    interests={['Fishing', 'Old motorcycles', 'Classic cinema', 'Coffee']}
-                    connections={23}
+                    emergencyContact="Sarah Webb (spouse) - 555-0147"
+                    performance={87}
+                    notes={[
+                      "Reliable employee, zero disciplinary actions",
+                      "Eligible for early retirement package in 2 years",
+                      "Personal interest: Fishing (keeps lucky lure in office safe)",
+                      "Prefers night shift to avoid traffic",
+                    ]}
                     status="ACTIVE"
-                    privacy="PUBLIC"
                   />
                 ),
               },
 
-              "David Chen (Security)": {
+              "David Chen": {
                 content: (
-                  <Tenet
-                    id="CIT-6892-DC"
+                  <PersonnelFile
+                    employeeId="ALI-SEC-6892"
                     name="David Chen"
                     age={28}
                     dob="03/15/2054"
-                    occupation="Security Officer"
-                    employer="Alliansen Inc. (Security Division)"
+                    position="Security Officer"
+                    department="Security Division"
+                    hireDate="January 2080 (2 years)"
+                    supervisor="Marcus Webb (Night Supervisor)"
+                    clearanceLevel={2}
                     district="Lilypond"
-                    bio="Night shift security. Spends most of time watching holovideos on monitors. Corporate paycheck is good enough. Not a hero."
-                    interests={['Gaming', 'Holovids', 'Energy drinks', 'Sleeping']}
-                    connections={67}
+                    emergencyContact="Ming Chen (brother) - 555-0892"
+                    performance={62}
+                    notes={[
+                      "WARNING: Twice reprimanded for distraction on duty",
+                      "Frequently watches entertainment media during shifts",
+                      "Adequate performance but minimal engagement",
+                      "Reliable for showing up on time",
+                    ]}
                     status="ACTIVE"
-                    privacy="PUBLIC"
                   />
                 ),
               },
 
-              "Sofia Martinez (Security)": {
+              "Sofia Martinez": {
                 content: (
-                  <Tenet
-                    id="CIT-5438-SM"
+                  <PersonnelFile
+                    employeeId="ALI-SEC-5438"
                     name="Sofia Martinez"
                     age={32}
                     dob="11/07/2050"
-                    occupation="Security Officer (Patrol)"
-                    employer="Alliansen Inc. (Security Division)"
-                    district="Ports"
-                    bio="Former SecOps, now corporate security. Takes job more seriously than coworkers. Patrols actually patrol. Still not paid enough to die for cargo."
-                    interests={['Martial arts', 'Firearms', 'Physical fitness', 'Street food']}
-                    connections={34}
+                    position="Security Officer (Patrol)"
+                    department="Security Division"
+                    hireDate="June 2078 (4 years)"
+                    supervisor="Marcus Webb (Night Supervisor)"
+                    clearanceLevel={2}
+                    district="Ports (local resident)"
+                    emergencyContact="Carlos Martinez (father) - 555-0438"
+                    performance={94}
+                    notes={[
+                      "Former SecOps officer - excellent credentials",
+                      "Most competent guard on night shift",
+                      "Actually conducts thorough patrols",
+                      "Recommended for promotion consideration",
+                    ]}
                     status="ACTIVE"
-                    privacy="FRIENDS"
+                  />
+                ),
+              },
+
+              "James Park": {
+                content: (
+                  <PersonnelFile
+                    employeeId="ALI-SEC-7821"
+                    name="James Park"
+                    age={26}
+                    dob="06/12/2056"
+                    position="Security Officer"
+                    department="Security Division"
+                    hireDate="September 2081 (6 months)"
+                    supervisor="Marcus Webb (Night Supervisor)"
+                    clearanceLevel={1}
+                    district="Ports"
+                    emergencyContact="Jennifer Park (mother) - 555-0821"
+                    performance={43}
+                    notes={[
+                      "WARNING: Multiple disciplinary warnings for phone use",
+                      "Frequently on break - exceeds allotted time",
+                      "Supervisor considering termination if no improvement",
+                      "Low engagement with security duties",
+                    ]}
+                    status="ACTIVE"
+                  />
+                ),
+              },
+
+              "Andre Foster": {
+                content: (
+                  <PersonnelFile
+                    employeeId="ALI-SEC-5603"
+                    name="Andre Foster"
+                    age={35}
+                    dob="02/19/2047"
+                    position="Security Officer (Checkpoint)"
+                    department="Security Division - Secure Cargo"
+                    hireDate="April 2076 (6 years)"
+                    supervisor="Marcus Webb (Night Supervisor)"
+                    clearanceLevel={3}
+                    district="Ports"
+                    emergencyContact="Lisa Foster (sister) - 555-0603"
+                    performance={91}
+                    notes={[
+                      "Former military - exemplary record",
+                      "Trusted with high-value cargo assignments",
+                      "Follows protocols strictly",
+                      "Recommended for advanced security positions",
+                    ]}
+                    status="ACTIVE"
+                  />
+                ),
+              },
+
+              "Nina Volkov": {
+                content: (
+                  <PersonnelFile
+                    employeeId="ALI-SEC-6234"
+                    name="Nina Volkov"
+                    age={29}
+                    dob="09/03/2053"
+                    position="Security Officer (Secure Cargo)"
+                    department="Security Division - Secure Cargo"
+                    hireDate="November 2077 (5 years)"
+                    supervisor="Marcus Webb (Night Supervisor)"
+                    clearanceLevel={3}
+                    district="Ports"
+                    emergencyContact="Dmitri Volkov (brother) - 555-0234"
+                    performance={88}
+                    notes={[
+                      "Excellent attention to detail",
+                      "Works well with Foster on secure assignments",
+                      "Strong memory for faces and patterns",
+                      "Reliable and professional",
+                    ]}
+                    status="ACTIVE"
                   />
                 ),
               },
             },
           },
 
-          "Supervisor's Terminal": {
+          "Supervisor's Terminal (AIW)": {
             password: {
               pw: "webb2041",
-              hint: "Supervisor's last name + birth year",
+              hint: "Supervisor's last name + birth year (check personnel file)",
               hintStrength: 2,
             },
             content: (
-              <>
-                <Line smoke large bold>[SUPERVISOR TERMINAL]</Line>
-                <Line cyan>Marcus Webb's workstation access</Line>
-                <Divider />
-                <Section title="RECENT ACTIVITY:">
-                  <Line neon>→ Opened tonight's shift report</Line>
-                  <Line neon>→ Reviewed classified shipment manifest</Line>
-                  <Line neon>→ Acknowledged SecOps coordination memo</Line>
-                  <Line neon>→ Currently working on inventory reconciliation</Line>
-                </Section>
-                <Divider />
-                <Section title="AVAILABLE FILES:">
-                  <Line cyan>→ Shift schedules (next 2 weeks)</Line>
-                  <Line cyan>→ Security protocols</Line>
-                  <Line cyan>→ Tonight's classified manifest</Line>
-                  <Line cyan>→ Alarm override codes (emergency use)</Line>
-                </Section>
-              </>
+              <Workstation
+                owner="Marcus Webb"
+                role="Night Supervisor"
+                status="IDLE"
+                lastActivity="8 minutes ago"
+                openTabs={[
+                  { title: 'Alliansen HR Portal', type: 'work' },
+                  { title: 'Inventory Management System', type: 'work' },
+                  { title: 'SecOps Coordination Memo', type: 'work' },
+                  { title: 'Fishing Forecast - Weekend', type: 'personal' },
+                  { title: 'Motorcycle Parts Catalog', type: 'personal' },
+                ]}
+                recentFiles={[
+                  { name: 'Night_Shift_Report_Jan21.xlsx', timestamp: '23:05' },
+                  { name: 'Classified_Manifest_SEC-2082.pdf', timestamp: '22:47' },
+                  { name: 'Employee_Schedules_Feb.xlsx', timestamp: '22:30' },
+                  { name: 'Security_Protocol_Update.pdf', timestamp: '22:15' },
+                ]}
+                emails={12}
+                productivity={73}
+              />
             ),
             related_commands: {
-              "Classified Shipment Manifest": {
+              "Classified Shipment Manifest (AIW)": {
                 content: (
                   <>
                     <Line smoke large bold>[CLASSIFIED CARGO MANIFEST]</Line>
@@ -335,7 +458,7 @@ export const WAREHOUSE_COMMANDS = {
                     </Section>
                     <Divider />
                     <Section title="SECURITY NOTES:">
-                      <Line yellow>→ Guards 4 & 5 assigned to Secure Cargo</Line>
+                      <Line yellow>→ Guards 4 & 5 (Foster & Volkov) assigned to Secure Cargo</Line>
                       <Line yellow>→ No entry without supervisor authorization</Line>
                       <Line yellow>→ Alarm system armed (30-second delay)</Line>
                       <Line yellow>→ Backup response time: 10 minutes</Line>
@@ -346,42 +469,42 @@ export const WAREHOUSE_COMMANDS = {
                 ),
               },
 
-              "Alarm Override Codes": {
+              "Alarm Override Codes (AIW)": {
                 password: {
-                  pw: "redcode47",
-                  hint: "Emergency designation + facility number",
-                  hintStrength: 3,
+                  pw: "emergency",
+                  hint: "What type of situation would require these codes?",
+                  hintStrength: 1,
                 },
                 content: (
                   <>
                     <Line smoke large bold>[EMERGENCY OVERRIDE SYSTEM]</Line>
-                    <Line red>⚠ SUPERVISOR ACCESS ONLY ⚠</Line>
+                    <Line red>SUPERVISOR ACCESS ONLY</Line>
                     <Divider />
                     <Section title="ALARM OVERRIDE CODES:">
-                      <Line cyan>→ Secure Cargo Alarm: #4719</Line>
-                      <Line cyan>→ Fire System: #8833</Line>
-                      <Line cyan>→ Emergency Exit: #2204</Line>
-                      <Line cyan>→ Master Override: #0047</Line>
+                      <Line cyan>Main Entrance: 4782</Line>
+                      <Line cyan>Loading Dock: 4783</Line>
+                      <Line cyan>Emergency Exits: 4784</Line>
+                      <Line yellow>Secure Cargo: 4785 (30-second window)</Line>
                     </Section>
                     <Divider />
                     <Section title="USAGE INSTRUCTIONS:">
-                      <Line neon>1. Enter code at security panel within 30 seconds</Line>
-                      <Line neon>2. System will cancel alarm transmission</Line>
-                      <Line neon>3. Override logged for review by corporate security</Line>
+                      <Line neon>1. Enter override code on security panel</Line>
+                      <Line neon>2. Alarm delay extends to 60 seconds</Line>
+                      <Line neon>3. Must radio Main Security with reason</Line>
+                      <Line neon>4. Override logged automatically</Line>
                     </Section>
                     <Divider />
-                    <Line yellow>⚠ Unauthorized use results in immediate termination</Line>
-                    <Line yellow>⚠ All overrides logged with timestamp and user ID</Line>
+                    <Line red>⚠ Unauthorized use triggers immediate investigation</Line>
                   </>
                 ),
               },
             },
           },
 
-          "Supervisor's Office Safe": {
+          "Supervisor's Office Safe (AIW)": {
             password: {
               pw: "fisherman",
-              hint: "Marcus Webb's favorite hobby from his profile",
+              hint: "Marcus Webb's favorite hobby (check his profile)",
               hintStrength: 2,
             },
             content: (
@@ -393,16 +516,82 @@ export const WAREHOUSE_COMMANDS = {
                 security="4-digit PIN"
                 lastAccess="Tonight (shift start)"
                 physical={[
-                  { item: "Master keycard", desc: "All-access (offices, secure cargo, override)" },
+                  { item: "Master keycard", desc: "All-access (offices, secure cargo, alarm overrides)" },
                   { item: "Petty cash", desc: "180¤ (small bills for misc expenses)" },
                   { item: "Documents", desc: "Employee files, shift reports, inventory logs" },
                   { item: "Personal items", desc: "Fishing lure (lucky charm), family photo" },
                 ]}
                 digital={[
                   { item: "Credchip", desc: "120¤ (personal emergency fund)" },
-                  { item: "Access codes", desc: "Alarm overrides, security panel passwords" },
+                  { item: "Backup access codes", desc: "Security panel passwords, alarm overrides" },
                 ]}
                 notes="Marcus keeps everything by-the-book - safe checked at shift start/end"
+              />
+            ),
+          },
+
+          // NEW - Break room terminal
+          "Rec Room Terminal (AIW)": {
+            content: (
+              <Workstation
+                owner="James Park"
+                role="Security Officer"
+                status="ACTIVE"
+                lastActivity="Just now"
+                openTabs={[
+                  { title: 'SwipeRight Dating App', type: 'personal' },
+                  { title: 'Cy Sports Network - Live Scores', type: 'personal' },
+                  { title: 'Social Media Feed', type: 'personal' },
+                  { title: 'Alliansen Shift Schedule', type: 'work' },
+                ]}
+                recentFiles={[
+                  { name: 'Break_Schedule.txt', timestamp: '22:55' },
+                ]}
+                emails={3}
+                productivity={22}
+              />
+            ),
+          },
+
+          // NEW - Main security workstation
+          "Main Security Workstation (AIW)": {
+            content: (
+              <Workstation
+                owner="David Chen"
+                role="Security Officer"
+                status="IDLE"
+                lastActivity="3 minutes ago (watching holovid)"
+                openTabs={[
+                  { title: 'CyStream - Action Movie Marathon', type: 'personal' },
+                  { title: 'Alliansen Security Portal', type: 'work' },
+                  { title: 'Camera Feed Monitor', type: 'work' },
+                  { title: 'Energy Drink Deals', type: 'personal' },
+                ]}
+                recentFiles={[
+                  { name: 'Camera_Check_Log.txt', timestamp: '22:00' },
+                  { name: 'Incident_Report_Template.docx', timestamp: '3 days ago' },
+                ]}
+                emails={7}
+                productivity={31}
+              />
+            ),
+          },
+
+          // NEW - Vending machine
+          "Warehouse Vending Machine (AIW)": {
+            content: (
+              <VendingMachine
+                id="alliansen-warehouse-vending"
+                model="SynthDrinx 3000"
+                location="Employee rec room, near break tables"
+                drinks={[
+                  { name: 'NRG Blast', pattern: 'lines', color: 'orange', available: true },
+                  { name: 'Synth-Cola', pattern: 'circles', color: 'red', available: true },
+                  { name: 'VitaWater', pattern: 'waves', color: 'blue', available: true },
+                  { name: 'Cyber Coffee', pattern: 'blocks', color: 'yellow', available: false },
+                  { name: 'FocusFuel', pattern: 'dots', color: 'green', available: true },
+                  { name: 'ChillOut Tea', pattern: 'waves', color: 'purple', available: true },
+                ]}
               />
             ),
           },

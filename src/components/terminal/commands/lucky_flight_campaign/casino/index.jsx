@@ -12,6 +12,8 @@ import {
   VendingMachine,
   Safe,
   Menu,
+  InternalAccess,
+  PublicPortal,
 } from "@terminal/retcomdevice"
 
 import LuckyFlightAd from './ad'
@@ -24,33 +26,20 @@ export const LUCKY_FLIGHT_CASINO = {
     content: (
       <>
         <LuckyFlightAd />
-        <Line cyan large bold>✦ LUCKY FLIGHT CASINO ✦</Line>
-        <Line yellow>"Where Fortune Takes Flight!"</Line>
-        <Divider />
-        <Section title="HOURS OF OPERATION:">
-          <KeyValue label="Open" value="10:00 AM - 7:00 AM" />
-          <KeyValue label="Closed" value="7:00 AM - 10:00 AM (Maintenance)" />
-        </Section>
-        <Divider />
-        <Section title="TONIGHT'S ENTERTAINMENT:">
-          <Line pink>♪ LIVE MUSIC 20:00-03:00 ♪</Line>
-          <Line neon>→ 20:00 - PHASER/MOB (blackened chromecore)</Line>
-          <Line neon>→ 21:30 - G_-.- (seismic noise)</Line>
-          <Line neon>→ 23:00 - HeCcc (hexcore)</Line>
-          <Line neon>→ 01:00 - I must leave (doompunk)</Line>
-          <Line neon>→ 02:30 - Sirius Last Light (atmo-orbitalwave)</Line>
-        </Section>
-        <Divider />
-        <Section title="FEATURED GAMES:">
-          <Line neon>• Slot Machines (100+ varieties)</Line>
-          <Line neon>• Blackjack Tables</Line>
-          <Line neon>• Poker Rooms (Texas Hold'em, Omaha)</Line>
-          <Line neon>• Roulette</Line>
-          <Line neon>• Virtual Reality Gaming Pods</Line>
-        </Section>
-        <Divider />
-        <Line yellow>Located at Ports/Bigmosse Border</Line>
-        <Line cyan>Water taxi service available to canal pier!</Line>
+        <PublicPortal
+          name="LUCKY FLIGHT CASINO"
+          tagline="Where Fortune Takes Flight!"
+          network="LUCKY_FLIGHT_GUEST"
+          signalStrength="strong"
+          status="✓ OPEN NOW - Live Music Tonight!"
+          statusColor="neon"
+          nowPlaying="Now playing: PHASER/MOB (blackened chromecore)"
+          notes={[
+            "Located at Ports/Bigmosse Border",
+            "Water taxi service available to canal pier!",
+          ]}
+          theme="party"
+        />
       </>
     ),
     related_commands: {
@@ -79,7 +68,7 @@ export const LUCKY_FLIGHT_CASINO = {
         ),
       },
 
-      "Happy Hour Specials! (lfc)": {
+      "Happy Hour Specials! (Lucky)": {
         content: (
           <Menu
             title="HAPPY HOUR"
@@ -110,7 +99,7 @@ export const LUCKY_FLIGHT_CASINO = {
         ),
       },
 
-      "Hours of Operation (lfc)": {
+      "Hours of Operation (Lucky)": {
         content: (
           <>
             <Line smoke large bold>[OPERATING HOURS]</Line>
@@ -123,7 +112,7 @@ export const LUCKY_FLIGHT_CASINO = {
         ),
       },
 
-      "Entertainment Brochure (lfc)"  : {
+      "Entertainment Brochure (Lucky)"  : {
         content: (
           <>
             <Line smoke large bold>[TONIGHT'S SHOWS]</Line>
@@ -141,7 +130,7 @@ export const LUCKY_FLIGHT_CASINO = {
         ),
       },
 
-      "Available Transportation (lfc)": {
+      "Available Transportation (Lucky)": {
         content: (
           <>
             <Line smoke large bold>[TRANSPORT OPTIONS]</Line>
@@ -176,7 +165,7 @@ export const LUCKY_FLIGHT_CASINO = {
           />
         ),
         related_commands: {
-          "Maintenance Access": {
+          "Maintenance Access (lfc_ncl)": {
             password: {
               pw: "quantum",
               hint: "Top selling soda",
@@ -195,7 +184,7 @@ export const LUCKY_FLIGHT_CASINO = {
               </>
             ),
             related_commands: {
-              "Internal Safe": {
+              "Internal Safe (lfc_ncl)": {
                 password: {
                   pw: "coins",
                   hint: "What accumulates in the cash box",
@@ -221,7 +210,7 @@ export const LUCKY_FLIGHT_CASINO = {
                   />
                 ),
               },
-              "Debug Mode": {
+              "Debug Mode (lfc_ncl)": {
                 password: {
                   pw: "freevend",
                   hint: "The mode that gives away drinks",
@@ -245,30 +234,22 @@ export const LUCKY_FLIGHT_CASINO = {
         },
       },
 
-      "access_casino_internal_network (lfc)": {
+      "access_lucky_flight_internal_network": {
         password: {
           pw: "loadeddice",
           hint: "Better not get caught",
           hintStrength: 1,
         },
         content: (
-          <>
-            <Line smoke large bold>[CASINO INTERNAL NETWORK]</Line>
-            <Line cyan>[ACCESS GRANTED - PERIPHERAL SYSTEMS]</Line>
-            <Divider />
-            <Section title="AVAILABLE SYSTEMS:">
-              <Line neon>→ Facility blueprints (restricted)</Line>
-              <Line neon>→ HR database (employee records)</Line>
-              <Line neon>→ Security infrastructure</Line>
-              <Line neon>→ Financial systems</Line>
-              <Line neon>→ Operations database</Line>
-            </Section>
-            <Divider />
-            <Warning>Higher-value systems require additional credentials</Warning>
-          </>
+          <InternalAccess
+            businessName="CASINO"
+            welcomeMessage="ACCESS GRANTED - PERIPHERAL SYSTEMS"
+            networkInfo="Higher-value systems require additional credentials"
+            theme="corporate"
+          />
         ),
         related_commands: {
-          access_facility_files: {
+          access_lucky_flight_facility_files: {
             password: {
               pw: "architecture",
               hint: "What blueprints are a form of",
@@ -290,7 +271,7 @@ export const LUCKY_FLIGHT_CASINO = {
             ),
             related_commands: {
 
-              "Blueprint: Basement": {
+              "Blueprint: Basement (Lucky)": {
                 content: (
                   <>
                     <LuckyFlightBasement />
@@ -307,7 +288,7 @@ export const LUCKY_FLIGHT_CASINO = {
                 ),
               },
 
-              "Blueprint: Floor 1": {
+              "Blueprint: Floor 1 (Lucky)": {
                 content: (
                   <>
                     <LuckyFlightFloor1 />
@@ -324,7 +305,7 @@ export const LUCKY_FLIGHT_CASINO = {
                   </>
                 ),
               },
-              "Blueprint: Floor 2": {
+              "Blueprint: Floor 2 (Lucky)": {
                 content: (
                   <>
                     <LuckyFlightFloor2 />
@@ -344,7 +325,7 @@ export const LUCKY_FLIGHT_CASINO = {
               },
             },
           },
-          access_hr_database: {
+          access_lucky_flight_hr_database: {
             password: {
               pw: "gibos",
               hint: "Nickname of the cyborg grandpa winning big at slots",
@@ -749,7 +730,7 @@ export const LUCKY_FLIGHT_CASINO = {
               },
             },
           },
-          access_security_database: {
+          access_lucky_flight_security_database: {
             password: {
               pw: "surveillance",
               hint: "What cameras are used for",
@@ -770,7 +751,7 @@ export const LUCKY_FLIGHT_CASINO = {
               </>
             ),
             related_commands: {
-              query_camera_coverage: {
+              query_lucky_flight_camera_coverage: {
                 content: (
                   <>
                     <Line smoke large bold>[CAMERA COVERAGE]</Line>
@@ -809,7 +790,7 @@ export const LUCKY_FLIGHT_CASINO = {
                   </>
                 ),
               },
-              query_alarm_response: {
+              query_lucky_flight_alarm_response: {
                 content: (
                   <Box color="red">
                     <Line red bold>[ALARM PROTOCOLS]</Line>
@@ -826,7 +807,7 @@ export const LUCKY_FLIGHT_CASINO = {
                   </Box>
                 ),
               },
-              query_entry_points: {
+              query_lucky_flight_entry_points: {
                 password: {
                   pw: "breach",
                   hint: "What you're planning to do",
@@ -857,7 +838,7 @@ export const LUCKY_FLIGHT_CASINO = {
               },
             },
           },
-          access_financial_database: {
+          access_lucky_flight_financial_database: {
             password: {
               pw: "debt",
               hint: "What casino uses to control neighborhood",
@@ -877,7 +858,7 @@ export const LUCKY_FLIGHT_CASINO = {
               </>
             ),
             related_commands: {
-              query_debt_ledger: {
+              query_lucky_flight_debt_ledger: {
                 content: (
                   <Box color="red">
                     <Line red bold>[DEBT LEDGER]</Line>
@@ -893,7 +874,7 @@ export const LUCKY_FLIGHT_CASINO = {
                   </Box>
                 ),
               },
-              query_high_rollers: {
+              query_lucky_flight_high_rollers: {
                 content: (
                   <>
                     <Line smoke large bold>[HIGH ROLLERS]</Line>
@@ -912,7 +893,7 @@ export const LUCKY_FLIGHT_CASINO = {
                   </>
                 ),
               },
-              query_corporate_structure: {
+              query_lucky_flight_corporate_structure: {
                 password: {
                   pw: "subsidiary",
                   hint: "How corps hide ownership",
@@ -930,7 +911,7 @@ export const LUCKY_FLIGHT_CASINO = {
               },
             },
           },
-          access_operations_database: {
+          access_lucky_flight_operations_database: {
             content: (
               <>
                 <Line smoke large bold>[OPERATIONS]</Line>
@@ -945,7 +926,7 @@ export const LUCKY_FLIGHT_CASINO = {
               </>
             ),
             related_commands: {
-              query_recent_incidents: {
+              query_lucky_flight_recent_incidents: {
                 password: {
                   pw: "chaos",
                   hint: "Casino's natural state",
@@ -966,7 +947,7 @@ export const LUCKY_FLIGHT_CASINO = {
                   </>
                 ),
               },
-              query_power_core_status: {
+              query_lucky_flight_power_core_status: {
                 password: {
                   pw: "unstable",
                   hint: "Condition of Room 16",

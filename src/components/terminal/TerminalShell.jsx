@@ -44,6 +44,9 @@ const COLORS = {
 // ============================================================================
 
 export default function TerminalShell({
+  isBooting,
+  passwordMode,
+  executeCommand,
   header,
   historyArea,
   inputArea,
@@ -51,6 +54,7 @@ export default function TerminalShell({
   quickCommands = [],
   terminalActivity = 0,
 }) {
+  console.log(quickCommands)
   // Mascot state with localStorage persistence
   const [mascotEnabled, setMascotEnabled] = useState(() => {
     const saved = localStorage.getItem('terminal-mascot-enabled');
@@ -106,14 +110,19 @@ export default function TerminalShell({
       {quickCommands.length > 0 && (
         <div className="w-32 flex-shrink-0 p-4 pl-0 pr-8 flex flex-col gap-2 overflow-y-auto relative">
           {/* Quick command buttons */}
-          {quickCommands.map((cmd, i) => (
-            <QuickCommandButton
-              key={i}
-              label={cmd.label}
-              onClick={cmd.onClick}
-              disabled={cmd.disabled}
-            />
-          ))}
+          {quickCommands.map((cmd, i) => {
+            if (cmd === 'reset') return null;
+            return (
+              <QuickCommandButton
+                key={i}
+                label={cmd}
+                onClick={() => {
+                  executeCommand(cmd)
+                }}
+                disabled={isBooting || passwordMode}
+              />
+            );
+          })}
 
           {/* Divider */}
           <div style={{
@@ -394,7 +403,7 @@ export function TerminalHelpText({ passwordMode }) {
     <div className="mt-4 text-center text-xs flex-shrink-0" style={{ color: COLORS.text.secondary }}>
       {passwordMode
         ? 'Enter password or press [X] to cancel'
-        : 'Type \'help\' for usage | Type \'list\' for access points | Tab for autocomplete | ↑↓ for history'
+        : 'Type \'help\' for usage | Type \'list\' for access points'
       }
     </div>
   );

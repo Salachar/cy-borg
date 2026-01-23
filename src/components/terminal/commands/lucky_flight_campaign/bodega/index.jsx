@@ -13,6 +13,9 @@ import {
   Safe,
   Camera,
   Menu,
+  MaintenanceAccess,
+  InternalAccess,
+  PublicPortal,
 } from "@terminal/retcomdevice"
 
 import BatusBodegaAd from './ad'
@@ -22,26 +25,24 @@ export const BODEGA_COMMANDS = {
     content: (
       <>
         <BatusBodegaAd />
-        <Line cyan large bold>✦ BATU'S BODEGA ✦</Line>
-        <Line yellow>"Your Neighborhood Corner Store Since 2067"</Line>
-        <Divider />
-        <Line neon>Connecting to FREE_BODEGA_5G...</Line>
-        <Line cyan>[CONNECTION ESTABLISHED]</Line>
-        <Divider />
-        <DataTable data={[
-          { label: "SSID", value: "FREE_BODEGA_5G" },
-          { label: "Signal", value: "████░░ (Strong)" },
-          { label: "Security", value: "Open Network" },
-          { label: "Status", value: "⚠ Store Currently CLOSED" },
-        ]} />
-        <Divider />
-        <Line pink>🎵 Now playing: Underground Radio - Ports District Mix</Line>
-        <Line yellow>* Free wifi courtesy of Batu - No purchase necessary</Line>
-        <Line yellow>* Please respect bandwidth - Community shared connection</Line>
+        <PublicPortal
+          name="BATU'S BODEGA"
+          tagline="Your Neighborhood Corner Store Since 2067"
+          network="FREE_BODEGA_5G"
+          signalStrength="strong"
+          status="⚠ Store Currently CLOSED"
+          statusColor="red"
+          nowPlaying="Now playing: Underground Radio - Ports District Mix"
+          notes={[
+            "Free wifi courtesy of Batu - No purchase necessary",
+            "Please respect bandwidth - Community shared connection",
+          ]}
+          theme="friendly"
+        />
       </>
     ),
     related_commands: {
-      "Bodega Menu": {
+      "Batu's Bodega Menu": {
         content: (
           <Menu
             title="DAILY SPECIALS"
@@ -72,7 +73,7 @@ export const BODEGA_COMMANDS = {
         ),
       },
 
-      "Coffee Selections": {
+      "Coffee Selections (Batu's Bodega)": {
         content: (
           <Menu
             title="BREW MENU"
@@ -102,7 +103,7 @@ export const BODEGA_COMMANDS = {
         ),
       },
 
-      "Bodega ATM": {
+      "ATM (Batu's Bodega)": {
         password: {
           pw: "compound",
           hint: "It grows faster than work ever could",
@@ -126,7 +127,7 @@ export const BODEGA_COMMANDS = {
         ),
       },
 
-      "Bodega Vending Machine": {
+      "Vending Machine (VM_BB_N8)": {
         content: (
           <VendingMachine
             id="bodega-outside-vending"
@@ -142,26 +143,23 @@ export const BODEGA_COMMANDS = {
           />
         ),
         related_commands: {
-          "Maintenance Access": {
+          "Maintenance Access (VM_BB_N8)": {
             password: {
               pw: "refresh",
               hint: "What you do to restock the machine",
               hintStrength: 2,
             },
             content: (
-              <>
-                <Line smoke large bold>[MAINTENANCE MENU]</Line>
-                <Line cyan>[EMPLOYEE ACCESS GRANTED]</Line>
-                <Divider />
-                <Section title="AVAILABLE OPTIONS:">
-                  <Line neon>→ Restock inventory</Line>
-                  <Line neon>→ Access internal safe</Line>
-                  <Line neon>→ Debug mode</Line>
-                </Section>
-              </>
+              <MaintenanceAccess
+                deviceModel="QuickDrinx 2000"
+                deviceId="VM-2000-4729"
+                firmwareVersion="v3.1.2"
+                systemStatus="OPERATIONAL"
+                uptime="14 days, 7 hours"
+              />
             ),
             related_commands: {
-              "Internal Safe": {
+              "Internal Safe (VM_BB_N8)": {
                 password: {
                   pw: "coins",
                   hint: "What accumulates in the cash box",
@@ -185,7 +183,7 @@ export const BODEGA_COMMANDS = {
                   />
                 ),
               },
-              "Debug Mode": {
+              "Debug Mode (VM_BB_N8)": {
                 password: {
                   pw: "freevend",
                   hint: "The mode that gives away drinks",
@@ -207,7 +205,7 @@ export const BODEGA_COMMANDS = {
         },
       },
 
-      "Deals!": {
+      "Deals! (Batu's Bodega)": {
         content: (
           <>
             <Line yellow large bold>[TODAY'S SPECIALS]</Line>
@@ -241,7 +239,7 @@ export const BODEGA_COMMANDS = {
         ),
       },
 
-      "Operating Status": {
+      "Operating Status (Batu's Bodega)": {
         content: (
           <>
             <Line smoke large bold>[STORE STATUS]</Line>
@@ -300,28 +298,22 @@ export const BODEGA_COMMANDS = {
         ),
       },
 
-      access_bodega_internal_network: {
+      access_batus_bodega_internal_network: {
         password: {
           pw: "payday",
           hint: "Niece's favorite day and candybar",
           hintStrength: 3,
         },
         content: (
-          <>
-            <Line smoke large bold>[BODEGA INTERNAL SYSTEMS]</Line>
-            <Line cyan>[EMPLOYEE ACCESS GRANTED]</Line>
-            <Divider />
-            <Section title="AVAILABLE SYSTEMS:">
-              <Line neon>→ Security camera archive</Line>
-              <Line neon>→ Personnel records</Line>
-              <Line neon>→ Inventory database</Line>
-            </Section>
-            <Divider />
-            <Line yellow>Internal network maintained by Batu (basic security)</Line>
-          </>
+          <InternalAccess
+            businessName="BODEGA"
+            welcomeMessage="EMPLOYEE ACCESS GRANTED"
+            networkInfo="Internal network maintained by Batu (basic security)"
+            theme="casual"
+          />
         ),
         related_commands: {
-          access_bodega_security_cam: {
+          access_batus_bodega_security_cam: {
             content: (
               <Camera
                 id="bodega-main-cam"
@@ -358,7 +350,7 @@ export const BODEGA_COMMANDS = {
             ),
           },
 
-          query_bodega_personnel: {
+          query_batus_bodega_personnel: {
             content: (
               <>
                 <Line smoke large bold>[PERSONNEL RECORDS]</Line>
@@ -474,7 +466,7 @@ export const BODEGA_COMMANDS = {
             },
           },
 
-          query_bodega_inventory: {
+          query_batus_bodega_inventory: {
             content: (
               <>
                 <Line smoke large bold>[INVENTORY DATABASE]</Line>

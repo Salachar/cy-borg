@@ -9,14 +9,12 @@ import {
   ATM,
   Safe,
   Camera,
+  Jukebox,
+  MaintenanceAccess,
+  VendingMachine,
 } from "@terminal/retcomdevice"
 
 export const FUN_COMMANDS = {
-
-  // ============================================================================
-  // APARTMENT COMPLEXES
-  // ============================================================================
-
   "Silverpeak Residences": {
     content: (
       <>
@@ -116,7 +114,7 @@ export const FUN_COMMANDS = {
         ),
       },
 
-      access_silverpeak_management: {
+      "Silverpeak Management Portal": {
         password: {
           pw: "community",
           hint: "What the building emphasizes in its culture",
@@ -284,7 +282,7 @@ export const FUN_COMMANDS = {
       </>
     ),
     related_commands: {
-      access_shop_inventory: {
+      "access_sanchez_shop_inventory": {
         password: {
           pw: "portalgun",
           hint: "Device in back room (broken, parts only)",
@@ -352,7 +350,7 @@ export const FUN_COMMANDS = {
         ),
       },
 
-      "Back Room Safe (Sanchez)": {
+      "Back Room Safe (Sanchez Electronics)": {
         password: {
           pw: "C137",
           hint: "Dimension number written on portal device",
@@ -454,7 +452,7 @@ export const FUN_COMMANDS = {
         ),
       },
 
-      access_pawn_records: {
+      access_gilded_oddities_records: {
         password: {
           pw: "goldenturd",
           hint: "What locals call the shop mascot statue",
@@ -661,38 +659,18 @@ export const FUN_COMMANDS = {
     related_commands: {
       "Bar Jukebox (Compiler)": {
         content: (
-          <>
-            <Line smoke large bold>[JUKEBOX - MODEL JB-808]</Line>
-            <Line cyan>Location: Near pool table, corner booth area</Line>
-            <Divider />
-            <DataTable data={[
-              { label: "Status", value: "ONLINE" },
-              { label: "Network", value: "Connected to local music server" },
-              { label: "Cost", value: "2¤ per song, 5¤ for 3 songs" },
-              { label: "Queue", value: "4 songs currently queued" },
-            ]} />
-            <Divider />
-            <Section title="NOW PLAYING:">
-              <Line neon>Track: "Recursion Blues" - The Stack Overflow</Line>
-              <Line neon>Genre: Synthwave-rock fusion</Line>
-              <Line neon>Requested by: Table 7</Line>
-            </Section>
-            <Divider />
-            <Section title="POPULAR SELECTIONS:">
-              <Line pink>1. "Infinite Loop" - Compiled Dreams</Line>
-              <Line pink>2. "Garbage Collection" - Memory Leaks</Line>
-              <Line pink>3. "404 Not Found" - Error State</Line>
-              <Line pink>4. "Binary Sunset" - Digital Horizons</Line>
-              <Line pink>5. "Middle Out" - Compression Algorithm</Line>
-            </Section>
-            <Divider />
-            <Section title="QUEUE:">
-              <Line yellow>Next: "Stack Trace" - Debug Mode</Line>
-              <Line yellow>Then: "Kernel Panic" - System Crash</Line>
-              <Line yellow>Then: "Git Gud" - Version Control</Line>
-              <Line yellow>Last: "Coffee.exe" - Runtime Error</Line>
-            </Section>
-          </>
+          <Jukebox
+            model="JB-808"
+            location="Near pool table, corner booth area"
+            cost="2¤"
+            songs={[
+              { title: "Recursion Blues", artist: "The Stack Overflow", genre: "Synthwave-rock fusion", color: 'cyan' },
+              { title: "Infinite Loop", artist: "Compiled Dreams", genre: "Electronic", color: 'purple' },
+              { title: "Garbage Collection", artist: "Memory Leaks", genre: "Industrial", color: 'green' },
+              { title: "404 Not Found", artist: "Error State", genre: "Glitch-hop", color: 'red' },
+              { title: "Binary Sunset", artist: "Digital Horizons", genre: "Ambient synthwave", color: 'orange' },
+            ]}
+          />
         ),
       },
 
@@ -724,7 +702,7 @@ export const FUN_COMMANDS = {
         ),
       },
 
-      access_bar_internal: {
+      access_compiler_bar_internal: {
         password: {
           pw: "debug",
           hint: "What programmers do when code doesn't work",
@@ -798,41 +776,68 @@ export const FUN_COMMANDS = {
     ),
   },
 
-  "Smart Vending Machine (District Plaza)": {
+  "Smart Vending Machine (SMV_729)": {
     content: (
-      <>
-        <Line smoke large bold>[SMART VENDING MACHINE - MODEL SVM-700]</Line>
-        <Line cyan>Location: Tech district plaza, near benches</Line>
-        <Divider />
-        <DataTable data={[
-          { label: "Status", value: "OPERATIONAL" },
-          { label: "Payment", value: "Credchip or cash" },
-          { label: "Stock Level", value: "78% (recently restocked)" },
-          { label: "Last Service", value: "2 days ago" },
-        ]} />
-        <Divider />
-        <Section title="CURRENT INVENTORY:">
-          <Line neon>Row A: Energy drinks (8 remaining) - 6¤ each</Line>
-          <Line neon>Row B: Water bottles (12 remaining) - 4¤ each</Line>
-          <Line neon>Row C: Protein bars (6 remaining) - 5¤ each</Line>
-          <Line neon>Row D: Synth-chips (4 remaining) - 5¤ each</Line>
-          <Line yellow>Row E: "Mystery Snack" (2 remaining) - 8¤ each</Line>
-        </Section>
-        <Divider />
-        <Section title="SALES DATA (Today):">
-          <Line cyan>Transactions: 34</Line>
-          <Line cyan>Revenue: 186¤</Line>
-          <Line cyan>Most popular: Energy drinks (14 sold)</Line>
-        </Section>
-        <Divider />
-        <Section title="MACHINE STATUS:">
-          <Line green>Payment system: ONLINE</Line>
-          <Line green>Cooling: FUNCTIONAL</Line>
-          <Line green>Display: CLEAR</Line>
-          <Line yellow>Cash box: Estimated 220¤ (not secured against hacking)</Line>
-        </Section>
-      </>
+      <VendingMachine
+        id="tech-district-plaza-vending"
+        model="SVM-700"
+        location="Tech district plaza, near benches"
+        drinks={[
+          { name: 'ENERGY DRINK', pattern: 'lines', color: 'yellow', available: true },
+          { name: 'WATER BOTTLE', pattern: 'waves', color: 'blue', available: true },
+          { name: 'PROTEIN BAR', pattern: 'blocks', color: 'green', available: true },
+          { name: 'SYNTH-CHIPS', pattern: 'dots', color: 'orange', available: true },
+          { name: 'MYSTERY SNACK', pattern: 'circles', color: 'purple', available: true },
+        ]}
+      />
     ),
+    related_commands: {
+      "Maintenance Access (SMV_729)": {
+        password: {
+          pw: "restock",
+          hint: "What you do when inventory runs low",
+          hintStrength: 2,
+        },
+        content: (
+          <MaintenanceAccess
+            deviceModel="SVM-700"
+            deviceId="PLAZA-VM-2891"
+            firmwareVersion="v3.2.1"
+            systemStatus="OPERATIONAL"
+            uptime="12 days, 4 hours"
+          />
+        ),
+        related_commands: {
+          "Internal Safe (SMV_729)": {
+            password: {
+              pw: "coins",
+              hint: "What accumulates in the cash box",
+              hintStrength: 1,
+            },
+            content: (
+              <Safe
+                id="tech-plaza-vending-safe"
+                model="VM-CASH-200"
+                location="Internal cash collection box"
+                owner="VendCorp (vending division)"
+                security="Maintenance keypad"
+                lastAccess="2 days ago (routine service)"
+                physical={[
+                  { item: "Coins", desc: "140¤ in change (mixed denominations)" },
+                  { item: "Bills", desc: "80¤ (small bills)" },
+                  { item: "Service log", desc: "Paper logbook (last 6 months)" },
+                ]}
+                digital={[
+                  { item: "Credchip", desc: "95¤ (2 days of receipts, transferable)" },
+                  { item: "Transaction log", desc: "Last 1000 purchases logged" },
+                ]}
+                notes="Machine empties to central vault weekly (Thursdays, 09:00)"
+              />
+            ),
+          },
+        },
+      },
+    },
   },
 
   "ATM (Tech District Corner)": {

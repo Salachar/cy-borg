@@ -14,12 +14,12 @@ import TerminalShell, {
   TerminalHelpText,
 } from '@terminal/TerminalShell';
 import {
-  getBootMessages,
   Line,
-  Box,
-  Divider,
-  CommandLink,
 } from "@terminal/TerminalComponents";
+import {
+  RelatedCommands,
+} from "@terminal/retcomdevice";
+import BootSequence from "@terminal/BootSequence";
 
 import PasswordPrompt from '@terminal/retcomdevice/PasswordPrompt';
 
@@ -87,6 +87,9 @@ function saveDiscoveredPasswords(passwords) {
 // Flatten commands for lookup (parent + all nested related_commands, recursively)
 function flattenCommands(commands, flat = {}) {
   for (const [key, cmd] of Object.entries(commands)) {
+    if (flat[key]) {
+      console.log(`Existing key found: ${key}`)
+    }
     flat[key] = cmd;
 
     // Recursively flatten nested related_commands
@@ -95,44 +98,14 @@ function flattenCommands(commands, flat = {}) {
     }
   }
 
+
+
   return flat;
 }
 
 // ============================================================================
 // SUB-COMPONENTS
 // ============================================================================
-
-function RelatedCommands({ commands, onSelect, flatCommands }) {
-  return (
-    <Box color="cyan" className="my-2">
-      <Line teal bold>━━━ RELATED COMMANDS AVAILABLE ━━━</Line>
-      <Divider />
-      <div className="space-y-1">
-        {commands.map(cmd => {
-          const commandDef = flatCommands[cmd];
-          const hasPassword = commandDef?.password;
-
-          return (
-            <div key={cmd}>
-              <Line neon>
-                → <CommandLink command={cmd} onClick={onSelect} />
-                {hasPassword && (
-                  <span className="text-xs ml-2" style={{ color: 'rgb(250, 204, 21)' }}>
-                    [PW]
-                  </span>
-                )}
-              </Line>
-            </div>
-          );
-        })}
-      </div>
-      <Divider />
-      <Line neon small>
-        These commands are now available via 'list'
-      </Line>
-    </Box>
-  );
-}
 
 // History Entry Component
 function HistoryEntry({ entry, index, onCommandSelect, flatCommands }) {
@@ -155,7 +128,7 @@ function HistoryEntry({ entry, index, onCommandSelect, flatCommands }) {
     case 'related_commands':
       return (
         <RelatedCommands
-          commands={entry.commands}
+          commands={entry.commands || []}
           onSelect={onCommandSelect}
           flatCommands={flatCommands}
         />
@@ -184,7 +157,6 @@ export default function Terminal() {
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [discoveredSecrets, setDiscoveredSecrets] = useState([]);
   const [discoveredPasswords, setDiscoveredPasswords] = useState({});
-  const [isBooting, setIsBooting] = useState(true);
   const [passwordMode, setPasswordMode] = useState(false); // Track if password prompt is active
 
   const [hasLoadedHistory, setHasLoadedHistory] = useState(false);
@@ -208,66 +180,67 @@ export default function Terminal() {
   useEffect(() => {
     if (hasBootedRef.current) return;
 
-    const initializeTerminal = async () => {
-      const secrets = getDiscoveredSecrets();
-      const passwords = getDiscoveredPasswords();
-      setDiscoveredSecrets(secrets);
-      setDiscoveredPasswords(passwords);
+    const secrets = getDiscoveredSecrets();
+    const passwords = getDiscoveredPasswords();
+    setDiscoveredSecrets(secrets);
+    setDiscoveredPasswords(passwords);
 
-      // Pull saved history before boot sequence modifies it
-      let savedHistory = [];
-      try {
-        savedHistory = JSON.parse(localStorage.getItem(HISTORY_KEY));
-        if (!Array.isArray(savedHistory)) savedHistory = [];
-      } catch (e) {
-        savedHistory = [];
-      }
+    // Pull saved history before boot sequence modifies it
+    let savedHistory = [];
+    try {
+      savedHistory = JSON.parse(localStorage.getItem(HISTORY_KEY));
+      if (!Array.isArray(savedHistory)) savedHistory = [];
+    } catch (e) {
+      savedHistory = [];
+    }
 
-      await bootSequence(savedHistory.length >= 1);
+    addToHistory({
+      type: 'system',
+      content: (<BootSequence />),
+    });
 
-      savedHistory.forEach((entry) => {
-        const type = entry.cmd || entry.type;
+    savedHistory.forEach((entry) => {
+      const type = entry.cmd || entry.type;
 
-        if (type === 'user') {
-          addToHistory({
-            type,
-            content: entry.content,
-          });
-          return;
-        }
-
-        const command = flatCommands[type] || SYSTEM_COMMANDS[type];
-
-        if (!command) {
-          console.warn('No command found for', type)
-          return;
-        }
-
-        let displayContent = null;
-        if (typeof command === 'function') {
-          // System level commands are special funcions to take extra shit
-          displayContent = command({
-            discoveredSecrets: secrets,
-            campaignCommandList: CAMPAIGN_COMMANDS_LIST,
-            setInputCallback: setInput,
-            discoveredPasswords: passwords,
-          }).content;
-        } else if (typeof command.content === 'function') {
-          displayContent = command.content();
-        } else {
-          displayContent = command.content;
-        }
-
-        if (!displayContent) return;
-
+      if (type === 'user') {
         addToHistory({
           type,
-          content: displayContent,
+          content: entry.content,
         });
-      });
-    };
+        return;
+      }
 
-    initializeTerminal();
+      const command = flatCommands[type] || SYSTEM_COMMANDS[type];
+
+      if (!command) {
+        console.warn('No command found for', type)
+        return;
+      }
+
+      let displayContent = null;
+      if (typeof command === 'function') {
+        // System level commands are special funcions to take extra shit
+        displayContent = command({
+          discoveredSecrets: secrets,
+          campaignCommandList: CAMPAIGN_COMMANDS_LIST,
+          setInputCallback: setInput,
+          discoveredPasswords: passwords,
+        }).content;
+      } else if (typeof command.content === 'function') {
+        displayContent = command.content();
+      } else {
+        displayContent = command.content;
+      }
+
+      if (!displayContent) return;
+
+      addToHistory({
+        type,
+        content: displayContent,
+      });
+    });
+
+    // Prevents animated scrolling on load, so its instant
     setTimeout(() => {
       setHasLoadedHistory(true);
     }, 100)
@@ -331,20 +304,6 @@ export default function Terminal() {
 
   const addToHistory = (entry) => {
     setHistory(prev => [...prev, { ...entry, timestamp: Date.now() }]);
-  };
-
-  const bootSequence = async (hasHistory) => {
-    const bootMessages = getBootMessages(setInput);
-    for (let i = 0; i < bootMessages.length; i++) {
-      if (!hasHistory) {
-        await new Promise(resolve => setTimeout(resolve, 200));
-      }
-      addToHistory({
-        type: 'system',
-        content: bootMessages[i].content,
-      });
-    }
-    setIsBooting(false);
   };
 
   // ============================================================================
@@ -435,8 +394,10 @@ export default function Terminal() {
       setDiscoveredPasswords({});
       setDiscoveredSecrets([]);
       setHistory([]);
-      setIsBooting(true);
-      bootSequence();
+      addToHistory({
+        type: 'system',
+        content: (<BootSequence />),
+      });
       return true;
     }
 
@@ -496,107 +457,11 @@ export default function Terminal() {
     return true;
   };
 
-  // Quick command execution (bypasses input field)
-  const executeQuickCommand = (cmd) => {
-    if (passwordMode || isBooting) return;
-    executeCommand(cmd);
-  };
-
-  // ============================================================================
-  // EVENT HANDLERS
-  // ============================================================================
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!passwordMode) {
-      setTerminalActivity(prev => prev + 1);
-      executeCommand(input);
-      setInput('');
-    }
-  };
-
-  const handleKeyDown = (e) => {
-    // Don't handle shortcuts in password mode
-    if (passwordMode) return;
-
-    if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      handleHistoryNavigation('up');
-    } else if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      handleHistoryNavigation('down');
-    } else if (e.key === 'Tab') {
-      handleAutocomplete(e);
-    }
-  };
-
-  const handleHistoryNavigation = (direction) => {
-    if (commandHistory.length === 0) return;
-
-    let newIndex = historyIndex;
-
-    if (direction === 'up') {
-      newIndex = historyIndex === -1
-        ? commandHistory.length - 1
-        : Math.max(0, historyIndex - 1);
-    } else if (direction === 'down') {
-      newIndex = historyIndex + 1;
-
-      if (newIndex >= commandHistory.length) {
-        setHistoryIndex(-1);
-        setInput('');
-        return;
-      }
-    }
-
-    setHistoryIndex(newIndex);
-    setInput(commandHistory[newIndex]);
-  };
-
-  const handleAutocomplete = (e) => {
-    e.preventDefault();
-
-    const partial = input; // .toLowerCase();
-    if (!partial) return;
-
-    // Get available commands (system + all campaign commands including nested ones)
-    const available = [
-      ...Object.keys(SYSTEM_COMMANDS),
-      ...Object.keys(flatCommands),
-    ];
-
-    const matches = available.filter(cmd => cmd.startsWith(partial));
-
-    if (matches.length === 1) {
-      // Single match - complete it
-      setInput(matches[0]);
-    } else if (matches.length > 1) {
-      // Multiple matches - show them
-      addToHistory({
-        type: 'system',
-        content: `Possible commands: ${matches.join(', ')}`,
-      });
-    }
-  };
-
-  // ============================================================================
-  // RENDER
-  // ============================================================================
-
-  const promptPrefix = 'CY_NET://>';
-  const inputPlaceholder = passwordMode ? 'Password prompt active...' : 'Enter command...';
-
-  // Quick command buttons for system commands
-  const quickCommands = [
-    { label: 'HELP', onClick: () => executeQuickCommand('help'), disabled: isBooting || passwordMode },
-    { label: 'LIST', onClick: () => executeQuickCommand('list'), disabled: isBooting || passwordMode },
-    { label: 'CLEAR', onClick: () => executeQuickCommand('clear'), disabled: isBooting || passwordMode },
-    { label: 'ABOUT', onClick: () => executeQuickCommand('about'), disabled: isBooting || passwordMode },
-    // { label: 'RESET', onClick: () => executeQuickCommand('reset'), disabled: isBooting || passwordMode },
-  ];
-
   return (
     <TerminalShell
+      isBooting={false}
+      passwordMode={passwordMode}
+      executeCommand={executeCommand}
       terminalActivity={terminalActivity}
       header={<TerminalHeader />}
 
@@ -620,14 +485,24 @@ export default function Terminal() {
 
       inputArea={
         <TerminalInputArea
-          onSubmit={handleSubmit}
-          promptPrefix={promptPrefix}
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (!passwordMode) {
+              setTerminalActivity(prev => prev + 1);
+              executeCommand(input);
+              setInput('');
+            }
+          }}
+          promptPrefix={'CY_NET://>'}
           passwordMode={passwordMode}
           input={input}
           onInputChange={(e) => !passwordMode && setInput(e.target.value)}
-          onKeyDown={handleKeyDown}
-          isBooting={isBooting}
-          inputPlaceholder={inputPlaceholder}
+          onKeyDown={(e) => {
+            // Don't handle shortcuts in password mode
+            if (passwordMode) return;
+          }}
+          isBooting={false}
+          inputPlaceholder={passwordMode ? 'Password prompt active...' : 'Enter command...'}
           inputRef={inputRef}
           onCancelPassword={() => {}}
         />
@@ -635,7 +510,7 @@ export default function Terminal() {
 
       helpText={<TerminalHelpText passwordMode={passwordMode} />}
 
-      quickCommands={quickCommands}
+      quickCommands={Object.keys(SYSTEM_COMMANDS)}
     />
   );
 }
