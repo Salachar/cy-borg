@@ -176,7 +176,7 @@ function CommandTree({ commands, discovered, passwords, depth = 0, setInputCallb
             <div
               key={cmd.id}
               style={{
-                marginLeft: depth > 0 ? `${depth * 1.5}rem` : '0',
+                marginLeft: depth > 0 ? `1.5rem` : '0',
               }}
             >
               {/* Command button */}
@@ -330,16 +330,10 @@ export const SYSTEM_COMMANDS = {
           <Line neon><CommandLink command="help" onClick={setInputCallback} /> - Display this message</Line>
           <Line neon><CommandLink command="list" onClick={setInputCallback} /> - Show all access points and their status</Line>
           <Line neon><CommandLink command="clear" onClick={setInputCallback} /> - Clear terminal history</Line>
-          <Line neon><CommandLink command="about" onClick={setInputCallback} /> - System information</Line>
-          <Line neon><CommandLink command="uptime" onClick={setInputCallback} /> - Display system uptime</Line>
-          <Line neon><CommandLink command="date" onClick={setInputCallback} /> - Display current date/time</Line>
-          <Line neon><CommandLink command="reset" onClick={setInputCallback} /> - Reset RetComDevice</Line>
         </Section>
 
         <Section title="NAVIGATION:">
           <Line yellow top>• Type (or click) any command name to execute it</Line>
-          <Line yellow top>• Use Tab for autocomplete</Line>
-          <Line yellow top>• Use ↑↓ arrows to cycle through command history</Line>
           <Line yellow top>• Commands marked with [PW] require passwords</Line>
           <Line yellow top>• Find passwords through exploration, NPCs, or documents</Line>
         </Section>
@@ -384,27 +378,6 @@ export const SYSTEM_COMMANDS = {
 
   clear: () => ({
     type: 'clear',
-  }),
-
-  about: () => ({
-    content: (
-      <>
-        <Line smoke large bold>CY_NET TERMINAL v2.047</Line>
-        <Line neon>Unsecured connection to CY network</Line>
-        <Line neon>Unauthorized access monitored and logged</Line>
-        <Divider />
-        <Line yellow top>Type 'help' for usage information</Line>
-        <Line yellow top>Type 'list' to see all access points</Line>
-      </>
-    )
-  }),
-
-  uptime: () => ({
-    content: `System uptime: 420d 69h 13m 37s`
-  }),
-
-  date: () => ({
-    content: new Date().toString()
   }),
 
   reset: () => ({
