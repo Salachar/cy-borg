@@ -1,22 +1,6 @@
 import { useState } from 'react';
 import { Line, Divider } from '../TerminalComponents';
 
-/**
- * VendingMachine Component - Interactive drink dispenser
- *
- * RCD interface for vending machine - normal customer use.
- * Colorful drink buttons with CSS patterns.
- * Click to dispense with animation (no localStorage tracking).
- *
- * Props:
- * - id: Unique identifier (e.g., "silverpeak-vending")
- * - model: Vending machine model (e.g., "SynthDrinx 3000")
- * - location: Where the machine is located
- * - drinks: Array of drink objects { name, pattern, color, available }
- *   - pattern: 'circles' | 'blocks' | 'lines' | 'waves' | 'dots'
- *   - color: 'orange' | 'red' | 'yellow' | 'blue' | 'green' | 'purple'
- *   - available: boolean
- */
 export default function VendingMachine({
   id,
   model = 'SynthDrinx 3000',

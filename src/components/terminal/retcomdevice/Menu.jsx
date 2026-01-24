@@ -1,18 +1,5 @@
 import { Line, Divider, Section } from '../TerminalComponents';
 
-/**
- * Menu Component - Restaurant/Bar menu display
- *
- * Visual menu with neon sign aesthetic and category sections.
- * Pure display component - no transactions or localStorage.
- *
- * Props:
- * - title: Menu title (e.g., "HAPPY HOUR")
- * - subtitle: Subtitle/hours (optional)
- * - signType: Type of neon sign ('cocktail' | 'sandwich' | 'coffee' | 'burger')
- * - categories: Array of category objects { name, items: [{ name, price }] }
- * - footer: Footer message (optional)
- */
 export default function Menu({
   title,
   subtitle,

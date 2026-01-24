@@ -1,26 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Line, Divider, DataTable } from '../TerminalComponents';
 
-/**
- * FacilityPortal Component - Corporate facility landing page
- *
- * Sleek front-facing portal for businesses/facilities.
- * Shows basic info, network status, security warnings.
- * More polished than raw terminal output.
- *
- * Props:
- * - companyName: Company/facility name
- * - facilityId: Facility designation (optional)
- * - tagline: Subtitle/description
- * - location: Physical location
- * - owner: Owning company
- * - function: What the facility does
- * - personnel: Current staff count (optional)
- * - networkStatus: Network type/status
- * - securityLevel: 'LOW' | 'MEDIUM' | 'HIGH' | 'MAXIMUM'
- * - warnings: Array of warning strings (optional)
- * - theme: 'corporate' | 'industrial' | 'retail' | 'secure'
- */
 export default function FacilityPortal({
   companyName,
   facilityId,
@@ -35,8 +15,6 @@ export default function FacilityPortal({
   theme = 'corporate',
 }) {
   const [signalStrength, setSignalStrength] = useState(3);
-  const [scanProgress, setScanProgress] = useState(0);
-  const [isScanning, setIsScanning] = useState(true);
 
   // Theme configurations
   const themeConfig = {
@@ -78,23 +56,6 @@ export default function FacilityPortal({
     };
     return levels[securityLevel] || 'rgb(148, 163, 184)';
   };
-
-  // Scanning animation
-  useEffect(() => {
-    if (!isScanning) return;
-
-    const interval = setInterval(() => {
-      setScanProgress((prev) => {
-        if (prev >= 100) {
-          setIsScanning(false);
-          return 100;
-        }
-        return prev + 5;
-      });
-    }, 50);
-
-    return () => clearInterval(interval);
-  }, [isScanning]);
 
   // Signal strength fluctuation
   useEffect(() => {
@@ -189,76 +150,38 @@ export default function FacilityPortal({
 
       {/* Content area */}
       <div style={{ padding: '1rem' }}>
-        {/* Network scan status */}
-        {isScanning && (
-          <div
-            style={{
-              padding: '0.75rem',
-              backgroundColor: `${colors.primary}10`,
-              border: `1px solid ${colors.primary}40`,
-              borderRadius: '4px',
-              marginBottom: '1rem',
-            }}
-          >
-            <Line cyan style={{ fontSize: '0.875rem', margin: 0, marginBottom: '0.5rem' }}>
-              Scanning for network access...
-            </Line>
-            <div
-              style={{
-                height: '8px',
-                backgroundColor: 'rgba(100, 100, 100, 0.3)',
-                borderRadius: '4px',
-                overflow: 'hidden',
-              }}
-            >
+        <div
+          style={{
+            padding: '0.75rem',
+            backgroundColor: `${colors.primary}10`,
+            border: `1px solid ${colors.primary}`,
+            borderRadius: '4px',
+            marginBottom: '1rem',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
+        >
+          <Line cyan bold style={{ margin: 0, fontSize: '0.875rem' }}>
+            NETWORK DETECTED
+          </Line>
+
+          {/* Signal strength indicator */}
+          <div style={{ display: 'flex', gap: '3px', alignItems: 'flex-end' }}>
+            {[1, 2, 3, 4].map((bar) => (
               <div
+                key={bar}
                 style={{
-                  width: `${scanProgress}%`,
-                  height: '100%',
-                  backgroundColor: colors.primary,
-                  transition: 'width 0.1s',
-                  boxShadow: `0 0 10px ${colors.primary}`,
+                  width: '6px',
+                  height: `${bar * 5}px`,
+                  backgroundColor: bar <= signalStrength ? colors.primary : 'rgba(100, 100, 100, 0.3)',
+                  transition: 'background-color 0.3s',
+                  boxShadow: bar <= signalStrength ? `0 0 6px ${colors.primary}` : 'none',
                 }}
               />
-            </div>
+            ))}
           </div>
-        )}
-
-        {/* Network status */}
-        {!isScanning && (
-          <div
-            style={{
-              padding: '0.75rem',
-              backgroundColor: `${colors.primary}10`,
-              border: `1px solid ${colors.primary}`,
-              borderRadius: '4px',
-              marginBottom: '1rem',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Line cyan bold style={{ margin: 0, fontSize: '0.875rem' }}>
-              NETWORK DETECTED
-            </Line>
-
-            {/* Signal strength indicator */}
-            <div style={{ display: 'flex', gap: '3px', alignItems: 'flex-end' }}>
-              {[1, 2, 3, 4].map((bar) => (
-                <div
-                  key={bar}
-                  style={{
-                    width: '6px',
-                    height: `${bar * 5}px`,
-                    backgroundColor: bar <= signalStrength ? colors.primary : 'rgba(100, 100, 100, 0.3)',
-                    transition: 'background-color 0.3s',
-                    boxShadow: bar <= signalStrength ? `0 0 6px ${colors.primary}` : 'none',
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-        )}
+        </div>
 
         <Divider color="cyan" />
 

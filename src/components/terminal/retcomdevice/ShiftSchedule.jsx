@@ -1,19 +1,5 @@
 import { Line, Divider } from '../TerminalComponents';
 
-/**
- * ShiftSchedule Component - Employee shift board
- *
- * Visual shift schedule showing who's working, breaks, locations.
- * Pure display, no interaction.
- *
- * Props:
- * - location: Facility name
- * - shift: Shift name (e.g., "Night Shift")
- * - shiftTime: Time range (e.g., "22:00 - 06:00")
- * - currentTime: Current time (e.g., "23:15")
- * - personnel: Array of { name, role, location, status, breakTime }
- * - nextShift: When next shift starts
- */
 export default function ShiftSchedule({
   location = 'Facility',
   shift = 'Current Shift',

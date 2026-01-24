@@ -1,10 +1,5 @@
 import React from 'react';
 
-/**
- * LocalAd - Local Business Advertisement Component
- * Flat design, banner-height, scrappy "WordPress" aesthetic
- * For neighborhood businesses, local venues, small operations
- */
 export default function LocalAd({
   name,           // Business name
   tagline,        // Main tagline

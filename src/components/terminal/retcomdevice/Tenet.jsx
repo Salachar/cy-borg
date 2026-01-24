@@ -1,26 +1,5 @@
 import { Line, Divider, DataTable, Section } from '../TerminalComponents';
 
-/**
- * Tenet Component - Citizen Profile Display
- *
- * Public profile system - like a Facebook/LinkedIn profile.
- * Shows citizen information, employment, social connections, etc.
- * Amount of info depends on privacy settings and what user filled out.
- *
- * Props:
- * - id: Citizen ID number
- * - name: Full name
- * - age: Age (optional)
- * - dob: Date of birth (optional)
- * - occupation: Current job (optional)
- * - employer: Company name (optional)
- * - district: Where they live (optional)
- * - bio: Personal bio/about section (optional)
- * - interests: Array of interests/hobbies (optional)
- * - connections: Number of connections (optional)
- * - status: Account status ("ACTIVE" | "SUSPENDED" | "DELETED")
- * - privacy: Privacy level ("PUBLIC" | "FRIENDS" | "PRIVATE")
- */
 export default function Tenet({
   id,
   name,

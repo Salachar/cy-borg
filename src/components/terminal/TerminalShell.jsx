@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react';
+import {
+  SYSTEM_COMMANDS,
+} from "@terminal/commands/Commands";
 
-import { TerminalMascotController } from './mascots/TerminalMascot';
+import TerminalHeader from './retcomdevice/TerminalHeader';
 
 const COLORS = {
   // Background colors
@@ -12,7 +14,7 @@ const COLORS = {
 
   // Border colors
   border: {
-    default: 'rgb(77, 167, 188)',   // Default border - muted blue-gray
+    default: 'rgb(77, 167, 188)',      // Default border - muted blue-gray
   },
 
   // Text colors
@@ -27,7 +29,7 @@ const COLORS = {
   accent: {
     teal: 'rgb(79, 209, 197)',        // Primary accent - teal/cyan
     tealHover: 'rgb(56, 178, 172)',   // Teal hover state
-    yellow: 'rgb(251, 191, 36)',      // Warning/password - yellow
+    yellow: 'rgb(251, 191, 36)',      // Warning - yellow
     red: 'rgb(252, 129, 129)',        // Error/alert - red
   },
 
@@ -44,53 +46,10 @@ const COLORS = {
 // ============================================================================
 
 export default function TerminalShell({
-  isBooting,
-  passwordMode,
   executeCommand,
-  header,
   historyArea,
   inputArea,
-  helpText,
-  quickCommands = [],
-  terminalActivity = 0,
 }) {
-  console.log(quickCommands)
-  // Mascot state with localStorage persistence
-  const [mascotEnabled, setMascotEnabled] = useState(() => {
-    const saved = localStorage.getItem('terminal-mascot-enabled');
-    return saved !== null ? saved === 'true' : false; // Default enabled
-  });
-
-  const [currentAnimal, setCurrentAnimal] = useState(() => {
-    const saved = localStorage.getItem('terminal-mascot-animal');
-    return saved || 'fox'; // Default to fox
-  });
-
-  // Available animals
-  const animals = ['fox', 'turtle', 'cat-tiger', 'wolf'];
-
-  // Persist to localStorage
-  useEffect(() => {
-    localStorage.setItem('terminal-mascot-enabled', mascotEnabled);
-  }, [mascotEnabled]);
-
-  useEffect(() => {
-    localStorage.setItem('terminal-mascot-animal', currentAnimal);
-  }, [currentAnimal]);
-
-  // Animal navigation
-  const nextAnimal = () => {
-    const currentIndex = animals.indexOf(currentAnimal);
-    const nextIndex = (currentIndex + 1) % animals.length;
-    setCurrentAnimal(animals[nextIndex]);
-  };
-
-  const prevAnimal = () => {
-    const currentIndex = animals.indexOf(currentAnimal);
-    const prevIndex = (currentIndex - 1 + animals.length) % animals.length;
-    setCurrentAnimal(animals[prevIndex]);
-  };
-
   return (
     <div
       className="flex-1 flex overflow-hidden relative pb-6"
@@ -98,198 +57,50 @@ export default function TerminalShell({
     >
       {/* Main terminal area - left aligned, slight offset */}
       <div className="flex-1 flex flex-col font-mono overflow-hidden">
-        <div className="flex-1 flex flex-col p-4 pl-8 overflow-hidden">
-          {header}
+        <div className="flex-1 flex flex-col p-6 overflow-hidden">
+          <TerminalHeader>
+            <div className="flex flex-row mr-4 gap-4">
+              {Object.keys(SYSTEM_COMMANDS).map((cmd, i) => {
+                if (cmd === 'reset') return null;
+                return (
+                  <QuickCommandButton
+                    key={i}
+                    label={cmd}
+                    onClick={() => {
+                      executeCommand(cmd)
+                    }}
+                  />
+                );
+              })}
+            </div>
+          </TerminalHeader>
           {historyArea}
           {inputArea}
-          {helpText}
         </div>
       </div>
-
-      {/* Right sidebar for quick command buttons + mascot */}
-      {quickCommands.length > 0 && (
-        <div className="w-32 flex-shrink-0 p-4 pl-0 pr-8 flex flex-col gap-2 overflow-y-auto relative">
-          {/* Quick command buttons */}
-          {quickCommands.map((cmd, i) => {
-            if (cmd === 'reset') return null;
-            return (
-              <QuickCommandButton
-                key={i}
-                label={cmd}
-                onClick={() => {
-                  executeCommand(cmd)
-                }}
-                disabled={isBooting || passwordMode}
-              />
-            );
-          })}
-
-          {/* Divider */}
-          <div style={{
-            height: '1px',
-            backgroundColor: COLORS.border.default,
-            opacity: 0.3,
-            margin: '0.5rem 0',
-          }} />
-
-          {/* Mascot toggle button */}
-          <QuickCommandButton
-            label={mascotEnabled ? "MASCOT" : "MASCOT OFF"}
-            onClick={() => setMascotEnabled(!mascotEnabled)}
-          />
-
-          {/* Animal selector - only show if mascot enabled */}
-          {mascotEnabled && (
-            <div className="flex items-center gap-1">
-              <button
-                onClick={prevAnimal}
-                className="p-2 rounded border font-bold text-xs transition-all flex-1"
-                style={{
-                  backgroundColor: COLORS.bg.panel,
-                  borderColor: COLORS.border.default,
-                  color: COLORS.accent.teal,
-                  minHeight: '2rem',
-                }}
-                onMouseEnter={(e) => e.target.style.backgroundColor = COLORS.bg.panelHover}
-                onMouseLeave={(e) => e.target.style.backgroundColor = COLORS.bg.panel}
-              >
-                ←
-              </button>
-              <button
-                onClick={nextAnimal}
-                className="p-2 rounded border font-bold text-xs transition-all flex-1"
-                style={{
-                  backgroundColor: COLORS.bg.panel,
-                  borderColor: COLORS.border.default,
-                  color: COLORS.accent.teal,
-                  minHeight: '2rem',
-                }}
-                onMouseEnter={(e) => e.target.style.backgroundColor = COLORS.bg.panelHover}
-                onMouseLeave={(e) => e.target.style.backgroundColor = COLORS.bg.panel}
-              >
-                →
-              </button>
-            </div>
-          )}
-
-          {/* Mascot render area */}
-          {mascotEnabled && (
-            <div style={{
-              marginTop: 'auto',
-              position: 'relative',
-              minHeight: '12rem',
-              marginBottom: '2rem',
-              overflowX: 'hidden',
-            }}>
-              <TerminalMascotController
-                animal={currentAnimal}
-                onTerminalActivity={terminalActivity}
-              />
-            </div>
-          )}
-        </div>
-      )}
     </div>
   );
 }
 
 // Quick command button component
-function QuickCommandButton({ label, onClick, disabled = false }) {
+function QuickCommandButton({ label, onClick }) {
   return (
     <button
       onClick={onClick}
-      disabled={disabled}
-      className="p-2 rounded border font-bold text-xs transition-all disabled:opacity-30 flex-shrink-0"
+      className="w-24 p-2 font-bold text-xs transition-all disabled:opacity-30 flex-shrink-0"
       style={{
+        borderBottom: `1px solid ${COLORS.border.default}`,
+        borderLeft: `1px solid ${COLORS.border.default}`,
+        borderRight: `1px solid ${COLORS.border.default}`,
+        borderBottomLeftRadius: '6px',
+        borderBottomRightRadius: '6px',
         backgroundColor: COLORS.bg.panel,
-        borderColor: COLORS.border.default,
         color: COLORS.accent.teal,
-        minHeight: '2.5rem',
+        height: '2.5rem',
       }}
-      onMouseEnter={(e) => !disabled && (e.target.style.backgroundColor = COLORS.bg.panelHover)}
-      onMouseLeave={(e) => !disabled && (e.target.style.backgroundColor = COLORS.bg.panel)}
     >
       {label}
     </button>
-  );
-}
-
-// RCD-themed header with dynamic elements
-export function TerminalHeader() {
-  const [adsBlocked, setAdsBlocked] = useState(47);
-  const [battery, setBattery] = useState(87);
-
-  useEffect(() => {
-    // Ad counter increases in random bursts
-    const adInterval = setInterval(() => {
-      if (Math.random() > 0.7) { // 30% chance every interval
-        const burst = Math.floor(Math.random() * 5) + 1; // 1-5 ads blocked
-        setAdsBlocked(prev => prev + burst);
-      }
-    }, 8000); // Check every 8 seconds
-
-    // Battery slowly decreases
-    const batteryInterval = setInterval(() => {
-      setBattery(prev => {
-        const newVal = prev - 1;
-        return newVal < 0 ? 100 : newVal; // Loop back to 100
-      });
-    }, 120000); // Decrease every 2 minutes
-
-    return () => {
-      clearInterval(adInterval);
-      clearInterval(batteryInterval);
-    };
-  }, []);
-
-  // Battery color based on level
-  const getBatteryColor = () => {
-    if (battery > 50) return COLORS.status.batteryGood;
-    if (battery > 20) return COLORS.status.batteryMid;
-    return COLORS.status.batteryLow;
-  };
-
-  return (
-    <div
-      className="rounded-lg mb-4 p-4 border flex-shrink-0"
-      style={{
-        backgroundColor: COLORS.bg.panel,
-        borderColor: COLORS.border.default,
-        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
-      }}
-    >
-      <div className="flex justify-between items-start">
-        <div>
-          <div className="font-bold text-sm" style={{ color: COLORS.text.primary }}>
-            RETINAL COM DEVICE
-          </div>
-          <div className="text-xs" style={{ color: COLORS.text.secondary }}>
-            RCD-7 Interface v2.047
-          </div>
-        </div>
-
-        <div className="text-right space-y-1">
-          <div className="flex items-center gap-2 justify-end">
-            <span className="text-xs" style={{ color: COLORS.text.secondary }}>SIGNAL</span>
-            <span className="text-xs animate-pulse" style={{ color: COLORS.accent.red }}>
-              [UNSECURED]
-            </span>
-          </div>
-
-          <div className="flex items-center gap-3 text-xs">
-            <div className="flex items-center gap-1">
-              <span style={{ color: COLORS.text.secondary }}>ADS BLOCKED:</span>
-              <span style={{ color: COLORS.accent.teal }}>{adsBlocked}</span>
-            </div>
-
-            <div className="flex items-center gap-1">
-              <span style={{ color: COLORS.text.secondary }}>PWR:</span>
-              <span style={{ color: getBatteryColor() }}>{battery}%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   );
 }
 
@@ -316,95 +127,51 @@ export function TerminalHistoryArea({ children, historyContainerRef, historyEndR
 // Pre-built input area
 export function TerminalInputArea({
   onSubmit,
-  promptPrefix,
-  passwordMode,
   input,
   onInputChange,
   onKeyDown,
-  isBooting,
-  inputPlaceholder,
   inputRef,
-  onCancelPassword,
 }) {
   return (
     <form
       onSubmit={onSubmit}
-      className="rounded-lg p-4 border flex-shrink-0"
+      className="rounded-lg border flex-shrink-0 flex items-center gap-2"
       style={{
         backgroundColor: COLORS.bg.panel,
         borderColor: COLORS.border.default,
       }}
     >
-      <div className="flex items-center gap-2">
-        <span
-          className="flex-shrink-0"
-          style={{ color: passwordMode ? COLORS.accent.yellow : COLORS.accent.teal }}
-        >
-          {promptPrefix}
-        </span>
-        <input
-          ref={inputRef}
-          type="text"
-          value={input}
-          onChange={onInputChange}
-          onKeyDown={onKeyDown}
-          disabled={isBooting}
-          placeholder={inputPlaceholder}
-          className="flex-1 bg-transparent border-none outline-none"
-          style={{
-            textShadow: '0 0 5px rgba(0, 255, 65, 0.8)',
-            color: COLORS.text.terminal,
-          }}
-          autoFocus
-        />
-        <button
-          type="submit"
-          disabled={isBooting}
-          className="px-6 py-2 font-bold transition-colors disabled:opacity-50 rounded flex-shrink-0"
-          style={{
-            backgroundColor: COLORS.accent.teal,
-            color: COLORS.bg.main,
-          }}
-          onMouseEnter={(e) => e.target.style.backgroundColor = COLORS.accent.tealHover}
-          onMouseLeave={(e) => e.target.style.backgroundColor = COLORS.accent.teal}
-        >
-          SEND
-        </button>
-        {passwordMode && (
-          <button
-            type="button"
-            onClick={onCancelPassword}
-            className="px-4 py-2 font-bold transition-colors rounded flex-shrink-0"
-            style={{
-              backgroundColor: COLORS.bg.panelHover,
-              color: COLORS.accent.red,
-              border: `1px solid ${COLORS.accent.red}`,
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.backgroundColor = COLORS.accent.red;
-              e.target.style.color = COLORS.bg.main;
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.backgroundColor = COLORS.bg.panelHover;
-              e.target.style.color = COLORS.accent.red;
-            }}
-          >
-            X
-          </button>
-        )}
-      </div>
+      <span
+        className="flex-shrink-0 p-4 pr-0"
+        style={{ color: COLORS.accent.teal }}
+      >
+        {'CY_NET://>'}
+      </span>
+      <input
+        ref={inputRef}
+        type="text"
+        value={input}
+        onChange={onInputChange}
+        onKeyDown={onKeyDown}
+        placeholder={'Enter command...'}
+        className="flex-1 bg-transparent border-none outline-none p-4"
+        style={{
+          textShadow: '0 0 5px rgba(0, 255, 65, 0.8)',
+          color: COLORS.text.terminal,
+        }}
+        autoFocus
+      />
+      <button
+        type="submit"
+        className="h-full px-6 py-2 font-bold transition-colors disabled:opacity-50 flex-shrink-0"
+        style={{
+          borderLeft: `1px solid ${COLORS.accent.teal}`,
+          color: COLORS.accent.teal,
+          cursor: 'pointer',
+        }}
+      >
+        {`>> SEND`}
+      </button>
     </form>
-  );
-}
-
-// Pre-built help text
-export function TerminalHelpText({ passwordMode }) {
-  return (
-    <div className="mt-4 text-center text-xs flex-shrink-0" style={{ color: COLORS.text.secondary }}>
-      {passwordMode
-        ? 'Enter password or press [X] to cancel'
-        : 'Type \'help\' for usage | Type \'list\' for access points'
-      }
-    </div>
   );
 }

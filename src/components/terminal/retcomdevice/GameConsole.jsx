@@ -1,19 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Line, Divider, Section } from '../TerminalComponents';
 
-/**
- * GameConsole Component - Gaming console menu interface
- *
- * Fun interactive console dashboard with RGB vibes.
- * Shows friends online/offline, game loaded, system status, etc.
- * No localStorage - just repeatable fun interaction.
- *
- * Props:
- * - model: Console model name (e.g., "CyberDeck Pro X")
- * - owner: Console owner's gamertag
- * - gameLoaded: Game currently in console (optional)
- * - friends: Array of friend objects { name, status: 'online' | 'offline', game }
- */
 export default function GameConsole({
   model = 'CyberDeck Pro X',
   owner = 'Player1',

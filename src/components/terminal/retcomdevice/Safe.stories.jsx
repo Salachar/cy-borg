@@ -7,7 +7,7 @@ export default {
   argTypes: {
     id: {
       control: 'text',
-      description: 'Unique identifier for localStorage',
+      description: 'Unique identifier',
     },
     model: {
       control: 'text',
@@ -41,6 +41,18 @@ export default {
       control: 'text',
       description: 'Additional flavor text',
     },
+  },
+};
+
+export const EmptySafe = {
+  args: {
+    id: 'casino-manager-safe',
+    model: 'DS-400',
+    location: 'Lucky Flight Casino - Manager Office',
+    owner: 'Frank Stone, Casino Manager',
+    security: '6-digit keypad + biometric',
+    lastAccess: 'Yesterday 11:45 PM',
+    notes: 'Safe is bolted to floor. Combination changed monthly.',
   },
 };
 

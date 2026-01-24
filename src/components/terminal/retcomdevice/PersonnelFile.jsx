@@ -1,28 +1,5 @@
 import { Line, Divider, DataTable, Section } from '../TerminalComponents';
 
-/**
- * PersonnelFile Component - Corporate HR Employee Record
- *
- * Internal employee file - HR database style.
- * Shows employment history, performance, security clearance, etc.
- * More formal/corporate than Tenet social profiles.
- *
- * Props:
- * - employeeId: Employee ID number
- * - name: Full name
- * - age: Age
- * - dob: Date of birth
- * - position: Job title
- * - department: Department name
- * - hireDate: When they were hired
- * - supervisor: Who they report to
- * - clearanceLevel: Security clearance (1-5 or "NONE")
- * - district: Home district (commute info)
- * - emergencyContact: Emergency contact info
- * - performance: Performance rating (optional)
- * - notes: HR notes/flags (optional, array)
- * - status: Employment status ("ACTIVE" | "SUSPENDED" | "TERMINATED")
- */
 export default function PersonnelFile({
   employeeId,
   name,

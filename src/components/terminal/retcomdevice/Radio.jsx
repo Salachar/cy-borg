@@ -2,17 +2,6 @@ import { useState, useEffect } from 'react';
 import { Line, Divider } from '../TerminalComponents';
 import { getAllChannelKeys, getChannelInfo, getRandomRadioTrack } from '@data/random/audioTracks';
 
-/**
- * Radio Component - Old-school cyber radio with channel tuner
- *
- * Navigate through music channels, view current track, and enjoy a retro visualizer.
- * Persists current channel in localStorage.
- *
- * Props:
- * - id: Unique identifier for localStorage (default: "radio-default")
- * - initialChannel: Starting channel type (e.g., "jazz") - optional
- * - model: Radio model name (default: "CR-2077")
- */
 export default function Radio({
   id = "radio-default",
   initialChannel,
@@ -24,12 +13,6 @@ export default function Radio({
   const getInitialChannelIndex = () => {
     if (initialChannel) {
       const index = channelKeys.indexOf(initialChannel);
-      return index >= 0 ? index : 0;
-    }
-    // Try to load from localStorage
-    const saved = localStorage.getItem(`radio-channel-${id}`);
-    if (saved) {
-      const index = channelKeys.indexOf(saved);
       return index >= 0 ? index : 0;
     }
     return 0;
@@ -46,8 +29,6 @@ export default function Radio({
     if (currentChannelKey) {
       const track = getRandomRadioTrack(currentChannelKey);
       setCurrentTrack(track);
-      // Persist channel selection
-      localStorage.setItem(`radio-channel-${id}`, currentChannelKey);
     }
   }, [channelIndex, currentChannelKey, id]);
 

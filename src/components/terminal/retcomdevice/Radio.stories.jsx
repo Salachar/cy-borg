@@ -7,7 +7,7 @@ export default {
   argTypes: {
     id: {
       control: 'text',
-      description: 'Unique identifier for localStorage persistence',
+      description: 'Unique identifier',
     },
     initialChannel: {
       control: 'text',

@@ -1,23 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Line, Divider, Section } from '../TerminalComponents';
 
-/**
- * Workstation Component - Employee desktop terminal
- *
- * Simulates a corporate workstation with mundane employee activities.
- * Shows what someone was doing - emails, tabs, files, coffee breaks.
- * No localStorage - just flavor.
- *
- * Props:
- * - owner: Employee name
- * - role: Job title
- * - status: 'LOCKED' | 'IDLE' | 'ACTIVE' | 'AWAY'
- * - lastActivity: Time string (e.g., "15 minutes ago")
- * - openTabs: Array of { title, type: 'work' | 'personal' | 'suspicious' }
- * - recentFiles: Array of { name, timestamp }
- * - emails: Number of unread emails
- * - productivity: 0-100 (joke metric)
- */
 export default function Workstation({
   owner = 'Employee',
   role = 'Worker',

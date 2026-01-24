@@ -8,10 +8,8 @@ import CY_CITY_COMMANDS from '@terminal/commands/cy_city';
 import LUCKY_FLIGHT_TAKEDOWN_COMMANDS from "@terminal/commands/lucky_flight_campaign";
 
 import TerminalShell, {
-  TerminalHeader,
   TerminalHistoryArea,
   TerminalInputArea,
-  TerminalHelpText,
 } from '@terminal/TerminalShell';
 import {
   Line,
@@ -19,7 +17,6 @@ import {
 import {
   RelatedCommands,
 } from "@terminal/retcomdevice";
-import BootSequence from "@terminal/BootSequence";
 
 import PasswordPrompt from '@terminal/retcomdevice/PasswordPrompt';
 
@@ -98,8 +95,6 @@ function flattenCommands(commands, flat = {}) {
     }
   }
 
-
-
   return flat;
 }
 
@@ -157,8 +152,6 @@ export default function Terminal() {
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [discoveredSecrets, setDiscoveredSecrets] = useState([]);
   const [discoveredPasswords, setDiscoveredPasswords] = useState({});
-  const [passwordMode, setPasswordMode] = useState(false); // Track if password prompt is active
-
   const [hasLoadedHistory, setHasLoadedHistory] = useState(false);
 
   // Refs
@@ -193,11 +186,6 @@ export default function Terminal() {
     } catch (e) {
       savedHistory = [];
     }
-
-    addToHistory({
-      type: 'system',
-      content: (<BootSequence />),
-    });
 
     savedHistory.forEach((entry) => {
       const type = entry.cmd || entry.type;
@@ -330,6 +318,7 @@ export default function Terminal() {
       type: cmd || 'system',
       content: endCmd.content,
     });
+
     // Don't automatically unlock sub-commands - they'll be discovered when accessed
     // But DO show a notification that related commands are now available
     const relatedKeys = Object.keys(endCmd?.related_commands || {});
@@ -344,8 +333,6 @@ export default function Terminal() {
   const executeCommand = (commandStr) => {
     const trimmed = commandStr.trim();
     if (!trimmed) return;
-    // If in password mode, don't execute commands - password prompt handles input
-    if (passwordMode) return;
     // Add to command history
     setCommandHistory(prev => [...prev, trimmed]);
     setHistoryIndex(-1);
@@ -367,16 +354,6 @@ export default function Terminal() {
     });
   };
 
-  const handlePasswordSubmit = (command, commandDef, password) => {
-    // Track that this password was discovered
-    setDiscoveredPasswords(prev => ({
-      ...prev,
-      [command]: password,
-    }));
-    // Execute the command
-    executeCommandWithResult(command, commandDef);
-  };
-
   const handleSystemCommand = (cmd) => {
     if (!SYSTEM_COMMANDS[cmd]) return false;
 
@@ -394,10 +371,6 @@ export default function Terminal() {
       setDiscoveredPasswords({});
       setDiscoveredSecrets([]);
       setHistory([]);
-      addToHistory({
-        type: 'system',
-        content: (<BootSequence />),
-      });
       return true;
     }
 
@@ -422,29 +395,22 @@ export default function Terminal() {
 
     // Check if password required and password not yet discovered
     if (commandDef.password && !discoveredPasswords[cmd]) {
-      // Enable password mode
-      setPasswordMode(true);
-
-      // Show password prompt inline
       addToHistory({
         type: 'password_prompt',
         content: (
           <PasswordPrompt
             key={`password_${cmd}_${Date.now()}`}
             command={cmd}
+            commandDef={commandDef}
             password={commandDef.password.pw}
             hint={commandDef.password.hint}
             hintStrength={commandDef.password.hintStrength || 1}
-            onSubmit={(password) => {
-              setPasswordMode(false);
-              handlePasswordSubmit(cmd, commandDef, password);
-            }}
-            onCancel={() => {
-              setPasswordMode(false);
-              addToHistory({
-                type: cmd || 'system',
-                content: 'Password entry cancelled',
-              });
+            onSubmit={(cmd, commandDef, password) => {
+              setDiscoveredPasswords(prev => ({
+                ...prev,
+                [cmd]: password,
+              }));
+              executeCommandWithResult(cmd, commandDef);
             }}
           />
         ),
@@ -459,11 +425,8 @@ export default function Terminal() {
 
   return (
     <TerminalShell
-      isBooting={false}
-      passwordMode={passwordMode}
       executeCommand={executeCommand}
       terminalActivity={terminalActivity}
-      header={<TerminalHeader />}
 
       historyArea={
         <TerminalHistoryArea
@@ -487,30 +450,15 @@ export default function Terminal() {
         <TerminalInputArea
           onSubmit={(e) => {
             e.preventDefault();
-            if (!passwordMode) {
-              setTerminalActivity(prev => prev + 1);
-              executeCommand(input);
-              setInput('');
-            }
+            setTerminalActivity(prev => prev + 1);
+            executeCommand(input);
+            setInput('');
           }}
-          promptPrefix={'CY_NET://>'}
-          passwordMode={passwordMode}
           input={input}
-          onInputChange={(e) => !passwordMode && setInput(e.target.value)}
-          onKeyDown={(e) => {
-            // Don't handle shortcuts in password mode
-            if (passwordMode) return;
-          }}
-          isBooting={false}
-          inputPlaceholder={passwordMode ? 'Password prompt active...' : 'Enter command...'}
+          onInputChange={(e) => setInput(e.target.value)}
           inputRef={inputRef}
-          onCancelPassword={() => {}}
         />
       }
-
-      helpText={<TerminalHelpText passwordMode={passwordMode} />}
-
-      quickCommands={Object.keys(SYSTEM_COMMANDS)}
     />
   );
 }

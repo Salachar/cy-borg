@@ -1,28 +1,5 @@
 import { Line, Divider, DataTable, Section } from '../TerminalComponents';
 
-/**
- * SecureAccessControl Component - Building access control and security system
- *
- * Shows door locks, access requirements, security protocols, and access logs.
- * Reveals ANOMALIES - unusual security measures, recent overrides, enhanced protocols.
- * Creates intrigue: "Why does THIS door need retinal scan?"
- *
- * Props:
- * - id: Unique identifier (e.g., "cave-club-access")
- * - systemName: Access control system name
- * - location: Building/facility location
- * - systemVersion: Software version
- * - lastUpdate: When system was last updated
- * - accessPoints: Array of access point objects with:
- *   - name: Door/room name (e.g., "VIP Booth 3", "Back Room")
- *   - status: "LOCKED" | "UNLOCKED" | "SEALED" | "OVERRIDE"
- *   - security: Security level/type (e.g., "KEYCARD", "BIOMETRIC", "RETINAL SCAN")
- *   - authorized: Who can access (e.g., "Security Personnel", "SaÅ¡a Only")
- *   - lastAccess: When last accessed
- *   - accessCount: How many times accessed (24h)
- *   - flags: Array of unusual characteristics (e.g., "ENHANCED SECURITY", "RECENT OVERRIDE")
- *   - notes: Additional security notes
- */
 export default function SecureAccessControl({
   id,
   systemName = "SECURE ACCESS CONTROL",

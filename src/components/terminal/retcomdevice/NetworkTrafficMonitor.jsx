@@ -1,29 +1,5 @@
 import { Line, Divider, DataTable, Section } from '../TerminalComponents';
 
-/**
- * NetworkTrafficMonitor Component - Network data transfer monitoring
- *
- * Shows encrypted file transfers, bandwidth usage, and connection metadata.
- * Does NOT show content - only metadata (file sizes, destinations, timing).
- * Creates intrigue through what's being transferred, not what it contains.
- *
- * Props:
- * - id: Unique identifier (e.g., "cave-club-netmon")
- * - systemName: Network monitor name
- * - location: Network location being monitored
- * - bandwidth: Current bandwidth usage (e.g., "45% utilized")
- * - activeConnections: Number of active connections
- * - transfers: Array of transfer objects with:
- *   - timestamp: When the transfer occurred/is occurring
- *   - status: "ACTIVE" | "COMPLETE" | "QUEUED" | "FAILED"
- *   - filename: Encrypted/obscured filename
- *   - size: File size (e.g., "2.3MB", "547KB")
- *   - source: Where it's coming from (room, terminal, etc.)
- *   - destination: Where it's going (server, IP, .onion address)
- *   - protocol: Transfer protocol (e.g., "ENCRYPTED", "TLS", "VPN")
- *   - progress: Percentage complete (for ACTIVE transfers)
- *   - notes: Any unusual characteristics
- */
 export default function NetworkTrafficMonitor({
   id,
   systemName = "NETWORK TRAFFIC MONITOR",

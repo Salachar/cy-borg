@@ -7,7 +7,7 @@ export default {
   argTypes: {
     id: {
       control: 'text',
-      description: 'Unique identifier for localStorage',
+      description: 'Unique identifier',
     },
     cabinetName: {
       control: 'text',
@@ -81,11 +81,6 @@ export const GameInProgress = {
     id: 'arcade-downtown-02',
     cabinetName: 'GALACTIC DEFENDER',
     location: 'Downtown Arcade - Corner Unit',
-    currentGame: {
-      title: 'SPACE WARS ULTIMATE',
-      genre: 'SHOOTER',
-      highScore: 1523400,
-    },
     screenState: 'PLAYING',
     gamesAvailable: [
       'SPACE WARS ULTIMATE',
@@ -109,11 +104,6 @@ export const GameOver = {
     id: 'arcade-club-racing',
     cabinetName: 'CYBER RACER X',
     location: 'Cave Club - Gaming Corner',
-    currentGame: {
-      title: 'NEON NIGHT RACER',
-      genre: 'RACING',
-      highScore: 2847500,
-    },
     screenState: 'GAME_OVER',
     gamesAvailable: [
       'NEON NIGHT RACER',
@@ -138,11 +128,6 @@ export const HighScoreEntry = {
     id: 'arcade-cafe-puzzle',
     cabinetName: 'PUZZLE MASTER PRO',
     location: 'Grounded Café - Corner Table',
-    currentGame: {
-      title: 'TETRIS ULTIMATE',
-      genre: 'PUZZLE',
-      highScore: 456780,
-    },
     screenState: 'HIGH_SCORE',
     gamesAvailable: [
       'TETRIS ULTIMATE',
@@ -166,11 +151,6 @@ export const HighRollerVIP = {
     id: 'arcade-vip-lounge',
     cabinetName: 'ELITE FIGHTER TURBO',
     location: 'Lucky Flight Casino - VIP Gaming Lounge',
-    currentGame: {
-      title: 'ULTRA COMBAT X',
-      genre: 'FIGHTER',
-      highScore: 9999999,
-    },
     screenState: 'ATTRACT',
     gamesAvailable: [
       'ULTRA COMBAT X',
@@ -196,11 +176,6 @@ export const BeginnerPlayer = {
     id: 'arcade-beginner-01',
     cabinetName: 'STARTER ARCADE',
     location: 'Community Center - Gaming Room',
-    currentGame: {
-      title: 'EASY FIGHTER',
-      genre: 'FIGHTER',
-      highScore: 12500,
-    },
     screenState: 'PLAYING',
     gamesAvailable: [
       'EASY FIGHTER',
@@ -223,11 +198,6 @@ export const RetroBarArcade = {
     id: 'arcade-bar-classic',
     cabinetName: 'CLASSIC KOMBAT',
     location: 'The Rusty Anchor - Back Corner',
-    currentGame: {
-      title: 'MORTAL KOMBAT CYBER',
-      genre: 'FIGHTER',
-      highScore: 654320,
-    },
     screenState: 'ATTRACT',
     gamesAvailable: [
       'MORTAL KOMBAT CYBER',
@@ -253,11 +223,6 @@ export const MinimalCabinet = {
     id: 'arcade-minimal',
     cabinetName: 'BASIC ARCADE',
     location: 'Small Shop - Corner',
-    currentGame: {
-      title: 'DEMO GAME',
-      genre: 'PUZZLE',
-      highScore: 1000,
-    },
     screenState: 'ATTRACT',
     gamesAvailable: [
       'PUZZLE GAME',
@@ -279,11 +244,6 @@ export const CasinoArcade = {
     id: 'arcade-casino-main',
     cabinetName: 'LUCKY FIGHTER GOLD',
     location: 'Lucky Flight Casino - Arcade Section',
-    currentGame: {
-      title: 'LUCKY COMBAT DELUXE',
-      genre: 'FIGHTER',
-      highScore: 7777777,
-    },
     screenState: 'HIGH_SCORE',
     gamesAvailable: [
       'LUCKY COMBAT DELUXE',
@@ -307,11 +267,6 @@ export const NoPlayerGuest = {
     id: 'arcade-public-01',
     cabinetName: 'PUBLIC ARCADE',
     location: 'Mall Food Court',
-    currentGame: {
-      title: 'FREE PLAY DEMO',
-      genre: 'ATTRACT',
-      highScore: 0,
-    },
     screenState: 'ATTRACT',
     gamesAvailable: [
       'DEMO GAME 1',

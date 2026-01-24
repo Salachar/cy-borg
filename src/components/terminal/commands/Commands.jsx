@@ -8,6 +8,7 @@ import {
 
 import MinesweeperGame from './games/MinesweeperGame';
 import MemoryGame from './games/MemoryGame';
+import CyberPoker from './games/CyberPoker';
 
 export const MINIGAME_COMMANDS = {
   "Play Nanobomb Defusal": {
@@ -23,6 +24,11 @@ export const MINIGAME_COMMANDS = {
   "Play Netrunner Memory Deck (Hard)": {
     type: "component",
     content: <MemoryGame gridSize={6} tileSize={3.5} />,
+  },
+
+  "Play Cyber Poker": {
+    type: "component",
+    content: <CyberPoker />,
   },
 };
 
@@ -206,7 +212,7 @@ function CommandTree({ commands, discovered, passwords, depth = 0, setInputCallb
               >
                 {/* Expand/collapse button - only show if has children and is discovered */}
                 {hasChildren && isDiscovered ? (
-                  <button
+                  <div
                     onClick={(e) => {
                       e.stopPropagation();
                       toggleSection(cmd.id, e);
@@ -226,7 +232,7 @@ function CommandTree({ commands, discovered, passwords, depth = 0, setInputCallb
                     }}
                   >
                     {isExpanded ? '▼' : '▶'}
-                  </button>
+                  </div>
                 ) : (
                   <span style={{ minWidth: '1.5rem', display: 'inline-block', flexShrink: 0 }} />
                 )}
@@ -320,29 +326,34 @@ function CommandTree({ commands, discovered, passwords, depth = 0, setInputCallb
 }
 
 export const SYSTEM_COMMANDS = {
-  help: ({ setInputCallback }) => ({
+  help: () => ({
     content: (
       <>
-        <Line smoke large bold>CY_NET TERMINAL v2.047</Line>
+        <Line smoke large bold>RCD-7 RETINAL INTERFACE v2.047</Line>
         <Divider />
 
         <Section title="BASIC COMMANDS:">
-          <Line neon><CommandLink command="help" onClick={setInputCallback} /> - Display this message</Line>
-          <Line neon><CommandLink command="list" onClick={setInputCallback} /> - Show all access points and their status</Line>
-          <Line neon><CommandLink command="clear" onClick={setInputCallback} /> - Clear terminal history</Line>
+          <Line neon>help - Display this message</Line>
+          <Line neon>list - View all access points and status</Line>
+          <Line neon>clear - Clear terminal display</Line>
         </Section>
 
         <Section title="NAVIGATION:">
-          <Line yellow top>• Type (or click) any command name to execute it</Line>
-          <Line yellow top>• Commands marked with [PW] require passwords</Line>
-          <Line yellow top>• Find passwords through exploration, NPCs, or documents</Line>
+          <Line yellow top>• Type or tap any command name to execute</Line>
+          <Line yellow top>• Commands marked [PW] require password authentication</Line>
+          <Line yellow top>• Click ▶/▼ to expand/collapse command groups</Line>
         </Section>
 
-        <Section title="DISCOVERY:">
-          <Line yellow top>• Access points may unlock related sub-commands</Line>
-          <Line yellow top>• Use 'list' to see your progress through each access point</Line>
-          <Line yellow top>• Discovered passwords are saved for easy reference</Line>
-          <Line yellow top>• Click ▶/▼ to expand/collapse command sections</Line>
+        <Section title="PASSWORD SYSTEM:">
+          <Line yellow top>• Passwords discovered through exploration, NPCs, documents</Line>
+          <Line yellow top>• Once entered correctly, passwords are saved automatically</Line>
+          <Line yellow top>• Virtual keyboard shows only valid characters</Line>
+        </Section>
+
+        <Section title="PROGRESS:">
+          <Line yellow top>• Access points unlock related sub-commands when accessed</Line>
+          <Line yellow top>• Terminal history persists between sessions</Line>
+          <Line yellow top>• All discoveries saved to device memory</Line>
         </Section>
       </>
     )

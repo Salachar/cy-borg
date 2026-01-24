@@ -1,19 +1,5 @@
-import { useState } from 'react';
-import { Line, Divider, Section, DataTable } from '../TerminalComponents';
+import { Line, Divider, DataTable } from '../TerminalComponents';
 
-/**
- * MaintenanceAccess Component - Generic maintenance/admin interface
- *
- * Styled like enterprise router/network device admin panels (Cisco/Netgear vibes).
- * Shows system info header, then lists available maintenance options as clickable areas.
- *
- * Props:
- * - deviceModel: Device/system model (e.g., "QuickDrinx 2000", "ATM-500")
- * - deviceId: Serial or ID number (optional)
- * - firmwareVersion: Version number (optional, default: "v2.4.1")
- * - systemStatus: "OPERATIONAL" | "DEGRADED" | "ERROR" (default: "OPERATIONAL")
- * - uptime: How long system has been running (optional, e.g., "14 days, 7 hours")
- */
 export default function MaintenanceAccess({
   deviceModel = "System",
   deviceId,

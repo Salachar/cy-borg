@@ -1,22 +1,5 @@
 import { Line, Divider, DataTable, Section } from '../TerminalComponents';
 
-/**
- * Camera Component - Security camera feed viewer
- *
- * Visual security camera interface with scanlines, timestamp, and recording indicator.
- * Shows camera status, coverage info, and timeline of events.
- *
- * Props:
- * - id: Unique identifier (e.g., "bodega-main-cam")
- * - location: Camera location description
- * - coverage: What the camera can see
- * - status: "ACTIVE" | "OFFLINE" | "RECORDING"
- * - recording: Boolean, is it recording
- * - storage: Where footage is stored
- * - timeline: Array of event strings (with timestamps)
- * - blindSpots: Array of blind spot descriptions (optional)
- * - lastMaintenance: When last serviced (optional)
- */
 export default function Camera({
   id,
   location,

@@ -1,20 +1,7 @@
 import { useState } from 'react';
-import { Line, Divider, Section } from '../TerminalComponents';
+import { Line, Divider } from '../TerminalComponents';
 import { EVENT_FEED, getEventsByType, getRecentEvents } from '@data/random/eventFeed';
 
-/**
- * EventFeed Component - Live news and street intel feed
- *
- * Displays scrolling feed of recent events in the city.
- * Events are color-coded by source type and show timestamps.
- * Players can filter by event type or view all.
- *
- * Props:
- * - id: Unique identifier (default: "event-feed")
- * - limit: Number of events to display (default: 15)
- * - showFilters: Show filter buttons (default: true)
- * - defaultFilter: Initial filter ("ALL" or event type, default: "ALL")
- */
 export default function EventFeed({
   id = "event-feed",
   limit = 15,

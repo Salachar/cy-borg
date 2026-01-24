@@ -1,10 +1,5 @@
 import React from 'react';
 
-/**
- * CorpAd - Professional Corporate Advertisement Component
- * Flat design, banner-height, sleek corporate aesthetic
- * For major corporations, city services, official portals
- */
 export default function CorpAd({
   corp,           // Corporation name
   slogan,         // Main slogan/tagline

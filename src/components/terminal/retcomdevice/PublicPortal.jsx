@@ -1,23 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Line, Divider, DataTable } from '../TerminalComponents';
 
-/**
- * PublicPortal Component - Friendly business landing page
- *
- * Smaller, more casual portal for shops, small venues, etc.
- * Less corporate, more neighborhood vibe.
- *
- * Props:
- * - name: Business name
- * - tagline: Catchphrase/slogan
- * - network: Network name (e.g., "FREE_BODEGA_5G")
- * - signalStrength: 'weak' | 'medium' | 'strong' (default: 'strong')
- * - status: Status message (e.g., "OPEN" or "CLOSED")
- * - statusColor: 'neon' | 'yellow' | 'red' (default: 'neon')
- * - nowPlaying: What's currently playing/happening (optional)
- * - notes: Array of info strings (optional)
- * - theme: 'friendly' | 'party' | 'casual' (default: 'friendly')
- */
 export default function PublicPortal({
   name,
   tagline,
@@ -30,8 +13,6 @@ export default function PublicPortal({
   theme = 'friendly',
 }) {
   const [signalBlink, setSignalBlink] = useState(true);
-  const [connectionProgress, setConnectionProgress] = useState(0);
-  const [isConnected, setIsConnected] = useState(false);
 
   const themeConfig = {
     friendly: {
@@ -52,20 +33,6 @@ export default function PublicPortal({
   };
 
   const colors = themeConfig[theme] || themeConfig.friendly;
-
-  // Connection animation
-  useEffect(() => {
-    if (connectionProgress >= 100) {
-      setIsConnected(true);
-      return;
-    }
-
-    const interval = setInterval(() => {
-      setConnectionProgress(prev => Math.min(prev + 20, 100));
-    }, 100);
-
-    return () => clearInterval(interval);
-  }, [connectionProgress]);
 
   // Signal blink animation
   useEffect(() => {
@@ -197,42 +164,17 @@ export default function PublicPortal({
         <Line neon style={{ fontSize: '0.875rem', margin: 0, marginBottom: '0.25rem' }}>
           Connecting to {network}...
         </Line>
-
-        {!isConnected && (
-          <div
-            style={{
-              height: '6px',
-              backgroundColor: 'rgba(100, 100, 100, 0.3)',
-              borderRadius: '3px',
-              overflow: 'hidden',
-              marginBottom: '0.5rem',
-            }}
-          >
-            <div
-              style={{
-                width: `${connectionProgress}%`,
-                height: '100%',
-                backgroundColor: colors.primary,
-                transition: 'width 0.1s',
-                boxShadow: `0 0 8px ${colors.primary}`,
-              }}
-            />
-          </div>
-        )}
-
-        {isConnected && (
-          <Line
-            cyan
-            bold
-            style={{
-              fontSize: '0.875rem',
-              margin: 0,
-              textShadow: `0 0 8px ${colors.primary}`,
-            }}
-          >
-            [CONNECTION ESTABLISHED]
-          </Line>
-        )}
+        <Line
+          cyan
+          bold
+          style={{
+            fontSize: '0.875rem',
+            margin: 0,
+            textShadow: `0 0 8px ${colors.primary}`,
+          }}
+        >
+          [CONNECTION ESTABLISHED]
+        </Line>
       </div>
 
       <Divider />

@@ -201,7 +201,7 @@ export default function CommunityBoard({
             {/* Services section */}
             {services.length > 0 && (
               <>
-                <Section title="SERVICES ADVERTISED:" color="pink">
+                <Section title="SERVICES ADVERTISED:" color="yellow">
                   {services.map((service, i) => (
                     <ListItem key={i}>{service}</ListItem>
                   ))}

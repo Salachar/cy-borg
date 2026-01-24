@@ -1,27 +1,5 @@
 import { Line, Divider, DataTable, Section } from '../TerminalComponents';
 
-/**
- * BiometricRecognition Component - Facial/retinal recognition system logs
- *
- * Shows biometric scan attempts, matches, and manual overrides.
- * Links to camera systems - reveals WHO was identified and WHEN.
- * Can show partial matches, failed scans, and security personnel overrides.
- *
- * Props:
- * - id: Unique identifier (e.g., "cave-club-biorecog")
- * - systemName: Recognition system name
- * - location: Where the system operates
- * - lastCalibration: When system was last calibrated
- * - confidence: Current system confidence threshold (e.g., "85%")
- * - scans: Array of scan objects with:
- *   - timestamp: When the scan occurred
- *   - result: "MATCHED" | "PARTIAL" | "FAILED" | "OVERRIDE"
- *   - name: Person's name (if matched or overridden)
- *   - confidence: Match confidence percentage (if applicable)
- *   - details: Additional scan details
- *   - notes: Security notes or flags
- *   - source: Camera or scanner that captured (e.g., "Camera 07")
- */
 export default function BiometricRecognition({
   id,
   systemName = "BIOMETRIC RECOGNITION SYSTEM",

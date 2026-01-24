@@ -1,22 +1,7 @@
 import { useState } from 'react';
 import { Line, Divider, DataTable, Section } from '../TerminalComponents';
+import Extractable from './Extractable';
 
-/**
- * ATM Component - Automated Teller Machine
- *
- * Password-protected ATM showing a specific user's account.
- * Players can "skim" recent transactions for 20-40¤ (tracked in localStorage).
- *
- * Props:
- * - id: Unique identifier for localStorage (e.g., "bodega-atm")
- * - model: ATM model number (e.g., "ATM-500")
- * - location: Where the ATM is located
- * - network: Bank network (e.g., "CityBank")
- * - accountHolder: Name of the account being accessed
- * - balance: Current account balance
- * - recentTransactions: Array of recent transaction strings
- * - lastService: When it was last serviced (optional)
- */
 export default function ATM({
   id,
   model = 'ATM-500',
@@ -26,35 +11,21 @@ export default function ATM({
   balance,
   recentTransactions = [],
   lastService,
+  skimmableAmount,
 }) {
-  // Track if already skimmed
-  const [hasSkimmed, setHasSkimmed] = useState(() => {
-    return localStorage.getItem(`atm-${id}-skimmed`) === 'true';
+  // Generate random skimmable amount if not provided
+  const [actualSkimmableAmount] = useState(() => {
+    return skimmableAmount || Math.floor(Math.random() * 41) + 10; // 10-50¤
   });
 
-  const [isSkimming, setIsSkimming] = useState(false);
-  const [skimmedAmount, setSkimmedAmount] = useState(() => {
-    const stored = localStorage.getItem(`atm-${id}-skimmed-amount`);
-    return stored ? parseInt(stored, 10) : 0;
-  });
-
-  const handleSkim = () => {
-    if (hasSkimmed || isSkimming) return;
-
-    setIsSkimming(true);
-
-    // Simulate skimming delay
-    setTimeout(() => {
-      const amount = Math.floor(Math.random() * 41) + 10; // 10-40¤
-
-      setSkimmedAmount(amount);
-      setHasSkimmed(true);
-      localStorage.setItem(`atm-${id}-skimmed`, 'true');
-      localStorage.setItem(`atm-${id}-skimmed-amount`, amount.toString());
-
-      setIsSkimming(false);
-    }, 2000);
-  };
+  // Convert account data to extractable format
+  const accountItems = [
+    {
+      item: 'Recent Transaction Data',
+      desc: `Account: ${accountHolder}`,
+      value: actualSkimmableAmount,
+    },
+  ];
 
   return (
     <div style={{ position: 'relative' }}>
@@ -150,66 +121,13 @@ export default function ATM({
           </>
         )}
 
-        {/* Skim button and status */}
-        <div
-          style={{
-            backgroundColor: 'rgba(252, 129, 129, 0.1)',
-            border: '1px solid rgba(252, 129, 129, 0.3)',
-            borderRadius: '3px',
-            padding: '0.75rem',
-          }}
-        >
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            marginBottom: '0.5rem',
-          }}>
-            <span style={{
-              color: 'rgb(252, 129, 129)',
-              fontSize: '0.875rem',
-              fontWeight: 'bold',
-              fontFamily: 'monospace',
-            }}>
-              SKIM RECENT ACCOUNTS:
-            </span>
-
-            <button
-              onClick={handleSkim}
-              disabled={hasSkimmed || isSkimming}
-              style={{
-                padding: '0.5rem 1rem',
-                fontSize: '0.75rem',
-                fontWeight: 'bold',
-                backgroundColor: hasSkimmed ? 'rgb(45, 53, 72)' : 'rgb(252, 129, 129)',
-                color: hasSkimmed ? 'rgb(148, 163, 184)' : 'rgb(19, 23, 34)',
-                border: 'none',
-                borderRadius: '3px',
-                cursor: hasSkimmed || isSkimming ? 'not-allowed' : 'pointer',
-                transition: 'all 0.2s',
-                fontFamily: 'monospace',
-              }}
-              onMouseEnter={(e) => {
-                if (!hasSkimmed && !isSkimming) {
-                  e.target.style.backgroundColor = 'rgb(220, 100, 100)';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (!hasSkimmed && !isSkimming) {
-                  e.target.style.backgroundColor = 'rgb(252, 129, 129)';
-                }
-              }}
-            >
-              {isSkimming ? 'PROCESSING...' : hasSkimmed ? 'SKIMMED' : 'SKIM'}
-            </button>
-          </div>
-
-          <Line yellow style={{ fontSize: '0.75rem' }}>
-            {isSkimming && '→ Copying transaction data...'}
-            {hasSkimmed && `→ Skimmed ${skimmedAmount}¤ from recent account data`}
-            {!hasSkimmed && !isSkimming && '→ Extract data from recent user transactions (10-50¤)'}
-          </Line>
-        </div>
+        {/* Skim section - using Extractable component */}
+        <Extractable
+          id={`${id}-skim`}
+          type="credits"
+          items={accountItems}
+          requiresPresence={false}
+        />
       </div>
     </div>
   );

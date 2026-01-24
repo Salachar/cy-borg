@@ -1,15 +1,3 @@
-/**
- * InternalAccess Component - Business/location internal network portal
- *
- * Pure visual component that shows a themed "welcome to internal network" message.
- * The terminal's auto-detection of related_commands handles showing the actual system menu.
- *
- * Props:
- * - businessName: Name of business/location (e.g., "BODEGA", "CASINO")
- * - welcomeMessage: Custom welcome text (optional, default: "EMPLOYEE ACCESS GRANTED")
- * - networkInfo: Footer note about the network (optional)
- * - theme: 'corporate' | 'casual' | 'secure' (default: 'corporate')
- */
 export default function InternalAccess({
   businessName,
   welcomeMessage = "EMPLOYEE ACCESS GRANTED",

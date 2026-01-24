@@ -11,15 +11,14 @@ import { EVENT_FEED } from '@data/random/eventFeed';
  * - interval: How long to display each event in ms (default: 5000)
  * - filterType: Filter by event type ("ALL", "CORP_NEWS", etc.) (default: "ALL")
  * - showTypeLabel: Show the event type badge (default: true)
- * - autoScroll: Auto-advance to next event (default: true)
  */
 export default function NewsTicker({
   interval = 5000,
   filterType = "ALL",
   showTypeLabel = true,
-  autoScroll = true,
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [key, setKey] = useState(0); // Force re-render of animation
 
   // Filter events based on type
   const filteredEvents = filterType === "ALL"
@@ -28,25 +27,17 @@ export default function NewsTicker({
 
   const currentEvent = filteredEvents[currentIndex] || EVENT_FEED[0];
 
-  // Auto-advance ticker
+  // Auto-advance ticker (always on)
   useEffect(() => {
-    if (!autoScroll || filteredEvents.length === 0) return;
+    if (filteredEvents.length === 0) return;
 
     const timer = setInterval(() => {
       setCurrentIndex(prev => (prev + 1) % filteredEvents.length);
+      setKey(prev => prev + 1); // Restart animation
     }, interval);
 
     return () => clearInterval(timer);
-  }, [autoScroll, interval, filteredEvents.length]);
-
-  // Manual navigation
-  const handlePrev = () => {
-    setCurrentIndex(prev => (prev - 1 + filteredEvents.length) % filteredEvents.length);
-  };
-
-  const handleNext = () => {
-    setCurrentIndex(prev => (prev + 1) % filteredEvents.length);
-  };
+  }, [interval, filteredEvents.length]);
 
   // Event type color mapping
   const getEventColor = (type) => {
@@ -77,6 +68,22 @@ export default function NewsTicker({
         overflow: 'hidden',
       }}
     >
+      {/* Subtle background timer - fills from left to right */}
+      <div
+        key={key}
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          height: '100%',
+          width: '100%',
+          backgroundColor: eventColor.replace('rgb', 'rgba').replace(')', ', 0.08)'),
+          animation: `fillTimer ${interval}ms linear`,
+          transformOrigin: 'left',
+          zIndex: 0,
+        }}
+      />
+
       {/* Live indicator */}
       <div
         style={{
@@ -86,6 +93,8 @@ export default function NewsTicker({
           borderRadius: '50%',
           animation: 'blink 2s infinite',
           flexShrink: 0,
+          position: 'relative',
+          zIndex: 1,
         }}
       />
 
@@ -103,6 +112,8 @@ export default function NewsTicker({
             textTransform: 'uppercase',
             flexShrink: 0,
             letterSpacing: '0.05em',
+            position: 'relative',
+            zIndex: 1,
           }}
         >
           {currentEvent.type.replace('_', ' ')}
@@ -118,94 +129,12 @@ export default function NewsTicker({
           whiteSpace: 'nowrap',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
+          position: 'relative',
+          zIndex: 1,
         }}
       >
         {currentEvent.text}
       </div>
-
-      {/* Timestamp */}
-      <div
-        style={{
-          fontSize: '0.65rem',
-          color: 'rgb(148, 163, 184)',
-          flexShrink: 0,
-        }}
-      >
-        {currentEvent.timestamp}
-      </div>
-
-      {/* Navigation arrows */}
-      <div style={{ display: 'flex', gap: '0.25rem', flexShrink: 0 }}>
-        <button
-          onClick={handlePrev}
-          style={{
-            width: '20px',
-            height: '20px',
-            backgroundColor: 'rgba(79, 209, 197, 0.1)',
-            border: '1px solid rgb(79, 209, 197)',
-            borderRadius: '2px',
-            color: 'rgb(79, 209, 197)',
-            fontSize: '0.65rem',
-            cursor: 'pointer',
-            transition: 'all 0.2s',
-            fontFamily: 'monospace',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: 0,
-          }}
-          onMouseEnter={(e) => {
-            e.target.style.backgroundColor = 'rgba(79, 209, 197, 0.2)';
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.backgroundColor = 'rgba(79, 209, 197, 0.1)';
-          }}
-        >
-          ◀
-        </button>
-
-        <button
-          onClick={handleNext}
-          style={{
-            width: '20px',
-            height: '20px',
-            backgroundColor: 'rgba(79, 209, 197, 0.1)',
-            border: '1px solid rgb(79, 209, 197)',
-            borderRadius: '2px',
-            color: 'rgb(79, 209, 197)',
-            fontSize: '0.65rem',
-            cursor: 'pointer',
-            transition: 'all 0.2s',
-            fontFamily: 'monospace',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: 0,
-          }}
-          onMouseEnter={(e) => {
-            e.target.style.backgroundColor = 'rgba(79, 209, 197, 0.2)';
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.backgroundColor = 'rgba(79, 209, 197, 0.1)';
-          }}
-        >
-          ▶
-        </button>
-      </div>
-
-      {/* Progress indicator */}
-      <div
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          height: '2px',
-          backgroundColor: eventColor,
-          animation: autoScroll ? `progress ${interval}ms linear` : 'none',
-          width: '100%',
-          transformOrigin: 'left',
-        }}
-      />
 
       {/* CSS animations */}
       <style>{`
@@ -214,7 +143,7 @@ export default function NewsTicker({
           50% { opacity: 0.3; }
         }
 
-        @keyframes progress {
+        @keyframes fillTimer {
           from { transform: scaleX(0); }
           to { transform: scaleX(1); }
         }

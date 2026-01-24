@@ -1,21 +1,5 @@
 import { Line, Divider, Section } from '../TerminalComponents';
 
-/**
- * EventLineup Component - Venue entertainment schedule
- *
- * Displays live performances, DJs, entry info for clubs/venues.
- * Clean, scannable format with time-based performance schedule.
- *
- * Props:
- * - venueName: Name of the venue (e.g., "Cave Club")
- * - date: Date or "Tonight" (default: "Tonight")
- * - updateFrequency: How often lineup updates (default: "Updated hourly")
- * - performances: Array of { time, artist, genre, status? }
- * - djs: Array of { name, genre, note? }
- * - entry: Object with { price, vipAccess, memberBenefit?, notes? }
- * - tagline: Venue motto/tagline (optional)
- * - theme: "club" | "concert" | "bar" (affects styling, default: "club")
- */
 export default function EventLineup({
   venueName = "The Venue",
   date = "Tonight",

@@ -7,7 +7,7 @@ export default {
   argTypes: {
     id: {
       control: 'text',
-      description: 'Unique identifier for localStorage tracking',
+      description: 'Unique identifier',
     },
     model: {
       control: 'text',

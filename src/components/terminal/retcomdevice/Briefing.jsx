@@ -1,22 +1,5 @@
 import { Line, Divider } from '../TerminalComponents';
 
-/**
- * Briefing Component - Mission briefing display
- *
- * Visual mission briefing with classified document aesthetic.
- * Shows objectives, intel, payment, and warnings.
- *
- * Props:
- * - title: Mission/briefing title
- * - issuer: Who's giving the brief (e.g., "Charlie Sand")
- * - classification: Classification level ("CLASSIFIED" | "CONFIDENTIAL" | "RESTRICTED" | "UNCLASSIFIED")
- * - primary: Array of primary objective objects { text, note, priority: 'critical' | 'high' | 'normal' }
- * - secondary: Array of secondary objective objects (same structure)
- * - intel: Array of intel strings (optional)
- * - payment: Array of payment/reward strings
- * - warnings: Array of warning strings (optional)
- * - footer: Footer message (optional)
- */
 export default function Briefing({
   title,
   issuer,

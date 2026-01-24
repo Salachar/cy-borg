@@ -1,17 +1,6 @@
 import { useState } from 'react';
 import { Line, Divider } from '../TerminalComponents';
 
-/**
- * RelatedCommands Component - Terminal-style navigation helper
- *
- * Shows available sub-commands in terminal style with clear button affordance.
- * Tablet-friendly spacing and touch targets.
- *
- * Props:
- * - commands: Array of command name strings
- * - onSelect: Callback when a command is clicked (receives command name)
- * - flatCommands: Flattened command lookup object (to check for passwords)
- */
 export default function RelatedCommands({ commands = [], onSelect, flatCommands = {} }) {
   const [hoveredCommand, setHoveredCommand] = useState(null);
 

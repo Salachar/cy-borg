@@ -2,28 +2,6 @@ import { useState, useEffect } from 'react';
 import { Line, Divider, Section } from '../TerminalComponents';
 import { getJukeboxTracks, getDefaultCost } from '@data/random/audioTracks';
 
-/**
- * Jukebox Component - Interactive music player with spinning record
- *
- * Retro jukebox interface with visual record player and selectable songs.
- * Each song has an associated color that affects the record's appearance.
- *
- * Props:
- * - model: Jukebox model (e.g., "JB-707")
- * - location: Where the jukebox is located
- * - cost: Price per song (e.g., "2¤") - optional if musicType is provided
- * - musicType: Music category from audioTracks (e.g., "jazz", "cyberpunk")
- *   - If provided, automatically loads first 4 tracks from that category
- *   - Overrides songs prop
- * - trackLimit: How many tracks to load when using musicType (default: 4)
- * - songs: Array of song objects (manual override):
- *   {
- *     title: "Song Name",
- *     artist: "Artist Name",
- *     genre: "Genre",
- *     color: 'red' | 'blue' | 'purple' | 'orange' | 'green' | 'cyan' | 'pink'
- *   }
- */
 export default function Jukebox({
   model = "JB-707",
   location = "Unknown location",

@@ -17,6 +17,7 @@ export const TerminalDecorator = (Story) => {
         style={{
           // maxWidth: '900px',
           width: '100%',
+          maxWidth: '1200px',
           border: '2px solid rgb(77, 167, 188)',
           borderRadius: '8px',
           backgroundColor: 'rgba(29, 35, 50, 0.95)',
