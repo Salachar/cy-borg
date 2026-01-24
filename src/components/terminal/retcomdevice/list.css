@@ -1,0 +1,153 @@
+/* List Component Styles */
+
+/* Control buttons */
+.list-controls {
+  margin-bottom: 0.75rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.list-control-button {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: monospace;
+  transition: all 0.2s;
+  min-height: 2.5rem;
+  min-width: 44px; /* Touch-friendly */
+}
+
+.list-control-button.list-expand {
+  background-color: rgba(79, 209, 197, 0.1);
+  border: 1px solid rgb(79, 209, 197);
+  color: rgb(79, 209, 197);
+}
+
+.list-control-button.list-expand:active {
+  background-color: rgba(79, 209, 197, 0.2);
+  box-shadow: 0 0 10px rgba(79, 209, 197, 0.3);
+}
+
+.list-control-button.list-collapse {
+  background-color: rgba(148, 163, 184, 0.1);
+  border: 1px solid rgb(148, 163, 184);
+  color: rgb(148, 163, 184);
+}
+
+.list-control-button.list-collapse:active {
+  background-color: rgba(148, 163, 184, 0.2);
+  box-shadow: 0 0 10px rgba(148, 163, 184, 0.3);
+}
+
+/* Command tree */
+.list-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.list-command-wrapper {
+  /* Margin-left handled inline based on depth */
+}
+
+/* Command button */
+.list-command-button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  min-height: 3rem;
+  width: 100%;
+  background-color: rgba(29, 35, 50, 0.5);
+  border: 1px solid rgb(77, 167, 188);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: monospace;
+  font-size: 0.875rem;
+  text-align: left;
+  color: rgb(133, 175, 231);
+}
+
+.list-command-button:active {
+  background-color: rgba(79, 209, 197, 0.15);
+  border-color: rgb(79, 209, 197);
+  color: rgb(79, 209, 197);
+  text-shadow: 0 0 8px rgba(79, 209, 197, 0.6);
+  box-shadow: 0 0 10px rgba(79, 209, 197, 0.3);
+}
+
+/* Expand/collapse toggle */
+.list-expand-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: rgb(79, 209, 197);
+  font-size: 1rem;
+  min-width: 1.5rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-expand-spacer {
+  min-width: 1.5rem;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* Checkmark */
+.list-checkmark {
+  color: rgb(79, 209, 197);
+  font-size: 1rem;
+  min-width: 1.25rem;
+  flex-shrink: 0;
+  font-weight: bold;
+}
+
+/* Command name */
+.list-command-name {
+  flex: 1;
+  word-break: break-word;
+}
+
+.list-command-button:active .list-command-name {
+  font-weight: bold;
+}
+
+/* Password badge */
+.list-password-badge {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: rgb(251, 191, 36);
+  background-color: rgba(251, 191, 36, 0.15);
+  border: 1px solid rgba(251, 191, 36, 0.4);
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* Child count */
+.list-child-count {
+  font-size: 0.75rem;
+  color: rgb(148, 163, 184);
+  font-family: monospace;
+  opacity: 0.7;
+  min-width: 2.5rem;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+/* Children container */
+.list-children-container {
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+  border-left: 2px solid rgba(79, 209, 197, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
