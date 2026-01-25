@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function BatusBodegaAd() {
+export function BatusBodegaAd({ children }) {
   return (
     <div style={{
       position: 'relative',
@@ -126,6 +126,8 @@ export function BatusBodegaAd() {
             06:00 - 22:00
           </p>
         </div>
+
+        {children && children}
 
         {/* Location */}
         <p style={{

@@ -23,11 +23,8 @@ import BatusBodegaAd from './ad'
 export const BODEGA_COMMANDS = {
   "Batu's Bodega (FREE ACCESS)": {
     content: (
-      <>
-        <BatusBodegaAd />
+      <BatusBodegaAd>
         <PublicPortal
-          name="BATU'S BODEGA"
-          tagline="Your Neighborhood Corner Store Since 2067"
           network="FREE_BODEGA_5G"
           signalStrength="strong"
           status="⚠ Store Currently CLOSED"
@@ -39,7 +36,7 @@ export const BODEGA_COMMANDS = {
           ]}
           theme="friendly"
         />
-      </>
+      </BatusBodegaAd>
     ),
     related_commands: {
       "Bodega Menu": {

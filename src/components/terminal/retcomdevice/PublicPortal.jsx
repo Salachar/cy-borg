@@ -30,6 +30,16 @@ export default function PublicPortal({
       secondary: 'rgb(251, 191, 36)',
       bg: 'rgba(29, 35, 50, 0.6)',
     },
+    limeade: {
+      primary: 'rgb(114, 234, 70)',
+      secondary: 'rgb(241, 194, 74)',
+      bg: 'rgba(29, 35, 50, 0.6)',
+    },
+    fancy: {
+      primary: 'rgb(170, 7, 7)',
+      secondary: 'rgb(248, 206, 101)',
+      bg: 'rgba(21, 35, 26, 0.6)',
+    },
   };
 
   const colors = themeConfig[theme] || themeConfig.friendly;

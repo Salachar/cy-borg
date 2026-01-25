@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function StoneEelsAd() {
+export function StoneEelsAd({ children }) {
   return (
     <div style={{
       position: 'relative',
@@ -127,6 +127,8 @@ export function StoneEelsAd() {
           margin: '1.5rem auto',
           width: '60%',
         }} />
+
+        {children && children}
 
         {/* Location */}
         <p style={{

@@ -8,6 +8,7 @@ import {
   DataTable,
 } from '@terminal/TerminalComponents';
 import {
+  ATM,
   CorpAd,
 } from "@terminal/retcomdevice"
 
@@ -15,10 +16,30 @@ import CyCityPublicAccessBanner from './public_access_banner';
 import CyCityCorporatePortalsBanner from './corp_portal_banner';
 
 export const CY_CITY_NETWORK = {
-
-  // ============================================================================
-  // MAJOR NEWS FEEDS
-  // ============================================================================
+  "ATM": {
+    blocker: {
+      mastermind_hack: {
+        enabled: true,
+      }
+    },
+    content: (
+      <ATM
+        id="lfc-lobby-atm"
+        model="ATM-700X"
+        location="Lucky Flight Casino - Main lobby (near entrance)"
+        network="CasinoBlizzFunds Network"
+        cashAvailable="5,000¤ (high capacity)"
+        lastService="Yesterday"
+        transactions={[
+          "2 hours ago → Withdrawal: 200¤",
+          "3 hours ago → Withdrawal: 500¤",
+          "4 hours ago → Failed transaction (insufficient funds)",
+          "5 hours ago → Withdrawal: 100¤",
+          "6 hours ago → Withdrawal: 1,000¤",
+        ]}
+      />
+    ),
+  },
 
   "CY CITY PUBLIC ACCESS": {
     content: (
@@ -617,12 +638,12 @@ export const CY_CITY_NETWORK = {
     }
   },
 
-  "Cy Corporate Portals": {
+  "Cy City Corporate Portals": {
     content: (
       <CyCityCorporatePortalsBanner />
     ),
     related_commands: {
-      "ACGS Corporate Portal": {
+      "ACGS": {
         content: (
           <>
           <CorpAd
@@ -672,7 +693,7 @@ export const CY_CITY_NETWORK = {
         ),
       },
 
-      "Alliansen Inc. Portal": {
+      "Alliansen Inc.": {
         content: (
           <>
             <CorpAd
@@ -726,7 +747,7 @@ export const CY_CITY_NETWORK = {
         ),
       },
 
-      "AST Endless Seas Portal": {
+      "AST Endless Seas": {
         content: (
           <>
             <CorpAd
@@ -780,7 +801,7 @@ export const CY_CITY_NETWORK = {
         ),
       },
 
-      "Cynergy Water & Power Portal": {
+      "Cynergy Water & Power": {
         content: (
           <>
             <CorpAd
@@ -834,7 +855,7 @@ export const CY_CITY_NETWORK = {
         ),
       },
 
-      "Fideistic Transformation Portal": {
+      "Fideistic Transformation": {
         content: (
           <>
             <CorpAd
@@ -891,7 +912,7 @@ export const CY_CITY_NETWORK = {
         ),
       },
 
-      "Kaytell Makers Portal": {
+      "Kaytell Makers": {
         content: (
           <>
             <CorpAd
@@ -945,7 +966,7 @@ export const CY_CITY_NETWORK = {
         ),
       },
 
-      "Spectral FT Banks Portal": {
+      "Spectral FT Banks": {
         content: (
           <>
             <CorpAd
@@ -998,7 +1019,7 @@ export const CY_CITY_NETWORK = {
         ),
       },
 
-      "UCS Corporate Portal": {
+      "UCS Corporate": {
         content: (
           <>
             <CorpAd
@@ -1109,7 +1130,7 @@ export const CY_CITY_NETWORK = {
         ),
       },
 
-      "Royal West Shipping Portal": {
+      "Royal West Shipping": {
         content: (
           <>
             <CorpAd
@@ -1188,7 +1209,7 @@ export const CY_CITY_NETWORK = {
         ),
       },
 
-      "Gravf/Mellberg/Tosk Law Portal": {
+      "Gravf/Mellberg/Tosk Law": {
         content: (
           <>
             <CorpAd
@@ -1264,7 +1285,7 @@ export const CY_CITY_NETWORK = {
         ),
       },
 
-      "Idol Coffins Hotels Portal": {
+      "Idol Coffins Hotels": {
         content: (
           <>
             <CorpAd

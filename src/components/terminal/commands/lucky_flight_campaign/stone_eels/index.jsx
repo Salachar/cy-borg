@@ -80,8 +80,7 @@ const PASSWORDS = {
 export const STONE_EELS_COMMANDS = {
   "Cave Club": {
     content: (
-      <>
-        <StoneEelsAd />
+      <StoneEelsAd>
         <PublicPortal
           network="CAVE_CLUB_GUEST"
           signalStrength="medium"
@@ -92,9 +91,9 @@ export const STONE_EELS_COMMANDS = {
             "Stone Eels territory - Neutral ground, no drama",
             "Weapon check at door (negotiable)",
           ]}
-          theme="party"
+          theme="limeade"
         />
-      </>
+      </StoneEelsAd>
     ),
     related_commands: {
       "Tonight's Entertainment": {

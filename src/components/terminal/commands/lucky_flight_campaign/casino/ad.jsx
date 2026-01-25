@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function LuckyFlightAd() {
+export function LuckyFlightAd({ children }) {
   return (
     <div style={{
       position: 'relative',
@@ -109,6 +109,8 @@ export function LuckyFlightAd() {
           margin: '1.5rem auto',
           width: '60%',
         }} />
+
+        {children && children}
 
         {/* Location */}
         <p style={{

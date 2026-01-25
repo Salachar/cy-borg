@@ -61,7 +61,7 @@ export default function TerminalShell({
           <TerminalHeader>
             <div className="flex flex-row mr-4 gap-4">
               {Object.keys(SYSTEM_COMMANDS).map((cmd, i) => {
-                if (cmd === 'reset') return null;
+                // if (cmd === 'reset') return null;
                 return (
                   <QuickCommandButton
                     key={i}
@@ -158,6 +158,7 @@ export function TerminalInputArea({
         style={{
           textShadow: '0 0 5px rgba(0, 255, 65, 0.8)',
           color: COLORS.text.terminal,
+          fontSize: '0.8rem',
         }}
         autoFocus
       />

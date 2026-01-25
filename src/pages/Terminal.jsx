@@ -19,7 +19,19 @@ import {
 } from "@terminal/retcomdevice";
 
 import PasswordPrompt from '@terminal/retcomdevice/PasswordPrompt';
+import MastermindHack from '@terminal/retcomdevice/MastermindHack';
 import HistoryEntryWrapper from '@terminal/HistoryEntryWrapper';
+
+import {
+  STORAGE_KEY,
+  PASSWORD_STORAGE_KEY,
+  HISTORY_KEY,
+  COLLAPSED_STORAGE_KEY,
+  getDiscoveredSecrets,
+  saveDiscoveredSecrets,
+  getDiscoveredPasswords,
+  saveDiscoveredPasswords,
+} from '@utils/terminal';
 
 // ============================================================================
 // ALL COMMANDS - Comment out what you don't need
@@ -33,55 +45,10 @@ const CAMPAIGN_COMMANDS = {
 
 const CAMPAIGN_COMMANDS_LIST = Object.entries(CAMPAIGN_COMMANDS).map(([id, cmdDef]) => ({
   id,
+  blocker: cmdDef.blocker,
   password: cmdDef.password,
   related_commands: cmdDef.related_commands,
 }));
-
-
-const STORAGE_KEY = 'cyborg_terminal_secrets';
-const PASSWORD_STORAGE_KEY = 'cyborg_terminal_passwords';
-const HISTORY_KEY = 'cyborg_terminal_history';
-const COLLAPSED_STORAGE_KEY = 'terminal_commands_expanded';
-
-// ============================================================================
-// UTILITY FUNCTIONS
-// ============================================================================
-
-function getDiscoveredSecrets() {
-  try {
-    const data = localStorage.getItem(STORAGE_KEY);
-    return data ? JSON.parse(data) : [];
-  } catch (e) {
-    console.error('Failed to load discovered secrets:', e);
-    return [];
-  }
-}
-
-function saveDiscoveredSecrets(secrets) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(secrets));
-  } catch (e) {
-    console.error('Failed to save discovered secrets:', e);
-  }
-}
-
-function getDiscoveredPasswords() {
-  try {
-    const data = localStorage.getItem(PASSWORD_STORAGE_KEY);
-    return data ? JSON.parse(data) : {};
-  } catch (e) {
-    console.error('Failed to load discovered passwords:', e);
-    return {};
-  }
-}
-
-function saveDiscoveredPasswords(passwords) {
-  try {
-    localStorage.setItem(PASSWORD_STORAGE_KEY, JSON.stringify(passwords));
-  } catch (e) {
-    console.error('Failed to save discovered passwords:', e);
-  }
-}
 
 // Path-based command lookup - traverses tree structure
 function findCommandByPath(path, commands) {
@@ -161,6 +128,7 @@ function HistoryEntry({ entry, index, onCommandSelect, collapsedEntries, setColl
         return (
           <RelatedCommands
             commands={entry.commands || []}
+            commandList={entry.commandList || []}
             onSelect={onCommandSelect}
           />
         );
@@ -404,14 +372,19 @@ export default function Terminal() {
       content: endCmd.content,
     });
 
-    // Show related commands if any exist
-    const relatedKeys = Object.keys(endCmd?.related_commands || {});
-    if (relatedKeys.length) {
-      // Build full paths for related commands
-      const relatedPaths = relatedKeys.map(key => `${path}/${key}`);
+    const related_commands_list = Object.entries(endCmd?.related_commands || {}).map(([id, cmdDef]) => ({
+      id,
+      blocker: cmdDef.blocker,
+      password: cmdDef.password,
+    }));
+
+    const relatedPaths = related_commands_list.map(cmd => `${path}/${cmd.id}`);
+
+    if (relatedPaths.length) {
       addToHistory({
         type: 'related_commands',
         commands: relatedPaths,
+        commandList: related_commands_list,
       });
     }
   };
@@ -419,21 +392,12 @@ export default function Terminal() {
   const executeCommand = (commandStr) => {
     const trimmed = commandStr.trim();
     if (!trimmed) return;
-
     // Add to command history
     setCommandHistory(prev => [...prev, trimmed]);
     setHistoryIndex(-1);
-
-    // Add user input to history
-    // addToHistory({
-    //   type: 'user',
-    //   content: trimmed,
-    // });
-
     // Check command types in order
     if (handleSystemCommand(trimmed)) return;
     if (handleCampaignCommand(trimmed)) return;
-
     // Unknown command
     addToHistory({
       type: 'error',
@@ -480,6 +444,41 @@ export default function Terminal() {
     // Look up command by path
     const commandDef = findCommandByPath(path, CAMPAIGN_COMMANDS);
     if (!commandDef) return false;
+
+    if (commandDef?.blocker && commandDef?.blocker?.mastermind_hack && !discoveredPasswords[path]) {
+      addToHistory({
+        type: 'password_prompt',
+        command: path,
+        content: (
+          <MastermindHack
+            command={path}
+            commandDef={commandDef}
+
+            // sequenceLength={5}
+            // sequenceCount={12}
+            // attempts={4}
+            // symbolCount={4}
+            // colorCount={4}
+
+            sequenceLength={6}
+            sequenceCount={15}
+            attempts={3}
+            symbolCount={6}
+            colorCount={6}
+
+            onSuccess={(cmd, commandDef, answer) => {
+              setDiscoveredPasswords(prev => ({
+                ...prev,
+                [cmd]: answer,
+              }));
+              executeCommandWithResult(cmd, commandDef);
+            }}
+            onFailure={() => {}}    // Called when attempts run out (optional)
+          />
+        ),
+      });
+      return true;
+    }
 
     // Check if password required and password not yet discovered
     if (commandDef.password && !discoveredPasswords[path]) {

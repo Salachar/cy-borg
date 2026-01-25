@@ -1,0 +1,332 @@
+import { useState, useEffect } from 'react';
+import './mastermindHack.css';
+
+// Colorful symbols for sequences (geometric/poker style)
+const SEQUENCE_SYMBOLS = ['◆', '●', '▲', '■', '◥', '⬟'];
+const SEQUENCE_COLORS = ['#ef4444', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899']; // red, blue, green, amber, purple, pink
+
+// Garbage characters (flat, dim green)
+// const GARBAGE_SYMBOLS = '▓░▒█▲■★◆●✦';
+const GARBAGE_SYMBOLS = '⍂ﾐ∑⌬┼₿ ꙰ ﾊ▓∆⌠⌗⍉░⊗ﾂ§⎔▌∞ﾅ∇⌧₿╬⍋ﾓ⊕▒⎕꙳⌁∂┤¤ﾘ▓≈⌭¢£¥₩€₿§¶©®™¤№';
+
+/**
+ * MastermindHack Component - Fallout-style sequence hacking minigame
+ *
+ * Single-flow terminal with colorful sequences embedded in garbage.
+ * Guess panel on right shows history with feedback for deduction.
+ *
+ * Props:
+ * - sequenceLength: Length of the target sequence (default: 5)
+ * - sequenceCount: Number of sequences to find (default: 10)
+ * - attempts: Number of allowed guesses (default: 4)
+ * - symbolCount: How many different symbols to use (default: 4, max: 6)
+ * - colorCount: How many different colors to use (default: 4, max: 6)
+ * - onSuccess: Callback when hack succeeds
+ * - onFailure: Callback when attempts run out (optional)
+ */
+export default function MastermindHack({
+  command,
+  commandDef,
+  sequenceLength = 5,
+  sequenceCount = 10,
+  attempts = 4,
+  symbolCount = 4,
+  colorCount = 4,
+  onSuccess,
+  onFailure,
+}) {
+  const [answer, setAnswer] = useState([]);
+  const [symbolAnswer, setSymbolAnswer] = useState('');
+  const [sequences, setSequences] = useState([]);
+  const [terminalChars, setTerminalChars] = useState([]);
+  const [guesses, setGuesses] = useState([]);
+  const [attemptsLeft, setAttemptsLeft] = useState(attempts);
+  const [isComplete, setIsComplete] = useState(false);
+
+  // Initialize game
+  useEffect(() => {
+    initializeGame();
+  }, []);
+
+  const initializeGame = () => {
+    // Generate answer sequence
+    const newAnswer = generateSequence(sequenceLength, symbolCount, colorCount);
+    setAnswer(newAnswer);
+    let stringAnswer = '';
+    newAnswer.forEach((c) => {
+      stringAnswer += c.symbol;
+    });
+    setSymbolAnswer(stringAnswer);
+
+    // Generate unique sequences (excluding answer initially)
+    const newSequences = [];
+    const seenSequences = new Set();
+
+    while (newSequences.length < sequenceCount - 1) {
+      const seq = generateSequence(sequenceLength, symbolCount, colorCount);
+      const key = JSON.stringify(seq);
+
+      if (!seenSequences.has(key)) {
+        seenSequences.add(key);
+        newSequences.push({
+          id: newSequences.length,
+          sequence: seq,
+        });
+      }
+    }
+
+    // Insert answer at random position
+    const answerIndex = Math.floor(Math.random() * sequenceCount);
+    newSequences.splice(answerIndex, 0, {
+      id: newSequences.length,
+      sequence: newAnswer,
+    });
+
+    setSequences(newSequences);
+
+    // Build flat character array
+    const chars = [];
+    newSequences.forEach((seq) => {
+      // Add garbage before sequence
+      const garbageCount = Math.floor(Math.random() * 4) + 3; // 3-6 chars
+      for (let i = 0; i < garbageCount; i++) {
+        chars.push({
+          type: 'garbage',
+          char: GARBAGE_SYMBOLS[Math.floor(Math.random() * GARBAGE_SYMBOLS.length)],
+        });
+      }
+
+      // Add sequence characters
+      seq.sequence.forEach((item) => {
+        chars.push({
+          type: 'sequence',
+          sequenceId: seq.id,
+          char: item.symbol,
+          color: item.color,
+        });
+      });
+    });
+
+    // Add trailing garbage
+    for (let i = 0; i < 20; i++) {
+      chars.push({
+        type: 'garbage',
+        char: GARBAGE_SYMBOLS[Math.floor(Math.random() * GARBAGE_SYMBOLS.length)],
+      });
+    }
+
+    setTerminalChars(chars);
+    setAttemptsLeft(attempts);
+    setGuesses([]);
+    setIsComplete(false);
+  };
+
+  const generateSequence = (length, symCount, colCount) => {
+    const sequence = [];
+    const useSymbols = SEQUENCE_SYMBOLS.slice(0, symCount);
+    const useColors = SEQUENCE_COLORS.slice(0, colCount);
+
+    for (let i = 0; i < length; i++) {
+      sequence.push({
+        symbol: useSymbols[Math.floor(Math.random() * useSymbols.length)],
+        color: useColors[Math.floor(Math.random() * useColors.length)],
+      });
+    }
+    return sequence;
+  };
+
+  const handleGuess = (sequenceId) => {
+    if (isComplete || attemptsLeft <= 0) return;
+
+    // Find the sequence
+    const guessedSeq = sequences.find(s => s.id === sequenceId);
+    if (!guessedSeq) return;
+
+    // Calculate feedback
+    const feedback = calculateFeedback(guessedSeq.sequence, answer);
+
+    // Add to guesses history
+    const newGuess = {
+      sequenceId,
+      sequence: guessedSeq.sequence,
+      feedback,
+      isCorrect: feedback.every(r => r === 'exact'),
+    };
+    setGuesses(prev => [...prev, newGuess]);
+
+    // Check if won
+    if (newGuess.isCorrect) {
+      setIsComplete(true);
+      setTimeout(() => {
+        if (onSuccess) onSuccess(command, commandDef, symbolAnswer);
+      }, 1500);
+      return;
+    }
+
+    // Decrease attempts
+    const newAttempts = attemptsLeft - 1;
+    setAttemptsLeft(newAttempts);
+
+    if (newAttempts <= 0) {
+      setIsComplete(true);
+      setTimeout(() => {
+        if (onFailure) onFailure();
+      }, 1500);
+    }
+  };
+
+  const calculateFeedback = (guess, target) => {
+    const result = [];
+
+    for (let i = 0; i < guess.length; i++) {
+      if (guess[i].symbol === target[i].symbol && guess[i].color === target[i].color) {
+        result.push('exact'); // Green - perfect match
+      } else if (guess[i].symbol === target[i].symbol || guess[i].color === target[i].color) {
+        result.push('partial'); // Yellow - symbol OR color matches
+      } else {
+        result.push('none'); // Gray - no match
+      }
+    }
+
+    return result;
+  };
+
+  const getFeedbackColor = (type) => {
+    switch (type) {
+      case 'exact': return 'rgba(0, 255, 65, 0.5)'; // Green
+      case 'partial': return 'rgba(251, 191, 36, 0.5)'; // Yellow
+      default: return 'rgba(77, 77, 77, 0.5)'; // Gray
+    }
+  };
+
+  const isSequenceGuessed = (sequenceId) => {
+    return guesses.some(g => g.sequenceId === sequenceId);
+  };
+
+  return (
+    <div className="mastermind-hack">
+      {/* Header */}
+      <div className="mastermind-header">
+        <div className="mastermind-title">
+          <span className="mastermind-icon">⚠</span>
+          ICE DETECTED - SEQUENCE BREAKER REQUIRED
+        </div>
+        {/* <div className="mastermind-attempts">
+          ATTEMPTS: {attemptsLeft}/{attempts}
+        </div> */}
+
+        {isComplete && (
+          <div className={`mastermind-status ${guesses[guesses.length - 1]?.isCorrect ? 'success' : 'failure'}`}>
+            {guesses[guesses.length - 1]?.isCorrect ? '✓ ICE BROKEN - ACCESS GRANTED' : '✗ ICE INTACT - ACCESS DENIED'}
+          </div>
+        )}
+      </div>
+
+      {/* Instructions */}
+      {/* <div className="mastermind-instructions flex justify-end">
+        Select sequence to break ICE. Feedback:
+        <span style={{ color: 'rgb(0, 255, 65)', marginLeft: '0.5rem' }}>■ Exact</span>
+        <span style={{ color: 'rgb(251, 191, 36)', marginLeft: '0.5rem' }}>■ Partial</span>
+        <span style={{ color: 'rgb(77, 77, 77)', marginLeft: '0.5rem' }}>■ None</span>
+      </div> */}
+
+      {/* Main layout: Terminal + Guess Panel */}
+      <div className="mastermind-main">
+        <div
+          className="mastermind-instructions"
+          style={{ gridArea: 'mmh-text-one' }}
+        >
+          Select sequence to break ICE.
+        </div>
+
+        <div
+          className="mastermind-terminal"
+          style={{ gridArea: 'mmh-terminal' }}
+        >
+          {terminalChars.map((cell, idx) => {
+            if (cell.type === 'garbage') {
+              return (
+                <div key={`cell-${idx}`} className="terminal-cell garbage-cell">
+                  {cell.char}
+                </div>
+              );
+            } else {
+              // Sequence cell
+              const isGuessed = isSequenceGuessed(cell.sequenceId);
+              return (
+                <div
+                  key={`cell-${idx}`}
+                  className={`terminal-cell sequence-cell ${isGuessed ? 'guessed' : ''}`}
+                  style={{ color: cell.color }}
+                  onClick={() => !isComplete && handleGuess(cell.sequenceId)}
+                >
+                  {cell.char}
+                </div>
+              );
+            }
+          })}
+        </div>
+
+        <div
+          className="mastermind-instructions"
+          style={{ gridArea: 'mmh-text-two' }}
+        >
+          Feedback:
+          <span style={{ color: 'rgb(0, 255, 65)', marginLeft: '0.5rem' }}>■ Exact</span>
+          <span style={{ color: 'rgb(251, 191, 36)', marginLeft: '0.5rem' }}>■ Partial</span>
+          <span style={{ color: 'rgb(77, 77, 77)', marginLeft: '0.5rem' }}>■ None</span>
+        </div>
+
+        <div
+          className="guess-panel"
+          style={{ gridArea: 'mmh-guesses' }}
+        >
+          <div className="guess-panel-header">
+            GUESSES
+            <div className="mastermind-attempts">ATTEMPTS: {attemptsLeft}/{attempts}</div>
+          </div>
+          <div className="guess-list">
+            {guesses.map((guess, idx) => (
+              <div key={idx} className="guess-entry">
+                {/* Sequence as cards with feedback backgrounds */}
+                <div className="guess-sequence">
+                  {guess.sequence.map((item, i) => (
+                    <div
+                      key={i}
+                      className="guess-card"
+                      style={{ backgroundColor: getFeedbackColor(guess.feedback[i]) }}
+                    >
+                      <span style={{ color: item.color }}>
+                        {item.symbol}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+            {/* Empty slots */}
+            {Array.from({ length: attempts - guesses.length }).map((_, idx) => (
+              <div key={`empty-${idx}`} className="guess-entry empty">
+                <div className="guess-sequence">—</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Status message */}
+      {/* {isComplete && (
+        <div className={`mastermind-status ${guesses[guesses.length - 1]?.isCorrect ? 'success' : 'failure'}`}>
+          {guesses[guesses.length - 1]?.isCorrect ? '✓ ICE BROKEN - ACCESS GRANTED' : '✗ ICE INTACT - ACCESS DENIED'}
+        </div>
+      )} */}
+
+      {/* Debug mode - uncomment to see answer */}
+      {/* <div style={{ marginTop: '1rem', fontSize: '0.75rem', color: 'rgb(148, 163, 184)', textAlign: 'center' }}>
+        DEBUG: {answer.map((item, i) => (
+          <span key={i} style={{ color: item.color, marginRight: '0.25rem' }}>{item.symbol}</span>
+        ))}
+      </div> */}
+    </div>
+  );
+}

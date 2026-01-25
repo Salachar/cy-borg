@@ -107,6 +107,26 @@ export const NightclubPortal = {
   },
 };
 
+// Nightclub
+export const NightclubLimePortal = {
+  args: {
+    name: 'CAVE CLUB',
+    tagline: 'Where the night never ends',
+    network: 'CAVE_VIP_NET',
+    signalStrength: 'strong',
+    status: 'OPEN - DJ SET LIVE',
+    statusColor: 'neon',
+    nowPlaying: 'DJ Voltage - Neon Dreams Mix',
+    notes: [
+      '21+ only - Valid ID required',
+      'VIP tables available',
+      'Coat check: 2¤',
+      'No cameras inside',
+    ],
+    theme: 'limeade',
+  },
+};
+
 // Coffee shop
 export const CoffeeShopPortal = {
   args: {

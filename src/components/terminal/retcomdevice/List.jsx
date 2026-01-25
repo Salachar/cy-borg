@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Line, Divider } from '@terminal/TerminalComponents';
+import CommandButton from './CommandButton';
+
+import { TREE_STORAGE_KEY } from '@utils/terminal';
 
 import './list.css';
-
-// Storage key constant
-const TREE_STORAGE_KEY = 'terminal-tree-expanded';
 
 export default function List({
   discoveredSecrets = [],
@@ -55,6 +55,7 @@ export default function List({
               id,
               password: cmdDef.password,
               related_commands: cmdDef.related_commands,
+              blocker: cmdDef.blocker,
             })),
             fullPath
           );
@@ -91,11 +92,12 @@ export default function List({
       const fullPath = parentPath ? `${parentPath}/${cmd.id}` : cmd.id;
 
       const isDiscovered = discoveredSecrets.includes(fullPath);
-      const hasPassword = cmd.password;
-      const passwordKnown = discoveredPasswords[fullPath];
+      const hasBlocker = !!(cmd.password || cmd.blocker);
+      const isBypassed = discoveredPasswords[fullPath];
+      const bypassLabel = cmd.password ? 'PW' : 'HACK';
       const hasChildren = cmd.related_commands && Object.keys(cmd.related_commands).length > 0;
       const isExpanded = expandedSections[fullPath];
-      const checkmark = isDiscovered ? '✓' : '○';
+      const childCount = hasChildren ? Object.keys(cmd.related_commands).length : 0;
 
       return (
         <div
@@ -106,49 +108,22 @@ export default function List({
           }}
         >
           {/* Command button */}
-          <button
+          <CommandButton
+            fullPath={fullPath}
+            displayName={cmd.id}
+            isDiscovered={isDiscovered}
+            hasBlocker={hasBlocker}
+            isBypassed={isBypassed}
+            bypassLabel={bypassLabel}
+            hasChildren={hasChildren}
+            childCount={childCount}
+            isExpanded={isExpanded}
+            onToggleExpand={(e) => {
+              e.stopPropagation();
+              toggleSection(fullPath);
+            }}
             onClick={() => setInputCallback(fullPath)}
-            className="list-command-button"
-          >
-            {/* Expand/collapse button - only show if has children and is discovered */}
-            {hasChildren && isDiscovered ? (
-              <div
-                onClick={(e) => {
-                  e.stopPropagation();
-                  toggleSection(fullPath);
-                }}
-                className="list-expand-toggle"
-              >
-                {isExpanded ? '▼' : '▶'}
-              </div>
-            ) : (
-              <span className="list-expand-spacer" />
-            )}
-
-            {/* Checkmark */}
-            <span className="list-checkmark">
-              {checkmark}
-            </span>
-
-            {/* Command name - show only the last part, not full path */}
-            <span className="list-command-name">
-              {cmd.id}
-            </span>
-
-            {/* Password indicator */}
-            {hasPassword && (
-              <span className="list-password-badge">
-                {passwordKnown ? `PW:${passwordKnown}` : 'PW'}
-              </span>
-            )}
-
-            {/* Child count indicator */}
-            {hasChildren && isDiscovered && (
-              <span className="list-child-count">
-                ({Object.keys(cmd.related_commands).length})
-              </span>
-            )}
-          </button>
+          />
 
           {/* Related sub-commands - show only if expanded */}
           {isDiscovered && hasChildren && isExpanded && (
@@ -158,9 +133,10 @@ export default function List({
                   id,
                   password: cmdDef.password,
                   related_commands: cmdDef.related_commands,
+                  blocker: cmdDef.blocker,
                 })),
                 depth + 1,
-                fullPath  // Pass current path as parent for next level
+                fullPath
               )}
             </div>
           )}

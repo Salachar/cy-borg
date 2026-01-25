@@ -24,11 +24,8 @@ import LuckyFlightFloor2 from './LuckyFlightFloor2';
 export const LUCKY_FLIGHT_CASINO = {
   "Lucky Flight Casino!": {
     content: (
-      <>
-        <LuckyFlightAd />
+      <LuckyFlightAd>
         <PublicPortal
-          name="LUCKY FLIGHT CASINO"
-          tagline="Where Fortune Takes Flight!"
           network="LUCKY_FLIGHT_GUEST"
           signalStrength="strong"
           status="✓ OPEN NOW - Live Music Tonight!"
@@ -38,9 +35,9 @@ export const LUCKY_FLIGHT_CASINO = {
             "Located at Ports/Bigmosse Border",
             "Water taxi service available to canal pier!",
           ]}
-          theme="party"
+          theme="fancy"
         />
-      </>
+      </LuckyFlightAd>
     ),
     related_commands: {
       "Lobby ATM": {
