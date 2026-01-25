@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
   Line,
   Section,
@@ -6,9 +7,10 @@ import {
 } from '@terminal/TerminalComponents';
 
 import List from '../retcomdevice/List';
-import MinesweeperGame from './games/MinesweeperGame';
-import MemoryGame from './games/MemoryGame';
-import CyberPoker from './games/CyberPoker';
+
+import MinesweeperGame from '@terminal/retcomdevice/games/MinesweeperGame';
+import MemoryGame from '@terminal/retcomdevice/games/MemoryGame';
+import CyberPoker from '@terminal/retcomdevice/games/CyberPoker';
 
 export const MINIGAME_COMMANDS = {
   "Play Nanobomb Defusal": {

@@ -12,8 +12,8 @@ import {
   CorpAd,
 } from "@terminal/retcomdevice"
 
-import CyCityPublicAccessBanner from './public_access_banner';
-import CyCityCorporatePortalsBanner from './corp_portal_banner';
+import CyCityPublicAccessBanner from '@terminal/retcomdevice/CyCityPublicPortals';
+import CyCityCorporatePortalsBanner from '@terminal/retcomdevice/CyCityCorpPortals';
 
 export const CY_CITY_NETWORK = {
   "ATM": {
@@ -695,31 +695,22 @@ export const CY_CITY_NETWORK = {
 
       "Alliansen Inc.": {
         content: (
-          <>
-            <CorpAd
-              corp="ALLIANSEN INC."
-              slogan="Securing Tomorrow"
-              tagline="Security. Analytics. Control."
-              products={[
-                "Private Security Forces",
-                "Behavioral Analytics & Prediction",
-                "Real Estate Development",
-                "Entertainment Complexes"
-              ]}
-              cta="TRUST IN STRUCTURE. TRUST IN US."
-              theme="corporate"
-              logo="🛡️"
-            >
-              <p style={{ fontSize: '0.7rem', color: '#6bc9ff', marginTop: '0.5rem' }}>
-                Leasing infrastructure to 50% of Cy's SecOps divisions
-              </p>
-              <p style={{ fontSize: '0.65rem', color: '#ff6b6b', marginTop: '0.3rem', fontStyle: 'italic' }}>
-                ⚠ Currently in corporate conflict with UCS
-              </p>
-            </CorpAd>
-            <Line cyan large bold>ALLIANSEN INC.</Line>
-            <Line yellow>"Security. Entertainment. Excellence."</Line>
-            <Divider />
+          <CorpAd
+            corp="ALLIANSEN INC."
+            slogan="Securing Tomorrow"
+            tagline="Security. Analytics. Control."
+            products={[
+              "Private Security Forces",
+              "Behavioral Analytics & Prediction",
+              "Real Estate Development",
+              "Entertainment Complexes"
+            ]}
+            cta="TRUST IN STRUCTURE. TRUST IN US."
+            theme="corporate"
+            logo="🛡️"
+          >
+            <Line smoke>Leasing infrastructure to 50% of Cy's SecOps divisions</Line>
+            <Line red pulse>⚠ Currently in corporate conflict with UCS</Line>
             <Line neon>Welcome to Alliansen corporate network</Line>
             <Line cyan>[PUBLIC ACCESS]</Line>
             <Divider />
@@ -743,37 +734,28 @@ export const CY_CITY_NETWORK = {
             <Divider />
             <Line red>⚠ Currently engaged in corporate conflict with UCS</Line>
             <Line pink>"Building tomorrow's Cy, one district at a time."</Line>
-          </>
+          </CorpAd>
         ),
       },
 
       "AST Endless Seas": {
         content: (
-          <>
-            <CorpAd
-              corp="AST ENDLESS SEAS"
-              slogan="From Ocean to Table"
-              tagline="The future is underwater."
-              products={[
-                "Fish & Algae Products",
-                "Restaurant Chain (15 Locations)",
-                "Submarine Construction",
-                "Undersjön Project Lead"
-              ]}
-              cta="TASTE THE FUTURE"
-              theme="green"
-              logo="🐟"
-            >
-              <p style={{ fontSize: '0.7rem', color: '#86efac', marginTop: '0.5rem' }}>
-                <strong>SPECIAL:</strong> AlgaeBars™ - Buy 10, get 2 free!
-              </p>
-              <p style={{ fontSize: '0.65rem', color: '#34d399', marginTop: '0.3rem' }}>
-                Now with 30% real fish in all protein bowls
-              </p>
-            </CorpAd>
-            <Line cyan large bold>AST ENDLESS SEAS</Line>
-            <Line yellow>"From Ocean to Table. From Sea to Sky."</Line>
-            <Divider />
+          <CorpAd
+            corp="AST ENDLESS SEAS"
+            slogan="From Ocean to Table"
+            tagline="The future is underwater."
+            products={[
+              "Fish & Algae Products",
+              "Restaurant Chain (15 Locations)",
+              "Submarine Construction",
+              "Undersjön Project Lead"
+            ]}
+            cta="TASTE THE FUTURE"
+            theme="green"
+            logo="🐟"
+          >
+            <Line smoke large bold>SPECIAL: AlgaeBars™ - Buy 10, get 2 free!</Line>
+            <Line smoke large>Now with 30% real fish in all protein bowls</Line>
             <Line neon>Accessing AST corporate network...</Line>
             <Line cyan>[CONSUMER ACCESS]</Line>
             <Divider />
@@ -797,36 +779,25 @@ export const CY_CITY_NETWORK = {
             </Section>
             <Divider />
             <Line pink>"The future is underwater. The future is AST."</Line>
-          </>
+          </CorpAd>
         ),
       },
 
       "Cynergy Water & Power": {
         content: (
-          <>
-            <CorpAd
-              corp="CYNERGY WATER & POWER CO."
-              slogan="We Keep CY Alive"
-              products={[
-                "💧 WATER - Purified & Delivered",
-                "⚡ POWER - Always On",
-                "🏠 PROPERTY - Premium Locations",
-                "🚇 TRANSIT - Fast & Reliable"
-              ]}
-              cta="Your City. Our Infrastructure."
-              theme="dystopian"
-              logo="⚡"
-            >
-              <p style={{ fontSize: '0.7rem', color: '#ffd93d', marginTop: '0.5rem' }}>
-                <strong>RATES:</strong> Water from 120¤/mo • Power from 180¤/mo
-              </p>
-              <p style={{ fontSize: '0.65rem', color: '#ff8c42', marginTop: '0.3rem', fontStyle: 'italic' }}>
-                Late payment fee: 50¤ per day (mandatory service agreements)
-              </p>
-            </CorpAd>
-            <Line cyan large bold>CYNERGY WATER & POWER CO</Line>
-            <Line yellow>"Your Lifeblood. Our Business."</Line>
-            <Divider />
+          <CorpAd
+            corp="CYNERGY WATER & POWER CO."
+            slogan="We Keep CY Alive"
+            products={[
+              "💧 WATER - Purified & Delivered",
+              "⚡ POWER - Always On",
+              "🏠 PROPERTY - Premium Locations",
+              "🚇 TRANSIT - Fast & Reliable"
+            ]}
+            cta="Your City. Our Infrastructure."
+            theme="dystopian"
+            logo="⚡"
+          >
             <Line neon>Connecting to infrastructure network...</Line>
             <Line cyan>[PUBLIC PORTAL]</Line>
             <Divider />
@@ -851,39 +822,25 @@ export const CY_CITY_NETWORK = {
             </Section>
             <Divider />
             <Line pink>"We keep Cy running. You keep paying."</Line>
-          </>
+          </CorpAd>
         ),
       },
 
       "Fideistic Transformation": {
         content: (
-          <>
-            <CorpAd
-              corp="FIDEISTIC TRANSFORMATION"
-              slogan="Upgrade Your Soul™"
-              products={[
-                "Neural Interfaces - Direct Divine Connection",
-                "Spiritual Cybernetics - Faith Enhanced",
-                "Ego Enhancement - Become More",
-                "Transcendence Packages - Eternal Life*"
-              ]}
-              cta="The Divine Is Just A Download Away"
-              theme="purple"
-              logo="✝️"
-            >
-              <p style={{ fontSize: '0.7rem', color: '#c77dff', marginTop: '0.5rem' }}>
-                <strong>FREE:</strong> First personality scan complimentary
-              </p>
-              <p style={{ fontSize: '0.65rem', color: '#b39ddb', marginTop: '0.3rem' }}>
-                Transformation packages starting at 5,000¤
-              </p>
-              <p style={{ fontSize: '0.6rem', color: '#9b59b6', marginTop: '0.3rem', fontStyle: 'italic', opacity: 0.7 }}>
-                *Results may vary. Upload success rates not disclosed.
-              </p>
-            </CorpAd>
-            <Line cyan large bold>FIDEISTIC TRANSFORMATION</Line>
-            <Line yellow>"Upload Your Soul. Achieve Eternal Unity."</Line>
-            <Divider />
+          <CorpAd
+            corp="FIDEISTIC TRANSFORMATION"
+            slogan="Upgrade Your Soul™"
+            products={[
+              "Neural Interfaces - Direct Divine Connection",
+              "Spiritual Cybernetics - Faith Enhanced",
+              "Ego Enhancement - Become More",
+              "Transcendence Packages - Eternal Life*"
+            ]}
+            cta="The Divine Is Just A Download Away"
+            theme="purple"
+            logo="✝️"
+          >
             <Line neon>Welcome to the Path of Transformation</Line>
             <Line cyan>[SEEKER ACCESS]</Line>
             <Divider />
@@ -908,36 +865,25 @@ export const CY_CITY_NETWORK = {
             <Divider />
             <Warning>Upload success rates and ego continuance results not publicly disclosed</Warning>
             <Line yellow>"Transcend the meat. Embrace eternity."</Line>
-          </>
+          </CorpAd>
         ),
       },
 
       "Kaytell Makers": {
         content: (
-          <>
-            <CorpAd
-              corp="KAYTELL MAKERS"
-              slogan="Building Tomorrow, Today"
-              products={[
-                "Advanced Materials & Production",
-                "Construction Services",
-                "BioTech & CyberTech Components",
-                "Fashion & Retail Goods"
-              ]}
-              cta="If It's Made, Kaytell Made It Better"
-              theme="corporate"
-              logo="🏭"
-            >
-              <p style={{ fontSize: '0.7rem', color: '#6bc9ff', marginTop: '0.5rem' }}>
-                150 years of continuous operation under Mr. Kaytell
-              </p>
-              <p style={{ fontSize: '0.7rem', color: '#ffd93d', marginTop: '0.3rem' }}>
-                <strong>HIRING:</strong> Factory workers - 800¤/mo + housing
-              </p>
-            </CorpAd>
-            <Line cyan large bold>KAYTELL MAKERS</Line>
-            <Line yellow>"We Make Everything. Everything Makes Us."</Line>
-            <Divider />
+          <CorpAd
+            corp="KAYTELL MAKERS"
+            slogan="Building Tomorrow, Today"
+            products={[
+              "Advanced Materials & Production",
+              "Construction Services",
+              "BioTech & CyberTech Components",
+              "Fashion & Retail Goods"
+            ]}
+            cta="If It's Made, Kaytell Made It Better"
+            theme="corporate"
+            logo="🏭"
+          >
             <Line neon>Accessing Kaytell corporate systems...</Line>
             <Line cyan>[CONSUMER PORTAL]</Line>
             <Divider />
@@ -962,36 +908,25 @@ export const CY_CITY_NETWORK = {
             </Section>
             <Divider />
             <Line pink>"If it's made, Kaytell made it first."</Line>
-          </>
+          </CorpAd>
         ),
       },
 
       "Spectral FT Banks": {
         content: (
-          <>
-            <CorpAd
-              corp="SPECTRAL FT BANKS & HOLDINGS"
-              slogan="Your Future, Financed"
-              products={[
-                "Personal & Corporate Banking",
-                "Real Estate Investment",
-                "Infrastructure Funding",
-                "MedTech Financing Options"
-              ]}
-              cta="BUILD YOUR EMPIRE. WE'LL PROVIDE THE FOUNDATION."
-              theme="gold"
-              logo="💰"
-            >
-              <p style={{ fontSize: '0.7rem', color: '#daa520', marginTop: '0.5rem' }}>
-                <strong>PROMO:</strong> New accounts receive 100¤ credit
-              </p>
-              <p style={{ fontSize: '0.65rem', color: '#b8994d', marginTop: '0.3rem' }}>
-                High-yield savings: 3% APY (50,000¤+ balance required)
-              </p>
-            </CorpAd>
-            <Line cyan large bold>SPECTRAL FT BANKS & HOLDINGS</Line>
-            <Line yellow>"Your Wealth. Our Vision."</Line>
-            <Divider />
+          <CorpAd
+            corp="SPECTRAL FT BANKS & HOLDINGS"
+            slogan="Your Future, Financed"
+            products={[
+              "Personal & Corporate Banking",
+              "Real Estate Investment",
+              "Infrastructure Funding",
+              "MedTech Financing Options"
+            ]}
+            cta="BUILD YOUR EMPIRE. WE'LL PROVIDE THE FOUNDATION."
+            theme="gold"
+            logo="💰"
+          >
             <Line neon>Welcome to Spectral Financial Services</Line>
             <Line cyan>[ACCOUNT ACCESS]</Line>
             <Divider />
@@ -1015,39 +950,25 @@ export const CY_CITY_NETWORK = {
             </Section>
             <Divider />
             <Line pink>"Building wealth. Building Cy. Building tomorrow."</Line>
-          </>
+          </CorpAd>
         ),
       },
 
       "UCS Corporate": {
         content: (
-          <>
-            <CorpAd
-              corp="UNITED CITADEL SECURITY"
-              slogan="Strength Through Defense"
-              products={[
-                "Military-Grade Weaponry",
-                "Combat Enhancement Systems",
-                "Corporate Protection Services",
-                "Automated Defense Platforms"
-              ]}
-              cta="WHEN ALLIANSEN ISN'T ENOUGH"
-              theme="sleek"
-              logo="⚔️"
-            >
-              <p style={{ fontSize: '0.7rem', color: '#999', marginTop: '0.5rem' }}>
-                Currently outfitting most of Cy's SecOps divisions
-              </p>
-              <p style={{ fontSize: '0.7rem', color: '#ffd93d', marginTop: '0.3rem' }}>
-                <strong>NEW:</strong> Sentinel™ Auto-Turret (home defense edition)
-              </p>
-              <p style={{ fontSize: '0.65rem', color: '#ff6b6b', marginTop: '0.3rem', fontStyle: 'italic' }}>
-                ⚠ In corporate conflict with Alliansen Inc.
-              </p>
-            </CorpAd>
-            <Line cyan large bold>UNITED CITADEL SECURITY</Line>
-            <Line yellow>"Protecting What Matters. Eliminating What Doesn't."</Line>
-            <Divider />
+          <CorpAd
+            corp="UNITED CITADEL SECURITY"
+            slogan="Strength Through Defense"
+            products={[
+              "Military-Grade Weaponry",
+              "Combat Enhancement Systems",
+              "Corporate Protection Services",
+              "Automated Defense Platforms"
+            ]}
+            cta="WHEN ALLIANSEN ISN'T ENOUGH"
+            theme="sleek"
+            logo="⚔️"
+          >
             <Line neon>Accessing UCS corporate network...</Line>
             <Line cyan>[PUBLIC ACCESS]</Line>
             <Divider />
@@ -1072,36 +993,25 @@ export const CY_CITY_NETWORK = {
             <Divider />
             <Line red>⚠ Currently engaged in corporate conflict with Alliansen Inc.</Line>
             <Line pink>"When safety matters, trust UCS."</Line>
-          </>
+          </CorpAd>
         ),
       },
 
       "Tulles&deVerte Lifestyle Feed": {
         content: (
-          <>
-            <CorpAd
-              corp="TULLES&DEVERTE"
-              slogan="Live. Stream. Consume."
-              products={[
-                "Lifestyle Products & Feeds",
-                "Entertainment & Nightlife",
-                "Social Platform Investments",
-                "Premium Drug Experiences"
-              ]}
-              cta="EVERYONE'S WATCHING. ARE YOU WORTH IT?"
-              theme="neon"
-              logo="📱"
-            >
-              <p style={{ fontSize: '0.7rem', color: '#ff006e', marginTop: '0.5rem' }}>
-                <strong>NEW DROP:</strong> Fashion line launching next week
-              </p>
-              <p style={{ fontSize: '0.65rem', color: '#ff5d8f', marginTop: '0.3rem' }}>
-                Club opening in Ports - VIP list at capacity
-              </p>
-            </CorpAd>
-            <Line cyan large bold>TULLES&DEVERTE</Line>
-            <Line pink>"Famous for Being Famous."</Line>
-            <Divider />
+          <CorpAd
+            corp="TULLES&DEVERTE"
+            slogan="Live. Stream. Consume."
+            products={[
+              "Lifestyle Products & Feeds",
+              "Entertainment & Nightlife",
+              "Social Platform Investments",
+              "Premium Drug Experiences"
+            ]}
+            cta="EVERYONE'S WATCHING. ARE YOU WORTH IT?"
+            theme="neon"
+            logo="📱"
+          >
             <Line neon>Accessing celebrity lifestyle feed...</Line>
             <Line cyan>[PUBLIC ACCESS - ALL FEEDS]</Line>
             <Divider />
@@ -1126,37 +1036,26 @@ export const CY_CITY_NETWORK = {
             </Section>
             <Divider />
             <Line pink>"Subscribe to premium for exclusive behind-the-scenes content!"</Line>
-          </>
+          </CorpAd>
         ),
       },
 
       "Royal West Shipping": {
         content: (
-          <>
-            <CorpAd
-              corp="ROYAL WEST SHIPPING CO."
-              slogan="Connected Horizons"
-              tagline="Global logistics, local delivery."
-              products={[
-                "Global Logistics Network",
-                "Automated Warehousing",
-                "Retail Distribution",
-                "AI-Managed Operations"
-              ]}
-              cta="From Warehouse To Your Door - NordShip Never Sleeps"
-              theme="green"
-              logo="🚢"
-            >
-              <p style={{ fontSize: '0.7rem', color: '#86efac', marginTop: '0.5rem' }}>
-                <strong>RATES:</strong> Standard 15¤ • Express 35¤ • Same-day 80¤
-              </p>
-              <p style={{ fontSize: '0.65rem', color: '#34d399', marginTop: '0.3rem' }}>
-                All operations managed by NordShip™ AI (zero human error)
-              </p>
-            </CorpAd>
-            <Line cyan large bold>ROYAL WEST SHIPPING CO.</Line>
-            <Line yellow>"Connecting the World. Delivering the Future."</Line>
-            <Divider />
+          <CorpAd
+            corp="ROYAL WEST SHIPPING CO."
+            slogan="Connected Horizons"
+            tagline="Global logistics, local delivery."
+            products={[
+              "Global Logistics Network",
+              "Automated Warehousing",
+              "Retail Distribution",
+              "AI-Managed Operations"
+            ]}
+            cta="From Warehouse To Your Door - NordShip Never Sleeps"
+            theme="green"
+            logo="🚢"
+          >
             <Line neon>Accessing logistics network...</Line>
             <Line cyan>[PUBLIC PORTAL]</Line>
             <Divider />
@@ -1205,37 +1104,26 @@ export const CY_CITY_NETWORK = {
             </Section>
             <Divider />
             <Line pink>"The world moves. We move it faster."</Line>
-          </>
+          </CorpAd>
         ),
       },
 
       "Gravf/Mellberg/Tosk Law": {
         content: (
-          <>
-            <CorpAd
-              corp="GRAVF/MELLBERG/TOSK"
-              slogan="No Paying Client Goes to Borghold"
-              tagline="Corporate law. Criminal defense. Results guaranteed."
-              products={[
-                "Corporate Legal Services",
-                "Criminal Defense (All Charges)",
-                "Contract Negotiation & Review",
-                "Risk Management Consulting"
-              ]}
-              cta="When The Law Isn't On Your Side, We Are."
-              theme="sleek"
-              logo="⚖️"
-            >
-              <p style={{ fontSize: '0.7rem', color: '#999', marginTop: '0.5rem' }}>
-                150+ years combined experience • 94% acquittal rate
-              </p>
-              <p style={{ fontSize: '0.7rem', color: '#ffd93d', marginTop: '0.3rem' }}>
-                <strong>RATES:</strong> Consultation 500¤ • Retainer from 5,000¤/mo
-              </p>
-            </CorpAd>
-            <Line cyan large bold>GRAVF/MELLBERG/TOSK</Line>
-            <Line yellow>"Defending Power. Protecting Profit."</Line>
-            <Divider />
+          <CorpAd
+            corp="GRAVF/MELLBERG/TOSK"
+            slogan="No Paying Client Goes to Borghold"
+            tagline="Corporate law. Criminal defense. Results guaranteed."
+            products={[
+              "Corporate Legal Services",
+              "Criminal Defense (All Charges)",
+              "Contract Negotiation & Review",
+              "Risk Management Consulting"
+            ]}
+            cta="When The Law Isn't On Your Side, We Are."
+            theme="sleek"
+            logo="⚖️"
+          >
             <Line neon>Accessing legal services portal...</Line>
             <Line cyan>[CONSULTATION REQUIRED]</Line>
             <Divider />
@@ -1281,37 +1169,26 @@ export const CY_CITY_NETWORK = {
             <Divider />
             <Warning>Legal advice is attorney-client privileged and confidential</Warning>
             <Line pink>"When the stakes are high, we don't lose."</Line>
-          </>
+          </CorpAd>
         ),
       },
 
       "Idol Coffins Hotels": {
         content: (
-          <>
-            <CorpAd
-              corp="IDOL COFFINS"
-              slogan="Live Fast. Die Young. Sleep In Style."
-              tagline="Rock-star themed pop-up hotels across Cy."
-              products={[
-                "Themed Luxury Suites",
-                "24/7 Room Service & Bar",
-                "Private Concert Access",
-                "Memorabilia Collections"
-              ]}
-              cta="Book Your Rock-Star Experience Today"
-              theme="neon"
-              logo="🎸"
-            >
-              <p style={{ fontSize: '0.7rem', color: '#ff006e', marginTop: '0.5rem' }}>
-                <strong>CURRENT LOCATION:</strong> Ports District (through end of year)
-              </p>
-              <p style={{ fontSize: '0.65rem', color: '#ff5d8f', marginTop: '0.3rem' }}>
-                Rates: 700-2,500¤/night • Tonight: PHASER/MOB live (10pm)
-              </p>
-            </CorpAd>
-            <Line cyan large bold>IDOL COFFINS</Line>
-            <Line pink>"Immortalize Your Night."</Line>
-            <Divider />
+          <CorpAd
+            corp="IDOL COFFINS"
+            slogan="Live Fast. Die Young. Sleep In Style."
+            tagline="Rock-star themed pop-up hotels across Cy."
+            products={[
+              "Themed Luxury Suites",
+              "24/7 Room Service & Bar",
+              "Private Concert Access",
+              "Memorabilia Collections"
+            ]}
+            cta="Book Your Rock-Star Experience Today"
+            theme="neon"
+            logo="🎸"
+          >
             <Line neon>Connecting to hotel network...</Line>
             <Line cyan>[RESERVATIONS OPEN]</Line>
             <Divider />
@@ -1369,7 +1246,7 @@ export const CY_CITY_NETWORK = {
             </Section>
             <Divider />
             <Line pink>"Where legends sleep. Where you party."</Line>
-          </>
+          </CorpAd>
         ),
       },
 

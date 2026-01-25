@@ -184,17 +184,6 @@ export default function CorpAd({
             </div>
           )}
 
-          {/* Children content (mid-section) */}
-          {children && (
-            <div style={{
-              marginTop: '0.75rem',
-              fontSize: '0.75rem',
-              color: t.text,
-            }}>
-              {children}
-            </div>
-          )}
-
           {/* Call to action */}
           {cta && (
             <div style={{
@@ -232,6 +221,16 @@ export default function CorpAd({
         borderLeft: `2px solid ${t.border}`,
         opacity: 0.5,
       }} />
+
+      <div style={{
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',
+        padding: '1rem',
+        borderRadius: '6px',
+        margin: '1rem 2rem 0 2rem',
+        fontSize: '0.875rem',
+      }}>
+        {children && children}
+      </div>
     </div>
   );
 }

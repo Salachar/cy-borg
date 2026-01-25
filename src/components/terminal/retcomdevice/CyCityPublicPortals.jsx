@@ -1,12 +1,6 @@
 import React from 'react';
 
-/**
- * CY CITY PUBLIC ACCESS BANNER
- * Official city network portal - banner format (shorter, wider)
- * Flat design with authoritative government/corporate aesthetic
- */
-
-export function CyCityPublicAccessBanner() {
+export function CyCityPublicPortals() {
   return (
     <div style={{
       position: 'relative',
@@ -383,8 +377,4 @@ export function CyCityPublicAccessCompact() {
   );
 }
 
-// ============================================================================
-// Export
-// ============================================================================
-
-export default CyCityPublicAccessBanner;
+export default CyCityPublicPortals;

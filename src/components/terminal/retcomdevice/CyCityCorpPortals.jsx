@@ -1,12 +1,6 @@
 import React from 'react';
 
-/**
- * CY CITY CORPORATE PORTALS BANNER
- * Gateway to major corporation public interfaces
- * Flat design with sleek, powerful corporate aesthetic
- */
-
-export function CyCityCorporatePortalsBanner() {
+export function CyCityCorpPortals() {
   return (
     <div style={{
       position: 'relative',
@@ -464,8 +458,4 @@ export function CyCityCorporatePortalsCompact() {
   );
 }
 
-// ============================================================================
-// Export
-// ============================================================================
-
-export default CyCityCorporatePortalsBanner;
+export default CyCityCorpPortals;
