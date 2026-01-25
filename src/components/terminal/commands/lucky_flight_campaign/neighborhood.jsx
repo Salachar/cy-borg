@@ -269,7 +269,7 @@ export const NEIGHBORHOOD_COMMANDS = {
       </>
     ),
     related_commands: {
-      access_fingers_patient_records: {
+      access_atient_records: {
         password: {
           pw: "scalpel",
           hint: "Surgical cutting tool",
@@ -338,7 +338,7 @@ export const NEIGHBORHOOD_COMMANDS = {
       </>
     ),
     related_commands: {
-      access_razors_inventory_system: {
+      access_inventory_system: {
         password: {
           pw: "razor",
           hint: "The shop owner's nickname",
@@ -465,7 +465,7 @@ export const NEIGHBORHOOD_COMMANDS = {
     ),
 
     related_commands: {
-      "Mira's Community Bulletin": {
+      "Community Bulletin": {
         content: (
           <>
             <Line smoke large bold>[COMMUNITY BOARD]</Line>
@@ -491,7 +491,7 @@ export const NEIGHBORHOOD_COMMANDS = {
         ),
       },
 
-      access_miras_shop_internal: {
+      access_shop_internal: {
         password: {
           pw: "boxesboxesboxes",
           hint: "So many boxes",
@@ -569,7 +569,7 @@ export const NEIGHBORHOOD_COMMANDS = {
       </>
     ),
     related_commands: {
-      access_rusty_anchor_bar_safe: {
+      access_bar_safe: {
         password: {
           pw: "crustacean",
           hint: "Crabs and such",
@@ -659,7 +659,7 @@ export const NEIGHBORHOOD_COMMANDS = {
       </>
     ),
     related_commands: {
-      "Camera - Lobby (Torres)": {
+      "Camera - Lobby": {
         content: (
           <Camera
             id="torres-lobby-cam"
@@ -684,7 +684,7 @@ export const NEIGHBORHOOD_COMMANDS = {
         ),
       },
 
-      "Unit 3B Safe (Torres)": {
+      "Unit 3B Safe": {
         password: {
           pw: "localhost",
           hint: "This terminal doesn’t trust the outside world",
@@ -712,7 +712,7 @@ export const NEIGHBORHOOD_COMMANDS = {
         ),
       },
 
-      "Unit 4B Safe (Torres)": {
+      "Unit 4B Safe": {
         password: {
           pw: "dealer",
           hint: "The resident's job at the casino",
@@ -740,7 +740,7 @@ export const NEIGHBORHOOD_COMMANDS = {
         ),
       },
 
-      "Unit 2A (Torres)": {
+      "Unit 2A": {
         content: (
           <Tenet
             id="CIT-2847-JT"
@@ -758,7 +758,7 @@ export const NEIGHBORHOOD_COMMANDS = {
           />
         ),
         related_commands: {
-          "Unit 2A Console (Torres)": {
+          "Unit 2A Console": {
             content: (
               <GameConsole
                 model="CyberDeck Pro X"
@@ -774,7 +774,7 @@ export const NEIGHBORHOOD_COMMANDS = {
             )
           },
 
-          "Unit 2A Safe (Torres)": {
+          "Unit 2A Safe": {
             password: {
               pw: "maintenance",
               hint: "The resident's department at the casino",
@@ -805,7 +805,7 @@ export const NEIGHBORHOOD_COMMANDS = {
         }
       },
 
-      access_torres_building_management: {
+      access_building_management: {
         password: {
           pw: "blind",
           hint: "You pay before you see",
@@ -882,7 +882,7 @@ export const NEIGHBORHOOD_COMMANDS = {
       </>
     ),
     related_commands: {
-      "Lucky Pawn ATM": {
+      "ATM": {
         password: {
           pw: "cash",
           hint: "What everyone wants from an ATM",
@@ -908,7 +908,7 @@ export const NEIGHBORHOOD_COMMANDS = {
         ),
       },
 
-      access_luck_pawn_records: {
+      access_pawn_records: {
         password: {
           pw: "thehouse",
           hint: "It always wins",

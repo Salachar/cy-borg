@@ -43,7 +43,7 @@ export const LUCKY_FLIGHT_CASINO = {
       </>
     ),
     related_commands: {
-      "Lucky Flight Lobby ATM": {
+      "Lobby ATM": {
         password: {
           pw: "liquidity",
           hint: "You don’t need more money. You need to move it.",
@@ -68,7 +68,7 @@ export const LUCKY_FLIGHT_CASINO = {
         ),
       },
 
-      "Happy Hour Specials! (Lucky)": {
+      "Happy Hour Specials!": {
         content: (
           <Menu
             title="HAPPY HOUR"
@@ -99,7 +99,7 @@ export const LUCKY_FLIGHT_CASINO = {
         ),
       },
 
-      "Hours of Operation (Lucky)": {
+      "Hours of Operation": {
         content: (
           <>
             <Line smoke large bold>[OPERATING HOURS]</Line>
@@ -112,7 +112,7 @@ export const LUCKY_FLIGHT_CASINO = {
         ),
       },
 
-      "Entertainment Brochure (Lucky)"  : {
+      "Entertainment Brochure"  : {
         content: (
           <>
             <Line smoke large bold>[TONIGHT'S SHOWS]</Line>
@@ -130,7 +130,7 @@ export const LUCKY_FLIGHT_CASINO = {
         ),
       },
 
-      "Available Transportation (Lucky)": {
+      "Available Transportation": {
         content: (
           <>
             <Line smoke large bold>[TRANSPORT OPTIONS]</Line>
@@ -148,7 +148,7 @@ export const LUCKY_FLIGHT_CASINO = {
         ),
       },
 
-      "NukaCola Vending (Lucky Flight Lobby)": {
+      "NukaCola Vending": {
         content: (
           <VendingMachine
             id="lfc-lobby-nuka"
@@ -165,7 +165,7 @@ export const LUCKY_FLIGHT_CASINO = {
           />
         ),
         related_commands: {
-          "Maintenance Access (lfc_ncl)": {
+          "Maintenance Access": {
             password: {
               pw: "quantum",
               hint: "Top selling soda",
@@ -184,7 +184,7 @@ export const LUCKY_FLIGHT_CASINO = {
               </>
             ),
             related_commands: {
-              "Internal Safe (lfc_ncl)": {
+              "Internal Safe": {
                 password: {
                   pw: "coins",
                   hint: "What accumulates in the cash box",
@@ -210,7 +210,7 @@ export const LUCKY_FLIGHT_CASINO = {
                   />
                 ),
               },
-              "Debug Mode (lfc_ncl)": {
+              "Debug Mode": {
                 password: {
                   pw: "freevend",
                   hint: "The mode that gives away drinks",
@@ -234,7 +234,7 @@ export const LUCKY_FLIGHT_CASINO = {
         },
       },
 
-      "access_lucky_flight_internal_network": {
+      "access_internal_network": {
         password: {
           pw: "loadeddice",
           hint: "Better not get caught",
@@ -249,7 +249,7 @@ export const LUCKY_FLIGHT_CASINO = {
           />
         ),
         related_commands: {
-          access_lucky_flight_facility_files: {
+          access_facility_files: {
             password: {
               pw: "architecture",
               hint: "What blueprints are a form of",
@@ -271,7 +271,7 @@ export const LUCKY_FLIGHT_CASINO = {
             ),
             related_commands: {
 
-              "Blueprint: Basement (Lucky)": {
+              "Blueprint: Basement": {
                 content: (
                   <>
                     <LuckyFlightBasement />
@@ -288,7 +288,7 @@ export const LUCKY_FLIGHT_CASINO = {
                 ),
               },
 
-              "Blueprint: Floor 1 (Lucky)": {
+              "Blueprint: Floor 1": {
                 content: (
                   <>
                     <LuckyFlightFloor1 />
@@ -305,7 +305,7 @@ export const LUCKY_FLIGHT_CASINO = {
                   </>
                 ),
               },
-              "Blueprint: Floor 2 (Lucky)": {
+              "Blueprint: Floor 2": {
                 content: (
                   <>
                     <LuckyFlightFloor2 />
@@ -325,7 +325,7 @@ export const LUCKY_FLIGHT_CASINO = {
               },
             },
           },
-          access_lucky_flight_hr_database: {
+          access_hr_database: {
             password: {
               pw: "gibos",
               hint: "Nickname of the cyborg grandpa winning big at slots",
@@ -730,7 +730,7 @@ export const LUCKY_FLIGHT_CASINO = {
               },
             },
           },
-          access_lucky_flight_security_database: {
+          access_security_database: {
             password: {
               pw: "surveillance",
               hint: "What cameras are used for",
@@ -751,7 +751,7 @@ export const LUCKY_FLIGHT_CASINO = {
               </>
             ),
             related_commands: {
-              query_lucky_flight_camera_coverage: {
+              query_camera_coverage: {
                 content: (
                   <>
                     <Line smoke large bold>[CAMERA COVERAGE]</Line>
@@ -790,7 +790,7 @@ export const LUCKY_FLIGHT_CASINO = {
                   </>
                 ),
               },
-              query_lucky_flight_alarm_response: {
+              query_alarm_response: {
                 content: (
                   <Box color="red">
                     <Line red bold>[ALARM PROTOCOLS]</Line>
@@ -807,7 +807,7 @@ export const LUCKY_FLIGHT_CASINO = {
                   </Box>
                 ),
               },
-              query_lucky_flight_entry_points: {
+              query_entry_points: {
                 password: {
                   pw: "breach",
                   hint: "What you're planning to do",
@@ -838,7 +838,7 @@ export const LUCKY_FLIGHT_CASINO = {
               },
             },
           },
-          access_lucky_flight_financial_database: {
+          access_financial_database: {
             password: {
               pw: "debt",
               hint: "What casino uses to control neighborhood",
@@ -858,7 +858,7 @@ export const LUCKY_FLIGHT_CASINO = {
               </>
             ),
             related_commands: {
-              query_lucky_flight_debt_ledger: {
+              query_debt_ledger: {
                 content: (
                   <Box color="red">
                     <Line red bold>[DEBT LEDGER]</Line>
@@ -874,7 +874,7 @@ export const LUCKY_FLIGHT_CASINO = {
                   </Box>
                 ),
               },
-              query_lucky_flight_high_rollers: {
+              query_high_rollers: {
                 content: (
                   <>
                     <Line smoke large bold>[HIGH ROLLERS]</Line>
@@ -893,7 +893,7 @@ export const LUCKY_FLIGHT_CASINO = {
                   </>
                 ),
               },
-              query_lucky_flight_corporate_structure: {
+              query_corporate_structure: {
                 password: {
                   pw: "subsidiary",
                   hint: "How corps hide ownership",
@@ -911,7 +911,7 @@ export const LUCKY_FLIGHT_CASINO = {
               },
             },
           },
-          access_lucky_flight_operations_database: {
+          access_operations_database: {
             content: (
               <>
                 <Line smoke large bold>[OPERATIONS]</Line>
@@ -926,7 +926,7 @@ export const LUCKY_FLIGHT_CASINO = {
               </>
             ),
             related_commands: {
-              query_lucky_flight_recent_incidents: {
+              query_recent_incidents: {
                 password: {
                   pw: "chaos",
                   hint: "Casino's natural state",
@@ -947,7 +947,7 @@ export const LUCKY_FLIGHT_CASINO = {
                   </>
                 ),
               },
-              query_lucky_flight_power_core_status: {
+              query_power_core_status: {
                 password: {
                   pw: "unstable",
                   hint: "Condition of Room 16",

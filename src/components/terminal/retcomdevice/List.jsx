@@ -23,11 +23,11 @@ export default function List({
     }
   });
 
-  const toggleSection = (cmdId) => {
+  const toggleSection = (fullPath) => {
     setExpandedSections(prev => {
       const newState = {
         ...prev,
-        [cmdId]: !prev[cmdId],
+        [fullPath]: !prev[fullPath],
       };
 
       // Save to localStorage
@@ -44,16 +44,19 @@ export default function List({
   const expandAll = () => {
     const allExpanded = {};
 
-    const expandRecursive = (cmds) => {
+    const expandRecursive = (cmds, parentPath = '') => {
       cmds.forEach(cmd => {
+        const fullPath = parentPath ? `${parentPath}/${cmd.id}` : cmd.id;
+
         if (cmd.related_commands && Object.keys(cmd.related_commands).length > 0) {
-          allExpanded[cmd.id] = true;
+          allExpanded[fullPath] = true;
           expandRecursive(
             Object.entries(cmd.related_commands).map(([id, cmdDef]) => ({
               id,
               password: cmdDef.password,
               related_commands: cmdDef.related_commands,
-            }))
+            })),
+            fullPath
           );
         }
       });
@@ -78,22 +81,25 @@ export default function List({
     }
   };
 
-  // Recursive render function - no separate component needed
-  const renderCommandTree = (commands, depth = 0) => {
+  // Recursive render function - builds full paths
+  const renderCommandTree = (commands, depth = 0, parentPath = '') => {
     // Sort commands alphabetically
     const sortedCommands = [...commands].sort((a, b) => a.id.localeCompare(b.id));
 
     return sortedCommands.map(cmd => {
-      const isDiscovered = discoveredSecrets.includes(cmd.id);
+      // Build full path from root
+      const fullPath = parentPath ? `${parentPath}/${cmd.id}` : cmd.id;
+
+      const isDiscovered = discoveredSecrets.includes(fullPath);
       const hasPassword = cmd.password;
-      const passwordKnown = discoveredPasswords[cmd.id];
+      const passwordKnown = discoveredPasswords[fullPath];
       const hasChildren = cmd.related_commands && Object.keys(cmd.related_commands).length > 0;
-      const isExpanded = expandedSections[cmd.id];
+      const isExpanded = expandedSections[fullPath];
       const checkmark = isDiscovered ? '✓' : '○';
 
       return (
         <div
-          key={cmd.id}
+          key={fullPath}
           className="list-command-wrapper"
           style={{
             marginLeft: depth > 0 ? `1.5rem` : '0',
@@ -101,7 +107,7 @@ export default function List({
         >
           {/* Command button */}
           <button
-            onClick={() => setInputCallback(cmd.id)}
+            onClick={() => setInputCallback(fullPath)}
             className="list-command-button"
           >
             {/* Expand/collapse button - only show if has children and is discovered */}
@@ -109,7 +115,7 @@ export default function List({
               <div
                 onClick={(e) => {
                   e.stopPropagation();
-                  toggleSection(cmd.id);
+                  toggleSection(fullPath);
                 }}
                 className="list-expand-toggle"
               >
@@ -124,7 +130,7 @@ export default function List({
               {checkmark}
             </span>
 
-            {/* Command name */}
+            {/* Command name - show only the last part, not full path */}
             <span className="list-command-name">
               {cmd.id}
             </span>
@@ -153,7 +159,8 @@ export default function List({
                   password: cmdDef.password,
                   related_commands: cmdDef.related_commands,
                 })),
-                depth + 1
+                depth + 1,
+                fullPath  // Pass current path as parent for next level
               )}
             </div>
           )}

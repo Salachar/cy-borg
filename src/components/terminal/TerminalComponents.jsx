@@ -55,10 +55,10 @@ export const Line = ({
   // Anything non-string children are typically more "actionable"
   // So I add a little bit of margin for tablet spacing friendliness
   // These are usually commands to click, so the spacing helps a ton
-  if (typeof children !== "string") {
-    appliedStyles.marginTop = "0.5rem";
-    appliedStyles.marginBottom = "0.5rem";
-  }
+  // if (typeof children !== "string") {
+  //   appliedStyles.marginTop = "0.5rem";
+  //   appliedStyles.marginBottom = "0.5rem";
+  // }
 
   if (top) appliedStyles.marginTop = "0.5rem";
   if (bottom) appliedStyles.marginBottom = "0.5rem";

@@ -42,7 +42,7 @@ export const BODEGA_COMMANDS = {
       </>
     ),
     related_commands: {
-      "Batu's Bodega Menu": {
+      "Bodega Menu": {
         content: (
           <Menu
             title="DAILY SPECIALS"
@@ -73,7 +73,7 @@ export const BODEGA_COMMANDS = {
         ),
       },
 
-      "Coffee Selections (Batu's Bodega)": {
+      "Coffee Selections": {
         content: (
           <Menu
             title="BREW MENU"
@@ -103,7 +103,7 @@ export const BODEGA_COMMANDS = {
         ),
       },
 
-      "ATM (Batu's Bodega)": {
+      "ATM": {
         password: {
           pw: "compound",
           hint: "It grows faster than work ever could",
@@ -127,7 +127,7 @@ export const BODEGA_COMMANDS = {
         ),
       },
 
-      "Vending Machine (VM_BB_N8)": {
+      "Vending Machine": {
         content: (
           <VendingMachine
             id="bodega-outside-vending"
@@ -143,7 +143,7 @@ export const BODEGA_COMMANDS = {
           />
         ),
         related_commands: {
-          "Maintenance Access (VM_BB_N8)": {
+          "Maintenance Access": {
             password: {
               pw: "refresh",
               hint: "What you do to restock the machine",
@@ -159,7 +159,7 @@ export const BODEGA_COMMANDS = {
               />
             ),
             related_commands: {
-              "Internal Safe (VM_BB_N8)": {
+              "Internal Safe": {
                 password: {
                   pw: "coins",
                   hint: "What accumulates in the cash box",
@@ -183,7 +183,7 @@ export const BODEGA_COMMANDS = {
                   />
                 ),
               },
-              "Debug Mode (VM_BB_N8)": {
+              "Debug Mode": {
                 password: {
                   pw: "freevend",
                   hint: "The mode that gives away drinks",
@@ -205,7 +205,7 @@ export const BODEGA_COMMANDS = {
         },
       },
 
-      "Deals! (Batu's Bodega)": {
+      "Deals!": {
         content: (
           <>
             <Line yellow large bold>[TODAY'S SPECIALS]</Line>
@@ -239,7 +239,7 @@ export const BODEGA_COMMANDS = {
         ),
       },
 
-      "Operating Status (Batu's Bodega)": {
+      "Operating Status": {
         content: (
           <>
             <Line smoke large bold>[STORE STATUS]</Line>
@@ -269,7 +269,7 @@ export const BODEGA_COMMANDS = {
         ),
       },
 
-      "Bodega Neighborhood Bulletin": {
+      "Neighborhood Bulletin": {
         content: (
           <>
             <Line smoke large bold>[COMMUNITY BULLETIN BOARD]</Line>
@@ -298,7 +298,7 @@ export const BODEGA_COMMANDS = {
         ),
       },
 
-      access_batus_bodega_internal_network: {
+      access_internal_network: {
         password: {
           pw: "payday",
           hint: "Niece's favorite day and candybar",
@@ -313,7 +313,7 @@ export const BODEGA_COMMANDS = {
           />
         ),
         related_commands: {
-          access_batus_bodega_security_cam: {
+          access_security_cam: {
             content: (
               <Camera
                 id="bodega-main-cam"
@@ -350,7 +350,7 @@ export const BODEGA_COMMANDS = {
             ),
           },
 
-          query_batus_bodega_personnel: {
+          query_personnel: {
             content: (
               <>
                 <Line smoke large bold>[PERSONNEL RECORDS]</Line>
@@ -466,7 +466,7 @@ export const BODEGA_COMMANDS = {
             },
           },
 
-          query_batus_bodega_inventory: {
+          query_inventory: {
             content: (
               <>
                 <Line smoke large bold>[INVENTORY DATABASE]</Line>
@@ -500,7 +500,7 @@ export const BODEGA_COMMANDS = {
             ),
           },
 
-          "Batu's Office Safe": {
+          "Office Safe": {
             password: {
               pw: "zara",
               hint: "His niece's name",

@@ -97,7 +97,7 @@ export const STONE_EELS_COMMANDS = {
       </>
     ),
     related_commands: {
-      "Tonight's Entertainment (Cave)": {
+      "Tonight's Entertainment": {
         content: (
           <>
             <Line yellow large bold>[TONIGHT'S LINEUP]</Line>
@@ -127,7 +127,7 @@ export const STONE_EELS_COMMANDS = {
         ),
       },
 
-      "Bar Menu (Cave)": {
+      "Bar Menu": {
         content: (
           <Menu
             title="CAVE CLUB BAR"
@@ -158,7 +158,7 @@ export const STONE_EELS_COMMANDS = {
         ),
       },
 
-      "Hours & Location (Cave)": {
+      "Hours & Location": {
         content: (
           <>
             <Line smoke large bold>[VENUE INFORMATION]</Line>
@@ -188,7 +188,7 @@ export const STONE_EELS_COMMANDS = {
         ),
       },
 
-      "Community Board (Cave)": {
+      "Community Board": {
         content: (
           <>
             <Line smoke large bold>[COMMUNITY POSTINGS]</Line>
@@ -224,7 +224,7 @@ export const STONE_EELS_COMMANDS = {
           />
         ),
         related_commands: {
-          "Facility Layout (Cave)": {
+          "Facility Layout": {
             password: PASSWORDS.layout,
             content: (
               <>
@@ -257,7 +257,7 @@ export const STONE_EELS_COMMANDS = {
             ),
           },
 
-          "Security Systems (Cave)": {
+          "Security Systems": {
             content: (
               <>
                 <Line smoke large bold>[SECURITY SYSTEMS]</Line>
@@ -291,7 +291,7 @@ export const STONE_EELS_COMMANDS = {
             ),
           },
 
-          "VIP Management (Cave)": {
+          "VIP Management": {
             password: PASSWORDS.vip,
             content: (
               <>
@@ -324,7 +324,7 @@ export const STONE_EELS_COMMANDS = {
             ),
           },
 
-          "Incident Reports (Cave)": {
+          "Incident Reports": {
             content: (
               <>
                 <Line smoke large bold>[INCIDENT LOG]</Line>
@@ -358,7 +358,7 @@ export const STONE_EELS_COMMANDS = {
             ),
           },
 
-          "Back Office Safe (Cave)": {
+          "Back Office Safe": {
             password: PASSWORDS.safe,
             content: (
               <Safe
@@ -503,7 +503,7 @@ export default STONE_EELS_COMMANDS;
 //       </>
 //     ),
 //     related_commands: {
-//       "Tonight's Entertainment (Cave)": {
+//       "Tonight's Entertainment": {
 //         content: (
 //           <>
 //             <Line yellow large bold>[TONIGHT'S LINEUP]</Line>
@@ -533,7 +533,7 @@ export default STONE_EELS_COMMANDS;
 //         ),
 //       },
 
-//       "Bar Menu (Cave)": {
+//       "Bar Menu": {
 //         content: (
 //           <>
 //             <Line yellow large bold>[BAR MENU]</Line>
@@ -558,7 +558,7 @@ export default STONE_EELS_COMMANDS;
 //         ),
 //       },
 
-//       "Hours & Location (Cave)": {
+//       "Hours & Location": {
 //         content: (
 //           <>
 //             <Line smoke large bold>[VENUE INFORMATION]</Line>
@@ -588,7 +588,7 @@ export default STONE_EELS_COMMANDS;
 //         ),
 //       },
 
-//       "Community Board (Cave)": {
+//       "Community Board": {
 //         content: (
 //           <>
 //             <Line smoke large bold>[COMMUNITY POSTINGS]</Line>

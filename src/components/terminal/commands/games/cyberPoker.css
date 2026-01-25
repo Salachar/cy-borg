@@ -4,23 +4,12 @@
 }
 
 .cyber-poker-container button {
-  min-height: 44px; /* iOS recommended touch target */
+  min-height: 44px;
   font-family: monospace;
 }
 
 .cyber-poker-game {
   transition: all 0.3s ease;
-}
-
-.cyber-poker-game.collapsed {
-  height: 80px;
-  overflow: hidden;
-}
-
-/* Button hover effects */
-.poker-control-btn:hover {
-  filter: brightness(1.2);
-  transition: all 0.2s;
 }
 
 .poker-bet-btn:not(:disabled):hover {

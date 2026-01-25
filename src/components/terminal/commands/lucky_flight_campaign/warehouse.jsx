@@ -37,7 +37,7 @@ export const WAREHOUSE_COMMANDS = {
       />
     ),
     related_commands: {
-      "Shipping Manifests (AIW)": {
+      "Shipping Manifests": {
         content: (
           <>
             <Line smoke large bold>[SHIPPING DATABASE]</Line>
@@ -63,7 +63,7 @@ export const WAREHOUSE_COMMANDS = {
         ),
       },
 
-      "Employee Roster (AIW)": {
+      "Employee Roster": {
         content: (
           <>
             <Line smoke large bold>[PERSONNEL DATABASE]</Line>
@@ -109,7 +109,7 @@ export const WAREHOUSE_COMMANDS = {
         ),
       },
 
-      "External Security Camera (AIW)": {
+      "External Security Camera": {
         content: (
           <Camera
             id="alliansen-warehouse-external"
@@ -136,7 +136,7 @@ export const WAREHOUSE_COMMANDS = {
         ),
       },
 
-      access_alliansen_warehouse_internal_network: {
+      access_internal_network: {
         password: {
           pw: "logistics47",
           hint: "Facility number + warehouse function (all lowercase)",
@@ -151,9 +151,8 @@ export const WAREHOUSE_COMMANDS = {
           />
         ),
         related_commands: {
-
           // NEW - Shift schedule
-          "Current Shift Schedule (AIW)": {
+          "Current Shift Schedule": {
             content: (
               <ShiftSchedule
                 location="Alliansen Warehouse"
@@ -173,7 +172,7 @@ export const WAREHOUSE_COMMANDS = {
             ),
           },
 
-          "Security Camera System (AIW)": {
+          "Security Camera System": {
             content: (
               <Camera
                 id="alliansen-warehouse-main"
@@ -199,7 +198,7 @@ export const WAREHOUSE_COMMANDS = {
               />
             ),
             related_commands: {
-              "Secure Cargo Camera (AIW)": {
+              "Secure Cargo Camera": {
                 password: {
                   pw: "secops2082",
                   hint: "Who authorized tonight's classified shipment? (Check manifest)",
@@ -230,7 +229,7 @@ export const WAREHOUSE_COMMANDS = {
             },
           },
 
-          "Personnel Records (AIW)": {
+          "Personnel Records": {
             content: (
               <>
                 <Line smoke large bold>[PERSONNEL FILES]</Line>
@@ -405,7 +404,7 @@ export const WAREHOUSE_COMMANDS = {
             },
           },
 
-          "Supervisor's Terminal (AIW)": {
+          "Supervisor's Terminal": {
             password: {
               pw: "webb2041",
               hint: "Supervisor's last name + birth year (check personnel file)",
@@ -435,7 +434,7 @@ export const WAREHOUSE_COMMANDS = {
               />
             ),
             related_commands: {
-              "Classified Shipment Manifest (AIW)": {
+              "Classified Shipment Manifest": {
                 content: (
                   <>
                     <Line smoke large bold>[CLASSIFIED CARGO MANIFEST]</Line>
@@ -469,7 +468,7 @@ export const WAREHOUSE_COMMANDS = {
                 ),
               },
 
-              "Alarm Override Codes (AIW)": {
+              "Alarm Override Codes": {
                 password: {
                   pw: "emergency",
                   hint: "What type of situation would require these codes?",
@@ -501,7 +500,7 @@ export const WAREHOUSE_COMMANDS = {
             },
           },
 
-          "Supervisor's Office Safe (AIW)": {
+          "Supervisor's Office Safe": {
             password: {
               pw: "fisherman",
               hint: "Marcus Webb's favorite hobby (check his profile)",
@@ -531,7 +530,7 @@ export const WAREHOUSE_COMMANDS = {
           },
 
           // NEW - Break room terminal
-          "Rec Room Terminal (AIW)": {
+          "Rec Room Terminal": {
             content: (
               <Workstation
                 owner="James Park"
@@ -554,7 +553,7 @@ export const WAREHOUSE_COMMANDS = {
           },
 
           // NEW - Main security workstation
-          "Main Security Workstation (AIW)": {
+          "Main Security Workstation": {
             content: (
               <Workstation
                 owner="David Chen"
@@ -578,7 +577,7 @@ export const WAREHOUSE_COMMANDS = {
           },
 
           // NEW - Vending machine
-          "Warehouse Vending Machine (AIW)": {
+          "Warehouse Vending Machine": {
             content: (
               <VendingMachine
                 id="alliansen-warehouse-vending"

@@ -19,6 +19,7 @@ import {
 } from "@terminal/retcomdevice";
 
 import PasswordPrompt from '@terminal/retcomdevice/PasswordPrompt';
+import HistoryEntryWrapper from '@terminal/HistoryEntryWrapper';
 
 // ============================================================================
 // ALL COMMANDS - Comment out what you don't need
@@ -40,6 +41,7 @@ const CAMPAIGN_COMMANDS_LIST = Object.entries(CAMPAIGN_COMMANDS).map(([id, cmdDe
 const STORAGE_KEY = 'cyborg_terminal_secrets';
 const PASSWORD_STORAGE_KEY = 'cyborg_terminal_passwords';
 const HISTORY_KEY = 'cyborg_terminal_history';
+const COLLAPSED_STORAGE_KEY = 'terminal_commands_expanded';
 
 // ============================================================================
 // UTILITY FUNCTIONS
@@ -81,21 +83,30 @@ function saveDiscoveredPasswords(passwords) {
   }
 }
 
-// Flatten commands for lookup (parent + all nested related_commands, recursively)
-function flattenCommands(commands, flat = {}) {
-  for (const [key, cmd] of Object.entries(commands)) {
-    if (flat[key]) {
-      console.log(`Existing key found: ${key}`)
-    }
-    flat[key] = cmd;
+// Path-based command lookup - traverses tree structure
+function findCommandByPath(path, commands) {
+  const parts = path.split('/');
+  let current = commands;
 
-    // Recursively flatten nested related_commands
-    if (cmd.related_commands && typeof cmd.related_commands === 'object') {
-      flattenCommands(cmd.related_commands, flat);
+  for (let i = 0; i < parts.length; i++) {
+    const part = parts[i];
+
+    if (!current[part]) {
+      return null;
+    }
+
+    current = current[part];
+
+    // If there are more parts, drill into related_commands
+    if (i < parts.length - 1) {
+      if (!current.related_commands) {
+        return null;
+      }
+      current = current.related_commands;
     }
   }
 
-  return flat;
+  return current;
 }
 
 // ============================================================================
@@ -103,41 +114,78 @@ function flattenCommands(commands, flat = {}) {
 // ============================================================================
 
 // History Entry Component
-function HistoryEntry({ entry, index, onCommandSelect, flatCommands }) {
-  switch (entry.type) {
-    case 'password_prompt':
-    case 'component':
-      return entry.content;
-    case 'user':
-      return (
-        <Line neon>
-          <Line teal inline>{`CY_NET://>`}</Line> {entry.content}
-        </Line>
-      );
-    case 'error':
-      return (
-        <div className="whitespace-pre-wrap" style={{ color: 'rgb(252, 129, 129)' }}>
-          {entry.content}
-        </div>
-      );
-    case 'related_commands':
-      return (
-        <RelatedCommands
-          commands={entry.commands || []}
-          onSelect={onCommandSelect}
-          flatCommands={flatCommands}
-        />
-      );
-    default: // generally "system"
-      return (
-        <Line neon>
-          {typeof entry.content === 'string'
-            ? <div className="whitespace-pre-wrap">{entry.content}</div>
-            : entry.content
-          }
-        </Line>
-      );
-  }
+function HistoryEntry({ entry, index, onCommandSelect, collapsedEntries, setCollapsedEntries, onRemove }) {
+  const entryId = `${entry.timestamp}_${index}`;
+  const isCollapsed = collapsedEntries[entryId] || false;
+
+  const setIsCollapsed = (collapsed) => {
+    setCollapsedEntries(prev => {
+      const newState = { ...prev, [entryId]: collapsed };
+      try {
+        localStorage.setItem(COLLAPSED_STORAGE_KEY, JSON.stringify(newState));
+      } catch (e) {
+        console.error('Failed to save collapsed state:', e);
+      }
+      return newState;
+    });
+  };
+
+  // Get display label for the entry
+  const getEntryLabel = () => {
+    if (entry.type === 'user') return 'USER INPUT';
+    if (entry.type === 'error') return 'ERROR';
+    if (entry.type === 'related_commands') return 'RELATED COMMANDS';
+    if (entry.type === 'password_prompt') return `PASSWORD: ${entry.command || 'UNKNOWN'}`;
+    return entry.type || 'SYSTEM';
+  };
+
+  // Render the actual content
+  const renderContent = () => {
+    switch (entry.type) {
+      case 'password_prompt':
+      case 'component':
+        return entry.content;
+      case 'user':
+        return (
+          <Line neon>
+            <Line teal inline>{`CY_NET://>`}</Line> {entry.content}
+          </Line>
+        );
+      case 'error':
+        return (
+          <div className="whitespace-pre-wrap" style={{ color: 'rgb(252, 129, 129)' }}>
+            {entry.content}
+          </div>
+        );
+      case 'related_commands':
+        return (
+          <RelatedCommands
+            commands={entry.commands || []}
+            onSelect={onCommandSelect}
+          />
+        );
+      default: // generally "system"
+        return (
+          <Line neon>
+            {typeof entry.content === 'string'
+              ? <div className="whitespace-pre-wrap">{entry.content}</div>
+              : entry.content
+            }
+          </Line>
+        );
+    }
+  };
+
+  return (
+    <HistoryEntryWrapper
+      entryId={entryId}
+      commandPath={getEntryLabel()}
+      onRemove={onRemove}
+      collapsedState={[isCollapsed, setIsCollapsed]}
+    >
+      {renderContent()}
+    </HistoryEntryWrapper>
+  );
 }
 
 // ============================================================================
@@ -153,6 +201,7 @@ export default function Terminal() {
   const [discoveredSecrets, setDiscoveredSecrets] = useState([]);
   const [discoveredPasswords, setDiscoveredPasswords] = useState({});
   const [hasLoadedHistory, setHasLoadedHistory] = useState(false);
+  const [collapsedEntries, setCollapsedEntries] = useState({});
 
   // Refs
   const hasBootedRef = useRef(false);
@@ -160,14 +209,23 @@ export default function Terminal() {
   const historyEndRef = useRef(null);
   const historyContainerRef = useRef(null);
 
-  // Flatten campaign commands once for lookup
-  const flatCommands = useRef(flattenCommands(CAMPAIGN_COMMANDS)).current;
-
   const [terminalActivity, setTerminalActivity] = useState(0);
 
   // ============================================================================
   // EFFECTS
   // ============================================================================
+
+  // Load collapsed state from localStorage
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(COLLAPSED_STORAGE_KEY);
+      if (saved) {
+        setCollapsedEntries(JSON.parse(saved));
+      }
+    } catch (e) {
+      console.error('Failed to load collapsed state:', e);
+    }
+  }, []);
 
   // Load discovered secrets and passwords on mount
   useEffect(() => {
@@ -198,26 +256,37 @@ export default function Terminal() {
         return;
       }
 
-      const command = flatCommands[type] || SYSTEM_COMMANDS[type];
-
-      if (!command) {
-        console.warn('No command found for', type)
-        return;
-      }
-
-      let displayContent = null;
-      if (typeof command === 'function') {
-        // System level commands are special funcions to take extra shit
-        displayContent = command({
+      // Check system commands first
+      const systemCommand = SYSTEM_COMMANDS[type];
+      if (systemCommand) {
+        const displayContent = systemCommand({
           discoveredSecrets: secrets,
           campaignCommandList: CAMPAIGN_COMMANDS_LIST,
           setInputCallback: setInput,
           discoveredPasswords: passwords,
         }).content;
-      } else if (typeof command.content === 'function') {
-        displayContent = command.content();
+
+        if (displayContent) {
+          addToHistory({
+            type,
+            content: displayContent,
+          });
+        }
+        return;
+      }
+
+      // Try path-based lookup for campaign commands
+      const commandDef = findCommandByPath(type, CAMPAIGN_COMMANDS);
+      if (!commandDef) {
+        console.warn('No command found for', type);
+        return;
+      }
+
+      let displayContent = null;
+      if (typeof commandDef.content === 'function') {
+        displayContent = commandDef.content();
       } else {
-        displayContent = command.content;
+        displayContent = commandDef.content;
       }
 
       if (!displayContent) return;
@@ -294,17 +363,33 @@ export default function Terminal() {
     setHistory(prev => [...prev, { ...entry, timestamp: Date.now() }]);
   };
 
+  const removeFromHistory = (entryId) => {
+    setHistory(prev => prev.filter((entry, index) => `${entry.timestamp}_${index}` !== entryId));
+
+    // Also remove from collapsed state
+    setCollapsedEntries(prev => {
+      const newState = { ...prev };
+      delete newState[entryId];
+      try {
+        localStorage.setItem(COLLAPSED_STORAGE_KEY, JSON.stringify(newState));
+      } catch (e) {
+        console.error('Failed to save collapsed state:', e);
+      }
+      return newState;
+    });
+  };
+
   // ============================================================================
   // COMMAND EXECUTION
   // ============================================================================
 
-  const executeCommandWithResult = (cmd, commandDef, save = true) => {
+  const executeCommandWithResult = (path, commandDef, save = true) => {
     let endCmd = commandDef;
     if (commandDef && typeof commandDef.content === 'function') {
-      endCmd = result.content();
+      endCmd = commandDef.content();
     }
-    if (!discoveredSecrets.includes(cmd) && save) {
-      setDiscoveredSecrets(prev => [...prev, cmd]);
+    if (!discoveredSecrets.includes(path) && save) {
+      setDiscoveredSecrets(prev => [...prev, path]);
     }
 
     // Add result to history
@@ -315,17 +400,18 @@ export default function Terminal() {
     }
 
     addToHistory({
-      type: cmd || 'system',
+      type: path || 'system',
       content: endCmd.content,
     });
 
-    // Don't automatically unlock sub-commands - they'll be discovered when accessed
-    // But DO show a notification that related commands are now available
+    // Show related commands if any exist
     const relatedKeys = Object.keys(endCmd?.related_commands || {});
     if (relatedKeys.length) {
+      // Build full paths for related commands
+      const relatedPaths = relatedKeys.map(key => `${path}/${key}`);
       addToHistory({
         type: 'related_commands',
-        commands: relatedKeys,
+        commands: relatedPaths,
       });
     }
   };
@@ -333,20 +419,21 @@ export default function Terminal() {
   const executeCommand = (commandStr) => {
     const trimmed = commandStr.trim();
     if (!trimmed) return;
+
     // Add to command history
     setCommandHistory(prev => [...prev, trimmed]);
     setHistoryIndex(-1);
+
     // Add user input to history
-    addToHistory({
-      type: 'user',
-      content: trimmed,
-    });
-    // Parse command
-    // const parts = trimmed.split(' ');
-    const cmd = trimmed; // .toLowerCase();
+    // addToHistory({
+    //   type: 'user',
+    //   content: trimmed,
+    // });
+
     // Check command types in order
-    if (handleSystemCommand(cmd)) return;
-    if (handleCampaignCommand(cmd)) return;
+    if (handleSystemCommand(trimmed)) return;
+    if (handleCampaignCommand(trimmed)) return;
+
     // Unknown command
     addToHistory({
       type: 'error',
@@ -368,9 +455,11 @@ export default function Terminal() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify([]));
       localStorage.setItem(PASSWORD_STORAGE_KEY, JSON.stringify({}));
       localStorage.setItem(HISTORY_KEY, JSON.stringify([]));
+      localStorage.setItem(COLLAPSED_STORAGE_KEY, JSON.stringify({}));
       setDiscoveredPasswords({});
       setDiscoveredSecrets([]);
       setHistory([]);
+      setCollapsedEntries({});
       return true;
     }
 
@@ -387,20 +476,20 @@ export default function Terminal() {
     return true;
   };
 
-  const handleCampaignCommand = (cmd) => {
-    // Look up in flattened commands (includes parent + all related sub-commands)
-    if (!flatCommands[cmd]) return false;
-
-    const commandDef = flatCommands[cmd];
+  const handleCampaignCommand = (path) => {
+    // Look up command by path
+    const commandDef = findCommandByPath(path, CAMPAIGN_COMMANDS);
+    if (!commandDef) return false;
 
     // Check if password required and password not yet discovered
-    if (commandDef.password && !discoveredPasswords[cmd]) {
+    if (commandDef.password && !discoveredPasswords[path]) {
       addToHistory({
         type: 'password_prompt',
+        command: path,
         content: (
           <PasswordPrompt
-            key={`password_${cmd}_${Date.now()}`}
-            command={cmd}
+            key={`password_${path}_${Date.now()}`}
+            command={path}
             commandDef={commandDef}
             password={commandDef.password.pw}
             hint={commandDef.password.hint}
@@ -419,7 +508,7 @@ export default function Terminal() {
     }
 
     // No password required (or password already discovered) - execute directly
-    executeCommandWithResult(cmd, commandDef);
+    executeCommandWithResult(path, commandDef);
     return true;
   };
 
@@ -439,7 +528,9 @@ export default function Terminal() {
                 entry={entry}
                 index={index}
                 onCommandSelect={setInput}
-                flatCommands={flatCommands}
+                collapsedEntries={collapsedEntries}
+                setCollapsedEntries={setCollapsedEntries}
+                onRemove={removeFromHistory}
               />
             </div>
           ))}

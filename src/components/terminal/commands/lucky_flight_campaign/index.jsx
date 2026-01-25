@@ -1,5 +1,6 @@
 import {
   Line,
+  Section,
 } from '@terminal/TerminalComponents';
 import {
   Briefing,
@@ -18,9 +19,9 @@ export const LUCKY_FLIGHT_TAKEDOWN_COMMANDS = {
       pw: "luckyflight",
     },
     content: (
-      <>
+      <Section>
         <Line yellow large bold>Welcome to the Lucky Flight Takedown campaign</Line>
-      </>
+      </Section>
     ),
     related_commands: {
       "Charlie's Mission Brief": {

@@ -56,7 +56,7 @@ export const FUN_COMMANDS = {
       </>
     ),
     related_commands: {
-      "Fitness Center Console (Silverpeak)": {
+      "Fitness Center Console": {
         content: (
           <>
             <Line smoke large bold>[ENTERTAINMENT CONSOLE - FITNESS CENTER]</Line>
@@ -89,7 +89,7 @@ export const FUN_COMMANDS = {
         ),
       },
 
-      "Unit 6C Safe (Silverpeak)": {
+      "Unit 6C Safe": {
         password: {
           pw: "marathon",
           hint: "Fitness goal for the new year!",
@@ -114,7 +114,7 @@ export const FUN_COMMANDS = {
         ),
       },
 
-      "Silverpeak Management Portal": {
+      "Management Portal": {
         password: {
           pw: "community",
           hint: "What the building emphasizes in its culture",
@@ -183,7 +183,7 @@ export const FUN_COMMANDS = {
       </>
     ),
     related_commands: {
-      "Dock Security Camera (Cascade)": {
+      "Dock Security Camera": {
         content: (
           <Camera
             id="cascade-dock-cam"
@@ -208,7 +208,7 @@ export const FUN_COMMANDS = {
         ),
       },
 
-      "Unit 2A Safe (Cascade)": {
+      "Unit 2A Safe": {
         password: {
           pw: "tides",
           hint: "What the canal experiences twice daily",
@@ -282,7 +282,7 @@ export const FUN_COMMANDS = {
       </>
     ),
     related_commands: {
-      "access_sanchez_shop_inventory": {
+      "access_shop_inventory": {
         password: {
           pw: "portalgun",
           hint: "Device in back room (broken, parts only)",
@@ -318,7 +318,7 @@ export const FUN_COMMANDS = {
         ),
       },
 
-      "Demo Console (Sanchez Electronics)": {
+      "Demo Console": {
         content: (
           <>
             <Line smoke large bold>[DEMO CONSOLE - SHOP FLOOR]</Line>
@@ -350,7 +350,7 @@ export const FUN_COMMANDS = {
         ),
       },
 
-      "Back Room Safe (Sanchez Electronics)": {
+      "Back Room Safe": {
         password: {
           pw: "C137",
           hint: "Dimension number written on portal device",
@@ -423,7 +423,7 @@ export const FUN_COMMANDS = {
       </>
     ),
     related_commands: {
-      "Shop Safe (Gilded Oddities)": {
+      "Shop Safe": {
         password: {
           pw: "persona",
           hint: "What the owner seems to change regularly",
@@ -452,7 +452,7 @@ export const FUN_COMMANDS = {
         ),
       },
 
-      access_gilded_oddities_records: {
+      access_records: {
         password: {
           pw: "goldenturd",
           hint: "What locals call the shop mascot statue",
@@ -540,7 +540,7 @@ export const FUN_COMMANDS = {
       </>
     ),
     related_commands: {
-      "Office Workstation (Cipher Solutions)": {
+      "Office Workstation": {
         password: {
           pw: "encryption",
           hint: "What Cipher specializes in for security",
@@ -582,7 +582,7 @@ export const FUN_COMMANDS = {
         ),
       },
 
-      "Office Safe (Cipher Solutions)": {
+      "Office Safe": {
         password: {
           pw: "decryption",
           hint: "Opposite of encryption",
@@ -657,7 +657,7 @@ export const FUN_COMMANDS = {
       </>
     ),
     related_commands: {
-      "Bar Jukebox (Compiler)": {
+      "Bar Jukebox": {
         content: (
           <Jukebox
             model="JB-808"
@@ -674,7 +674,7 @@ export const FUN_COMMANDS = {
         ),
       },
 
-      "Bar Safe (Compiler)": {
+      "Bar Safe": {
         password: {
           pw: "algorithm",
           hint: "What programmers write to solve problems",
@@ -702,7 +702,7 @@ export const FUN_COMMANDS = {
         ),
       },
 
-      access_compiler_bar_internal: {
+      access_internal: {
         password: {
           pw: "debug",
           hint: "What programmers do when code doesn't work",
@@ -792,7 +792,7 @@ export const FUN_COMMANDS = {
       />
     ),
     related_commands: {
-      "Maintenance Access (SMV_729)": {
+      "Maintenance Access": {
         password: {
           pw: "restock",
           hint: "What you do when inventory runs low",
@@ -808,7 +808,7 @@ export const FUN_COMMANDS = {
           />
         ),
         related_commands: {
-          "Internal Safe (SMV_729)": {
+          "Internal Safe": {
             password: {
               pw: "coins",
               hint: "What accumulates in the cash box",

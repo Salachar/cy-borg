@@ -59,7 +59,6 @@ export default function CyberPoker({
   const [heldCards, setHeldCards] = useState([]);
   const [gameState, setGameState] = useState('betting'); // 'betting' | 'holding' | 'result'
   const [result, setResult] = useState(null);
-  const [isCollapsed, setIsCollapsed] = useState(false);
   const [isDrawing, setIsDrawing] = useState(false);
   const [flippedCards, setFlippedCards] = useState([]); // Track which cards are flipped
   const [isDealing, setIsDealing] = useState(false);
@@ -198,7 +197,7 @@ export default function CyberPoker({
   return (
     <div className="cyber-poker-container">
       <div
-        className={`cyber-poker-game ${isCollapsed ? 'collapsed' : ''}`}
+        className={`cyber-poker-game`}
         style={{
           border: `3px solid ${COLORS.border.default}`,
           borderRadius: '8px',
@@ -238,60 +237,106 @@ export default function CyberPoker({
               5-Card Draw
             </span>
           </div>
-
-          <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
-            <button
-              className="poker-control-btn"
-              onClick={() => setIsCollapsed(!isCollapsed)}
-              style={{
-                padding: '0.5rem 0.75rem',
-                fontSize: '0.875rem',
-                backgroundColor: COLORS.bg.panel,
-                border: `1px solid ${COLORS.border.default}`,
-                color: COLORS.accent.teal,
-                borderRadius: '4px',
-                cursor: 'pointer',
-              }}
-            >
-              {isCollapsed ? '▼' : '▲'}
-            </button>
-            {onClose && (
-              <button
-                className="poker-control-btn"
-                onClick={onClose}
-                style={{
-                  padding: '0.5rem 0.75rem',
-                  fontSize: '0.875rem',
-                  backgroundColor: COLORS.accent.red,
-                  border: 'none',
-                  color: COLORS.bg.main,
-                  borderRadius: '4px',
-                  cursor: 'pointer',
-                  fontWeight: 'bold',
-                }}
-              >
-                ✕ CLOSE
-              </button>
-            )}
-          </div>
         </div>
 
-        {!isCollapsed && (
+        <div
+          className="poker-grid"
+          style={{ padding: '1rem' }}
+        >
+          {/* Credits */}
           <div
-            className="poker-grid"
-            style={{ padding: '1rem' }}
+            style={{
+              padding: '0.75rem 1.25rem',
+              backgroundColor: COLORS.bg.panel,
+              border: `2px solid ${COLORS.accent.green}`,
+              borderRadius: '6px',
+              display: 'flex',
+              lineHeight: '1.25rem',
+              gridArea: 'poker-header-credits',
+              marginBottom: '3rem',
+            }}
           >
-            {/* Credits */}
+            <div
+              style={{
+                fontSize: '0.65rem',
+                color: COLORS.text.secondary,
+                marginRight: '0.5rem',
+              }}
+            >
+              CREDITS
+            </div>
+            <div
+              style={{
+                fontSize: '1.25rem',
+                fontWeight: 'bold',
+                color: COLORS.accent.green,
+              }}
+            >
+              {credits}¤
+            </div>
+          </div>
+
+          <div
+            style={{
+              display: 'flex',
+              gap: '1rem',
+              alignItems: 'center',
+              justifyContent: 'start',
+              gridArea: 'poker-header-area',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              marginBottom: '3rem',
+            }}
+          >
+            <button
+              className="poker-bet-btn"
+              onClick={() => adjustBet(-5)}
+              disabled={bet <= 1 || gameState !== 'betting'}
+              style={{
+                padding: '0.75rem 1.25rem',
+                fontSize: '0.875rem',
+                fontWeight: 'bold',
+                backgroundColor: COLORS.bg.panel,
+                border: `2px solid ${COLORS.accent.teal}`,
+                color: COLORS.accent.teal,
+                borderRadius: '4px',
+                cursor: (bet > 1 && gameState === 'betting') ? 'pointer' : 'not-allowed',
+                opacity: (bet > 1 && gameState === 'betting') ? 1 : 0.5,
+                lineHeight: '1.25rem',
+              }}
+            >
+              -5
+            </button>
+            <button
+              className="poker-bet-btn"
+              onClick={() => adjustBet(-1)}
+              disabled={bet <= 1 || gameState !== 'betting'}
+              style={{
+                padding: '0.75rem 1.25rem',
+                fontSize: '0.875rem',
+                fontWeight: 'bold',
+                backgroundColor: COLORS.bg.panel,
+                border: `2px solid ${COLORS.accent.teal}`,
+                color: COLORS.accent.teal,
+                borderRadius: '4px',
+                cursor: (bet > 1 && gameState === 'betting') ? 'pointer' : 'not-allowed',
+                opacity: (bet > 1 && gameState === 'betting') ? 1 : 0.5,
+                lineHeight: '1.25rem',
+              }}
+            >
+              -1
+            </button>
+            {/* Bet */}
             <div
               style={{
                 padding: '0.75rem 1.25rem',
                 backgroundColor: COLORS.bg.panel,
-                border: `2px solid ${COLORS.accent.green}`,
+                border: `2px solid ${COLORS.accent.yellow}`,
                 borderRadius: '6px',
                 display: 'flex',
                 lineHeight: '1.25rem',
-                gridArea: 'poker-header-credits',
-                marginBottom: '3rem',
+                minWidth: '8rem',
+                justifyContent: 'center',
               }}
             >
               <div
@@ -301,380 +346,296 @@ export default function CyberPoker({
                   marginRight: '0.5rem',
                 }}
               >
-                CREDITS
+                BET
               </div>
               <div
                 style={{
                   fontSize: '1.25rem',
                   fontWeight: 'bold',
-                  color: COLORS.accent.green,
+                  color: COLORS.accent.yellow,
                 }}
               >
-                {credits}¤
+                {bet}¤
               </div>
             </div>
-
-            <div
+            <button
+              className="poker-bet-btn"
+              onClick={() => adjustBet(1)}
+              disabled={bet >= credits || gameState !== 'betting'}
               style={{
-                display: 'flex',
-                gap: '1rem',
-                alignItems: 'center',
-                justifyContent: 'start',
-                gridArea: 'poker-header-area',
-                marginLeft: 'auto',
-                marginRight: 'auto',
-                marginBottom: '3rem',
+                padding: '0.75rem 1.25rem',
+                fontSize: '0.875rem',
+                fontWeight: 'bold',
+                backgroundColor: COLORS.bg.panel,
+                border: `2px solid ${COLORS.accent.teal}`,
+                color: COLORS.accent.teal,
+                borderRadius: '4px',
+                cursor: (bet < credits && gameState === 'betting') ? 'pointer' : 'not-allowed',
+                opacity: (bet < credits && gameState === 'betting') ? 1 : 0.5,
+                lineHeight: '1.25rem',
               }}
             >
-              <button
-                className="poker-bet-btn"
-                onClick={() => adjustBet(-5)}
-                disabled={bet <= 1 || gameState !== 'betting'}
-                style={{
-                  padding: '0.75rem 1.25rem',
-                  fontSize: '0.875rem',
-                  fontWeight: 'bold',
-                  backgroundColor: COLORS.bg.panel,
-                  border: `2px solid ${COLORS.accent.teal}`,
-                  color: COLORS.accent.teal,
-                  borderRadius: '4px',
-                  cursor: (bet > 1 && gameState === 'betting') ? 'pointer' : 'not-allowed',
-                  opacity: (bet > 1 && gameState === 'betting') ? 1 : 0.5,
-                  lineHeight: '1.25rem',
-                }}
-              >
-                -5
-              </button>
-              <button
-                className="poker-bet-btn"
-                onClick={() => adjustBet(-1)}
-                disabled={bet <= 1 || gameState !== 'betting'}
-                style={{
-                  padding: '0.75rem 1.25rem',
-                  fontSize: '0.875rem',
-                  fontWeight: 'bold',
-                  backgroundColor: COLORS.bg.panel,
-                  border: `2px solid ${COLORS.accent.teal}`,
-                  color: COLORS.accent.teal,
-                  borderRadius: '4px',
-                  cursor: (bet > 1 && gameState === 'betting') ? 'pointer' : 'not-allowed',
-                  opacity: (bet > 1 && gameState === 'betting') ? 1 : 0.5,
-                  lineHeight: '1.25rem',
-                }}
-              >
-                -1
-              </button>
-              {/* Bet */}
-              <div
-                style={{
-                  padding: '0.75rem 1.25rem',
-                  backgroundColor: COLORS.bg.panel,
-                  border: `2px solid ${COLORS.accent.yellow}`,
-                  borderRadius: '6px',
-                  display: 'flex',
-                  lineHeight: '1.25rem',
-                  minWidth: '8rem',
-                  justifyContent: 'center',
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: '0.65rem',
-                    color: COLORS.text.secondary,
-                    marginRight: '0.5rem',
-                  }}
-                >
-                  BET
-                </div>
-                <div
-                  style={{
-                    fontSize: '1.25rem',
-                    fontWeight: 'bold',
-                    color: COLORS.accent.yellow,
-                  }}
-                >
-                  {bet}¤
-                </div>
-              </div>
-              <button
-                className="poker-bet-btn"
-                onClick={() => adjustBet(1)}
-                disabled={bet >= credits || gameState !== 'betting'}
-                style={{
-                  padding: '0.75rem 1.25rem',
-                  fontSize: '0.875rem',
-                  fontWeight: 'bold',
-                  backgroundColor: COLORS.bg.panel,
-                  border: `2px solid ${COLORS.accent.teal}`,
-                  color: COLORS.accent.teal,
-                  borderRadius: '4px',
-                  cursor: (bet < credits && gameState === 'betting') ? 'pointer' : 'not-allowed',
-                  opacity: (bet < credits && gameState === 'betting') ? 1 : 0.5,
-                  lineHeight: '1.25rem',
-                }}
-              >
-                +1
-              </button>
-              <button
-                className="poker-bet-btn"
-                onClick={() => adjustBet(5)}
-                disabled={bet >= credits || gameState !== 'betting'}
-                style={{
-                  padding: '0.75rem 1.25rem',
-                  fontSize: '0.875rem',
-                  fontWeight: 'bold',
-                  backgroundColor: COLORS.bg.panel,
-                  border: `2px solid ${COLORS.accent.teal}`,
-                  color: COLORS.accent.teal,
-                  borderRadius: '4px',
-                  cursor: (bet < credits && gameState === 'betting') ? 'pointer' : 'not-allowed',
-                  opacity: (bet < credits && gameState === 'betting') ? 1 : 0.5,
-                  lineHeight: '1.25rem',
-                }}
-              >
-                +5
-              </button>
-            </div>
-
-            {/* Row 2: Cards - always show 5 slots */}
-            <div
+              +1
+            </button>
+            <button
+              className="poker-bet-btn"
+              onClick={() => adjustBet(5)}
+              disabled={bet >= credits || gameState !== 'betting'}
               style={{
-                display: 'flex',
-                gap: '0.75rem',
-                justifyContent: 'center',
-                marginBottom: '1rem',
-                gridArea: 'poker-cards-area',
+                padding: '0.75rem 1.25rem',
+                fontSize: '0.875rem',
+                fontWeight: 'bold',
+                backgroundColor: COLORS.bg.panel,
+                border: `2px solid ${COLORS.accent.teal}`,
+                color: COLORS.accent.teal,
+                borderRadius: '4px',
+                cursor: (bet < credits && gameState === 'betting') ? 'pointer' : 'not-allowed',
+                opacity: (bet < credits && gameState === 'betting') ? 1 : 0.5,
+                lineHeight: '1.25rem',
               }}
             >
-              {[0, 1, 2, 3, 4].map((index) => {
-                const card = hand[index];
-                const isHeld = heldCards.includes(index);
-                let isFlipped = flippedCards.includes(index);
-                isFlipped = isFlipped || !card;
+              +5
+            </button>
+          </div>
 
-                return (
-                  <div
-                    key={index}
-                    onClick={() => card && toggleHold(index)}
-                    className={`poker-card ${isHeld ? 'held' : ''} ${(!isFlipped) ? 'flipped' : ''}`}
-                    style={{
-                      width: '110px',
-                      height: '150px',
-                      perspective: '1000px',
-                      cursor: card && gameState === 'holding' && !isDealing ? 'pointer' : 'default',
-                    }}
-                  >
-                    <div className="poker-card-inner">
-                      {/* Card Back */}
+          {/* Row 2: Cards - always show 5 slots */}
+          <div
+            style={{
+              display: 'flex',
+              gap: '0.75rem',
+              justifyContent: 'center',
+              marginBottom: '1rem',
+              gridArea: 'poker-cards-area',
+            }}
+          >
+            {[0, 1, 2, 3, 4].map((index) => {
+              const card = hand[index];
+              const isHeld = heldCards.includes(index);
+              let isFlipped = flippedCards.includes(index);
+              isFlipped = isFlipped || !card;
+
+              return (
+                <div
+                  key={index}
+                  onClick={() => card && toggleHold(index)}
+                  className={`poker-card ${isHeld ? 'held' : ''} ${(!isFlipped) ? 'flipped' : ''}`}
+                  style={{
+                    width: '110px',
+                    height: '150px',
+                    perspective: '1000px',
+                    cursor: card && gameState === 'holding' && !isDealing ? 'pointer' : 'default',
+                  }}
+                >
+                  <div className="poker-card-inner">
+                    {/* Card Back */}
+                    <div
+                      className="poker-card-back"
+                      style={{
+                        backgroundColor: COLORS.bg.panel,
+                        border: `3px solid ${COLORS.border.default}`,
+                        borderRadius: '8px',
+                      }}
+                    >
                       <div
-                        className="poker-card-back"
                         style={{
-                          backgroundColor: COLORS.bg.panel,
-                          border: `3px solid ${COLORS.border.default}`,
-                          borderRadius: '8px',
+                          fontSize: '3.5rem',
+                          color: COLORS.border.default,
+                          opacity: 0.3,
+                          textShadow: `0 0 10px ${COLORS.border.default}`,
                         }}
                       >
-                        <div
-                          style={{
-                            fontSize: '3.5rem',
-                            color: COLORS.border.default,
-                            opacity: 0.3,
-                            textShadow: `0 0 10px ${COLORS.border.default}`,
-                          }}
-                        >
-                          ⬢
-                        </div>
+                        ⬢
                       </div>
+                    </div>
 
-                      {/* Card Front */}
+                    {/* Card Front */}
+                    <div
+                      className="poker-card-front"
+                      style={{
+                        backgroundColor: card ? COLORS.bg.panel : 'rgba(29, 35, 50, 0.3)',
+                        border: `3px solid ${isHeld ? COLORS.accent.yellow : COLORS.border.default}`,
+                        borderRadius: '8px',
+                        boxShadow: isHeld ? `0 0 20px ${COLORS.accent.yellow}` : 'none',
+                      }}
+                    >
                       <div
-                        className="poker-card-front"
                         style={{
-                          backgroundColor: card ? COLORS.bg.panel : 'rgba(29, 35, 50, 0.3)',
-                          border: `3px solid ${isHeld ? COLORS.accent.yellow : COLORS.border.default}`,
-                          borderRadius: '8px',
-                          boxShadow: isHeld ? `0 0 20px ${COLORS.accent.yellow}` : 'none',
+                          fontSize: '3.5rem',
+                          color: card?.color || COLORS.border.default,
+                          textShadow: `0 0 20px ${card?.color}`,
                         }}
                       >
+                        {card?.symbol}
+                      </div>
+                      <div
+                        style={{
+                          fontSize: '0.75rem',
+                          fontWeight: 'bold',
+                          color: COLORS.text.secondary,
+                          marginTop: '0.25rem',
+                        }}
+                      >
+                        {card?.name}
+                      </div>
+                      {isHeld && (
                         <div
                           style={{
-                            fontSize: '3.5rem',
-                            color: card?.color || COLORS.border.default,
-                            textShadow: `0 0 20px ${card?.color}`,
-                          }}
-                        >
-                          {card?.symbol}
-                        </div>
-                        <div
-                          style={{
-                            fontSize: '0.75rem',
+                            position: 'absolute',
+                            top: '0.5rem',
+                            left: '0.5rem',
+                            fontSize: '0.65rem',
                             fontWeight: 'bold',
-                            color: COLORS.text.secondary,
-                            marginTop: '0.25rem',
+                            color: COLORS.accent.yellow,
+                            backgroundColor: COLORS.bg.main,
+                            padding: '0.2rem 0.4rem',
+                            borderRadius: '3px',
                           }}
                         >
-                          {card?.name}
+                          HELD
                         </div>
-                        {isHeld && (
-                          <div
-                            style={{
-                              position: 'absolute',
-                              top: '0.5rem',
-                              left: '0.5rem',
-                              fontSize: '0.65rem',
-                              fontWeight: 'bold',
-                              color: COLORS.accent.yellow,
-                              backgroundColor: COLORS.bg.main,
-                              padding: '0.2rem 0.4rem',
-                              borderRadius: '3px',
-                            }}
-                          >
-                            HELD
-                          </div>
-                        )}
-                      </div>
+                      )}
                     </div>
                   </div>
-                );
-              })}
-            </div>
-
-            {/* Payout Table (compact vertical) */}
-            <div
-              style={{
-                padding: '0.75rem',
-                backgroundColor: COLORS.bg.panel,
-                border: `1px solid ${COLORS.border.default}`,
-                borderRadius: '6px',
-                minWidth: '180px',
-                gridArea: 'poker-payout-area',
-              }}
-            >
-              <div
-                style={{
-                  fontSize: '0.7rem',
-                  fontWeight: 'bold',
-                  color: COLORS.accent.teal,
-                  marginBottom: '0.5rem',
-                  textAlign: 'center',
-                }}
-              >
-                PAYOUTS
-              </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '0.35rem', fontSize: '0.65rem' }}>
-                {Object.entries(PAYOUTS).map(([key, { name, multiplier }]) => (
-                  <React.Fragment key={key}>
-                    <div style={{ color: COLORS.text.primary, whiteSpace: 'nowrap' }}>{name}</div>
-                    <div style={{ color: COLORS.accent.yellow, fontWeight: 'bold', textAlign: 'right' }}>
-                      {multiplier}x
-                    </div>
-                  </React.Fragment>
-                ))}
-              </div>
-            </div>
-
-            {/* Center section: Result or Action Button */}
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                gap: '1rem',
-                alignItems: 'center',
-                gridArea: 'poker-actions-area',
-                marginLeft: '2rem',
-                marginTop: '2rem',
-              }}
-            >
-              {gameState === 'betting' && (
-                <button
-                  className="poker-action-btn"
-                  onClick={handleDeal}
-                  disabled={credits < bet}
-                  style={{
-                    backgroundColor: COLORS.accent.teal,
-                    color: COLORS.bg.main,
-                    cursor: credits >= bet ? 'pointer' : 'not-allowed',
-                    opacity: credits >= bet ? 1 : 0.5,
-                  }}
-                >
-                  DEAL
-                </button>
-              )}
-              {gameState === 'holding' && (
-                <button
-                  className="poker-action-btn"
-                  onClick={handleDraw}
-                  disabled={isDrawing}
-                  style={{
-                    backgroundColor: COLORS.accent.green,
-                    color: COLORS.bg.main,
-                    cursor: isDrawing ? 'not-allowed' : 'pointer',
-                    opacity: isDrawing ? 0.7 : 1,
-                  }}
-                >
-                  {isDrawing ? 'DRAWING...' : 'DRAW'}
-                </button>
-              )}
-              {gameState === 'result' && (
-                <button
-                  className="poker-action-btn"
-                  onClick={handleNewGame}
-                  style={{
-                    backgroundColor: COLORS.accent.purple,
-                    color: 'white',
-                  }}
-                >
-                  NEW GAME
-                </button>
-              )}
-              {/* Result Display */}
-              {gameState === 'result' && (
-                <div
-                  style={{
-                    padding: '0.75rem 1.5rem',
-                    backgroundColor: result ? COLORS.bg.panel : 'transparent',
-                    border: result ? `2px solid ${COLORS.accent.green}` : `2px solid ${COLORS.accent.red}`,
-                    borderRadius: '6px',
-                    textAlign: 'center',
-                    minWidth: '200px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    height: '3rem',
-                    lineHeight: '3rem',
-                  }}
-                >
-                  {result ? (
-                    <>
-                      <div
-                        style={{
-                          fontSize: '0.875rem',
-                          fontWeight: 'bold',
-                          color: COLORS.accent.green,
-                        }}
-                      >
-                        {PAYOUTS[result].name}
-                      </div>
-                      <div
-                        style={{
-                          fontSize: '1.15rem',
-                          fontWeight: 'bold',
-                          color: COLORS.accent.yellow,
-                          marginLeft: '1rem',
-                        }}
-                      >
-                        +{bet * PAYOUTS[result].multiplier}¤
-                      </div>
-                    </>
-                  ) : (
-                    <div style={{ fontSize: '1rem', fontWeight: 'bold', color: COLORS.accent.red }}>
-                      NO WIN
-                    </div>
-                  )}
                 </div>
-              )}
+              );
+            })}
+          </div>
+
+          {/* Payout Table (compact vertical) */}
+          <div
+            style={{
+              padding: '0.75rem',
+              backgroundColor: COLORS.bg.panel,
+              border: `1px solid ${COLORS.border.default}`,
+              borderRadius: '6px',
+              minWidth: '180px',
+              gridArea: 'poker-payout-area',
+            }}
+          >
+            <div
+              style={{
+                fontSize: '0.7rem',
+                fontWeight: 'bold',
+                color: COLORS.accent.teal,
+                marginBottom: '0.5rem',
+                textAlign: 'center',
+              }}
+            >
+              PAYOUTS
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '0.35rem', fontSize: '0.65rem' }}>
+              {Object.entries(PAYOUTS).map(([key, { name, multiplier }]) => (
+                <React.Fragment key={key}>
+                  <div style={{ color: COLORS.text.primary, whiteSpace: 'nowrap' }}>{name}</div>
+                  <div style={{ color: COLORS.accent.yellow, fontWeight: 'bold', textAlign: 'right' }}>
+                    {multiplier}x
+                  </div>
+                </React.Fragment>
+              ))}
             </div>
           </div>
-        )}
+
+          {/* Center section: Result or Action Button */}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              gap: '1rem',
+              alignItems: 'center',
+              gridArea: 'poker-actions-area',
+              marginLeft: '2rem',
+              marginTop: '2rem',
+            }}
+          >
+            {gameState === 'betting' && (
+              <button
+                className="poker-action-btn"
+                onClick={handleDeal}
+                disabled={credits < bet}
+                style={{
+                  backgroundColor: COLORS.accent.teal,
+                  color: COLORS.bg.main,
+                  cursor: credits >= bet ? 'pointer' : 'not-allowed',
+                  opacity: credits >= bet ? 1 : 0.5,
+                }}
+              >
+                DEAL
+              </button>
+            )}
+            {gameState === 'holding' && (
+              <button
+                className="poker-action-btn"
+                onClick={handleDraw}
+                disabled={isDrawing}
+                style={{
+                  backgroundColor: COLORS.accent.green,
+                  color: COLORS.bg.main,
+                  cursor: isDrawing ? 'not-allowed' : 'pointer',
+                  opacity: isDrawing ? 0.7 : 1,
+                }}
+              >
+                {isDrawing ? 'DRAWING...' : 'DRAW'}
+              </button>
+            )}
+            {gameState === 'result' && (
+              <button
+                className="poker-action-btn"
+                onClick={handleNewGame}
+                style={{
+                  backgroundColor: COLORS.accent.purple,
+                  color: 'white',
+                }}
+              >
+                NEW GAME
+              </button>
+            )}
+            {/* Result Display */}
+            {gameState === 'result' && (
+              <div
+                style={{
+                  padding: '0.75rem 1.5rem',
+                  backgroundColor: result ? COLORS.bg.panel : 'transparent',
+                  border: result ? `2px solid ${COLORS.accent.green}` : `2px solid ${COLORS.accent.red}`,
+                  borderRadius: '6px',
+                  textAlign: 'center',
+                  minWidth: '200px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  height: '3rem',
+                  lineHeight: '3rem',
+                }}
+              >
+                {result ? (
+                  <>
+                    <div
+                      style={{
+                        fontSize: '0.875rem',
+                        fontWeight: 'bold',
+                        color: COLORS.accent.green,
+                      }}
+                    >
+                      {PAYOUTS[result].name}
+                    </div>
+                    <div
+                      style={{
+                        fontSize: '1.15rem',
+                        fontWeight: 'bold',
+                        color: COLORS.accent.yellow,
+                        marginLeft: '1rem',
+                      }}
+                    >
+                      +{bet * PAYOUTS[result].multiplier}¤
+                    </div>
+                  </>
+                ) : (
+                  <div style={{ fontSize: '1rem', fontWeight: 'bold', color: COLORS.accent.red }}>
+                    NO WIN
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
