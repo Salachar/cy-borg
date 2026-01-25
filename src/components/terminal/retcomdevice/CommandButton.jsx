@@ -50,7 +50,7 @@ export default function CommandButton({
       )}
 
       {/* Child count - only show if hasChildren is true */}
-      {hasChildren && childCount > 0 && (
+      {isDiscovered && hasChildren && childCount > 0 && (
         <span className="command-count">
           ({childCount})
         </span>

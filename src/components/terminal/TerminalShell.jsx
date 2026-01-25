@@ -61,7 +61,7 @@ export default function TerminalShell({
           <TerminalHeader>
             <div className="flex flex-row mr-4 gap-4">
               {Object.keys(SYSTEM_COMMANDS).map((cmd, i) => {
-                // if (cmd === 'reset') return null;
+                if (cmd === 'reset') return null;
                 return (
                   <QuickCommandButton
                     key={i}

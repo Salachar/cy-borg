@@ -55,31 +55,25 @@ export default function HistoryEntryWrapper({
     <div className="history-entry-wrapper">
       {/* Toolbar */}
       <div className="history-entry-toolbar">
-        {/* Command path */}
+        <button
+          onClick={handleCollapse}
+          className="history-entry-button collapse-btn"
+          aria-label={isCollapsed ? 'Expand' : 'Collapse'}
+        >
+          {isCollapsed ? '▶' : '▼'}
+        </button>
+
         <div className="history-entry-path">
           {commandPath}
         </div>
 
-        {/* Controls */}
-        <div className="history-entry-controls">
-          {/* Collapse button */}
-          <button
-            onClick={handleCollapse}
-            className="history-entry-button collapse-btn"
-            aria-label={isCollapsed ? 'Expand' : 'Collapse'}
-          >
-            {isCollapsed ? '▶' : '▼'}
-          </button>
-
-          {/* Remove button */}
-          <button
-            onClick={handleRemove}
-            className="history-entry-button remove-btn"
-            aria-label="Remove"
-          >
-            ✕
-          </button>
-        </div>
+        <button
+          onClick={handleRemove}
+          className="history-entry-button remove-btn"
+          aria-label="Remove"
+        >
+          ✕
+        </button>
       </div>
 
       {/* Content - only show if not collapsed */}

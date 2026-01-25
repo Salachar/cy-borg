@@ -14,6 +14,7 @@
   margin-bottom: 1rem;
   padding-bottom: 0.75rem;
   border-bottom: 1px solid rgba(77, 167, 188, 0.3);
+  height: 4rem;
 }
 
 .mastermind-title {
@@ -190,9 +191,9 @@
 /* Status message */
 .mastermind-status {
   text-align: center;
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: bold;
-  padding: 0.75rem;
+  padding: 0.5rem 1rem;
   border-radius: 4px;
   animation: statusPulse 0.5s ease-in;
 }
