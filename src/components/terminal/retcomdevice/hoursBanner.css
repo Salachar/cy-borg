@@ -1,0 +1,132 @@
+/* HoursBanner - Terminal-style hours of operation display */
+
+.hours-banner {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+  border: 2px solid rgba(79, 209, 197, 0.4);
+  border-radius: 4px;
+  padding: 1rem;
+  font-family: monospace;
+  box-shadow:
+    0 0 10px rgba(79, 209, 197, 0.2),
+    inset 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Header with business name and status */
+.hours-banner-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(79, 209, 197, 0.3);
+}
+
+.hours-banner-business {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: rgb(79, 209, 197);
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 8px rgba(79, 209, 197, 0.6);
+}
+
+.hours-banner-status {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.7rem;
+  font-weight: bold;
+  letter-spacing: 0.15em;
+  border: 1px solid;
+}
+
+.hours-banner-status-open {
+  background: rgba(16, 185, 129, 0.15);
+  color: rgb(16, 185, 129);
+  border-color: rgba(16, 185, 129, 0.5);
+  animation: pulse-open 2s ease-in-out infinite;
+}
+
+.hours-banner-status-closed {
+  background: rgba(239, 68, 68, 0.15);
+  color: rgb(239, 68, 68);
+  border-color: rgba(239, 68, 68, 0.5);
+}
+
+.hours-banner-status-warning {
+  background: rgba(251, 191, 36, 0.15);
+  color: rgb(251, 191, 36);
+  border-color: rgba(251, 191, 36, 0.5);
+}
+
+@keyframes pulse-open {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Main hours display */
+.hours-banner-main {
+  margin-bottom: 0.75rem;
+}
+
+.hours-banner-time {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.hours-banner-label {
+  font-size: 0.7rem;
+  color: rgb(148, 163, 184);
+  letter-spacing: 0.1em;
+  font-weight: bold;
+}
+
+.hours-banner-hours {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: rgb(79, 209, 197);
+  line-height: 1;
+  text-shadow: 0 0 10px rgba(79, 209, 197, 0.5);
+  letter-spacing: 0.05em;
+}
+
+.hours-banner-days {
+  font-size: 0.75rem;
+  color: rgb(148, 163, 184);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Location */
+.hours-banner-location {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(15, 23, 42, 0.6);
+  border-left: 3px solid rgba(79, 209, 197, 0.5);
+  font-size: 0.75rem;
+  color: rgb(203, 213, 225);
+  margin-bottom: 0.5rem;
+}
+
+.hours-banner-location-label {
+  font-weight: bold;
+  color: rgb(79, 209, 197);
+  letter-spacing: 0.05em;
+}
+
+/* Note */
+.hours-banner-note {
+  font-size: 0.7rem;
+  color: rgb(148, 163, 184);
+  font-style: italic;
+  text-align: center;
+  padding: 0.5rem;
+  background: rgba(15, 23, 42, 0.4);
+  border-top: 1px solid rgba(79, 209, 197, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .hours-banner-hours {
+    font-size: 1.5rem;
+  }
+}

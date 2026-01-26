@@ -21,6 +21,10 @@ import PublicPortal from "./PublicPortal";
 import EventFeed from "./EventFeed";
 import CyWeather from "./CyWeather";
 import CySports from "./CySports";
+import EventLineup from "./EventLineup";
+import IncidentLog from "./IncidentLog";
+import CommunityBoard from "./CommunityBoard";
+import HoursBanner from "./HoursBanner";
 
 export {
   ATM,
@@ -46,4 +50,8 @@ export {
   EventFeed,
   CyWeather,
   CySports,
+  EventLineup,
+  IncidentLog,
+  CommunityBoard,
+  HoursBanner,
 };

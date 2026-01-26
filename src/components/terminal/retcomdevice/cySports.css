@@ -1,4 +1,4 @@
-/* CySports - Dystopian sports coverage */
+/* CySports - Blood Bowl Coverage */
 
 .cy-sports {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -9,12 +9,83 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
+/* Blood Bowl Spiked Ball Icon */
+.bloodbowl-icon {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bb-ball {
+  width: 20px;
+  height: 24px;
+  background: linear-gradient(135deg, #64230e 0%, #a44d16 100%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  position: relative;
+  z-index: 2;
+  box-shadow:
+    inset -2px -2px 4px rgba(0, 0, 0, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.bb-ball::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.bb-spike {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  z-index: 10;
+}
+
+.bb-spike-top {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 4px 6px 4px;
+  border-color: transparent transparent #858585 transparent;
+}
+
+.bb-spike-bottom {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px 4px 0 4px;
+  border-color: #757474 transparent transparent transparent;
+}
+
+.bb-spike-left {
+  left: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 4px 6px 4px 0;
+  border-color: transparent #7d7c7c transparent transparent;
+}
+
+.bb-spike-right {
+  right: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 4px 0 4px 6px;
+  border-color: transparent transparent transparent #797979;
+}
+
 /* Header */
 .cy-sports-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 1.25rem;
+  padding: 0.75rem 1rem;
   background: linear-gradient(90deg, #dc2626 0%, #991b1b 100%);
   border-bottom: 1px solid #450a0a;
 }
@@ -31,390 +102,262 @@
 }
 
 .cy-sports-name {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: bold;
   color: #fef2f2;
   letter-spacing: 0.05em;
 }
 
 .cy-sports-tagline {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   color: #fca5a5;
-  margin-top: 0.125rem;
 }
 
 /* Main content */
 .cy-sports-main {
-  padding: 1.5rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
-/* Section titles */
+/* Section styling */
+.cy-sports-section {
+  background: rgba(15, 23, 42, 0.5);
+  padding: 0.75rem;
+  border-radius: 6px;
+}
+
 .cy-sports-section-title {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: bold;
   color: #64748b;
   letter-spacing: 0.1em;
-  margin-bottom: 0.75rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid #334155;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #334155;
 }
 
 /* Featured game */
 .cy-sports-featured {
   background: linear-gradient(135deg, #7c2d12 0%, #991b1b 100%);
-  padding: 2rem;
-  border-radius: 8px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.cy-sports-featured::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  animation: shimmer 3s infinite;
-}
-
-@keyframes shimmer {
-  0% { left: -100%; }
-  100% { left: 100%; }
-}
-
-.cy-sports-featured-badge {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  background: rgba(220, 38, 38, 0.5);
-  color: #fef2f2;
-  font-size: 0.75rem;
-  font-weight: bold;
-  letter-spacing: 0.1em;
-  margin-bottom: 1rem;
-  border-radius: 4px;
-}
-
-.cy-sports-featured-league {
-  font-size: 0.875rem;
-  color: #fca5a5;
-  font-weight: bold;
-  letter-spacing: 0.1em;
-  margin-bottom: 0.5rem;
-}
-
-.cy-sports-featured-matchup {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #fef2f2;
-  margin-bottom: 1rem;
-}
-
-.cy-sports-featured-score {
-  font-size: 3rem;
-  font-weight: bold;
-  color: #fef2f2;
-  margin-bottom: 0.5rem;
-}
-
-.cy-sports-featured-status {
-  font-size: 1rem;
-  color: #fca5a5;
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.cy-sports-featured-casualties {
-  font-size: 0.875rem;
-  color: #fed7aa;
-  margin-bottom: 1rem;
-}
-
-.cy-sports-featured-sponsor {
-  font-size: 0.75rem;
-  color: #cbd5e1;
-  font-style: italic;
-}
-
-/* Live games */
-.cy-sports-live {
-  background: rgba(15, 23, 42, 0.5);
   padding: 1rem;
-  border-radius: 8px;
-}
-
-.cy-sports-live-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem;
-}
-
-.cy-sports-game {
-  background: rgba(30, 41, 59, 0.5);
-  padding: 1rem;
-  border: 1px solid #1e293b;
   border-radius: 6px;
 }
 
-.cy-sports-game-league {
-  font-size: 0.75rem;
-  font-weight: bold;
-  color: #64748b;
-  letter-spacing: 0.05em;
+.cy-sports-featured-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 0.75rem;
+}
+
+.cy-sports-featured-badge {
+  padding: 0.15rem 0.5rem;
+  background: rgba(220, 38, 38, 0.5);
+  color: #fef2f2;
+  font-size: 0.65rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  border-radius: 3px;
+}
+
+.cy-sports-featured-league {
+  font-size: 0.7rem;
+  color: #fca5a5;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+
+.cy-sports-featured-matchup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.cy-sports-featured-team {
+  flex: 1;
+  text-align: center;
+}
+
+.cy-sports-featured-team-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fef2f2;
+  margin-bottom: 0.25rem;
+}
+
+.cy-sports-featured-cas {
+  font-size: 0.7rem;
+  color: #fed7aa;
+}
+
+.cy-sports-featured-score {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fef2f2;
+  padding: 0 1rem;
+}
+
+.cy-sports-featured-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: #fca5a5;
+}
+
+/* Two column layout */
+.cy-sports-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.cy-sports-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Live games */
+.cy-sports-game {
+  padding: 0.5rem;
+  background: rgba(30, 41, 59, 0.5);
+  border-radius: 4px;
+  border-left: 2px solid #334155;
+}
+
+.cy-sports-game:not(:last-child) {
+  margin-bottom: 0.5rem;
 }
 
 .cy-sports-game-teams {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.cy-sports-game-team {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   color: #e2e8f0;
-  font-weight: 500;
+  margin-bottom: 0.25rem;
 }
 
 .cy-sports-game-score {
-  font-size: 1.5rem;
   font-weight: bold;
   color: #fbbf24;
+  padding: 0 0.5rem;
 }
 
-.cy-sports-game-leader {
-  font-size: 1rem;
-  color: #e2e8f0;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.cy-sports-game-lap {
-  font-size: 0.875rem;
-  color: #cbd5e1;
-  margin-bottom: 0.5rem;
-}
-
-.cy-sports-game-status {
+.cy-sports-game-meta {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   color: #94a3b8;
 }
 
-.cy-sports-game-injuries,
-.cy-sports-game-wrecks {
+.cy-sports-game-cas {
   color: #f87171;
   font-weight: 600;
 }
 
 /* Headlines */
-.cy-sports-headlines {
-  background: rgba(15, 23, 42, 0.5);
-  padding: 1rem;
-  border-radius: 8px;
-}
-
-.cy-sports-headlines-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
 .cy-sports-headline {
   display: flex;
-  gap: 1rem;
-  padding: 0.75rem;
+  gap: 0.5rem;
+  padding: 0.5rem;
   background: rgba(30, 41, 59, 0.5);
-  border-radius: 6px;
-  border-left: 3px solid transparent;
+  border-radius: 4px;
 }
 
-.cy-sports-headline-category {
+.cy-sports-headline:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.cy-sports-headline-cat {
   flex-shrink: 0;
-  padding: 0.25rem 0.5rem;
-  font-size: 0.65rem;
+  padding: 0.15rem 0.35rem;
+  font-size: 0.6rem;
   font-weight: bold;
   letter-spacing: 0.05em;
-  border-radius: 3px;
+  border-radius: 2px;
   display: flex;
   align-items: center;
 }
 
-.cy-sports-headline-category[data-category="injury"] {
+.cy-sports-headline-cat[data-category="injury"] {
   background: rgba(251, 191, 36, 0.2);
   color: #fbbf24;
-  border: 1px solid rgba(251, 191, 36, 0.4);
 }
 
-.cy-sports-headline-category[data-category="fatal"] {
+.cy-sports-headline-cat[data-category="fatal"] {
   background: rgba(220, 38, 38, 0.2);
   color: #ef4444;
-  border: 1px solid rgba(220, 38, 38, 0.4);
 }
 
-.cy-sports-headline-category[data-category="investigation"] {
+.cy-sports-headline-cat[data-category="scandal"] {
   background: rgba(139, 92, 246, 0.2);
   color: #a78bfa;
-  border: 1px solid rgba(139, 92, 246, 0.4);
-}
-
-.cy-sports-headline-category[data-category="street"] {
-  background: rgba(148, 163, 184, 0.2);
-  color: #94a3b8;
-  border: 1px solid rgba(148, 163, 184, 0.4);
 }
 
 .cy-sports-headline-content {
   flex: 1;
+  min-width: 0;
 }
 
 .cy-sports-headline-title {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   color: #e2e8f0;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.15rem;
+  line-height: 1.3;
 }
 
 .cy-sports-headline-time {
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   color: #64748b;
 }
 
 /* Standings */
 .cy-sports-standings {
-  background: rgba(15, 23, 42, 0.5);
-  padding: 1rem;
-  border-radius: 8px;
-}
-
-.cy-sports-standings-table {
-  display: flex;
-  flex-direction: column;
+  font-size: 0.75rem;
 }
 
 .cy-sports-standings-header {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 1rem;
-  padding: 0.75rem 1rem;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 0.5rem;
+  padding: 0.5rem;
   background: rgba(30, 41, 59, 0.8);
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   font-weight: bold;
   color: #64748b;
   letter-spacing: 0.05em;
-  border-bottom: 2px solid #1e293b;
+  border-bottom: 1px solid #1e293b;
 }
 
 .cy-sports-standings-row {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 1rem;
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid #1e293b;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  color: #cbd5e1;
+  border-bottom: 1px solid rgba(30, 41, 59, 0.5);
 }
 
 .cy-sports-standings-row:last-child {
   border-bottom: none;
 }
 
-.cy-sports-standings-cell {
-  font-size: 0.875rem;
-  color: #cbd5e1;
-}
-
-.cy-sports-standings-casualties {
+.cy-sports-standings-cas {
   color: #f87171;
   font-weight: 600;
 }
 
-/* Betting */
-.cy-sports-betting {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
-  padding: 1rem;
-  border-radius: 8px;
-  border: 1px solid rgba(16, 185, 129, 0.3);
-}
-
-.cy-sports-betting-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.cy-sports-bet {
-  background: rgba(30, 41, 59, 0.5);
-  padding: 1rem;
-  border-radius: 6px;
-}
-
-.cy-sports-bet-matchup {
-  font-size: 0.875rem;
-  color: #e2e8f0;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-}
-
-.cy-sports-bet-lines {
-  display: flex;
-  gap: 2rem;
-}
-
-.cy-sports-bet-line {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.cy-sports-bet-label {
-  font-size: 0.75rem;
-  color: #64748b;
-  font-weight: bold;
-}
-
-.cy-sports-bet-value {
-  font-size: 0.875rem;
-  color: #10b981;
-  font-weight: bold;
-}
-
-.cy-sports-betting-disclaimer {
-  font-size: 0.7rem;
-  color: #64748b;
-  font-style: italic;
-  text-align: center;
-}
-
-/* Disclaimer */
-.cy-sports-disclaimer {
-  font-size: 0.7rem;
+/* Footer */
+.cy-sports-footer {
+  font-size: 0.65rem;
   color: #475569;
   text-align: center;
-  padding: 1rem;
+  padding: 0.5rem;
   background: rgba(15, 23, 42, 0.5);
-  border-radius: 6px;
+  border-radius: 4px;
   font-style: italic;
-}
-
-/* Responsive */
-@media (max-width: 640px) {
-  .cy-sports-featured-score {
-    font-size: 2rem;
-  }
-
-  .cy-sports-live-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .cy-sports-bet-lines {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
 }

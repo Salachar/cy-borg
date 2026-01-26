@@ -1,88 +1,84 @@
 import './cySports.css';
 
 /**
- * CySports - Live sports coverage feed
+ * CySports - Live Blood Bowl coverage
  *
  * Corporate-sponsored ultraviolent sports entertainment.
- * Death Ball, Combat Racing, Corpo Leagues, and underground fights.
+ * Features Blood Bowl leagues, matches, and mayhem.
  */
 export default function CySports() {
   const sportsData = {
     featured: {
-      league: 'DEATH BALL CHAMPIONSHIP',
-      matchup: 'Mosscroft Mutants vs Central Cyborgs',
-      score: '47-42',
-      status: 'LIVE - Q3 12:34',
-      casualties: 8,
-      sponsor: 'Brought to you by KILLTECH™',
+      league: 'CY BLOOD BOWL CHAMPIONSHIP',
+      home: 'Central Cyborgs',
+      away: 'Scargag Snivellers',
+      homeScore: 2,
+      awayScore: 1,
+      status: 'TURN 12 - 2ND HALF',
+      casualties: { home: 3, away: 5 },
+      sponsor: 'KILLTECH™',
     },
     liveGames: [
       {
-        league: 'DEATH BALL',
-        home: 'Slum Runners',
-        away: 'Port Authority',
-        score: '23-31',
-        time: 'Q2 END',
-        injuries: 4
+        home: 'Mosscroft Mutants',
+        away: 'Port Reavers',
+        homeScore: 1,
+        awayScore: 2,
+        turn: 'TURN 8',
+        casualties: 6
       },
       {
-        league: 'COMBAT RACING',
-        leader: 'Vex "Chrome" Nakamura',
-        lap: '14/20',
-        time: 'LIVE',
-        wrecks: 3
+        home: 'Slum Scrappers',
+        away: 'Hills Highborn',
+        homeScore: 0,
+        awayScore: 0,
+        turn: 'TURN 5',
+        casualties: 2
       },
       {
-        league: 'CORPO LEAGUE',
         home: 'Kaytell Killers',
         away: 'NeoTech Knights',
-        score: '2-1',
-        time: 'HALF',
-        injuries: 0
+        homeScore: 3,
+        awayScore: 1,
+        turn: 'HALFTIME',
+        casualties: 4
       },
     ],
     headlines: [
-      {
-        title: 'DEATH BALL: Mosscroft Star "Razor" Hospitalized After Brutal Hit',
-        category: 'INJURY',
-        time: '15m ago',
-      },
-      {
-        title: 'RACING: Three Drivers Dead in Pier 7 Crash',
-        category: 'FATAL',
-        time: '1h ago',
-      },
-      {
-        title: 'SCANDAL: Kaytell Accused of Illegal Cybernetic Enhancements',
-        category: 'INVESTIGATION',
-        time: '2h ago',
-      },
-      {
-        title: 'UNDERGROUND: Stone Eels Fighter Wins Unsanctioned Bout',
-        category: 'STREET',
-        time: '4h ago',
-      },
+      { title: 'Scargag Snivellers Goblin Thrown Out of Stadium - Lands in Canal', category: 'INJURY', time: '12m' },
+      { title: 'Central Cyborgs Star Blitzer Kills Opposing Lineman - No Foul Called', category: 'FATAL', time: '45m' },
+      { title: 'Mosscroft Accused of Using Illegal Mutations', category: 'SCANDAL', time: '1h' },
+      { title: 'Referee Hospitalized After "Accidental" Tackle', category: 'INJURY', time: '3h' },
     ],
     standings: [
-      { team: 'Central Cyborgs', wins: 14, losses: 3, casualties: 47 },
-      { team: 'Mosscroft Mutants', wins: 12, losses: 5, casualties: 62 },
-      { team: 'Slum Runners', wins: 10, losses: 7, casualties: 38 },
-      { team: 'Port Authority', wins: 6, losses: 11, casualties: 29 },
-    ],
-    bettingOdds: [
-      { matchup: 'Mutants vs Cyborgs', favorite: 'Cyborgs', line: '-3.5', over: '89.5' },
-      { matchup: 'Runners vs Authority', favorite: 'Authority', line: '-7', over: '76' },
+      { team: 'Central Cyborgs', w: 12, l: 2, td: 38, cas: 47 },
+      { team: 'Kaytell Killers', w: 10, l: 4, td: 32, cas: 41 },
+      { team: 'Mosscroft Mutants', w: 9, l: 5, td: 29, cas: 62 },
+      { team: 'Scargag Snivellers', w: 6, l: 8, td: 18, cas: 38 },
+      { team: 'Port Reavers', w: 4, l: 10, td: 15, cas: 29 },
     ],
   };
+
+  // Blood Bowl spiked ball icon component
+  const BloodBowlIcon = () => (
+    <div className="bloodbowl-icon">
+      <div className="bb-spike bb-spike-top"></div>
+      <div className="bb-spike bb-spike-left"></div>
+      <div className="bb-spike bb-spike-right"></div>
+      <div className="bb-ball"></div>
+      <div className="bb-spike bb-spike-bottom"></div>
+    </div>
+  );
 
   return (
     <div className="cy-sports">
       {/* Header */}
       <div className="cy-sports-header">
         <div className="cy-sports-brand">
+          <BloodBowlIcon />
           <div className="cy-sports-title">
             <div className="cy-sports-name">CySports LIVE</div>
-            <div className="cy-sports-tagline">Your Source for Combat Entertainment</div>
+            <div className="cy-sports-tagline">Blood Bowl Coverage</div>
           </div>
         </div>
       </div>
@@ -91,125 +87,99 @@ export default function CySports() {
       <div className="cy-sports-main">
         {/* Featured game */}
         <div className="cy-sports-featured">
-          <div className="cy-sports-featured-badge">FEATURED MATCH</div>
-          <div className="cy-sports-featured-league">{sportsData.featured.league}</div>
-          <div className="cy-sports-featured-matchup">{sportsData.featured.matchup}</div>
-          <div className="cy-sports-featured-score">{sportsData.featured.score}</div>
-          <div className="cy-sports-featured-status">{sportsData.featured.status}</div>
-          <div className="cy-sports-featured-casualties">
-            Casualties This Game: {sportsData.featured.casualties}
+          <div className="cy-sports-featured-header">
+            <span className="cy-sports-featured-badge">FEATURED</span>
+            <span className="cy-sports-featured-league">{sportsData.featured.league}</span>
           </div>
-          <div className="cy-sports-featured-sponsor">{sportsData.featured.sponsor}</div>
-        </div>
 
-        {/* Live games grid */}
-        <div className="cy-sports-live">
-          <div className="cy-sports-section-title">LIVE NOW</div>
-          <div className="cy-sports-live-grid">
-            {sportsData.liveGames.map((game, idx) => (
-              <div key={idx} className="cy-sports-game">
-                <div className="cy-sports-game-league">{game.league}</div>
-                {game.home ? (
-                  <>
-                    <div className="cy-sports-game-teams">
-                      <div className="cy-sports-game-team">{game.home}</div>
-                      <div className="cy-sports-game-score">{game.score}</div>
-                      <div className="cy-sports-game-team">{game.away}</div>
-                    </div>
-                    <div className="cy-sports-game-status">
-                      <span>{game.time}</span>
-                      {game.injuries > 0 && (
-                        <span className="cy-sports-game-injuries">
-                          {game.injuries} injured
-                        </span>
-                      )}
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div className="cy-sports-game-leader">{game.leader}</div>
-                    <div className="cy-sports-game-lap">Lap {game.lap}</div>
-                    <div className="cy-sports-game-status">
-                      <span>{game.time}</span>
-                      <span className="cy-sports-game-wrecks">
-                        {game.wrecks} wrecks
-                      </span>
-                    </div>
-                  </>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Headlines */}
-        <div className="cy-sports-headlines">
-          <div className="cy-sports-section-title">BREAKING NEWS</div>
-          <div className="cy-sports-headlines-list">
-            {sportsData.headlines.map((headline, idx) => (
-              <div key={idx} className="cy-sports-headline">
-                <div className="cy-sports-headline-category" data-category={headline.category.toLowerCase()}>
-                  {headline.category}
-                </div>
-                <div className="cy-sports-headline-content">
-                  <div className="cy-sports-headline-title">{headline.title}</div>
-                  <div className="cy-sports-headline-time">{headline.time}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Standings */}
-        <div className="cy-sports-standings">
-          <div className="cy-sports-section-title">DEATH BALL STANDINGS</div>
-          <div className="cy-sports-standings-table">
-            <div className="cy-sports-standings-header">
-              <div className="cy-sports-standings-cell">TEAM</div>
-              <div className="cy-sports-standings-cell">W-L</div>
-              <div className="cy-sports-standings-cell">CASUALTIES</div>
+          <div className="cy-sports-featured-matchup">
+            <div className="cy-sports-featured-team">
+              <div className="cy-sports-featured-team-name">{sportsData.featured.home}</div>
+              <div className="cy-sports-featured-cas">{sportsData.featured.casualties.home} CAS</div>
             </div>
-            {sportsData.standings.map((team, idx) => (
-              <div key={idx} className="cy-sports-standings-row">
-                <div className="cy-sports-standings-cell">{team.team}</div>
-                <div className="cy-sports-standings-cell">{team.wins}-{team.losses}</div>
-                <div className="cy-sports-standings-cell cy-sports-standings-casualties">
-                  {team.casualties}
-                </div>
-              </div>
-            ))}
+            <div className="cy-sports-featured-score">
+              {sportsData.featured.homeScore} - {sportsData.featured.awayScore}
+            </div>
+            <div className="cy-sports-featured-team">
+              <div className="cy-sports-featured-team-name">{sportsData.featured.away}</div>
+              <div className="cy-sports-featured-cas">{sportsData.featured.casualties.away} CAS</div>
+            </div>
+          </div>
+
+          <div className="cy-sports-featured-footer">
+            <span>{sportsData.featured.status}</span>
+            <span>Sponsored by {sportsData.featured.sponsor}</span>
           </div>
         </div>
 
-        {/* Betting odds */}
-        <div className="cy-sports-betting">
-          <div className="cy-sports-section-title">BETTING LINES</div>
-          <div className="cy-sports-betting-list">
-            {sportsData.bettingOdds.map((bet, idx) => (
-              <div key={idx} className="cy-sports-bet">
-                <div className="cy-sports-bet-matchup">{bet.matchup}</div>
-                <div className="cy-sports-bet-lines">
-                  <div className="cy-sports-bet-line">
-                    <span className="cy-sports-bet-label">SPREAD:</span>
-                    <span className="cy-sports-bet-value">{bet.favorite} {bet.line}</span>
+        {/* Two column layout */}
+        <div className="cy-sports-columns">
+          {/* Left column */}
+          <div className="cy-sports-column">
+            {/* Live games */}
+            <div className="cy-sports-section">
+              <div className="cy-sports-section-title">LIVE MATCHES</div>
+              {sportsData.liveGames.map((game, idx) => (
+                <div key={idx} className="cy-sports-game">
+                  <div className="cy-sports-game-teams">
+                    <span>{game.home}</span>
+                    <span className="cy-sports-game-score">{game.homeScore}-{game.awayScore}</span>
+                    <span>{game.away}</span>
                   </div>
-                  <div className="cy-sports-bet-line">
-                    <span className="cy-sports-bet-label">O/U:</span>
-                    <span className="cy-sports-bet-value">{bet.over}</span>
+                  <div className="cy-sports-game-meta">
+                    <span>{game.turn}</span>
+                    <span className="cy-sports-game-cas">{game.casualties} casualties</span>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            {/* Headlines */}
+            <div className="cy-sports-section">
+              <div className="cy-sports-section-title">BREAKING NEWS</div>
+              {sportsData.headlines.map((headline, idx) => (
+                <div key={idx} className="cy-sports-headline">
+                  <span className="cy-sports-headline-cat" data-category={headline.category.toLowerCase()}>
+                    {headline.category}
+                  </span>
+                  <div className="cy-sports-headline-content">
+                    <div className="cy-sports-headline-title">{headline.title}</div>
+                    <div className="cy-sports-headline-time">{headline.time}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="cy-sports-betting-disclaimer">
-            Gambling services provided by CyBet™ - Always bet responsibly
+
+          {/* Right column */}
+          <div className="cy-sports-column">
+            {/* Standings */}
+            <div className="cy-sports-section">
+              <div className="cy-sports-section-title">LEAGUE STANDINGS</div>
+              <div className="cy-sports-standings">
+                <div className="cy-sports-standings-header">
+                  <span>TEAM</span>
+                  <span>W-L</span>
+                  <span>TD</span>
+                  <span>CAS</span>
+                </div>
+                {sportsData.standings.map((team, idx) => (
+                  <div key={idx} className="cy-sports-standings-row">
+                    <span>{team.team}</span>
+                    <span>{team.w}-{team.l}</span>
+                    <span>{team.td}</span>
+                    <span className="cy-sports-standings-cas">{team.cas}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Disclaimer */}
-        <div className="cy-sports-disclaimer">
-          All death and injury statistics are estimates. CySports is not responsible for
-          accuracy of casualty reports. Viewer discretion advised.
+        {/* Footer */}
+        <div className="cy-sports-footer">
+          Blood Bowl casualty statistics are estimates. CySports not responsible for accuracy.
+          Viewer discretion advised.
         </div>
       </div>
     </div>

@@ -512,28 +512,20 @@ export const CY_CITY_NETWORK = {
     related_commands: {
       "ACGS": {
         content: (
-          <>
           <CorpAd
-              corp="ACGS"
-              slogan="Automated Certainty"
-              tagline="The future drives itself."
-              products={[
-                "AI-Powered Transit Solutions",
-                "Smart Weapon Systems",
-                "BioMed Enhancement Packages",
-                "Automated Vehicle Fleet Management"
-              ]}
-              cta="LET THE CHARIOT DRIVE YOU"
-              theme="cyber"
-              logo="🤖"
-            >
-              <p style={{ fontSize: '0.7rem', color: '#6bc9ff', marginTop: '0.5rem' }}>
-                <strong>NEW:</strong> Chariot 2.0 traffic prediction now 40% more accurate
-              </p>
-            </CorpAd>
-            <Line cyan large bold>ACGS</Line>
-            <Line yellow>"Innovation. Intelligence. Inevitability."</Line>
-            <Divider />
+            corp="ACGS"
+            slogan="Automated Certainty"
+            tagline="The future drives itself."
+            products={[
+              "AI-Powered Transit Solutions",
+              "Smart Weapon Systems",
+              "BioMed Enhancement Packages",
+              "Automated Vehicle Fleet Management"
+            ]}
+            cta="LET THE CHARIOT DRIVE YOU"
+            theme="cyber"
+            logo="🤖"
+          >
             <Line neon>Connecting to corporate network...</Line>
             <Line cyan>[PUBLIC ACCESS GRANTED]</Line>
             <Divider />
@@ -556,7 +548,7 @@ export const CY_CITY_NETWORK = {
             </Section>
             <Divider />
             <Line pink>"Your future, automated. Your success, inevitable."</Line>
-          </>
+          </CorpAd>
         ),
       },
 
