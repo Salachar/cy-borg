@@ -212,7 +212,7 @@ export const STONE_EELS_COMMANDS = {
         ),
       },
 
-      access_cave_club_internal_network: {
+      access_internal_network: {
         password: PASSWORDS.internal,
         content: (
           <InternalAccess
@@ -385,7 +385,7 @@ export const STONE_EELS_COMMANDS = {
             ),
           },
 
-          access_stone_eels_operations: {
+          access_operations: {
             password: PASSWORDS.operations,
             content: (
               <InternalAccess
@@ -396,7 +396,7 @@ export const STONE_EELS_COMMANDS = {
               />
             ),
             related_commands: {
-              "Territory Status (Stone Eels)": {
+              "Territory Status": {
                 content: (
                   <Box color="pink">
                     <Line pink large bold>[STONE EELS - TERRITORY STATUS]</Line>
@@ -433,7 +433,7 @@ export const STONE_EELS_COMMANDS = {
                 ),
               },
 
-              "Leadership Files (Stone Eels)": {
+              "Leadership Files": {
                 password: PASSWORDS.leadership,
                 content: (
                   <>

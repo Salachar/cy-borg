@@ -18,6 +18,9 @@ import ShiftSchedule from "./ShiftSchedule";
 import PersonnelFile from "./PersonnelFile";
 import FacilityPortal from "./FacilityPortal";
 import PublicPortal from "./PublicPortal";
+import EventFeed from "./EventFeed";
+import CyWeather from "./CyWeather";
+import CySports from "./CySports";
 
 export {
   ATM,
@@ -40,4 +43,7 @@ export {
   PersonnelFile,
   FacilityPortal,
   PublicPortal,
+  EventFeed,
+  CyWeather,
+  CySports,
 };

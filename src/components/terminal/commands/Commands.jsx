@@ -8,29 +8,37 @@ import {
 
 import List from '../retcomdevice/List';
 
+import GamesBanner from '../retcomdevice/games/GamesBanner';
 import MinesweeperGame from '@terminal/retcomdevice/games/MinesweeperGame';
 import MemoryGame from '@terminal/retcomdevice/games/MemoryGame';
 import CyberPoker from '@terminal/retcomdevice/games/CyberPoker';
 
 export const MINIGAME_COMMANDS = {
-  "Play Nanobomb Defusal": {
-    type: "component",
-    content: <MinesweeperGame width={20} height={10} tileSize={2} />,
-  },
+  "Games": {
+    content: (
+      <GamesBanner />
+    ),
+    related_commands: {
+      "Play Nanobomb Defusal": {
+        type: "component",
+        content: <MinesweeperGame width={20} height={10} tileSize={2} />,
+      },
 
-  "Play Netrunner Memory Deck": {
-    type: "component",
-    content: <MemoryGame gridSize={4} tileSize={4} />,
-  },
+      "Play Netrunner Memory Deck": {
+        type: "component",
+        content: <MemoryGame gridSize={4} tileSize={4} />,
+      },
 
-  "Play Netrunner Memory Deck (Hard)": {
-    type: "component",
-    content: <MemoryGame gridSize={6} tileSize={3.5} />,
-  },
+      "Play Netrunner Memory Deck (Hard)": {
+        type: "component",
+        content: <MemoryGame gridSize={6} tileSize={3.5} />,
+      },
 
-  "Play Cyber Poker": {
-    type: "component",
-    content: <CyberPoker />,
+      "Play Cyber Poker": {
+        type: "component",
+        content: <CyberPoker />,
+      },
+    }
   },
 };
 

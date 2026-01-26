@@ -8,36 +8,31 @@ import {
   DataTable,
 } from '@terminal/TerminalComponents';
 import {
-  ATM,
   CorpAd,
+  EventFeed,
+  CyWeather,
+  CySports,
 } from "@terminal/retcomdevice"
 
 import CyCityPublicAccessBanner from '@terminal/retcomdevice/CyCityPublicPortals';
 import CyCityCorporatePortalsBanner from '@terminal/retcomdevice/CyCityCorpPortals';
 
 export const CY_CITY_NETWORK = {
-  "ATM": {
-    blocker: {
-      mastermind_hack: {
-        enabled: true,
-      }
-    },
+  "Cy City News Network": {
     content: (
-      <ATM
-        id="lfc-lobby-atm"
-        model="ATM-700X"
-        location="Lucky Flight Casino - Main lobby (near entrance)"
-        network="CasinoBlizzFunds Network"
-        cashAvailable="5,000¤ (high capacity)"
-        lastService="Yesterday"
-        transactions={[
-          "2 hours ago → Withdrawal: 200¤",
-          "3 hours ago → Withdrawal: 500¤",
-          "4 hours ago → Failed transaction (insufficient funds)",
-          "5 hours ago → Withdrawal: 100¤",
-          "6 hours ago → Withdrawal: 1,000¤",
-        ]}
-      />
+      <EventFeed />
+    ),
+  },
+
+  "Cy Weather & Environment": {
+    content: (
+      <CyWeather />
+    ),
+  },
+
+  "Cy Sports Network": {
+    content: (
+      <CySports />
     ),
   },
 
@@ -46,41 +41,6 @@ export const CY_CITY_NETWORK = {
       <CyCityPublicAccessBanner />
     ),
     related_commands: {
-      "Cy News Network (24/7)": {
-        content: (
-          <>
-            <Line cyan large bold>CY NEWS NETWORK</Line>
-            <Line yellow>"Truth. Verified. Corporate-Approved."</Line>
-            <Divider />
-            <Line neon>LIVE FEED - Updated every 30 seconds</Line>
-            <Divider />
-            <Section title="BREAKING NEWS:">
-              <Line red>→ Undersjön construction enters year 15, still 60% complete</Line>
-              <Line red>→ Spectral FT stock hits record high amid merger rumors</Line>
-              <Line red>→ 3 dead in Central Bridge collision, traffic diverted</Line>
-              <Line yellow>→ Nanomold outbreak in Laketon water supply - residents advised to boil</Line>
-            </Section>
-            <Divider />
-            <Section title="TRENDING STORIES:">
-              <Line neon>• Celebrity couple Tulles&deVerte announce merger deal</Line>
-              <Line neon>• G0 containment wall holding strong, officials confirm</Line>
-              <Line neon>• UCS unveils new automated security platform</Line>
-              <Line neon>• Kaytell Makers reports record profits this quarter</Line>
-              <Line neon>• Mysterious illness spreads through Mosscroft factory workers</Line>
-            </Section>
-            <Divider />
-            <Section title="WEATHER:">
-              <Line cyan>Current: Heavy smog, visibility 100m</Line>
-              <Line cyan>Temperature: 18°C (feels like 22° due to pollution)</Line>
-              <Line yellow>Air Quality Index: 387 (HAZARDOUS)</Line>
-              <Line red>Respirator recommended for extended outdoor activity</Line>
-            </Section>
-            <Divider />
-            <Line pink>"Brought to you by our corporate partners."</Line>
-          </>
-        ),
-      },
-
       "Cy Traffic (Real-Time)": {
         content: (
           <>
@@ -108,44 +68,6 @@ export const CY_CITY_NETWORK = {
             </Section>
             <Divider />
             <Line pink>"Plan your route. Save your life. Trust ACGS."</Line>
-          </>
-        ),
-      },
-
-      "Cy Weather & Environment": {
-        content: (
-          <>
-            <Line smoke large bold>[CY ENVIRONMENTAL STATUS]</Line>
-            <Line cyan>Monitoring provided by Kaytell Environmental Division</Line>
-            <Divider />
-            <Section title="AIR QUALITY:">
-              <DataTable data={[
-                { label: "AQI", value: "387 (HAZARDOUS)" },
-                { label: "PM2.5", value: "421 µg/m³" },
-                { label: "PM10", value: "512 µg/m³" },
-                { label: "Toxicity Level", value: "EXTREME" },
-                { label: "Visibility", value: "50-200m" },
-              ]} />
-            </Section>
-            <Divider />
-            <Section title="CURRENT CONDITIONS:">
-              <Line yellow>Temperature: 18°C</Line>
-              <Line yellow>Humidity: 67%</Line>
-              <Line yellow>Wind: 12 km/h (northeast)</Line>
-              <Line red>Smog Level: SEVERE</Line>
-              <Line red>Acid Rain Probability: 40%</Line>
-            </Section>
-            <Divider />
-            <Section title="REGIONAL VARIATIONS:">
-              <Line neon>Central: Visibility 150m (skyscraper zones better)</Line>
-              <Line neon>Ports: Visibility 120m (canal fog)</Line>
-              <Line red>Mosscroft: Visibility 50m (industrial emissions)</Line>
-              <Line yellow>Slums: Variable (40-100m)</Line>
-              <Line cyan>The Hills: Visibility 300m+ (elevated, filtered air)</Line>
-            </Section>
-            <Divider />
-            <Warning>OUTDOOR ACTIVITY NOT RECOMMENDED WITHOUT PROTECTION</Warning>
-            <Line pink>"Breathe easy with Kaytell Air Filtration Systems."</Line>
           </>
         ),
       },
@@ -533,61 +455,6 @@ export const CY_CITY_NETWORK = {
             <Warning>Crime reporting varies by district corporate investment</Warning>
             <Line pink>"Stay safe. Stay compliant. Stay profitable."</Line>
           </Box>
-        ),
-      },
-
-      "Cy Sports Network": {
-        content: (
-          <>
-            <Line smoke large bold>[CY SPORTS & ENTERTAINMENT]</Line>
-            <Line yellow>"Bread and Circuses for the Modern Age"</Line>
-            <Divider />
-            <Line cyan>Live scores and upcoming events</Line>
-            <Divider />
-            <Section title="CYBORGS TEAM (Official Cy League):">
-              <Line pink>→ Next Game: CyBorgs vs. Northside Drones</Line>
-              <Line neon>  Date: This Saturday, 19:00</Line>
-              <Line neon>  Location: Central Arena</Line>
-              <Line neon>  Tickets: 80-500¤ (limited availability)</Line>
-              <Divider />
-              <Line cyan>STAR PLAYERS:</Line>
-              <Line yellow>  #13 - Zane "The Blade" Morrison (Forward)</Line>
-              <Line neon>      Stats: 42 goals this season, team MVP</Line>
-              <Line yellow>  #7 - Kira "Ironwall" Chen (Goalkeeper)</Line>
-              <Line neon>      Stats: 89% save rate, league leader</Line>
-              <Divider />
-              <Line neon>Current Season Record: 14 wins, 3 losses, 2 draws</Line>
-              <Line yellow>League Standing: #2 (behind Industries Hammers)</Line>
-            </Section>
-            <Divider />
-            <Section title="CYBERBIKE RACING (Sanctioned):">
-              <Line pink>→ Cy Grand Prix - Next race in 2 weeks</Line>
-              <Line neon>  Location: Canal Circuit (Ports loop)</Line>
-              <Line neon>  Prize pool: 100,000¤</Line>
-              <Line yellow>  Sponsors: ACGS Chariot, Royal West, Kaytell</Line>
-              <Divider />
-              <Line cyan>TOP RACERS:</Line>
-              <Line neon>  1. "BURNOUT QUEEN" - 3 consecutive wins</Line>
-              <Line neon>  2. "CHROME DADDY" - Fan favorite</Line>
-              <Line neon>  3. "SPEED DEMON" - Rookie sensation</Line>
-            </Section>
-            <Divider />
-            <Section title="UNDERGROUND RACING (Illegal):">
-              <Line red>⚠ Participation in illegal racing subject to arrest</Line>
-              <Line yellow>Rumored locations: Ports docks, Mosscroft factory district</Line>
-              <Line yellow>Prize pools: Unknown (estimated 50,000¤+)</Line>
-              <Line cyan>SecOps awareness: High (enforcement: Selective)</Line>
-            </Section>
-            <Divider />
-            <Section title="BETTING ODDS (Current):">
-              <Line neon>CyBorgs vs Drones: CyBorgs favored (3:1)</Line>
-              <Line neon>Grand Prix winner: BURNOUT QUEEN (2:1)</Line>
-              <Line yellow>Place bets: Authorized vendors only</Line>
-              <Line red>Illegal bookies operate throughout Ports/Slums</Line>
-            </Section>
-            <Divider />
-            <Line pink>"May the best corpo-sponsored team win."</Line>
-          </>
         ),
       },
 
@@ -997,7 +864,7 @@ export const CY_CITY_NETWORK = {
         ),
       },
 
-      "Tulles&deVerte Lifestyle Feed": {
+      "Tulles & deVerte Lifestyle Feed": {
         content: (
           <CorpAd
             corp="TULLES&DEVERTE"
@@ -1108,7 +975,7 @@ export const CY_CITY_NETWORK = {
         ),
       },
 
-      "Gravf/Mellberg/Tosk Law": {
+      "Gravf|Mellberg|Tosk Law": {
         content: (
           <CorpAd
             corp="GRAVF/MELLBERG/TOSK"
@@ -1308,36 +1175,6 @@ export const CY_CITY_NETWORK = {
         <KeyValue label="Live Viewers" value="47" />
         <KeyValue label="Total Donations" value="12¤" />
         <Line yellow>"Chat is disabled due to spam."</Line>
-      </Box>
-    ),
-  },
-
-  "Arcade High Scores": {
-    content: (
-      <Box color="cyan">
-        <Line smoke large bold>[RETRO ARCADE LEADERBOARDS]</Line>
-        <Line yellow>Cy's premier gaming network</Line>
-        <Divider color="cyan" />
-        <Section title="DRONE HUNTER (Classic Shooter):">
-          <Line neon>1. SAŠA - 1,337,420 pts</Line>
-          <Line neon>2. CHROME_DADDY - 842,100 pts</Line>
-          <Line neon>3. NO_LIFE_GAMER - 731,250 pts</Line>
-        </Section>
-        <Divider color="cyan" />
-        <Section title="CHROME OR DIE (Racing):">
-          <Line neon>1. BURNOUT_QUEEN - 02:47.3</Line>
-          <Line neon>2. SPEED_DEMON - 02:51.8</Line>
-          <Line neon>3. TURBO_TRASH - 03:04.2</Line>
-        </Section>
-        <Divider color="cyan" />
-        <Section title="CORPO CRUSH (Puzzle):">
-          <Line neon>1. BIG_BRAIN - Level 247</Line>
-          <Line neon>2. LOGIC_KING - Level 198</Line>
-          <Line neon>3. SAŠA - Level 147</Line>
-        </Section>
-        <Divider color="cyan" />
-        <Line red>* G0 SURVIVOR has been banned from leaderboards</Line>
-        <Line yellow>"Insert 5¤ to play. Insert more to win."</Line>
       </Box>
     ),
   },
