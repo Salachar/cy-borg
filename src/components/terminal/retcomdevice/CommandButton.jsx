@@ -16,7 +16,7 @@ export default function CommandButton({
   onClick,
 }) {
   const checkmark = isDiscovered ? '✓' : '○';
-  const collapsable = Boolean(hasChildren) && Boolean(isDiscovered);
+  const collapsable = Boolean(hasChildren) && Boolean(isBypassed);
 
   return (
     <button onClick={onClick} className="command-button">
@@ -31,26 +31,18 @@ export default function CommandButton({
       {!collapsable && (
         <span className="command-spacer" />
       )}
-
-      {/* Checkmark */}
       <span className="command-checkmark">
         {checkmark}
       </span>
-
-      {/* Command name */}
       <span className="command-name">
         {displayName}
       </span>
-
-      {/* Blocker badge */}
       {hasBlocker && (
         <span className="command-badge">
           {isBypassed ? `${bypassLabel}:${isBypassed}` : bypassLabel}
         </span>
       )}
-
-      {/* Child count - only show if hasChildren is true */}
-      {isDiscovered && hasChildren && childCount > 0 && (
+      {isBypassed && hasChildren && childCount > 0 && (
         <span className="command-count">
           ({childCount})
         </span>

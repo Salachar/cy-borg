@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Line, Divider } from '@terminal/TerminalComponents';
+import { Line } from '@terminal/TerminalComponents';
 import CommandButton from './CommandButton';
 
 import { TREE_STORAGE_KEY } from '@utils/terminal';
@@ -41,47 +41,6 @@ export default function List({
     });
   };
 
-  const expandAll = () => {
-    const allExpanded = {};
-
-    const expandRecursive = (cmds, parentPath = '') => {
-      cmds.forEach(cmd => {
-        const fullPath = parentPath ? `${parentPath}/${cmd.id}` : cmd.id;
-
-        if (cmd.related_commands && Object.keys(cmd.related_commands).length > 0) {
-          allExpanded[fullPath] = true;
-          expandRecursive(
-            Object.entries(cmd.related_commands).map(([id, cmdDef]) => ({
-              id,
-              password: cmdDef.password,
-              related_commands: cmdDef.related_commands,
-              blocker: cmdDef.blocker,
-            })),
-            fullPath
-          );
-        }
-      });
-    };
-
-    expandRecursive(campaignCommandList);
-    setExpandedSections(allExpanded);
-
-    try {
-      localStorage.setItem(TREE_STORAGE_KEY, JSON.stringify(allExpanded));
-    } catch (e) {
-      console.error('Failed to save tree state:', e);
-    }
-  };
-
-  const collapseAll = () => {
-    setExpandedSections({});
-    try {
-      localStorage.setItem(TREE_STORAGE_KEY, JSON.stringify({}));
-    } catch (e) {
-      console.error('Failed to save tree state:', e);
-    }
-  };
-
   // Recursive render function - builds full paths
   const renderCommandTree = (commands, depth = 0, parentPath = '') => {
     // Sort commands alphabetically
@@ -93,7 +52,8 @@ export default function List({
 
       const isDiscovered = discoveredSecrets.includes(fullPath);
       const hasBlocker = !!(cmd.password || cmd.blocker);
-      const isBypassed = discoveredPasswords[fullPath];
+      // Auto bypass commands with no blocker
+      const isBypassed = hasBlocker ? discoveredPasswords[fullPath] : true;
       const bypassLabel = cmd.password ? 'PW' : 'HACK';
       const hasChildren = cmd.related_commands && Object.keys(cmd.related_commands).length > 0;
       const isExpanded = expandedSections[fullPath];
@@ -126,7 +86,7 @@ export default function List({
           />
 
           {/* Related sub-commands - show only if expanded */}
-          {isDiscovered && hasChildren && isExpanded && (
+          {isBypassed && hasChildren && isExpanded && (
             <div className="list-children-container">
               {renderCommandTree(
                 Object.entries(cmd.related_commands).map(([id, cmdDef]) => ({
@@ -147,26 +107,15 @@ export default function List({
 
   return (
     <>
-      <Line smoke large bold>[ACCESS POINTS]</Line>
-      <Line yellow top>✓ = Accessed | ▶/▼ = Expand/Collapse | [PW:****] = Password Known</Line>
-      <Divider />
+      {/* <Line smoke large bold>[ACCESS POINTS]</Line> */}
+      {/* <Line yellow top>✓ = Accessed | ▶/▼ = Expand/Collapse | [PW:****] = Password Known</Line> */}
 
       {campaignCommandList.length === 0 ? (
         <Line neon>No access points available</Line>
       ) : (
-        <>
-          <div className="list-controls">
-            <button onClick={expandAll} className="list-control-button list-expand">
-              EXPAND ALL
-            </button>
-            <button onClick={collapseAll} className="list-control-button list-collapse">
-              COLLAPSE ALL
-            </button>
-          </div>
-          <div className="list-tree">
-            {renderCommandTree(campaignCommandList)}
-          </div>
-        </>
+        <div className="list-tree">
+          {renderCommandTree(campaignCommandList)}
+        </div>
       )}
     </>
   );

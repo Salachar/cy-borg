@@ -13,7 +13,7 @@ export default function RelatedCommands({ commands = [], commandList = [], onSel
       <Divider color="cyan" />
 
       <Line cyan bold style={{ marginTop: '0.75rem', marginBottom: '0.75rem' }}>
-        ┌─ RELATED COMMANDS AVAILABLE ─┐
+        ┌─ AVAILABLE ACCESS POINTS ─┐
       </Line>
 
       <div style={{ display: 'flex', flexDirection: 'column' }}>

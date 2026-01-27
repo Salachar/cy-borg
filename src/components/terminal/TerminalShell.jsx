@@ -58,22 +58,14 @@ export default function TerminalShell({
       {/* Main terminal area - left aligned, slight offset */}
       <div className="flex-1 flex flex-col font-mono overflow-hidden">
         <div className="flex-1 flex flex-col p-6 overflow-hidden">
-          <TerminalHeader>
-            <div className="flex flex-row mr-4 gap-4">
-              {Object.keys(SYSTEM_COMMANDS).map((cmd, i) => {
-                if (cmd === 'reset') return null;
-                return (
-                  <QuickCommandButton
-                    key={i}
-                    label={cmd}
-                    onClick={() => {
-                      executeCommand(cmd)
-                    }}
-                  />
-                );
-              })}
-            </div>
-          </TerminalHeader>
+          <TerminalHeader
+            discoveredCount={12}
+            passwordsCount={3}
+            creditsExtracted={450}
+            onHelp={() => executeCommand('Help')}
+            onList={() => executeCommand('Access Points')}
+            onClear={() => executeCommand('Clear')}
+          />
           {historyArea}
           {inputArea}
         </div>

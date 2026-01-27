@@ -13,10 +13,6 @@ export default function Camera({
 }) {
   const isOnline = status === 'ACTIVE' || status === 'RECORDING';
 
-  // Get current timestamp
-  const now = new Date();
-  const timestamp = `${String(now.getMonth() + 1).padStart(2, '0')}/${String(now.getDate()).padStart(2, '0')}/${now.getFullYear()} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
-
   return (
     <div style={{ position: 'relative' }}>
       {/* Camera container */}
@@ -114,88 +110,6 @@ export default function Camera({
             { label: 'Storage', value: storage },
           ]}
         />
-
-        {/* Live feed simulation (only if online) */}
-        {isOnline && (
-          <>
-            <Divider />
-            <div
-              style={{
-                position: 'relative',
-                backgroundColor: 'rgb(19, 23, 34)',
-                border: '2px solid rgb(79, 209, 197)',
-                borderRadius: '3px',
-                padding: '2rem 1rem',
-                minHeight: '100px',
-                overflow: 'hidden',
-              }}
-            >
-              {/* Animated scanlines */}
-              <div
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  backgroundImage:
-                    'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(79, 209, 197, 0.03) 2px, rgba(79, 209, 197, 0.03) 4px)',
-                  animation: 'scanline 8s linear infinite',
-                  pointerEvents: 'none',
-                }}
-              />
-
-              {/* Timestamp overlay */}
-              <div
-                style={{
-                  position: 'absolute',
-                  top: '0.5rem',
-                  left: '0.5rem',
-                  fontSize: '0.7rem',
-                  fontWeight: 'bold',
-                  color: 'rgb(79, 209, 197)',
-                  fontFamily: 'monospace',
-                  textShadow: '0 0 4px rgba(79, 209, 197, 0.8)',
-                  letterSpacing: '0.05em',
-                }}
-              >
-                {timestamp}
-              </div>
-
-              {/* Feed content */}
-              <div
-                style={{
-                  position: 'relative',
-                  textAlign: 'center',
-                  color: 'rgb(79, 209, 197)',
-                  opacity: 0.6,
-                }}
-              >
-                <Line cyan style={{ fontSize: '0.875rem' }}>
-                  [LIVE FEED]
-                </Line>
-                <Line neon style={{ fontSize: '0.75rem', marginTop: '0.5rem' }}>
-                  Camera operational - Monitoring area
-                </Line>
-              </div>
-
-              {/* Static overlay effect */}
-              <div
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  opacity: 0.03,
-                  backgroundImage:
-                    'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' /%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E")',
-                  pointerEvents: 'none',
-                }}
-              />
-            </div>
-          </>
-        )}
 
         {/* Timeline */}
         {timeline.length > 0 && (

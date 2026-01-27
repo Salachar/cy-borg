@@ -43,7 +43,7 @@ export const MINIGAME_COMMANDS = {
 };
 
 export const SYSTEM_COMMANDS = {
-  help: () => ({
+  "Help": () => ({
     content: (
       <>
         <Line smoke large bold>RCD-7 RETINAL INTERFACE v2.047</Line>
@@ -76,7 +76,7 @@ export const SYSTEM_COMMANDS = {
     )
   }),
 
-  list: ({
+  "Access Points": ({
     discoveredSecrets = [],
     campaignCommandList = [],
     setInputCallback = () => {},
@@ -94,11 +94,11 @@ export const SYSTEM_COMMANDS = {
     };
   },
 
-  clear: () => ({
+  "Clear": () => ({
     type: 'clear',
   }),
 
-  reset: () => ({
+  "Reset": () => ({
     type: 'reset',
   })
 };

@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 export default function TerminalHeader({
-  children,
+  discoveredCount = 0,
+  passwordsCount = 0,
+  creditsExtracted = 0,
+  onHelp,
+  onList,
+  onClear,
 }) {
   const [adsBlocked, setAdsBlocked] = useState(47);
   const [packetsRouted, setPacketsRouted] = useState(1247);
@@ -10,17 +15,17 @@ export default function TerminalHeader({
   useEffect(() => {
     // Ad counter increases in random bursts
     const adInterval = setInterval(() => {
-      if (Math.random() > 0.7) { // 30% chance every interval
-        const burst = Math.floor(Math.random() * 5) + 1; // 1-5 ads blocked
+      if (Math.random() > 0.7) {
+        const burst = Math.floor(Math.random() * 5) + 1;
         setAdsBlocked(prev => prev + burst);
       }
-    }, 8000); // Check every 8 seconds
+    }, 8000);
 
     // Packets routed increases constantly
     const packetInterval = setInterval(() => {
-      const burst = Math.floor(Math.random() * 20) + 5; // 5-24 packets
+      const burst = Math.floor(Math.random() * 20) + 5;
       setPacketsRouted(prev => prev + burst);
-    }, 3000); // Every 3 seconds
+    }, 3000);
 
     // Uptime counter (in seconds)
     const uptimeInterval = setInterval(() => {
@@ -48,195 +53,332 @@ export default function TerminalHeader({
         marginBottom: '1rem',
         width: '100%',
         border: '2px solid rgb(77, 167, 188)',
-        borderRadius: '8px',
+        borderRadius: '6px',
         backgroundColor: 'rgba(29, 35, 50, 0.95)',
         position: 'relative',
         overflow: 'hidden',
-        display: 'flex',
-        gap: '2rem',
+        padding: '0.75rem 1rem',
       }}
     >
-      {/* Animated corner brackets */}
+      {/* Animated corner brackets - smaller */}
       <div
         style={{
           position: 'absolute',
-          top: '0.75rem',
-          left: '0.75rem',
-          width: '20px',
-          height: '20px',
-          borderTop: '3px solid rgb(79, 209, 197)',
-          borderLeft: '3px solid rgb(79, 209, 197)',
+          top: '0.5rem',
+          left: '0.5rem',
+          width: '12px',
+          height: '12px',
+          borderTop: '2px solid rgb(79, 209, 197)',
+          borderLeft: '2px solid rgb(79, 209, 197)',
           animation: 'pulse 2s ease-in-out infinite',
         }}
       />
       <div
         style={{
           position: 'absolute',
-          bottom: '0.75rem',
-          left: '0.75rem',
-          width: '20px',
-          height: '20px',
-          borderBottom: '3px solid rgb(79, 209, 197)',
-          borderLeft: '3px solid rgb(79, 209, 197)',
+          bottom: '0.5rem',
+          left: '0.5rem',
+          width: '12px',
+          height: '12px',
+          borderBottom: '2px solid rgb(79, 209, 197)',
+          borderLeft: '2px solid rgb(79, 209, 197)',
           animation: 'pulse 2s ease-in-out infinite 1s',
         }}
       />
 
-      {/* Device icon/logo - left side */}
+      {/* Main content - flex wrap for natural condensing */}
       <div
         style={{
-          flexShrink: 0,
           display: 'flex',
-          alignItems: 'center',
+          flexWrap: 'wrap',
           gap: '1rem',
-          padding: '1.5rem 2rem',
+          alignItems: 'center',
         }}
       >
-        {/* Stylized eye/retinal icon */}
+        {/* Device icon/logo - compact */}
         <div
           style={{
-            position: 'relative',
-            width: '60px',
-            height: '60px',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
+            gap: '0.75rem',
             flexShrink: 0,
           }}
         >
-          {/* Outer ring - slower spin */}
+          {/* Stylized eye/retinal icon - smaller */}
           <div
             style={{
-              position: 'absolute',
-              width: '60px',
-              height: '60px',
-              border: '3px solid rgb(77, 167, 188)',
-              borderRadius: '50%',
-              animation: 'spin 8s linear infinite',
-            }}
-          >
-            {/* Notches on ring */}
-            <div style={{ position: 'absolute', top: '-3px', left: '50%', transform: 'translateX(-50%)', width: '3px', height: '8px', backgroundColor: 'rgb(79, 209, 197)' }} />
-            <div style={{ position: 'absolute', bottom: '-3px', left: '50%', transform: 'translateX(-50%)', width: '3px', height: '8px', backgroundColor: 'rgb(79, 209, 197)' }} />
-            <div style={{ position: 'absolute', left: '-3px', top: '50%', transform: 'translateY(-50%)', width: '8px', height: '3px', backgroundColor: 'rgb(79, 209, 197)' }} />
-            <div style={{ position: 'absolute', right: '-3px', top: '50%', transform: 'translateY(-50%)', width: '8px', height: '3px', backgroundColor: 'rgb(79, 209, 197)' }} />
-          </div>
-
-          {/* Inner eye */}
-          <div
-            style={{
-              width: '30px',
-              height: '30px',
-              border: '2px solid rgb(79, 209, 197)',
-              borderRadius: '50%',
-              backgroundColor: 'rgba(79, 209, 197, 0.1)',
+              position: 'relative',
+              width: '40px',
+              height: '40px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              animation: 'pulse 2s ease-in-out infinite',
+              flexShrink: 0,
             }}
           >
-            {/* Pupil */}
+            {/* Outer ring */}
             <div
               style={{
-                width: '10px',
-                height: '10px',
-                backgroundColor: 'rgb(0, 255, 65)',
+                position: 'absolute',
+                width: '40px',
+                height: '40px',
+                border: '2px solid rgb(77, 167, 188)',
                 borderRadius: '50%',
-                boxShadow: '0 0 10px rgb(0, 255, 65)',
-                animation: 'blink 3s ease-in-out infinite',
+                animation: 'spin 8s linear infinite',
               }}
-            />
+            >
+              {/* Notches on ring */}
+              <div style={{ position: 'absolute', top: '-2px', left: '50%', transform: 'translateX(-50%)', width: '2px', height: '6px', backgroundColor: 'rgb(79, 209, 197)' }} />
+              <div style={{ position: 'absolute', bottom: '-2px', left: '50%', transform: 'translateX(-50%)', width: '2px', height: '6px', backgroundColor: 'rgb(79, 209, 197)' }} />
+              <div style={{ position: 'absolute', left: '-2px', top: '50%', transform: 'translateY(-50%)', width: '6px', height: '2px', backgroundColor: 'rgb(79, 209, 197)' }} />
+              <div style={{ position: 'absolute', right: '-2px', top: '50%', transform: 'translateY(-50%)', width: '6px', height: '2px', backgroundColor: 'rgb(79, 209, 197)' }} />
+            </div>
+
+            {/* Inner eye */}
+            <div
+              style={{
+                width: '20px',
+                height: '20px',
+                border: '2px solid rgb(79, 209, 197)',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(79, 209, 197, 0.1)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                animation: 'pulse 2s ease-in-out infinite',
+              }}
+            >
+              {/* Pupil */}
+              <div
+                style={{
+                  width: '8px',
+                  height: '8px',
+                  backgroundColor: 'rgb(0, 255, 65)',
+                  borderRadius: '50%',
+                  boxShadow: '0 0 8px rgb(0, 255, 65)',
+                  animation: 'blink 3s ease-in-out infinite',
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Device name */}
+          <div>
+            <div
+              style={{
+                fontSize: '0.875rem',
+                fontWeight: 'bold',
+                color: 'rgb(79, 209, 197)',
+                fontFamily: 'monospace',
+                letterSpacing: '0.1em',
+                textShadow: '0 0 8px rgba(79, 209, 197, 0.5)',
+                lineHeight: 1,
+              }}
+            >
+              RCD-7
+            </div>
+            <div
+              style={{
+                fontSize: '0.6rem',
+                color: 'rgb(148, 163, 184)',
+                fontFamily: 'monospace',
+                marginTop: '0.15rem',
+              }}
+            >
+              RETINAL COM DEVICE
+            </div>
           </div>
         </div>
 
-        {/* Device name */}
-        <div>
-          <div
-            style={{
-              fontSize: '1rem',
-              fontWeight: 'bold',
-              color: 'rgb(79, 209, 197)',
-              fontFamily: 'monospace',
-              letterSpacing: '0.15em',
-              textShadow: '0 0 10px rgba(79, 209, 197, 0.5)',
-            }}
-          >
-            RCD-7
-          </div>
-          <div
-            style={{
-              fontSize: '0.65rem',
-              color: 'rgb(148, 163, 184)',
-              fontFamily: 'monospace',
-              marginTop: '0.15rem',
-            }}
-          >
-            RETINAL COM DEVICE
-          </div>
-        </div>
-      </div>
-
-      {/* Divider */}
-      <div
-        style={{
-          width: '2px',
-          height: '60px',
-          backgroundColor: 'rgb(77, 167, 188)',
-          opacity: 0.5,
-          flexShrink: 0,
-          margin: '1.5rem 0',
-        }}
-      />
-
-      {/* Status info - right side */}
-      <div
-        style={{
-          flex: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '0.5rem',
-          padding: '1.5rem 0',
-        }}
-      >
-        {/* Version info */}
+        {/* Divider - optional, will wrap naturally */}
         <div
           style={{
-            fontSize: '0.75rem',
-            color: 'rgb(148, 163, 184)',
-            fontFamily: 'monospace',
+            width: '1px',
+            height: '40px',
+            backgroundColor: 'rgb(77, 167, 188)',
+            opacity: 0.5,
+            flexShrink: 0,
+          }}
+        />
+
+        {/* Stats container - wraps naturally */}
+        <div
+          style={{
+            flex: 1,
+            minWidth: '200px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.5rem',
           }}
         >
-          Interface v2.047 | Neural Link Active
+          {/* Top row - gameplay stats */}
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '1rem',
+              fontSize: '0.7rem',
+              fontFamily: 'monospace',
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', whiteSpace: 'nowrap' }}>
+              <span style={{ color: 'rgb(148, 163, 184)' }}>DISCOVERED:</span>
+              <span style={{ color: 'rgb(79, 209, 197)', fontWeight: 'bold' }}>{discoveredCount}</span>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', whiteSpace: 'nowrap' }}>
+              <span style={{ color: 'rgb(148, 163, 184)' }}>BYPASSED:</span>
+              <span style={{ color: 'rgb(251, 191, 36)', fontWeight: 'bold' }}>{passwordsCount}</span>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', whiteSpace: 'nowrap' }}>
+              <span style={{ color: 'rgb(148, 163, 184)' }}>EXTRACTED:</span>
+              <span style={{ color: 'rgb(0, 255, 65)', fontWeight: 'bold' }}>{creditsExtracted}¤</span>
+            </div>
+          </div>
+
+          {/* Bottom row - system stats */}
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: '1rem',
+              fontSize: '0.65rem',
+              fontFamily: 'monospace',
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', whiteSpace: 'nowrap' }}>
+              <span style={{ color: 'rgb(148, 163, 184)' }}>ADS:</span>
+              <span style={{ color: 'rgb(0, 255, 65)', fontWeight: 'bold' }}>{adsBlocked}</span>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', whiteSpace: 'nowrap' }}>
+              <span style={{ color: 'rgb(148, 163, 184)' }}>PKT:</span>
+              <span style={{ color: 'rgb(79, 209, 197)', fontWeight: 'bold' }}>{packetsRouted.toLocaleString()}</span>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', whiteSpace: 'nowrap' }}>
+              <span style={{ color: 'rgb(148, 163, 184)' }}>UPTIME:</span>
+              <span style={{ color: 'rgb(251, 191, 36)', fontWeight: 'bold' }}>{formatUptime()}</span>
+            </div>
+          </div>
         </div>
 
-        {/* Stats row */}
+        {/* Icon buttons - pushed to right */}
         <div
           style={{
             display: 'flex',
-            gap: '1.5rem',
-            fontSize: '0.75rem',
-            fontFamily: 'monospace',
+            gap: '1.25rem',
+            marginLeft: 'auto',
+            flexShrink: 0,
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <span style={{ color: 'rgb(148, 163, 184)' }}>ADS BLOCKED:</span>
-            <span style={{ color: 'rgb(0, 255, 65)', fontWeight: 'bold' }}>{adsBlocked}</span>
-          </div>
+          {/* List button - menu icon */}
+          {onList && (
+            <button
+              onClick={onList}
+              style={{
+                width: '32px',
+                height: '32px',
+                border: '2px solid rgb(79, 209, 197)',
+                borderRadius: '4px',
+                backgroundColor: 'rgba(79, 209, 197, 0.1)',
+                color: 'rgb(79, 209, 197)',
+                cursor: 'pointer',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '3px',
+                transition: 'all 0.2s',
+                padding: '6px',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(79, 209, 197, 0.2)';
+                e.currentTarget.style.boxShadow = '0 0 10px rgba(79, 209, 197, 0.5)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(79, 209, 197, 0.1)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+              title="List"
+            >
+              <div style={{ width: '100%', height: '2px', backgroundColor: 'rgb(79, 209, 197)' }} />
+              <div style={{ width: '100%', height: '2px', backgroundColor: 'rgb(79, 209, 197)' }} />
+              <div style={{ width: '100%', height: '2px', backgroundColor: 'rgb(79, 209, 197)' }} />
+            </button>
+          )}
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <span style={{ color: 'rgb(148, 163, 184)' }}>PACKETS:</span>
-            <span style={{ color: 'rgb(79, 209, 197)', fontWeight: 'bold' }}>{packetsRouted.toLocaleString()}</span>
-          </div>
+          {/* Help button - ? icon */}
+          {onHelp && (
+            <button
+              onClick={onHelp}
+              style={{
+                width: '32px',
+                height: '32px',
+                border: '2px solid rgb(79, 209, 197)',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(79, 209, 197, 0.1)',
+                color: 'rgb(79, 209, 197)',
+                fontSize: '1rem',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'all 0.2s',
+                fontFamily: 'monospace',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(79, 209, 197, 0.2)';
+                e.currentTarget.style.boxShadow = '0 0 10px rgba(79, 209, 197, 0.5)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(79, 209, 197, 0.1)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+              title="Help"
+            >
+              ?
+            </button>
+          )}
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <span style={{ color: 'rgb(148, 163, 184)' }}>UPTIME:</span>
-            <span style={{ color: 'rgb(251, 191, 36)', fontWeight: 'bold' }}>{formatUptime()}</span>
-          </div>
+          {/* Clear button - × icon */}
+          {onClear && (
+            <button
+              onClick={onClear}
+              style={{
+                width: '32px',
+                height: '32px',
+                border: '2px solid rgb(251, 191, 36)',
+                borderRadius: '4px',
+                backgroundColor: 'rgba(251, 191, 36, 0.1)',
+                color: 'rgb(251, 191, 36)',
+                fontSize: '1.25rem',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'all 0.2s',
+                fontFamily: 'monospace',
+                lineHeight: 1,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(251, 191, 36, 0.2)';
+                e.currentTarget.style.boxShadow = '0 0 10px rgba(251, 191, 36, 0.5)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(251, 191, 36, 0.1)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+              title="Clear"
+            >
+              ×
+            </button>
+          )}
         </div>
       </div>
-
-      {children}
 
       {/* CSS animations */}
       <style>{`
