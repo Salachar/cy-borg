@@ -14,8 +14,8 @@ import {
   CySports,
 } from "@terminal/retcomdevice"
 
-import CyCityPublicAccessBanner from '@terminal/retcomdevice/CyCityPublicPortals';
-import CyCityCorporatePortalsBanner from '@terminal/retcomdevice/CyCityCorpPortals';
+import CyCityPublicAccessBanner from '@terminal/retcomdevice/CyCityPortals/CyCityPublicPortals';
+import CyCityCorporatePortalsBanner from '@terminal/retcomdevice/CyCityPortals/CyCityCorpPortals';
 
 export const CY_CITY_NETWORK = {
   "Cy City News Network": {

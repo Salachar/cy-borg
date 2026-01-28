@@ -6,12 +6,12 @@ import {
   Divider,
 } from '@terminal/TerminalComponents';
 
-import List from '../retcomdevice/List';
+import List from '@terminal/retcomdevice/List/List';
 
-import GamesBanner from '../retcomdevice/games/GamesBanner';
-import MinesweeperGame from '@terminal/retcomdevice/games/MinesweeperGame';
-import MemoryGame from '@terminal/retcomdevice/games/MemoryGame';
-import CyberPoker from '@terminal/retcomdevice/games/CyberPoker';
+import GamesBanner from '../retcomdevice/Games/GamesBanner/GamesBanner';
+import MinesweeperGame from '@terminal/retcomdevice/Games/MinesweeperGame/MinesweeperGame';
+import MemoryGame from '@terminal/retcomdevice/Games/MemoryGame/MemoryGame';
+import CyberPoker from '@terminal/retcomdevice/Games/CyberPoker/CyberPoker';
 
 export const MINIGAME_COMMANDS = {
   "Games": {

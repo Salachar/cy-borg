@@ -1,8 +1,6 @@
-import {
-  SYSTEM_COMMANDS,
-} from "@terminal/commands/Commands";
+import React from 'react';
 
-import TerminalHeader from './retcomdevice/TerminalHeader';
+import TerminalHeader from './retcomdevice/TerminalHeader/TerminalHeader';
 
 const COLORS = {
   // Background colors

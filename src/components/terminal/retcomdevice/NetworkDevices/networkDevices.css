@@ -1,0 +1,132 @@
+/* NetworkDevices - Clean OS-style device list */
+
+.network-devices {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.8) 100%);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Header */
+.network-devices-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(15, 23, 42, 0.4);
+}
+
+.network-devices-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgb(203, 213, 225);
+  letter-spacing: 0.025em;
+}
+
+.network-devices-subtitle {
+  font-size: 0.75rem;
+  color: rgb(148, 163, 184);
+  margin-top: 0.25rem;
+}
+
+/* Device list */
+.network-devices-list {
+  padding: 0.5rem;
+}
+
+.network-device-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0.75rem;
+  background: rgba(30, 41, 59, 0.3);
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  transition: background 0.2s;
+}
+
+.network-device-item:last-child {
+  margin-bottom: 0;
+}
+
+.network-device-item:hover {
+  background: rgba(30, 41, 59, 0.5);
+}
+
+.network-device-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.network-device-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgb(226, 232, 240);
+  margin-bottom: 0.15rem;
+}
+
+.network-device-model {
+  font-size: 0.75rem;
+  color: rgb(148, 163, 184);
+}
+
+/* Status badge */
+.network-device-status {
+  flex-shrink: 0;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.network-device-status[data-status="online"] {
+  background: rgba(16, 185, 129, 0.15);
+  color: rgb(16, 185, 129);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.network-device-status[data-status="standby"] {
+  background: rgba(251, 191, 36, 0.15);
+  color: rgb(251, 191, 36);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.network-device-status[data-status="offline"] {
+  background: rgba(148, 163, 184, 0.15);
+  color: rgb(148, 163, 184);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+/* Empty state */
+.network-devices-empty {
+  padding: 2rem 1.25rem;
+  text-align: center;
+  font-size: 0.875rem;
+  color: rgb(148, 163, 184);
+  font-style: italic;
+}
+
+/* Footer */
+.network-devices-footer {
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(15, 23, 42, 0.4);
+  font-size: 0.7rem;
+  color: rgb(148, 163, 184);
+  font-style: italic;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .network-device-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .network-device-status {
+    align-self: flex-start;
+  }
+}

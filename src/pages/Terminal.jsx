@@ -19,11 +19,10 @@ import {
 } from "@terminal/TerminalComponents";
 import {
   RelatedCommands,
+  PasswordPrompt,
+  MastermindHack,
+  HistoryEntryWrapper,
 } from "@terminal/retcomdevice";
-
-import PasswordPrompt from '@terminal/retcomdevice/PasswordPrompt';
-import MastermindHack from '@terminal/retcomdevice/MastermindHack';
-import HistoryEntryWrapper from '@terminal/HistoryEntryWrapper';
 
 import {
   STORAGE_KEY,
