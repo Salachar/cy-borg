@@ -1,219 +1,153 @@
-import { Line, Divider, DataTable, Section } from '@terminal/TerminalComponents';
+import './tenet.css';
 
+/**
+ * Tenet - Social network citizen profile
+ *
+ * Public-facing profile card similar to social media platforms.
+ * Shows limited public information.
+ *
+ * Props:
+ * - id: String (citizen ID)
+ * - name: String
+ * - tagline: String (optional, like "Software Engineer @ TechCorp")
+ * - district: String (optional, home district)
+ * - connections: Number (connection count)
+ * - mutualConnections: Number (optional, mutual connections with viewer)
+ * - profilePicture: String (optional, initials if not provided)
+ * - bio: String (optional, short bio)
+ * - privacy: String (PUBLIC, FRIENDS, PRIVATE)
+ * - status: String (ACTIVE, SUSPENDED, DELETED)
+ * - memberSince: String (optional, e.g., "2067")
+ * - enableIntercom: Boolean (optional, shows intercom button, default: false)
+ * - onIntercom: Function (optional, callback for intercom button)
+ */
 export default function Tenet({
   id,
   name,
-  age,
-  dob,
-  occupation,
-  employer,
+  tagline,
   district,
+  connections = 0,
+  mutualConnections,
+  profilePicture,
   bio,
-  interests = [],
-  connections,
-  status = 'ACTIVE',
   privacy = 'PUBLIC',
+  status = 'ACTIVE',
+  memberSince,
+  enableIntercom = false,
+  onIntercom,
 }) {
-  const isRestricted = privacy === 'PRIVATE' || status !== 'ACTIVE';
-
-  // Privacy icon
-  const getPrivacyIcon = () => {
-    switch (privacy) {
-      case 'PUBLIC':
-        return '🌐';
-      case 'FRIENDS':
-        return '👥';
-      case 'PRIVATE':
-        return '🔒';
-      default:
-        return '';
-    }
-  };
+  const isRestricted = privacy !== 'PUBLIC' || status !== 'ACTIVE';
+  const initials = name
+    ?.split(' ')
+    .map(n => n[0])
+    .join('')
+    .toUpperCase()
+    .slice(0, 2) || '??';
 
   return (
-    <div style={{ position: 'relative' }}>
-      {/* Tenet container */}
-      <div
-        style={{
-          border: '2px solid rgb(79, 209, 197)',
-          borderRadius: '4px',
-          padding: '1rem',
-          backgroundColor: 'rgba(29, 35, 50, 0.3)',
-          position: 'relative',
-          opacity: status === 'DELETED' ? 0.5 : 1,
-        }}
-      >
-        {/* Header with Tenet branding */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
-          {/* CSS Tenet Icon - person silhouette */}
-          <div style={{ position: 'relative', width: '24px', height: '24px', flexShrink: 0 }}>
-            {/* Head */}
-            <div
-              style={{
-                position: 'absolute',
-                top: '2px',
-                left: '8px',
-                width: '8px',
-                height: '8px',
-                backgroundColor: 'rgb(79, 209, 197)',
-                borderRadius: '50%',
-              }}
-            />
-            {/* Body */}
-            <div
-              style={{
-                position: 'absolute',
-                bottom: '2px',
-                left: '6px',
-                width: '12px',
-                height: '10px',
-                backgroundColor: 'rgb(79, 209, 197)',
-                borderRadius: '2px 2px 0 0',
-              }}
-            />
-          </div>
+    <div className="tenet-profile">
+      {/* Header bar */}
+      <div className="tenet-header">
+        <div className="tenet-brand">TENET</div>
+        <div className="tenet-privacy">
+          {privacy === 'PRIVATE' && <span className="privacy-badge privacy-private">Private</span>}
+          {privacy === 'FRIENDS' && <span className="privacy-badge privacy-friends">Friends Only</span>}
+          {privacy === 'PUBLIC' && <span className="privacy-badge privacy-public">Public</span>}
+        </div>
+      </div>
 
-          <Line smoke large bold style={{ margin: 0, flex: 1 }}>
-            [TENET CITIZEN PROFILE]
-          </Line>
-
-          {/* Privacy indicator */}
-          <div style={{ fontSize: '0.875rem' }}>
-            <span style={{ marginRight: '0.25rem' }}>{getPrivacyIcon()}</span>
-            <span
-              style={{
-                fontSize: '0.7rem',
-                color: 'rgb(148, 163, 184)',
-                fontFamily: 'monospace',
-              }}
-            >
-              {privacy}
-            </span>
+      {/* Profile content - horizontal layout */}
+      <div className="tenet-content">
+        {/* Left side - Profile picture */}
+        <div className="tenet-left">
+          <div className="tenet-profile-pic">
+            {profilePicture ? (
+              <img src={profilePicture} alt={name} />
+            ) : (
+              <div className="tenet-initials">{initials}</div>
+            )}
+            {status !== 'ACTIVE' && (
+              <div className="tenet-status-overlay">
+                {status === 'DELETED' ? 'DELETED' : 'SUSPENDED'}
+              </div>
+            )}
           </div>
         </div>
 
-        {/* Citizen ID */}
-        <Line cyan style={{ fontSize: '0.875rem' }}>
-          Citizen ID: {id}
-        </Line>
-        <Divider />
+        {/* Center - Profile info */}
+        <div className="tenet-center">
+          <div className="tenet-name">{name}</div>
+          {tagline && !isRestricted && <div className="tenet-tagline">{tagline}</div>}
+          {district && !isRestricted && <div className="tenet-location">{district}</div>}
 
-        {/* Basic info */}
-        <DataTable
-          data={[
-            { label: 'Name', value: name },
-            ...(age ? [{ label: 'Age', value: age }] : []),
-            ...(dob && !isRestricted ? [{ label: 'DOB', value: dob }] : []),
-            { label: 'Status', value: status },
-          ]}
-        />
-
-        {/* Employment (if not restricted) */}
-        {(occupation || employer) && !isRestricted && (
-          <>
-            <Divider />
-            <Section title="EMPLOYMENT:">
-              {occupation && <Line neon>Position: {occupation}</Line>}
-              {employer && <Line neon>Employer: {employer}</Line>}
-            </Section>
-          </>
-        )}
-
-        {/* Location (if not restricted) */}
-        {district && !isRestricted && (
-          <>
-            <Divider />
-            <Section title="LOCATION:">
-              <Line cyan>District: {district}</Line>
-            </Section>
-          </>
-        )}
-
-        {/* Bio (if available and not restricted) */}
-        {bio && !isRestricted && (
-          <>
-            <Divider />
-            <Section title="ABOUT:">
-              <Line yellow style={{ fontSize: '0.875rem', fontStyle: 'italic' }}>
-                "{bio}"
-              </Line>
-            </Section>
-          </>
-        )}
-
-        {/* Interests (if available and not restricted) */}
-        {interests.length > 0 && !isRestricted && (
-          <>
-            <Divider />
-            <Section title="INTERESTS:">
-              <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                {interests.map((interest, i) => (
-                  <span
-                    key={i}
-                    style={{
-                      padding: '0.25rem 0.5rem',
-                      fontSize: '0.75rem',
-                      backgroundColor: 'rgba(79, 209, 197, 0.1)',
-                      border: '1px solid rgba(79, 209, 197, 0.3)',
-                      borderRadius: '3px',
-                      color: 'rgb(79, 209, 197)',
-                      fontFamily: 'monospace',
-                    }}
-                  >
-                    {interest}
-                  </span>
-                ))}
+          {/* Stats row */}
+          {!isRestricted && (
+            <div className="tenet-stats">
+              <div className="tenet-stat">
+                <div className="tenet-stat-value">{connections}</div>
+                <div className="tenet-stat-label">Connections</div>
               </div>
-            </Section>
-          </>
-        )}
-
-        {/* Connections (if available) */}
-        {connections !== undefined && (
-          <>
-            <Divider />
-            <Line neon style={{ fontSize: '0.875rem' }}>
-              Connections: {connections}
-            </Line>
-          </>
-        )}
-
-        {/* Privacy notice */}
-        {isRestricted && (
-          <>
-            <Divider />
-            <div
-              style={{
-                padding: '0.75rem',
-                backgroundColor: 'rgba(251, 191, 36, 0.1)',
-                border: '1px solid rgba(251, 191, 36, 0.3)',
-                borderRadius: '3px',
-                textAlign: 'center',
-              }}
-            >
-              <Line yellow style={{ fontSize: '0.875rem' }}>
-                {status === 'DELETED'
-                  ? '⚠ ACCOUNT DELETED - Limited information available'
-                  : status === 'SUSPENDED'
-                  ? '⚠ ACCOUNT SUSPENDED - Limited information available'
-                  : '🔒 PRIVATE PROFILE - Additional information hidden'}
-              </Line>
+              {mutualConnections !== undefined && (
+                <div className="tenet-stat">
+                  <div className="tenet-stat-value">{mutualConnections}</div>
+                  <div className="tenet-stat-label">Mutual</div>
+                </div>
+              )}
             </div>
-          </>
-        )}
+          )}
 
-        {/* Tenet footer */}
-        <Divider />
-        <Line
-          style={{
-            fontSize: '0.7rem',
-            color: 'rgb(148, 163, 184)',
-            textAlign: 'center',
-            fontStyle: 'italic',
-          }}
-        >
-          Tenet Citizen Network - Connecting Cy since 2067
-        </Line>
+          {/* Bio */}
+          {bio && !isRestricted && (
+            <div className="tenet-bio">
+              <div className="tenet-bio-label">About</div>
+              <div className="tenet-bio-text">{bio}</div>
+            </div>
+          )}
+
+          {/* Restricted message */}
+          {isRestricted && (
+            <div className="tenet-restricted">
+              {status === 'DELETED' && (
+                <div className="tenet-restricted-text">
+                  This account has been deleted. Limited information available.
+                </div>
+              )}
+              {status === 'SUSPENDED' && (
+                <div className="tenet-restricted-text">
+                  This account has been suspended. Limited information available.
+                </div>
+              )}
+              {privacy !== 'PUBLIC' && status === 'ACTIVE' && (
+                <div className="tenet-restricted-text">
+                  This profile is private. Connect to see more information.
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Right side - Actions and footer */}
+        <div className="tenet-right">
+          {/* Intercom button */}
+          {enableIntercom && status === 'ACTIVE' && (
+            <button
+              className="tenet-intercom-button"
+              onClick={onIntercom}
+              title="Send message via Intercom"
+            >
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 6C2 4.89543 2.89543 4 4 4H16C17.1046 4 18 4.89543 18 6V12C18 13.1046 17.1046 14 16 14H11L7 17V14H4C2.89543 14 2 13.1046 2 12V6Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <span>Intercom</span>
+            </button>
+          )}
+
+          {/* Footer info */}
+          <div className="tenet-footer">
+            <div className="tenet-id">ID: {id}</div>
+            {memberSince && <div className="tenet-member">Member since {memberSince}</div>}
+          </div>
+        </div>
       </div>
     </div>
   );

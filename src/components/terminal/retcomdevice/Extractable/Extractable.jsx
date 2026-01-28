@@ -1,8 +1,22 @@
 import { useState } from 'react';
-import {
-  Line,
-} from '@terminal/TerminalComponents';
+import { Line } from '@terminal/TerminalComponents';
 
+/**
+ * Extractable Component - Reusable extraction/stealing interface
+ *
+ * Generic component for any stealable/extractable content.
+ * Tracks extraction state in localStorage under unified key.
+ * Can be used for safes, ATMs, arcade cabinets, etc.
+ *
+ * Props:
+ * - id: Unique identifier (e.g., "safe-physical-alliansen-01")
+ * - items: Array of { item, desc, value? } to be extracted
+ * - type: "physical" | "digital" | "data" | "credits" (affects labeling/colors)
+ * - buttonLabel: Custom button text (default based on type)
+ * - requiresPresence: Boolean, show "requires presence" note (default: false)
+ * - disabled: Disable extraction (default: false)
+ * - onExtract: Callback function when extracted (optional)
+ */
 export default function Extractable({
   id,
   items = [],
@@ -12,7 +26,6 @@ export default function Extractable({
   disabled = false,
   onExtract,
 }) {
-  const hasItems = items && items.length >= 1;
   // Unified localStorage key for all extracted items
   const STORAGE_KEY = 'cyborg_retcom_extracted';
 
@@ -27,7 +40,7 @@ export default function Extractable({
   });
 
   const handleExtract = () => {
-    if (!hasItems || disabled || isExtracted) return;
+    if (disabled || isExtracted) return;
 
     // Save to unified storage
     try {
@@ -70,6 +83,7 @@ export default function Extractable({
         borderColorStolen: 'rgba(239, 68, 68, 0.3)',
         label: 'DIGITAL CONTENTS',
         buttonText: 'EXTRACT',
+        buttonTextPast: 'EXTRACTED',
         extractedText: 'DATA EXTRACTED',
         note: 'Extractable remotely via network connection',
       },
@@ -80,6 +94,7 @@ export default function Extractable({
         borderColorStolen: 'rgba(239, 68, 68, 0.3)',
         label: 'DATA',
         buttonText: 'DOWNLOAD',
+        buttonTextPast: 'DOWNLOADED',
         extractedText: 'DATA DOWNLOADED',
         note: 'Remote extraction available',
       },
@@ -89,9 +104,21 @@ export default function Extractable({
         borderColor: 'rgba(0, 170, 40, 0.2)',
         borderColorStolen: 'rgba(239, 68, 68, 0.3)',
         label: 'CREDITS',
-        buttonText: 'SKIM',
-        extractedText: 'CREDITS SKIMMED',
+        buttonText: 'TRANSFER',
+        buttonTextPast: 'TRANSFERRED',
+        extractedText: 'CREDITS TRANSFERED',
         note: 'Network skim available',
+      },
+      bounty: {
+        color: 'rgb(239, 68, 68)', // red
+        bgColor: 'rgba(239, 68, 68, 0.05)',
+        borderColor: 'rgba(239, 68, 68, 0.2)',
+        borderColorStolen: 'rgba(16, 185, 129, 0.3)',
+        label: 'BOUNTY CLAIM',
+        buttonText: 'CLAIM',
+        buttonTextPast: 'CLAIMED',
+        extractedText: 'BOUNTY CLAIMED',
+        note: 'Submit proof to claim reward',
       },
     };
     return configs[type] || configs.digital;
@@ -129,54 +156,52 @@ export default function Extractable({
         </div>
 
         {/* Extract button */}
-        {hasItems && (
-          <button
-            onClick={handleExtract}
-            disabled={isExtracted || disabled || !hasItems}
-            style={{
-              padding: '0.25rem 0.75rem',
-              fontSize: '0.75rem',
-              fontWeight: 'bold',
-              backgroundColor: (isExtracted || disabled) ? 'rgb(45, 53, 72)' : config.color,
-              color: (isExtracted || disabled) ? 'rgb(148, 163, 184)' : 'rgb(19, 23, 34)',
-              border: 'none',
-              borderRadius: '3px',
-              cursor: (isExtracted || disabled) ? 'not-allowed' : 'pointer',
-              transition: 'all 0.2s',
-              fontFamily: 'monospace',
-            }}
-            onMouseEnter={(e) => {
-              if (!isExtracted && !disabled) {
-                e.target.style.opacity = '0.8';
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (!isExtracted && !disabled) {
-                e.target.style.opacity = '1';
-              }
-            }}
-          >
-            {isExtracted ? (
-              <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                {/* CSS Checkmark */}
-                <span
-                  style={{
-                    display: 'inline-block',
-                    width: '10px',
-                    height: '6px',
-                    borderLeft: '2px solid currentColor',
-                    borderBottom: '2px solid currentColor',
-                    transform: 'rotate(-45deg)',
-                    marginBottom: '2px',
-                  }}
-                />
-                {config.buttonText}ED
-              </span>
-            ) : (
-              buttonLabel || config.buttonText
-            )}
-          </button>
-        )}
+        <button
+          onClick={handleExtract}
+          disabled={isExtracted || disabled}
+          style={{
+            padding: '0.25rem 0.75rem',
+            fontSize: '0.75rem',
+            fontWeight: 'bold',
+            backgroundColor: (isExtracted || disabled) ? 'rgb(45, 53, 72)' : config.color,
+            color: (isExtracted || disabled) ? 'rgb(148, 163, 184)' : 'rgb(19, 23, 34)',
+            border: 'none',
+            borderRadius: '3px',
+            cursor: (isExtracted || disabled) ? 'not-allowed' : 'pointer',
+            transition: 'all 0.2s',
+            fontFamily: 'monospace',
+          }}
+          onMouseEnter={(e) => {
+            if (!isExtracted && !disabled) {
+              e.target.style.opacity = '0.8';
+            }
+          }}
+          onMouseLeave={(e) => {
+            if (!isExtracted && !disabled) {
+              e.target.style.opacity = '1';
+            }
+          }}
+        >
+          {isExtracted ? (
+            <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+              {/* CSS Checkmark */}
+              <span
+                style={{
+                  display: 'inline-block',
+                  width: '10px',
+                  height: '6px',
+                  borderLeft: '2px solid currentColor',
+                  borderBottom: '2px solid currentColor',
+                  transform: 'rotate(-45deg)',
+                  marginBottom: '2px',
+                }}
+              />
+              {config.buttonTextPast}
+            </span>
+          ) : (
+            buttonLabel || config.buttonText
+          )}
+        </button>
       </div>
 
       {/* Contents list */}
@@ -189,10 +214,6 @@ export default function Extractable({
           position: 'relative',
         }}
       >
-        {items.length === 0 && (
-          <Line yellow>No contents detected</Line>
-        )}
-
         {items.map((item, i) => (
           <Line
             key={i}
@@ -212,7 +233,7 @@ export default function Extractable({
         ))}
 
         {/* Extracted indicator */}
-        {hasItems && isExtracted && (
+        {isExtracted && (
           <div
             style={{
               marginTop: '0.5rem',

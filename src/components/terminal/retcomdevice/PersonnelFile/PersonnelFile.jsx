@@ -1,16 +1,40 @@
-import { Line, Divider, DataTable, Section } from '@terminal/TerminalComponents';
+import './personnelFile.css';
 
+/**
+ * PersonnelFile - Internal HR employee record
+ *
+ * Professional HR file layout for employee information.
+ * Password-protected, confidential company data.
+ *
+ * Props:
+ * - employeeId: String
+ * - name: String
+ * - position: String
+ * - department: String
+ * - hireDate: String
+ * - supervisor: String
+ * - clearanceLevel: Number or String (1-5, or "NONE")
+ * - salary: String (optional, e.g., "65,000 credits/year")
+ * - location: String (optional, office location)
+ * - email: String (optional)
+ * - phone: String (optional)
+ * - emergencyContact: String (optional)
+ * - performance: Number (optional, 0-100)
+ * - notes: Array of strings (optional, HR notes)
+ * - status: String (ACTIVE, SUSPENDED, TERMINATED)
+ */
 export default function PersonnelFile({
   employeeId,
   name,
-  age,
-  dob,
   position,
   department,
   hireDate,
   supervisor,
   clearanceLevel = 'NONE',
-  district,
+  salary,
+  location,
+  email,
+  phone,
   emergencyContact,
   performance,
   notes = [],
@@ -19,211 +43,177 @@ export default function PersonnelFile({
   const getStatusColor = () => {
     switch (status) {
       case 'ACTIVE':
-        return 'rgb(34, 197, 94)';
+        return '#10b981';
       case 'SUSPENDED':
-        return 'rgb(251, 191, 36)';
+        return '#f59e0b';
       case 'TERMINATED':
-        return 'rgb(239, 68, 68)';
+        return '#ef4444';
       default:
-        return 'rgb(148, 163, 184)';
+        return '#94a3b8';
     }
   };
 
   const getClearanceColor = () => {
     if (typeof clearanceLevel === 'number') {
-      if (clearanceLevel >= 4) return 'rgb(239, 68, 68)'; // High clearance - red
-      if (clearanceLevel >= 2) return 'rgb(251, 191, 36)'; // Medium - yellow
-      return 'rgb(79, 209, 197)'; // Low - cyan
+      if (clearanceLevel >= 4) return '#ef4444';
+      if (clearanceLevel >= 2) return '#f59e0b';
+      return '#3b82f6';
     }
-    return 'rgb(148, 163, 184)'; // None - gray
+    return '#94a3b8';
   };
 
-  const getPerformanceColor = () => {
-    if (!performance) return 'rgb(148, 163, 184)';
-    if (performance >= 80) return 'rgb(34, 197, 94)';
-    if (performance >= 60) return 'rgb(251, 191, 36)';
-    return 'rgb(239, 68, 68)';
+  const getPerformanceRating = () => {
+    if (!performance) return null;
+    if (performance >= 90) return 'Exceptional';
+    if (performance >= 75) return 'Exceeds Expectations';
+    if (performance >= 60) return 'Meets Expectations';
+    if (performance >= 40) return 'Needs Improvement';
+    return 'Unsatisfactory';
   };
 
   return (
-    <div
-      style={{
-        border: '2px solid rgb(77, 167, 188)',
-        borderRadius: '4px',
-        padding: '1rem',
-        backgroundColor: 'rgba(29, 35, 50, 0.5)',
-        opacity: status === 'TERMINATED' ? 0.7 : 1,
-      }}
-    >
+    <div className="personnel-file">
       {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
-        {/* HR file icon */}
-        <div style={{ position: 'relative', width: '24px', height: '24px', flexShrink: 0 }}>
-          {/* Folder */}
-          <div
-            style={{
-              position: 'absolute',
-              bottom: '4px',
-              left: '2px',
-              width: '20px',
-              height: '16px',
-              backgroundColor: 'rgb(251, 191, 36)',
-              borderRadius: '2px',
-            }}
-          />
-          {/* Tab */}
-          <div
-            style={{
-              position: 'absolute',
-              top: '4px',
-              left: '2px',
-              width: '12px',
-              height: '8px',
-              backgroundColor: 'rgb(251, 191, 36)',
-              borderRadius: '2px 2px 0 0',
-            }}
-          />
+      <div className="personnel-header">
+        <div className="personnel-header-left">
+          <div className="personnel-company">ALLIANSEN INC.</div>
+          <div className="personnel-title">Employee Personnel Record</div>
         </div>
-
-        <Line smoke large bold style={{ margin: 0, flex: 1 }}>
-          [PERSONNEL FILE]
-        </Line>
-
-        {/* Status badge */}
-        <div
-          style={{
-            padding: '0.25rem 0.5rem',
-            fontSize: '0.75rem',
-            fontWeight: 'bold',
-            color: getStatusColor(),
-            backgroundColor: `${getStatusColor()}20`,
-            border: `1px solid ${getStatusColor()}`,
-            borderRadius: '3px',
-            fontFamily: 'monospace',
-          }}
-        >
-          {status}
+        <div className="personnel-header-right">
+          <div
+            className="personnel-status"
+            style={{ backgroundColor: `${getStatusColor()}15`, borderColor: getStatusColor() }}
+          >
+            <div
+              className="personnel-status-dot"
+              style={{ backgroundColor: getStatusColor() }}
+            ></div>
+            <span style={{ color: getStatusColor() }}>{status}</span>
+          </div>
         </div>
       </div>
 
-      {/* Employee ID */}
-      <Line cyan style={{ fontSize: '0.875rem' }}>
-        Employee ID: {employeeId}
-      </Line>
-      <Divider />
+      {/* Employee ID banner */}
+      <div className="personnel-id-banner">
+        <span className="personnel-id-label">EMPLOYEE ID:</span>
+        <span className="personnel-id-value">{employeeId}</span>
+      </div>
 
-      {/* Basic Information */}
-      <Section title="BASIC INFORMATION:">
-        <DataTable
-          data={[
-            { label: 'Name', value: name },
-            { label: 'Age', value: age },
-            { label: 'Date of Birth', value: dob },
-            { label: 'Home District', value: district },
-          ]}
-        />
-      </Section>
-
-      <Divider />
-
-      {/* Employment Details */}
-      <Section title="EMPLOYMENT DETAILS:">
-        <DataTable
-          data={[
-            { label: 'Position', value: position },
-            { label: 'Department', value: department },
-            { label: 'Hire Date', value: hireDate },
-            { label: 'Supervisor', value: supervisor },
-          ]}
-        />
-      </Section>
-
-      <Divider />
-
-      {/* Security & Clearance */}
-      <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
-        <div style={{ flex: 1 }}>
-          <div style={{ fontSize: '0.7rem', color: 'rgb(148, 163, 184)', marginBottom: '0.25rem' }}>
-            CLEARANCE LEVEL
-          </div>
-          <div
-            style={{
-              fontSize: '1.25rem',
-              fontWeight: 'bold',
-              color: getClearanceColor(),
-              fontFamily: 'monospace',
-            }}
-          >
-            {clearanceLevel}
+      {/* Content */}
+      <div className="personnel-content">
+        {/* Basic Information */}
+        <div className="personnel-section">
+          <div className="personnel-section-title">Employee Information</div>
+          <div className="personnel-grid">
+            <div className="personnel-field">
+              <div className="personnel-field-label">Full Name</div>
+              <div className="personnel-field-value">{name}</div>
+            </div>
+            <div className="personnel-field">
+              <div className="personnel-field-label">Position</div>
+              <div className="personnel-field-value">{position}</div>
+            </div>
+            <div className="personnel-field">
+              <div className="personnel-field-label">Department</div>
+              <div className="personnel-field-value">{department}</div>
+            </div>
+            <div className="personnel-field">
+              <div className="personnel-field-label">Supervisor</div>
+              <div className="personnel-field-value">{supervisor}</div>
+            </div>
+            <div className="personnel-field">
+              <div className="personnel-field-label">Hire Date</div>
+              <div className="personnel-field-value">{hireDate}</div>
+            </div>
+            {location && (
+              <div className="personnel-field">
+                <div className="personnel-field-label">Office Location</div>
+                <div className="personnel-field-value">{location}</div>
+              </div>
+            )}
           </div>
         </div>
 
-        {performance !== undefined && (
-          <div style={{ flex: 1 }}>
-            <div style={{ fontSize: '0.7rem', color: 'rgb(148, 163, 184)', marginBottom: '0.25rem' }}>
-              PERFORMANCE RATING
+        {/* Contact Information */}
+        {(email || phone || emergencyContact) && (
+          <div className="personnel-section">
+            <div className="personnel-section-title">Contact Information</div>
+            <div className="personnel-grid">
+              {email && (
+                <div className="personnel-field">
+                  <div className="personnel-field-label">Email</div>
+                  <div className="personnel-field-value">{email}</div>
+                </div>
+              )}
+              {phone && (
+                <div className="personnel-field">
+                  <div className="personnel-field-label">Phone</div>
+                  <div className="personnel-field-value">{phone}</div>
+                </div>
+              )}
+              {emergencyContact && (
+                <div className="personnel-field">
+                  <div className="personnel-field-label">Emergency Contact</div>
+                  <div className="personnel-field-value">{emergencyContact}</div>
+                </div>
+              )}
             </div>
-            <div
-              style={{
-                fontSize: '1.25rem',
-                fontWeight: 'bold',
-                color: getPerformanceColor(),
-                fontFamily: 'monospace',
-              }}
-            >
-              {performance}%
+          </div>
+        )}
+
+        {/* Clearance & Performance */}
+        <div className="personnel-section">
+          <div className="personnel-section-title">Security & Performance</div>
+          <div className="personnel-badges">
+            <div className="personnel-badge">
+              <div className="personnel-badge-label">Security Clearance</div>
+              <div
+                className="personnel-badge-value"
+                style={{
+                  color: getClearanceColor(),
+                  borderColor: getClearanceColor()
+                }}
+              >
+                LEVEL {clearanceLevel}
+              </div>
+            </div>
+            {performance !== undefined && (
+              <div className="personnel-badge">
+                <div className="personnel-badge-label">Performance Rating</div>
+                <div className="personnel-badge-value">{performance}%</div>
+                <div className="personnel-badge-sublabel">{getPerformanceRating()}</div>
+              </div>
+            )}
+            {salary && (
+              <div className="personnel-badge">
+                <div className="personnel-badge-label">Annual Salary</div>
+                <div className="personnel-badge-value">{salary}</div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* HR Notes */}
+        {notes.length > 0 && (
+          <div className="personnel-section">
+            <div className="personnel-section-title">HR Notes</div>
+            <div className="personnel-notes">
+              {notes.map((note, i) => (
+                <div key={i} className="personnel-note">
+                  <div className="personnel-note-bullet"></div>
+                  <div className="personnel-note-text">{note}</div>
+                </div>
+              ))}
             </div>
           </div>
         )}
       </div>
 
-      {/* Emergency Contact */}
-      {emergencyContact && (
-        <>
-          <Divider />
-          <Section title="EMERGENCY CONTACT:">
-            <Line neon style={{ fontSize: '0.875rem' }}>
-              {emergencyContact}
-            </Line>
-          </Section>
-        </>
-      )}
-
-      {/* HR Notes */}
-      {notes.length > 0 && (
-        <>
-          <Divider />
-          <Section title="HR NOTES:">
-            {notes.map((note, i) => (
-              <Line
-                key={i}
-                yellow
-                style={{
-                  fontSize: '0.875rem',
-                  marginBottom: '0.35rem',
-                  fontStyle: 'italic',
-                }}
-              >
-                • {note}
-              </Line>
-            ))}
-          </Section>
-        </>
-      )}
-
-      <Divider />
-
       {/* Footer */}
-      <Line
-        smoke
-        style={{
-          fontSize: '0.7rem',
-          textAlign: 'center',
-          fontStyle: 'italic',
-        }}
-      >
-        Alliansen Inc. Human Resources - Confidential
-      </Line>
+      <div className="personnel-footer">
+        <div className="personnel-confidential">CONFIDENTIAL - INTERNAL USE ONLY</div>
+        <div className="personnel-footer-text">Alliansen Inc. Human Resources Department</div>
+      </div>
     </div>
   );
 }

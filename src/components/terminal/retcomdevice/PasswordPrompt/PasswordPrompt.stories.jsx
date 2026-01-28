@@ -1,4 +1,5 @@
 import PasswordPrompt from './PasswordPrompt';
+import DigitalWallet from '../DigitalWallet/DigitalWallet';
 
 export default {
   title: 'Terminal/PasswordPrompt',
@@ -14,6 +15,23 @@ export const SimplePassword = {
     hintStrength: 1,
     onSubmit: (password) => console.log('Submitted:', password),
     onCancel: () => console.log('Cancelled'),
+  },
+};
+
+export const SimplePasswordChild = {
+  args: {
+    command: 'Access: Employee Locker',
+    password: 'BLUE',
+    hint: 'Color of the sky',
+    hintStrength: 1,
+    onSubmit: (password) => console.log('Submitted:', password),
+    onCancel: () => console.log('Cancelled'),
+    children: (
+      <DigitalWallet
+        accountHolder="Marcus 'Slip' Chen"
+        isLocked={true}
+      />
+    )
   },
 };
 

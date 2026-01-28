@@ -1,0 +1,188 @@
+/* DigitalWallet - Vertical Banner with Lock Screen */
+
+.digital-wallet {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', monospace;
+  background: rgba(15, 23, 42, 0.95);
+  border: 2px solid rgba(79, 209, 197, 0.3);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+/* Scanline effect */
+.digital-wallet::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(79, 209, 197, 0.03) 0px,
+    transparent 1px,
+    transparent 2px,
+    rgba(79, 209, 197, 0.03) 3px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Locked state styling */
+.digital-wallet-locked {
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.digital-wallet-locked::before {
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(239, 68, 68, 0.03) 0px,
+    transparent 1px,
+    transparent 2px,
+    rgba(239, 68, 68, 0.03) 3px
+  );
+}
+
+.digital-wallet-locked .wallet-title-text {
+  color: rgb(239, 68, 68);
+}
+
+/* Header - Account info (vertical layout) */
+.wallet-header {
+  padding: 1.25rem 1.5rem;
+  background: rgba(30, 41, 59, 0.8);
+  border-bottom: 2px solid rgba(79, 209, 197, 0.3);
+  position: relative;
+  z-index: 2;
+}
+
+.digital-wallet-locked .wallet-header {
+  border-bottom-color: rgba(239, 68, 68, 0.3);
+}
+
+/* Title */
+.wallet-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.wallet-title-text {
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgb(79, 209, 197);
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 10px rgba(79, 209, 197, 0.4);
+}
+
+.wallet-locked-badge {
+  padding: 0.25rem 0.75rem;
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgb(239, 68, 68);
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgb(239, 68, 68);
+  letter-spacing: 0.05em;
+  animation: pulse-red 2s ease-in-out infinite;
+}
+
+@keyframes pulse-red {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* Account details - vertical list */
+.wallet-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.wallet-detail-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.wallet-detail-label {
+  color: rgb(100, 116, 139);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  min-width: 60px;
+}
+
+.wallet-detail-value {
+  color: rgb(203, 213, 225);
+  font-family: monospace;
+}
+
+/* Lock Screen - fancy visual */
+.wallet-lock-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0 1rem 0;
+  background: rgba(30, 41, 59, 0.6);
+  position: relative;
+  z-index: 2;
+  gap: 2rem;
+}
+
+.wallet-lock-visual {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wallet-lock-visual svg {
+  color: rgb(239, 68, 68);
+  filter: drop-shadow(0 0 15px rgba(239, 68, 68, 0.5));
+  position: relative;
+  z-index: 2;
+}
+
+/* Pulsing ring around lock */
+.wallet-lock-ring {
+  position: absolute;
+  inset: 0;
+  border: 3px solid rgba(239, 68, 68, 0.4);
+  border-radius: 50%;
+  animation: pulse-ring 2s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.3;
+  }
+}
+
+.wallet-lock-text {
+  text-align: center;
+}
+
+.wallet-lock-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: rgb(239, 68, 68);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+}
+
+/* Extractable area */
+.wallet-extract-area {
+  padding: 1rem 1.5rem;
+  background: rgba(30, 41, 59, 0.6);
+  position: relative;
+  z-index: 2;
+}

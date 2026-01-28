@@ -28,6 +28,7 @@ export default function PasswordPrompt({
   hintStrength = 1,
   onSubmit,
   onCancel,
+  children,
 }) {
   const [currentPassword, setCurrentPassword] = useState("");
   const [shuffledKeys, setShuffledKeys] = useState([]);
@@ -171,6 +172,12 @@ export default function PasswordPrompt({
               ))}
             </div>
           </div>
+
+          {Boolean(children) && (
+            <div className="mb-4">
+              {children}
+            </div>
+          )}
 
           {/* Hints */}
           {hint && (
