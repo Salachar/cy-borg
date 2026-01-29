@@ -1,10 +1,11 @@
 export default function InternalAccess({
   businessName,
-  welcomeMessage = "EMPLOYEE ACCESS GRANTED",
-  networkInfo,
   theme = 'corporate',
+  system = "INTERNAL SYSTEMS",
+  welcomeMessage = "EMPLOYEE ACCESS GRANTED",
+  note,
+  children,
 }) {
-  // Theme-based styling
   const themeConfig = {
     corporate: {
       borderColor: 'rgb(79, 209, 197)',
@@ -54,7 +55,7 @@ export default function InternalAccess({
             letterSpacing: '0.05em',
           }}
         >
-          [{businessName} - INTERNAL SYSTEMS]
+          [{businessName} - {system}]
         </div>
         <div
           style={{
@@ -68,8 +69,16 @@ export default function InternalAccess({
         </div>
       </div>
 
-      {/* Footer info (optional) */}
-      {networkInfo && (
+      {Boolean(children) && (
+        <div style={{
+          backgroundColor: 'rgba(0, 0, 0, 0.2)',
+          padding: '1rem',
+        }}>
+          {children }
+        </div>
+      )}
+
+      {note && (
         <div
           style={{
             padding: '0.75rem 1rem',
@@ -84,7 +93,7 @@ export default function InternalAccess({
               fontFamily: 'monospace',
             }}
           >
-            {networkInfo}
+            {note}
           </span>
         </div>
       )}

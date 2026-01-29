@@ -146,7 +146,7 @@ export const WAREHOUSE_COMMANDS = {
           <InternalAccess
             businessName="ALLIANSEN WAREHOUSE"
             welcomeMessage="EMPLOYEE NETWORK CONNECTED"
-            networkInfo="⚠ All access logged to corporate security | Connection: RCD-#8834"
+            note="⚠ All access logged to corporate security | Connection: RCD-#8834"
             theme="corporate"
           />
         ),

@@ -355,7 +355,7 @@ export const DOC_JOY_CLINIC_COMMANDS = {
           <InternalAccess
             businessName="DOC JOY'S REAPER CLINIC"
             welcomeMessage="STAFF ACCESS GRANTED"
-            networkInfo="⚠ Internal systems - Staff only | Connection: Clinic-Net-047"
+            note="⚠ Internal systems - Staff only | Connection: Clinic-Net-047"
             theme="secure"
           />
         ),
@@ -910,7 +910,7 @@ export const DOC_JOY_CLINIC_COMMANDS = {
           <InternalAccess
             businessName="DOC JOY - PRIVATE SYSTEMS"
             welcomeMessage="ADMINISTRATOR ACCESS GRANTED"
-            networkInfo="⚠ Restricted access - Doc Joy's personal files only"
+            note="⚠ Restricted access - Doc Joy's personal files only"
             theme="secure"
           />
         ),

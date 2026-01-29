@@ -51,7 +51,11 @@ export default function HoursBanner({
         </div>
       )}
 
-      {Boolean(children) && children}
+      {Boolean(children) && (
+        <div style={{ margin: '1rem 0' }}>
+          {children}
+        </div>
+      )}
 
       {/* Note */}
       {note && (

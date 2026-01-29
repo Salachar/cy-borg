@@ -112,7 +112,6 @@ export const BODEGA_COMMANDS = {
               "3 days ago, 16:33 → Balance inquiry",
               "4 days ago, 20:01 → Withdrawal: 60¤",
             ]}
-
           />
         ),
       },
@@ -142,7 +141,7 @@ export const BODEGA_COMMANDS = {
               <MaintenanceAccess />
             ),
             related_commands: {
-              "VendWallet": {
+              "vend_wallet": {
                 password: {
                   pw: "coins",
                   hint: "What accumulates in the cash box",
@@ -156,21 +155,22 @@ export const BODEGA_COMMANDS = {
                   />
                 ),
               },
-              "Debug": {
+              "debug": {
                 password: {
                   pw: "freevend",
                   hint: "The mode that gives away drinks",
                   hintStrength: 2,
                 },
                 content: (
-                  <>
-                    <Line smoke large bold>[DEBUG MODE ACTIVATED]</Line>
-                    <Divider />
+                  <InternalAccess
+                    businessName="VENDING MACHINE"
+                    welcomeMessage="DEBUG MODE ACTIVATED"
+                    note="Dispense drinks via main interface - no charge"
+                    theme="corporate"
+                  >
                     <Line yellow large>⚠ FREE VEND MODE ENABLED</Line>
                     <Line cyan>All payment verification disabled</Line>
-                    <Divider />
-                    <Line neon>Dispense drinks via main interface - no charge</Line>
-                  </>
+                  </InternalAccess>
                 ),
               },
             },
@@ -180,10 +180,13 @@ export const BODEGA_COMMANDS = {
 
       "Deals!": {
         content: (
-          <>
-            <Line yellow large bold>[TODAY'S SPECIALS]</Line>
-            <Line cyan>Updated: 3 days ago (Store closed since)</Line>
-            <Divider />
+          <InternalAccess
+            businessName="BODEGA"
+            system="TODAY'S SPECIALS"
+            welcomeMessage="Updated: 3 days ago"
+            note={'"Fair prices. No questions." - Batu'}
+            theme="casual"
+          >
             <Section title="WEEKLY DEALS:">
               <Line neon>• Synth-Ramen 6-pack → 12¤ (was 18¤)</Line>
               <Line neon>• Energy Drinks (any brand) → 2 for 8¤</Line>
@@ -206,13 +209,11 @@ export const BODEGA_COMMANDS = {
               <Line cyan>✓ Free wifi (password: freewifi)</Line>
               <Line cyan>✓ Community bulletin board</Line>
             </Section>
-            <Divider />
-            <Line pink>"Fair prices. No questions. - Batu"</Line>
-          </>
+          </InternalAccess>
         ),
       },
 
-      "Operating Status": {
+      "Hours of Operation": {
         content: (
           <HoursBanner
             businessName="Batu's Bodega"
@@ -223,24 +224,22 @@ export const BODEGA_COMMANDS = {
             location="Corner of Drech Ave & 5th Street, Ports/Bigmosse border"
             note="Batu sometimes stays open late for regulars"
           >
-            <div style={{ margin: '1rem 0' }}>
-              <Line smoke large bold>[CLOSURE DETAILS]</Line>
-              <Divider />
-              <DataTable data={[
-                { label: "Duration Closed", value: "3 days" },
-                { label: "Last Transaction", value: "72 hours ago (19:47)" },
-                { label: "Owner Contact", value: "NO RESPONSE" },
-                { label: "Sunday Hours", value: "08:00 - 20:00 (when open)" },
-              ]} />
-              <Divider />
-              <Section title="ADDITIONAL LOCATION INFO:">
-                <Line cyan>4 blocks from Lucky Flight Casino</Line>
-                <Line cyan>Ground floor of old apartment complex</Line>
-              </Section>
-              <Divider />
-              <Line red>⚠ Store appears damaged - front window broken</Line>
-              <Line yellow>Neighbors report no sign of Batu for 3 days</Line>
-            </div>
+            <Line smoke large bold>[CLOSURE DETAILS]</Line>
+            <Divider />
+            <DataTable data={[
+              { label: "Duration Closed", value: "3 days" },
+              { label: "Last Transaction", value: "72 hours ago (19:47)" },
+              { label: "Owner Contact", value: "NO RESPONSE" },
+              { label: "Sunday Hours", value: "08:00 - 20:00 (when open)" },
+            ]} />
+            <Divider />
+            <Section title="ADDITIONAL LOCATION INFO:">
+              <Line cyan>4 blocks from Lucky Flight Casino</Line>
+              <Line cyan>Ground floor of old apartment complex</Line>
+            </Section>
+            <Divider />
+            <Line red>⚠ Store appears damaged - front window broken</Line>
+            <Line yellow>Neighbors report no sign of Batu for 3 days</Line>
           </HoursBanner>
         ),
       },
@@ -282,7 +281,7 @@ export const BODEGA_COMMANDS = {
           <InternalAccess
             businessName="BODEGA"
             welcomeMessage="EMPLOYEE ACCESS GRANTED"
-            networkInfo="Internal network maintained by Batu (basic security)"
+            note="Internal network maintained by Batu (basic security)"
             theme="casual"
           />
         ),
@@ -319,7 +318,13 @@ export const BODEGA_COMMANDS = {
 
           query_personnel: {
             content: (
-              <>
+              <InternalAccess
+                businessName="BODEGA"
+                system="PERSONNEL RECORDS"
+                welcomeMessage="EMPLOYEE ACCESS GRANTED"
+                note="Internal network maintained by Batu (basic security)"
+                theme="corporate"
+              >
                 <Line smoke large bold>[PERSONNEL RECORDS]</Line>
                 <Line cyan>Active employees: 2</Line>
                 <Divider />
@@ -327,7 +332,7 @@ export const BODEGA_COMMANDS = {
                   <Line neon>→ Batu (Owner/Operator)</Line>
                   <Line neon>→ Zara (Part-time, Batu's niece)</Line>
                 </Section>
-              </>
+              </InternalAccess>
             ),
             related_commands: {
               query_batu_personnel_file: {
@@ -399,10 +404,13 @@ export const BODEGA_COMMANDS = {
 
           query_inventory: {
             content: (
-              <>
-                <Line smoke large bold>[INVENTORY DATABASE]</Line>
-                <Line yellow>Last updated: 3 days ago (pre-closure)</Line>
-                <Divider />
+              <InternalAccess
+                businessName="BODEGA"
+                system="INVENTORY MANAGEMENT"
+                welcomeMessage="Last updated: 3 days ago (pre-closure)"
+                note="Free wifi still active"
+                theme="casual"
+              >
                 <Section title="CURRENT STOCK STATUS:">
                   <Line red>⚠ Significant inventory loss detected</Line>
                   <Line red>⚠ Physical count required for accuracy</Line>
@@ -424,10 +432,7 @@ export const BODEGA_COMMANDS = {
                   <Line yellow>? Fire extinguisher: Should be under counter</Line>
                   <Line yellow>? Bottle inventory: Needs physical inspection</Line>
                 </Section>
-                <Divider />
-                <Line cyan>Store layout unchanged - familiar to regulars</Line>
-                <Line yellow>Free wifi still active</Line>
-              </>
+              </InternalAccess>
             ),
           },
 

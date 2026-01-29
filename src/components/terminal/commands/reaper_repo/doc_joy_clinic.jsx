@@ -252,7 +252,7 @@ const DOC_JOY_CLINIC_COMMANDS = {
             <InternalAccess
               businessName="Doc Joy's Clinic"
               welcomeMessage="STAFF ACCESS GRANTED"
-              networkInfo="Internal Network: CLINIC_SECURE | Node: OFFICE-01"
+              note="Internal Network: CLINIC_SECURE | Node: OFFICE-01"
               theme="casual"
             />
           </>

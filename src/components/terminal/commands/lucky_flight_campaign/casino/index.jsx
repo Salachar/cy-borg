@@ -241,7 +241,7 @@ export const LUCKY_FLIGHT_CASINO = {
           <InternalAccess
             businessName="CASINO"
             welcomeMessage="ACCESS GRANTED - PERIPHERAL SYSTEMS"
-            networkInfo="Higher-value systems require additional credentials"
+            note="Higher-value systems require additional credentials"
             theme="corporate"
           />
         ),

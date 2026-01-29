@@ -144,7 +144,7 @@ export const STONE_EELS_COMMANDS = {
           <InternalAccess
             businessName="CAVE CLUB"
             welcomeMessage="STAFF ACCESS GRANTED"
-            networkInfo="⚠ Internal network maintained by Stone Eels tech crew"
+            note="⚠ Internal network maintained by Stone Eels tech crew"
             theme="secure"
           />
         ),
@@ -341,7 +341,7 @@ export const STONE_EELS_COMMANDS = {
               <InternalAccess
                 businessName="STONE EELS OPERATIONS"
                 welcomeMessage="GANG LEADERSHIP ACCESS GRANTED"
-                networkInfo="⚠ Restricted operational data - Leadership only"
+                note="⚠ Restricted operational data - Leadership only"
                 theme="secure"
               />
             ),

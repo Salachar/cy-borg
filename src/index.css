@@ -86,29 +86,6 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
-h1, h2, h3, h4, h5 {
-  /* padding: 0; */
-  /* margin: 0; */
-  /* font-weight: 700; */
-  /* letter-spacing: -0.025em; */
-}
-
-/* h1 {
-  font-size: 2.5rem;
-  color: var(--color-neon-cyan);
-  text-transform: uppercase;
-}
-
-h2 {
-  font-size: 2rem;
-  color: var(--color-neon-yellow);
-}
-
-h3 {
-  font-size: 1.5rem;
-  color: #ffffff;
-} */
-
 .bold {
   font-weight: bold !important;
 }
@@ -212,7 +189,6 @@ button {
   color: #e0e0e0;
   font-family: "Courier New", monospace;
   font-weight: 600;
-  text-transform: uppercase;
   letter-spacing: 0.05em;
   transition: all 0.2s ease;
 }

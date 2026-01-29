@@ -658,7 +658,7 @@ export const THE_55_ALLIANSEN_ARMS_COMMANDS = {
           <InternalAccess
             businessName="ALLIANSEN ARMS MANAGEMENT"
             welcomeMessage="BUILDING MANAGEMENT ACCESS"
-            networkInfo="⚠ Property systems - Authorized personnel only"
+            note="⚠ Property systems - Authorized personnel only"
             theme="corporate"
           />
         ),
