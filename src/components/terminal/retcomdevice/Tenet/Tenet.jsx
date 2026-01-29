@@ -1,152 +1,252 @@
-import './tenet.css';
+import { Line, Divider, DataTable } from '@terminal/TerminalComponents';
 
 /**
- * Tenet - Social network citizen profile
+ * Tenet - Building resident directory lookup
  *
- * Public-facing profile card similar to social media platforms.
- * Shows limited public information.
+ * Public-facing resident information at apartment/building entrance.
+ * Similar to intercom directory systems.
  *
  * Props:
- * - id: String (citizen ID)
+ * - id: String (resident ID or unit number)
  * - name: String
- * - tagline: String (optional, like "Software Engineer @ TechCorp")
- * - district: String (optional, home district)
- * - connections: Number (connection count)
- * - mutualConnections: Number (optional, mutual connections with viewer)
- * - profilePicture: String (optional, initials if not provided)
- * - bio: String (optional, short bio)
- * - privacy: String (PUBLIC, FRIENDS, PRIVATE)
- * - status: String (ACTIVE, SUSPENDED, DELETED)
- * - memberSince: String (optional, e.g., "2067")
- * - enableIntercom: Boolean (optional, shows intercom button, default: false)
- * - onIntercom: Function (optional, callback for intercom button)
+ * - unit: String (optional, unit/apartment number)
+ * - building: String (optional, building name/number)
+ * - moveInDate: String (optional)
+ * - status: String (ACTIVE, MOVED_OUT, SUSPENDED)
+ * - intercomEnabled: Boolean (default: true)
+ * - emergencyContact: String (optional, emergency contact info)
+ * - notes: String (optional, public notes like "Deliveries: Leave at door")
  */
 export default function Tenet({
   id,
   name,
-  tagline,
-  district,
-  connections = 0,
-  mutualConnections,
-  profilePicture,
-  bio,
-  privacy = 'PUBLIC',
+  unit,
+  building,
+  moveInDate,
   status = 'ACTIVE',
-  memberSince,
-  enableIntercom = false,
-  onIntercom,
+  intercomEnabled = true,
+  emergencyContact,
+  notes,
 }) {
-  const isRestricted = privacy !== 'PUBLIC' || status !== 'ACTIVE';
-  const initials = name
-    ?.split(' ')
-    .map(n => n[0])
-    .join('')
-    .toUpperCase()
-    .slice(0, 2) || '??';
+  const getStatusColor = () => {
+    switch (status) {
+      case 'ACTIVE':
+        return 'rgb(34, 197, 94)';
+      case 'MOVED_OUT':
+        return 'rgb(148, 163, 184)';
+      case 'SUSPENDED':
+        return 'rgb(239, 68, 68)';
+      default:
+        return 'rgb(148, 163, 184)';
+    }
+  };
+
+  const statusColor = getStatusColor();
 
   return (
-    <div className="tenet-profile">
-      {/* Header bar */}
-      <div className="tenet-header">
-        <div className="tenet-brand">TENET</div>
-        <div className="tenet-privacy">
-          {privacy === 'PRIVATE' && <span className="privacy-badge privacy-private">Private</span>}
-          {privacy === 'FRIENDS' && <span className="privacy-badge privacy-friends">Friends Only</span>}
-          {privacy === 'PUBLIC' && <span className="privacy-badge privacy-public">Public</span>}
-        </div>
-      </div>
-
-      {/* Profile content - horizontal layout */}
-      <div className="tenet-content">
-        {/* Left side - Profile picture */}
-        <div className="tenet-left">
-          <div className="tenet-profile-pic">
-            {profilePicture ? (
-              <img src={profilePicture} alt={name} />
-            ) : (
-              <div className="tenet-initials">{initials}</div>
-            )}
-            {status !== 'ACTIVE' && (
-              <div className="tenet-status-overlay">
-                {status === 'DELETED' ? 'DELETED' : 'SUSPENDED'}
-              </div>
-            )}
+    <div style={{ position: 'relative' }}>
+      <div
+        style={{
+          border: '2px solid rgb(100, 116, 139)',
+          borderRadius: '4px',
+          backgroundColor: 'rgba(30, 41, 59, 0.5)',
+          overflow: 'hidden',
+        }}
+      >
+        {/* Header - Building Directory Style */}
+        <div
+          style={{
+            backgroundColor: 'rgb(51, 65, 85)',
+            padding: '0.75rem 1rem',
+            borderBottom: '1px solid rgb(100, 116, 139)',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
+          <div>
+            <Line smoke style={{ margin: 0, fontSize: '0.75rem', opacity: 0.7 }}>
+              RESIDENT DIRECTORY
+            </Line>
+            <Line smoke large bold style={{ margin: 0 }}>
+              {building ? `[${building}]` : '[BUILDING DIRECTORY]'}
+            </Line>
           </div>
-        </div>
 
-        {/* Center - Profile info */}
-        <div className="tenet-center">
-          <div className="tenet-name">{name}</div>
-          {tagline && !isRestricted && <div className="tenet-tagline">{tagline}</div>}
-          {district && !isRestricted && <div className="tenet-location">{district}</div>}
-
-          {/* Stats row */}
-          {!isRestricted && (
-            <div className="tenet-stats">
-              <div className="tenet-stat">
-                <div className="tenet-stat-value">{connections}</div>
-                <div className="tenet-stat-label">Connections</div>
-              </div>
-              {mutualConnections !== undefined && (
-                <div className="tenet-stat">
-                  <div className="tenet-stat-value">{mutualConnections}</div>
-                  <div className="tenet-stat-label">Mutual</div>
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Bio */}
-          {bio && !isRestricted && (
-            <div className="tenet-bio">
-              <div className="tenet-bio-label">About</div>
-              <div className="tenet-bio-text">{bio}</div>
-            </div>
-          )}
-
-          {/* Restricted message */}
-          {isRestricted && (
-            <div className="tenet-restricted">
-              {status === 'DELETED' && (
-                <div className="tenet-restricted-text">
-                  This account has been deleted. Limited information available.
-                </div>
-              )}
-              {status === 'SUSPENDED' && (
-                <div className="tenet-restricted-text">
-                  This account has been suspended. Limited information available.
-                </div>
-              )}
-              {privacy !== 'PUBLIC' && status === 'ACTIVE' && (
-                <div className="tenet-restricted-text">
-                  This profile is private. Connect to see more information.
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-
-        {/* Right side - Actions and footer */}
-        <div className="tenet-right">
-          {/* Intercom button */}
-          {enableIntercom && status === 'ACTIVE' && (
-            <button
-              className="tenet-intercom-button"
-              onClick={onIntercom}
-              title="Send message via Intercom"
+          {/* Status indicator */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <div
+              style={{
+                width: '8px',
+                height: '8px',
+                borderRadius: '50%',
+                backgroundColor: statusColor,
+                boxShadow: `0 0 8px ${statusColor}`,
+              }}
+            />
+            <span
+              style={{
+                fontSize: '0.75rem',
+                fontWeight: 'bold',
+                color: statusColor,
+                fontFamily: 'monospace',
+              }}
             >
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2 6C2 4.89543 2.89543 4 4 4H16C17.1046 4 18 4.89543 18 6V12C18 13.1046 17.1046 14 16 14H11L7 17V14H4C2.89543 14 2 13.1046 2 12V6Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              <span>Intercom</span>
-            </button>
+              {status}
+            </span>
+          </div>
+        </div>
+
+        <div style={{ padding: '1rem' }}>
+          {/* Resident Information */}
+          <div
+            style={{
+              backgroundColor: 'rgba(15, 23, 42, 0.6)',
+              border: '1px solid rgb(71, 85, 105)',
+              borderRadius: '3px',
+              padding: '0.75rem',
+              marginBottom: '1rem',
+            }}
+          >
+            <Line cyan bold style={{ margin: 0, fontSize: '0.95rem', marginBottom: '0.5rem' }}>
+              RESIDENT INFORMATION
+            </Line>
+            <Divider />
+            <DataTable
+              data={[
+                { label: 'Name', value: name },
+                { label: 'Resident ID', value: id },
+                ...(unit ? [{ label: 'Unit', value: unit }] : []),
+                ...(moveInDate ? [{ label: 'Move-In Date', value: moveInDate }] : []),
+              ]}
+            />
+          </div>
+
+          {/* Intercom Access */}
+          {status === 'ACTIVE' && (
+            <div
+              style={{
+                backgroundColor: 'rgba(15, 23, 42, 0.6)',
+                border: '1px solid rgb(71, 85, 105)',
+                borderRadius: '3px',
+                padding: '0.75rem',
+                marginBottom: notes || emergencyContact ? '1rem' : '0',
+              }}
+            >
+              <Line cyan bold style={{ margin: 0, fontSize: '0.95rem', marginBottom: '0.5rem' }}>
+                INTERCOM ACCESS
+              </Line>
+              <Divider />
+
+              {intercomEnabled ? (
+                <div style={{ marginTop: '0.5rem' }}>
+                  <Line neon style={{ margin: 0, marginBottom: '0.5rem' }}>
+                    ✓ Intercom enabled for this unit
+                  </Line>
+                  <div
+                    style={{
+                      padding: '0.5rem',
+                      backgroundColor: 'rgba(79, 209, 197, 0.1)',
+                      border: '1px solid rgba(79, 209, 197, 0.3)',
+                      borderRadius: '3px',
+                    }}
+                  >
+                    <Line cyan style={{ margin: 0, fontSize: '0.875rem' }}>
+                      Press CALL button on intercom panel to connect
+                    </Line>
+                  </div>
+                </div>
+              ) : (
+                <div style={{ marginTop: '0.5rem' }}>
+                  <Line yellow style={{ margin: 0 }}>
+                    ⚠ Intercom disabled - Contact building management
+                  </Line>
+                </div>
+              )}
+            </div>
           )}
 
-          {/* Footer info */}
-          <div className="tenet-footer">
-            <div className="tenet-id">ID: {id}</div>
-            {memberSince && <div className="tenet-member">Member since {memberSince}</div>}
-          </div>
+          {/* Emergency Contact */}
+          {emergencyContact && (
+            <div
+              style={{
+                backgroundColor: 'rgba(15, 23, 42, 0.6)',
+                border: '1px solid rgb(71, 85, 105)',
+                borderRadius: '3px',
+                padding: '0.75rem',
+                marginBottom: notes ? '1rem' : '0',
+              }}
+            >
+              <Line cyan bold style={{ margin: 0, fontSize: '0.95rem', marginBottom: '0.5rem' }}>
+                EMERGENCY CONTACT
+              </Line>
+              <Divider />
+              <Line yellow style={{ margin: 0, marginTop: '0.5rem' }}>
+                {emergencyContact}
+              </Line>
+            </div>
+          )}
+
+          {/* Public Notes */}
+          {notes && (
+            <div
+              style={{
+                backgroundColor: 'rgba(15, 23, 42, 0.6)',
+                border: '1px solid rgb(71, 85, 105)',
+                borderRadius: '3px',
+                padding: '0.75rem',
+              }}
+            >
+              <Line cyan bold style={{ margin: 0, fontSize: '0.95rem', marginBottom: '0.5rem' }}>
+                DELIVERY NOTES
+              </Line>
+              <Divider />
+              <div
+                style={{
+                  marginTop: '0.5rem',
+                  paddingLeft: '0.5rem',
+                  borderLeft: '2px solid rgb(251, 191, 36)',
+                }}
+              >
+                <Line yellow style={{ margin: 0, fontSize: '0.875rem' }}>
+                  {notes}
+                </Line>
+              </div>
+            </div>
+          )}
+
+          {/* Moved Out / Suspended Message */}
+          {status !== 'ACTIVE' && (
+            <div
+              style={{
+                padding: '0.75rem',
+                backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                border: '1px solid rgba(239, 68, 68, 0.3)',
+                borderRadius: '3px',
+                marginTop: '1rem',
+              }}
+            >
+              <Line red bold style={{ margin: 0, fontSize: '0.875rem' }}>
+                {status === 'MOVED_OUT'
+                  ? '⚠ RESIDENT NO LONGER AT THIS ADDRESS'
+                  : '⚠ ACCESS SUSPENDED - CONTACT BUILDING MANAGEMENT'}
+              </Line>
+            </div>
+          )}
+        </div>
+
+        {/* Footer */}
+        <div
+          style={{
+            padding: '0.75rem 1rem',
+            borderTop: '1px solid rgb(100, 116, 139)',
+            backgroundColor: 'rgb(51, 65, 85)',
+            textAlign: 'center',
+          }}
+        >
+          <Line smoke style={{ fontSize: '0.7rem', margin: 0 }}>
+            Building Management: For access issues, contact front desk
+          </Line>
         </div>
       </div>
     </div>

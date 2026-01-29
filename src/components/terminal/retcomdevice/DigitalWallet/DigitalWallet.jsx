@@ -79,16 +79,14 @@ export default function DigitalWallet({
         <div className="wallet-extract-area">
           <Extractable
             id={id}
-            type="credits"
-            items={[
+            digitalItems={[
               {
                 item: 'Digital Credits',
-                desc: `${balance.toLocaleString()}¤`,
+                desc: `${balance.toLocaleString()}¤ available balance`,
                 value: balance
               }
             ]}
-            buttonLabel="WITHDRAW"
-            requiresPresence={false}
+            stealing={true}
           />
         </div>
       )}

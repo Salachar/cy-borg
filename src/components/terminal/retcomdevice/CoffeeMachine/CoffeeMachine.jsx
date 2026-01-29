@@ -27,14 +27,46 @@ export default function CoffeeMachine({
 
   // Fixed drink menu - 8 cyberpunk coffee options
   const drinks = [
-    { id: 1, name: 'NEURO DRIP', desc: 'Black, Neural enhancement' },
-    { id: 2, name: 'SYNTH LATTE', desc: 'Milk, Vanilla synth-cream' },
-    { id: 3, name: 'BLACK VOID', desc: 'Espresso, Double shot' },
-    { id: 4, name: 'DOPPIO JACK', desc: 'Espresso, SmartJack boost' },
-    { id: 5, name: 'CORTEX MOCHA', desc: 'Chocolate, Cognitive blend' },
-    { id: 6, name: 'CHROME BREW', desc: 'Cold brew, Metallic finish' },
-    { id: 7, name: 'PULSE MACCHIATO', desc: 'Caramel, Energy infused' },
-    { id: 8, name: 'HACK AMERICANO', desc: 'Diluted, Code-breaker blend' },
+    {
+      id: 1,
+      name: 'NEURO DRIP',
+      desc: 'Dark roast drip',
+    },
+    {
+      id: 2,
+      name: 'SYNTH LATTE',
+      desc: 'Milk, Vanilla cream'
+    },
+    {
+      id: 3,
+      name: 'BLACK VOID',
+      desc: 'Espresso, Double shot'
+    },
+    {
+      id: 4,
+      name: 'DOPPIO JACK',
+      desc: 'Espresso, SmartJack boost'
+    },
+    {
+      id: 5,
+      name: 'CORTEX MOCHA',
+      desc: 'Chocolate, Neural boost'
+    },
+    {
+      id: 6,
+      name: 'CHROME BREW',
+      desc: 'Half coffee, half oil'
+    },
+    {
+      id: 7,
+      name: 'PULSE MACCHIATO',
+      desc: 'Caramel, Energy boost'
+    },
+    {
+      id: 8,
+      name: 'HACK AMERICANO',
+      desc: 'Diluted'
+    },
   ];
 
   const handleDrinkSelect = (drink) => {

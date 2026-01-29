@@ -50,21 +50,3 @@ export const OutOfOrder = () => (
     disabled={true}
   />
 );
-
-// Casino VIP lounge
-export const CasinoVIPLounge = () => (
-  <CoffeeMachine
-    id="coffee-casino-01"
-    model="GOLDEN BEAN DELUXE"
-    location="Lucky Flight Casino - VIP Area"
-  />
-);
-
-// Medical facility
-export const MedicalFacility = () => (
-  <CoffeeMachine
-    id="coffee-hospital-01"
-    model="MEDPRESSO SANITIZED"
-    location="VitalCorp Medical Center - Staff Lounge"
-  />
-);

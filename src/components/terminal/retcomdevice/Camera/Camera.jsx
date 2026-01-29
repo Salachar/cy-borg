@@ -8,7 +8,6 @@ export default function Camera({
   recording = true,
   storage = 'Local server',
   timeline = [],
-  blindSpots = [],
   lastMaintenance,
 }) {
   const isOnline = status === 'ACTIVE' || status === 'RECORDING';
@@ -124,20 +123,6 @@ export default function Camera({
                   yellow={event.includes('suspicious') || event.includes('⚠')}
                 >
                   {event}
-                </Line>
-              ))}
-            </Section>
-          </>
-        )}
-
-        {/* Blind spots */}
-        {blindSpots.length > 0 && (
-          <>
-            <Divider />
-            <Section title="BLIND SPOTS:">
-              {blindSpots.map((spot, i) => (
-                <Line key={i} yellow>
-                  → {spot}
                 </Line>
               ))}
             </Section>

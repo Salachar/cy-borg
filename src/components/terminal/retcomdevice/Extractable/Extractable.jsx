@@ -1,282 +1,364 @@
 import { useState } from 'react';
-import { Line } from '@terminal/TerminalComponents';
+import { Line, Divider } from '@terminal/TerminalComponents';
 
 /**
- * Extractable Component - Reusable extraction/stealing interface
+ * Extractable Component - Reusable item extraction interface
  *
- * Generic component for any stealable/extractable content.
+ * Generic component for taking items (stealing, claiming, retrieving, etc.)
  * Tracks extraction state in localStorage under unified key.
- * Can be used for safes, ATMs, arcade cabinets, etc.
+ * Physical and digital items can be extracted independently.
  *
  * Props:
- * - id: Unique identifier (e.g., "safe-physical-alliansen-01")
- * - items: Array of { item, desc, value? } to be extracted
- * - type: "physical" | "digital" | "data" | "credits" (affects labeling/colors)
- * - buttonLabel: Custom button text (default based on type)
- * - requiresPresence: Boolean, show "requires presence" note (default: false)
+ * - id: Unique identifier (e.g., "safe-master-bedroom")
+ * - physicalItems: Array of { item, desc, value? } - requires physical presence
+ * - digitalItems: Array of { item, desc, value? } - remote extraction
+ * - stealing: Boolean - changes UI tone (default: false)
+ *   - false: "TAKE", "CLAIM", "RETRIEVE" (neutral)
+ *   - true: "STEAL", "EXTRACT" (criminal tone)
  * - disabled: Disable extraction (default: false)
- * - onExtract: Callback function when extracted (optional)
+ * - onExtract: Callback function when extracted (optional) - receives (items, totalValue, type: 'physical'|'digital')
  */
 export default function Extractable({
   id,
-  items = [],
-  type = "digital",
-  buttonLabel,
-  requiresPresence = false,
+  physicalItems = [],
+  digitalItems = [],
+  stealing = false,
   disabled = false,
   onExtract,
 }) {
-  // Unified localStorage key for all extracted items
   const STORAGE_KEY = 'cyborg_retcom_extracted';
 
-  // Check if this specific item has been extracted
-  const [isExtracted, setIsExtracted] = useState(() => {
+  const [extractedPhysical, setExtractedPhysical] = useState(() => {
     try {
       const extracted = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-      return extracted[id] === true;
+      return extracted[`${id}-physical`] === true;
     } catch {
       return false;
     }
   });
 
-  const handleExtract = () => {
-    if (disabled || isExtracted) return;
-
-    // Save to unified storage
+  const [extractedDigital, setExtractedDigital] = useState(() => {
     try {
       const extracted = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-      extracted[id] = true;
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(extracted));
-      setIsExtracted(true);
+      return extracted[`${id}-digital`] === true;
+    } catch {
+      return false;
+    }
+  });
 
-      // Call optional callback
+  const handleExtractPhysical = () => {
+    if (disabled || extractedPhysical) return;
+
+    try {
+      const extracted = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      extracted[`${id}-physical`] = true;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(extracted));
+      setExtractedPhysical(true);
+
       if (onExtract) {
-        onExtract(items, calculateValue());
+        const value = physicalItems.reduce((sum, item) => sum + (item.value || 0), 0);
+        onExtract(physicalItems, value, 'physical');
       }
     } catch (error) {
       console.error('Failed to save extraction state:', error);
     }
   };
 
-  // Calculate total value if items have value property
-  const calculateValue = () => {
-    return items.reduce((sum, item) => sum + (item.value || 0), 0);
+  const handleExtractDigital = () => {
+    if (disabled || extractedDigital) return;
+
+    try {
+      const extracted = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      extracted[`${id}-digital`] = true;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(extracted));
+      setExtractedDigital(true);
+
+      if (onExtract) {
+        const value = digitalItems.reduce((sum, item) => sum + (item.value || 0), 0);
+        onExtract(digitalItems, value, 'digital');
+      }
+    } catch (error) {
+      console.error('Failed to save extraction state:', error);
+    }
   };
 
-  // Type-based styling
-  const getTypeConfig = () => {
-    const configs = {
-      physical: {
-        color: 'rgb(250, 204, 21)', // yellow
-        bgColor: 'rgba(250, 204, 21, 0.05)',
-        borderColor: 'rgba(250, 204, 21, 0.2)',
-        borderColorStolen: 'rgba(239, 68, 68, 0.3)',
-        label: 'PHYSICAL CONTENTS',
-        buttonText: 'STEAL',
-        extractedText: 'CONTENTS STOLEN',
-        note: 'Requires physical presence at location',
-      },
-      digital: {
-        color: 'rgb(79, 209, 197)', // cyan
-        bgColor: 'rgba(79, 209, 197, 0.05)',
-        borderColor: 'rgba(79, 209, 197, 0.2)',
-        borderColorStolen: 'rgba(239, 68, 68, 0.3)',
-        label: 'DIGITAL CONTENTS',
-        buttonText: 'EXTRACT',
-        buttonTextPast: 'EXTRACTED',
-        extractedText: 'DATA EXTRACTED',
-        note: 'Extractable remotely via network connection',
-      },
-      data: {
-        color: 'rgb(79, 209, 197)', // cyan
-        bgColor: 'rgba(79, 209, 197, 0.05)',
-        borderColor: 'rgba(79, 209, 197, 0.2)',
-        borderColorStolen: 'rgba(239, 68, 68, 0.3)',
-        label: 'DATA',
-        buttonText: 'DOWNLOAD',
-        buttonTextPast: 'DOWNLOADED',
-        extractedText: 'DATA DOWNLOADED',
-        note: 'Remote extraction available',
-      },
-      credits: {
-        color: 'rgb(0, 170, 40)', // green
-        bgColor: 'rgba(0, 170, 40, 0.05)',
-        borderColor: 'rgba(0, 170, 40, 0.2)',
-        borderColorStolen: 'rgba(239, 68, 68, 0.3)',
-        label: 'CREDITS',
-        buttonText: 'TRANSFER',
-        buttonTextPast: 'TRANSFERRED',
-        extractedText: 'CREDITS TRANSFERED',
-        note: 'Network skim available',
-      },
-      bounty: {
-        color: 'rgb(239, 68, 68)', // red
-        bgColor: 'rgba(239, 68, 68, 0.05)',
-        borderColor: 'rgba(239, 68, 68, 0.2)',
-        borderColorStolen: 'rgba(16, 185, 129, 0.3)',
-        label: 'BOUNTY CLAIM',
-        buttonText: 'CLAIM',
-        buttonTextPast: 'CLAIMED',
-        extractedText: 'BOUNTY CLAIMED',
-        note: 'Submit proof to claim reward',
-      },
-    };
-    return configs[type] || configs.digital;
-  };
+  const hasPhysical = physicalItems.length > 0;
+  const hasDigital = digitalItems.length > 0;
 
-  const config = getTypeConfig();
-  const totalValue = calculateValue();
+  // Labels based on stealing mode
+  const labels = stealing
+    ? {
+        physical: { label: 'PHYSICAL CONTENTS', button: 'STEAL', buttonPast: 'STOLEN' },
+        digital: { label: 'DIGITAL CONTENTS', button: 'EXTRACT', buttonPast: 'EXTRACTED' },
+      }
+    : {
+        physical: { label: 'PHYSICAL ITEMS', button: 'TAKE', buttonPast: 'TAKEN' },
+        digital: { label: 'DIGITAL ITEMS', button: 'CLAIM', buttonPast: 'CLAIMED' },
+      };
 
   return (
-    <div style={{ position: 'relative' }}>
-      {/* Header with button */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginBottom: '0.5rem',
-        }}
-      >
-        <div>
-          <span
-            style={{
-              color: config.color,
-              fontSize: '0.875rem',
-              fontWeight: 'bold',
-            }}
-          >
-            {config.label}
-          </span>
-          {requiresPresence && (
-            <div style={{ fontSize: '0.7rem', color: 'rgb(148, 163, 184)', marginTop: '0.15rem' }}>
-              {config.note}
-            </div>
-          )}
-        </div>
-
-        {/* Extract button */}
-        <button
-          onClick={handleExtract}
-          disabled={isExtracted || disabled}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+      {/* Physical Items Section */}
+      {hasPhysical && (
+        <div
           style={{
-            padding: '0.25rem 0.75rem',
-            fontSize: '0.75rem',
-            fontWeight: 'bold',
-            backgroundColor: (isExtracted || disabled) ? 'rgb(45, 53, 72)' : config.color,
-            color: (isExtracted || disabled) ? 'rgb(148, 163, 184)' : 'rgb(19, 23, 34)',
-            border: 'none',
+            backgroundColor: 'rgba(15, 23, 42, 0.6)',
+            border: `1px solid ${extractedPhysical && stealing ? 'rgba(239, 68, 68, 0.4)' : 'rgb(71, 85, 105)'}`,
             borderRadius: '3px',
-            cursor: (isExtracted || disabled) ? 'not-allowed' : 'pointer',
-            transition: 'all 0.2s',
-            fontFamily: 'monospace',
-          }}
-          onMouseEnter={(e) => {
-            if (!isExtracted && !disabled) {
-              e.target.style.opacity = '0.8';
-            }
-          }}
-          onMouseLeave={(e) => {
-            if (!isExtracted && !disabled) {
-              e.target.style.opacity = '1';
-            }
+            padding: '0.75rem',
           }}
         >
-          {isExtracted ? (
-            <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-              {/* CSS Checkmark */}
-              <span
-                style={{
-                  display: 'inline-block',
-                  width: '10px',
-                  height: '6px',
-                  borderLeft: '2px solid currentColor',
-                  borderBottom: '2px solid currentColor',
-                  transform: 'rotate(-45deg)',
-                  marginBottom: '2px',
-                }}
-              />
-              {config.buttonTextPast}
-            </span>
-          ) : (
-            buttonLabel || config.buttonText
-          )}
-        </button>
-      </div>
-
-      {/* Contents list */}
-      <div
-        style={{
-          backgroundColor: config.bgColor,
-          padding: '0.5rem',
-          borderRadius: '3px',
-          border: isExtracted ? `1px solid ${config.borderColorStolen}` : `1px solid ${config.borderColor}`,
-          position: 'relative',
-        }}
-      >
-        {items.map((item, i) => (
-          <Line
-            key={i}
-            style={{
-              color: isExtracted ? 'rgb(148, 163, 184)' : config.color,
-              textDecoration: isExtracted ? 'line-through' : 'none',
-              opacity: isExtracted ? 0.5 : 1,
-            }}
-          >
-            → {item.item}: {item.desc}
-            {item.value && (
-              <span style={{ color: 'rgb(0, 170, 40)', marginLeft: '0.5rem' }}>
-                [{item.value}¤]
-              </span>
-            )}
-          </Line>
-        ))}
-
-        {/* Extracted indicator */}
-        {isExtracted && (
+          {/* Header with button */}
           <div
             style={{
-              marginTop: '0.5rem',
-              padding: '0.25rem 0.5rem',
-              backgroundColor: 'rgba(239, 68, 68, 0.2)',
-              border: '1px solid rgb(239, 68, 68)',
-              borderRadius: '3px',
               display: 'flex',
               alignItems: 'center',
-              gap: '0.5rem',
+              justifyContent: 'space-between',
+              marginBottom: '0.75rem',
             }}
           >
-            <div
+            <div style={{ flex: 1 }}>
+              <Line
+                style={{
+                  margin: 0,
+                  color: 'rgb(251, 191, 36)',
+                  fontSize: '0.875rem',
+                  fontWeight: 'bold',
+                }}
+              >
+                {labels.physical.label}
+                {stealing && (
+                  <span style={{
+                    marginLeft: '0.5rem',
+                    color: 'rgb(239, 68, 68)',
+                    fontSize: '0.75rem',
+                    fontWeight: 'bold',
+                  }}>
+                    [THEFT]
+                  </span>
+                )}
+              </Line>
+              {!extractedPhysical && (
+                <Line smoke style={{ fontSize: '0.7rem', margin: 0, marginTop: '0.25rem' }}>
+                  {stealing ? 'Physical presence required' : 'Requires physical access'}
+                </Line>
+              )}
+            </div>
+
+            {/* Extract button */}
+            <button
+              onClick={handleExtractPhysical}
+              disabled={extractedPhysical || disabled}
               style={{
-                width: '6px',
-                height: '6px',
-                backgroundColor: 'rgb(239, 68, 68)',
-                borderRadius: '50%',
-                animation: 'blink 2s infinite',
-              }}
-            />
-            <span
-              style={{
+                padding: '0.5rem 1rem',
                 fontSize: '0.75rem',
                 fontWeight: 'bold',
-                color: 'rgb(239, 68, 68)',
+                backgroundColor: extractedPhysical
+                  ? 'rgb(45, 53, 72)'
+                  : disabled
+                    ? 'rgb(45, 53, 72)'
+                    : 'rgb(251, 191, 36)',
+                color: extractedPhysical
+                  ? 'rgb(148, 163, 184)'
+                  : disabled
+                    ? 'rgb(148, 163, 184)'
+                    : 'rgb(19, 23, 34)',
+                border: 'none',
+                borderRadius: '3px',
+                cursor: (extractedPhysical || disabled) ? 'not-allowed' : 'pointer',
+                transition: 'all 0.2s',
                 fontFamily: 'monospace',
+                flexShrink: 0,
               }}
             >
-              [{config.extractedText} - {new Date().toLocaleDateString()}]
-              {totalValue > 0 && ` - VALUE: ${totalValue}¤`}
-            </span>
+              {extractedPhysical ? (
+                <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  ✓ {labels.physical.buttonPast}
+                </span>
+              ) : (
+                labels.physical.button
+              )}
+            </button>
           </div>
-        )}
-      </div>
 
-      {/* CSS animations */}
-      <style>{`
-        @keyframes blink {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.3; }
-        }
-      `}</style>
+          <Divider />
+
+          {/* Items list */}
+          <div style={{ marginTop: '0.75rem' }}>
+            {physicalItems.map((item, i) => (
+              <div
+                key={i}
+                style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '0.5rem',
+                  marginBottom: i < physicalItems.length - 1 ? '0.5rem' : '0',
+                  opacity: extractedPhysical ? 0.6 : 1,
+                }}
+              >
+                <span style={{
+                  color: extractedPhysical ? 'rgb(148, 163, 184)' : 'rgb(251, 191, 36)',
+                  fontSize: '0.875rem',
+                  flexShrink: 0
+                }}>
+                  {extractedPhysical ? '✓' : '→'}
+                </span>
+                <div style={{ flex: 1 }}>
+                  <Line
+                    style={{
+                      margin: 0,
+                      color: extractedPhysical ? 'rgb(148, 163, 184)' : 'rgb(251, 191, 36)',
+                      fontSize: '0.875rem',
+                    }}
+                  >
+                    <strong>{item.item}</strong>: {item.desc}
+                    {item.value && (
+                      <span style={{
+                        color: extractedPhysical ? 'rgb(148, 163, 184)' : 'rgb(34, 197, 94)',
+                        marginLeft: '0.5rem',
+                        fontWeight: 'bold',
+                      }}>
+                        [{item.value}¤]
+                      </span>
+                    )}
+                  </Line>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Digital Items Section */}
+      {hasDigital && (
+        <div
+          style={{
+            backgroundColor: 'rgba(15, 23, 42, 0.6)',
+            border: `1px solid ${extractedDigital && stealing ? 'rgba(239, 68, 68, 0.4)' : 'rgb(71, 85, 105)'}`,
+            borderRadius: '3px',
+            padding: '0.75rem',
+          }}
+        >
+          {/* Header with button */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              marginBottom: '0.75rem',
+            }}
+          >
+            <div style={{ flex: 1 }}>
+              <Line
+                style={{
+                  margin: 0,
+                  color: 'rgb(79, 209, 197)',
+                  fontSize: '0.875rem',
+                  fontWeight: 'bold',
+                }}
+              >
+                {labels.digital.label}
+                {stealing && (
+                  <span style={{
+                    marginLeft: '0.5rem',
+                    color: 'rgb(239, 68, 68)',
+                    fontSize: '0.75rem',
+                    fontWeight: 'bold',
+                  }}>
+                    [THEFT]
+                  </span>
+                )}
+              </Line>
+              {!extractedDigital && (
+                <Line smoke style={{ fontSize: '0.7rem', margin: 0, marginTop: '0.25rem' }}>
+                  {stealing ? 'Extractable remotely via network connection' : 'Remote extraction available'}
+                </Line>
+              )}
+            </div>
+
+            {/* Extract button */}
+            <button
+              onClick={handleExtractDigital}
+              disabled={extractedDigital || disabled}
+              style={{
+                padding: '0.5rem 1rem',
+                fontSize: '0.75rem',
+                fontWeight: 'bold',
+                backgroundColor: extractedDigital
+                  ? 'rgb(45, 53, 72)'
+                  : disabled
+                    ? 'rgb(45, 53, 72)'
+                    : 'rgb(79, 209, 197)',
+                color: extractedDigital
+                  ? 'rgb(148, 163, 184)'
+                  : disabled
+                    ? 'rgb(148, 163, 184)'
+                    : 'rgb(19, 23, 34)',
+                border: 'none',
+                borderRadius: '3px',
+                cursor: (extractedDigital || disabled) ? 'not-allowed' : 'pointer',
+                transition: 'all 0.2s',
+                fontFamily: 'monospace',
+                flexShrink: 0,
+              }}
+            >
+              {extractedDigital ? (
+                <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  ✓ {labels.digital.buttonPast}
+                </span>
+              ) : (
+                labels.digital.button
+              )}
+            </button>
+          </div>
+
+          <Divider />
+
+          {/* Items list */}
+          <div style={{ marginTop: '0.75rem' }}>
+            {digitalItems.map((item, i) => (
+              <div
+                key={i}
+                style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: '0.5rem',
+                  marginBottom: i < digitalItems.length - 1 ? '0.5rem' : '0',
+                  opacity: extractedDigital ? 0.6 : 1,
+                }}
+              >
+                <span style={{
+                  color: extractedDigital ? 'rgb(148, 163, 184)' : 'rgb(79, 209, 197)',
+                  fontSize: '0.875rem',
+                  flexShrink: 0
+                }}>
+                  {extractedDigital ? '✓' : '→'}
+                </span>
+                <div style={{ flex: 1 }}>
+                  <Line
+                    style={{
+                      margin: 0,
+                      color: extractedDigital ? 'rgb(148, 163, 184)' : 'rgb(79, 209, 197)',
+                      fontSize: '0.875rem',
+                    }}
+                  >
+                    <strong>{item.item}</strong>: {item.desc}
+                    {item.value && (
+                      <span style={{
+                        color: extractedDigital ? 'rgb(148, 163, 184)' : 'rgb(34, 197, 94)',
+                        marginLeft: '0.5rem',
+                        fontWeight: 'bold',
+                      }}>
+                        [{item.value}¤]
+                      </span>
+                    )}
+                  </Line>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

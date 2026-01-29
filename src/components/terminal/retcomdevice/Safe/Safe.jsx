@@ -13,127 +13,179 @@ export default function Safe({
   physical = [],
   digital = [],
   notes,
+  stealing = true,
 }) {
-  // Determine security color
   const getSecurityColor = () => {
-    const secLower = security.toLowerCase();
+    const secLower = security?.toLowerCase() || '';
     if (secLower.includes('retinal') || secLower.includes('biometric')) {
-      return 'rgb(239, 68, 68)'; // red - high security
+      return 'rgb(239, 68, 68)';
     }
     if (secLower.includes('keypad') || secLower.includes('pin')) {
-      return 'rgb(250, 204, 21)'; // yellow - medium security
+      return 'rgb(251, 191, 36)';
     }
-    return 'rgb(79, 209, 197)'; // cyan - standard security
+    return 'rgb(79, 209, 197)';
   };
+
+  const getSecurityLevel = () => {
+    const secLower = security?.toLowerCase() || '';
+    if (secLower.includes('retinal') || secLower.includes('biometric')) {
+      return 'HIGH';
+    }
+    if (secLower.includes('keypad') || secLower.includes('pin')) {
+      return 'MEDIUM';
+    }
+    return 'STANDARD';
+  };
+
+  const securityColor = getSecurityColor();
+  const securityLevel = getSecurityLevel();
 
   return (
     <div style={{ position: 'relative' }}>
-      {/* Safe container with border */}
       <div
         style={{
-          border: '2px solid rgb(77, 167, 188)',
+          border: '2px solid rgb(100, 116, 139)',
           borderRadius: '4px',
-          padding: '1rem',
-          backgroundColor: 'rgba(29, 35, 50, 0.3)',
-          position: 'relative',
+          backgroundColor: 'rgba(30, 41, 59, 0.5)',
+          overflow: 'hidden',
         }}
       >
-        {/* Header with lock icon */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
+        {/* Header */}
+        <div
+          style={{
+            backgroundColor: 'rgb(51, 65, 85)',
+            padding: '0.75rem 1rem',
+            borderBottom: '1px solid rgb(100, 116, 139)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.75rem',
+          }}
+        >
           {/* CSS Lock Icon */}
-          <div style={{ position: 'relative', width: '20px', height: '20px', flexShrink: 0 }}>
-            {/* Lock body */}
+          <div style={{ position: 'relative', width: '18px', height: '18px', flexShrink: 0 }}>
             <div
               style={{
                 position: 'absolute',
                 bottom: '0',
-                left: '4px',
+                left: '3px',
                 width: '12px',
                 height: '10px',
                 backgroundColor: 'rgb(148, 163, 184)',
                 borderRadius: '2px',
               }}
             />
-            {/* Lock shackle */}
             <div
               style={{
                 position: 'absolute',
                 top: '0',
-                left: '6px',
+                left: '5px',
                 width: '8px',
-                height: '12px',
+                height: '11px',
                 border: '2px solid rgb(148, 163, 184)',
                 borderBottom: 'none',
                 borderRadius: '4px 4px 0 0',
               }}
             />
           </div>
-          <Line smoke large bold style={{ margin: 0 }}>
-            [DIGITAL SAFE - MODEL {model}]
-          </Line>
-        </div>
 
-        <Line cyan>{location}</Line>
-        <Divider />
+          <div style={{ flex: 1 }}>
+            <Line smoke style={{ margin: 0, fontSize: '0.75rem', opacity: 0.7 }}>
+              DIGITAL SAFE
+            </Line>
+            <Line smoke large bold style={{ margin: 0 }}>
+              [MODEL {model}]
+            </Line>
+          </div>
 
-        {/* Safe info table */}
-        <DataTable
-          data={[
-            { label: 'Status', value: 'LOCKED' },
-            {
-              label: 'Security',
-              value: security
-            },
-            { label: 'Last Access', value: lastAccess },
-            { label: 'Owner', value: owner },
-          ]}
-        />
-
-        {/* Show security level indicator */}
-        <div style={{ marginTop: '0.5rem' }}>
-          <Line smoke style={{ fontSize: '0.75rem' }}>
-            Security Level:{' '}
-            <span style={{ color: getSecurityColor(), fontWeight: 'bold' }}>
-              {security.toLowerCase().includes('retinal') || security.toLowerCase().includes('biometric')
-                ? 'HIGH'
-                : security.toLowerCase().includes('keypad') || security.toLowerCase().includes('pin')
-                ? 'MEDIUM'
-                : 'STANDARD'}
+          {/* Security level indicator */}
+          <div
+            style={{
+              padding: '0.25rem 0.75rem',
+              borderRadius: '3px',
+              backgroundColor: `${securityColor}20`,
+              border: `1px solid ${securityColor}`,
+            }}
+          >
+            <span
+              style={{
+                fontSize: '0.7rem',
+                fontWeight: 'bold',
+                color: securityColor,
+                fontFamily: 'monospace',
+              }}
+            >
+              {securityLevel}
             </span>
-          </Line>
+          </div>
         </div>
 
-        <Divider />
-        <Extractable
-          id={`${id}-physical`}
-          type="physical"
-          items={physical}
-          requiresPresence={true}
-        />
-        <Divider />
-        <Extractable
-          id={`${id}-digital`}
-          type="digital"
-          items={digital}
-          requiresPresence={false}
-        />
+        <div style={{ padding: '1rem' }}>
+          {/* Safe information - sleeker grid layout */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'auto 1fr',
+              gap: '0.5rem 1rem',
+              marginBottom: (physical.length > 0 || digital.length > 0) ? '1rem' : '0',
+            }}
+          >
+            <Line smoke style={{ margin: 0, fontSize: '0.75rem', opacity: 0.7 }}>
+              LOCATION:
+            </Line>
+            <Line cyan style={{ margin: 0, fontSize: '0.875rem', fontWeight: 500 }}>
+              {location}
+            </Line>
 
-        {/* Notes */}
-        {notes && (
-          <>
-            <Divider />
-            <Line neon>{notes}</Line>
-          </>
-        )}
+            <Line smoke style={{ margin: 0, fontSize: '0.75rem', opacity: 0.7 }}>
+              OWNER:
+            </Line>
+            <Line cyan style={{ margin: 0, fontSize: '0.875rem', fontWeight: 500 }}>
+              {owner}
+            </Line>
+
+            <Line smoke style={{ margin: 0, fontSize: '0.75rem', opacity: 0.7 }}>
+              SECURITY:
+            </Line>
+            <Line style={{ margin: 0, fontSize: '0.875rem', fontWeight: 500, color: securityColor }}>
+              {security}
+            </Line>
+
+            <Line smoke style={{ margin: 0, fontSize: '0.75rem', opacity: 0.7 }}>
+              LAST ACCESS:
+            </Line>
+            <Line yellow style={{ margin: 0, fontSize: '0.875rem', fontWeight: 500 }}>
+              {lastAccess}
+            </Line>
+          </div>
+
+          {/* Extractable contents */}
+          {(physical.length > 0 || digital.length > 0) && (
+            <Extractable
+              id={id}
+              physicalItems={physical}
+              digitalItems={digital}
+              stealing={stealing}
+            />
+          )}
+
+          {/* Notes */}
+          {notes && (
+            <div
+              style={{
+                marginTop: '1rem',
+                padding: '0.75rem',
+                backgroundColor: 'rgba(251, 191, 36, 0.1)',
+                border: '1px solid rgba(251, 191, 36, 0.3)',
+                borderRadius: '3px',
+              }}
+            >
+              <Line yellow style={{ margin: 0, fontSize: '0.875rem' }}>
+                ⚠ {notes}
+              </Line>
+            </div>
+          )}
+        </div>
       </div>
-
-      {/* CSS animations */}
-      <style>{`
-        @keyframes blink {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.3; }
-        }
-      `}</style>
     </div>
   );
 }

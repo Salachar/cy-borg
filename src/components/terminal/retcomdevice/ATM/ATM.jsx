@@ -125,10 +125,16 @@ export default function ATM({
         {/* Skim section - using Extractable component */}
         <Extractable
           id={`${id}-skim`}
-          type="credits"
-          items={accountItems}
-          requiresPresence={false}
+          digitalItems={[
+            {
+              item: 'Transaction Skim',
+              desc: `Account: ${accountHolder} - Small % from daily transactions`,
+              value: actualSkimmableAmount,
+            },
+          ]}
+          stealing={true}
         />
+
       </div>
     </div>
   );

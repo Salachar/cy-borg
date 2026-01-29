@@ -209,9 +209,14 @@ export default function ArcadeCabinet({
         {/* Wallet section - using Extractable component */}
         <Extractable
           id={`${id}-wallet`}
-          type="data"
-          items={walletItems}
-          requiresPresence={false}
+          digitalItems={[
+            {
+              item: 'In-Game Wallet',
+              desc: `${wallet.credits} credits • ${wallet.achievements} achievements • ${wallet.totalPlaytime} playtime`,
+              value: wallet.credits,
+            }
+          ]}
+          stealing={true}
         />
 
         {/* Footer */}
