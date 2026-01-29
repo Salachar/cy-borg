@@ -22,6 +22,7 @@ export default function HoursBanner({
   statusColor = "open",
   location,
   note,
+  children,
 }) {
   return (
     <div className="hours-banner">
@@ -49,6 +50,8 @@ export default function HoursBanner({
           <span>{location}</span>
         </div>
       )}
+
+      {Boolean(children) && children}
 
       {/* Note */}
       {note && (

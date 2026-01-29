@@ -15,9 +15,9 @@ import { WAREHOUSE_COMMANDS } from './warehouse';
 
 export const LUCKY_FLIGHT_TAKEDOWN_COMMANDS = {
   "Local Access Points": {
-    password: {
-      pw: "luckyflight",
-    },
+    // password: {
+    //   pw: "luckyflight",
+    // },
     content: (
       <Section>
         <Line yellow large bold>Welcome to the Lucky Flight Takedown campaign</Line>

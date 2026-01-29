@@ -3,7 +3,6 @@ import { Line, Divider, DataTable, Section } from '@terminal/TerminalComponents'
 export default function Camera({
   id,
   location,
-  coverage,
   status = 'ACTIVE',
   recording = true,
   storage = 'Local server',
@@ -104,7 +103,6 @@ export default function Camera({
         <DataTable
           data={[
             { label: 'Status', value: status },
-            { label: 'Coverage', value: coverage },
             { label: 'Recording', value: recording ? 'YES (7-day loop)' : 'NO' },
             { label: 'Storage', value: storage },
           ]}

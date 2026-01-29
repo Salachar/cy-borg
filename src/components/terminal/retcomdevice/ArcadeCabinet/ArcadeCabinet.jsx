@@ -8,8 +8,15 @@ export default function ArcadeCabinet({
   cabinetName = 'ARCADE CABINET',
   location = 'Unknown Location',
   screenState = 'ATTRACT',
-  gamesAvailable = [],
-  wallet = { credits: 0, achievements: 0, totalPlaytime: '0h' },
+  gamesAvailable = [
+    'NEON FIGHTER II TURBO',
+    'CYBER RACER X',
+    'SPACE INVADER 2088',
+    'TETRIS NEON',
+    'STREET BRAWLER EX',
+    'MEGA RUNNER DELUXE',
+  ],
+  wallet = 0,
   lastPlayed = 'Unknown',
   playerAccount = 'GUEST',
 }) {
@@ -22,15 +29,6 @@ export default function ArcadeCabinet({
     }, 800);
     return () => clearInterval(interval);
   }, []);
-
-  // Convert wallet to extractable items format
-  const walletItems = [
-    {
-      item: 'Game Wallet',
-      desc: `${wallet.credits}¤ credits • ${wallet.achievements} achievements • ${wallet.totalPlaytime} playtime`,
-      value: wallet.credits,
-    },
-  ];
 
   return (
     <div style={{ position: 'relative' }}>
@@ -211,9 +209,9 @@ export default function ArcadeCabinet({
           id={`${id}-wallet`}
           digitalItems={[
             {
-              item: 'In-Game Wallet',
-              desc: `${wallet.credits} credits • ${wallet.achievements} achievements • ${wallet.totalPlaytime} playtime`,
-              value: wallet.credits,
+              item: 'Last Account Connected',
+              desc: `${wallet} credits available`,
+              value: wallet,
             }
           ]}
           stealing={true}

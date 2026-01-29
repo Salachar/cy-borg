@@ -29,6 +29,10 @@ import CommercialCamera from "./CommercialCamera/CommercialCamera";
 import LiveCameraFeed from "./LiveCameraFeed/LiveCameraFeed";
 import MastermindHack from "./MastermindHack/MastermindHack";
 import HistoryEntryWrapper from "./HistoryEntryWrapper/HistoryEntryWrapper";
+import CoffeeMachine from "./CoffeeMachine/CoffeeMachine";
+import Radio from "./Radio/Radio";
+import ArcadeCabinet from "./ArcadeCabinet/ArcadeCabinet";
+import DigitalWallet from "./DigitalWallet/DigitalWallet";
 
 export {
   ATM,
@@ -62,4 +66,8 @@ export {
   LiveCameraFeed,
   MastermindHack,
   HistoryEntryWrapper,
+  CoffeeMachine,
+  Radio,
+  ArcadeCabinet,
+  DigitalWallet,
 };

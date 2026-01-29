@@ -1,11 +1,11 @@
 import { Line, Divider, DataTable } from '@terminal/TerminalComponents';
 
 export default function MaintenanceAccess({
-  deviceModel = "System",
-  deviceId,
+  deviceModel = "NOT SET BY ADMINISTRATOR",
+  deviceId = "UNREGISTERED",
   firmwareVersion = "v2.4.1",
   systemStatus = "OPERATIONAL",
-  uptime,
+  uptime = "14 days, 7 hours",
 }) {
   // Status color mapping
   const statusColors = {

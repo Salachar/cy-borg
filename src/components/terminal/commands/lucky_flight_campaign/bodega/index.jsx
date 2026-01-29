@@ -1,10 +1,7 @@
 import {
   Line,
-  Box,
   Section,
-  ListItem,
   Divider,
-  KeyValue,
   DataTable,
 } from '@terminal/TerminalComponents';
 import {
@@ -16,6 +13,13 @@ import {
   MaintenanceAccess,
   InternalAccess,
   PublicPortal,
+  PersonnelFile,
+  CommunityBoard,
+  CoffeeMachine,
+  HoursBanner,
+  Radio,
+  ArcadeCabinet,
+  DigitalWallet,
 } from "@terminal/retcomdevice"
 
 import BatusBodegaAd from './ad'
@@ -70,37 +74,27 @@ export const BODEGA_COMMANDS = {
         ),
       },
 
-      "Coffee Selections": {
+      "Coffee Machine": {
         content: (
-          <Menu
-            title="BREW MENU"
-            subtitle="Open 06:00-22:00"
-            signType="coffee"
-            categories={[
-              {
-                name: "HOT DRINKS:",
-                items: [
-                  { name: "Black Coffee", price: "3¤" },
-                  { name: "Synth-Latte", price: "5¤" },
-                  { name: "Cyber-Mocha", price: "6¤" },
-                  { name: "Green Tea", price: "4¤" },
-                ],
-              },
-              {
-                name: "PASTRIES:",
-                items: [
-                  { name: "Vat-Croissant", price: "4¤" },
-                  { name: "Synth-Muffin", price: "3¤" },
-                  { name: "Protein Cookie", price: "2¤" },
-                ],
-              },
-            ]}
-            footer="Buy 5 coffees, get 1 free!"
-          />
+          <CoffeeMachine />
         ),
       },
 
-      "ATM": {
+      "Boedga Radio": {
+        content: (
+          <Radio />
+        )
+      },
+
+      "Arcade Machine": {
+        content: (
+          <ArcadeCabinet
+            wallet={15}
+          />
+        )
+      },
+
+      "Boedga ATM": {
         password: {
           pw: "compound",
           hint: "It grows faster than work ever could",
@@ -109,17 +103,16 @@ export const BODEGA_COMMANDS = {
         content: (
           <ATM
             id="bodega-corner-atm"
-            model="ATM-350"
             location="Inside Batu's Bodega - Near entrance"
-            network="CityBank"
-            cashAvailable="800¤ (estimated)"
+            skimmableAmount={20}
             lastService="2 weeks ago"
-            transactions={[
+            recentTransactions={[
               "3 days ago, 19:42 → Withdrawal: 40¤",
               "3 days ago, 18:15 → Withdrawal: 20¤",
               "3 days ago, 16:33 → Balance inquiry",
               "4 days ago, 20:01 → Withdrawal: 60¤",
             ]}
+
           />
         ),
       },
@@ -128,7 +121,6 @@ export const BODEGA_COMMANDS = {
         content: (
           <VendingMachine
             id="bodega-outside-vending"
-            model="QuickDrinx 2000"
             location="Outside Batu's Bodega - Street side"
             drinks={[
               { name: 'ENERGY Z++', pattern: 'lines', color: 'yellow', available: true },
@@ -147,40 +139,24 @@ export const BODEGA_COMMANDS = {
               hintStrength: 2,
             },
             content: (
-              <MaintenanceAccess
-                deviceModel="QuickDrinx 2000"
-                deviceId="VM-2000-4729"
-                firmwareVersion="v3.1.2"
-                systemStatus="OPERATIONAL"
-                uptime="14 days, 7 hours"
-              />
+              <MaintenanceAccess />
             ),
             related_commands: {
-              "Internal Safe": {
+              "VendWallet": {
                 password: {
                   pw: "coins",
                   hint: "What accumulates in the cash box",
                   hintStrength: 1,
                 },
                 content: (
-                  <Safe
-                    id="bodega-vending-machine"
-                    model="VM-CASH-100"
-                    location="Internal cash collection box"
-                    owner="Beverage Corp (vending division)"
-                    security="Maintenance keypad"
-                    lastAccess="2 weeks ago (missed last service)"
-                    physical={[
-                      { item: "Coins", desc: "95¤ in change (neglected, getting full)" },
-                    ]}
-                    digital={[
-                      { item: "Credchip", desc: "62¤ (2 weeks of receipts, transferable)" },
-                    ]}
-                    notes="Machine service overdue - cash box nearly full"
+                  <DigitalWallet
+                    id="bodega-vending-machine-wallet"
+                    accountHolder="Beverage Corp (vending division)"
+                    balance={15}
                   />
                 ),
               },
-              "Debug Mode": {
+              "Debug": {
                 password: {
                   pw: "freevend",
                   hint: "The mode that gives away drinks",
@@ -238,60 +214,61 @@ export const BODEGA_COMMANDS = {
 
       "Operating Status": {
         content: (
-          <>
-            <Line smoke large bold>[STORE STATUS]</Line>
-            <Divider />
-            <DataTable data={[
-              { label: "Current Status", value: "⚠ CLOSED" },
-              { label: "Duration", value: "3 days" },
-              { label: "Last Transaction", value: "72 hours ago (19:47)" },
-              { label: "Owner Contact", value: "NO RESPONSE" },
-            ]} />
-            <Divider />
-            <Section title="NORMAL HOURS:">
-              <Line neon>Monday-Saturday: 06:00 - 23:00</Line>
-              <Line neon>Sunday: 08:00 - 20:00</Line>
-              <Line yellow>Batu sometimes stays open late for regulars</Line>
-            </Section>
-            <Divider />
-            <Section title="LOCATION:">
-              <Line cyan>Corner of Drech Ave & 5th Street</Line>
-              <Line cyan>Ports/Bigmosse border (4 blocks from Lucky Flight Casino)</Line>
-              <Line cyan>Ground floor of old apartment complex</Line>
-            </Section>
-            <Divider />
-            <Line red>⚠ Store appears damaged - front window broken</Line>
-            <Line yellow>Neighbors report no sign of Batu for 3 days</Line>
-          </>
+          <HoursBanner
+            businessName="Batu's Bodega"
+            hours="06:00 - 23:00"
+            days="Monday-Saturday"
+            status="⚠ CLOSED - 3 DAYS"
+            statusColor="closed"
+            location="Corner of Drech Ave & 5th Street, Ports/Bigmosse border"
+            note="Batu sometimes stays open late for regulars"
+          >
+            <div style={{ margin: '1rem 0' }}>
+              <Line smoke large bold>[CLOSURE DETAILS]</Line>
+              <Divider />
+              <DataTable data={[
+                { label: "Duration Closed", value: "3 days" },
+                { label: "Last Transaction", value: "72 hours ago (19:47)" },
+                { label: "Owner Contact", value: "NO RESPONSE" },
+                { label: "Sunday Hours", value: "08:00 - 20:00 (when open)" },
+              ]} />
+              <Divider />
+              <Section title="ADDITIONAL LOCATION INFO:">
+                <Line cyan>4 blocks from Lucky Flight Casino</Line>
+                <Line cyan>Ground floor of old apartment complex</Line>
+              </Section>
+              <Divider />
+              <Line red>⚠ Store appears damaged - front window broken</Line>
+              <Line yellow>Neighbors report no sign of Batu for 3 days</Line>
+            </div>
+          </HoursBanner>
         ),
       },
 
       "Neighborhood Bulletin": {
         content: (
-          <>
-            <Line smoke large bold>[COMMUNITY BULLETIN BOARD]</Line>
-            <Line neon>Accessing physical postings via photo scan...</Line>
-            <Divider />
-            <Section title="RECENT POSTS:">
-              <Line pink>→ "MISSING: Batu, bodega owner. Anyone seen him?"</Line>
-              <Line pink>→ "Lucky Flight took another house on our street this week"</Line>
-              <Line pink>→ "Can't afford groceries after casino payment this month"</Line>
-              <Line pink>→ "4th eviction on our block this year. When does it stop?"</Line>
-              <Line pink>→ "Organizing neighborhood meeting - discuss casino problem"</Line>
-              <Line pink>→ "We need to do something about that fucking place"</Line>
-              <Line pink>→ "Anyone know a good fixer? Asking for a friend..."</Line>
-            </Section>
-            <Divider />
-            <Section title="SERVICES ADVERTISED:">
-              <ListItem>Street doc - "Fingers" (2 blocks south, knock 3x)</ListItem>
-              <ListItem>Chop shop - Razor's (3 blocks east, alley entrance)</ListItem>
-              <ListItem>Black market credchip exchange (fluctuating rates)</ListItem>
-              <ListItem>Cyberware installation (unlicensed, cheap)</ListItem>
-              <ListItem>Taxi boat service to canal district (negotiable rates)</ListItem>
-            </Section>
-            <Divider />
-            <Line yellow>General mood: Frustrated, angry, desperate</Line>
-          </>
+          <CommunityBoard
+            id="bodega-bulletin"
+            boardName="COMMUNITY BULLETIN BOARD"
+            location="Inside Batu's Bodega - Near counter"
+            posts={[
+              { text: '"MISSING: Batu, bodega owner. Anyone seen him?"', color: 'pink' },
+              { text: '"Lucky Flight took another house on our street this week"', color: 'pink' },
+              { text: '"Can\'t afford groceries after casino payment this month"', color: 'pink' },
+              { text: '"4th eviction on our block this year. When does it stop?"', color: 'pink' },
+              { text: '"Organizing neighborhood meeting - discuss casino problem"', color: 'pink' },
+              { text: '"We need to do something about that fucking place"', color: 'pink' },
+              { text: '"Anyone know a good fixer? Asking for a friend..."', color: 'pink' },
+            ]}
+            services={[
+              'Street doc - "Fingers" (2 blocks south, knock 3x)',
+              "Chop shop - Razor's (3 blocks east, alley entrance)",
+              "Black market credchip exchange (fluctuating rates)",
+              "Cyberware installation (unlicensed, cheap)",
+              "Taxi boat service to canal district (negotiable rates)",
+            ]}
+            vibe="General mood: Frustrated, angry, desperate"
+          />
         ),
       },
 
@@ -315,10 +292,9 @@ export const BODEGA_COMMANDS = {
               <Camera
                 id="bodega-main-cam"
                 location="Batu's Bodega - Main room (above counter)"
-                coverage="Front entrance, counter, register, main aisles"
                 status="ACTIVE"
                 recording={true}
-                storage="Local server (basement)"
+                storage="Local"
                 timeline={[
                   "19:15 → Batu closes register (earlier than usual)",
                   "19:30 → Last customers exit",
@@ -337,12 +313,6 @@ export const BODEGA_COMMANDS = {
                   "07:46 → Stone Eels gang tag spray-painted on wall",
                   "07:47 → Individuals exit, head east on foot",
                 ]}
-                blindSpots={[
-                  "Side entrance (emergency exit only)",
-                  "Back storage room",
-                  "Batu's office area",
-                ]}
-                lastMaintenance="3 months ago"
               />
             ),
           },
@@ -367,97 +337,61 @@ export const BODEGA_COMMANDS = {
                   hintStrength: 2,
                 },
                 content: (
-                  <Box color="cyan">
-                    <Line cyan large bold>[EMPLOYEE FILE: BATU]</Line>
-                    <Divider color="cyan" />
-                    <DataTable data={[
-                      { label: "Full Name", value: "Batu Khamidov" },
-                      { label: "Age", value: "54" },
-                      { label: "Position", value: "Owner/Operator" },
-                      { label: "Employment Start", value: "May 2067 (15 years)" },
-                      { label: "Emergency Contact", value: "Zara Khamidova (niece)" },
-                    ]} />
-                    <Divider color="cyan" />
-                    <Section title="FINANCIAL SUMMARY:">
-                      <KeyValue label="Monthly Revenue" value="~800¤ (variable)" />
-                      <KeyValue label="Outstanding Debts" value="3,200¤" />
-                      <KeyValue label="Primary Creditor" value="CasinoBlizzFunds Inc." />
-                      <KeyValue label="Monthly Payment" value="450¤ (auto-debit)" />
-                      <KeyValue label="Personal Savings" value="47¤" />
-                    </Section>
-                    <Divider color="cyan" />
-                    <Section title="LOAN DETAILS:">
-                      <Line neon>Original Amount: 1,500¤</Line>
-                      <Line neon>Purpose: Medical expenses (family emergency)</Line>
-                      <Line neon>Date Issued: 18 months ago</Line>
-                      <Line neon>Interest Rate: 47% annually</Line>
-                      <Line neon>Total Paid To Date: ~8,100¤</Line>
-                      <Line neon>Current Balance: 3,200¤</Line>
-                    </Section>
-                    <Divider color="cyan" />
-                    <Section title="RECENT BANKING ACTIVITY:">
-                      <Line yellow>4 days ago → Transfer OUT: 200¤ (emergency withdrawal)</Line>
-                      <Line yellow>3 days ago → No transactions recorded</Line>
-                      <Line yellow>2 days ago → Auto-debit FAILED: 450¤ (insufficient funds)</Line>
-                      <Line yellow>Yesterday → Auto-debit FAILED: 450¤ (insufficient funds)</Line>
-                    </Section>
-                    <Divider color="cyan" />
-                    <Section title="PERSONAL NOTES (RCD Cloud Backup):">
-                      <Line pink>"Can't keep living like this. The neighborhood deserves better."</Line>
-                      <Line pink>"If I don't come back, tell Zara I'm sorry."</Line>
-                      <Line pink>"Charlie was right. Someone needs to act."</Line>
-                    </Section>
-                    <Divider color="cyan" />
-                    <Section title="RECENT COMMUNICATIONS:">
-                      <Line neon>4 days ago → Email to Lucky Flight management (debt negotiation request)</Line>
-                      <Line neon>4 days ago → Response received: "Request DENIED - Full payment required"</Line>
-                      <Line neon>3 days ago → Text to Zara: "Closing early. Don't worry about me."</Line>
-                    </Section>
-                  </Box>
+                  <PersonnelFile
+                    employeeId="BODEGA-001"
+                    name="Batu Khamidov"
+                    position="Owner/Operator"
+                    department="Self-Employed"
+                    hireDate="May 2067 (15 years)"
+                    supervisor="N/A - Owner"
+                    clearanceLevel="OWNER"
+                    salary="~800¤/month (variable)"
+                    location="Corner of Drech Ave & 5th Street"
+                    email="batu@bodega-local.cy"
+                    phone="[REDACTED]"
+                    emergencyContact="Zara Khamidova (niece)"
+                    performance={75}
+                    status="MISSING"
+                    notes={[
+                      "FINANCIAL: Outstanding debt 3,200¤ to CasinoBlizzFunds Inc.",
+                      "FINANCIAL: Original loan 1,500¤ at 47% interest (medical emergency)",
+                      "FINANCIAL: Total paid to date ~8,100¤, Current savings: 47¤",
+                      "PERSONAL NOTE (Cloud): 'Can't keep living like this. The neighborhood deserves better.'",
+                      "PERSONAL NOTE (Cloud): 'If I don't come back, tell Zara I'm sorry.'",
+                      "PERSONAL NOTE (Cloud): 'Charlie was right. Someone needs to act.'",
+                      "COMMUNICATIONS: Debt negotiation request to Lucky Flight - DENIED",
+                      "STATUS: Missing for 3 days - last seen heading toward casino",
+                    ]}
+                  />
                 ),
               },
 
               query_zara_personnel_file: {
                 content: (
-                  <Box color="pink">
-                    <Line pink large bold>[EMPLOYEE FILE: ZARA]</Line>
-                    <Divider color="pink" />
-                    <DataTable data={[
-                      { label: "Full Name", value: "Zara Khamidova" },
-                      { label: "Age", value: "23" },
-                      { label: "Position", value: "Part-time Associate" },
-                      { label: "Employment Start", value: "June 2081 (intermittent)" },
-                      { label: "Primary Job", value: "Courier (freelance)" },
-                      { label: "Relation to Owner", value: "Niece" },
-                    ]} />
-                    <Divider color="pink" />
-                    <Section title="EMPLOYMENT NOTES:">
-                      <Line neon>Works bodega shifts between courier jobs</Line>
-                      <Line neon>Unpaid labor (family arrangement)</Line>
-                      <Line neon>Has keys and security codes for store</Line>
-                      <Line neon>Handles deliveries and inventory when Batu unavailable</Line>
-                    </Section>
-                    <Divider color="pink" />
-                    <Section title="MEDICAL HISTORY (Store Insurance):">
-                      <Line yellow>18 months ago: Emergency hospitalization</Line>
-                      <Line yellow>Diagnosis: Cyberware rejection syndrome</Line>
-                      <Line yellow>Treatment Cost: 1,500¤ (paid by Batu via loan)</Line>
-                      <Line yellow>Current Status: Recovered, no ongoing treatment</Line>
-                    </Section>
-                    <Divider color="pink" />
-                    <Section title="CONTACT INFORMATION:">
-                      <Line neon>RCD: zara_k_courier@freenet.cy</Line>
-                      <Line neon>Address: 2 blocks north (shares apt with 3 roommates)</Line>
-                      <Line neon>Vehicle: Modified cyberbike (courier work)</Line>
-                    </Section>
-                    <Divider color="pink" />
-                    <Section title="RECENT ACTIVITY LOG:">
-                      <Line yellow>3 days ago → Shift cancelled by Batu (unusual)</Line>
-                      <Line yellow>2 days ago → No contact with store</Line>
-                      <Line yellow>Yesterday → Attempted to reach Batu via RCD (no response)</Line>
-                      <Line yellow>This morning → Visited store, found damage, filed missing person report</Line>
-                    </Section>
-                  </Box>
+                  <PersonnelFile
+                    employeeId="BODEGA-002"
+                    name="Zara Khamidova"
+                    position="Part-time Associate"
+                    department="Retail (intermittent)"
+                    hireDate="June 2081"
+                    supervisor="Batu Khamidov (uncle)"
+                    clearanceLevel={1}
+                    salary="Unpaid (family arrangement)"
+                    location="2 blocks north - Shared apartment"
+                    email="zara_k_courier@freenet.cy"
+                    phone="[AVAILABLE]"
+                    emergencyContact="Batu Khamidov (uncle)"
+                    performance={85}
+                    status="ACTIVE"
+                    notes={[
+                      "PRIMARY EMPLOYMENT: Freelance courier (cyberbike)",
+                      "BODEGA ROLE: Works shifts between courier jobs, has keys & security codes",
+                      "RECENT ACTIVITY: Shift cancelled by Batu 3 days ago (unusual)",
+                      "RECENT ACTIVITY: No store contact for 2 days",
+                      "RECENT ACTIVITY: Attempted to reach Batu via RCD - no response",
+                      "RECENT ACTIVITY: Found store damaged, filed missing person report this morning",
+                    ]}
+                  />
                 ),
               },
             },
@@ -507,9 +441,8 @@ export const BODEGA_COMMANDS = {
               <Safe
                 id="bodega-office-safe"
                 model="DS-200"
-                location="Batu's office - Behind framed bodega opening photo"
+                location="Batu's office"
                 owner="Batu Khamidov"
-                security="4-digit PIN"
                 lastAccess="3 days ago (before disappearance)"
                 physical={[
                   { item: "Emergency cash", desc: "180¤ (small bills, last reserves)" },

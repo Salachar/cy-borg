@@ -19,15 +19,6 @@ export default function ATM({
     return skimmableAmount || Math.floor(Math.random() * 41) + 10; // 10-50¤
   });
 
-  // Convert account data to extractable format
-  const accountItems = [
-    {
-      item: 'Recent Transaction Data',
-      desc: `Account: ${accountHolder}`,
-      value: actualSkimmableAmount,
-    },
-  ];
-
   return (
     <div style={{ position: 'relative' }}>
       {/* ATM container */}
