@@ -59,7 +59,6 @@ export default function TerminalShell({
           <TerminalHeader
             discoveredCount={12}
             passwordsCount={3}
-            creditsExtracted={450}
             onHelp={() => executeCommand('Help')}
             onList={() => executeCommand('Access Points')}
             onClear={() => executeCommand('Clear')}

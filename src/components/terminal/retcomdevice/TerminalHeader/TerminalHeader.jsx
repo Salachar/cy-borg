@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 export default function TerminalHeader({
   discoveredCount = 0,
   passwordsCount = 0,
-  creditsExtracted = 0,
   onHelp,
   onList,
   onClear,
@@ -11,7 +10,6 @@ export default function TerminalHeader({
 }) {
   const [adsBlocked, setAdsBlocked] = useState(47);
   const [packetsRouted, setPacketsRouted] = useState(1247);
-  const [uptime, setUptime] = useState(0);
 
   useEffect(() => {
     // Ad counter increases in random bursts
@@ -172,7 +170,7 @@ export default function TerminalHeader({
                 marginTop: '0.15rem',
               }}
             >
-              RETINAL COM DEVICE
+              RET COM DEVICE
             </div>
           </div>
         </div>
@@ -216,11 +214,6 @@ export default function TerminalHeader({
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', whiteSpace: 'nowrap' }}>
               <span style={{ color: 'rgb(148, 163, 184)' }}>BYPASSED:</span>
               <span style={{ color: 'rgb(251, 191, 36)', fontWeight: 'bold' }}>{passwordsCount}</span>
-            </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', whiteSpace: 'nowrap' }}>
-              <span style={{ color: 'rgb(148, 163, 184)' }}>EXTRACTED:</span>
-              <span style={{ color: 'rgb(0, 255, 65)', fontWeight: 'bold' }}>{creditsExtracted}¤</span>
             </div>
           </div>
 
