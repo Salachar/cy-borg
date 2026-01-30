@@ -9,7 +9,7 @@ import {
 } from '@terminal/TerminalComponents';
 import {
   PublicPortal,
-  InternalAccess,
+  Message,
   Camera,
   CommercialCamera,
   Safe,
@@ -471,7 +471,7 @@ export const THE_55_ROOFLINE_COMMANDS = {
           hintStrength: 1,
         },
         content: (
-          <InternalAccess
+          <Message
             name="ROOFLINE SECURITY SYSTEMS"
             message="SECURITY ACCESS GRANTED"
             networkInfo="⚠ Checkpoint systems - Guard access only"

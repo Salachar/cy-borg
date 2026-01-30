@@ -11,7 +11,7 @@ import {
   Camera,
   Menu,
   MaintenanceAccess,
-  InternalAccess,
+  Message,
   PublicPortal,
   PersonnelFile,
   CommunityBoard,
@@ -162,15 +162,15 @@ export const BODEGA_COMMANDS = {
                   hintStrength: 2,
                 },
                 content: (
-                  <InternalAccess
-                    name="VENDING MACHINE"
+                  <Message
+                    title="VENDING MACHINE"
                     message="DEBUG MODE ACTIVATED"
                     note="Dispense drinks via main interface - no charge"
                     theme="corporate"
                   >
                     <Line yellow large>⚠ FREE VEND MODE ENABLED</Line>
                     <Line cyan>All payment verification disabled</Line>
-                  </InternalAccess>
+                  </Message>
                 ),
               },
             },
@@ -180,9 +180,9 @@ export const BODEGA_COMMANDS = {
 
       "Deals!": {
         content: (
-          <InternalAccess
-            name="BODEGA"
-            system="TODAY'S SPECIALS"
+          <Message
+            title="BODEGA"
+            subtitle="TODAY'S SPECIALS"
             message="Updated: 3 days ago"
             note={'"Fair prices. No questions." - Batu'}
             theme="casual"
@@ -209,7 +209,7 @@ export const BODEGA_COMMANDS = {
               <Line cyan>✓ Free wifi (password: freewifi)</Line>
               <Line cyan>✓ Community bulletin board</Line>
             </Section>
-          </InternalAccess>
+          </Message>
         ),
       },
 
@@ -278,8 +278,8 @@ export const BODEGA_COMMANDS = {
           hintStrength: 3,
         },
         content: (
-          <InternalAccess
-            name="BODEGA"
+          <Message
+            title="BODEGA"
             message="EMPLOYEE ACCESS GRANTED"
             note="Internal network maintained by Batu (basic security)"
             theme="casual"
@@ -318,9 +318,9 @@ export const BODEGA_COMMANDS = {
 
           query_personnel: {
             content: (
-              <InternalAccess
-                name="BODEGA"
-                system="PERSONNEL RECORDS"
+              <Message
+                title="BODEGA"
+                subtitle="PERSONNEL RECORDS"
                 message="EMPLOYEE ACCESS GRANTED"
                 note="Internal network maintained by Batu (basic security)"
                 theme="corporate"
@@ -332,7 +332,7 @@ export const BODEGA_COMMANDS = {
                   <Line neon>→ Batu (Owner/Operator)</Line>
                   <Line neon>→ Zara (Part-time, Batu's niece)</Line>
                 </Section>
-              </InternalAccess>
+              </Message>
             ),
             related_commands: {
               query_batu_personnel_file: {
@@ -404,9 +404,9 @@ export const BODEGA_COMMANDS = {
 
           query_inventory: {
             content: (
-              <InternalAccess
-                name="BODEGA"
-                system="INVENTORY MANAGEMENT"
+              <Message
+                title="BODEGA"
+                subtitle="INVENTORY MANAGEMENT"
                 message="Last updated: 3 days ago (pre-closure)"
                 note="Free wifi still active"
                 theme="casual"
@@ -432,7 +432,7 @@ export const BODEGA_COMMANDS = {
                   <Line yellow>? Fire extinguisher: Should be under counter</Line>
                   <Line yellow>? Bottle inventory: Needs physical inspection</Line>
                 </Section>
-              </InternalAccess>
+              </Message>
             ),
           },
 

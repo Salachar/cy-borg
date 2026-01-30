@@ -7,6 +7,7 @@ export default function TerminalHeader({
   onHelp,
   onList,
   onClear,
+  onWallet,
 }) {
   const [adsBlocked, setAdsBlocked] = useState(47);
   const [packetsRouted, setPacketsRouted] = useState(1247);
@@ -27,25 +28,11 @@ export default function TerminalHeader({
       setPacketsRouted(prev => prev + burst);
     }, 3000);
 
-    // Uptime counter (in seconds)
-    const uptimeInterval = setInterval(() => {
-      setUptime(prev => prev + 1);
-    }, 1000);
-
     return () => {
       clearInterval(adInterval);
       clearInterval(packetInterval);
-      clearInterval(uptimeInterval);
     };
   }, []);
-
-  // Format uptime as HH:MM:SS
-  const formatUptime = () => {
-    const hours = Math.floor(uptime / 3600);
-    const minutes = Math.floor((uptime % 3600) / 60);
-    const seconds = uptime % 60;
-    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  };
 
   return (
     <div
@@ -256,11 +243,6 @@ export default function TerminalHeader({
               <span style={{ color: 'rgb(148, 163, 184)' }}>PKT:</span>
               <span style={{ color: 'rgb(79, 209, 197)', fontWeight: 'bold' }}>{packetsRouted.toLocaleString()}</span>
             </div>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', whiteSpace: 'nowrap' }}>
-              <span style={{ color: 'rgb(148, 163, 184)' }}>UPTIME:</span>
-              <span style={{ color: 'rgb(251, 191, 36)', fontWeight: 'bold' }}>{formatUptime()}</span>
-            </div>
           </div>
         </div>
 
@@ -273,7 +255,31 @@ export default function TerminalHeader({
             flexShrink: 0,
           }}
         >
-          {/* List button - menu icon */}
+          {onWallet && (
+            <button
+              onClick={onWallet}
+              style={{
+                width: '32px',
+                height: '32px',
+                border: '2px solid rgb(251, 191, 36)',
+                borderRadius: '4px',
+                backgroundColor: 'rgba(251, 191, 36, 0.1)',
+                color: 'rgb(251, 191, 36)',
+                fontSize: '1.25rem',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'all 0.2s',
+                fontFamily: 'monospace',
+                lineHeight: 1,
+              }}
+            >
+              $
+            </button>
+          )}
+
           {onList && (
             <button
               onClick={onList}
@@ -293,15 +299,6 @@ export default function TerminalHeader({
                 transition: 'all 0.2s',
                 padding: '6px',
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(79, 209, 197, 0.2)';
-                e.currentTarget.style.boxShadow = '0 0 10px rgba(79, 209, 197, 0.5)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(79, 209, 197, 0.1)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-              title="List"
             >
               <div style={{ width: '100%', height: '2px', backgroundColor: 'rgb(79, 209, 197)' }} />
               <div style={{ width: '100%', height: '2px', backgroundColor: 'rgb(79, 209, 197)' }} />
@@ -309,18 +306,17 @@ export default function TerminalHeader({
             </button>
           )}
 
-          {/* Help button - ? icon */}
           {onHelp && (
             <button
               onClick={onHelp}
               style={{
-                width: '32px',
+               width: '32px',
                 height: '32px',
                 border: '2px solid rgb(79, 209, 197)',
-                borderRadius: '50%',
+                borderRadius: '4px',
                 backgroundColor: 'rgba(79, 209, 197, 0.1)',
                 color: 'rgb(79, 209, 197)',
-                fontSize: '1rem',
+                fontSize: '1.25rem',
                 fontWeight: 'bold',
                 cursor: 'pointer',
                 display: 'flex',
@@ -328,22 +324,13 @@ export default function TerminalHeader({
                 justifyContent: 'center',
                 transition: 'all 0.2s',
                 fontFamily: 'monospace',
+                lineHeight: 1,
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(79, 209, 197, 0.2)';
-                e.currentTarget.style.boxShadow = '0 0 10px rgba(79, 209, 197, 0.5)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(79, 209, 197, 0.1)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-              title="Help"
             >
               ?
             </button>
           )}
 
-          {/* Clear button - × icon */}
           {onClear && (
             <button
               onClick={onClear}
@@ -364,15 +351,6 @@ export default function TerminalHeader({
                 fontFamily: 'monospace',
                 lineHeight: 1,
               }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(251, 191, 36, 0.2)';
-                e.currentTarget.style.boxShadow = '0 0 10px rgba(251, 191, 36, 0.5)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(251, 191, 36, 0.1)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-              title="Clear"
             >
               ×
             </button>

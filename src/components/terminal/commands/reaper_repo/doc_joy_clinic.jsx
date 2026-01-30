@@ -10,7 +10,7 @@ import {
 
 import {
   PublicPortal,
-  InternalAccess,
+  Message,
   Menu,
   HoursBanner,
   PersonnelFile,
@@ -235,8 +235,8 @@ const DOC_JOY_CLINIC_COMMANDS = {
         },
         content: (
           <>
-            <InternalAccess
-              name="Doc Joy's Clinic"
+            <Message
+              title="Doc Joy's Clinic"
               message="STAFF ACCESS GRANTED"
               note="Internal Network: CLINIC_SECURE | Node: OFFICE-01"
               theme="casual"

@@ -1,6 +1,6 @@
 import {
   PublicPortal,
-  InternalAccess,
+  Message,
   PersonnelFile,
   ShiftSchedule,
 } from "@terminal/retcomdevice";
@@ -377,7 +377,7 @@ export const THE_55_KAYTELL_MANUFACTURING_COMMANDS = {
           hintStrength: 1,
         },
         content: (
-          <InternalAccess
+          <Message
             name="KAYTELL MANUFACTURING SYSTEMS"
             message="EMPLOYEE ACCESS GRANTED"
             networkInfo="⚠ Production systems - Authorized personnel only"

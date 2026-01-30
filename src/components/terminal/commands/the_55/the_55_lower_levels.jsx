@@ -1,6 +1,6 @@
 import {
   PublicPortal,
-  InternalAccess,
+  Message,
   HoursBanner,
   PersonnelFile,
 } from "@terminal/retcomdevice";
@@ -445,7 +445,7 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
           hintStrength: 1,
         },
         content: (
-          <InternalAccess
+          <Message
             name="THE BASE MAINTENANCE"
             message="MAINTENANCE ACCESS GRANTED"
             networkInfo="⚠ Foundation systems - Critical infrastructure"

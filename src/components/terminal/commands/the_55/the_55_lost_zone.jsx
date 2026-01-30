@@ -1,6 +1,6 @@
 import {
   PublicPortal,
-  InternalAccess,
+  Message,
 } from "@terminal/retcomdevice";
 
 import {
@@ -409,7 +409,7 @@ export const THE_55_LOST_ZONE_COMMANDS = {
           hintStrength: 1,
         },
         content: (
-          <InternalAccess
+          <Message
             name="LOST ZONE CONSTRUCTION SYSTEMS"
             message="LEGACY SYSTEM ACCESS"
             networkInfo="⚠ Outdated systems - Limited functionality"

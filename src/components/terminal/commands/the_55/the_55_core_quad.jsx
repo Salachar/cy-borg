@@ -1,6 +1,6 @@
 import {
   PublicPortal,
-  InternalAccess,
+  Message,
   Menu,
   PersonnelFile,
 } from "@terminal/retcomdevice";
@@ -714,7 +714,7 @@ export const THE_55_CORP_QUAD_COMMANDS = {
           hintStrength: 1,
         },
         content: (
-          <InternalAccess
+          <Message
             name="CORP QUAD SERVICES"
             message="BUSINESS ACCESS GRANTED"
             networkInfo="⚠ Corporate systems - Authorized personnel only"

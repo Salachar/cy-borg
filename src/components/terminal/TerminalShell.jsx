@@ -63,6 +63,7 @@ export default function TerminalShell({
             onHelp={() => executeCommand('Help')}
             onList={() => executeCommand('Access Points')}
             onClear={() => executeCommand('Clear')}
+            onWallet={() => executeCommand('Wallet')}
           />
           {historyArea}
           {inputArea}

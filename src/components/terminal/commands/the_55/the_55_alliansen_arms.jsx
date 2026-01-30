@@ -1,6 +1,6 @@
 import {
   PublicPortal,
-  InternalAccess,
+  Message,
   PersonnelFile,
 } from "@terminal/retcomdevice";
 
@@ -655,7 +655,7 @@ export const THE_55_ALLIANSEN_ARMS_COMMANDS = {
           hintStrength: 1,
         },
         content: (
-          <InternalAccess
+          <Message
             name="ALLIANSEN ARMS MANAGEMENT"
             message="BUILDING MANAGEMENT ACCESS"
             note="⚠ Property systems - Authorized personnel only"

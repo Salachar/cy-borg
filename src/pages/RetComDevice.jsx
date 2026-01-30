@@ -164,7 +164,7 @@ function HistoryEntry({ entry, index, onCommandSelect, collapsedEntries, setColl
 // MAIN TERMINAL COMPONENT
 // ============================================================================
 
-export default function Terminal() {
+export default function RetComDevice() {
   // State
   const [history, setHistory] = useState([]);
   const [input, setInput] = useState('');

@@ -1,6 +1,6 @@
 import {
   PublicPortal,
-  InternalAccess,
+  Message,
   PersonnelFile,
 } from "@terminal/retcomdevice";
 
@@ -546,7 +546,7 @@ export const THE_55_CAPSULE_CLOSETS_COMMANDS = {
           hintStrength: 1,
         },
         content: (
-          <InternalAccess
+          <Message
             name="CAPSULE CLOSETS MAINTENANCE"
             message="MAINTENANCE ACCESS GRANTED"
             networkInfo="⚠ Building systems - Authorized personnel only"

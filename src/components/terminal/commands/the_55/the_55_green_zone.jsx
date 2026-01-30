@@ -1,6 +1,6 @@
 import {
   PublicPortal,
-  InternalAccess,
+  Message,
   PersonnelFile,
 } from "@terminal/retcomdevice";
 
@@ -525,7 +525,7 @@ export const THE_55_GREEN_ZONE_COMMANDS = {
           hintStrength: 1,
         },
         content: (
-          <InternalAccess
+          <Message
             name="GREEN ZONE SECURITY SYSTEMS"
             message="SECURITY ACCESS GRANTED"
             networkInfo="⚠ Access control systems - Authorized personnel only"

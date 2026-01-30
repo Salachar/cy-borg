@@ -1,6 +1,6 @@
 import {
   PublicPortal,
-  InternalAccess,
+  Message,
   PersonnelFile,
   CommercialCamera,
   LiveCameraFeed,
@@ -395,7 +395,7 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
           hintStrength: 1,
         },
         content: (
-          <InternalAccess
+          <Message
             name="STACK COMMAND & CONTROL"
             message="COMMAND SYSTEMS ACCESS GRANTED"
             networkInfo="⚠ Critical infrastructure - Authorized personnel only"

@@ -1,6 +1,6 @@
 import {
   PublicPortal,
-  InternalAccess,
+  Message,
   Menu,
   HoursBanner,
   Safe,
@@ -178,10 +178,9 @@ export const AURELION_COMMANDS = {
           hintStrength: 1,
         },
         content: (
-          <InternalAccess
-            name="THE AURELION"
-            message="STAFF ACCESS GRANTED"
-            networkInfo="⚠ Internal systems - Authorized personnel only"
+          <Message
+            title="THE AURELION"
+            subtitle="STAFF ACCESS GRANTED"
             theme="secure"
           />
         ),

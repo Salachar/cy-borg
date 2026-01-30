@@ -1,6 +1,6 @@
 import {
   PublicPortal,
-  InternalAccess,
+  Message,
   PersonnelFile,
 } from "@terminal/retcomdevice";
 
@@ -579,7 +579,7 @@ export const THE_55_SPECTRAL_LUXVITAE_COMMANDS = {
           hintStrength: 1,
         },
         content: (
-          <InternalAccess
+          <Message
             name="SPECTRAL LUXVITAE MANAGEMENT"
             message="MANAGEMENT ACCESS GRANTED"
             networkInfo="⚠ Resident systems - Authorized personnel only"

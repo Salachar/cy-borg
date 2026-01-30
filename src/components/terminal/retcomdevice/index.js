@@ -11,7 +11,7 @@ import Tenet from "./Tenet/Tenet";
 import VendingMachine from "./VendingMachine/VendingMachine";
 import MaintenanceAccess from "./MaintenanceAccess/MaintenanceAccess";
 import RelatedCommands from "./RelatedCommands/RelatedCommands";
-import InternalAccess from "./InternalAccess/InternalAccess";
+import Message from "./Message/Message";
 import Jukebox from "./Jukebox/Jukebox";
 import Workstation from "./Workstation/Workstation";
 import ShiftSchedule from "./ShiftSchedule/ShiftSchedule";
@@ -48,7 +48,7 @@ export {
   VendingMachine,
   MaintenanceAccess,
   RelatedCommands,
-  InternalAccess,
+  Message,
   Jukebox,
   Workstation,
   ShiftSchedule,

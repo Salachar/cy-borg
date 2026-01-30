@@ -7,19 +7,20 @@ import {
   KeyValue,
   DataTable,
 } from '@terminal/TerminalComponents';
+
 import {
   ATM,
   VendingMachine,
   Safe,
   Menu,
-  InternalAccess,
+  Message,
   PublicPortal,
 } from "@terminal/retcomdevice"
 
 import LuckyFlightAd from './ad'
-import LuckyFlightBasement from './LuckyFlightBasement';
-import LuckyFlightFloor1 from './LuckyFlightFloor1';
-import LuckyFlightFloor2 from './LuckyFlightFloor2';
+import basementImage from '@images/blueprints/lucky_flight_basement.png';
+import floor1Image from '@images/blueprints/lucky_flight_floor_1.png';
+import floor2Image from '@images/blueprints/lucky_flight_floor_2.png';
 
 export const LUCKY_FLIGHT_CASINO = {
   "Lucky Flight Casino!": {
@@ -258,8 +259,8 @@ export const LUCKY_FLIGHT_CASINO = {
           hintStrength: 1,
         },
         content: (
-          <InternalAccess
-            name="CASINO"
+          <Message
+            title="CASINO"
             message="ACCESS GRANTED - PERIPHERAL SYSTEMS"
             note="Higher-value systems require additional credentials"
             theme="corporate"
@@ -291,7 +292,38 @@ export const LUCKY_FLIGHT_CASINO = {
               "Blueprint: Basement": {
                 content: (
                   <>
-                    <LuckyFlightBasement />
+                    <Box color="neon">
+                      <Section title="LUCKY FLIGHT CASINO - BASEMENT BLUEPRINT" center>
+                        <Line red xsmall bottom pulse>CLASSIFIED // SECURITY CLEARANCE 3</Line>
+                      </Section>
+
+                      <div style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexDirection: "column",
+                        gap: "0.5rem"
+                      }}>
+                        <Line neon small>Basement Layout and Intel</Line>
+                        <div style={{ marginTop: "1rem", width: "100%" }}>
+                          <img
+                            src={basementImage}
+                            alt="Lucky Flight Casino Basement"
+                            style={{
+                              width: "100%",
+                              imageRendering: 'crisp-edges',
+                              boxShadow: '0 0 20px rgba(0, 255, 65, 0.3)',
+                            }}
+                          />
+                        </div>
+                      </div>
+                      <Divider color="neon" />
+                      <div style={{ textAlign: "center" }}>
+                        <Line neon xsmall>
+                          FILE ID: LFC_BASEMENT_V1.2 | LAST UPDATED: 20X2.08.14 | AUTHOR: [REDACTED]
+                        </Line>
+                      </div>
+                    </Box>
                     <Divider />
                     <Line cyan bold>KEY LOCATIONS:</Line>
                     <Line neon>• Security Office</Line>
@@ -308,7 +340,38 @@ export const LUCKY_FLIGHT_CASINO = {
               "Blueprint: Floor 1": {
                 content: (
                   <>
-                    <LuckyFlightFloor1 />
+                    <Box color="neon">
+                      <Section title="LUCKY FLIGHT CASINO - FLOOR 1 BLUEPRINT" center>
+                        <Line red xsmall bottom pulse>CLASSIFIED // SECURITY CLEARANCE 3</Line>
+                      </Section>
+
+                      <div style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexDirection: "column",
+                        gap: "0.5rem"
+                      }}>
+                        <Line neon small>Floor 1 Layout and Intel</Line>
+                        <div style={{ marginTop: "1rem", width: "100%" }}>
+                          <img
+                            src={floor1Image}
+                            alt="Lucky Flight Casino Floor 1"
+                            style={{
+                              width: "100%",
+                              imageRendering: 'crisp-edges',
+                              boxShadow: '0 0 20px rgba(0, 255, 65, 0.3)',
+                            }}
+                          />
+                        </div>
+                      </div>
+                      <Divider color="neon" />
+                      <div style={{ textAlign: "center" }}>
+                        <Line neon xsmall>
+                          FILE ID: LFC_FLOOR_01_V1.2 | LAST UPDATED: 20X2.08.14 | AUTHOR: [REDACTED]
+                        </Line>
+                      </div>
+                    </Box>
                     <Divider />
                     <Line cyan bold>KEY LOCATIONS:</Line>
                     <Line neon>• Main entrance</Line>
@@ -325,7 +388,38 @@ export const LUCKY_FLIGHT_CASINO = {
               "Blueprint: Floor 2": {
                 content: (
                   <>
-                    <LuckyFlightFloor2 />
+                    <Box color="neon">
+                      <Section title="LUCKY FLIGHT CASINO - FLOOR 2 BLUEPRINT" center>
+                        <Line red xsmall bottom pulse>CLASSIFIED // SECURITY CLEARANCE 3</Line>
+                      </Section>
+
+                      <div style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        flexDirection: "column",
+                        gap: "0.5rem"
+                      }}>
+                        <Line neon small>Floor 2 Layout and Intel</Line>
+                        <div style={{ marginTop: "1rem", width: "100%" }}>
+                          <img
+                            src={floor2Image}
+                            alt="Lucky Flight Casino Floor 2"
+                            style={{
+                              width: "100%",
+                              imageRendering: 'crisp-edges',
+                              boxShadow: '0 0 20px rgba(0, 255, 65, 0.3)',
+                            }}
+                          />
+                        </div>
+                      </div>
+                      <Divider color="neon" />
+                      <div style={{ textAlign: "center" }}>
+                        <Line neon xsmall>
+                          FILE ID: LFC_FLOOR_02_V1.2 | LAST UPDATED: 20X2.08.14 | AUTHOR: [REDACTED]
+                        </Line>
+                      </div>
+                    </Box>
                     <Divider />
                     <Line cyan bold>KEY LOCATIONS:</Line>
                     <Line neon>• VIP lounge</Line>

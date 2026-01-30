@@ -1,10 +1,10 @@
-export default function InternalAccess({
-  name,
-  theme = 'corporate',
-  system = "INTERNAL SYSTEMS",
+export default function Message({
+  title,
+  subtitle = "INTERNAL SYSTEMS",
   message = "EMPLOYEE ACCESS GRANTED",
   note,
   children,
+  theme = 'corporate',
 }) {
   const themeConfig = {
     corporate: {
@@ -55,7 +55,7 @@ export default function InternalAccess({
             letterSpacing: '0.05em',
           }}
         >
-          [{name} - {system}]
+          {title} - {subtitle}
         </div>
         <div
           style={{
@@ -65,7 +65,7 @@ export default function InternalAccess({
             fontFamily: 'monospace',
           }}
         >
-          [{message}]
+          {message}
         </div>
       </div>
 

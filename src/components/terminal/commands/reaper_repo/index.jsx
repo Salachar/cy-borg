@@ -8,7 +8,7 @@ import {
 } from '@terminal/TerminalComponents';
 import {
   PublicPortal,
-  InternalAccess,
+  Message,
   Menu,
   HoursBanner,
   CommunityBoard,
@@ -352,8 +352,8 @@ export const DOC_JOY_CLINIC_COMMANDS = {
           hintStrength: 1,
         },
         content: (
-          <InternalAccess
-            name="DOC JOY'S REAPER CLINIC"
+          <Message
+            title="DOC JOY'S REAPER CLINIC"
             message="STAFF ACCESS GRANTED"
             note="⚠ Internal systems - Staff only | Connection: Clinic-Net-047"
             theme="secure"
@@ -907,8 +907,8 @@ export const DOC_JOY_CLINIC_COMMANDS = {
           hintStrength: 2,
         },
         content: (
-          <InternalAccess
-            name="DOC JOY - PRIVATE SYSTEMS"
+          <Message
+            title="DOC JOY - PRIVATE SYSTEMS"
             message="ADMINISTRATOR ACCESS GRANTED"
             note="⚠ Restricted access - Doc Joy's personal files only"
             theme="secure"

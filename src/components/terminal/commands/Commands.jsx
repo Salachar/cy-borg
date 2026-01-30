@@ -7,6 +7,7 @@ import {
 } from '@terminal/TerminalComponents';
 
 import List from '@terminal/retcomdevice/List/List';
+import TerminalWallet from '@terminal/retcomdevice/TerminalWallet/TerminalWallet'
 
 import GamesBanner from '../retcomdevice/Games/GamesBanner/GamesBanner';
 import MinesweeperGame from '@terminal/retcomdevice/Games/MinesweeperGame/MinesweeperGame';
@@ -97,6 +98,14 @@ export const SYSTEM_COMMANDS = {
   "Clear": () => ({
     type: 'clear',
   }),
+
+  "Wallet": () => {
+    return {
+      content: (
+        <TerminalWallet />
+      )
+    };
+  },
 
   "Reset": () => ({
     type: 'reset',

@@ -5,9 +5,9 @@ import Home from './pages/Home';
 import Rules from './pages/Rules';
 import Combat from './pages/Combat';
 import Classes from './pages/Classes';
-import Terminal from './pages/Terminal';
+import RetComDevice from './pages/RetComDevice';
 import Artwork from './pages/Artwork';
-import PDF from './pages/PDF';
+// import PDF from './pages/PDF';
 
 // Scroll position storage
 const scrollPositions = {};
@@ -20,11 +20,11 @@ export default function App() {
   useEffect(() => {
     const currentPath = location.pathname;
 
-    // Skip scroll management for Terminal and Classes routes (they have dynamic/complex layouts)
-    const isTerminal = currentPath === '/retcomdevice';
+    // Skip scroll management for RetComDevice and Classes routes (they have dynamic/complex layouts)
+    const isRetComDevice = currentPath === '/retcomdevice';
     const isClasses = currentPath.startsWith('/classes');
 
-    if (isTerminal || isClasses) return;
+    if (isRetComDevice || isClasses) return;
 
     // Restore scroll position for this route (with slight delay to ensure DOM is ready)
     if (contentRef.current && scrollPositions[currentPath] !== undefined) {
@@ -37,7 +37,7 @@ export default function App() {
 
     // Save scroll position when navigating away
     return () => {
-      if (contentRef.current && !isTerminal && !isClasses) {
+      if (contentRef.current && !isRetComDevice && !isClasses) {
         scrollPositions[currentPath] = contentRef.current.scrollTop;
       }
     };
@@ -73,10 +73,10 @@ export default function App() {
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cy-cyan to-transparent" />
       </nav>
 
-      {/* Scrollable content area - except for Terminal which manages its own scroll */}
+      {/* Scrollable content area - except for RetComDevice which manages its own scroll */}
       {location.pathname === '/retcomdevice' ? (
         <Routes>
-          <Route path="/retcomdevice" element={<Terminal />} />
+          <Route path="/retcomdevice" element={<RetComDevice />} />
         </Routes>
       ) : (
         <div ref={contentRef} className="flex-1 overflow-y-auto overflow-x-hidden">

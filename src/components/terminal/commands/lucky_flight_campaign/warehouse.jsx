@@ -8,7 +8,7 @@ import {
   Camera,
   Safe,
   PersonnelFile,
-  InternalAccess,
+  Message,
   ShiftSchedule,
   Workstation,
   VendingMachine,
@@ -143,8 +143,8 @@ export const WAREHOUSE_COMMANDS = {
           hintStrength: 2,
         },
         content: (
-          <InternalAccess
-            name="ALLIANSEN WAREHOUSE"
+          <Message
+            title="ALLIANSEN WAREHOUSE"
             message="EMPLOYEE NETWORK CONNECTED"
             note="⚠ All access logged to corporate security | Connection: RCD-#8834"
             theme="corporate"

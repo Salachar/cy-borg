@@ -1,6 +1,6 @@
 import {
   PublicPortal,
-  InternalAccess,
+  Message,
 } from "@terminal/retcomdevice";
 
 import {
@@ -348,7 +348,7 @@ export const THE_55_REC_COMMANDS = {
           hintStrength: 1,
         },
         content: (
-          <InternalAccess
+          <Message
             name="REC MONITORING SYSTEMS"
             message="CONTAINMENT ACCESS GRANTED"
             networkInfo="⚠ Hazard zone monitoring - Emergency personnel only"

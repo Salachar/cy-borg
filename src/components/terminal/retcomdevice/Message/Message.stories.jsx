@@ -1,8 +1,8 @@
-import InternalAccess from './InternalAccess';
+import Message from './Message';
 
 export default {
-  title: 'Terminal/InternalAccess',
-  component: InternalAccess,
+  title: 'Terminal/Message',
+  component: Message,
 };
 
 export const BlankProps = {

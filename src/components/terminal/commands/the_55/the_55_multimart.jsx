@@ -1,6 +1,6 @@
 import {
   PublicPortal,
-  InternalAccess,
+  Message,
   Menu,
   HoursBanner,
   Safe,
@@ -385,7 +385,7 @@ export const THE_55_MULTIMART_COMMANDS = {
           hintStrength: 1,
         },
         content: (
-          <InternalAccess
+          <Message
             name="MULTIMART VENDOR NETWORK"
             message="VENDOR ACCESS GRANTED"
             networkInfo="⚠ Shared vendor systems - Authorized merchants only"

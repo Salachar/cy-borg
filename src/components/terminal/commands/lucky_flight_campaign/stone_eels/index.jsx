@@ -9,7 +9,7 @@ import {
 import {
   Safe,
   PublicPortal,
-  InternalAccess,
+  Message,
   PersonnelFile,
   Menu,
   EventLineup,
@@ -141,8 +141,8 @@ export const STONE_EELS_COMMANDS = {
           hintStrength: 2
         },
         content: (
-          <InternalAccess
-            name="CAVE CLUB"
+          <Message
+            title="CAVE CLUB"
             message="STAFF ACCESS GRANTED"
             note="⚠ Internal network maintained by Stone Eels tech crew"
             theme="secure"
@@ -378,8 +378,8 @@ export const STONE_EELS_COMMANDS = {
               hintStrength: 2
             },
             content: (
-              <InternalAccess
-                name="STONE EELS OPERATIONS"
+              <Message
+                title="STONE EELS OPERATIONS"
                 message="GANG LEADERSHIP ACCESS GRANTED"
                 note="⚠ Restricted operational data - Leadership only"
                 theme="secure"
