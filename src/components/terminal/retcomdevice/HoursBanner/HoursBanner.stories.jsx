@@ -12,7 +12,7 @@ export const BlankProps = () => (
 // Open business
 export const OpenBusiness = () => (
   <HoursBanner
-    businessName="CAVE CLUB"
+    name="CAVE CLUB"
     hours="20:00 - 06:00"
     days="Every Night"
     status="OPEN"
@@ -25,7 +25,7 @@ export const OpenBusiness = () => (
 // Closed business
 export const ClosedBusiness = () => (
   <HoursBanner
-    businessName="NEON DINER"
+    name="NEON DINER"
     hours="06:00 - 22:00"
     days="Mon-Sat"
     status="CLOSED"
@@ -38,7 +38,7 @@ export const ClosedBusiness = () => (
 // Closing soon (warning)
 export const ClosingSoon = () => (
   <HoursBanner
-    businessName="LUCKY FLIGHT CASINO"
+    name="LUCKY FLIGHT CASINO"
     hours="18:00 - 04:00"
     days="Every Night"
     status="CLOSING SOON"
@@ -51,7 +51,7 @@ export const ClosingSoon = () => (
 // Minimal info
 export const MinimalInfo = () => (
   <HoursBanner
-    businessName="24/7 BODEGA"
+    name="24/7 BODEGA"
     hours="24 Hours"
     status="OPEN"
     statusColor="open"

@@ -257,16 +257,6 @@ const STEEL_PENTHOUSE_COMMANDS = {
 
                 <Divider />
 
-                <Extractable
-                  id="game-console-wallet-extract"
-                  type="credits"
-                  items={[
-                    { item: "In-game credits", desc: "47,500 credits (black market convertible)", value: 11875 }
-                  ]}
-                  buttonLabel="DRAIN WALLET"
-                  requiresPresence={false}
-                />
-
                 <Line smoke small>Pro gamers with money to burn. That's a lot of microtransactions...</Line>
               </>
             )
@@ -387,16 +377,6 @@ const STEEL_PENTHOUSE_COMMANDS = {
 
                 <Divider />
 
-                <Extractable
-                  id="freezer-blackout-stash"
-                  type="physical"
-                  items={[
-                    { item: "Blackout (10 doses)", desc: "Sedative/anesthetic - frozen storage", value: 1500 }
-                  ]}
-                  requiresPresence={true}
-                  buttonLabel="POCKET DOSES"
-                />
-
                 <Line smoke small>Steel keeps his party supplies well-stocked. This could be useful...</Line>
               </>
             )
@@ -445,18 +425,6 @@ const STEEL_PENTHOUSE_COMMANDS = {
                     <Line smoke>Panel pops open. Someone's been using this as a stash spot.</Line>
 
                     <Divider />
-
-                    <Extractable
-                      id="coffee-machine-stash-penthouse"
-                      type="physical"
-                      items={[
-                        { item: "Credstick", desc: "800¤ - emergency cash?", value: 800 },
-                        { item: "Red-juice (2 doses)", desc: "Emergency healing stim", value: 600 },
-                        { item: "Note", desc: "Handwritten: 'For bad days - SJ'" }
-                      ]}
-                      requiresPresence={true}
-                      buttonLabel="TAKE STASH"
-                    />
 
                     <Line smoke small>Even killmatch champions need an emergency fund. Smart hiding spot.</Line>
                   </>
@@ -799,59 +767,63 @@ const STEEL_PENTHOUSE_COMMANDS = {
         }
       },
 
-      "master_bedroom_safe": {
-        blocker: {
-          mastermind_hack: {
-            sequenceLength: 6,
-            sequenceCount: 15,
-            attempts: 3,
-            symbolCount: 5,
-            colorCount: 5
-          }
-        },
-        content: (
-          <>
-            <Line cyan large bold>[MASTER BEDROOM - WALL SAFE ACCESS]</Line>
-            <Line smoke>Behind the Cyber-Lich painting in Holo Space</Line>
-            <Divider />
+      // "master_bedroom_safe": {
+      //   blocker: {
+      //     mastermind_hack: {
+      //       sequenceLength: 6,
+      //       sequenceCount: 15,
+      //       attempts: 3,
+      //       symbolCount: 5,
+      //       colorCount: 5
+      //     }
+      //   },
+      //   content: (
+      //     <>
+      //       <Line cyan large bold>[MASTER BEDROOM - WALL SAFE ACCESS]</Line>
+      //       <Line smoke>Behind the Cyber-Lich painting in Holo Space</Line>
+      //       <Divider />
 
-            <Box color="pink">
-              <Line bold>★ SAFE LOCATION CONFIRMED ★</Line>
-              <Line>The painting is hiding a scan/EMP-shielded safe with mechanical lock.</Line>
-              <Line>Network-connected (because of course it is) for "remote monitoring."</Line>
-            </Box>
+      //       <Box color="pink">
+      //         <Line bold>★ SAFE LOCATION CONFIRMED ★</Line>
+      //         <Line>The painting is hiding a scan/EMP-shielded safe with mechanical lock.</Line>
+      //         <Line>Network-connected (because of course it is) for "remote monitoring."</Line>
+      //       </Box>
 
-            <Divider />
+      //       <Divider />
 
-            <Safe
-              id="safe-penthouse-master"
-              model="FortressMax-Elite"
-              location="Master Bedroom - Behind Cyber-Lich painting (in Holo Space)"
-              owner="Steel Jackhammer"
-              security="Mechanical lock + Scan/EMP shielding"
-              lastAccess="3 days ago (pre-party)"
-              physical={[]}
-              digital={[
-                { item: "Data Chip", desc: "Match-fixing evidence: Alliansen Inc. + TG Labs collusion", value: 9000 }
-              ]}
-              notes="Contains evidence that could end Steel Jackhammer's career. Probably doesn't even know what he has."
-            />
+      //       <Safe
+      //         id="safe-penthouse-master"
+      //         model="FortressMax-Elite"
+      //         location="Master Bedroom - Behind Cyber-Lich painting (in Holo Space)"
+      //         owner="Steel Jackhammer"
+      //         security="Mechanical lock + Scan/EMP shielding"
+      //         lastAccess="3 days ago (pre-party)"
+      //         physical={[]}
+      //         digital={[
+      //           {
+      //             item: "Data Chip",
+      //             desc: "Match-fixing evidence: Alliansen Inc. + TG Labs collusion",
+      //             value: 9000,
+      //           }
+      //         ]}
+      //         notes="Contains evidence that could end Steel Jackhammer's career. Probably doesn't even know what he has."
+      //       />
 
-            <Divider />
+      //       <Divider />
 
-            <Box color="yellow">
-              <Line bold>DATA CHIP DETAILS:</Line>
-              <Line>Evidence of match fixing between Alliansen Inc. and TG Labs.</Line>
-              <Line>Can be sold to:</Line>
-              <Line>• Competitor's media outlets: Up to 9,000¤</Line>
-              <Line>• PR agents from either company: Up to 9,000¤ (hush money)</Line>
-              <Line>• Published publicly: Ends Steel's career/life</Line>
-            </Box>
+      //       <Box color="yellow">
+      //         <Line bold>DATA CHIP DETAILS:</Line>
+      //         <Line>Evidence of match fixing between Alliansen Inc. and TG Labs.</Line>
+      //         <Line>Can be sold to:</Line>
+      //         <Line>• Competitor's media outlets: Up to 9,000¤</Line>
+      //         <Line>• PR agents from either company: Up to 9,000¤ (hush money)</Line>
+      //         <Line>• Published publicly: Ends Steel's career/life</Line>
+      //       </Box>
 
-            <Warning>Publishing this information will destroy Steel Jackhammer if he survives the leg repo</Warning>
-          </>
-        )
-      },
+      //       <Warning>Publishing this information will destroy Steel Jackhammer if he survives the leg repo</Warning>
+      //     </>
+      //   )
+      // },
 
       "guest_room_finds": {
         content: (
@@ -869,16 +841,6 @@ const STEEL_PENTHOUSE_COMMANDS = {
             </Section>
 
             <Divider />
-
-            <Extractable
-              id="guest-room-drawer-stash"
-              type="physical"
-              items={[
-                { item: "Faceblock (2 packs)", desc: "Facial recognition blocker", value: 300 }
-              ]}
-              requiresPresence={true}
-              buttonLabel="TAKE FACEBLOCK"
-            />
 
             <Line smoke small>Faceblock in a drawer. Handy for someone who doesn't want to be recognized...</Line>
           </>
@@ -907,17 +869,6 @@ const STEEL_PENTHOUSE_COMMANDS = {
             </Box>
 
             <Divider />
-
-            <Extractable
-              id="master-closet-backpack-stash"
-              type="physical"
-              items={[
-                { item: "Credstick", desc: "2,500¤", value: 2500 },
-                { item: "Vurt (1 dose)", desc: "High-grade hallucinogen", value: 300 }
-              ]}
-              requiresPresence={true}
-              buttonLabel="SEARCH BACKPACK"
-            />
 
             <Line smoke small>Emergency cash and party supplies. Smart to keep separate from the safe.</Line>
           </>

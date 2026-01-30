@@ -656,8 +656,8 @@ export const THE_55_ALLIANSEN_ARMS_COMMANDS = {
         },
         content: (
           <InternalAccess
-            businessName="ALLIANSEN ARMS MANAGEMENT"
-            welcomeMessage="BUILDING MANAGEMENT ACCESS"
+            name="ALLIANSEN ARMS MANAGEMENT"
+            message="BUILDING MANAGEMENT ACCESS"
             note="⚠ Property systems - Authorized personnel only"
             theme="corporate"
           />

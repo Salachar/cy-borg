@@ -1,8 +1,8 @@
 export default function InternalAccess({
-  businessName,
+  name,
   theme = 'corporate',
   system = "INTERNAL SYSTEMS",
-  welcomeMessage = "EMPLOYEE ACCESS GRANTED",
+  message = "EMPLOYEE ACCESS GRANTED",
   note,
   children,
 }) {
@@ -55,7 +55,7 @@ export default function InternalAccess({
             letterSpacing: '0.05em',
           }}
         >
-          [{businessName} - {system}]
+          [{name} - {system}]
         </div>
         <div
           style={{
@@ -65,7 +65,7 @@ export default function InternalAccess({
             fontFamily: 'monospace',
           }}
         >
-          [{welcomeMessage}]
+          [{message}]
         </div>
       </div>
 

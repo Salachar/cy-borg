@@ -161,7 +161,7 @@ export default function Safe({
           {/* Extractable contents */}
           {(physical.length > 0 || digital.length > 0) && (
             <Extractable
-              id={id}
+              id={`${id}-safe-extractable`}
               physicalItems={physical}
               digitalItems={digital}
               stealing={stealing}

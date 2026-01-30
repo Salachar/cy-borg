@@ -94,7 +94,7 @@ export const DOC_JOY_CLINIC_COMMANDS = {
       "Hours & Location": {
         content: (
           <HoursBanner
-            businessName="DOC JOY'S REAPER CLINIC"
+            name="DOC JOY'S REAPER CLINIC"
             hours="24/7"
             days="Every Day"
             status="OPEN"
@@ -211,30 +211,30 @@ export const DOC_JOY_CLINIC_COMMANDS = {
               />
             ),
             related_commands: {
-              "Internal Safe": {
-                password: {
-                  pw: "change",
-                  hint: "What accumulates in the cash box",
-                  hintStrength: 1,
-                },
-                content: (
-                  <Safe
-                    id="clinic-vending-machine"
-                    model="VM-CASH-100"
-                    location="Internal cash collection box"
-                    owner="HealthSnack Corp (vending division)"
-                    security="Maintenance keypad"
-                    lastAccess="3 weeks ago (overdue service)"
-                    physical={[
-                      { item: "Coins", desc: "142¤ in change (very full, neglected)" },
-                    ]}
-                    digital={[
-                      { item: "Credchip", desc: "87¤ (3 weeks of receipts, transferable)" },
-                    ]}
-                    notes="Machine service overdue - cash box nearly at capacity, captive audience pricing"
-                  />
-                ),
-              },
+              // "Internal Safe": {
+              //   password: {
+              //     pw: "change",
+              //     hint: "What accumulates in the cash box",
+              //     hintStrength: 1,
+              //   },
+              //   content: (
+              //     <Safe
+              //       id="clinic-vending-machine"
+              //       model="VM-CASH-100"
+              //       location="Internal cash collection box"
+              //       owner="HealthSnack Corp (vending division)"
+              //       security="Maintenance keypad"
+              //       lastAccess="3 weeks ago (overdue service)"
+              //       physical={[
+              //         { item: "Coins", desc: "142¤ in change (very full, neglected)" },
+              //       ]}
+              //       digital={[
+              //         { item: "Credchip", desc: "87¤ (3 weeks of receipts, transferable)" },
+              //       ]}
+              //       notes="Machine service overdue - cash box nearly at capacity, captive audience pricing"
+              //     />
+              //   ),
+              // },
               "Debug Mode": {
                 password: {
                   pw: "freemeds",
@@ -353,8 +353,8 @@ export const DOC_JOY_CLINIC_COMMANDS = {
         },
         content: (
           <InternalAccess
-            businessName="DOC JOY'S REAPER CLINIC"
-            welcomeMessage="STAFF ACCESS GRANTED"
+            name="DOC JOY'S REAPER CLINIC"
+            message="STAFF ACCESS GRANTED"
             note="⚠ Internal systems - Staff only | Connection: Clinic-Net-047"
             theme="secure"
           />
@@ -483,7 +483,7 @@ export const DOC_JOY_CLINIC_COMMANDS = {
                   "Staff break room",
                   "Doc Joy's private office",
                 ]}
-                lastMaintenance="1 week ago"
+                lastService="1 week ago"
               />
             ),
             related_commands: {
@@ -550,7 +550,7 @@ export const DOC_JOY_CLINIC_COMMANDS = {
                   { time: "15:00", user: "Doc Joy", action: "Surgery (removal)" },
                   { time: "18:45", user: "Doc Joy", action: "Surgery (leg actuator) - ACTIVE" },
                 ]}
-                lastMaintenance="3 days ago"
+                lastService="3 days ago"
                 notes="High-security system - Required for medical liability insurance"
               />
             ),
@@ -712,30 +712,30 @@ export const DOC_JOY_CLINIC_COMMANDS = {
                       />
                     ),
                     related_commands: {
-                      "Internal Safe": {
-                        password: {
-                          pw: "subsidy",
-                          hint: "What makes staff prices cheaper",
-                          hintStrength: 2,
-                        },
-                        content: (
-                          <Safe
-                            id="clinic-staff-vending-safe"
-                            model="VM-CASH-100"
-                            location="Internal cash collection box"
-                            owner="Doc Joy (clinic subsidized)"
-                            security="Maintenance keypad"
-                            lastAccess="1 week ago"
-                            physical={[
-                              { item: "Coins", desc: "38¤ in change (staff prices)" },
-                            ]}
-                            digital={[
-                              { item: "Credchip", desc: "45¤ (1 week of staff purchases, transferable)" },
-                            ]}
-                            notes="Staff subsidized prices - Don't let patients see this menu"
-                          />
-                        ),
-                      },
+                      // "Internal Safe": {
+                      //   password: {
+                      //     pw: "subsidy",
+                      //     hint: "What makes staff prices cheaper",
+                      //     hintStrength: 2,
+                      //   },
+                      //   content: (
+                      //     <Safe
+                      //       id="clinic-staff-vending-safe"
+                      //       model="VM-CASH-100"
+                      //       location="Internal cash collection box"
+                      //       owner="Doc Joy (clinic subsidized)"
+                      //       security="Maintenance keypad"
+                      //       lastAccess="1 week ago"
+                      //       physical={[
+                      //         { item: "Coins", desc: "38¤ in change (staff prices)" },
+                      //       ]}
+                      //       digital={[
+                      //         { item: "Credchip", desc: "45¤ (1 week of staff purchases, transferable)" },
+                      //       ]}
+                      //       notes="Staff subsidized prices - Don't let patients see this menu"
+                      //     />
+                      //   ),
+                      // },
                       "Debug Mode": {
                         password: {
                           pw: "breaktime",
@@ -908,8 +908,8 @@ export const DOC_JOY_CLINIC_COMMANDS = {
         },
         content: (
           <InternalAccess
-            businessName="DOC JOY - PRIVATE SYSTEMS"
-            welcomeMessage="ADMINISTRATOR ACCESS GRANTED"
+            name="DOC JOY - PRIVATE SYSTEMS"
+            message="ADMINISTRATOR ACCESS GRANTED"
             note="⚠ Restricted access - Doc Joy's personal files only"
             theme="secure"
           />
@@ -1025,68 +1025,68 @@ export const DOC_JOY_CLINIC_COMMANDS = {
             ),
           },
 
-          "Office Safe (Doc Joy)": {
-            password: {
-              pw: "svarta",
-              hint: "The district where the clinic is located",
-              hintStrength: 2,
-            },
-            content: (
-              <Safe
-                id="clinic-docjoy-office-safe"
-                model="SecureVault Pro 800"
-                location="Doc Joy's private office (behind medical diploma)"
-                owner="Doc Joy"
-                security="Biometric (fingerprint) + 6-digit code"
-                lastAccess="Yesterday (evening)"
-                physical={[
-                  {
-                    item: "Cash",
-                    desc: "8,400¤ (clinic emergency fund, large bills)",
-                  },
-                  {
-                    item: "Contracts",
-                    desc: "Business contracts, lease agreements, supplier deals",
-                  },
-                  {
-                    item: "Alliansen evidence",
-                    desc: "Original design blueprints (physical copy, proof of creation date)",
-                  },
-                  {
-                    item: "Backup cyberware",
-                    desc: "2 neural chips (high-end, personal use or resale)",
-                  },
-                  {
-                    item: "Personal documents",
-                    desc: "Medical license, identity papers, insurance",
-                  },
-                  {
-                    item: "Weapon",
-                    desc: "Compact 9mm pistol (loaded, emergency defense)",
-                  },
-                ]}
-                digital={[
-                  {
-                    item: "Credchip",
-                    desc: "1,200¤ (emergency fund, transferable)",
-                  },
-                  {
-                    item: "Data file",
-                    desc: "Client blackmail files - Info on various patients (sellable, dangerous)",
-                  },
-                  {
-                    item: "Evidence file",
-                    desc: "Alliansen theft documentation (emails, photos, timeline)",
-                  },
-                  {
-                    item: "Contact list",
-                    desc: "Black market suppliers, fixers, info brokers (valuable connections)",
-                  },
-                ]}
-                notes="⚠ Alarm silent trigger if opened without correct biometric | Doc Joy checks safe daily"
-              />
-            ),
-          },
+          // "Office Safe (Doc Joy)": {
+          //   password: {
+          //     pw: "svarta",
+          //     hint: "The district where the clinic is located",
+          //     hintStrength: 2,
+          //   },
+          //   content: (
+          //     <Safe
+          //       id="clinic-docjoy-office-safe"
+          //       model="SecureVault Pro 800"
+          //       location="Doc Joy's private office (behind medical diploma)"
+          //       owner="Doc Joy"
+          //       security="Biometric (fingerprint) + 6-digit code"
+          //       lastAccess="Yesterday (evening)"
+          //       physical={[
+          //         {
+          //           item: "Cash",
+          //           desc: "8,400¤ (clinic emergency fund, large bills)",
+          //         },
+          //         {
+          //           item: "Contracts",
+          //           desc: "Business contracts, lease agreements, supplier deals",
+          //         },
+          //         {
+          //           item: "Alliansen evidence",
+          //           desc: "Original design blueprints (physical copy, proof of creation date)",
+          //         },
+          //         {
+          //           item: "Backup cyberware",
+          //           desc: "2 neural chips (high-end, personal use or resale)",
+          //         },
+          //         {
+          //           item: "Personal documents",
+          //           desc: "Medical license, identity papers, insurance",
+          //         },
+          //         {
+          //           item: "Weapon",
+          //           desc: "Compact 9mm pistol (loaded, emergency defense)",
+          //         },
+          //       ]}
+          //       digital={[
+          //         {
+          //           item: "Credchip",
+          //           desc: "1,200¤ (emergency fund, transferable)",
+          //         },
+          //         {
+          //           item: "Data file",
+          //           desc: "Client blackmail files - Info on various patients (sellable, dangerous)",
+          //         },
+          //         {
+          //           item: "Evidence file",
+          //           desc: "Alliansen theft documentation (emails, photos, timeline)",
+          //         },
+          //         {
+          //           item: "Contact list",
+          //           desc: "Black market suppliers, fixers, info brokers (valuable connections)",
+          //         },
+          //       ]}
+          //       notes="⚠ Alarm silent trigger if opened without correct biometric | Doc Joy checks safe daily"
+          //     />
+          //   ),
+          // },
 
           "Financial Records": {
             content: (

@@ -78,12 +78,14 @@ export default function DigitalWallet({
         /* Unlocked state - Extractable */
         <div className="wallet-extract-area">
           <Extractable
-            id={id}
+            id={`${id}-digital-wallet-extractable`}
             digitalItems={[
               {
-                item: 'Digital Credits',
-                desc: `${credits.toLocaleString()}¤ available balance`,
-                value: credits
+                id: `${id}-digital-wallet-credits-item`,
+                label: 'Digital Credits',
+                description: `${credits.toLocaleString()}¤ available balance`,
+                value: credits,
+                isCredits: true,
               }
             ]}
             stealing={true}

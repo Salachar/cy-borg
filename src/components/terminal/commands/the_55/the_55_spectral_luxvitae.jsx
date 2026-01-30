@@ -580,8 +580,8 @@ export const THE_55_SPECTRAL_LUXVITAE_COMMANDS = {
         },
         content: (
           <InternalAccess
-            businessName="SPECTRAL LUXVITAE MANAGEMENT"
-            welcomeMessage="MANAGEMENT ACCESS GRANTED"
+            name="SPECTRAL LUXVITAE MANAGEMENT"
+            message="MANAGEMENT ACCESS GRANTED"
             networkInfo="⚠ Resident systems - Authorized personnel only"
             theme="secure"
           />

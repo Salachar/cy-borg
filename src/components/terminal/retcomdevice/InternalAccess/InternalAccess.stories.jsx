@@ -12,8 +12,8 @@ export const BlankProps = {
 // Small business - bodega
 export const BodegaAccess = {
   args: {
-    businessName: 'LUCKY STAR BODEGA',
-    welcomeMessage: 'EMPLOYEE ACCESS GRANTED',
+    name: 'LUCKY STAR BODEGA',
+    message: 'EMPLOYEE ACCESS GRANTED',
     networkInfo: 'Network: BODEGA-STAFF-01 | Connected to POS system',
     theme: 'casual',
   },
@@ -22,8 +22,8 @@ export const BodegaAccess = {
 // Casino internal
 export const CasinoAccess = {
   args: {
-    businessName: 'LUCKY FLIGHT CASINO',
-    welcomeMessage: 'STAFF NETWORK ACCESS APPROVED',
+    name: 'LUCKY FLIGHT CASINO',
+    message: 'STAFF NETWORK ACCESS APPROVED',
     networkInfo: 'Security Level: HIGH | All activity monitored',
     theme: 'corporate',
   },
@@ -32,8 +32,8 @@ export const CasinoAccess = {
 // Warehouse system
 export const WarehouseAccess = {
   args: {
-    businessName: 'SECURECARGO WAREHOUSE',
-    welcomeMessage: 'LOGISTICS SYSTEM ONLINE',
+    name: 'SECURECARGO WAREHOUSE',
+    message: 'LOGISTICS SYSTEM ONLINE',
     networkInfo: 'Connected to inventory management | Shift: NIGHT',
     theme: 'corporate',
   },
@@ -42,8 +42,8 @@ export const WarehouseAccess = {
 // Corporate HQ
 export const CorporateAccess = {
   args: {
-    businessName: 'BIGMOSSE CORPORATE',
-    welcomeMessage: 'AUTHORIZED PERSONNEL ONLY',
+    name: 'BIGMOSSE CORPORATE',
+    message: 'AUTHORIZED PERSONNEL ONLY',
     networkInfo: 'Encrypted connection | VPN active | Building: TOWER A',
     theme: 'secure',
   },
@@ -52,8 +52,8 @@ export const CorporateAccess = {
 // Nightclub
 export const NightclubAccess = {
   args: {
-    businessName: 'CAVE CLUB',
-    welcomeMessage: 'STAFF ACCESS GRANTED',
+    name: 'CAVE CLUB',
+    message: 'STAFF ACCESS GRANTED',
     networkInfo: 'Sound system network | Lighting controls | Bar POS',
     theme: 'casual',
   },
@@ -62,8 +62,8 @@ export const NightclubAccess = {
 // Medical facility
 export const MedicalAccess = {
   args: {
-    businessName: 'VITALCORP CLINIC',
-    welcomeMessage: 'MEDICAL STAFF ACCESS',
+    name: 'VITALCORP CLINIC',
+    message: 'MEDICAL STAFF ACCESS',
     networkInfo: 'HIPAA-compliant network | Patient records accessible',
     theme: 'corporate',
   },
@@ -72,8 +72,8 @@ export const MedicalAccess = {
 // Restaurant/bar
 export const RestaurantAccess = {
   args: {
-    businessName: 'NEON BISTRO',
-    welcomeMessage: 'KITCHEN & FRONT OF HOUSE ACCESS',
+    name: 'NEON BISTRO',
+    message: 'KITCHEN & FRONT OF HOUSE ACCESS',
     networkInfo: 'POS system | Reservation system | Inventory',
     theme: 'casual',
   },
@@ -82,8 +82,8 @@ export const RestaurantAccess = {
 // Security company
 export const SecurityAccess = {
   args: {
-    businessName: 'SECOPS HQ',
-    welcomeMessage: 'SECURITY PERSONNEL AUTHORIZED',
+    name: 'SECOPS HQ',
+    message: 'SECURITY PERSONNEL AUTHORIZED',
     networkInfo: 'CRITICAL: All communications encrypted | Emergency protocols active',
     theme: 'secure',
   },
@@ -92,8 +92,8 @@ export const SecurityAccess = {
 // Data center
 export const DataCenterAccess = {
   args: {
-    businessName: 'DATAVAULT SYSTEMS',
-    welcomeMessage: 'TECHNICIAN ACCESS VERIFIED',
+    name: 'DATAVAULT SYSTEMS',
+    message: 'TECHNICIAN ACCESS VERIFIED',
     networkInfo: 'Server monitoring | Climate controls | Power management',
     theme: 'secure',
   },
@@ -102,8 +102,8 @@ export const DataCenterAccess = {
 // Manufacturing
 export const ManufacturingAccess = {
   args: {
-    businessName: 'APEX MANUFACTURING',
-    welcomeMessage: 'FLOOR SUPERVISOR ACCESS',
+    name: 'APEX MANUFACTURING',
+    message: 'FLOOR SUPERVISOR ACCESS',
     networkInfo: 'Production line controls | Quality metrics | Safety systems',
     theme: 'corporate',
   },
@@ -112,8 +112,8 @@ export const ManufacturingAccess = {
 // Retail store
 export const RetailAccess = {
   args: {
-    businessName: 'TECHMART ELECTRONICS',
-    welcomeMessage: 'EMPLOYEE DASHBOARD',
+    name: 'TECHMART ELECTRONICS',
+    message: 'EMPLOYEE DASHBOARD',
     networkInfo: 'Inventory system | Customer lookup | Returns processing',
     theme: 'casual',
   },
@@ -122,8 +122,8 @@ export const RetailAccess = {
 // Hotel
 export const HotelAccess = {
   args: {
-    businessName: 'SKYLINE GRAND HOTEL',
-    welcomeMessage: 'FRONT DESK & CONCIERGE ACCESS',
+    name: 'SKYLINE GRAND HOTEL',
+    message: 'FRONT DESK & CONCIERGE ACCESS',
     networkInfo: 'Reservations | Guest services | Housekeeping coordination',
     theme: 'corporate',
   },
@@ -132,8 +132,8 @@ export const HotelAccess = {
 // Gym/fitness center
 export const GymAccess = {
   args: {
-    businessName: 'POWER FITNESS CENTER',
-    welcomeMessage: 'STAFF & TRAINER ACCESS',
+    name: 'POWER FITNESS CENTER',
+    message: 'STAFF & TRAINER ACCESS',
     networkInfo: 'Member database | Class schedules | Equipment tracking',
     theme: 'casual',
   },
@@ -142,8 +142,8 @@ export const GymAccess = {
 // Underground/gang front
 export const UndergroundAccess = {
   args: {
-    businessName: 'STONE EELS - SECURE CHANNEL',
-    welcomeMessage: 'VERIFIED MEMBER - WELCOME',
+    name: 'STONE EELS - SECURE CHANNEL',
+    message: 'VERIFIED MEMBER - WELCOME',
     networkInfo: '⚠ Encrypted communication only | No logs | Trust no one',
     theme: 'secure',
   },
@@ -152,8 +152,8 @@ export const UndergroundAccess = {
 // Government office
 export const GovernmentAccess = {
   args: {
-    businessName: 'CITIZEN SERVICES PORTAL',
-    welcomeMessage: 'CIVIL SERVANT ACCESS APPROVED',
+    name: 'CITIZEN SERVICES PORTAL',
+    message: 'CIVIL SERVANT ACCESS APPROVED',
     networkInfo: 'Official use only | All transactions logged for audit',
     theme: 'secure',
   },
@@ -162,8 +162,8 @@ export const GovernmentAccess = {
 // Library
 export const LibraryAccess = {
   args: {
-    businessName: 'CITY PUBLIC LIBRARY',
-    welcomeMessage: 'LIBRARIAN WORKSTATION',
+    name: 'CITY PUBLIC LIBRARY',
+    message: 'LIBRARIAN WORKSTATION',
     networkInfo: 'Catalog system | Circulation desk | Digital archives',
     theme: 'casual',
   },
@@ -172,8 +172,8 @@ export const LibraryAccess = {
 // Gas station
 export const GasStationAccess = {
   args: {
-    businessName: 'QUICKFUEL STATION',
-    welcomeMessage: 'ATTENDANT ACCESS',
+    name: 'QUICKFUEL STATION',
+    message: 'ATTENDANT ACCESS',
     networkInfo: 'Pump controls | Register system | Inventory alerts',
     theme: 'casual',
   },
@@ -182,8 +182,8 @@ export const GasStationAccess = {
 // Bank branch
 export const BankAccess = {
   args: {
-    businessName: 'QUANTUM FINANCIAL',
-    welcomeMessage: 'TELLER STATION AUTHENTICATED',
+    name: 'QUANTUM FINANCIAL',
+    message: 'TELLER STATION AUTHENTICATED',
     networkInfo: 'CRITICAL: Customer data encrypted | Transaction monitoring active',
     theme: 'secure',
   },
@@ -192,8 +192,8 @@ export const BankAccess = {
 // School/university
 export const SchoolAccess = {
   args: {
-    businessName: 'TECH UNIVERSITY',
-    welcomeMessage: 'FACULTY & STAFF ACCESS',
+    name: 'TECH UNIVERSITY',
+    message: 'FACULTY & STAFF ACCESS',
     networkInfo: 'Student records | Grading system | Resource booking',
     theme: 'corporate',
   },
@@ -202,8 +202,8 @@ export const SchoolAccess = {
 // Minimal (no network info)
 export const MinimalAccess = {
   args: {
-    businessName: 'LOCAL SHOP',
-    welcomeMessage: 'ACCESS GRANTED',
+    name: 'LOCAL SHOP',
+    message: 'ACCESS GRANTED',
     theme: 'casual',
   },
 };
@@ -211,8 +211,8 @@ export const MinimalAccess = {
 // High security facility
 export const MaxSecurityAccess = {
   args: {
-    businessName: 'CLASSIFIED FACILITY',
-    welcomeMessage: 'LEVEL 7 CLEARANCE VERIFIED',
+    name: 'CLASSIFIED FACILITY',
+    message: 'LEVEL 7 CLEARANCE VERIFIED',
     networkInfo: '⚠ CRITICAL: Quantum encryption active | Biometric auth confirmed | Zero-trust protocol',
     theme: 'secure',
   },
@@ -221,8 +221,8 @@ export const MaxSecurityAccess = {
 // Hacker/underground network
 export const HackerAccess = {
   args: {
-    businessName: 'PHANTOM NETWORK',
-    welcomeMessage: 'ANONYMOUS NODE CONNECTED',
+    name: 'PHANTOM NETWORK',
+    message: 'ANONYMOUS NODE CONNECTED',
     networkInfo: 'TOR routing active | No logs | Encrypted traffic only | Exit at will',
     theme: 'secure',
   },
@@ -231,8 +231,8 @@ export const HackerAccess = {
 // Pharmacy
 export const PharmacyAccess = {
   args: {
-    businessName: 'MEDIPLUS PHARMACY',
-    welcomeMessage: 'PHARMACIST WORKSTATION',
+    name: 'MEDIPLUS PHARMACY',
+    message: 'PHARMACIST WORKSTATION',
     networkInfo: 'Prescription database | Insurance verification | Controlled substance tracking',
     theme: 'corporate',
   },
@@ -241,8 +241,8 @@ export const PharmacyAccess = {
 // Auto repair shop
 export const AutoShopAccess = {
   args: {
-    businessName: 'CHROME CUSTOMS GARAGE',
-    welcomeMessage: 'MECHANIC TERMINAL',
+    name: 'CHROME CUSTOMS GARAGE',
+    message: 'MECHANIC TERMINAL',
     networkInfo: 'Work orders | Parts inventory | Diagnostic tools',
     theme: 'casual',
   },
@@ -251,8 +251,8 @@ export const AutoShopAccess = {
 // TV/radio station
 export const MediaAccess = {
   args: {
-    businessName: 'NEON CITY BROADCASTING',
-    welcomeMessage: 'PRODUCTION TEAM ACCESS',
+    name: 'NEON CITY BROADCASTING',
+    message: 'PRODUCTION TEAM ACCESS',
     networkInfo: 'Live feed controls | Archive system | Scheduling dashboard',
     theme: 'corporate',
   },

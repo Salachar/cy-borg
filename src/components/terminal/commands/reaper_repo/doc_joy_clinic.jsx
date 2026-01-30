@@ -87,7 +87,7 @@ const DOC_JOY_CLINIC_COMMANDS = {
       "hours": {
         content: (
           <HoursBanner
-            businessName="Doc Joy's Clinic"
+            name="Doc Joy's Clinic"
             hours="24/7"
             days="Every Day"
             status="OPEN"
@@ -218,20 +218,6 @@ const DOC_JOY_CLINIC_COMMANDS = {
 
                     <Divider />
 
-                    <Extractable
-                      id="coffee-machine-dead-drop"
-                      type="physical"
-                      items={[
-                        { item: "Credstick", desc: "1,200¤", value: 1200 },
-                        { item: "Data chip", desc: "Labeled 'Insurance' - encrypted" },
-                        { item: "Note", desc: "'For emergencies only - J'" }
-                      ]}
-                      requiresPresence={true}
-                      buttonLabel="POCKET CONTENTS"
-                    />
-
-                    <Divider />
-
                     <Line smoke small>Doc Joy's emergency stash? Or someone else's?</Line>
                   </>
                 )
@@ -250,8 +236,8 @@ const DOC_JOY_CLINIC_COMMANDS = {
         content: (
           <>
             <InternalAccess
-              businessName="Doc Joy's Clinic"
-              welcomeMessage="STAFF ACCESS GRANTED"
+              name="Doc Joy's Clinic"
+              message="STAFF ACCESS GRANTED"
               note="Internal Network: CLINIC_SECURE | Node: OFFICE-01"
               theme="casual"
             />
@@ -573,37 +559,37 @@ const DOC_JOY_CLINIC_COMMANDS = {
             }
           },
 
-          "medical_supplies": {
-            password: {
-              pw: "pharmacy_2067",
-              hint: "Standard medical storage password format: pharmacy_[year]",
-              hintStrength: 2
-            },
-            content: (
-              <Safe
-                id="safe-docjoy-medical"
-                model="MedVault Pro-3000"
-                location="Doc Joy's Clinic - Supply Room"
-                owner="Doc Joy"
-                security="Biometric + PIN"
-                lastAccess="8 hours ago (routine restock)"
-                physical={[
-                  { item: "Faceblock (3 doses)", desc: "Facial recognition blocker", value: 450 },
-                  { item: "Red-juice (2 doses)", desc: "Emergency healing stimulant", value: 600 },
-                  { item: "Vurt (1 dose)", desc: "High-grade hallucinogen", value: 300 },
-                  { item: "Painkillers (Medical grade)", desc: "20 doses", value: 200 },
-                  { item: "Blackout (1 dose)", desc: "Sedative/anesthetic", value: 150 }
-                ]}
-                digital={[
-                  { item: "Medical Licenses", desc: "Doc Joy's credentials & certifications" },
-                  { item: "Patient Records", desc: "Encrypted database (HIPAA-compliant... mostly)" },
-                  { item: "Supplier Contacts", desc: "Black market chrome and pharma sources" },
-                  { item: "Crypto Wallet", desc: "Emergency funds access", value: 2500 }
-                ]}
-                notes="Emergency supplies kept on hand. Doc Joy occasionally 'loans' items to trusted contractors before dangerous jobs."
-              />
-            )
-          },
+          // "medical_supplies": {
+          //   password: {
+          //     pw: "pharmacy_2067",
+          //     hint: "Standard medical storage password format: pharmacy_[year]",
+          //     hintStrength: 2
+          //   },
+          //   content: (
+          //     <Safe
+          //       id="safe-docjoy-medical"
+          //       model="MedVault Pro-3000"
+          //       location="Doc Joy's Clinic - Supply Room"
+          //       owner="Doc Joy"
+          //       security="Biometric + PIN"
+          //       lastAccess="8 hours ago (routine restock)"
+          //       physical={[
+          //         { item: "Faceblock (3 doses)", desc: "Facial recognition blocker", value: 450 },
+          //         { item: "Red-juice (2 doses)", desc: "Emergency healing stimulant", value: 600 },
+          //         { item: "Vurt (1 dose)", desc: "High-grade hallucinogen", value: 300 },
+          //         { item: "Painkillers (Medical grade)", desc: "20 doses", value: 200 },
+          //         { item: "Blackout (1 dose)", desc: "Sedative/anesthetic", value: 150 }
+          //       ]}
+          //       digital={[
+          //         { item: "Medical Licenses", desc: "Doc Joy's credentials & certifications" },
+          //         { item: "Patient Records", desc: "Encrypted database (HIPAA-compliant... mostly)" },
+          //         { item: "Supplier Contacts", desc: "Black market chrome and pharma sources" },
+          //         { item: "Crypto Wallet", desc: "Emergency funds access", value: 2500 }
+          //       ]}
+          //       notes="Emergency supplies kept on hand. Doc Joy occasionally 'loans' items to trusted contractors before dangerous jobs."
+          //     />
+          //   )
+          // },
 
           "clinic_security": {
             password: {

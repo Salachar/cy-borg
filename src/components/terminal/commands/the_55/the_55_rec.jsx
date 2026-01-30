@@ -349,8 +349,8 @@ export const THE_55_REC_COMMANDS = {
         },
         content: (
           <InternalAccess
-            businessName="REC MONITORING SYSTEMS"
-            welcomeMessage="CONTAINMENT ACCESS GRANTED"
+            name="REC MONITORING SYSTEMS"
+            message="CONTAINMENT ACCESS GRANTED"
             networkInfo="⚠ Hazard zone monitoring - Emergency personnel only"
             theme="secure"
           />

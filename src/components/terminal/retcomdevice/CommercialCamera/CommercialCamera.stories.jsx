@@ -36,7 +36,7 @@ export const RestaurantVIP = {
         message: 'Security personnel entered Pearl Room (prep)',
       },
     ],
-    lastMaintenance: '3 days ago',
+    lastService: '3 days ago',
   },
 };
 
@@ -68,6 +68,6 @@ export const CorporateOffice = {
         message: 'After-hours access logged: Maintenance crew verified',
       },
     ],
-    lastMaintenance: '1 week ago',
+    lastService: '1 week ago',
   },
 };

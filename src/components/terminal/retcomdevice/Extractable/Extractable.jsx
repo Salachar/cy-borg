@@ -7,17 +7,26 @@ import { Line, Divider } from '@terminal/TerminalComponents';
  * Generic component for taking items (stealing, claiming, retrieving, etc.)
  * Tracks extraction state in localStorage under unified key.
  * Physical and digital items can be extracted independently.
+ * NOW SAVES TO WALLET: Items and credits are saved to the terminal wallet.
  *
  * Props:
  * - id: Unique identifier (e.g., "safe-master-bedroom")
- * - physicalItems: Array of { item, desc, value? } - requires physical presence
- * - digitalItems: Array of { item, desc, value? } - remote extraction
+ * - physicalItems: Array of item objects with schema:
+ *     {
+ *       id: "filament_knife",
+ *       label: "Filament Knife",
+ *       description: "Monomolecular edge cuts through most materials",
+ *       die: "d6", (optional)
+ *       cost: "300¤", (optional)
+ *       value: 300, (optional, for credits)
+ *       isCredits: true (optional, flags as credits vs item)
+ *     }
+ * - digitalItems: Array of item objects (same schema as physicalItems)
  * - stealing: Boolean - changes UI tone (default: false)
- *   - false: "TAKE", "CLAIM", "RETRIEVE" (neutral)
- *   - true: "STEAL", "EXTRACT" (criminal tone)
  * - disabled: Disable extraction (default: false)
- * - onExtract: Callback function when extracted (optional) - receives (items, totalValue, type: 'physical'|'digital')
+ * - onExtract: Callback function when extracted (optional)
  */
+
 export default function Extractable({
   id,
   physicalItems = [],
@@ -27,6 +36,7 @@ export default function Extractable({
   onExtract,
 }) {
   const STORAGE_KEY = 'cyborg_retcom_extracted';
+  const WALLET_STORAGE_KEY = 'cyborg_retcom_wallet';
 
   const [extractedPhysical, setExtractedPhysical] = useState(() => {
     try {
@@ -46,6 +56,34 @@ export default function Extractable({
     }
   });
 
+  const saveToWallet = (items) => {
+    try {
+      const wallet = JSON.parse(localStorage.getItem(WALLET_STORAGE_KEY) || '{"credits":0,"items":[]}');
+
+      items.forEach(item => {
+        if (item.isCredits) {
+          // Add to credits total
+          wallet.credits += item.value || 0;
+        } else {
+          // Add to items array (using standard schema)
+          wallet.items.push({
+            id: item.id,
+            label: item.label,
+            description: item.description,
+            die: item.die,
+            cost: item.cost,
+          });
+        }
+      });
+
+      localStorage.setItem(WALLET_STORAGE_KEY, JSON.stringify(wallet));
+      // Dispatch custom event so TerminalWallet can update
+      window.dispatchEvent(new Event('walletUpdated'));
+    } catch (error) {
+      console.error('Failed to save to wallet:', error);
+    }
+  };
+
   const handleExtractPhysical = () => {
     if (disabled || extractedPhysical) return;
 
@@ -54,6 +92,9 @@ export default function Extractable({
       extracted[`${id}-physical`] = true;
       localStorage.setItem(STORAGE_KEY, JSON.stringify(extracted));
       setExtractedPhysical(true);
+
+      // Save to wallet
+      saveToWallet(physicalItems);
 
       if (onExtract) {
         const value = physicalItems.reduce((sum, item) => sum + (item.value || 0), 0);
@@ -72,6 +113,9 @@ export default function Extractable({
       extracted[`${id}-digital`] = true;
       localStorage.setItem(STORAGE_KEY, JSON.stringify(extracted));
       setExtractedDigital(true);
+
+      // Save to wallet
+      saveToWallet(digitalItems);
 
       if (onExtract) {
         const value = digitalItems.reduce((sum, item) => sum + (item.value || 0), 0);
@@ -211,14 +255,15 @@ export default function Extractable({
                       fontSize: '0.875rem',
                     }}
                   >
-                    <strong>{item.item}</strong>: {item.desc}
-                    {item.value && (
+                    <strong>{item.label}</strong>
+                    {item.description && <span>: {item.description}</span>}
+                    {item.value && item.isCredits && (
                       <span style={{
                         color: extractedPhysical ? 'rgb(148, 163, 184)' : 'rgb(34, 197, 94)',
                         marginLeft: '0.5rem',
                         fontWeight: 'bold',
                       }}>
-                        [{item.value}¤]
+                        [{item.value.toLocaleString()}¤]
                       </span>
                     )}
                   </Line>
@@ -342,14 +387,15 @@ export default function Extractable({
                       fontSize: '0.875rem',
                     }}
                   >
-                    <strong>{item.item}</strong>: {item.desc}
-                    {item.value && (
+                    <strong>{item.label}</strong>
+                    {item.description && <span>: {item.description}</span>}
+                    {item.value && item.isCredits && (
                       <span style={{
                         color: extractedDigital ? 'rgb(148, 163, 184)' : 'rgb(34, 197, 94)',
                         marginLeft: '0.5rem',
                         fontWeight: 'bold',
                       }}>
-                        [{item.value}¤]
+                        [{item.value.toLocaleString()}¤]
                       </span>
                     )}
                   </Line>

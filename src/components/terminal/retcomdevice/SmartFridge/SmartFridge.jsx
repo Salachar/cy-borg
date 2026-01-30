@@ -248,7 +248,7 @@ export default function SmartFridge({
               </div>
 
               <Extractable
-                id={`${id}-fridge`}
+                id={`${id}-fridge-extractable`}
                 physicalItems={fridgePhysicalItems}
                 stealing={false}
               />

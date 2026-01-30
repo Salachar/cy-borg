@@ -32,7 +32,7 @@ export const BodegaMainCamera = {
       'Storage room entrance (outside camera arc)',
       'Area behind register counter (limited visibility)',
     ],
-    lastMaintenance: 'March 15, 2024',
+    lastService: 'March 15, 2024',
   },
 };
 
@@ -61,7 +61,7 @@ export const WarehouseCamera = {
       'North fence line (trees obstruct view)',
       'Guard station interior (separate camera system)',
     ],
-    lastMaintenance: 'January 8, 2025',
+    lastService: 'January 8, 2025',
   },
 };
 
@@ -87,7 +87,7 @@ export const CasinoCamera = {
       'Restroom corridor (separate monitoring)',
       'Upper mezzanine sections (different camera coverage)',
     ],
-    lastMaintenance: 'December 2, 2024',
+    lastService: 'December 2, 2024',
   },
 };
 
@@ -112,7 +112,7 @@ export const ApartmentCamera = {
       'Parking garage (separate system)',
       'Service entrance (blind spot - pending camera install)',
     ],
-    lastMaintenance: 'November 20, 2024',
+    lastService: 'November 20, 2024',
   },
 };
 
@@ -137,7 +137,7 @@ export const OfflineCamera = {
       'Rooftop access points (outside range)',
       'Adjacent building doorways (camera angle limitation)',
     ],
-    lastMaintenance: 'October 5, 2024',
+    lastService: 'October 5, 2024',
   },
 };
 
@@ -165,7 +165,7 @@ export const DataCenterCamera = {
       'HVAC maintenance crawlspaces',
       'Executive terminal area (privacy shutters active)',
     ],
-    lastMaintenance: 'January 18, 2025',
+    lastService: 'January 18, 2025',
   },
 };
 
@@ -192,7 +192,7 @@ export const StreetCamera = {
       'Building alcoves and doorways',
       'Pier end sections (beyond camera range)',
     ],
-    lastMaintenance: 'January 10, 2025',
+    lastService: 'January 10, 2025',
   },
 };
 
@@ -240,6 +240,6 @@ export const MaxSecurityCamera = {
       'Backup cameras cover all redundancies',
       'AI-assisted blind spot elimination active',
     ],
-    lastMaintenance: 'January 20, 2025 (daily inspection protocol)',
+    lastService: 'January 20, 2025 (daily inspection protocol)',
   },
 };

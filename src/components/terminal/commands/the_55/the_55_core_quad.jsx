@@ -715,8 +715,8 @@ export const THE_55_CORP_QUAD_COMMANDS = {
         },
         content: (
           <InternalAccess
-            businessName="CORP QUAD SERVICES"
-            welcomeMessage="BUSINESS ACCESS GRANTED"
+            name="CORP QUAD SERVICES"
+            message="BUSINESS ACCESS GRANTED"
             networkInfo="⚠ Corporate systems - Authorized personnel only"
             theme="corporate"
           />

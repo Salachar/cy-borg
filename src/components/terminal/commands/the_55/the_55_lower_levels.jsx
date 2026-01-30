@@ -446,8 +446,8 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
         },
         content: (
           <InternalAccess
-            businessName="THE BASE MAINTENANCE"
-            welcomeMessage="MAINTENANCE ACCESS GRANTED"
+            name="THE BASE MAINTENANCE"
+            message="MAINTENANCE ACCESS GRANTED"
             networkInfo="⚠ Foundation systems - Critical infrastructure"
             theme="limeade"
           />

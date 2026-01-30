@@ -386,8 +386,8 @@ export const THE_55_MULTIMART_COMMANDS = {
         },
         content: (
           <InternalAccess
-            businessName="MULTIMART VENDOR NETWORK"
-            welcomeMessage="VENDOR ACCESS GRANTED"
+            name="MULTIMART VENDOR NETWORK"
+            message="VENDOR ACCESS GRANTED"
             networkInfo="⚠ Shared vendor systems - Authorized merchants only"
             theme="limeade"
           />

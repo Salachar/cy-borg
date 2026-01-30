@@ -378,8 +378,8 @@ export const THE_55_KAYTELL_MANUFACTURING_COMMANDS = {
         },
         content: (
           <InternalAccess
-            businessName="KAYTELL MANUFACTURING SYSTEMS"
-            welcomeMessage="EMPLOYEE ACCESS GRANTED"
+            name="KAYTELL MANUFACTURING SYSTEMS"
+            message="EMPLOYEE ACCESS GRANTED"
             networkInfo="⚠ Production systems - Authorized personnel only"
             theme="corporate"
           />

@@ -19,7 +19,7 @@ export const BodegaATM = {
     network: 'CityBank',
     accountHolder: 'Sarah Chen (last accessed)',
     balance: '147¤',
-    recentTransactions: [
+    transactions: [
       '14:23 → Withdrawal: 40¤',
       '15:47 → Balance inquiry',
       '16:12 → Deposit: 100¤',
@@ -38,7 +38,7 @@ export const LowBalanceATM = {
     network: 'MetroBank',
     accountHolder: 'Marcus Webb (last accessed)',
     balance: '23¤',
-    recentTransactions: [
+    transactions: [
       '08:15 → Withdrawal: 50¤',
       '12:30 → Failed transaction (insufficient funds)',
       '14:00 → Balance inquiry',
@@ -56,7 +56,7 @@ export const BusyATM = {
     network: 'CorpBank Premium',
     accountHolder: 'David Park (last accessed)',
     balance: '892¤',
-    recentTransactions: [
+    transactions: [
       '20:15 → Withdrawal: 200¤',
       '20:47 → Withdrawal: 100¤',
       '21:23 → Balance inquiry',
@@ -77,7 +77,7 @@ export const FreshATM = {
     network: 'CityBank',
     accountHolder: 'Jane Wilson (last accessed)',
     balance: '340¤',
-    recentTransactions: [],
+    transactions: [],
     lastService: 'Yesterday',
   },
 };
@@ -91,7 +91,7 @@ export const SketchyATM = {
     network: 'Unknown Network',
     accountHolder: 'ACCOUNT_ERROR',
     balance: '???¤',
-    recentTransactions: [
+    transactions: [
       '??:?? → Unknown transaction',
       '??:?? → Data corrupted',
       '03:47 → Withdrawal: 1000¤',
@@ -109,7 +109,7 @@ export const HighRollerATM = {
     network: 'Premium Banking Network',
     accountHolder: 'Saša (last accessed)',
     balance: '12,450¤',
-    recentTransactions: [
+    transactions: [
       '23:15 → Withdrawal: 2,000¤',
       '23:47 → Balance inquiry',
       '00:23 → Transfer received: +5,000¤',

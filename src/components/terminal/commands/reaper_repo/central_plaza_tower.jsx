@@ -194,16 +194,6 @@ const CENTRAL_PLAZA_TOWER_COMMANDS = {
 
                     <Divider />
 
-                    <Extractable
-                      id="atm-tower-lobby-skim"
-                      type="credits"
-                      items={[
-                        { item: "Transaction Skim", desc: "Small % from daily transactions", value: 850 }
-                      ]}
-                      buttonLabel="SKIM FUNDS"
-                      requiresPresence={false}
-                    />
-
                     <Line smoke small>Skimming detected rarely due to high volume. Small amounts go unnoticed.</Line>
                   </>
                 )
@@ -677,7 +667,7 @@ const CENTRAL_PLAZA_TOWER_COMMANDS = {
                 systemName="Building Maintenance Control"
                 location="Central Plaza Tower"
                 status="OPERATIONAL"
-                lastMaintenance="Nov 10, 2067"
+                lastService="Nov 10, 2067"
                 nextScheduled="Dec 1, 2067"
                 issues={[
                   {

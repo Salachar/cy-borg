@@ -104,10 +104,22 @@ export const FUN_COMMANDS = {
             security="Digital keypad + biometric"
             lastAccess="3 days ago"
             physical={[
-              { item: "Cash", desc: "180¤ (emergency fund)" },
+              {
+                id: "chen_cash",
+                label: "Cash",
+                description: "180¤ (emergency fund)",
+                value: 180,
+                isCredits: true
+              },
             ]}
             digital={[
-              { item: "Credchip", desc: "25¤ (transferable)" },
+              {
+                id: "chen_credchip",
+                label: "Credchip",
+                description: "25¤ (transferable)",
+                value: 25,
+                isCredits: true
+              },
             ]}
             notes="Safe installed 18 months ago"
           />
@@ -203,7 +215,7 @@ export const FUN_COMMANDS = {
               "Under dock platform (structural obstruction)",
               "Water approach from east (lens damage)",
             ]}
-            lastMaintenance="8 months ago (overdue for cleaning/repair)"
+            lastService="8 months ago (overdue for cleaning/repair)"
           />
         ),
       },
@@ -223,14 +235,42 @@ export const FUN_COMMANDS = {
             security="Combination lock (mechanical + digital)"
             lastAccess="1 week ago"
             physical={[
-              { item: "Cash", desc: "95¤ (mixed bills, rent savings)" },
-              { item: "Documents", desc: "Boat registration, repair licenses" },
-              { item: "Tools", desc: "Precision screwdriver set (professional quality)" },
-              { item: "Personal", desc: "Wedding ring (divorced, kept for sentimental reasons)" },
+              {
+                id: "verne_cash",
+                label: "Cash",
+                description: "95¤ (mixed bills, rent savings)",
+                value: 95,
+                isCredits: true
+              },
+              {
+                id: "verne_documents",
+                label: "Documents",
+                description: "Boat registration, repair licenses"
+              },
+              {
+                id: "verne_tools",
+                label: "Tools",
+                description: "Precision screwdriver set (professional quality)"
+              },
+              {
+                id: "verne_ring",
+                label: "Personal",
+                description: "Wedding ring (divorced, kept for sentimental reasons)"
+              },
             ]}
             digital={[
-              { item: "Credchip", desc: "22¤ (transferable)" },
-              { item: "Coupon code", desc: "BOATPARTS15 (15% off marine supplies, expires in 2 months)" },
+              {
+                id: "verne_credchip",
+                label: "Credchip",
+                description: "22¤ (transferable)",
+                value: 22,
+                isCredits: true
+              },
+              {
+                id: "verne_coupon",
+                label: "Coupon code",
+                description: "BOATPARTS15 (15% off marine supplies, expires in 2 months)"
+              },
             ]}
             notes="Safe showing signs of water damage (external), still functional"
           />
@@ -365,15 +405,46 @@ export const FUN_COMMANDS = {
             security="Unknown technology (not standard)"
             lastAccess="Unknown (no logs available)"
             physical={[
-              { item: "Cash", desc: "Unknown amount (safe makes weird noises)" },
-              { item: "Documents", desc: "Patents? Blueprints? (language unrecognizable)" },
-              { item: "Vials", desc: "Green liquid (DO NOT CONSUME)" },
-              { item: "Device components", desc: "Unknown purpose (possibly dangerous)" },
+              {
+                id: "sanchez_cash",
+                label: "Cash",
+                description: "Unknown amount (safe makes weird noises)"
+                // No value/isCredits - can't extract unknown amount
+              },
+              {
+                id: "sanchez_documents",
+                label: "Documents",
+                description: "Patents? Blueprints? (language unrecognizable)"
+              },
+              {
+                id: "sanchez_vials",
+                label: "Vials",
+                description: "Green liquid (DO NOT CONSUME)"
+              },
+              {
+                id: "sanchez_components",
+                label: "Device components",
+                description: "Unknown purpose (possibly dangerous)"
+              },
             ]}
             digital={[
-              { item: "Credchip", desc: "28¤ (transferable, standard currency)" },
-              { item: "App", desc: "Inter-D Cable Guide (0¤ value, completely non-functional)" },
-              { item: "Data file", desc: "boogeraids_aidsbooger.enc (encrypted, unknown contents)" },
+              {
+                id: "sanchez_credchip",
+                label: "Credchip",
+                description: "28¤ (transferable, standard currency)",
+                value: 28,
+                isCredits: true
+              },
+              {
+                id: "sanchez_cable_app",
+                label: "App",
+                description: "Inter-D Cable Guide (0¤ value, completely non-functional)"
+              },
+              {
+                id: "sanchez_encrypted_file",
+                label: "Data file",
+                description: "boogeraids_aidsbooger.enc (encrypted, unknown contents)"
+              },
             ]}
             notes="⚠ Safe appears to phase in and out of visibility occasionally"
           />
@@ -438,14 +509,42 @@ export const FUN_COMMANDS = {
             security="Combination + voice recognition"
             lastAccess="This morning (opening)"
             physical={[
-              { item: "Cash", desc: "520¤ (daily receipts + emergency fund)" },
-              { item: "High-value jewelry", desc: "Wedding rings (3), gold chains (2)" },
-              { item: "Documents", desc: "Business license, insurance papers" },
-              { item: "Personal items", desc: "Collection of disguises (wigs, glasses, prosthetics)" },
+              {
+                id: "pawn_cash",
+                label: "Cash",
+                description: "520¤ (daily receipts + emergency fund)",
+                value: 520,
+                isCredits: true
+              },
+              {
+                id: "pawn_jewelry",
+                label: "High-value jewelry",
+                description: "Wedding rings (3), gold chains (2)"
+              },
+              {
+                id: "pawn_documents",
+                label: "Documents",
+                description: "Business license, insurance papers"
+              },
+              {
+                id: "pawn_disguises",
+                label: "Personal items",
+                description: "Collection of disguises (wigs, glasses, prosthetics)"
+              },
             ]}
             digital={[
-              { item: "Credchip", desc: "18¤ (transferable)" },
-              { item: "Coupon code", desc: "PAWN20 (20% bonus on next pawn, expires in 1 month)" },
+              {
+                id: "pawn_credchip",
+                label: "Credchip",
+                description: "18¤ (transferable)",
+                value: 18,
+                isCredits: true
+              },
+              {
+                id: "pawn_coupon",
+                label: "Coupon code",
+                description: "PAWN20 (20% bonus on next pawn, expires in 1 month)"
+              },
             ]}
             notes="Voice recognition changes weekly (matches current 'persona')"
           />
@@ -597,13 +696,37 @@ export const FUN_COMMANDS = {
             security="Biometric + quantum encryption"
             lastAccess="Yesterday evening"
             physical={[
-              { item: "Cash", desc: "680¤ (client payments, emergency fund)" },
-              { item: "USB drives", desc: "Client data backups (3 drives, encrypted)" },
-              { item: "Documents", desc: "Business license, insurance, client NDAs" },
-              { item: "Personal credchip", desc: "Unknown amount (separate from business)" },
+              {
+                id: "cipher_cash",
+                label: "Cash",
+                description: "680¤ (client payments, emergency fund)",
+                value: 680,
+                isCredits: true
+              },
+              {
+                id: "cipher_usb_drives",
+                label: "USB drives",
+                description: "Client data backups (3 drives, encrypted)"
+              },
+              {
+                id: "cipher_documents",
+                label: "Documents",
+                description: "Business license, insurance, client NDAs"
+              },
+              {
+                id: "cipher_personal_credchip",
+                label: "Personal credchip",
+                description: "Unknown amount (separate from business)"
+              },
             ]}
             digital={[
-              { item: "Credchip", desc: "95¤ (business account, transferable)" },
+              {
+                id: "cipher_business_credchip",
+                label: "Credchip",
+                description: "95¤ (business account, transferable)",
+                value: 95,
+                isCredits: true
+              },
             ]}
             notes="⚠ Safe features quantum encryption - extremely difficult to crack"
           />
@@ -689,13 +812,37 @@ export const FUN_COMMANDS = {
             security="Electronic keypad"
             lastAccess="6 hours ago (shift change)"
             physical={[
-              { item: "Cash", desc: "340¤ (daily receipts from card payments)" },
-              { item: "Documents", desc: "Liquor license, business permits" },
-              { item: "Personal credchip", desc: "Unknown amount (owner's personal funds)" },
+              {
+                id: "compiler_cash",
+                label: "Cash",
+                description: "340¤ (daily receipts from card payments)",
+                value: 340,
+                isCredits: true
+              },
+              {
+                id: "compiler_documents",
+                label: "Documents",
+                description: "Liquor license, business permits"
+              },
+              {
+                id: "compiler_personal_credchip",
+                label: "Personal credchip",
+                description: "Unknown amount (owner's personal funds)"
+              },
             ]}
             digital={[
-              { item: "Credchip", desc: "32¤ (bar petty cash, transferable)" },
-              { item: "Coupon code", desc: "COMPILER25 (25% off next meetup event, expires in 1 month)" },
+              {
+                id: "compiler_petty_cash",
+                label: "Credchip",
+                description: "32¤ (bar petty cash, transferable)",
+                value: 32,
+                isCredits: true
+              },
+              {
+                id: "compiler_coupon",
+                label: "Coupon code",
+                description: "COMPILER25 (25% off next meetup event, expires in 1 month)"
+              },
             ]}
             notes="Safe checked at opening (14:00) and closing (02:00)"
           />
@@ -823,13 +970,39 @@ export const FUN_COMMANDS = {
                 security="Maintenance keypad"
                 lastAccess="2 days ago (routine service)"
                 physical={[
-                  { item: "Coins", desc: "140¤ in change (mixed denominations)" },
-                  { item: "Bills", desc: "80¤ (small bills)" },
-                  { item: "Service log", desc: "Paper logbook (last 6 months)" },
+                  {
+                    id: "vending_coins",
+                    label: "Coins",
+                    description: "140¤ in change (mixed denominations)",
+                    value: 140,
+                    isCredits: true
+                  },
+                  {
+                    id: "vending_bills",
+                    label: "Bills",
+                    description: "80¤ (small bills)",
+                    value: 80,
+                    isCredits: true
+                  },
+                  {
+                    id: "vending_service_log",
+                    label: "Service log",
+                    description: "Paper logbook (last 6 months)"
+                  },
                 ]}
                 digital={[
-                  { item: "Credchip", desc: "95¤ (2 days of receipts, transferable)" },
-                  { item: "Transaction log", desc: "Last 1000 purchases logged" },
+                  {
+                    id: "vending_credchip",
+                    label: "Credchip",
+                    description: "95¤ (2 days of receipts, transferable)",
+                    value: 95,
+                    isCredits: true
+                  },
+                  {
+                    id: "vending_transaction_log",
+                    label: "Transaction log",
+                    description: "Last 1000 purchases logged"
+                  },
                 ]}
                 notes="Machine empties to central vault weekly (Thursdays, 09:00)"
               />
@@ -854,7 +1027,7 @@ export const FUN_COMMANDS = {
         network="CityBank Network"
         accountHolder="Sarah Chen (tech worker)"
         balance="847¤"
-        recentTransactions={[
+        transactions={[
           "08:15 → Withdrawal: 100¤",
           "09:42 → Balance inquiry",
           "11:18 → Withdrawal: 60¤",

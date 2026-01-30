@@ -7,7 +7,7 @@ export default function Camera({
   recording = true,
   storage = 'Local server',
   timeline = [],
-  lastMaintenance = "2 weeks ago",
+  lastService = "2 weeks ago",
 }) {
   const isOnline = status === 'ACTIVE' || status === 'RECORDING';
 
@@ -128,10 +128,10 @@ export default function Camera({
         )}
 
         {/* Maintenance info */}
-        {lastMaintenance && (
+        {lastService && (
           <>
             <Divider />
-            <Line neon>Last maintenance: {lastMaintenance}</Line>
+            <Line neon>Last maintenance: {lastService}</Line>
           </>
         )}
       </div>

@@ -131,7 +131,7 @@ export const WAREHOUSE_COMMANDS = {
               "East and south sides of building",
               "Warehouse interior",
             ]}
-            lastMaintenance="1 week ago"
+            lastService="1 week ago"
           />
         ),
       },
@@ -144,8 +144,8 @@ export const WAREHOUSE_COMMANDS = {
         },
         content: (
           <InternalAccess
-            businessName="ALLIANSEN WAREHOUSE"
-            welcomeMessage="EMPLOYEE NETWORK CONNECTED"
+            name="ALLIANSEN WAREHOUSE"
+            message="EMPLOYEE NETWORK CONNECTED"
             note="⚠ All access logged to corporate security | Connection: RCD-#8834"
             theme="corporate"
           />
@@ -194,7 +194,7 @@ export const WAREHOUSE_COMMANDS = {
                   "Bathroom interiors",
                   "Some corners behind large containers",
                 ]}
-                lastMaintenance="2 weeks ago"
+                lastService="2 weeks ago"
               />
             ),
             related_commands: {
@@ -222,7 +222,7 @@ export const WAREHOUSE_COMMANDS = {
                       "Electronics lab testing booth (privacy screen)",
                       "Behind large storage containers",
                     ]}
-                    lastMaintenance="3 days ago"
+                    lastService="3 days ago"
                   />
                 ),
               },
@@ -515,14 +515,42 @@ export const WAREHOUSE_COMMANDS = {
                 security="4-digit PIN"
                 lastAccess="Tonight (shift start)"
                 physical={[
-                  { item: "Master keycard", desc: "All-access (offices, secure cargo, alarm overrides)" },
-                  { item: "Petty cash", desc: "180¤ (small bills for misc expenses)" },
-                  { item: "Documents", desc: "Employee files, shift reports, inventory logs" },
-                  { item: "Personal items", desc: "Fishing lure (lucky charm), family photo" },
+                  {
+                    id: "webb_keycard",
+                    label: "Master keycard",
+                    description: "All-access (offices, secure cargo, alarm overrides)"
+                  },
+                  {
+                    id: "webb_petty_cash",
+                    label: "Petty cash",
+                    description: "180¤ (small bills for misc expenses)",
+                    value: 180,
+                    isCredits: true
+                  },
+                  {
+                    id: "webb_documents",
+                    label: "Documents",
+                    description: "Employee files, shift reports, inventory logs"
+                  },
+                  {
+                    id: "webb_personal",
+                    label: "Personal items",
+                    description: "Fishing lure (lucky charm), family photo"
+                  },
                 ]}
                 digital={[
-                  { item: "Credchip", desc: "120¤ (personal emergency fund)" },
-                  { item: "Backup access codes", desc: "Security panel passwords, alarm overrides" },
+                  {
+                    id: "webb_credchip",
+                    label: "Credchip",
+                    description: "120¤ (personal emergency fund)",
+                    value: 120,
+                    isCredits: true
+                  },
+                  {
+                    id: "webb_backup_codes",
+                    label: "Backup access codes",
+                    description: "Security panel passwords, alarm overrides"
+                  },
                 ]}
                 notes="Marcus keeps everything by-the-book - safe checked at shift start/end"
               />

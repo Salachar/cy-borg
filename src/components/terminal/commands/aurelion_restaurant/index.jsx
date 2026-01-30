@@ -41,7 +41,7 @@ export const AURELION_COMMANDS = {
       "Reservations & Hours": {
         content: (
           <HoursBanner
-            businessName="THE AURELION"
+            name="THE AURELION"
             hours="18:00 - 02:00"
             days="Tuesday - Sunday"
             status="OPEN"
@@ -179,8 +179,8 @@ export const AURELION_COMMANDS = {
         },
         content: (
           <InternalAccess
-            businessName="THE AURELION"
-            welcomeMessage="STAFF ACCESS GRANTED"
+            name="THE AURELION"
+            message="STAFF ACCESS GRANTED"
             networkInfo="⚠ Internal systems - Authorized personnel only"
             theme="secure"
           />

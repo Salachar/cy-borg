@@ -258,7 +258,7 @@ export const THE_55_ROOFLINE_COMMANDS = {
             systemName="SOLAR FIELD ARRAY"
             location="Roofline - Levels 355-360"
             status="OPERATIONAL"
-            lastMaintenance="2 weeks ago"
+            lastService="2 weeks ago"
             nextMaintenance="4 weeks"
             stats={[
               { label: "Total Panels", value: "847 units" },
@@ -472,8 +472,8 @@ export const THE_55_ROOFLINE_COMMANDS = {
         },
         content: (
           <InternalAccess
-            businessName="ROOFLINE SECURITY SYSTEMS"
-            welcomeMessage="SECURITY ACCESS GRANTED"
+            name="ROOFLINE SECURITY SYSTEMS"
+            message="SECURITY ACCESS GRANTED"
             networkInfo="⚠ Checkpoint systems - Guard access only"
             theme="secure"
           />
@@ -631,7 +631,7 @@ export const THE_55_ROOFLINE_COMMANDS = {
                     action: "Unauthorized access attempt",
                   },
                 ]}
-                lastMaintenance="1 month ago"
+                lastService="1 month ago"
                 notes="Primary security camera - High priority maintenance"
               />
             ),

@@ -6,7 +6,7 @@ import './hoursBanner.css';
  * A nice visual banner showing business hours, status, and location.
  *
  * Props:
- * - businessName: String (e.g., "Cave Club")
+ * - name: String (e.g., "Cave Club")
  * - hours: String (e.g., "20:00 - 06:00")
  * - days: String (optional, e.g., "Every Night", "Mon-Fri")
  * - status: String (e.g., "OPEN", "CLOSED")
@@ -15,7 +15,7 @@ import './hoursBanner.css';
  * - note: String (optional, additional info)
  */
 export default function HoursBanner({
-  businessName,
+  name,
   hours,
   days = "Daily",
   status = "OPEN",
@@ -28,7 +28,7 @@ export default function HoursBanner({
     <div className="hours-banner">
       {/* Header */}
       <div className="hours-banner-header">
-        <div className="hours-banner-business">{businessName}</div>
+        <div className="hours-banner-business">{name}</div>
         <div className={`hours-banner-status hours-banner-status-${statusColor}`}>
           {status}
         </div>

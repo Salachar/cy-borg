@@ -106,7 +106,7 @@ export const BODEGA_COMMANDS = {
             location="Inside Batu's Bodega - Near entrance"
             credits={20}
             lastService="2 weeks ago"
-            recentTransactions={[
+            transactions={[
               "3 days ago, 19:42 → Withdrawal: 40¤",
               "3 days ago, 18:15 → Withdrawal: 20¤",
               "3 days ago, 16:33 → Balance inquiry",
@@ -163,8 +163,8 @@ export const BODEGA_COMMANDS = {
                 },
                 content: (
                   <InternalAccess
-                    businessName="VENDING MACHINE"
-                    welcomeMessage="DEBUG MODE ACTIVATED"
+                    name="VENDING MACHINE"
+                    message="DEBUG MODE ACTIVATED"
                     note="Dispense drinks via main interface - no charge"
                     theme="corporate"
                   >
@@ -181,9 +181,9 @@ export const BODEGA_COMMANDS = {
       "Deals!": {
         content: (
           <InternalAccess
-            businessName="BODEGA"
+            name="BODEGA"
             system="TODAY'S SPECIALS"
-            welcomeMessage="Updated: 3 days ago"
+            message="Updated: 3 days ago"
             note={'"Fair prices. No questions." - Batu'}
             theme="casual"
           >
@@ -216,7 +216,7 @@ export const BODEGA_COMMANDS = {
       "Hours of Operation": {
         content: (
           <HoursBanner
-            businessName="Batu's Bodega"
+            name="Batu's Bodega"
             hours="06:00 - 23:00"
             days="Monday-Saturday"
             status="⚠ CLOSED - 3 DAYS"
@@ -279,8 +279,8 @@ export const BODEGA_COMMANDS = {
         },
         content: (
           <InternalAccess
-            businessName="BODEGA"
-            welcomeMessage="EMPLOYEE ACCESS GRANTED"
+            name="BODEGA"
+            message="EMPLOYEE ACCESS GRANTED"
             note="Internal network maintained by Batu (basic security)"
             theme="casual"
           />
@@ -319,9 +319,9 @@ export const BODEGA_COMMANDS = {
           query_personnel: {
             content: (
               <InternalAccess
-                businessName="BODEGA"
+                name="BODEGA"
                 system="PERSONNEL RECORDS"
-                welcomeMessage="EMPLOYEE ACCESS GRANTED"
+                message="EMPLOYEE ACCESS GRANTED"
                 note="Internal network maintained by Batu (basic security)"
                 theme="corporate"
               >
@@ -405,9 +405,9 @@ export const BODEGA_COMMANDS = {
           query_inventory: {
             content: (
               <InternalAccess
-                businessName="BODEGA"
+                name="BODEGA"
                 system="INVENTORY MANAGEMENT"
-                welcomeMessage="Last updated: 3 days ago (pre-closure)"
+                message="Last updated: 3 days ago (pre-closure)"
                 note="Free wifi still active"
                 theme="casual"
               >
@@ -448,16 +448,45 @@ export const BODEGA_COMMANDS = {
                 model="DS-200"
                 location="Batu's office"
                 owner="Batu Khamidov"
+                security="4-digit PIN"
                 lastAccess="3 days ago (before disappearance)"
                 physical={[
-                  { item: "Emergency cash", desc: "180¤ (small bills, last reserves)" },
-                  { item: "Documents", desc: "Bodega deed, Zara's medical records" },
-                  { item: "Personal items", desc: "Family photos, wedding ring (deceased wife)" },
-                  { item: "Casino chip", desc: "Lucky Flight 100¤ chip (never cashed, sentimental)" },
+                  {
+                    id: "batu_cash",
+                    label: "Emergency cash",
+                    description: "180¤ (small bills, last reserves)",
+                    value: 180,
+                    isCredits: true
+                  },
+                  {
+                    id: "batu_documents",
+                    label: "Documents",
+                    description: "Bodega deed, Zara's medical records"
+                  },
+                  {
+                    id: "batu_personal",
+                    label: "Personal items",
+                    description: "Family photos, wedding ring (deceased wife)"
+                  },
+                  {
+                    id: "batu_casino_chip",
+                    label: "Casino chip",
+                    description: "Lucky Flight 100¤ chip (never cashed, sentimental)"
+                  },
                 ]}
                 digital={[
-                  { item: "Credchip", desc: "22¤ (personal savings, transferable)" },
-                  { item: "Note", desc: "Goodbye letter to Zara (unsent, dated 3 days ago)" },
+                  {
+                    id: "batu_credchip",
+                    label: "Credchip",
+                    description: "22¤ (personal savings, transferable)",
+                    value: 22,
+                    isCredits: true
+                  },
+                  {
+                    id: "batu_goodbye_note",
+                    label: "Note",
+                    description: "Goodbye letter to Zara (unsent, dated 3 days ago)"
+                  },
                 ]}
                 notes="Safe contains Batu's last personal effects before confronting casino"
               />

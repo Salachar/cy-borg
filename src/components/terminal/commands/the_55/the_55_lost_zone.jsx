@@ -410,8 +410,8 @@ export const THE_55_LOST_ZONE_COMMANDS = {
         },
         content: (
           <InternalAccess
-            businessName="LOST ZONE CONSTRUCTION SYSTEMS"
-            welcomeMessage="LEGACY SYSTEM ACCESS"
+            name="LOST ZONE CONSTRUCTION SYSTEMS"
+            message="LEGACY SYSTEM ACCESS"
             networkInfo="⚠ Outdated systems - Limited functionality"
             theme="limeade"
           />

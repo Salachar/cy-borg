@@ -103,7 +103,7 @@ export const STONE_EELS_COMMANDS = {
       "Hours & Location": {
         content: (
           <HoursBanner
-            businessName="CAVE CLUB"
+            name="CAVE CLUB"
             hours="20:00 - 06:00"
             days="Every Night"
             status="OPEN"
@@ -142,8 +142,8 @@ export const STONE_EELS_COMMANDS = {
         },
         content: (
           <InternalAccess
-            businessName="CAVE CLUB"
-            welcomeMessage="STAFF ACCESS GRANTED"
+            name="CAVE CLUB"
+            message="STAFF ACCESS GRANTED"
             note="⚠ Internal network maintained by Stone Eels tech crew"
             theme="secure"
           />
@@ -314,17 +314,57 @@ export const STONE_EELS_COMMANDS = {
                 security="Biometric (fingerprint) + keypad"
                 lastAccess="Yesterday evening (21:30)"
                 physical={[
-                  { item: "Cash", desc: "1,200¤ (nightly bar receipts, mixed bills)" },
-                  { item: "Documents", desc: "Property deed, business licenses, insurance" },
-                  { item: "Weapons", desc: "2 backup handguns (emergency stash, 9mm)" },
-                  { item: "Product samples", desc: "Quality control inventory (Stone Eels brand)" },
-                  { item: "Keys", desc: "Access to 3 safe houses, storage units" },
+                  {
+                    id: "cave_club_cash",
+                    label: "Cash",
+                    description: "1,200¤ (nightly bar receipts, mixed bills)",
+                    value: 1200,
+                    isCredits: true
+                  },
+                  {
+                    id: "cave_club_documents",
+                    label: "Documents",
+                    description: "Property deed, business licenses, insurance"
+                  },
+                  {
+                    id: "cave_club_weapons",
+                    label: "Weapons",
+                    description: "2 backup handguns (emergency stash, 9mm)"
+                  },
+                  {
+                    id: "cave_club_product",
+                    label: "Product samples",
+                    description: "Quality control inventory (Stone Eels brand)"
+                  },
+                  {
+                    id: "cave_club_keys",
+                    label: "Keys",
+                    description: "Access to 3 safe houses, storage units"
+                  },
                 ]}
                 digital={[
-                  { item: "Credchip", desc: "85¤ (petty cash fund, transferable)" },
-                  { item: "Coupon code", desc: "CAVECLUB50 (50% off cover charge, expires in 1 month)" },
-                  { item: "App", desc: "Event Scheduler Pro (2¤ value, booking management)" },
-                  { item: "Data file", desc: "VIP guest list with contact info (sellable to rivals for 60-100¤)" },
+                  {
+                    id: "cave_club_credchip",
+                    label: "Credchip",
+                    description: "85¤ (petty cash fund, transferable)",
+                    value: 85,
+                    isCredits: true
+                  },
+                  {
+                    id: "cave_club_coupon",
+                    label: "Coupon code",
+                    description: "CAVECLUB50 (50% off cover charge, expires in 1 month)"
+                  },
+                  {
+                    id: "cave_club_event_app",
+                    label: "App",
+                    description: "Event Scheduler Pro (2¤ value, booking management)"
+                  },
+                  {
+                    id: "cave_club_vip_list",
+                    label: "Data file",
+                    description: "VIP guest list with contact info (sellable to rivals for 60-100¤)"
+                  },
                 ]}
                 notes="⚠ Safe alarm connected to security station (silent trigger) | Biometric access: Saša + 2 senior members"
               />
@@ -339,8 +379,8 @@ export const STONE_EELS_COMMANDS = {
             },
             content: (
               <InternalAccess
-                businessName="STONE EELS OPERATIONS"
-                welcomeMessage="GANG LEADERSHIP ACCESS GRANTED"
+                name="STONE EELS OPERATIONS"
+                message="GANG LEADERSHIP ACCESS GRANTED"
                 note="⚠ Restricted operational data - Leadership only"
                 theme="secure"
               />

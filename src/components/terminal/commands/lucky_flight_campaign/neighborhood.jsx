@@ -584,9 +584,23 @@ export const NEIGHBORHOOD_COMMANDS = {
             security="Electronic keypad"
             lastAccess="6 hours ago"
             physical={[
-              { item: "Daily receipts", desc: "200-400¤ (cash, mixed bills)" },
-              { item: "Personal credchip", desc: "Unknown amount" },
-              { item: "Bar license & documents", desc: "Business papers, permits" },
+              {
+                id: "anchor_receipts",
+                label: "Daily receipts",
+                description: "200-400¤ (cash, mixed bills)",
+                value: 300, // Using midpoint of range
+                isCredits: true
+              },
+              {
+                id: "anchor_personal_credchip",
+                label: "Personal credchip",
+                description: "Unknown amount"
+              },
+              {
+                id: "anchor_documents",
+                label: "Bar license & documents",
+                description: "Business papers, permits"
+              },
             ]}
             digital={[]}
             notes="Safe checked at closing (02:00) and opening (14:00)"
@@ -679,7 +693,7 @@ export const NEIGHBORHOOD_COMMANDS = {
               "Side entrance (emergency exit only)",
               "Package locker area (partially blocked)",
             ]}
-            lastMaintenance="3 months ago"
+            lastService="3 months ago"
           />
         ),
       },
@@ -699,13 +713,37 @@ export const NEIGHBORHOOD_COMMANDS = {
             security="4-digit PIN"
             lastAccess="2 days ago"
             physical={[
-              { item: "Cash", desc: "95¤ (emergency fund, mixed bills)" },
-              { item: "Documents", desc: "Passport, birth certificate" },
-              { item: "Jewelry", desc: "Gold bracelet (family heirloom)" },
+              {
+                id: "silva_cash",
+                label: "Cash",
+                description: "95¤ (emergency fund, mixed bills)",
+                value: 95,
+                isCredits: true
+              },
+              {
+                id: "silva_documents",
+                label: "Documents",
+                description: "Passport, birth certificate"
+              },
+              {
+                id: "silva_bracelet",
+                label: "Jewelry",
+                description: "Gold bracelet (family heirloom)"
+              },
             ]}
             digital={[
-              { item: "Credchip", desc: "40¤ (transferable)" },
-              { item: "Coupon code", desc: "TORRES10 (10% off building maintenance services, expires in 3 months)" },
+              {
+                id: "silva_credchip",
+                label: "Credchip",
+                description: "40¤ (transferable)",
+                value: 40,
+                isCredits: true
+              },
+              {
+                id: "silva_coupon",
+                label: "Coupon code",
+                description: "TORRES10 (10% off building maintenance services, expires in 3 months)"
+              },
             ]}
             notes="Safe mounted to wall, relatively new installation"
           />
@@ -727,13 +765,37 @@ export const NEIGHBORHOOD_COMMANDS = {
             security="Digital keypad"
             lastAccess="Yesterday evening"
             physical={[
-              { item: "Staff uniform", desc: "Lucky Flight dealer vest and badge (clean, ready for shift)" },
-              { item: "Staff keycard", desc: "Employee access (gaming floor, break room, employee entrance)" },
-              { item: "Cash", desc: "280¤ (tips from last 2 weeks, unbanked)" },
-              { item: "Documents", desc: "Pay stubs, employee handbook, locker key" },
+              {
+                id: "reeves_uniform",
+                label: "Staff uniform",
+                description: "Lucky Flight dealer vest and badge (clean, ready for shift)"
+              },
+              {
+                id: "reeves_keycard",
+                label: "Staff keycard",
+                description: "Employee access (gaming floor, break room, employee entrance)"
+              },
+              {
+                id: "reeves_cash",
+                label: "Cash",
+                description: "280¤ (tips from last 2 weeks, unbanked)",
+                value: 280,
+                isCredits: true
+              },
+              {
+                id: "reeves_documents",
+                label: "Documents",
+                description: "Pay stubs, employee handbook, locker key"
+              },
             ]}
             digital={[
-              { item: "Credchip", desc: "15¤ (personal spending money, transferable)" },
+              {
+                id: "reeves_credchip",
+                label: "Credchip",
+                description: "15¤ (personal spending money, transferable)",
+                value: 15,
+                isCredits: true
+              },
             ]}
             notes="Safe checked daily before and after casino shifts"
           />
@@ -789,14 +851,42 @@ export const NEIGHBORHOOD_COMMANDS = {
                 security="Combination lock (mechanical)"
                 lastAccess="2 days ago"
                 physical={[
-                  { item: "Work coveralls", desc: "Lucky Flight maintenance uniform (dirty, needs washing)" },
-                  { item: "Staff keycard", desc: "Maintenance access (service corridors, mechanical rooms, roof access)" },
-                  { item: "Tools", desc: "Personal toolkit (screwdrivers, multimeter, duct tape)" },
-                  { item: "Cash", desc: "120¤ (emergency fund, small bills)" },
+                  {
+                    id: "torres_coveralls",
+                    label: "Work coveralls",
+                    description: "Lucky Flight maintenance uniform (dirty, needs washing)"
+                  },
+                  {
+                    id: "torres_keycard",
+                    label: "Staff keycard",
+                    description: "Maintenance access (service corridors, mechanical rooms, roof access)"
+                  },
+                  {
+                    id: "torres_tools",
+                    label: "Tools",
+                    description: "Personal toolkit (screwdrivers, multimeter, duct tape)"
+                  },
+                  {
+                    id: "torres_cash",
+                    label: "Cash",
+                    description: "120¤ (emergency fund, small bills)",
+                    value: 120,
+                    isCredits: true
+                  },
                 ]}
                 digital={[
-                  { item: "Credchip", desc: "85¤ (weekly pay, transferable)" },
-                  { item: "LFC Facilities PW", desc: "architecture" },
+                  {
+                    id: "torres_credchip",
+                    label: "Credchip",
+                    description: "85¤ (weekly pay, transferable)",
+                    value: 85,
+                    isCredits: true
+                  },
+                  {
+                    id: "torres_lfc_password",
+                    label: "LFC Facilities PW",
+                    description: "architecture"
+                  },
                 ]}
                 notes="Maintenance worker has extensive building access - keys rarely logged"
               />

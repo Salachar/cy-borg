@@ -547,8 +547,8 @@ export const THE_55_CAPSULE_CLOSETS_COMMANDS = {
         },
         content: (
           <InternalAccess
-            businessName="CAPSULE CLOSETS MAINTENANCE"
-            welcomeMessage="MAINTENANCE ACCESS GRANTED"
+            name="CAPSULE CLOSETS MAINTENANCE"
+            message="MAINTENANCE ACCESS GRANTED"
             networkInfo="⚠ Building systems - Authorized personnel only"
             theme="limeade"
           />

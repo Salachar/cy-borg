@@ -412,12 +412,14 @@ export default function BountyCard({
 
           {/* Extractable */}
           <Extractable
-            id={id}
+            id={`${id}-bounty-extractable`}
             digitalItems={[
               {
-                item: 'Bounty Payment',
-                desc: `Proof of capture - ${sponsor}`,
+                id: `${id}-bounty-credits-item`,
+                label: 'Bounty Payment',
+                description: `Proof of capture - ${sponsor}`,
                 value: credits,
+                isCredits: true,
               }
             ]}
             stealing={false}

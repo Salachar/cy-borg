@@ -396,8 +396,8 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
         },
         content: (
           <InternalAccess
-            businessName="STACK COMMAND & CONTROL"
-            welcomeMessage="COMMAND SYSTEMS ACCESS GRANTED"
+            name="STACK COMMAND & CONTROL"
+            message="COMMAND SYSTEMS ACCESS GRANTED"
             networkInfo="⚠ Critical infrastructure - Authorized personnel only"
             theme="secure"
           />
@@ -503,7 +503,7 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
                             message: "Pickpocket detected - Alert sent to security",
                           },
                         ]}
-                        lastMaintenance="1 week ago"
+                        lastService="1 week ago"
                       />
                     ),
                     related_commands: {
@@ -542,7 +542,7 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
                             message: "Vandalism at Lot #105-3 - Graffiti added",
                           },
                         ]}
-                        lastMaintenance="3 days ago"
+                        lastService="3 days ago"
                       />
                     ),
                     related_commands: {
@@ -581,7 +581,7 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
                             message: "Equipment malfunction - Safety team dispatched",
                           },
                         ]}
-                        lastMaintenance="2 weeks ago"
+                        lastService="2 weeks ago"
                       />
                     ),
                     related_commands: {
@@ -620,7 +620,7 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
                             message: "Person of interest flagged - Security notified",
                           },
                         ]}
-                        lastMaintenance="5 days ago"
+                        lastService="5 days ago"
                       />
                     ),
                     related_commands: {

@@ -526,8 +526,8 @@ export const THE_55_GREEN_ZONE_COMMANDS = {
         },
         content: (
           <InternalAccess
-            businessName="GREEN ZONE SECURITY SYSTEMS"
-            welcomeMessage="SECURITY ACCESS GRANTED"
+            name="GREEN ZONE SECURITY SYSTEMS"
+            message="SECURITY ACCESS GRANTED"
             networkInfo="⚠ Access control systems - Authorized personnel only"
             theme="secure"
           />

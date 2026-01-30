@@ -99,7 +99,7 @@ export default function Inventory({
       itemId: `custom_${index}`,
       quantity: customItem.quantity || 1,
       entry: {
-        label: customItem.name,
+        label: customItem.label,
         description: customItem.description,
       },
       isCustom: true,
@@ -195,7 +195,7 @@ export default function Inventory({
     if (!newItemName.trim()) return;
 
     character._custom_items.push({
-      name: newItemName.trim(),
+      label: newItemName.trim(),
       description: newItemDesc.trim(),
       quantity: 1,
     });

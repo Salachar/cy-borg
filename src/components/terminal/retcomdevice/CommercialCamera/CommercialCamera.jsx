@@ -7,7 +7,7 @@ export default function CommercialCamera({
   coverage,
   details = [],
   alerts = [],
-  lastMaintenance,
+  lastService,
 }) {
   const isOnline = status.includes('ACTIVE') || status.includes('RECORDING');
 
@@ -214,7 +214,7 @@ export default function CommercialCamera({
         )}
 
         {/* Maintenance info */}
-        {lastMaintenance && (
+        {lastService && (
           <>
             <Divider />
             <div
@@ -236,7 +236,7 @@ export default function CommercialCamera({
                 }}
               />
               <Line neon style={{ margin: 0, fontSize: '0.8rem' }}>
-                Last maintenance: {lastMaintenance}
+                Last maintenance: {lastService}
               </Line>
             </div>
           </>

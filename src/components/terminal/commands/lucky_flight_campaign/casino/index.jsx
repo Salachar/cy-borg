@@ -196,12 +196,32 @@ export const LUCKY_FLIGHT_CASINO = {
                     security="Maintenance keypad"
                     lastAccess="Yesterday (routine collection)"
                     physical={[
-                      { item: "Coins", desc: "120¤ in change (heavy, mixed denominations)" },
-                      { item: "Service log", desc: "Paper logbook (last 3 months)" },
+                      {
+                        id: "nukacola_coins",
+                        label: "Coins",
+                        description: "120¤ in change (heavy, mixed denominations)",
+                        value: 120,
+                        isCredits: true
+                      },
+                      {
+                        id: "nukacola_service_log",
+                        label: "Service log",
+                        description: "Paper logbook (last 3 months)"
+                      },
                     ]}
                     digital={[
-                      { item: "Credchip", desc: "85¤ (daily receipts, transferable)" },
-                      { item: "Transaction log", desc: "Last 500 purchases logged" },
+                      {
+                        id: "nukacola_credchip",
+                        label: "Credchip",
+                        description: "85¤ (daily receipts, transferable)",
+                        value: 85,
+                        isCredits: true
+                      },
+                      {
+                        id: "nukacola_transaction_log",
+                        label: "Transaction log",
+                        description: "Last 500 purchases logged"
+                      },
                     ]}
                     notes="Machine empties automatically to casino vault nightly at 03:00"
                   />
@@ -239,8 +259,8 @@ export const LUCKY_FLIGHT_CASINO = {
         },
         content: (
           <InternalAccess
-            businessName="CASINO"
-            welcomeMessage="ACCESS GRANTED - PERIPHERAL SYSTEMS"
+            name="CASINO"
+            message="ACCESS GRANTED - PERIPHERAL SYSTEMS"
             note="Higher-value systems require additional credentials"
             theme="corporate"
           />

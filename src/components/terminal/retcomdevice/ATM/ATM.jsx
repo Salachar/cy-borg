@@ -10,7 +10,7 @@ export default function ATM({
   network = 'CityBank',
   accountHolder = "PRIVATE",
   balance = "PRIVATE",
-  recentTransactions = [],
+  transactions = [],
   lastService = "2 weeks ago",
   credits = 0,
 }) {
@@ -86,10 +86,10 @@ export default function ATM({
         <Divider />
 
         {/* Recent Transactions */}
-        {recentTransactions.length > 0 && (
+        {transactions.length > 0 && (
           <>
             <Section title="RECENT TRANSACTIONS:">
-              {recentTransactions.map((transaction, i) => (
+              {transactions.map((transaction, i) => (
                 <Line key={i} neon style={{ fontSize: '0.875rem' }}>
                   {transaction}
                 </Line>
@@ -109,12 +109,14 @@ export default function ATM({
           <>
             <Divider />
             <Extractable
-              id={`${id}-skim`}
+              id={`${id}-atm-extractable`}
               digitalItems={[
                 {
-                  item: 'Transaction Skim',
-                  desc: `Account: ${accountHolder} - Small % from daily transactions`,
+                  id: `${id}-atm-credits-item`,
+                  label: 'Transaction Skim',
+                  description: `Account: ${accountHolder} - Small % from daily transactions`,
                   value: credits,
+                  isCredits: true,
                 },
               ]}
               stealing={true}
