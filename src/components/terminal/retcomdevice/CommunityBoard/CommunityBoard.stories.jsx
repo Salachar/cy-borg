@@ -5,6 +5,10 @@ export default {
   component: CommunityBoard,
 };
 
+export const BlankProps = {
+  args: {},
+};
+
 // Mira's Community Bulletin - peaceful neighborhood
 export const MirasCommunity = {
   args: {

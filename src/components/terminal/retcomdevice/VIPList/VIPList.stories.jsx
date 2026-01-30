@@ -5,6 +5,10 @@ export default {
   component: VIPList,
 };
 
+export const BlankProps = {
+  args: {},
+};
+
 export const PenthousePartyVIPs = {
   name: 'Penthouse Party VIP List',
   args: {

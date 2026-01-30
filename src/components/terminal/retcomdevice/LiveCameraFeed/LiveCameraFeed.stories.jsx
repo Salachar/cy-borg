@@ -5,6 +5,10 @@ export default {
   component: LiveCameraFeed,
 };
 
+export const BlankProps = {
+  args: {},
+};
+
 // Dining floor feed
 export const DiningFloorFeed = {
   args: {

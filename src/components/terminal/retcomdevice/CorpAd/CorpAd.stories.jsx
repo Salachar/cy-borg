@@ -5,6 +5,10 @@ export default {
   component: CorpAd,
 };
 
+export const BlankProps = {
+  args: {},
+};
+
 // Major corporation - tech giant
 export const Bigmosse = {
   args: {

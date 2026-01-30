@@ -6,12 +6,17 @@ export default {
 };
 
 // Steel Jackhammer from Reaper Repo
+export const BlankProps = () => (
+  <BountyCard />
+);
+
+// Steel Jackhammer from Reaper Repo
 export const SteelJackhammer = () => (
   <BountyCard
     id="BOUNTY-2068-0147"
     name="Steel Jackhammer"
     alias="The Hammer"
-    bounty="5,000¤"
+    credits={5000}
     sponsor="Doc Joy (SvÀrta Reaperdoc)"
     deadline="36 hours"
     status="ACTIVE"
@@ -34,7 +39,7 @@ export const SmallTimeDealerBounty = () => (
     id="BOUNTY-2068-0089"
     name="Marcus\Slip\Chen"
     alias="Slip"
-    bounty="1,200¤"
+    credits={1200}
     sponsor="Virid Vipers"
     deadline="7 days"
     status="ACTIVE"
@@ -55,7 +60,7 @@ export const ThuggerBounty = () => (
   <BountyCard
     id="BOUNTY-2068-0201"
     name="Thugger"
-    bounty="12,000¤"
+    credits={12000}
     sponsor="TG Labs (Anonymous)"
     deadline="48 hours"
     status="ACTIVE"
@@ -79,7 +84,7 @@ export const GoliathessBounty = () => (
   <BountyCard
     id="BOUNTY-2068-0233"
     name="Goliathess"
-    bounty="18,000¤"
+    credits={18000}
     sponsor="Classified"
     status="ACTIVE"
 
@@ -102,7 +107,7 @@ export const ClaimedBounty = () => (
   <BountyCard
     id="BOUNTY-2067-1156"
     name="Razor\Rodriguez"
-    bounty="3,500¤"
+    credits={3500}
     sponsor="SecCorp Delta"
     status="CLAIMED"
 
@@ -123,7 +128,7 @@ export const HackerBounty = () => (
     id="BOUNTY-2068-0178"
     name="Raze"
     alias="RazeCD"
-    bounty="8,500¤"
+    credits={8500}
     sponsor="Alliansen Inc. Security"
     deadline="72 hours"
     status="ACTIVE"
@@ -147,7 +152,7 @@ export const NanoUserBounty = () => (
   <BountyCard
     id="BOUNTY-2068-0194"
     name="Master Crimson"
-    bounty="15,000¤"
+    credits={15000}
     sponsor="Corporate Council"
     status="ACTIVE"
 

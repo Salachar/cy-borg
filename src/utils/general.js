@@ -12,3 +12,7 @@ export function textOutline (color = 'black', blur = "1") {
     `,
   }
 }
+
+export function formatCredits(amount) {
+  return `${amount.toLocaleString()}¤`;
+}

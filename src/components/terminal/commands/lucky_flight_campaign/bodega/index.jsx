@@ -89,7 +89,7 @@ export const BODEGA_COMMANDS = {
       "Arcade Machine": {
         content: (
           <ArcadeCabinet
-            wallet={15}
+            credits={15}
           />
         )
       },
@@ -104,7 +104,7 @@ export const BODEGA_COMMANDS = {
           <ATM
             id="bodega-corner-atm"
             location="Inside Batu's Bodega - Near entrance"
-            skimmableAmount={20}
+            credits={20}
             lastService="2 weeks ago"
             recentTransactions={[
               "3 days ago, 19:42 → Withdrawal: 40¤",
@@ -151,7 +151,7 @@ export const BODEGA_COMMANDS = {
                   <DigitalWallet
                     id="bodega-vending-machine-wallet"
                     accountHolder="Beverage Corp (vending division)"
-                    balance={15}
+                    credits={15}
                   />
                 ),
               },

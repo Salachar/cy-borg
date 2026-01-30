@@ -5,6 +5,11 @@ export default {
   component: ATM,
 };
 
+export const BlankProps = {
+  args: {},
+};
+
+
 // Default ATM at a bodega
 export const BodegaATM = {
   args: {

@@ -5,6 +5,10 @@ export default {
   component: NetworkDevices,
 };
 
+export const BlankProps = () => (
+  <NetworkDevices />
+);
+
 // Basic office network
 export const OfficeNetwork = () => (
   <NetworkDevices

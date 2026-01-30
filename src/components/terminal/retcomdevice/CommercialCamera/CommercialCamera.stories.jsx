@@ -9,6 +9,10 @@ export default {
   component: CommercialCamera,
 };
 
+export const BlankProps = {
+  args: {},
+};
+
 // Restaurant VIP area camera
 export const RestaurantVIP = {
   args: {

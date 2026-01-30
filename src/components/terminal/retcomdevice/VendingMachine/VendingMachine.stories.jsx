@@ -6,6 +6,10 @@ export default {
   component: VendingMachine,
 };
 
+export const BlankProps = () => (
+  <VendingMachine />
+);
+
 // Office vending machine - optimal cooling
 export const OfficeVendingMachine = () => (
   <VendingMachine

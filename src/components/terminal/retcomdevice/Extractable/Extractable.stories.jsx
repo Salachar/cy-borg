@@ -12,6 +12,10 @@ export default {
 // STEALING MODE (Criminal Activities)
 // ============================================================================
 
+export const BlankProps = {
+  args: {},
+};
+
 export const StealingSafe = {
   name: 'Stealing - Safe (Both Physical & Digital)',
   args: {

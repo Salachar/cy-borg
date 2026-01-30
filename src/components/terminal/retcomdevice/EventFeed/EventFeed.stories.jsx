@@ -5,6 +5,10 @@ export default {
   component: EventFeed,
 };
 
+export const BlankProps = {
+  args: {},
+};
+
 // Default - all feeds
 export const AllFeeds = {
   args: {

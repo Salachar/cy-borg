@@ -5,6 +5,10 @@ export default {
   component: NetworkTrafficMonitor,
 };
 
+export const BlankProps = {
+  args: {},
+};
+
 // Cave Club - Charlie Sand interrogation data
 export const CharlieInterrogation = {
   args: {

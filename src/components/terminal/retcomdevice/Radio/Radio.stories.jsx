@@ -5,6 +5,10 @@ export default {
   component: Radio,
 };
 
+export const BlankProps = {
+  args: {},
+};
+
 // Default radio - starts on jazz
 export const JazzChannel = {
   args: {

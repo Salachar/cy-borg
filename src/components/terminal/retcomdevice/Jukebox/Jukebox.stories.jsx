@@ -5,6 +5,10 @@ export default {
   component: Jukebox,
 };
 
+export const BlankProps = {
+  args: {},
+};
+
 // Using musicType - Jazz lounge
 export const JazzLounge = {
   args: {

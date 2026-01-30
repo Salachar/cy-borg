@@ -5,6 +5,10 @@ export default {
   component: InternalAccess,
 };
 
+export const BlankProps = {
+  args: {},
+};
+
 // Small business - bodega
 export const BodegaAccess = {
   args: {

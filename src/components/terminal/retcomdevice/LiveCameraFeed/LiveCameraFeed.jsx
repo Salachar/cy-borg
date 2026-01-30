@@ -1,7 +1,9 @@
 import { Line } from '@terminal/TerminalComponents';
 import { useEffect, useState } from 'react';
 
-export default function LiveCameraFeed({ location }) {
+export default function LiveCameraFeed({
+  location = "Not Set",
+}) {
   const [time, setTime] = useState(new Date());
   const [elapsed, setElapsed] = useState(0);
   const [pings, setPings] = useState([]);

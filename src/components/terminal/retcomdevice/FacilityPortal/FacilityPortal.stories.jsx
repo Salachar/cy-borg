@@ -5,6 +5,10 @@ export default {
   component: FacilityPortal,
 };
 
+export const BlankProps = {
+  args: {},
+};
+
 // Corporate headquarters
 export const BigmosseHQ = {
   args: {

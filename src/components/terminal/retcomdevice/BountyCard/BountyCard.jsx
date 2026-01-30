@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Line, Divider } from '@terminal/TerminalComponents';
 import Extractable from '../Extractable/Extractable';
 
+import { formatCredits } from '@utils/general';
+
 import IMAGE_01 from "@images/profile_images/1.png";
 import IMAGE_02 from "@images/profile_images/2.png";
 import IMAGE_03 from "@images/profile_images/3.png";
@@ -41,7 +43,7 @@ export default function BountyCard({
   name,
   alias,
   image = null,
-  bounty,
+  credits = 0,
   sponsor,
   hp = 10,
   lastSeen,
@@ -229,7 +231,7 @@ export default function BountyCard({
                     fontFamily: 'monospace',
                   }}
                 >
-                  {bounty}
+                  {formatCredits(credits)}
                 </Line>
 
                 <Line smoke style={{ margin: 0, fontSize: '0.75rem', opacity: 0.7 }}>
@@ -415,7 +417,7 @@ export default function BountyCard({
               {
                 item: 'Bounty Payment',
                 desc: `Proof of capture - ${sponsor}`,
-                value: parseInt(bounty.replace(/[^0-9]/g, '')) || 0
+                value: credits,
               }
             ]}
             stealing={false}

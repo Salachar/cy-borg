@@ -5,6 +5,10 @@ export default {
   component: PublicPortal,
 };
 
+export const BlankProps = {
+  args: {},
+};
+
 // Corner bodega
 export const BodegaPortal = {
   args: {

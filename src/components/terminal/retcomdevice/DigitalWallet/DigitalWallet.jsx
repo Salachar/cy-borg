@@ -18,7 +18,7 @@ import './digitalWallet.css';
 export default function DigitalWallet({
   id,
   accountNumber,
-  balance = 0,
+  credits = 0,
   accountHolder,
   lastTransaction,
   isLocked = false,
@@ -82,8 +82,8 @@ export default function DigitalWallet({
             digitalItems={[
               {
                 item: 'Digital Credits',
-                desc: `${balance.toLocaleString()}¤ available balance`,
-                value: balance
+                desc: `${credits.toLocaleString()}¤ available balance`,
+                value: credits
               }
             ]}
             stealing={true}

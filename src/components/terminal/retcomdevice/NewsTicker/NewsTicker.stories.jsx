@@ -5,6 +5,10 @@ export default {
   component: NewsTicker,
 };
 
+export const BlankProps = {
+  args: {},
+};
+
 // Default ticker - all events, auto-scrolling
 export const Default = {
   args: {

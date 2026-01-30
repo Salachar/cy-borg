@@ -5,6 +5,10 @@ export default {
   component: CoffeeMachine,
 };
 
+export const BlankProps = () => (
+  <CoffeeMachine />
+);
+
 // Office break room
 export const OfficeBreakRoom = () => (
   <CoffeeMachine

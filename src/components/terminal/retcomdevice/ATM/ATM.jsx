@@ -6,19 +6,14 @@ import Extractable from '../Extractable/Extractable';
 export default function ATM({
   id,
   model = 'ATM-500',
-  location,
+  location = "Not Set",
   network = 'CityBank',
-  accountHolder,
-  balance,
+  accountHolder = "PRIVATE",
+  balance = "PRIVATE",
   recentTransactions = [],
-  lastService,
-  skimmableAmount,
+  lastService = "2 weeks ago",
+  credits = 0,
 }) {
-  // Generate random skimmable amount if not provided
-  const [actualSkimmableAmount] = useState(() => {
-    return skimmableAmount || Math.floor(Math.random() * 41) + 10; // 10-50¤
-  });
-
   return (
     <div style={{ position: 'relative' }}>
       {/* ATM container */}
@@ -105,27 +100,27 @@ export default function ATM({
         )}
 
         {lastService && (
-          <>
-            <Line yellow style={{ fontSize: '0.75rem' }}>
-              Last service: {lastService}
-            </Line>
-            <Divider />
-          </>
+          <Line yellow style={{ fontSize: '0.75rem' }}>
+            Last service: {lastService}
+          </Line>
         )}
 
-        {/* Skim section - using Extractable component */}
-        <Extractable
-          id={`${id}-skim`}
-          digitalItems={[
-            {
-              item: 'Transaction Skim',
-              desc: `Account: ${accountHolder} - Small % from daily transactions`,
-              value: actualSkimmableAmount,
-            },
-          ]}
-          stealing={true}
-        />
-
+        {Boolean(credits) && (
+          <>
+            <Divider />
+            <Extractable
+              id={`${id}-skim`}
+              digitalItems={[
+                {
+                  item: 'Transaction Skim',
+                  desc: `Account: ${accountHolder} - Small % from daily transactions`,
+                  value: credits,
+                },
+              ]}
+              stealing={true}
+            />
+          </>
+        )}
       </div>
     </div>
   );

@@ -6,6 +6,12 @@ export default {
 };
 
 // Stone Eels warehouse heist briefing
+export const BlankProps = {
+  args: {},
+};
+
+
+// Stone Eels warehouse heist briefing
 export const WarehouseHeist = {
   args: {
     title: 'Warehouse Infiltration',

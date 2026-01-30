@@ -5,6 +5,10 @@ export default {
   component: SecureAccessControl,
 };
 
+export const BlankProps = {
+  args: {},
+};
+
 // Cave Club - Shows unusual security on back room
 export const CaveClubSecurity = {
   args: {

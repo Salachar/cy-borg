@@ -6,6 +6,10 @@ export default {
   component: NetworkRouter,
 };
 
+export const BlankProps = () => (
+  <NetworkRouter />
+);
+
 // Simple router with NetworkDevices as child
 export const WithDeviceList = () => (
   <NetworkRouter

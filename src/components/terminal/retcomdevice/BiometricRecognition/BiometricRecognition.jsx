@@ -2,9 +2,9 @@ import { Line, Divider, DataTable, Section } from '@terminal/TerminalComponents'
 
 export default function BiometricRecognition({
   id,
-  systemName = "BIOMETRIC RECOGNITION SYSTEM",
-  location,
-  lastCalibration,
+  name = "BIOMETRIC RECOGNITION SYSTEM",
+  location = "Not Set",
+  lastService = "2 weeks ago",
   confidence = "85%",
   scans = [],
 }) {
@@ -95,7 +95,7 @@ export default function BiometricRecognition({
           </div>
 
           <Line smoke large bold style={{ margin: 0, flex: 1 }}>
-            [{systemName}]
+            [{name}]
           </Line>
 
           {/* System status indicator */}
@@ -117,7 +117,7 @@ export default function BiometricRecognition({
         {/* System info */}
         <DataTable
           data={[
-            { label: 'Last Calibration', value: lastCalibration },
+            { label: 'Last Calibration', value: lastService },
             { label: 'Confidence Threshold', value: confidence },
             { label: 'Total Scans (24h)', value: scans.length.toString() },
             { label: 'Recent Failures', value: recentFailures.toString() },

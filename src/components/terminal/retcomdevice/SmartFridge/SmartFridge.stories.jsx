@@ -5,6 +5,10 @@ export default {
   component: SmartFridge,
 };
 
+export const BlankProps = {
+  args: {},
+};
+
 export const SteelPenthouseKitchen = {
   name: 'Steel Jackhammer Penthouse Kitchen',
   args: {

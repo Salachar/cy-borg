@@ -5,6 +5,10 @@ export default {
   component: IncidentLog,
 };
 
+export const BlankProps = () => (
+  <IncidentLog />
+);
+
 // Security incidents at a club
 export const ClubSecurity = () => (
   <IncidentLog

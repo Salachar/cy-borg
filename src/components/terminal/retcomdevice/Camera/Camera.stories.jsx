@@ -5,6 +5,10 @@ export default {
   component: Camera,
 };
 
+export const BlankProps = {
+  args: {},
+};
+
 // Store security camera
 export const BodegaMainCamera = {
   args: {

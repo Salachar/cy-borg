@@ -5,9 +5,10 @@ import Extractable from '../Extractable/Extractable';
 
 export default function ArcadeCabinet({
   id,
-  cabinetName = 'ARCADE CABINET',
+  name = 'ARCADE CABINET',
   location = 'Unknown Location',
-  screenState = 'ATTRACT',
+  credits = 0,
+  screenState = 'OPEN',
   gamesAvailable = [
     'NEON FIGHTER II TURBO',
     'CYBER RACER X',
@@ -16,9 +17,8 @@ export default function ArcadeCabinet({
     'STREET BRAWLER EX',
     'MEGA RUNNER DELUXE',
   ],
-  wallet = 0,
   lastPlayed = 'Unknown',
-  playerAccount = 'GUEST',
+  user = 'GUEST',
 }) {
   const [blinkState, setBlinkState] = useState(true);
 
@@ -55,7 +55,7 @@ export default function ArcadeCabinet({
               margin: 0,
             }}
           >
-            ◄◄ {cabinetName} ►►
+            ◄◄ {name} ►►
           </Line>
           <Line cyan style={{ fontSize: '0.875rem', marginTop: '0.25rem' }}>
             {location}
@@ -101,7 +101,7 @@ export default function ArcadeCabinet({
                 fontFamily: 'monospace',
               }}
             >
-              {playerAccount}
+              {user}
             </div>
           </div>
 
@@ -206,12 +206,12 @@ export default function ArcadeCabinet({
 
         {/* Wallet section - using Extractable component */}
         <Extractable
-          id={`${id}-wallet`}
+          id={`${id}-credits`}
           digitalItems={[
             {
               item: 'Last Account Connected',
-              desc: `${wallet} credits available`,
-              value: wallet,
+              desc: `${credits} credits available`,
+              value: credits,
             }
           ]}
           stealing={true}

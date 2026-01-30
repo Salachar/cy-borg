@@ -5,6 +5,11 @@ export default {
   component: Tenet,
 };
 
+export const BlankProps = () => (
+  <Tenet />
+);
+
+
 // Public active profile with intercom
 export const PublicProfile = () => (
   <Tenet

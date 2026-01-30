@@ -5,6 +5,10 @@ export default {
   component: PersonnelFile,
 };
 
+export const BlankProps = () => (
+  <PersonnelFile />
+);
+
 // Active employee - full details
 export const ActiveEmployee = () => (
   <PersonnelFile

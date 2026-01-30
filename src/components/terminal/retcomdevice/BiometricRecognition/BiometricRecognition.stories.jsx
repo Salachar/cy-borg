@@ -5,13 +5,17 @@ export default {
   component: BiometricRecognition,
 };
 
+export const BlankProps = {
+  args: {},
+};
+
 // Cave Club - Charlie Sand detention scenario
 export const CharlieDetained = {
   args: {
     id: 'cave-club-biorecog',
-    systemName: 'BIOMETRIC RECOGNITION SYSTEM',
+    name: 'BIOMETRIC RECOGNITION SYSTEM',
     location: 'Cave Club - Security Network',
-    lastCalibration: '3 weeks ago',
+    lastService: '3 weeks ago',
     confidence: '85%',
     scans: [
       {
@@ -52,9 +56,9 @@ export const CharlieDetained = {
 export const CorporateFacility = {
   args: {
     id: 'alliansen-biorecog',
-    systemName: 'ALLIANSEN BIOMETRIC ACCESS',
+    name: 'ALLIANSEN BIOMETRIC ACCESS',
     location: 'Alliansen Warehouse - Main Security',
-    lastCalibration: '1 week ago',
+    lastService: '1 week ago',
     confidence: '92%',
     scans: [
       {
@@ -98,9 +102,9 @@ export const CorporateFacility = {
 export const MalfunctioningSystem = {
   args: {
     id: 'old-system-biorecog',
-    systemName: 'LEGACY BIOMETRIC SCANNER',
+    name: 'LEGACY BIOMETRIC SCANNER',
     location: 'Abandoned Office Building - Floor 3',
-    lastCalibration: '8 months ago',
+    lastService: '8 months ago',
     confidence: '65%',
     scans: [
       {
@@ -142,9 +146,9 @@ export const MalfunctioningSystem = {
 export const QuietLocation = {
   args: {
     id: 'quiet-biorecog',
-    systemName: 'RESIDENTIAL BIOMETRIC SYSTEM',
+    name: 'RESIDENTIAL BIOMETRIC SYSTEM',
     location: 'Apartment Complex - Building C',
-    lastCalibration: '2 days ago',
+    lastService: '2 days ago',
     confidence: '88%',
     scans: [
       {
@@ -171,9 +175,9 @@ export const QuietLocation = {
 export const NoActivity = {
   args: {
     id: 'new-biorecog',
-    systemName: 'BIOMETRIC RECOGNITION SYSTEM',
+    name: 'BIOMETRIC RECOGNITION SYSTEM',
     location: 'New Installation - Office Complex',
-    lastCalibration: 'Today',
+    lastService: 'Today',
     confidence: '90%',
     scans: [],
   },
@@ -183,9 +187,9 @@ export const NoActivity = {
 export const VIPClubSecurity = {
   args: {
     id: 'vip-club-biorecog',
-    systemName: 'ELITE CLUB BIOMETRICS',
+    name: 'ELITE CLUB BIOMETRICS',
     location: 'Neon Heights VIP Club - Security Hub',
-    lastCalibration: '5 days ago',
+    lastService: '5 days ago',
     confidence: '94%',
     scans: [
       {

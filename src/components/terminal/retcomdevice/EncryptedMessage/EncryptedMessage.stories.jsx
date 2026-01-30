@@ -5,7 +5,10 @@ export default {
   component: EncryptedMessage,
 };
 
-// Executive account - unlocked
+export const BlankProps = () => (
+  <EncryptedMessage />
+);
+
 export const Unlocked = () => (
     <EncryptedMessage
       messages={[
@@ -18,9 +21,3 @@ export const Unlocked = () => (
       ]}
     />
 );
-
-// Executive account - unlocked
-export const Locked = () => (
-    <EncryptedMessage />
-);
-

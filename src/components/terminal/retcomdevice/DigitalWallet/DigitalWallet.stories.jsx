@@ -6,12 +6,17 @@ export default {
 };
 
 // Executive account - unlocked
+export const BlankProps = () => (
+  <DigitalWallet />
+);
+
+// Executive account - unlocked
 export const ExecutiveAccount = () => (
   <DigitalWallet
     id="wallet-exec-001"
     accountNumber="ALLIANSEN-4782"
     accountHolder="Dr. Elena Rodriguez - VP Operations"
-    balance={285000}
+    credits={285000}
     lastTransaction="2068-01-27"
     isLocked={false}
   />
@@ -23,7 +28,7 @@ export const StreetDealerStash = () => (
     id="wallet-dealer-001"
     accountNumber="DARKNET-8829"
     accountHolder="Marcus 'Slip' Chen"
-    balance={12500}
+    credits={12500}
     lastTransaction="2068-01-26"
     isLocked={true}
   />
@@ -34,7 +39,7 @@ export const HackerWallet = () => (
   <DigitalWallet
     id="wallet-anon-555"
     accountNumber="ANON-X7734"
-    balance={64000}
+    credits={64000}
     lastTransaction="2068-01-27"
     isLocked={false}
   />
@@ -46,7 +51,7 @@ export const CorporatePayroll = () => (
     id="wallet-payroll-001"
     accountNumber="ALLIANSEN-PAY-001"
     accountHolder="Alliansen Inc. - Payroll Division"
-    balance={3750000}
+    credits={3750000}
     lastTransaction="2068-01-25"
     isLocked={true}
   />
@@ -58,7 +63,7 @@ export const BrokeFreelancer = () => (
     id="wallet-broke-001"
     accountNumber="FREEBANK-2341"
     accountHolder="Riley Park - Freelance Tech"
-    balance={127}
+    credits={127}
     lastTransaction="2068-01-15"
     isLocked={false}
   />
@@ -70,7 +75,7 @@ export const GangOperations = () => (
     id="wallet-vipers-ops"
     accountNumber="VIPERS-OPS-SECURE"
     accountHolder="Virid Vipers Operations"
-    balance={156000}
+    credits={156000}
     lastTransaction="2068-01-26"
     isLocked={true}
   />
@@ -82,7 +87,7 @@ export const AthleteWinnings = () => (
     id="wallet-athlete-001"
     accountNumber="KILLMATCH-9284"
     accountHolder="Steel Jackhammer"
-    balance={420000}
+    credits={420000}
     lastTransaction="2068-01-24"
     isLocked={false}
   />
@@ -94,7 +99,7 @@ export const DataBroker = () => (
     id="wallet-broker-001"
     accountNumber="INFOSEC-4491"
     accountHolder="Raze - Data Services"
-    balance={89500}
+    credits={89500}
     lastTransaction="2068-01-27"
     isLocked={true}
   />
@@ -106,7 +111,7 @@ export const CleanedOut = () => (
     id="wallet-empty-999"
     accountNumber="CITYBANK-8823"
     accountHolder="Jordan Blake"
-    balance={0}
+    credits={0}
     lastTransaction="2068-01-10"
     isLocked={false}
   />
@@ -118,7 +123,7 @@ export const OffshoreAccount = () => (
     id="wallet-offshore-001"
     accountNumber="OFFSHORE-SECURE-7721"
     accountHolder="Anonymous LLC"
-    balance={1850000}
+    credits={1850000}
     lastTransaction="2068-01-20"
     isLocked={true}
   />

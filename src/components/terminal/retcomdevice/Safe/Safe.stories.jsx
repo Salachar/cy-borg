@@ -5,6 +5,10 @@ export default {
   component: Safe,
 };
 
+export const BlankProps = {
+  args: {},
+};
+
 export const EmptySafe = {
   args: {
     id: 'casino-manager-safe',

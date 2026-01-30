@@ -5,6 +5,10 @@ export default {
   component: GameConsole,
 };
 
+export const BlankProps = {
+  args: {},
+};
+
 // Active gaming session
 export const ActiveSession = {
   args: {

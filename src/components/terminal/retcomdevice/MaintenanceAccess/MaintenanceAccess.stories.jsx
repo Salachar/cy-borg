@@ -5,6 +5,10 @@ export default {
   component: MaintenanceAccess,
 };
 
+export const BlankProps = {
+  args: {},
+};
+
 // Vending machine
 export const VendingMachine = {
   args: {

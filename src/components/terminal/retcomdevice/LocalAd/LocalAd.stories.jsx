@@ -5,6 +5,10 @@ export default {
   component: LocalAd,
 };
 
+export const BlankProps = {
+  args: {},
+};
+
 // Corner bodega
 export const LuckyStarBodega = {
   args: {

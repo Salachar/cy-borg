@@ -5,6 +5,10 @@ export default {
   component: Menu,
 };
 
+export const BlankProps = {
+  args: {},
+};
+
 // Bar happy hour
 export const HappyHour = {
   args: {

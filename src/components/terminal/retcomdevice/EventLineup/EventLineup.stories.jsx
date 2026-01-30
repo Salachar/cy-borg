@@ -5,6 +5,10 @@ export default {
   component: EventLineup,
 };
 
+export const BlankProps = {
+  args: {},
+};
+
 // Cave Club - cyberpunk nightclub
 export const CaveClub = {
   args: {

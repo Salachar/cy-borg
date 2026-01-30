@@ -5,6 +5,10 @@ export default {
   component: ShiftSchedule,
 };
 
+export const BlankProps = {
+  args: {},
+};
+
 // Warehouse night shift
 export const WarehouseNightShift = {
   args: {

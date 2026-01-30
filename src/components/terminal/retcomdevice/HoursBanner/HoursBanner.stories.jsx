@@ -5,6 +5,10 @@ export default {
   component: HoursBanner,
 };
 
+export const BlankProps = () => (
+  <HoursBanner />
+);
+
 // Open business
 export const OpenBusiness = () => (
   <HoursBanner

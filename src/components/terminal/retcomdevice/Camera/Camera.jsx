@@ -1,13 +1,13 @@
 import { Line, Divider, DataTable, Section } from '@terminal/TerminalComponents';
 
 export default function Camera({
-  id,
-  location,
+  id = "",
+  location = "Not Set",
   status = 'ACTIVE',
   recording = true,
   storage = 'Local server',
   timeline = [],
-  lastMaintenance,
+  lastMaintenance = "2 weeks ago",
 }) {
   const isOnline = status === 'ACTIVE' || status === 'RECORDING';
 
