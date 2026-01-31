@@ -1,6 +1,10 @@
 import React from 'react';
 
-export function BatusBodegaAd({ children }) {
+import {
+  PublicPortal,
+} from "@terminal/retcomdevice";
+
+export function BatusBodegaAd() {
   return (
     <div style={{
       position: 'relative',
@@ -92,61 +96,23 @@ export function BatusBodegaAd({ children }) {
 
         {/* Features */}
         <div style={{ marginBottom: '1.5rem' }}>
-          <BodegaFeature icon="📶" text="Free WiFi (Password on Wall)" color="#6bc9ff" />
-          <BodegaFeature icon="🏪" text="Fair Prices - No Shortages Markup" color="#6bc9ff" />
-          <BodegaFeature icon="📋" text="Community Bulletin Board" color="#6bc9ff" />
-          <BodegaFeature icon="☕" text="Coffee Always Fresh" color="#6bc9ff" />
+          <Feature text="Free WiFi (Password on Wall)" />
+          <Feature text="Fair Prices - No Shortages Markup" />
+          <Feature text="Community Bulletin Board" />
+          <Feature text="Coffee Always Fresh" />
         </div>
 
-        {/* Divider */}
-        <div style={{
-          height: '1px',
-          background: '#ffd93d',
-          margin: '1.5rem auto',
-          width: '60%',
-        }} />
-
-        {/* Hours */}
-        <div style={{
-          textAlign: 'center',
-          marginBottom: '1rem',
-        }}>
-          <p style={{
-            fontSize: '1rem',
-            color: '#6bc9ff',
-            marginBottom: '0.25rem',
-            fontWeight: 'bold',
-          }}>
-            OPEN DAILY
-          </p>
-          <p style={{
-            fontSize: '0.875rem',
-            color: '#a0c4e0',
-          }}>
-            06:00 - 22:00
-          </p>
-        </div>
-
-        {children && children}
-
-        {/* Location */}
-        <p style={{
-          fontSize: '0.875rem',
-          color: '#ff8c42',
-          textAlign: 'center',
-          marginBottom: '0.5rem',
-        }}>
-          Corner of Ports/Bigmosse Border
-        </p>
-
-        <p style={{
-          fontSize: '0.75rem',
-          color: '#a0c4e0',
-          textAlign: 'center',
-          fontStyle: 'italic',
-        }}>
-          "We know everyone's name."
-        </p>
+        <PublicPortal
+          network="FREE_BODEGA_5G"
+          signalStrength="strong"
+          status="⚠ Store Currently CLOSED"
+          statusColor="red"
+          notes={[
+            "Free wifi courtesy of Batu - No purchase necessary",
+            "Please respect bandwidth - Community shared connection",
+          ]}
+          theme="friendly"
+        />
       </div>
 
       {/* Corner stars (friendly, warm decoration) */}
@@ -213,21 +179,21 @@ function BodegaIcon() {
   );
 }
 
-function BodegaFeature({ icon, text, color }) {
+function Feature({ text }) {
   return (
     <div style={{
       display: 'flex',
       alignItems: 'center',
       gap: '0.75rem',
       marginBottom: '0.75rem',
+      color: '#6bc9ff',
     }}>
       <span style={{
         fontSize: '1.25rem',
-      }}>{icon}</span>
-      <span style={{
-        fontSize: '0.95rem',
-        color: color,
-      }}>{text}</span>
+        color: '#6bc9ff',
+        fontWeight: 'bold',
+      }}>▸</span>
+      <span style={{ fontSize: '1rem' }}>{text}</span>
     </div>
   );
 }

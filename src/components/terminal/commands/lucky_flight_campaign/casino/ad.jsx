@@ -1,6 +1,10 @@
 import React from 'react';
 
-export function LuckyFlightAd({ children }) {
+import {
+  PublicPortal,
+} from "@terminal/retcomdevice"
+
+export function LuckyFlightAd() {
   return (
     <div style={{
       position: 'relative',
@@ -86,50 +90,24 @@ export function LuckyFlightAd({ children }) {
           "Where Fortune Takes Flight"
         </p>
 
-        {/* Divider */}
-        <div style={{
-          height: '2px',
-          background: '#8b0000',
-          margin: '1.5rem auto',
-          width: '80%',
-        }} />
-
         {/* Features */}
         <div style={{ marginBottom: '1.5rem' }}>
           <Feature text="100+ Slot Machines" />
           <Feature text="Live Entertainment Nightly" />
           <Feature text="VIP Gaming Pods" />
-          <Feature text="Open 10:00 AM - 7:00 AM" />
         </div>
 
-        {/* Divider */}
-        <div style={{
-          height: '2px',
-          background: '#daa520',
-          margin: '1.5rem auto',
-          width: '60%',
-        }} />
-
-        {children && children}
-
-        {/* Location */}
-        <p style={{
-          fontSize: '1rem',
-          color: '#90ee90',
-          textAlign: 'center',
-          marginBottom: '0.5rem',
-        }}>
-          Ports/Bigmosse Border
-        </p>
-
-        <p style={{
-          fontSize: '0.875rem',
-          color: '#8b0000',
-          textAlign: 'center',
-          fontWeight: 'bold',
-        }}>
-          WATER TAXI SERVICE AVAILABLE
-        </p>
+        <PublicPortal
+          network="LUCKY_FLIGHT_GUEST"
+          signalStrength="strong"
+          status="✓ OPEN NOW - Live Music Tonight!"
+          statusColor="neon"
+          nowPlaying="Now playing: PHASER/MOB (blackened chromecore)"
+          notes={[
+            "Water taxi service available to canal pier!",
+          ]}
+          theme="fancy"
+        />
       </div>
 
       {/* Corner decorations */}

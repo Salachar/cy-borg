@@ -12,7 +12,6 @@ import {
   Menu,
   MaintenanceAccess,
   Message,
-  PublicPortal,
   PersonnelFile,
   CommunityBoard,
   CoffeeMachine,
@@ -27,20 +26,7 @@ import BatusBodegaAd from './ad'
 export const BODEGA_COMMANDS = {
   "Batu's Bodega (FREE ACCESS)": {
     content: (
-      <BatusBodegaAd>
-        <PublicPortal
-          network="FREE_BODEGA_5G"
-          signalStrength="strong"
-          status="⚠ Store Currently CLOSED"
-          statusColor="red"
-          nowPlaying="Now playing: Underground Radio - Ports District Mix"
-          notes={[
-            "Free wifi courtesy of Batu - No purchase necessary",
-            "Please respect bandwidth - Community shared connection",
-          ]}
-          theme="friendly"
-        />
-      </BatusBodegaAd>
+      <BatusBodegaAd />
     ),
     related_commands: {
       "Bodega Menu": {
@@ -83,7 +69,7 @@ export const BODEGA_COMMANDS = {
             password: {
               pw: "java",
               hint: "Dan really hates it",
-              hintStrength: 1,
+              difficulty: 'expert',
               content: <DigitalWallet isLocked />
             },
             content: (
@@ -149,7 +135,7 @@ export const BODEGA_COMMANDS = {
             password: {
               pw: "refresh",
               hint: "What you do to restock the machine",
-              hintStrength: 2,
+              difficulty: 'hard',
             },
             content: (
               <MaintenanceAccess />
@@ -159,7 +145,7 @@ export const BODEGA_COMMANDS = {
                 password: {
                   pw: "coins",
                   hint: "What accumulates in the cash box",
-                  hintStrength: 1,
+                  difficulty: 'expert',
                 },
                 content: (
                   <DigitalWallet
@@ -287,7 +273,7 @@ export const BODEGA_COMMANDS = {
         password: {
           pw: "payday",
           hint: "Niece's favorite day and candybar",
-          hintStrength: 3,
+          difficulty: 'medium',
         },
         content: (
           <Message
@@ -351,7 +337,7 @@ export const BODEGA_COMMANDS = {
                 password: {
                   pw: "community",
                   hint: "What Batu cares about more than profit",
-                  hintStrength: 2,
+                  difficulty: 'hard',
                 },
                 content: (
                   <PersonnelFile
@@ -452,7 +438,7 @@ export const BODEGA_COMMANDS = {
             password: {
               pw: "zara",
               hint: "His niece's name",
-              hintStrength: 2,
+              difficulty: 'hard',
             },
             content: (
               <Safe

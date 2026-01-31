@@ -14,7 +14,6 @@ import {
   Safe,
   Menu,
   Message,
-  PublicPortal,
   RetComImage,
   PersonnelFile,
 } from "@terminal/retcomdevice"
@@ -27,20 +26,7 @@ import floor2Image from '@images/blueprints/lucky_flight_floor_2.png';
 export const LUCKY_FLIGHT_CASINO = {
   "Lucky Flight Casino!": {
     content: (
-      <LuckyFlightAd>
-        <PublicPortal
-          network="LUCKY_FLIGHT_GUEST"
-          signalStrength="strong"
-          status="✓ OPEN NOW - Live Music Tonight!"
-          statusColor="neon"
-          nowPlaying="Now playing: PHASER/MOB (blackened chromecore)"
-          notes={[
-            "Located at Ports/Bigmosse Border",
-            "Water taxi service available to canal pier!",
-          ]}
-          theme="fancy"
-        />
-      </LuckyFlightAd>
+      <LuckyFlightAd />
     ),
     related_commands: {
       "Lobby ATM": {

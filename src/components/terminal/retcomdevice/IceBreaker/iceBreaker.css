@@ -11,6 +11,11 @@
   overflow: hidden;
 }
 
+.icebreaker-container.ice-cracked .icebreaker-main,
+.icebreaker-container.ice-cracked .icebreaker-controls {
+  display: none !important;
+}
+
 /* Scanline effect overlay */
 .icebreaker-container::before {
   content: '';

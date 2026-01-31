@@ -413,6 +413,7 @@ export default function RetComDevice() {
   };
 
   const handleSystemCommand = (cmd) => {
+    console.log(cmd);
     if (!SYSTEM_COMMANDS[cmd]) return false;
 
     const result = SYSTEM_COMMANDS[cmd]({

@@ -92,10 +92,20 @@ export default function MastermindHack({
   const [attemptsLeft, setAttemptsLeft] = useState(config.attempts);
   const [isComplete, setIsComplete] = useState(false);
 
+  const [showRetry, setShowRetry] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
   // Initialize game
   useEffect(() => {
     initializeGame();
   }, []);
+
+  const handleRetry = () => {
+    // The game was won
+    if (showSuccess) return;
+    setShowRetry(false);
+    initializeGame();
+  };
 
   const initializeGame = () => {
     // Generate answer sequence
@@ -207,8 +217,10 @@ export default function MastermindHack({
     if (newGuess.isCorrect) {
       setIsComplete(true);
       setTimeout(() => {
+        setShowSuccess(true);
+        // setShowRetry(true);
         if (onSuccess) onSuccess(command, commandDef, symbolAnswer);
-      }, 1500);
+      }, 800);
       return;
     }
 
@@ -219,8 +231,9 @@ export default function MastermindHack({
     if (newAttempts <= 0) {
       setIsComplete(true);
       setTimeout(() => {
+        setShowRetry(true);
         if (onFailure) onFailure();
-      }, 1500);
+      }, 800);
     }
   };
 
@@ -253,16 +266,13 @@ export default function MastermindHack({
   };
 
   return (
-    <div className="mastermind-hack">
+    <div className={`mastermind-hack ${showSuccess ? 'ice-cracked' : ''}`}>
       {/* Header */}
       <div className="mastermind-header">
         <div className="mastermind-title">
           <span className="mastermind-icon">⚠</span>
           ICE DETECTED - SEQUENCE BREAKER REQUIRED
         </div>
-        {/* <div className="mastermind-attempts">
-          ATTEMPTS: {attemptsLeft}/{attempts}
-        </div> */}
 
         {isComplete && (
           <div className={`mastermind-status ${guesses[guesses.length - 1]?.isCorrect ? 'success' : 'failure'}`}>
@@ -270,14 +280,6 @@ export default function MastermindHack({
           </div>
         )}
       </div>
-
-      {/* Instructions */}
-      {/* <div className="mastermind-instructions flex justify-end">
-        Select sequence to break ICE. Feedback:
-        <span style={{ color: 'rgb(0, 255, 65)', marginLeft: '0.5rem' }}>■ Exact</span>
-        <span style={{ color: 'rgb(251, 191, 36)', marginLeft: '0.5rem' }}>■ Partial</span>
-        <span style={{ color: 'rgb(77, 77, 77)', marginLeft: '0.5rem' }}>■ None</span>
-      </div> */}
 
       {/* Main layout: Terminal + Guess Panel */}
       <div className="mastermind-main">
@@ -361,21 +363,26 @@ export default function MastermindHack({
             ))}
           </div>
         </div>
+
+        {/* Retry Overlay */}
+        {showRetry && (
+          <div className="mastermind-retry-overlay" onClick={handleRetry}>
+            <div className="retry-content">
+              <div className={`retry-icon ${guesses[guesses.length - 1]?.isCorrect ? 'success' : 'failure'}`}>
+                {guesses[guesses.length - 1]?.isCorrect ? '✓' : '✗'}
+              </div>
+              <div className="retry-message">
+                {guesses[guesses.length - 1]?.isCorrect ? 'ACCESS GRANTED' : 'ACCESS DENIED'}
+              </div>
+              {!showSuccess && (
+                <div className="retry-button">
+                  TAP TO RETRY
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </div>
-
-      {/* Status message */}
-      {/* {isComplete && (
-        <div className={`mastermind-status ${guesses[guesses.length - 1]?.isCorrect ? 'success' : 'failure'}`}>
-          {guesses[guesses.length - 1]?.isCorrect ? '✓ ICE BROKEN - ACCESS GRANTED' : '✗ ICE INTACT - ACCESS DENIED'}
-        </div>
-      )} */}
-
-      {/* Debug mode - uncomment to see answer */}
-      {/* <div style={{ marginTop: '1rem', fontSize: '0.75rem', color: 'rgb(148, 163, 184)', textAlign: 'center' }}>
-        DEBUG: {answer.map((item, i) => (
-          <span key={i} style={{ color: item.color, marginRight: '0.25rem' }}>{item.symbol}</span>
-        ))}
-      </div> */}
     </div>
   );
 }

@@ -68,6 +68,7 @@ export default function IceBreaker({
   const [showBeam, setShowBeam] = useState(false);
   const [beamState, setBeamState] = useState(null); // null, 'hit', 'miss'
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
 
   const animationFrameRef = useRef(null);
   const lastTimeRef = useRef(Date.now());
@@ -159,6 +160,9 @@ export default function IceBreaker({
         setTimeout(() => {
           if (onSuccess) onSuccess(command, commandDef);
         }, TIMING.beamDuration + 200);
+        setTimeout(() => {
+          setIsComplete(true);
+        }, 2000)
       } else {
         // Miss - start cooldown
         setGunState('cooling');
@@ -203,16 +207,6 @@ export default function IceBreaker({
     const gapHalfSize = config.gapSize / 2;
     const hit = diff <= gapHalfSize;
 
-    console.log('🎯 HIT CHECK:', {
-      shieldRotation: normalizedRotation.toFixed(1),
-      gapCenterInShield: gapCenterInShield.toFixed(1),
-      gapWorldPosition: gapWorldPosition.toFixed(1),
-      firingAngle,
-      diff: diff.toFixed(1),
-      gapHalfSize: gapHalfSize.toFixed(1),
-      hit
-    });
-
     return hit;
   };
 
@@ -229,7 +223,10 @@ export default function IceBreaker({
   };
 
   return (
-    <div className="icebreaker-container" onClick={handleContainerClick}>
+    <div
+      className={`icebreaker-container ${isComplete ? 'ice-cracked' : ''}`}
+      onClick={handleContainerClick}
+    >
       {/* Header */}
       <div className="icebreaker-header">
         <span className="icebreaker-title">ICEBREAKER v2.1</span>

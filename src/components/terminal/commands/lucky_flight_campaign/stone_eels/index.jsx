@@ -8,7 +8,6 @@ import {
 } from '@terminal/TerminalComponents';
 import {
   Safe,
-  PublicPortal,
   Message,
   PersonnelFile,
   Menu,
@@ -27,20 +26,7 @@ import StoneEelsAd from './ad';
 export const STONE_EELS_COMMANDS = {
   "Cave Club": {
     content: (
-      <StoneEelsAd>
-        <PublicPortal
-          network="CAVE_CLUB_GUEST"
-          signalStrength="medium"
-          status="✓ OPEN (20:00-06:00)"
-          statusColor="neon"
-          nowPlaying="Now spinning: Underground beats - Ports hardcore mix"
-          notes={[
-            "Stone Eels territory - Neutral ground, no drama",
-            "Weapon check at door (negotiable)",
-          ]}
-          theme="limeade"
-        />
-      </StoneEelsAd>
+      <StoneEelsAd />
     ),
     related_commands: {
       "Tonight's Entertainment": {

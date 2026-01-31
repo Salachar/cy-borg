@@ -1,5 +1,9 @@
 import React from 'react';
 
+import {
+  PublicPortal,
+} from "@terminal/retcomdevice"
+
 export function StoneEelsAd({ children }) {
   return (
     <div style={{
@@ -117,37 +121,20 @@ export function StoneEelsAd({ children }) {
           <StoneFeature text="Live Music Every Night" />
           <StoneFeature text="Neutral Ground - No Drama" />
           <StoneFeature text="No Corps. No Cops. No Questions." />
-          <StoneFeature text="20:00 - 06:00" />
         </div>
 
-        {/* Divider */}
-        <div style={{
-          height: '1px',
-          background: '#333',
-          margin: '1.5rem auto',
-          width: '60%',
-        }} />
-
-        {children && children}
-
-        {/* Location */}
-        <p style={{
-          fontSize: '1rem',
-          color: '#00ff41',
-          textAlign: 'center',
-          marginBottom: '0.5rem',
-        }}>
-          Ports District - Eastern Section
-        </p>
-
-        <p style={{
-          fontSize: '0.875rem',
-          color: '#888',
-          textAlign: 'center',
-          fontStyle: 'italic',
-        }}>
-          Look for the serpent near canal dock 7
-        </p>
+        <PublicPortal
+          network="CAVE_CLUB_GUEST"
+          signalStrength="medium"
+          status="✓ OPEN (20:00-06:00)"
+          statusColor="neon"
+          nowPlaying="Now spinning: Underground beats - Ports hardcore mix"
+          notes={[
+            "Stone Eels territory - Neutral ground, no drama",
+            "Weapon check at door (non-negotiable)",
+          ]}
+          theme="limeade"
+        />
       </div>
 
       {/* Corner tech details */}

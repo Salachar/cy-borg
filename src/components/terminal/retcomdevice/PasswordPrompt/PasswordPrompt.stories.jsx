@@ -6,25 +6,83 @@ export default {
   component: PasswordPrompt,
 };
 
-// Basic password prompt
-export const SimplePassword = {
+// ============================================================================
+// DIFFICULTY EXAMPLES
+// ============================================================================
+
+export const EasyMode = {
+  name: 'Difficulty: Easy (First Letter + Count + Frequency)',
   args: {
     command: 'Access: Employee Locker',
-    password: 'BLUE',
-    hint: 'Color of the sky',
-    hintStrength: 1,
-    onSubmit: (password) => console.log('Submitted:', password),
+    password: 'COFFEE',
+    hint: 'Morning beverage',
+    difficulty: 'easy',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
     onCancel: () => console.log('Cancelled'),
   },
 };
 
-export const SimplePasswordChild = {
+export const MediumMode = {
+  name: 'Difficulty: Medium (Count + Frequency)',
+  args: {
+    command: 'Login: Manager Desktop PC',
+    password: 'ADMIN',
+    hint: 'Common default username',
+    difficulty: 'medium',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
+    onCancel: () => console.log('Cancelled'),
+  },
+};
+
+export const HardMode = {
+  name: 'Difficulty: Hard (Count Only)',
+  args: {
+    command: 'Open: Office Safe',
+    password: 'CASH',
+    hint: 'What you find inside',
+    difficulty: 'hard',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
+    onCancel: () => console.log('Cancelled'),
+  },
+};
+
+export const ExpertMode = {
+  name: 'Difficulty: Expert (Hint Only)',
+  args: {
+    command: 'Access: Server Room Door',
+    password: 'SERVER',
+    hint: 'What\'s behind this door?',
+    difficulty: 'expert',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
+    onCancel: () => console.log('Cancelled'),
+  },
+};
+
+export const CorporateMode = {
+  name: 'Difficulty: Corporate (Decoy Letters)',
+  args: {
+    command: 'Login: Bigmosse Executive Terminal',
+    password: 'PROFIT',
+    hint: 'What corporations care about most',
+    difficulty: 'corporate',
+    decoyLetters: 'X, Q, Z, J, K, W',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
+    onCancel: () => console.log('Cancelled'),
+  },
+};
+
+// ============================================================================
+// WITH CHILDREN
+// ============================================================================
+
+export const WithDigitalWallet = {
+  name: 'With Children: Digital Wallet Preview',
   args: {
     command: 'Access: Employee Locker',
     password: 'BLUE',
     hint: 'Color of the sky',
-    hintStrength: 1,
-    onSubmit: (password) => console.log('Submitted:', password),
+    difficulty: 'medium',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
     onCancel: () => console.log('Cancelled'),
     children: (
       <DigitalWallet
@@ -35,290 +93,293 @@ export const SimplePasswordChild = {
   },
 };
 
-// Computer password
+// ============================================================================
+// SCENARIO EXAMPLES
+// ============================================================================
+
 export const ComputerLogin = {
+  name: 'Scenario: Computer Login',
   args: {
     command: 'Login: Manager Desktop PC',
     password: 'ADMIN',
     hint: 'Common default username',
-    hintStrength: 2,
-    onSubmit: (password) => console.log('Submitted:', password),
+    difficulty: 'medium',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
     onCancel: () => console.log('Cancelled'),
   },
 };
 
-// Safe combination
 export const SafeAccess = {
+  name: 'Scenario: Safe Access',
   args: {
     command: 'Open: Office Safe',
     password: 'CASH',
     hint: 'What you find inside',
-    hintStrength: 2,
-    onSubmit: (password) => console.log('Submitted:', password),
+    difficulty: 'hard',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
     onCancel: () => console.log('Cancelled'),
   },
 };
 
-// Door code
 export const DoorCode = {
+  name: 'Scenario: Door Code',
   args: {
     command: 'Access: Server Room Door',
     password: 'SERVER',
     hint: 'What\'s behind this door?',
-    hintStrength: 3,
-    onSubmit: (password) => console.log('Submitted:', password),
+    difficulty: 'easy',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
     onCancel: () => console.log('Cancelled'),
   },
 };
 
-// Longer password with repeating characters
 export const RepeatingChars = {
+  name: 'Scenario: Repeating Characters',
   args: {
     command: 'Access: Personal Computer',
     password: 'COFFEE',
     hint: 'Morning beverage',
-    hintStrength: 3,
-    onSubmit: (password) => console.log('Submitted:', password),
+    difficulty: 'medium',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
     onCancel: () => console.log('Cancelled'),
   },
 };
 
-// Game-style password
 export const GamePassword = {
+  name: 'Scenario: Hidden Terminal',
   args: {
     command: 'Unlock: Hidden Terminal',
     password: 'NEON',
     hint: 'Type of lights in this city',
-    hintStrength: 2,
-    onSubmit: (password) => console.log('Submitted:', password),
+    difficulty: 'hard',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
     onCancel: () => console.log('Cancelled'),
   },
 };
 
-// Warehouse password
 export const WarehouseAccess = {
+  name: 'Scenario: Warehouse',
   args: {
     command: 'Access: Secure Cargo Container 7B',
     password: 'CARGO',
     hint: 'What this building stores',
-    hintStrength: 2,
-    onSubmit: (password) => console.log('Submitted:', password),
+    difficulty: 'hard',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
     onCancel: () => console.log('Cancelled'),
   },
 };
 
-// Casino password
 export const CasinoSafe = {
+  name: 'Scenario: Casino Safe',
   args: {
     command: 'Open: Manager Office Safe',
     password: 'LUCKY',
     hint: 'Theme of this establishment',
-    hintStrength: 3,
-    onSubmit: (password) => console.log('Submitted:', password),
+    difficulty: 'medium',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
     onCancel: () => console.log('Cancelled'),
   },
 };
 
-// Personal device
 export const PersonalDevice = {
+  name: 'Scenario: Personal Tablet',
   args: {
     command: 'Unlock: Personal Tablet',
     password: 'WINTER',
     hint: 'Coldest season',
-    hintStrength: 3,
-    onSubmit: (password) => console.log('Submitted:', password),
+    difficulty: 'easy',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
     onCancel: () => console.log('Cancelled'),
   },
 };
 
-// Short password - minimal hint
-export const ShortPassword = {
-  args: {
-    command: 'Access: Storage Locker',
-    password: 'BOX',
-    hint: 'A container',
-    hintStrength: 1,
-    onSubmit: (password) => console.log('Submitted:', password),
-    onCancel: () => console.log('Cancelled'),
-  },
-};
-
-// Medium length with hint
-export const MediumPassword = {
-  args: {
-    command: 'Login: Workstation Terminal',
-    password: 'WIDGET',
-    hint: 'Generic product name',
-    hintStrength: 2,
-    onSubmit: (password) => console.log('Submitted:', password),
-    onCancel: () => console.log('Cancelled'),
-  },
-};
-
-// No hint - hardest mode
-export const NoHint = {
-  args: {
-    command: 'Access: Encrypted Drive',
-    password: 'SECRET',
-    hint: '',
-    hintStrength: 1,
-    onSubmit: (password) => console.log('Submitted:', password),
-    onCancel: () => console.log('Cancelled'),
-  },
-};
-
-// Gang hideout
 export const GangHideout = {
+  name: 'Scenario: Gang Safehouse',
   args: {
     command: 'Access: Stone Eels Safehouse',
     password: 'STONE',
     hint: 'First word of gang name',
-    hintStrength: 3,
-    onSubmit: (password) => console.log('Submitted:', password),
+    difficulty: 'medium',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
     onCancel: () => console.log('Cancelled'),
   },
 };
 
-// Corporate access
-export const CorporateAccess = {
-  args: {
-    command: 'Login: Bigmosse Executive Terminal',
-    password: 'PROFIT',
-    hint: 'What corporations care about most',
-    hintStrength: 2,
-    onSubmit: (password) => console.log('Submitted:', password),
-    onCancel: () => console.log('Cancelled'),
-  },
-};
-
-// Vending machine
 export const VendingMachine = {
+  name: 'Scenario: Vending Machine',
   args: {
     command: 'Access: QuickDrinx Maintenance Panel',
     password: 'DRINK',
     hint: 'What this machine dispenses',
-    hintStrength: 2,
-    onSubmit: (password) => console.log('Submitted:', password),
+    difficulty: 'hard',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
     onCancel: () => console.log('Cancelled'),
   },
 };
 
-// ATM access
 export const ATMAccess = {
+  name: 'Scenario: ATM Service Mode',
   args: {
     command: 'Service Mode: ATM-500',
     password: 'MONEY',
     hint: 'What people withdraw',
-    hintStrength: 3,
-    onSubmit: (password) => console.log('Submitted:', password),
+    difficulty: 'medium',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
     onCancel: () => console.log('Cancelled'),
   },
 };
 
-// All hints enabled
-export const MaxHints = {
-  args: {
-    command: 'Tutorial: Password Entry',
-    password: 'HELLO',
-    hint: 'Common greeting (character count shown, frequency markers visible)',
-    hintStrength: 3,
-    onSubmit: (password) => console.log('Submitted:', password),
-    onCancel: () => console.log('Cancelled'),
-  },
-};
-
-// Difficult password
-export const DifficultPassword = {
-  args: {
-    command: 'Access: High Security Vault',
-    password: 'QUANTUM',
-    hint: 'Type of computing used for encryption',
-    hintStrength: 3,
-    onSubmit: (password) => console.log('Submitted:', password),
-    onCancel: () => console.log('Cancelled'),
-  },
-};
-
-// Game puzzle
-export const PuzzlePassword = {
-  args: {
-    command: 'Decrypt: Mysterious File',
-    password: 'CIPHER',
-    hint: 'Another word for code or encryption',
-    hintStrength: 2,
-    onSubmit: (password) => console.log('Submitted:', password),
-    onCancel: () => console.log('Cancelled'),
-  },
-};
-
-// Character-based hint
-export const CharacterHint = {
-  args: {
-    command: 'Access: Apartment 4B',
-    password: 'PARK',
-    hint: 'The guard\'s last name (James ____)',
-    hintStrength: 2,
-    onSubmit: (password) => console.log('Submitted:', password),
-    onCancel: () => console.log('Cancelled'),
-  },
-};
-
-// Location-based
-export const LocationPassword = {
-  args: {
-    command: 'Open: Canal District Gate',
-    password: 'CANAL',
-    hint: 'The district you\'re in',
-    hintStrength: 2,
-    onSubmit: (password) => console.log('Submitted:', password),
-    onCancel: () => console.log('Cancelled'),
-  },
-};
-
-// Tech-themed
-export const TechPassword = {
-  args: {
-    command: 'Login: Developer Console',
-    password: 'DEBUG',
-    hint: 'What developers do to fix code',
-    hintStrength: 3,
-    onSubmit: (password) => console.log('Submitted:', password),
-    onCancel: () => console.log('Cancelled'),
-  },
-};
-
-// Medical facility
 export const MedicalAccess = {
+  name: 'Scenario: Medical Records',
   args: {
     command: 'Access: VitalCorp Medical Records',
     password: 'VITAL',
     hint: 'Company name',
-    hintStrength: 2,
-    onSubmit: (password) => console.log('Submitted:', password),
+    difficulty: 'hard',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
     onCancel: () => console.log('Cancelled'),
   },
 };
 
-// Minimal UI test
-export const MinimalHint = {
+// ============================================================================
+// SPECIAL CASES
+// ============================================================================
+
+export const ShortPassword = {
+  name: 'Special: Short Password (3 chars)',
   args: {
-    command: 'Test: Basic Entry',
-    password: 'TEST',
-    hint: 'What you\'re doing right now',
-    hintStrength: 1,
-    onSubmit: (password) => console.log('Submitted:', password),
+    command: 'Access: Storage Locker',
+    password: 'BOX',
+    hint: 'A container',
+    difficulty: 'expert',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
     onCancel: () => console.log('Cancelled'),
   },
 };
 
-// Complex repeating pattern
+export const NoHint = {
+  name: 'Special: No Hint Provided',
+  args: {
+    command: 'Access: Encrypted Drive',
+    password: 'SECRET',
+    hint: '',
+    difficulty: 'expert',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
+    onCancel: () => console.log('Cancelled'),
+  },
+};
+
 export const ComplexPattern = {
+  name: 'Special: Complex Repeating Pattern',
   args: {
     command: 'Access: Pattern Lock System',
     password: 'LETTER',
     hint: 'Contains three of the same character',
-    hintStrength: 3,
-    onSubmit: (password) => console.log('Submitted:', password),
+    difficulty: 'medium',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
+    onCancel: () => console.log('Cancelled'),
+  },
+};
+
+export const DifficultPassword = {
+  name: 'Special: Longer Password',
+  args: {
+    command: 'Access: High Security Vault',
+    password: 'QUANTUM',
+    hint: 'Type of computing used for encryption',
+    difficulty: 'hard',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
+    onCancel: () => console.log('Cancelled'),
+  },
+};
+
+export const PuzzlePassword = {
+  name: 'Special: Puzzle/Riddle',
+  args: {
+    command: 'Decrypt: Mysterious File',
+    password: 'CIPHER',
+    hint: 'Another word for code or encryption',
+    difficulty: 'expert',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
+    onCancel: () => console.log('Cancelled'),
+  },
+};
+
+export const CharacterHint = {
+  name: 'Special: Character Name Hint',
+  args: {
+    command: 'Access: Apartment 4B',
+    password: 'PARK',
+    hint: 'The guard\'s last name (James ____)',
+    difficulty: 'medium',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
+    onCancel: () => console.log('Cancelled'),
+  },
+};
+
+export const LocationPassword = {
+  name: 'Special: Location-Based',
+  args: {
+    command: 'Open: Canal District Gate',
+    password: 'CANAL',
+    hint: 'The district you\'re in',
+    difficulty: 'hard',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
+    onCancel: () => console.log('Cancelled'),
+  },
+};
+
+export const TechPassword = {
+  name: 'Special: Tech-Themed',
+  args: {
+    command: 'Login: Developer Console',
+    password: 'DEBUG',
+    hint: 'What developers do to fix code',
+    difficulty: 'medium',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
+    onCancel: () => console.log('Cancelled'),
+  },
+};
+
+// ============================================================================
+// CORPORATE MODE EXAMPLES
+// ============================================================================
+
+export const CorporateEasy = {
+  name: 'Corporate: Easy Decoys',
+  args: {
+    command: 'Access: Low Security Terminal',
+    password: 'DATA',
+    hint: 'What computers store',
+    difficulty: 'corporate',
+    decoyLetters: 'X, Q',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
+    onCancel: () => console.log('Cancelled'),
+  },
+};
+
+export const CorporateHard = {
+  name: 'Corporate: Many Decoys',
+  args: {
+    command: 'Access: Executive Vault',
+    password: 'VAULT',
+    hint: 'Secure storage location',
+    difficulty: 'corporate',
+    decoyLetters: 'X, Q, Z, J, K, W, B, P, G',
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
+    onCancel: () => console.log('Cancelled'),
+  },
+};
+
+export const CorporateConfusing = {
+  name: 'Corporate: Confusing Decoys',
+  args: {
+    command: 'Login: Bigmosse Mainframe',
+    password: 'POWER',
+    hint: 'What corporations seek',
+    difficulty: 'corporate',
+    decoyLetters: 'P, O, W, E, R, S', // Contains actual letters!
+    onSubmit: (command, commandDef, password) => console.log('Submitted:', password),
     onCancel: () => console.log('Cancelled'),
   },
 };

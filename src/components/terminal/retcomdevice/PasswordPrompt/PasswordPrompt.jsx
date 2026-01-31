@@ -25,7 +25,8 @@ export default function PasswordPrompt({
   commandDef,
   password,
   hint = "",
-  hintStrength = 1,
+  difficulty = "expert",
+  decoyLetters = "",
   onSubmit,
   onCancel,
   children,
@@ -36,13 +37,24 @@ export default function PasswordPrompt({
   const [feedback, setFeedback] = useState("");
   const [clickedKey, setClickedKey] = useState(null);
   const [isActive, setIsActive] = useState(true);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   // Initialize shuffled keys
   useEffect(() => {
     const freq = getUniqueKeysWithFrequency(password);
     setKeyFrequency(freq);
-    setShuffledKeys(shuffleArray(Object.keys(freq)));
-  }, [password]);
+
+    // Get base keys from password
+    let keysToShuffle = Object.keys(freq);
+
+    // Add decoy letters for corporate difficulty
+    if (difficulty === 'corporate' && decoyLetters) {
+      const decoyArray = decoyLetters.split(',').map(l => l.trim().toUpperCase()).filter(Boolean);
+      keysToShuffle = [...keysToShuffle, ...decoyArray];
+    }
+
+    setShuffledKeys(shuffleArray(keysToShuffle));
+  }, [password, difficulty, decoyLetters]);
 
   const handleKeyClick = (key) => {
     setCurrentPassword(prev => prev + key);
@@ -65,6 +77,7 @@ export default function PasswordPrompt({
 
   const handleSubmit = () => {
     if (currentPassword.toUpperCase() === password.toUpperCase()) {
+      setShowSuccess(true);
       setIsActive(false);
       onSubmit(command, commandDef, password);
     } else {
@@ -91,6 +104,16 @@ export default function PasswordPrompt({
     }
   };
 
+  // Get first letter for easy difficulty
+  const getFirstLetter = () => {
+    return password.charAt(0).toUpperCase();
+  };
+
+  // Determine what help to show based on difficulty
+  const showFirstLetter = difficulty === 'easy';
+  const showFrequencyNumbers = difficulty === 'medium';
+  const showCharacterCount = difficulty === 'hard' || difficulty === 'medium';
+
   return (
     <div
       className="my-4 border-2 rounded-lg p-4 font-mono"
@@ -104,13 +127,26 @@ export default function PasswordPrompt({
         className={isActive ? `mb-4 pb-2 border-b` : ""}
         style={{ borderColor: 'rgb(77, 167, 188)' }}
         onClick={() => {
+          if (showSuccess) return;
           setIsActive(!isActive);
         }}
       >
-        <div className="font-bold text-lg"
-             style={{ color: 'rgb(133, 175, 231)' }}>
-          PASSWORD ENTRY
-        </div>
+        {!showSuccess && (
+          <div
+            className="font-bold text-lg"
+            style={{ color: 'rgb(133, 175, 231)' }}
+          >
+            PASSWORD ENTRY
+          </div>
+        )}
+        {showSuccess && (
+          <div
+            className="font-bold text-lg"
+            style={{ color: 'rgb(59, 235, 82)' }}
+          >
+            PASSWORD ACCEPTED
+          </div>
+        )}
         <div className="text-sm"
              style={{ color: 'rgb(148, 163, 184)' }}>
           {command}
@@ -125,10 +161,9 @@ export default function PasswordPrompt({
                 style={{ color: 'rgb(79, 209, 197)' }}>
               {currentPassword || '_'}
             </div>
-            {hintStrength >= 2 && (
+            {showCharacterCount && (
               <div className="text-sm"
                   style={{ color: 'rgb(148, 163, 184)' }}>
-
                 {getCharacterCountDisplay()} characters
               </div>
             )}
@@ -137,9 +172,9 @@ export default function PasswordPrompt({
           {/* Virtual Keyboard */}
           <div className="mb-4">
             <div className="flex flex-wrap gap-2">
-              {shuffledKeys.map(key => (
+              {shuffledKeys.map((key, idx) => (
                 <button
-                  key={key}
+                  key={`${key}-${idx}`}
                   onClick={() => handleKeyClick(key)}
                   className="relative px-4 py-2 font-bold text-lg rounded transition-all duration-150"
                   style={{
@@ -162,7 +197,7 @@ export default function PasswordPrompt({
                   }}
                 >
                   {key}
-                  {hintStrength >= 3 && keyFrequency[key] > 1 && (
+                  {showFrequencyNumbers && keyFrequency[key] > 1 && (
                     <span className="absolute top-0 right-1 text-xs"
                           style={{ color: 'rgb(251, 191, 36)' }}>
                       {keyFrequency[key]}
@@ -180,21 +215,33 @@ export default function PasswordPrompt({
           )}
 
           {/* Hints */}
-          {hint && (
+          {(hint || showFirstLetter) && (
             <div
               className="mb-4 p-3 rounded"
               style={{
                 backgroundColor: 'rgba(45, 53, 72, 0.5)',
               }}
             >
-              <div
-                className="text-sm mb-1"
-                style={{
-                  color: 'rgb(251, 191, 36)',
-                }}
-              >
-                <span className="font-bold">Hint:</span> {hint}
-              </div>
+              {hint && (
+                <div
+                  className="text-sm mb-1"
+                  style={{
+                    color: 'rgb(251, 191, 36)',
+                  }}
+                >
+                  <span className="font-bold">Hint:</span> {hint}
+                </div>
+              )}
+              {showFirstLetter && (
+                <div
+                  className="text-sm"
+                  style={{
+                    color: 'rgb(251, 191, 36)',
+                  }}
+                >
+                  <span className="font-bold">First Letter:</span> {getFirstLetter()}
+                </div>
+              )}
             </div>
           )}
 
