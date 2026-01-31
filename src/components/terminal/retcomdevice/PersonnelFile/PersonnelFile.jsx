@@ -180,18 +180,9 @@ export default function PersonnelFile({
           {/* Clearance & Performance */}
           <div
             style={{
-              backgroundColor: 'rgba(15, 23, 42, 0.6)',
-              border: '1px solid rgb(71, 85, 105)',
-              borderRadius: '3px',
-              padding: '0.75rem',
               marginBottom: notes.length > 0 ? '1rem' : '0',
             }}
           >
-            <Line cyan bold style={{ margin: 0, fontSize: '0.95rem', marginBottom: '0.5rem' }}>
-              CLEARANCE & PERFORMANCE
-            </Line>
-            <Divider />
-
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '0.5rem' }}>
               {/* Clearance Badge */}
               <div

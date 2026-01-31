@@ -29,6 +29,7 @@ import { Line, Divider } from '@terminal/TerminalComponents';
 
 export default function Extractable({
   id,
+  credits = 0,
   physicalItems = [],
   digitalItems = [],
   stealing = false,
@@ -37,6 +38,17 @@ export default function Extractable({
 }) {
   const STORAGE_KEY = 'cyborg_retcom_extracted';
   const WALLET_STORAGE_KEY = 'cyborg_retcom_wallet';
+
+  let useDigitalItems = [...digitalItems];
+  if (credits) {
+    useDigitalItems.push({
+      id: `${id}_basic_credits`,
+      label: 'Available Credits',
+      description: '',
+      value: credits,
+      isCredits: true,
+    })
+  }
 
   const [extractedPhysical, setExtractedPhysical] = useState(() => {
     try {
@@ -115,11 +127,11 @@ export default function Extractable({
       setExtractedDigital(true);
 
       // Save to wallet
-      saveToWallet(digitalItems);
+      saveToWallet(useDigitalItems);
 
       if (onExtract) {
-        const value = digitalItems.reduce((sum, item) => sum + (item.value || 0), 0);
-        onExtract(digitalItems, value, 'digital');
+        const value = useDigitalItems.reduce((sum, item) => sum + (item.value || 0), 0);
+        onExtract(useDigitalItems, value, 'digital');
       }
     } catch (error) {
       console.error('Failed to save extraction state:', error);
@@ -127,7 +139,7 @@ export default function Extractable({
   };
 
   const hasPhysical = physicalItems.length > 0;
-  const hasDigital = digitalItems.length > 0;
+  const hasDigital = useDigitalItems.length > 0;
 
   // Labels based on stealing mode
   const labels = stealing
@@ -361,14 +373,14 @@ export default function Extractable({
 
           {/* Items list */}
           <div style={{ marginTop: '0.75rem' }}>
-            {digitalItems.map((item, i) => (
+            {useDigitalItems.map((item, i) => (
               <div
                 key={i}
                 style={{
                   display: 'flex',
                   alignItems: 'flex-start',
                   gap: '0.5rem',
-                  marginBottom: i < digitalItems.length - 1 ? '0.5rem' : '0',
+                  marginBottom: i < useDigitalItems.length - 1 ? '0.5rem' : '0',
                   opacity: extractedDigital ? 0.6 : 1,
                 }}
               >

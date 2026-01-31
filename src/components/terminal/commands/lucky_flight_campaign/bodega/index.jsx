@@ -96,7 +96,7 @@ export const BODEGA_COMMANDS = {
         }
       },
 
-      "Boedga Radio": {
+      "Bodega Radio": {
         content: (
           <Radio />
         )
@@ -110,7 +110,7 @@ export const BODEGA_COMMANDS = {
         )
       },
 
-      "Boedga ATM": {
+      "Bodega ATM": {
         mastermind: {
           difficulty: 'easy',
         },
@@ -263,13 +263,13 @@ export const BODEGA_COMMANDS = {
             boardName="COMMUNITY BULLETIN BOARD"
             location="Inside Batu's Bodega - Near counter"
             posts={[
-              { text: '"MISSING: Batu, bodega owner. Anyone seen him?"', color: 'pink' },
-              { text: '"Lucky Flight took another house on our street this week"', color: 'pink' },
+              { text: '"MISSING: Batu, bodega owner. Anyone seen him?"', color: 'red' },
+              { text: '"Lucky Flight took another house on our street this week"', color: 'cyan' },
               { text: '"Can\'t afford groceries after casino payment this month"', color: 'pink' },
               { text: '"4th eviction on our block this year. When does it stop?"', color: 'pink' },
               { text: '"Organizing neighborhood meeting - discuss casino problem"', color: 'pink' },
-              { text: '"We need to do something about that fucking place"', color: 'pink' },
-              { text: '"Anyone know a good fixer? Asking for a friend..."', color: 'pink' },
+              { text: '"We need to do something about that fucking place"', color: 'neon' },
+              { text: '"Anyone know a good fixer? Asking for a friend..."', color: 'smoke' },
             ]}
             services={[
               'Street doc - "Fingers" (2 blocks south, knock 3x)',
