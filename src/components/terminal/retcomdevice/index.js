@@ -34,6 +34,7 @@ import Radio from "./Radio/Radio";
 import ArcadeCabinet from "./ArcadeCabinet/ArcadeCabinet";
 import DigitalWallet from "./DigitalWallet/DigitalWallet";
 import IceBreaker from "./IceBreaker/IceBreaker";
+import RetComImage from "./Images/RetComImage";
 
 export {
   ATM,
@@ -72,4 +73,5 @@ export {
   ArcadeCabinet,
   DigitalWallet,
   IceBreaker,
+  RetComImage,
 };

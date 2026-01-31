@@ -516,7 +516,9 @@ export default function RetComDevice() {
                 }));
                 executeCommandWithResult(cmdPath, commandDef);
               }}
-            />
+            >
+              {commandDef.password?.content ? commandDef.password.content : null}
+            </PasswordPrompt>
           ),
         });
         return true;

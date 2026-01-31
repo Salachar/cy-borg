@@ -17,10 +17,10 @@ import './digitalWallet.css';
  */
 export default function DigitalWallet({
   id,
-  accountNumber,
+  accountNumber = "UNKNOWN",
   credits = 0,
-  accountHolder,
-  lastTransaction,
+  accountHolder = "PRIVATE",
+  lastTransaction = "4 hours minutes ago",
   isLocked = false,
 }) {
   return (
@@ -29,34 +29,39 @@ export default function DigitalWallet({
       <div className="wallet-header">
         <div className="wallet-title">
           <span className="wallet-title-text">DIGITAL WALLET</span>
-          {isLocked && <span className="wallet-locked-badge">LOCKED</span>}
-        </div>
-        <div className="wallet-details">
-          {accountNumber && (
-            <div className="wallet-detail-item">
-              <span className="wallet-detail-label">ACCT:</span>
-              <span className="wallet-detail-value">{accountNumber}</span>
-            </div>
-          )}
-          {accountHolder && (
-            <div className="wallet-detail-item">
-              <span className="wallet-detail-label">HOLDER:</span>
-              <span className="wallet-detail-value">{accountHolder}</span>
-            </div>
-          )}
-          {lastTransaction && (
-            <div className="wallet-detail-item">
-              <span className="wallet-detail-label">LAST TX:</span>
-              <span className="wallet-detail-value">{lastTransaction}</span>
+          {isLocked && (
+            <div class="wallet-title-lock-ui">
+              <div className="wallet-lock-title">AUTHENTICATION REQUIRED</div>
+              <span className="wallet-locked-badge">LOCKED</span>
             </div>
           )}
         </div>
-      </div>
 
-      {/* Content area - lock screen OR extractable */}
-      {isLocked ? (
-        /* Locked state - fancy lock screen */
-        <div className="wallet-lock-screen">
+        {!isLocked && (
+          <div className="wallet-details">
+            {accountNumber && (
+              <div className="wallet-detail-item">
+                <span className="wallet-detail-label">ACCT:</span>
+                <span className="wallet-detail-value">{accountNumber}</span>
+              </div>
+            )}
+            {accountHolder && (
+              <div className="wallet-detail-item">
+                <span className="wallet-detail-label">HOLDER:</span>
+                <span className="wallet-detail-value">{accountHolder}</span>
+              </div>
+            )}
+            {lastTransaction && (
+              <div className="wallet-detail-item">
+                <span className="wallet-detail-label">LAST TX:</span>
+                <span className="wallet-detail-value">{lastTransaction}</span>
+              </div>
+            )}
+          </div>
+        )}
+
+
+        {isLocked && (
           <div className="wallet-lock-visual">
             {/* Large lock icon */}
             <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -69,13 +74,10 @@ export default function DigitalWallet({
             {/* Pulsing ring */}
             <div className="wallet-lock-ring"></div>
           </div>
+        )}
+      </div>
 
-          <div className="wallet-lock-text">
-            <div className="wallet-lock-title">AUTHENTICATION REQUIRED</div>
-          </div>
-        </div>
-      ) : (
-        /* Unlocked state - Extractable */
+      {!isLocked && (
         <div className="wallet-extract-area">
           <Extractable
             id={`${id}-digital-wallet-extractable`}

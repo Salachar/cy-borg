@@ -32,10 +32,14 @@ export const Line = ({
   color = "",
   pulse,
   loading = false,
+  style = {},
   children,
 }) => {
   let appliedClassname = className;
-  let appliedStyles = {...styles};
+  let appliedStyles = {
+    ...styles,
+    ...style,
+  };
 
   if (inline) appliedStyles.display = "inline-block";
 

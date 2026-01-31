@@ -245,15 +245,6 @@ export default function IceBreaker({
             <div className="gun-garbage-3" />
             <div className="gun-garbage-5" />
             <div className="gun-garbage-2" />
-            <div className="gun-garbage-4" />
-            <div className="gun-garbage-back" style={{
-              left: '40px'
-            }}>
-              <div className="gun-garbage-4" />
-              <div className="gun-garbage-1" />
-              <div className="gun-garbage-6" />
-              <div className="gun-garbage-7" />
-            </div>
           </div>
           <div className={`gun-integrated ${gunState}`}>
             <div className="gun-housing">
@@ -268,16 +259,9 @@ export default function IceBreaker({
 
           <div className="gun-garbage-bottom">
             <div className="gun-garbage-2" />
-            <div className="gun-garbage-4" />
             <div className="gun-garbage-1" />
             <div className="gun-garbage-6" />
             <div className="gun-garbage-7" />
-            <div className="gun-garbage-back">
-              <div className="gun-garbage-1" />
-              <div className="gun-garbage-3" />
-              <div className="gun-garbage-5" />
-              <div className="gun-garbage-2" />
-            </div>
           </div>
         </div>
 

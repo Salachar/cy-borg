@@ -20,7 +20,6 @@ import {
   Radio,
   ArcadeCabinet,
   DigitalWallet,
-  MastermindHack,
 } from "@terminal/retcomdevice"
 
 import BatusBodegaAd from './ad'
@@ -79,6 +78,22 @@ export const BODEGA_COMMANDS = {
         content: (
           <CoffeeMachine />
         ),
+        related_commands: {
+          "Digital Wallet": {
+            password: {
+              pw: "java",
+              hint: "Dan really hates it",
+              hintStrength: 1,
+              content: <DigitalWallet isLocked />
+            },
+            content: (
+              <DigitalWallet
+                id="bogeda-coffee-machine-wallet"
+                credits={30}
+              />
+            )
+          }
+        }
       },
 
       "Boedga Radio": {

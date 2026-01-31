@@ -15,6 +15,8 @@ import {
   Menu,
   Message,
   PublicPortal,
+  RetComImage,
+  PersonnelFile,
 } from "@terminal/retcomdevice"
 
 import LuckyFlightAd from './ad'
@@ -253,11 +255,11 @@ export const LUCKY_FLIGHT_CASINO = {
       },
 
       "access_internal_network": {
-        password: {
-          pw: "loadeddice",
-          hint: "Better not get caught",
-          hintStrength: 1,
-        },
+        // password: {
+        //   pw: "loadeddice",
+        //   hint: "Better not get caught",
+        //   hintStrength: 1,
+        // },
         content: (
           <Message
             title="CASINO"
@@ -268,11 +270,11 @@ export const LUCKY_FLIGHT_CASINO = {
         ),
         related_commands: {
           access_facility_files: {
-            password: {
-              pw: "architecture",
-              hint: "What blueprints are a form of",
-              hintStrength: 2,
-            },
+            // password: {
+            //   pw: "architecture",
+            //   hint: "What blueprints are a form of",
+            //   hintStrength: 2,
+            // },
             content: (
               <>
                 <Line smoke large bold>[FACILITY BLUEPRINTS]</Line>
@@ -288,42 +290,21 @@ export const LUCKY_FLIGHT_CASINO = {
               </>
             ),
             related_commands: {
-
               "Blueprint: Basement": {
                 content: (
-                  <>
-                    <Box color="neon">
-                      <Section title="LUCKY FLIGHT CASINO - BASEMENT BLUEPRINT" center>
-                        <Line red xsmall bottom pulse>CLASSIFIED // SECURITY CLEARANCE 3</Line>
-                      </Section>
-
-                      <div style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        flexDirection: "column",
-                        gap: "0.5rem"
-                      }}>
-                        <Line neon small>Basement Layout and Intel</Line>
-                        <div style={{ marginTop: "1rem", width: "100%" }}>
-                          <img
-                            src={basementImage}
-                            alt="Lucky Flight Casino Basement"
-                            style={{
-                              width: "100%",
-                              imageRendering: 'crisp-edges',
-                              boxShadow: '0 0 20px rgba(0, 255, 65, 0.3)',
-                            }}
-                          />
-                        </div>
-                      </div>
-                      <Divider color="neon" />
-                      <div style={{ textAlign: "center" }}>
-                        <Line neon xsmall>
-                          FILE ID: LFC_BASEMENT_V1.2 | LAST UPDATED: 20X2.08.14 | AUTHOR: [REDACTED]
-                        </Line>
-                      </div>
-                    </Box>
+                  <Box color="neon">
+                    <Section title="LUCKY FLIGHT CASINO - BASEMENT BLUEPRINT" center>
+                      <Line red xsmall bottom pulse>CLASSIFIED // SECURITY CLEARANCE 3</Line>
+                      <Line neon small>Basement Layout and Intel</Line>
+                    </Section>
+                    <RetComImage
+                      src={basementImage}
+                      alt="Lucky Flight Casino Basement"
+                      style={{ marginTop: "1rem", width: "100%" }}
+                    />
+                    <Line neon xsmall style={{ marginTop: "1rem", textAlign: "center" }}>
+                      FILE ID: LFC_BASEMENT_V1.2 | LAST UPDATED: 20X2.08.14 | AUTHOR: [REDACTED]
+                    </Line>
                     <Divider />
                     <Line cyan bold>KEY LOCATIONS:</Line>
                     <Line neon>• Security Office</Line>
@@ -333,45 +314,25 @@ export const LUCKY_FLIGHT_CASINO = {
                     <Line neon>• Power Core</Line>
                     <Divider />
                     <Line yellow>⚠ Power Core presents explosion risk if tampered with</Line>
-                  </>
+                  </Box>
                 ),
               },
 
               "Blueprint: Floor 1": {
                 content: (
-                  <>
-                    <Box color="neon">
-                      <Section title="LUCKY FLIGHT CASINO - FLOOR 1 BLUEPRINT" center>
-                        <Line red xsmall bottom pulse>CLASSIFIED // SECURITY CLEARANCE 3</Line>
-                      </Section>
-
-                      <div style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        flexDirection: "column",
-                        gap: "0.5rem"
-                      }}>
-                        <Line neon small>Floor 1 Layout and Intel</Line>
-                        <div style={{ marginTop: "1rem", width: "100%" }}>
-                          <img
-                            src={floor1Image}
-                            alt="Lucky Flight Casino Floor 1"
-                            style={{
-                              width: "100%",
-                              imageRendering: 'crisp-edges',
-                              boxShadow: '0 0 20px rgba(0, 255, 65, 0.3)',
-                            }}
-                          />
-                        </div>
-                      </div>
-                      <Divider color="neon" />
-                      <div style={{ textAlign: "center" }}>
-                        <Line neon xsmall>
-                          FILE ID: LFC_FLOOR_01_V1.2 | LAST UPDATED: 20X2.08.14 | AUTHOR: [REDACTED]
-                        </Line>
-                      </div>
-                    </Box>
+                  <Box color="neon">
+                    <Section title="LUCKY FLIGHT CASINO - FLOOR 1 BLUEPRINT" center>
+                      <Line red xsmall bottom pulse>CLASSIFIED // SECURITY CLEARANCE 3</Line>
+                      <Line neon small>Floor 1 Layout and Intel</Line>
+                    </Section>
+                    <RetComImage
+                      src={floor1Image}
+                      alt="Lucky Flight Casino Floor 1"
+                      style={{ marginTop: "1rem", width: "100%" }}
+                    />
+                    <Line neon xsmall style={{ marginTop: "1rem", textAlign: "center" }}>
+                      FILE ID: LFC_FLOOR_01_V1.2 | LAST UPDATED: 20X2.08.14 | AUTHOR: [REDACTED]
+                    </Line>
                     <Divider />
                     <Line cyan bold>KEY LOCATIONS:</Line>
                     <Line neon>• Main entrance</Line>
@@ -382,44 +343,24 @@ export const LUCKY_FLIGHT_CASINO = {
                     <Divider />
                     <Line red>⚠ Full camera coverage on this floor</Line>
                     <Line yellow>⚠ Cleaning drones active 07:00-10:00 (closed hours)</Line>
-                  </>
+                  </Box>
                 ),
               },
               "Blueprint: Floor 2": {
                 content: (
-                  <>
-                    <Box color="neon">
-                      <Section title="LUCKY FLIGHT CASINO - FLOOR 2 BLUEPRINT" center>
-                        <Line red xsmall bottom pulse>CLASSIFIED // SECURITY CLEARANCE 3</Line>
-                      </Section>
-
-                      <div style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        flexDirection: "column",
-                        gap: "0.5rem"
-                      }}>
-                        <Line neon small>Floor 2 Layout and Intel</Line>
-                        <div style={{ marginTop: "1rem", width: "100%" }}>
-                          <img
-                            src={floor2Image}
-                            alt="Lucky Flight Casino Floor 2"
-                            style={{
-                              width: "100%",
-                              imageRendering: 'crisp-edges',
-                              boxShadow: '0 0 20px rgba(0, 255, 65, 0.3)',
-                            }}
-                          />
-                        </div>
-                      </div>
-                      <Divider color="neon" />
-                      <div style={{ textAlign: "center" }}>
-                        <Line neon xsmall>
-                          FILE ID: LFC_FLOOR_02_V1.2 | LAST UPDATED: 20X2.08.14 | AUTHOR: [REDACTED]
-                        </Line>
-                      </div>
-                    </Box>
+                  <Box color="neon">
+                    <Section title="LUCKY FLIGHT CASINO - FLOOR 2 BLUEPRINT" center>
+                      <Line red xsmall bottom pulse>CLASSIFIED // SECURITY CLEARANCE 3</Line>
+                      <Line neon small>Floor 2 Layout and Intel</Line>
+                    </Section>
+                    <RetComImage
+                      src={floor2Image}
+                      alt="Lucky Flight Casino Floor 2"
+                      style={{ marginTop: "1rem", width: "100%" }}
+                    />
+                    <Line neon xsmall style={{ marginTop: "1rem", textAlign: "center" }}>
+                      FILE ID: LFC_FLOOR_02_V1.2 | LAST UPDATED: 20X2.08.14 | AUTHOR: [REDACTED]
+                    </Line>
                     <Divider />
                     <Line cyan bold>KEY LOCATIONS:</Line>
                     <Line neon>• VIP lounge</Line>
@@ -431,7 +372,7 @@ export const LUCKY_FLIGHT_CASINO = {
                     <Line red pulse bod>REDACTED</Line>
                     <Line red pulse bod>REDACTED</Line>
                     <Line red pulse bod>REDACTED</Line>
-                  </>
+                  </Box>
                 ),
               },
             },
@@ -474,334 +415,225 @@ export const LUCKY_FLIGHT_CASINO = {
 
               // ====== WINGUS ======
               profile_wingus: {
-                password: {
-                  pw: "bouncer",
-                  hint: "His job title at the entrance",
-                  hintStrength: 1,
-                },
+                // password: {
+                //   pw: "bouncer",
+                //   hint: "His job title at the entrance",
+                //   hintStrength: 1,
+                // },
                 content: (
-                  <Box color="cyan">
-                    <Line cyan large bold>[EMPLOYEE FILE: WINGUS DREY]</Line>
-                    <Divider color="cyan" />
-                    <DataTable data={[
-                      { label: "Full Name", value: "Wingus Drey" },
-                      { label: "Age", value: "29" },
-                      { label: "Position", value: "Entrance Security (Bouncer)" },
-                      { label: "Employment Start", value: "March 2080" },
-                      { label: "Emergency Contact", value: "Dingus Marks (work partner)" },
-                    ]} />
-                    <Divider color="cyan" />
-                    <Section title="EMPLOYMENT NOTES:">
-                      <Line neon>Shift: Evening/Night (18:00-04:00, 6 days/week)</Line>
-                      <Line neon>Partners with: Dingus Marks (entrance team)</Line>
-                      <Line neon>Performance: Satisfactory (few complaints)</Line>
-                      <Line neon>Training: Basic security protocols, conflict de-escalation</Line>
-                    </Section>
-                    <Divider color="cyan" />
-                    <Section title="FINANCIAL DATA:">
-                      <KeyValue label="Salary" value="450¤/month" />
-                      <KeyValue label="Outstanding Debts" value="1,200¤" />
-                      <KeyValue label="Creditor" value="Spectral FT Banks" />
-                      <KeyValue label="Payment Status" value="Current (3 months consecutive)" />
-                    </Section>
-                    <Divider color="cyan" />
-                    <Section title="EQUIPMENT ISSUED:">
-                      <Line yellow>Security vest (standard issue)</Line>
-                      <Line yellow>Shockstick (weapon permit #SEC-2891)</Line>
-                      <Line yellow>Communication earpiece (encrypted channel)</Line>
-                    </Section>
-                    <Divider color="cyan" />
-                    <Section title="RECENT ACTIVITY:">
-                      <Line yellow>2 days ago → On-duty altercation (patron ejected, no injury)</Line>
-                      <Line yellow>1 week ago → Attendance: Present all shifts</Line>
-                      <Line yellow>2 weeks ago → Reprimand: Late to shift (15 minutes)</Line>
-                    </Section>
-                    <Divider color="cyan" />
-                    <Section title="CONTACT INFORMATION:">
-                      <Line neon>RCD: w.drey@luckyflightcasino.cy</Line>
-                      <Line neon>Address: Unit 4B, Torres Apartments, Ports district</Line>
-                      <Line neon>Living situation: Shares apartment with Dingus</Line>
-                    </Section>
-                  </Box>
+                  <PersonnelFile
+                    employeeId="LFC-SEC-2891"
+                    name="Wingus Drey"
+                    age={29}
+                    dob="Unknown"
+                    position="Entrance Security (Bouncer)"
+                    department="Security Division"
+                    hireDate="March 2080"
+                    supervisor="Wattana Kovit (Head of Security)"
+                    clearanceLevel={1}
+                    district="Ports (Torres Apartments, Unit 4B)"
+                    emergencyContact="Dingus Marks (work partner) - on-site"
+                    email="w.drey@luckyflightcasino.cy"
+                    performance={60}
+                    notes={[
+                      "Shift: Evening/Night (18:00-04:00, 6 days/week)",
+                      "Partners with Dingus Marks (entrance team)",
+                      "Training: Basic security protocols, conflict de-escalation",
+                      "Outstanding debt: 1,200¤ — Spectral FT Banks (current, 3 months consecutive)",
+                      "Equipment: Security vest, shockstick (permit #SEC-2891), encrypted comms earpiece",
+                      "2 days ago: On-duty altercation (patron ejected, no injury)",
+                      "2 weeks ago: Reprimand — late to shift (15 minutes)",
+                      "Lives with Dingus Marks (shared apartment)",
+                    ]}
+                    status="ACTIVE"
+                  />
                 ),
               },
 
               // ====== DINGUS ======
               profile_dingus: {
-                password: {
-                  pw: "partner",
-                  hint: "Wingus's work relationship to him",
-                  hintStrength: 1,
-                },
+                // password: {
+                //   pw: "partner",
+                //   hint: "Wingus's work relationship to him",
+                //   hintStrength: 1,
+                // },
                 content: (
-                  <Box color="cyan">
-                    <Line cyan large bold>[EMPLOYEE FILE: DINGUS MARKS]</Line>
-                    <Divider color="cyan" />
-                    <DataTable data={[
-                      { label: "Full Name", value: "Dingus Marks" },
-                      { label: "Age", value: "31" },
-                      { label: "Position", value: "Entrance Security (Bouncer)" },
-                      { label: "Employment Start", value: "March 2080" },
-                      { label: "Emergency Contact", value: "Wingus Drey (work partner)" },
-                    ]} />
-                    <Divider color="cyan" />
-                    <Section title="EMPLOYMENT NOTES:">
-                      <Line neon>Shift: Evening/Night (18:00-04:00, 6 days/week)</Line>
-                      <Line neon>Partners with: Wingus Drey (entrance team)</Line>
-                      <Line neon>Performance: Satisfactory (reliable, follows protocol)</Line>
-                      <Line neon>Training: Basic security, first aid certified</Line>
-                    </Section>
-                    <Divider color="cyan" />
-                    <Section title="FINANCIAL DATA:">
-                      <KeyValue label="Salary" value="450¤/month" />
-                      <KeyValue label="Outstanding Debts" value="2,100¤" />
-                      <KeyValue label="Creditor" value="CasinoBlizzFunds (Lucky Flight subsidiary)" />
-                      <KeyValue label="Payment Status" value="Behind 1 month (collection warning issued)" />
-                    </Section>
-                    <Divider color="cyan" />
-                    <Section title="EQUIPMENT ISSUED:">
-                      <Line yellow>Security vest (standard issue)</Line>
-                      <Line yellow>Shockstick (weapon permit #SEC-2892)</Line>
-                      <Line yellow>Communication earpiece (encrypted channel)</Line>
-                    </Section>
-                    <Divider color="cyan" />
-                    <Section title="RECENT ACTIVITY:">
-                      <Line yellow>3 days ago → Assisted Wingus with patron removal</Line>
-                      <Line yellow>1 week ago → Perfect attendance</Line>
-                      <Line red>2 weeks ago → Wage garnishment initiated (debt payment)</Line>
-                    </Section>
-                    <Divider color="cyan" />
-                    <Section title="MEDICAL HISTORY:">
-                      <Line neon>Last treatment: 6 months ago (shoulder injury, work-related)</Line>
-                      <Line neon>Insurance claim: Approved, 800¤ (casino paid)</Line>
-                      <Line neon>Current status: Full duty, no restrictions</Line>
-                    </Section>
-                    <Divider color="cyan" />
-                    <Section title="CONTACT INFORMATION:">
-                      <Line neon>RCD: d.marks@luckyflightcasino.cy</Line>
-                      <Line neon>Address: Unit 4B, Torres Apartments, Ports district</Line>
-                      <Line neon>Living situation: Shares apartment with Wingus</Line>
-                    </Section>
-                  </Box>
+                  <PersonnelFile
+                    employeeId="LFC-SEC-2892"
+                    name="Dingus Marks"
+                    age={31}
+                    dob="Unknown"
+                    position="Entrance Security (Bouncer)"
+                    department="Security Division"
+                    hireDate="March 2080"
+                    supervisor="Wattana Kovit (Head of Security)"
+                    clearanceLevel={1}
+                    district="Ports (Torres Apartments, Unit 4B)"
+                    emergencyContact="Wingus Drey (work partner) - on-site"
+                    email="d.marks@luckyflightcasino.cy"
+                    performance={62}
+                    notes={[
+                      "Shift: Evening/Night (18:00-04:00, 6 days/week)",
+                      "Partners with Wingus Drey (entrance team)",
+                      "Training: Basic security, first aid certified",
+                      "Outstanding debt: 2,100¤ — CasinoBlizzFunds (behind 1 month, collection warning issued)",
+                      "Equipment: Security vest, shockstick (permit #SEC-2892), encrypted comms earpiece",
+                      "3 days ago: Assisted Wingus with patron removal",
+                      "2 weeks ago: Wage garnishment initiated (debt payment)",
+                      "Medical: Shoulder injury 6 months ago (work-related, approved claim 800¤, full duty now)",
+                      "Lives with Wingus Drey (shared apartment)",
+                    ]}
+                    status="ACTIVE"
+                  />
                 ),
               },
 
               // ====== ADILET ======
               profile_adilet: {
-                password: {
-                  pw: "enjoyment",
-                  hint: "The corporate-speak word in his job title",
-                  hintStrength: 2,
-                },
+                // password: {
+                //   pw: "enjoyment",
+                //   hint: "The corporate-speak word in his job title",
+                //   hintStrength: 2,
+                // },
                 content: (
-                  <Box color="cyan">
-                    <Line cyan large bold>[EMPLOYEE FILE: ADILET NURLAN]</Line>
-                    <Divider color="cyan" />
-                    <DataTable data={[
-                      { label: "Full Name", value: "Adilet Nurlan" },
-                      { label: "Age", value: "26" },
-                      { label: "Position", value: "Guest Enjoyment Officer (Floor Security)" },
-                      { label: "Employment Start", value: "January 2081" },
-                      { label: "Emergency Contact", value: "Kamila Nurlan (sister)" },
-                    ]} />
-                    <Divider color="cyan" />
-                    <Section title="EMPLOYMENT NOTES:">
-                      <Line neon>Shift: Rotating (covers all casino floor shifts)</Line>
-                      <Line neon>Responsibilities: Guest assistance, floor monitoring, incident response</Line>
-                      <Line neon>Performance: Above average (2 commendations for guest satisfaction)</Line>
-                      <Line neon>Training: Advanced security, customer service, conflict resolution</Line>
-                      <Line neon>Languages: Fluent in Cy-Standard, Kazakh, Russian</Line>
-                    </Section>
-                    <Divider color="cyan" />
-                    <Section title="FINANCIAL DATA:">
-                      <KeyValue label="Salary" value="580¤/month (includes language bonus)" />
-                      <KeyValue label="Outstanding Debts" value="800¤" />
-                      <KeyValue label="Creditor" value="Medical clinic (sister's treatment)" />
-                      <KeyValue label="Payment Status" value="Current (6 months consecutive)" />
-                    </Section>
-                    <Divider color="cyan" />
-                    <Section title="EQUIPMENT ISSUED:">
-                      <KeyValue label="Security vest" value="Standard issue" />
-                      <KeyValue label="Shockstick" value="Weapon permit #SEC-3104" />
-                      <KeyValue label="Communication device" value="Encrypted + translation app" />
-                      <KeyValue label="Access card" value="Level 2 (all public areas + basement)" />
-                    </Section>
-                    <Divider color="cyan" />
-                    <Section title="RECENT ACTIVITY:">
-                      <Line yellow>Yesterday → Assisted intoxicated patron to exit (no incident)</Line>
-                      <Line yellow>3 days ago → Translated for foreign VIP guest (mandarin)</Line>
-                      <Line yellow>1 week ago → Commendation: Prevented potential brawl on casino floor</Line>
-                      <Line yellow>2 weeks ago → Overtime: Covered sick colleague's shift (approved)</Line>
-                    </Section>
-                    <Divider color="cyan" />
-                    <Section title="PERSONNEL NOTES:">
-                      <Line neon>Considered for promotion to floor supervisor</Line>
-                      <Line neon>Well-liked by staff and management</Line>
-                      <Line neon>Sister's medical condition creates financial pressure</Line>
-                      <Line yellow>Performance review scheduled: Next month</Line>
-                    </Section>
-                    <Divider color="cyan" />
-                    <Section title="CONTACT INFORMATION:">
-                      <Line neon>RCD: a.nurlan@luckyflightcasino.cy</Line>
-                      <Line neon>Address: Unit 12F, Cascade Heights, Ports district</Line>
-                      <Line neon>Known associates: Floor staff, fellow security personnel</Line>
-                    </Section>
-                  </Box>
+                  <PersonnelFile
+                    employeeId="LFC-SEC-3104"
+                    name="Adilet Nurlan"
+                    age={26}
+                    dob="Unknown"
+                    position="Guest Enjoyment Officer (Floor Security)"
+                    department="Security Division - Floor Operations"
+                    hireDate="January 2081"
+                    supervisor="Wattana Kovit (Head of Security)"
+                    clearanceLevel={2}
+                    district="Ports (Cascade Heights, Unit 12F)"
+                    emergencyContact="Kamila Nurlan (sister)"
+                    email="a.nurlan@luckyflightcasino.cy"
+                    salary="580¤/month (includes language bonus)"
+                    performance={78}
+                    notes={[
+                      "Shift: Rotating (covers all casino floor shifts)",
+                      "Responsibilities: Guest assistance, floor monitoring, incident response",
+                      "2 commendations for guest satisfaction",
+                      "Training: Advanced security, customer service, conflict resolution",
+                      "Languages: Fluent in Cy-Standard, Kazakh, Russian",
+                      "Outstanding debt: 800¤ — Medical clinic (sister's treatment, current 6 months consecutive)",
+                      "Equipment: Security vest, shockstick (permit #SEC-3104), encrypted comms + translation app, Level 2 access card",
+                      "Yesterday: Assisted intoxicated patron to exit (no incident)",
+                      "3 days ago: Translated for foreign VIP guest",
+                      "1 week ago: Commendation — prevented potential brawl on casino floor",
+                      "Considered for promotion to floor supervisor",
+                      "Sister's medical condition noted as source of financial pressure",
+                    ]}
+                    status="ACTIVE"
+                  />
                 ),
               },
 
               // ====== VASKA JORDAN ======
               profile_vaska_jordan: {
-                password: {
-                  pw: "fixedgame",
-                  hint: "Fairness is a marketing term",
-                  hintStrength: 3,
-                },
+                // password: {
+                //   pw: "fixedgame",
+                //   hint: "Fairness is a marketing term",
+                //   hintStrength: 3,
+                // },
                 content: (
-                  <Box color="yellow">
-                    <Line yellow large bold>[EMPLOYEE FILE: VASKA JORDAN]</Line>
-                    <Divider color="yellow" />
-                    <DataTable data={[
-                      { label: "Full Name", value: "Vaska Jordan" },
-                      { label: "Age", value: "44" },
-                      { label: "Position", value: "Casino Manager" },
-                      { label: "Employment Start", value: "August 2077" },
-                      { label: "Emergency Contact", value: "None listed" },
-                    ]} />
-                    <Divider color="yellow" />
-                    <Section title="EMPLOYMENT NOTES:">
-                      <Line neon>Reports to: CasinoBlizzFunds (Alliansen Inc. subsidiary)</Line>
-                      <Line neon>Office: Floor 2, Northwest corner (private office)</Line>
-                      <Line neon>Responsibilities: Daily operations, staff management, financial oversight</Line>
-                      <Line neon>Performance: Meets targets consistently</Line>
-                      <Line yellow>Attendance: Irregular (frequently off-site for "business meetings")</Line>
-                    </Section>
-                    <Divider color="yellow" />
-                    <Section title="FINANCIAL DATA:">
-                      <KeyValue label="Salary" value="3,200¤/month + performance bonuses" />
-                      <KeyValue label="Last Bonus" value="1,500¤ (quarterly target met)" />
-                      <KeyValue label="Outstanding Debts" value="12,000¤" />
-                      <KeyValue label="Creditors" value="Multiple (lifestyle expenses)" />
-                      <Line red>⚠ Financial pressure noted by corporate oversight</Line>
-                    </Section>
-                    <Divider color="yellow" />
-                    <Section title="RECENT ACTIVITY:">
-                      <Line yellow>2 days ago → Off-site (claimed corporate meeting)</Line>
-                      <Line yellow>4 days ago → On-site for 3 hours (office only)</Line>
-                      <Line yellow>1 week ago → Performance review with corporate (passed)</Line>
-                      <Line red>2 weeks ago → Complaint filed by employee (dismissed for lack of evidence)</Line>
-                    </Section>
-                    <Divider color="yellow" />
-                    <Section title="BEHAVIORAL NOTES:">
-                      <Line neon>Avoids confrontation, delegates security matters to Wattana</Line>
-                      <Line neon>Rarely interacts directly with floor staff</Line>
-                      <Line yellow>Known to flee at first sign of serious trouble</Line>
-                      <Line yellow>Suspected of skimming (no proof, investigation closed)</Line>
-                    </Section>
-                    <Divider color="yellow" />
-                    <Section title="CONTACT INFORMATION:">
-                      <Line neon>RCD: v.jordan@luckyflightcasino.cy (rarely responds)</Line>
-                      <Line neon>Personal RCD: [REDACTED - Management only]</Line>
-                      <Line neon>Address: [REDACTED - Management only]</Line>
-                      <Line yellow>Known associates: Corporate contacts, wealthy patrons</Line>
-                    </Section>
-                  </Box>
+                  <PersonnelFile
+                    employeeId="LFC-MGT-0001"
+                    name="Vaska Jordan"
+                    age={44}
+                    dob="Unknown"
+                    position="Casino Manager"
+                    department="Management"
+                    hireDate="August 2077"
+                    supervisor="CasinoBlizzFunds (Alliansen Inc. subsidiary)"
+                    clearanceLevel={4}
+                    district="[REDACTED - Management only]"
+                    emergencyContact="None listed"
+                    email="v.jordan@luckyflightcasino.cy (rarely responds)"
+                    salary="3,200¤/month + performance bonuses"
+                    performance={65}
+                    notes={[
+                      "Office: Floor 2, Northwest corner (private)",
+                      "Responsibilities: Daily operations, staff management, financial oversight",
+                      "Last bonus: 1,500¤ (quarterly target met)",
+                      "Outstanding debt: 12,000¤ — multiple creditors (lifestyle expenses)",
+                      "⚠ Financial pressure noted by corporate oversight",
+                      "Attendance irregular — frequently off-site for 'business meetings'",
+                      "2 days ago: Off-site (claimed corporate meeting)",
+                      "4 days ago: On-site 3 hours (office only)",
+                      "2 weeks ago: Complaint filed by employee (dismissed, lack of evidence)",
+                      "Avoids confrontation — delegates security matters to Wattana",
+                      "Rarely interacts directly with floor staff",
+                      "Known to leave at first sign of serious trouble",
+                      "Suspected of skimming (no proof, investigation closed)",
+                      "Personal RCD: [REDACTED - Management only]",
+                    ]}
+                    status="ACTIVE"
+                  />
                 ),
               },
 
               // ====== WATTANA ======
               profile_wattana: {
-                password: {
-                  pw: "stackedodds",
-                  hint: "Luck is manufactured",
-                  hintStrength: 3,
-                },
+                // password: {
+                //   pw: "stackedodds",
+                //   hint: "Luck is manufactured",
+                //   hintStrength: 3,
+                // },
                 content: (
-                  <Box color="red">
-                    <Line red large bold>[EMPLOYEE FILE: WATTANA KOVIT]</Line>
-                    <Divider color="red" />
-                    <DataTable data={[
-                      { label: "Full Name", value: "Wattana Kovit" },
-                      { label: "Age", value: "38" },
-                      { label: "Position", value: "Head of Security" },
-                      { label: "Employment Start", value: "November 2078" },
-                      { label: "Emergency Contact", value: "[CLASSIFIED]" },
-                    ]} />
-                    <Divider color="red" />
-                    <Section title="EMPLOYMENT NOTES:">
-                      <Line neon>Reports to: Vaska Jordan (Casino Manager)</Line>
-                      <Line neon>Office: Basement Security Room</Line>
-                      <Line neon>Responsibilities: All security operations, staff supervision, threat response</Line>
-                      <Line neon>Performance: Exceeds expectations (zero major incidents under tenure)</Line>
-                      <Line red>⚠ Multiple brutality complaints (all dismissed or settled)</Line>
-                    </Section>
-                    <Divider color="red" />
-                    <Section title="FINANCIAL DATA:">
-                      <KeyValue label="Salary" value="1,800¤/month" />
-                      <KeyValue label="Bonuses" value="Variable (incident-based)" />
-                      <KeyValue label="Outstanding Debts" value="None on record" />
-                      <KeyValue label="Assets" value="Above salary level (source: undisclosed)" />
-                    </Section>
-                    <Divider color="red" />
-                    <Section title="SECURITY CLEARANCE:">
-                      <Line yellow>Access Level: ALPHA (unrestricted, all areas)</Line>
-                      <Line yellow>Biometric access: Retinal scan (Power Core, Locker Room)</Line>
-                      <Line yellow>Master keycard: Full casino access</Line>
-                      <Line yellow>Override authority: Can countermand other security personnel</Line>
-                    </Section>
-                    <Divider color="red" />
-                    <Section title="EQUIPMENT & AUGMENTATION:">
-                      <Line neon>Registered Weapons:</Line>
-                      <Line yellow>  → Wrist-mounted blade (permit #SEC-ALPHA-001)</Line>
-                      <Line yellow>  → Submachine gun, suppressed (permit #SEC-ALPHA-002)</Line>
-                      <Line neon>Cyberware (Medical Records):</Line>
-                      <Line yellow>  → Subdermal armor plating (torso, arms)</Line>
-                      <Line yellow>  → Enhanced reflexes (nervous system augmentation)</Line>
-                      <Line yellow>  → Cybereye (low-light, thermal vision)</Line>
-                      <Line red>⚠ Toxin dispenser (wrist-blade, restricted compound)</Line>
-                    </Section>
-                    <Divider color="red" />
-                    <Section title="RECENT ACTIVITY:">
-                      <Line yellow>Today → Currently on-duty (basement patrol)</Line>
-                      <Line yellow>Yesterday → Interrogation session (Locker Room, 3 hours)</Line>
-                      <Line yellow>3 days ago → Detained individual for alleged theft</Line>
-                      <Line red>4 days ago → Use of force incident (no report filed)</Line>
-                      <Line yellow>1 week ago → Security protocol review with staff</Line>
-                    </Section>
-                    <Divider color="red" />
-                    <Section title="BACKGROUND CHECK:">
-                      <Line neon>Prior Employment: Private military contractor (8 years)</Line>
-                      <Line neon>Military Service: [REDACTED]</Line>
-                      <Line neon>Criminal Record: None (sealed records suspected)</Line>
-                      <Line yellow>References: All from corporate security sector</Line>
-                      <Line red>⚠ Psychological evaluation: Passed (notes: aggressive tendencies controlled)</Line>
-                    </Section>
-                    <Divider color="red" />
-                    <Section title="BEHAVIORAL NOTES:">
-                      <Line neon>Patrol pattern: Focuses heavily on basement level</Line>
-                      <Line neon>Management style: Authoritarian, demands strict compliance</Line>
-                      <Line yellow>Known to "handle problems personally" rather than delegate</Line>
-                      <Line red>Multiple staff fear him (unofficial feedback)</Line>
-                      <Line red>Suspected of unauthorized interrogation methods</Line>
-                    </Section>
-                    <Divider color="red" />
-                    <Section title="CONTACT INFORMATION:">
-                      <Line neon>RCD: w.kovit@luckyflightcasino.cy</Line>
-                      <Line neon>Personal RCD: [ENCRYPTED]</Line>
-                      <Line neon>Address: [CLASSIFIED - Security personnel only]</Line>
-                      <Line yellow>Known associates: Security staff, corporate enforcers</Line>
-                    </Section>
-                  </Box>
+                  <PersonnelFile
+                    employeeId="LFC-SEC-ALPHA"
+                    name="Wattana Kovit"
+                    age={38}
+                    dob="Unknown"
+                    position="Head of Security"
+                    department="Security Division"
+                    hireDate="November 2078"
+                    supervisor="Vaska Jordan (Casino Manager)"
+                    clearanceLevel={5}
+                    district="[CLASSIFIED - Security personnel only]"
+                    emergencyContact="[CLASSIFIED]"
+                    email="w.kovit@luckyflightcasino.cy"
+                    salary="1,800¤/month + variable incident bonuses"
+                    performance={88}
+                    notes={[
+                      "Office: Basement Security Room",
+                      "Access: ALPHA — unrestricted all areas, biometric (retinal) for Power Core and Locker Room, master keycard, override authority over all security personnel",
+                      "⚠ Multiple brutality complaints on record (all dismissed or settled)",
+                      "Assets above salary level — source undisclosed",
+                      "Prior employment: Private military contractor (8 years)",
+                      "Military service: [REDACTED]",
+                      "Criminal record: None (sealed records suspected)",
+                      "⚠ Psychological evaluation passed — notes: aggressive tendencies controlled",
+                      "Registered weapons: Wrist-mounted blade (permit #SEC-ALPHA-001), suppressed submachine gun (permit #SEC-ALPHA-002)",
+                      "Cyberware: Subdermal armor (torso, arms), enhanced reflexes (nervous system), cybereye (low-light, thermal)",
+                      "⚠ Toxin dispenser installed in wrist-blade — restricted compound",
+                      "Today: On-duty (basement patrol)",
+                      "Yesterday: Interrogation session (Locker Room, 3 hours)",
+                      "3 days ago: Detained individual for alleged theft",
+                      "4 days ago: Use of force incident — no report filed",
+                      "Patrol pattern focuses heavily on basement level",
+                      "Management style: Authoritarian, demands strict compliance",
+                      "Known to 'handle problems personally' rather than delegate",
+                      "⚠ Multiple staff fear him (unofficial feedback)",
+                      "⚠ Suspected of unauthorized interrogation methods",
+                      "Personal RCD: [ENCRYPTED]",
+                    ]}
+                    status="ACTIVE"
+                  />
                 ),
               },
 
               // ====== ZOLA (CLASSIFIED) ======
+              // Kept as Box — this is a corrupted/classified special case,
+              // not a standard HR record. PersonnelFile would normalize it.
               profile_zola: {
-                password: {
-                  pw: "database",
-                  hint: "Please help! I've been turned into a living...",
-                  hintStrength: 0,
-                },
+                // password: {
+                //   pw: "database",
+                //   hint: "Please help! I've been turned into a living...",
+                //   hintStrength: 0,
+                // },
                 content: (
                   <Box color="pink">
                     <Line pink large bold>[CLASSIFIED FILE: ZOLA]</Line>
