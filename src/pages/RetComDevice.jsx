@@ -21,6 +21,7 @@ import {
   RelatedCommands,
   PasswordPrompt,
   MastermindHack,
+  IceBreaker,
   HistoryEntryWrapper,
 } from "@terminal/retcomdevice";
 
@@ -49,7 +50,8 @@ const CAMPAIGN_COMMANDS = {
 
 const CAMPAIGN_COMMANDS_LIST = Object.entries(CAMPAIGN_COMMANDS).map(([id, cmdDef]) => ({
   id,
-  blocker: cmdDef.blocker,
+  mastermind: cmdDef.blocker,
+  icebreaker: cmdDef.icebreaker,
   password: cmdDef.password,
   related_commands: cmdDef.related_commands,
 }));
@@ -378,7 +380,8 @@ export default function RetComDevice() {
 
     const related_commands_list = Object.entries(endCmd?.related_commands || {}).map(([id, cmdDef]) => ({
       id,
-      blocker: cmdDef.blocker,
+      mastermind: cmdDef.blocker,
+      icebreaker: cmdDef.icebreaker,
       password: cmdDef.password,
     }));
 
@@ -449,65 +452,75 @@ export default function RetComDevice() {
     const commandDef = findCommandByPath(path, CAMPAIGN_COMMANDS);
     if (!commandDef) return false;
 
-    if (commandDef?.blocker && commandDef?.blocker?.mastermind_hack && !discoveredPasswords[path]) {
-      addToHistory({
-        type: 'password_prompt',
-        command: path,
-        content: (
-          <MastermindHack
-            command={path}
-            commandDef={commandDef}
-
-            // sequenceLength={5}
-            // sequenceCount={12}
-            // attempts={4}
-            // symbolCount={4}
-            // colorCount={4}
-
-            sequenceLength={6}
-            sequenceCount={15}
-            attempts={3}
-            symbolCount={6}
-            colorCount={6}
-
-            onSuccess={(cmd, commandDef, answer) => {
-              setDiscoveredPasswords(prev => ({
-                ...prev,
-                [cmd]: answer,
-              }));
-              executeCommandWithResult(cmd, commandDef);
-            }}
-            onFailure={() => {}}    // Called when attempts run out (optional)
-          />
-        ),
-      });
-      return true;
-    }
-
-    // Check if password required and password not yet discovered
-    if (commandDef.password && !discoveredPasswords[path]) {
-      addToHistory({
-        type: 'password_prompt',
-        command: path,
-        content: (
-          <PasswordPrompt
-            key={`password_${path}_${Date.now()}`}
-            command={path}
-            commandDef={commandDef}
-            password={commandDef.password.pw}
-            hint={commandDef.password.hint}
-            hintStrength={commandDef.password.hintStrength || 1}
-            onSubmit={(cmd, commandDef, password) => {
-              setDiscoveredPasswords(prev => ({
-                ...prev,
-                [cmd]: password,
-              }));
-              executeCommandWithResult(cmd, commandDef);
-            }}
-          />
-        ),
-      });
-      return true;
+    const isDiscovered = Boolean(discoveredPasswords[path]);
+    if (!isDiscovered) {
+      if (commandDef.mastermind) {
+        addToHistory({
+          type: 'password_prompt',
+          command: path,
+          content: (
+            <MastermindHack
+              command={path}
+              commandDef={commandDef}
+              difficulty={commandDef.mastermind.difficulty}
+              onSuccess={(cmdPath, commandDef, answer) => {
+                setDiscoveredPasswords(prev => ({
+                  ...prev,
+                  [cmdPath]: answer,
+                }));
+                executeCommandWithResult(cmdPath, commandDef);
+              }}
+            />
+          ),
+        });
+        return true;
+      }
+      if (commandDef.icebreaker) {
+        addToHistory({
+          type: 'password_prompt',
+          command: path,
+          content: (
+            <IceBreaker
+              command={path}
+              commandDef={commandDef}
+              difficulty={commandDef.icebreaker.difficulty}
+              onSuccess={(cmdPath, commandDef) => {
+                setDiscoveredPasswords(prev => ({
+                  ...prev,
+                  [cmdPath]: 'CRACKED',
+                }));
+                executeCommandWithResult(cmdPath, commandDef);
+              }}
+            />
+          ),
+        });
+        return true;
+      }
+      // Check if password required and password not yet discovered
+      if (commandDef.password) {
+        addToHistory({
+          type: 'password_prompt',
+          command: path,
+          content: (
+            <PasswordPrompt
+              key={`password_${path}_${Date.now()}`}
+              command={path}
+              commandDef={commandDef}
+              password={commandDef.password.pw}
+              hint={commandDef.password.hint}
+              hintStrength={commandDef.password.hintStrength || 1}
+              onSubmit={(cmdPath, commandDef, password) => {
+                setDiscoveredPasswords(prev => ({
+                  ...prev,
+                  [cmdPath]: password,
+                }));
+                executeCommandWithResult(cmdPath, commandDef);
+              }}
+            />
+          ),
+        });
+        return true;
+      }
     }
 
     // No password required (or password already discovered) - execute directly

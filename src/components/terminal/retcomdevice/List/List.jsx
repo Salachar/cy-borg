@@ -51,7 +51,7 @@ export default function List({
       const fullPath = parentPath ? `${parentPath}/${cmd.id}` : cmd.id;
 
       const isDiscovered = discoveredSecrets.includes(fullPath);
-      const hasBlocker = !!(cmd.password || cmd.blocker);
+      const hasBlocker = !!(cmd.password || cmd.mastermind || cmd.icebreaker);
       // Auto bypass commands with no blocker
       const isBypassed = hasBlocker ? discoveredPasswords[fullPath] : true;
       const bypassLabel = cmd.password ? 'PW' : 'HACK';
@@ -91,9 +91,10 @@ export default function List({
               {renderCommandTree(
                 Object.entries(cmd.related_commands).map(([id, cmdDef]) => ({
                   id,
+                  icebreaker: cmdDef.icebreaker,
+                  mastermind: cmdDef.mastermind,
                   password: cmdDef.password,
                   related_commands: cmdDef.related_commands,
-                  blocker: cmdDef.blocker,
                 })),
                 depth + 1,
                 fullPath

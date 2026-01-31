@@ -20,6 +20,7 @@ import {
   Radio,
   ArcadeCabinet,
   DigitalWallet,
+  MastermindHack,
 } from "@terminal/retcomdevice"
 
 import BatusBodegaAd from './ad'
@@ -95,10 +96,8 @@ export const BODEGA_COMMANDS = {
       },
 
       "Boedga ATM": {
-        password: {
-          pw: "compound",
-          hint: "It grows faster than work ever could",
-          hintStrength: 1,
+        mastermind: {
+          difficulty: 'easy',
         },
         content: (
           <ATM
@@ -156,10 +155,8 @@ export const BODEGA_COMMANDS = {
                 ),
               },
               "debug": {
-                password: {
-                  pw: "freevend",
-                  hint: "The mode that gives away drinks",
-                  hintStrength: 2,
+                icebreaker: {
+                  difficulty: 'easy',
                 },
                 content: (
                   <Message

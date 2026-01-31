@@ -24,7 +24,7 @@ export default function RelatedCommands({ commands = [], commandList = [], onSel
           const displayName = fullPath.split('/').pop();
 
           const isDiscovered = discoveredSecrets.includes(fullPath);
-          const hasBlocker = !!(cmdMeta.password || cmdMeta.blocker);
+          const hasBlocker = !!(cmdMeta.password || cmdMeta.mastermind || cmdMeta.icebreaker);
           const isBypassed = discoveredPasswords[fullPath];
           const bypassLabel = cmdMeta.password ? 'PW' : 'HACK';
 

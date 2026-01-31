@@ -9,6 +9,44 @@ const SEQUENCE_COLORS = ['#ef4444', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', 
 // const GARBAGE_SYMBOLS = '▓░▒█▲■★◆●✦';
 const GARBAGE_SYMBOLS = '⍂ﾐ∑⌬┼₿ ꙰ ﾊ▓∆⌠⌗⍉░⊗ﾂ§⎔▌∞ﾅ∇⌧₿╬⍋ﾓ⊕▒⎕꙳⌁∂┤¤ﾘ▓≈⌭¢£¥₩€₿§¶©®™¤№';
 
+const DIFFICULTY_PRESETS = {
+  easy: {
+    sequenceLength: 4,
+    sequenceCount: 8,
+    attempts: 6,
+    symbolCount: 3,
+    colorCount: 3,
+  },
+  medium: {
+    sequenceLength: 5,
+    sequenceCount: 10,
+    attempts: 4,
+    symbolCount: 4,
+    colorCount: 4,
+  },
+  hard: {
+    sequenceLength: 5,
+    sequenceCount: 12,
+    attempts: 4,
+    symbolCount: 5,
+    colorCount: 5,
+  },
+  expert: {
+    sequenceLength: 6,
+    sequenceCount: 15,
+    attempts: 3,
+    symbolCount: 6,
+    colorCount: 6,
+  },
+  corporate: {
+    sequenceLength: 7,
+    sequenceCount: 20,
+    attempts: 2,
+    symbolCount: 6,
+    colorCount: 6,
+  },
+};
+
 /**
  * MastermindHack Component - Fallout-style sequence hacking minigame
  *
@@ -27,20 +65,31 @@ const GARBAGE_SYMBOLS = '⍂ﾐ∑⌬┼₿ ꙰ ﾊ▓∆⌠⌗⍉░⊗ﾂ§⎔
 export default function MastermindHack({
   command,
   commandDef,
-  sequenceLength = 5,
-  sequenceCount = 10,
-  attempts = 4,
-  symbolCount = 4,
-  colorCount = 4,
-  onSuccess,
-  onFailure,
+  difficulty,
+  sequenceLength,
+  sequenceCount,
+  attempts,
+  symbolCount,
+  colorCount,
+  onSuccess = () => {},
+  onFailure = () => {},
 }) {
+  // Apply preset if difficulty is provided, otherwise use individual props or defaults
+  const preset = difficulty ? DIFFICULTY_PRESETS[difficulty] : {};
+  const config = {
+    sequenceLength: sequenceLength ?? preset.sequenceLength ?? 5,
+    sequenceCount: sequenceCount ?? preset.sequenceCount ?? 10,
+    attempts: attempts ?? preset.attempts ?? 4,
+    symbolCount: symbolCount ?? preset.symbolCount ?? 4,
+    colorCount: colorCount ?? preset.colorCount ?? 4,
+  };
+
   const [answer, setAnswer] = useState([]);
   const [symbolAnswer, setSymbolAnswer] = useState('');
   const [sequences, setSequences] = useState([]);
   const [terminalChars, setTerminalChars] = useState([]);
   const [guesses, setGuesses] = useState([]);
-  const [attemptsLeft, setAttemptsLeft] = useState(attempts);
+  const [attemptsLeft, setAttemptsLeft] = useState(config.attempts);
   const [isComplete, setIsComplete] = useState(false);
 
   // Initialize game
@@ -50,7 +99,7 @@ export default function MastermindHack({
 
   const initializeGame = () => {
     // Generate answer sequence
-    const newAnswer = generateSequence(sequenceLength, symbolCount, colorCount);
+    const newAnswer = generateSequence(config.sequenceLength, config.symbolCount, config.colorCount);
     setAnswer(newAnswer);
     let stringAnswer = '';
     newAnswer.forEach((c) => {
@@ -62,8 +111,8 @@ export default function MastermindHack({
     const newSequences = [];
     const seenSequences = new Set();
 
-    while (newSequences.length < sequenceCount - 1) {
-      const seq = generateSequence(sequenceLength, symbolCount, colorCount);
+    while (newSequences.length < config.sequenceCount - 1) {
+      const seq = generateSequence(config.sequenceLength, config.symbolCount, config.colorCount);
       const key = JSON.stringify(seq);
 
       if (!seenSequences.has(key)) {
@@ -76,7 +125,7 @@ export default function MastermindHack({
     }
 
     // Insert answer at random position
-    const answerIndex = Math.floor(Math.random() * sequenceCount);
+    const answerIndex = Math.floor(Math.random() * config.sequenceCount);
     newSequences.splice(answerIndex, 0, {
       id: newSequences.length,
       sequence: newAnswer,
@@ -116,7 +165,7 @@ export default function MastermindHack({
     }
 
     setTerminalChars(chars);
-    setAttemptsLeft(attempts);
+    setAttemptsLeft(config.attempts);
     setGuesses([]);
     setIsComplete(false);
   };
@@ -283,7 +332,7 @@ export default function MastermindHack({
         >
           <div className="guess-panel-header">
             GUESSES
-            <div className="mastermind-attempts">ATTEMPTS: {attemptsLeft}/{attempts}</div>
+            <div className="mastermind-attempts">ATTEMPTS: {attemptsLeft}/{config.attempts}</div>
           </div>
           <div className="guess-list">
             {guesses.map((guess, idx) => (
@@ -305,7 +354,7 @@ export default function MastermindHack({
               </div>
             ))}
             {/* Empty slots */}
-            {Array.from({ length: attempts - guesses.length }).map((_, idx) => (
+            {Array.from({ length: config.attempts - guesses.length }).map((_, idx) => (
               <div key={`empty-${idx}`} className="guess-entry empty">
                 <div className="guess-sequence">—</div>
               </div>

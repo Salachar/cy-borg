@@ -33,6 +33,7 @@ import CoffeeMachine from "./CoffeeMachine/CoffeeMachine";
 import Radio from "./Radio/Radio";
 import ArcadeCabinet from "./ArcadeCabinet/ArcadeCabinet";
 import DigitalWallet from "./DigitalWallet/DigitalWallet";
+import IceBreaker from "./IceBreaker/IceBreaker";
 
 export {
   ATM,
@@ -70,4 +71,5 @@ export {
   Radio,
   ArcadeCabinet,
   DigitalWallet,
+  IceBreaker,
 };
