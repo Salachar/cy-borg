@@ -22,7 +22,7 @@ import {
   Locked,
 } from "@terminal/retcomdevice"
 
-import BatusBodegaAd from './ad'
+import BatusBodegaAd from './bodega_ad'
 
 export const BODEGA_COMMANDS = {
   "Batu's Bodega (FREE ACCESS)": {
@@ -275,11 +275,23 @@ export const BODEGA_COMMANDS = {
         },
         content: (
           <MaintenanceAccess
-            title="BODEGA INTERNAL NETWORK"
+            title="[BODEGA INTERNAL NETWORK]"
+            deviceModel="Small Business Router"
+            deviceId="BODEGA-NET-01"
+            firmwareVersion="v2.1.8"
+            systemStatus="OPERATIONAL"
+            uptime="156 days, 3 hours"
             notes={[
-              'Zara - Please restock the vending machine'
+              "Owner: Batu Khamidov",
+              "WiFi SSID: Bodega_Guest (password: freewifi)",
+              "Connected devices: 3 (security camera, POS terminal, office PC)",
+              "Last admin login: 3 days ago (Batu)",
+              "Security level: Basic (WPA2, default firewall)",
+              "Network still active despite store closure"
             ]}
-          />
+          >
+            <Line yellow>Note from Batu (cloud sync): "Zara - Please restock the vending machine"</Line>
+          </MaintenanceAccess>
         ),
         related_commands: {
           "Security Camera - Main Shop": {

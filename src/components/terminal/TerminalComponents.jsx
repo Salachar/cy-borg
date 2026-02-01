@@ -113,6 +113,35 @@ export const Box = ({ children, color = "cyan", className = "" }) => {
   );
 };
 
+export const InsetBox = ({ children, title, color = "cyan", className = "", style = {} }) => {
+  return (
+    <div
+      className={className}
+      style={{
+        backgroundColor: 'rgba(15, 23, 42, 0.6)',
+        border: '1px solid rgb(71, 85, 105)',
+        borderRadius: '3px',
+        padding: '0.75rem',
+        margin: "1rem 0",
+        ...style,
+      }}
+    >
+      <div style={{
+        color: COLOR_MAP[color],
+        fontWeight: "bold",
+        marginBottom: "0.5rem",
+      }}>
+        {title}
+      </div>
+      <div style={{
+        fontSize: "0.875rem",
+      }}>
+        {children}
+      </div>
+    </div>
+  );
+};
+
 // Divider
 export const Divider = ({ color = "cyan" }) => {
   return (

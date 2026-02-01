@@ -11,6 +11,7 @@ export default function PublicPortal({
   nowPlaying,
   notes = [],
   theme = 'friendly',
+  children,
 }) {
   const [signalBlink, setSignalBlink] = useState(true);
 
@@ -283,6 +284,14 @@ export default function PublicPortal({
               </Line>
             </div>
           ))}
+        </div>
+      )}
+
+      {Boolean(children) && (
+        <div style={{
+          margin: '1rem 0',
+        }}>
+          {children }
         </div>
       )}
     </div>

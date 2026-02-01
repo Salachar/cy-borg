@@ -20,6 +20,7 @@ export default function VIPList({
   location,
   date,
   vips = [],
+  children,
 }) {
   const getStatusColor = (status) => {
     const statusColors = {
@@ -58,12 +59,12 @@ export default function VIPList({
           <div style={{ display: 'flex', gap: '1rem', marginTop: '0.5rem' }}>
             {location && (
               <Line cyan style={{ margin: 0, fontSize: '0.75rem' }}>
-                📍 {location}
+                {location}
               </Line>
             )}
             {date && (
               <Line yellow style={{ margin: 0, fontSize: '0.75rem' }}>
-                📅 {date}
+                {date}
               </Line>
             )}
           </div>
@@ -189,6 +190,14 @@ export default function VIPList({
             </div>
           ))}
         </div>
+
+        {Boolean(children) && (
+          <div style={{
+            margin: '1rem 0',
+          }}>
+            {children }
+          </div>
+        )}
 
         {/* Footer note */}
         <Divider />

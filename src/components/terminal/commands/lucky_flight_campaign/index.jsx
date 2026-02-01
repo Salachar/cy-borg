@@ -7,7 +7,7 @@ import {
 } from "@terminal/retcomdevice"
 
 import { BODEGA_COMMANDS } from './bodega';
-import { STONE_EELS_COMMANDS } from './stone_eels';
+import { STONE_EELS_COMMANDS } from './caveclub';
 import { LUCKY_FLIGHT_CASINO } from './casino';
 import { NEIGHBORHOOD_COMMANDS } from './neighborhood';
 import { FUN_COMMANDS } from './fun';

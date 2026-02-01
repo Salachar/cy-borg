@@ -4,6 +4,7 @@ import {
   Divider,
   KeyValue,
   DataTable,
+  InsetBox,
 } from '@terminal/TerminalComponents';
 import {
   ATM,
@@ -12,144 +13,218 @@ import {
   Jukebox,
   MaintenanceAccess,
   VendingMachine,
+  PublicPortal,
+  HoursBanner,
+  Menu,
+  PersonnelFile,
+  IncidentLog,
+  NetworkDevices,
+  Workstation,
+  Locked,
 } from "@terminal/retcomdevice"
 
 export const FUN_COMMANDS = {
+  // ============================================================================
+  // RESIDENTIAL BUILDINGS
+  // ============================================================================
+
   "Silverpeak Residences": {
     content: (
-      <>
-        <Line cyan large bold>SILVERPEAK RESIDENCES</Line>
-        <Line yellow>"Modern Living. Classic Community."</Line>
-        <Divider />
-        <Line neon>Accessing building management...</Line>
-        <Line cyan>[RESIDENT PORTAL]</Line>
-        <Divider />
-        <DataTable data={[
-          { label: "Units", value: "32 (8 floors, 4 per floor)" },
-          { label: "Occupancy", value: "94% (2 vacancies)" },
-          { label: "Built", value: "2073" },
-          { label: "Condition", value: "Good (routine maintenance)" },
-        ]} />
-        <Divider />
-        <Section title="AMENITIES:">
-          <Line neon>• Fitness center (24/7 access, basic equipment)</Line>
-          <Line neon>• Laundry room (ground floor) - 6¤ wash, 4¤ dry</Line>
-          <Line neon>• Community lounge (coffee station, work tables)</Line>
-          <Line neon>• Roof deck (residents only, city views)</Line>
-          <Line neon>• Package lockers (lobby, secure)</Line>
-        </Section>
-        <Divider />
+      <PublicPortal
+        name="SILVERPEAK RESIDENCES"
+        tagline="Modern Living. Classic Community."
+        network="SILVERPEAK_RESIDENT_WIFI"
+        signalStrength="strong"
+        status="✓ NOW LEASING"
+        statusColor="neon"
+        notes={[
+          "32 units (8 floors, 4 per floor)",
+          "2 vacancies available",
+          "Fitness center & roof deck access",
+          "Monthly resident mixer (first Friday)"
+        ]}
+        theme="casual"
+      >
         <Section title="RENT INFO:">
           <KeyValue label="Studio" value="420¤/month" />
           <KeyValue label="1-bedroom" value="580¤/month" />
           <KeyValue label="2-bedroom" value="800¤/month" />
-          <Line yellow>Utilities: Additional 100-140¤/month</Line>
-        </Section>
-        <Divider />
-        <Section title="BUILDING CULTURE:">
-          <Line pink>• Monthly resident mixer (first Friday, community lounge)</Line>
-          <Line pink>• Book exchange shelf (lobby, honor system)</Line>
-          <Line pink>• Quiet hours enforced: 22:00-07:00</Line>
+          <Line smoke>Utilities: Additional 100-140¤/month</Line>
         </Section>
         <Divider />
         <Line pink>"Good neighbors make good neighborhoods."</Line>
-      </>
+      </PublicPortal>
     ),
     related_commands: {
       "Fitness Center Console": {
         content: (
-          <>
-            <Line smoke large bold>[ENTERTAINMENT CONSOLE - FITNESS CENTER]</Line>
-            <Line cyan>Location: Community fitness center, mounted on wall</Line>
+          <MaintenanceAccess
+            title="[ENTERTAINMENT CONSOLE - FITNESS CENTER]"
+            deviceModel="FitScreen Pro"
+            deviceId="FITNESS-SP-01"
+            firmwareVersion="v2.8.1"
+            systemStatus="OPERATIONAL"
+            notes={[
+              "Location: Community fitness center, wall-mounted",
+              "Status: ON (workout mode)",
+              "Last Used: 45 minutes ago",
+              "Primary Function: Workout programs & streaming"
+            ]}
+          >
             <Divider />
-            <DataTable data={[
-              { label: "Model", value: "FitScreen Pro" },
-              { label: "Status", value: "ON (workout mode)" },
-              { label: "Last Used", value: "45 minutes ago" },
-              { label: "Primary Function", value: "Workout programs & streaming" },
-            ]} />
-            <Divider />
-            <Section title="INSTALLED PROGRAMS:">
+            <InsetBox title="INSTALLED PROGRAMS:">
               <Line neon>→ CardioClimb Challenge (treadmill sync enabled)</Line>
               <Line neon>→ Strength Training Guide (video tutorials)</Line>
               <Line neon>→ Yoga Flow Sequences (morning routines popular)</Line>
               <Line neon>→ Combat Training Sim (VR compatible, 3 residents use regularly)</Line>
               <Line neon>→ Meditation & Recovery (cool-down programs)</Line>
-            </Section>
-            <Divider />
-            <Section title="USAGE STATS (This Week):">
+            </InsetBox>
+            <InsetBox title="USAGE STATS (This Week):">
               <Line yellow>Total sessions: 47</Line>
               <Line yellow>Most popular: CardioClimb (23 sessions)</Line>
               <Line yellow>Average session: 38 minutes</Line>
               <Line yellow>Peak usage: 06:00-08:00, 18:00-20:00</Line>
-            </Section>
-            <Divider />
+            </InsetBox>
             <Line pink>"Your body is your temple. Also your weapon."</Line>
-          </>
+          </MaintenanceAccess>
         ),
       },
 
-      "Unit 6C Safe": {
-        password: {
-          pw: "marathon",
-          hint: "Fitness goal for the new year!",
-          hintStrength: 3,
-        },
+      "Building Incident Log": {
         content: (
-          <Safe
-            id="silverpeak-6c"
-            model="DS-400"
-            location="Unit 6C, bedroom closet shelf"
-            owner="Mira Chen (fitness instructor)"
-            security="Digital keypad + biometric"
-            lastAccess="3 days ago"
-            physical={[
+          <IncidentLog
+            title="BUILDING INCIDENTS"
+            timeframe="Last 30 days"
+            incidents={[
               {
-                id: "chen_cash",
-                label: "Cash",
-                description: "180¤ (emergency fund)",
-                value: 180,
-                isCredits: true
+                timestamp: "Jan 12 (08:00)",
+                type: "Package Delivery",
+                details: {
+                  Unit: "3A",
+                  Issue: "Package delivery complaint",
+                  Resolution: "Improved lobby notification system",
+                  Status: "Resolved"
+                }
+              },
+              {
+                timestamp: "Jan 7 (23:15)",
+                type: "Noise Complaint",
+                details: {
+                  Unit: "2B",
+                  Issue: "Loud music during quiet hours",
+                  Resolution: "Warning issued to resident",
+                  Status: "Resolved"
+                }
               },
             ]}
-            digital={[
-              {
-                id: "chen_credchip",
-                label: "Credchip",
-                description: "25¤ (transferable)",
-                value: 25,
-                isCredits: true
-              },
+          >
+            <Divider />
+            <Line cyan>Overall: Well-maintained building, minimal issues</Line>
+            <Line yellow>Floor 7 elevator: Maintenance scheduled next week</Line>
+            <Line red>Roof deck lock: Repair pending</Line>
+          </IncidentLog>
+        ),
+      },
+
+      "Unit 6C": {
+        content: (
+          <PersonnelFile
+            employeeId="RESIDENT-SP-6C"
+            name="Mira Chen"
+            age={31}
+            position="Fitness Instructor"
+            department="Independent / Freelance"
+            hireDate="Resident since 2079 (3 years)"
+            supervisor="Self-employed"
+            clearanceLevel={5}
+            district="Silverpeak Residences, Unit 6C"
+            emergencyContact="Wei Chen (brother)"
+            performance={92}
+            notes={[
+              "Profession: Fitness instructor, personal trainer",
+              "Community involvement: Hosts informal classes in lounge",
+              "Excellent tenant - pays rent early, no complaints",
+              "Fitness goal for year: Marathon training",
+              "Known for: Early morning workouts, friendly to neighbors"
             ]}
-            notes="Safe installed 18 months ago"
+            status="ACTIVE"
           />
         ),
+        related_commands: {
+          "Personal Safe": {
+            // password: {
+            //   pw: "marathon",
+            //   hint: "Fitness goal for the new year!",
+            //   difficulty: "hard",
+            //   content: <Locked theme="safe" title="PERSONAL SAFE" />
+            // },
+            content: (
+              <Safe
+                id="silverpeak-6c-safe"
+                model="DS-400"
+                location="Unit 6C, bedroom closet shelf"
+                owner="Mira Chen (fitness instructor)"
+                security="Digital keypad + biometric"
+                lastAccess="3 days ago"
+                physical={[
+                  {
+                    id: "chen_cash",
+                    label: "Cash",
+                    description: "180¤ (emergency fund)",
+                    value: 180,
+                    isCredits: true
+                  },
+                ]}
+                digital={[
+                  {
+                    id: "chen_credchip",
+                    label: "Credchip",
+                    description: "25¤",
+                    value: 25,
+                    isCredits: true
+                  },
+                ]}
+                notes="Safe installed 18 months ago"
+              />
+            ),
+          },
+        },
       },
 
       "Management Portal": {
-        password: {
-          pw: "community",
-          hint: "What the building emphasizes in its culture",
-          hintStrength: 2,
-        },
+        // password: {
+        //   pw: "community",
+        //   hint: "What the building emphasizes in its culture",
+        //   difficulty: "medium",
+        //   content: <Locked theme="terminal" title="BUILDING MANAGEMENT" />
+        // },
         content: (
-          <>
-            <Line smoke large bold>[BUILDING MANAGEMENT SYSTEM]</Line>
-            <Line cyan>[MANAGER ACCESS]</Line>
+          <MaintenanceAccess
+            title="[BUILDING MANAGEMENT SYSTEM]"
+            deviceModel="Property Management Software"
+            deviceId="BLD-MGMT-SP"
+            firmwareVersion="v3.5.0"
+            systemStatus="OPERATIONAL"
+            notes={[
+              "Manager Access: Building Administration",
+              "Occupancy: 94% (2 vacancies)",
+              "Next resident mixer: First Friday of month",
+              "Maintenance schedule: Current"
+            ]}
+          >
             <Divider />
-            <Section title="RECENT ISSUES:">
+            <InsetBox title="RECENT ISSUES:">
               <Line yellow>Unit 3A: Package delivery complaint (resolved)</Line>
               <Line yellow>Floor 7: Elevator maintenance needed (scheduled next week)</Line>
               <Line yellow>Unit 2B: Noise complaint during quiet hours (warning issued)</Line>
               <Line red>Roof deck: Lock mechanism damaged (repair pending)</Line>
-            </Section>
-            <Divider />
-            <Section title="RESIDENT NOTES:">
+            </InsetBox>
+            <InsetBox title="RESIDENT NOTES:">
               <Line cyan>Unit 6C: Fitness instructor, hosts informal classes in lounge</Line>
               <Line cyan>Unit 4A: Works night shift, requested noise considerations</Line>
               <Line cyan>Unit 8D: Monthly mixer organizer, excellent tenant</Line>
-            </Section>
-          </>
+            </InsetBox>
+          </MaintenanceAccess>
         ),
       },
     },
@@ -157,42 +232,30 @@ export const FUN_COMMANDS = {
 
   "Cascade Heights": {
     content: (
-      <>
-        <Line cyan large bold>CASCADE HEIGHTS</Line>
-        <Line yellow>"Waterfront Views. Urban Convenience."</Line>
-        <Divider />
-        <Line neon>Connecting to building network...</Line>
-        <Line cyan>[RESIDENT ACCESS]</Line>
-        <Divider />
-        <DataTable data={[
-          { label: "Units", value: "20 (5 floors, 4 per floor)" },
-          { label: "Occupancy", value: "85% (3 vacancies)" },
-          { label: "Built", value: "2070" },
-          { label: "Condition", value: "Fair (water damage repairs ongoing)" },
-        ]} />
-        <Divider />
-        <Section title="AMENITIES:">
-          <Line neon>• Canal dock access (residents only, small boats permitted)</Line>
-          <Line neon>• Shared workspace (floor 1, wifi included)</Line>
-          <Line neon>• Laundry facilities (coin-operated, frequent breakdowns)</Line>
-          <Line neon>• Security cameras (lobby, hallways, dock)</Line>
-        </Section>
-        <Divider />
+      <PublicPortal
+        name="CASCADE HEIGHTS"
+        tagline="Waterfront Views. Urban Convenience."
+        network="CASCADE_RESIDENT_WIFI"
+        signalStrength="medium"
+        status="✓ NOW LEASING"
+        statusColor="neon"
+        notes={[
+          "20 units (5 floors, 4 per floor)",
+          "3 vacancies available",
+          "Canal dock access (small boats permitted)",
+          "Elevator out of service - repair estimate: 3 months"
+        ]}
+        theme="casual"
+      >
         <Section title="RENT INFO:">
           <KeyValue label="Studio" value="380¤/month" />
           <KeyValue label="1-bedroom" value="520¤/month" />
           <KeyValue label="2-bedroom (canal view)" value="750¤/month" />
-          <Line yellow>Utilities: Additional 90-130¤/month</Line>
-        </Section>
-        <Divider />
-        <Section title="KNOWN ISSUES:">
-          <Line pink>• Basement floods during heavy rain (monthly occurrence)</Line>
-          <Line pink>• Elevator out of service (repair estimate: 3 months)</Line>
-          <Line pink>• Dock gate lock broken (residents prop it open)</Line>
+          <Line smoke>Utilities: Additional 90-130¤/month</Line>
         </Section>
         <Divider />
         <Line pink>"Character building. Literally."</Line>
-      </>
+      </PublicPortal>
     ),
     related_commands: {
       "Dock Security Camera": {
@@ -220,61 +283,133 @@ export const FUN_COMMANDS = {
         ),
       },
 
-      "Unit 2A Safe": {
-        password: {
-          pw: "tides",
-          hint: "What the canal experiences twice daily",
-          hintStrength: 1,
-        },
+      "Building Incident Log": {
         content: (
-          <Safe
-            id="cascade-unit2a-verne"
-            model="PS-250"
-            location="Unit 2A, hall closet upper shelf"
-            owner="Jonas Verne (boat repair technician)"
-            security="Combination lock (mechanical + digital)"
-            lastAccess="1 week ago"
-            physical={[
+          <IncidentLog
+            title="BUILDING INCIDENTS"
+            timeframe="Last 30 days"
+            incidents={[
               {
-                id: "verne_cash",
-                label: "Cash",
-                description: "95¤ (mixed bills, rent savings)",
-                value: 95,
-                isCredits: true
+                timestamp: "Jan 20 (Storm)",
+                type: "Flooding",
+                details: {
+                  Location: "Basement",
+                  Issue: "Heavy rain caused basement flooding",
+                  Resolution: "Water pumped out, resident items damaged",
+                  Status: "Ongoing issue (monthly occurrence)"
+                }
               },
               {
-                id: "verne_documents",
-                label: "Documents",
-                description: "Boat registration, repair licenses"
+                timestamp: "Jan 10 (Ongoing)",
+                type: "Equipment Failure",
+                details: {
+                  Issue: "Elevator out of service",
+                  Resolution: "Awaiting parts, repair estimate 3 months",
+                  Status: "Unresolved"
+                }
               },
               {
-                id: "verne_tools",
-                label: "Tools",
-                description: "Precision screwdriver set (professional quality)"
-              },
-              {
-                id: "verne_ring",
-                label: "Personal",
-                description: "Wedding ring (divorced, kept for sentimental reasons)"
-              },
-            ]}
-            digital={[
-              {
-                id: "verne_credchip",
-                label: "Credchip",
-                description: "22¤ (transferable)",
-                value: 22,
-                isCredits: true
-              },
-              {
-                id: "verne_coupon",
-                label: "Coupon code",
-                description: "BOATPARTS15 (15% off marine supplies, expires in 2 months)"
+                timestamp: "Jan 5 (Ongoing)",
+                type: "Security",
+                details: {
+                  Location: "Dock gate",
+                  Issue: "Lock broken, residents prop it open",
+                  Resolution: "Repair scheduled (low priority)",
+                  Status: "Unresolved"
+                }
               },
             ]}
-            notes="Safe showing signs of water damage (external), still functional"
+          >
+            <Divider />
+            <Line red>Overall: Building maintenance significantly behind</Line>
+            <Line yellow>Known issues: Basement floods, elevator broken, dock unsecured</Line>
+          </IncidentLog>
+        ),
+      },
+
+      "Unit 2A": {
+        content: (
+          <PersonnelFile
+            employeeId="RESIDENT-CH-2A"
+            name="Jonas Verne"
+            age={38}
+            position="Boat Repair Technician"
+            department="Independent / Freelance"
+            hireDate="Resident since 2075 (7 years)"
+            supervisor="Self-employed"
+            clearanceLevel={5}
+            district="Cascade Heights, Unit 2A"
+            emergencyContact="Marina Verne (ex-spouse)"
+            performance={85}
+            notes={[
+              "Profession: Boat repair technician (small vessels)",
+              "Uses building dock for work - neighbors don't complain",
+              "Divorced, kept wedding ring for sentimental reasons",
+              "Reliable tenant despite building issues",
+              "Known for: Early morning work, skilled craftsman"
+            ]}
+            status="ACTIVE"
           />
         ),
+        related_commands: {
+          "Personal Safe": {
+            // password: {
+            //   pw: "tides",
+            //   hint: "What the canal experiences twice daily",
+            //   difficulty: "easy",
+            //   content: <Locked theme="safe" title="PERSONAL SAFE" />
+            // },
+            content: (
+              <Safe
+                id="cascade-2a-safe"
+                model="PS-250"
+                location="Unit 2A, hall closet upper shelf"
+                owner="Jonas Verne (boat repair technician)"
+                security="Combination lock (mechanical + digital)"
+                lastAccess="1 week ago"
+                physical={[
+                  {
+                    id: "verne_cash",
+                    label: "Cash",
+                    description: "95¤ (mixed bills, rent savings)",
+                    value: 95,
+                    isCredits: true
+                  },
+                  {
+                    id: "verne_documents",
+                    label: "Documents",
+                    description: "Boat registration, repair licenses"
+                  },
+                  {
+                    id: "verne_tools",
+                    label: "Tools",
+                    description: "Precision screwdriver set (professional quality)"
+                  },
+                  {
+                    id: "verne_ring",
+                    label: "Personal",
+                    description: "Wedding ring (divorced, kept for sentimental reasons)"
+                  },
+                ]}
+                digital={[
+                  {
+                    id: "verne_credchip",
+                    label: "Credchip",
+                    description: "22¤",
+                    value: 22,
+                    isCredits: true
+                  },
+                  {
+                    id: "verne_coupon",
+                    label: "Coupon code",
+                    description: "BOATPARTS15 (15% off marine supplies, expires in 2 months)"
+                  },
+                ]}
+                notes="Safe showing signs of water damage (external), still functional"
+              />
+            ),
+          },
+        },
       },
     },
   },
@@ -285,120 +420,143 @@ export const FUN_COMMANDS = {
 
   "Sanchez Electronics & Repair": {
     content: (
-      <>
-        <Line cyan large bold>SANCHEZ ELECTRONICS & REPAIR</Line>
-        <Line yellow>"Interdimensional Selection. Dimensional Prices."</Line>
-        <Divider />
-        <Line neon>Connecting to shop network...</Line>
-        <Line cyan>[CUSTOMER ACCESS]</Line>
-        <Divider />
-        <Section title="SERVICES:">
-          <Line neon>• Electronics sales (TVs, tablets, phones)</Line>
-          <Line neon>• Device repair (no warranty questions asked)</Line>
-          <Line neon>• Custom installations (specialty work)</Line>
-          <Line neon>• "Unique" equipment (ask owner for details)</Line>
-        </Section>
-        <Divider />
-        <Section title="FEATURED PRODUCTS:">
-          <KeyValue label="Smart TV (Refurbished)" value="380¤" />
-          <KeyValue label="Tablet (Various brands)" value="150-300¤" />
-          <KeyValue label="Phone (Unlocked)" value="100-250¤" />
-          <KeyValue label="Mystery Box" value="50¤ (contents vary)" />
-        </Section>
-        <Divider />
-        <Section title="HOURS & LOCATION:">
-          <Line neon>Hours: 11:00-23:00 (Mon-Sat), 12:00-20:00 (Sun)</Line>
-          <Line neon>Location: Market district, corner unit</Line>
-          <Line neon>Owner: R. Sanchez (often smells like alcohol, burps frequently)</Line>
-        </Section>
-        <Divider />
-        <Section title="STORE POLICIES:">
-          <Line yellow>• All sales final (seriously, don't even try)</Line>
-          <Line yellow>• Repairs: 3-5 day turnaround (maybe longer)</Line>
-          <Line red>• Management not responsible for existential side effects</Line>
-        </Section>
-        <Divider />
-        <Line pink>"W-we've got everything you need, *burp* probably."</Line>
-      </>
+      <PublicPortal
+        name="SANCHEZ ELECTRONICS & REPAIR"
+        tagline="Interdimensional Selection. Dimensional Prices."
+        network="SANCHEZ_SHOP_GUEST"
+        signalStrength="strong"
+        status="✓ OPEN"
+        statusColor="neon"
+        nowPlaying="Interdimensional Cable (signal unstable)"
+        notes={[
+          "All sales final (seriously, don't even try)",
+          "Repairs: 3-5 day turnaround (maybe longer)",
+          "Management not responsible for existential side effects"
+        ]}
+        theme="friendly"
+      >
+        <HoursBanner
+          name="Schedule"
+          hours="Mon-Sat: 11:00-23:00 | Sun: 12:00-20:00"
+          days="7 Days a Week"
+        />
+      </PublicPortal>
     ),
     related_commands: {
-      "access_shop_inventory": {
-        password: {
-          pw: "portalgun",
-          hint: "Device in back room (broken, parts only)",
-          hintStrength: 1,
-        },
+      "Personnel File": {
         content: (
-          <>
-            <Line smoke large bold>[INVENTORY DATABASE]</Line>
-            <Line yellow>Last updated: 2 hours ago</Line>
+          <PersonnelFile
+            employeeId="SHOP-ELEC-001"
+            name="R. Sanchez"
+            age={67}
+            position="Owner / Electronics Technician"
+            department="Independent Electronics Repair"
+            hireDate="2069 (13 years in business)"
+            supervisor="Self-employed"
+            clearanceLevel={5}
+            district="Market district (unknown residence)"
+            emergencyContact="Morty (grandson?)"
+            performance={94}
+            notes={[
+              "Genius-level intellect, specializes in unusual electronics",
+              "Often smells like alcohol, burps frequently",
+              "Refuses to explain modifications or special inventory",
+              "Reputation: Brilliant but erratic, customers nervous but loyal",
+              "Known for: 'Infinite channels' cable boxes, mysterious back room",
+              "Warning: Do NOT touch green vials or activate portal device"
+            ]}
+            status="ACTIVE"
+          />
+        ),
+      },
+
+      "Shop Inventory": {
+        // password: {
+        //   pw: "portalgun",
+        //   hint: "Device in back room (broken, parts only)",
+        //   difficulty: "easy",
+        //   content: <Locked theme="terminal" title="INVENTORY SYSTEM" />
+        // },
+        content: (
+          <MaintenanceAccess
+            title="[INVENTORY DATABASE]"
+            deviceModel="Shop Inventory System"
+            deviceId="INV-SANCHEZ-01"
+            firmwareVersion="v1.3.7"
+            systemStatus="OPERATIONAL"
+            notes={[
+              "Last updated: 2 hours ago",
+              "Standard stock tracked",
+              "Back room inventory NOT for sale under any circumstances",
+              "Repair queue: 3 items waiting"
+            ]}
+          >
             <Divider />
-            <Section title="STANDARD STOCK:">
+            <InsetBox title="STANDARD STOCK:">
               <Line neon>Smart TVs: 8 units (refurbished, various brands)</Line>
               <Line neon>Tablets: 15 units (mixed condition)</Line>
               <Line neon>Phones: 22 units (unlocked, some carrier-locked)</Line>
               <Line neon>Cables & adapters: High stock (universal compatibility)</Line>
-            </Section>
-            <Divider />
-            <Section title="BACK ROOM (Special Items):">
+            </InsetBox>
+            <InsetBox title="BACK ROOM (Special Items):">
               <Line cyan>Weird cable boxes: 3 units (claim to receive "infinite channels")</Line>
               <Line cyan>Portal device: 1 unit (BROKEN - parts only, DO NOT ACTIVATE)</Line>
               <Line cyan>Strange blue boxes: 4 units (unknown purpose, owner won't sell)</Line>
               <Line yellow>Green vials: Unknown quantity (locked cabinet, do not touch)</Line>
-            </Section>
-            <Divider />
-            <Section title="REPAIR QUEUE:">
+            </InsetBox>
+            <InsetBox title="REPAIR QUEUE:">
               <Line yellow>Smart fridge: Firmware issue (waiting for parts)</Line>
               <Line yellow>Game console: Overheating problem (in progress)</Line>
               <Line yellow>Cyberdeck: Unknown fault (customer waiting, frustrated)</Line>
-            </Section>
-            <Divider />
+            </InsetBox>
             <Line red>Note: Back room inventory NOT for sale under any circumstances</Line>
-          </>
+          </MaintenanceAccess>
         ),
       },
 
       "Demo Console": {
         content: (
-          <>
-            <Line smoke large bold>[DEMO CONSOLE - SHOP FLOOR]</Line>
-            <Line cyan>Location: Display near front counter</Line>
+          <MaintenanceAccess
+            title="[DEMO CONSOLE - SHOP FLOOR]"
+            deviceModel="CyStation Pro (Modified - unknown alterations)"
+            deviceId="DEMO-SANCHEZ-01"
+            firmwareVersion="v?.?.?"
+            systemStatus="OPERATIONAL"
+            notes={[
+              "Location: Display near front counter",
+              "Status: ON (demo mode, glitches occasionally)",
+              "Last Reset: Yesterday",
+              "Purpose: Customer testing & owner's personal use"
+            ]}
+          >
             <Divider />
-            <DataTable data={[
-              { label: "Model", value: "CyStation Pro (Modified - unknown alterations)" },
-              { label: "Status", value: "ON (demo mode, glitches occasionally)" },
-              { label: "Last Reset", value: "Yesterday" },
-              { label: "Purpose", value: "Customer testing & owner's personal use" },
-            ]} />
-            <Divider />
-            <Section title="INSTALLED GAMES:">
+            <InsetBox title="INSTALLED GAMES:">
               <Line neon>→ Life Simulator VR (suspiciously realistic, 200+ playthroughs)</Line>
               <Line neon>→ Cosmic Horror Adventure (banned in 3 districts, owner doesn't care)</Line>
               <Line neon>→ Dimension Jumper (physics seem wrong, makes players dizzy)</Line>
               <Line neon>→ Cable Surfing Simulator (connects to weird cable boxes?)</Line>
               <Line neon>→ Pocket Creatures (creature collection game, complete collection)</Line>
-            </Section>
-            <Divider />
-            <Section title="HIGH SCORES:">
+            </InsetBox>
+            <InsetBox title="HIGH SCORES:">
               <Line yellow>Life Simulator VR: "R_Sanchez" - 55 years (off the grid ending)</Line>
               <Line yellow>Dimension Jumper: "Morty" - 2.4M points (second place)</Line>
               <Line yellow>Pocket Creatures: "BirdPrsn" - All 151 captured</Line>
-            </Section>
-            <Divider />
+            </InsetBox>
             <Line pink>"Don't ask about the modifications. Just... don't."</Line>
-          </>
+          </MaintenanceAccess>
         ),
       },
 
       "Back Room Safe": {
-        password: {
-          pw: "C137",
-          hint: "Dimension number written on portal device",
-          hintStrength: 1,
-        },
+        // password: {
+        //   pw: "C137",
+        //   hint: "Dimension number written on portal device",
+        //   difficulty: "easy",
+        //   content: <Locked theme="safe" title="BACK ROOM SAFE" />
+        // },
         content: (
           <Safe
-            id="sanchez-garage-backroom"
+            id="sanchez-backroom-safe"
             model="???"
             location="Back room, behind shelving unit"
             owner="R. Sanchez"
@@ -409,7 +567,6 @@ export const FUN_COMMANDS = {
                 id: "sanchez_cash",
                 label: "Cash",
                 description: "Unknown amount (safe makes weird noises)"
-                // No value/isCredits - can't extract unknown amount
               },
               {
                 id: "sanchez_documents",
@@ -431,7 +588,7 @@ export const FUN_COMMANDS = {
               {
                 id: "sanchez_credchip",
                 label: "Credchip",
-                description: "28¤ (transferable, standard currency)",
+                description: "28¤",
                 value: 28,
                 isCredits: true
               },
@@ -455,54 +612,65 @@ export const FUN_COMMANDS = {
 
   "Gilded Oddities Pawn": {
     content: (
-      <>
-        <Line cyan large bold>GILDED ODDITIES PAWN</Line>
-        <Line yellow>"Treasures. Trash. Tales."</Line>
-        <Divider />
-        <Line neon>Accessing shop systems...</Line>
-        <Line cyan>[CUSTOMER PORTAL]</Line>
-        <Divider />
-        <Section title="SERVICES:">
-          <Line neon>• Buy used goods (we'll buy almost anything)</Line>
-          <Line neon>• Sell items (cash offers, same day)</Line>
-          <Line neon>• Pawn items (30-90 day terms, 18% interest)</Line>
-          <Line neon>• Appraisals (free for first 3 items)</Line>
-        </Section>
-        <Divider />
-        <Section title="CURRENT INVENTORY (Highlights):">
-          <Line cyan>Jewelry: Various pieces (rings, watches, chains)</Line>
-          <Line cyan>Electronics: Tablets, phones, older cyberware</Line>
-          <Line cyan>Tools: Power tools, precision equipment</Line>
-          <Line cyan>Curiosities: Antiques, collectibles, weird stuff</Line>
-          <Line yellow>Display: Golden statue (NOT FOR SALE - shop mascot)</Line>
-        </Section>
-        <Divider />
-        <Section title="HOURS & LOCATION:">
-          <Line neon>Hours: 09:00-19:00 (Mon-Sat), Closed Sunday</Line>
-          <Line neon>Location: Near waterfront, industrial district edge</Line>
-          <Line neon>Owner: Changes frequently (current: "Roger Smith")</Line>
-        </Section>
-        <Divider />
-        <Section title="STORE LORE:">
-          <Line pink>The golden statue has been here for 15 years</Line>
-          <Line pink>Previous owners: 8 total (all left under unusual circumstances)</Line>
-          <Line pink>Current owner refuses to sell statue despite high offers</Line>
-          <Line red>Locals claim the shop is cursed (owner says it's "character")</Line>
-        </Section>
-        <Divider />
-        <Line pink>"Every item tells a story. Most of them are sad."</Line>
-      </>
+      <PublicPortal
+        name="GILDED ODDITIES PAWN"
+        tagline="Treasures. Trash. Tales."
+        network="PAWN_SHOP_PUBLIC"
+        signalStrength="medium"
+        status="✓ OPEN"
+        statusColor="neon"
+        notes={[
+          "Free appraisals (first 3 items)",
+          "Golden statue NOT for sale",
+          "Locals claim the shop is cursed"
+        ]}
+        theme="friendly"
+      >
+        <HoursBanner
+          name="Schedule"
+          hours="09:00 - 19:00"
+          days="Monday - Saturday (Closed Sunday)"
+        />
+      </PublicPortal>
     ),
     related_commands: {
+      "Personnel File": {
+        content: (
+          <PersonnelFile
+            employeeId="PAWN-OWNER-008"
+            name="Roger Smith"
+            age={42}
+            position="Owner / Pawnbroker"
+            department="Independent Retail"
+            hireDate="2080 (2 years in business)"
+            supervisor="Self-employed"
+            clearanceLevel={5}
+            district="Near waterfront (unknown residence)"
+            emergencyContact="None listed"
+            performance={78}
+            notes={[
+              "Eighth owner of this shop - all previous owners met unfortunate ends",
+              "Changes persona/disguises regularly (collection in safe)",
+              "Refuses to sell golden statue despite high offers",
+              "Reputation: Mysterious but fair, customers wary of 'curse'",
+              "Known for: Voice recognition that changes weekly",
+              "Previous owners: Disappeared, suicide, murdered, accidents (see records)"
+            ]}
+            status="ACTIVE"
+          />
+        ),
+      },
+
       "Shop Safe": {
-        password: {
-          pw: "persona",
-          hint: "What the owner seems to change regularly",
-          hintStrength: 1,
-        },
+        // password: {
+        //   pw: "persona",
+        //   hint: "What the owner seems to change regularly",
+        //   difficulty: "easy",
+        //   content: <Locked theme="safe" title="SHOP SAFE" />
+        // },
         content: (
           <Safe
-            id="pawn-shop-counter"
+            id="pawn-counter-safe"
             model="DS-350"
             location="Behind counter, floor-mounted"
             owner="Roger Smith (this week's name)"
@@ -536,7 +704,7 @@ export const FUN_COMMANDS = {
               {
                 id: "pawn_credchip",
                 label: "Credchip",
-                description: "18¤ (transferable)",
+                description: "18¤",
                 value: 18,
                 isCredits: true
               },
@@ -551,37 +719,45 @@ export const FUN_COMMANDS = {
         ),
       },
 
-      access_records: {
-        password: {
-          pw: "goldenturd",
-          hint: "What locals call the shop mascot statue",
-          hintStrength: 3,
-        },
+      "Pawn Records": {
+        // password: {
+        //   pw: "goldenturd",
+        //   hint: "What locals call the shop mascot statue",
+        //   difficulty: "hard",
+        //   content: <Locked theme="terminal" title="PAWN RECORDS" />
+        // },
         content: (
-          <>
-            <Line smoke large bold>[PAWN RECORDS]</Line>
-            <Line cyan>Active loans & recent transactions</Line>
+          <MaintenanceAccess
+            title="[PAWN RECORDS]"
+            deviceModel="Pawn Shop Management System"
+            deviceId="PAWN-ODDITIES-01"
+            firmwareVersion="v2.1.0"
+            systemStatus="OPERATIONAL"
+            notes={[
+              "Active loans & recent transactions",
+              "Last 7 days of pawn activity",
+              "High-value inventory tracked",
+              "Owner history documented (all 8 owners)"
+            ]}
+          >
             <Divider />
-            <Section title="RECENT PAWNS (Last 7 days):">
+            <InsetBox title="RECENT PAWNS (Last 7 days):">
               <Line neon>Item: Electric guitar, Loan: 75¤, Due: 28 days</Line>
               <Line neon>Item: Smartwatch, Loan: 50¤, Due: 24 days</Line>
               <Line neon>Item: Antique camera, Loan: 60¤, Due: 19 days</Line>
               <Line yellow>Item: Wedding dress, Loan: 40¤, Due: 45 days (extended term)</Line>
-            </Section>
-            <Divider />
-            <Section title="HIGH-VALUE INVENTORY:">
+            </InsetBox>
+            <InsetBox title="HIGH-VALUE INVENTORY:">
               <Line cyan>Vintage sword collection: 420¤ (display case)</Line>
               <Line cyan>Refurbished cyberware: 280¤ (various components)</Line>
               <Line cyan>Antique music box: 180¤ (plays haunting melody)</Line>
-            </Section>
-            <Divider />
-            <Section title="BACK ROOM (Not For Sale):">
+            </InsetBox>
+            <InsetBox title="BACK ROOM (Not For Sale):">
               <Line pink>The golden statue (shop mascot, mysterious origins)</Line>
               <Line pink>Owner's personal effects (changes with each owner)</Line>
               <Line pink>Previous owners' belongings (unclaimed)</Line>
-            </Section>
-            <Divider />
-            <Section title="OWNER HISTORY:">
+            </InsetBox>
+            <InsetBox title="OWNER HISTORY:">
               <Line yellow>2067-2068: Original owner (disappeared)</Line>
               <Line yellow>2068-2070: Second owner (committed suicide)</Line>
               <Line yellow>2070-2072: Third owner (killed in robbery)</Line>
@@ -590,8 +766,8 @@ export const FUN_COMMANDS = {
               <Line yellow>2076-2078: Sixth owner (murdered)</Line>
               <Line yellow>2078-2080: Seventh owner (heart attack)</Line>
               <Line yellow>2080-Present: Current owner (Roger Smith)</Line>
-            </Section>
-          </>
+            </InsetBox>
+          </MaintenanceAccess>
         ),
       },
     },
@@ -599,97 +775,96 @@ export const FUN_COMMANDS = {
 
   "Cipher Solutions": {
     content: (
-      <>
-        <Line cyan large bold>CIPHER SOLUTIONS</Line>
-        <Line yellow>"Data Recovery. System Security. Discretion Guaranteed."</Line>
-        <Divider />
-        <Line neon>Connecting to business terminal...</Line>
-        <Line cyan>[PUBLIC ACCESS]</Line>
-        <Divider />
-        <Section title="SERVICES OFFERED:">
-          <Line neon>• Data recovery (deleted files, damaged drives)</Line>
-          <Line neon>• Security consulting (personal & small business)</Line>
-          <Line neon>• Network setup & maintenance</Line>
-          <Line neon>• Digital forensics (legal & private investigations)</Line>
-          <Line neon>• "Special projects" (consultation required)</Line>
-        </Section>
-        <Divider />
-        <Section title="PRICING:">
-          <KeyValue label="Data Recovery" value="150-500¤" />
-          <KeyValue label="Security Audit" value="300¤" />
-          <KeyValue label="Network Setup" value="200-600¤" />
-          <KeyValue label="Forensics" value="400¤+/day" />
-          <Line yellow>Special projects: Quote upon consultation</Line>
-        </Section>
-        <Divider />
-        <Section title="HOURS & LOCATION:">
-          <Line neon>Hours: 10:00-18:00 (Mon-Fri), Appointments only</Line>
-          <Line neon>Location: Office building, 3rd floor, Suite 307</Line>
-          <Line neon>Proprietor: "Cipher" (no real name provided)</Line>
-        </Section>
-        <Divider />
-        <Section title="POLICIES:">
-          <Line yellow>• Confidentiality guaranteed (no records shared)</Line>
-          <Line yellow>• Payment upfront for new clients</Line>
-          <Line yellow>• No corporate contracts (independents only)</Line>
-          <Line red>• Illegal requests declined (officially)</Line>
-        </Section>
-        <Divider />
-        <Line pink>"Your secrets are safe. From everyone except me."</Line>
-      </>
+      <PublicPortal
+        name="CIPHER SOLUTIONS"
+        tagline="Data Recovery. System Security. Discretion Guaranteed."
+        network="CIPHER_GUEST"
+        signalStrength="strong"
+        status="✓ ACCEPTING CLIENTS"
+        statusColor="neon"
+        notes={[
+          "Appointments only",
+          "Confidentiality guaranteed",
+          "No corporate contracts (independents only)"
+        ]}
+        theme="friendly"
+      >
+        <HoursBanner
+          name="Schedule"
+          hours="10:00 - 18:00"
+          days="Monday - Friday (Appointments Only)"
+        />
+      </PublicPortal>
     ),
     related_commands: {
-      "Office Workstation": {
-        password: {
-          pw: "encryption",
-          hint: "What Cipher specializes in for security",
-          hintStrength: 2,
-        },
+      "Personnel File": {
         content: (
-          <>
-            <Line smoke large bold>[WORKSTATION - MAIN TERMINAL]</Line>
-            <Line cyan>Location: Office Suite 307, primary desk</Line>
-            <Divider />
-            <DataTable data={[
-              { label: "Model", value: "Custom-built (high-end components)" },
-              { label: "Status", value: "ON (multiple VMs running)" },
-              { label: "Security", value: "Military-grade encryption" },
-              { label: "Last Login", value: "4 hours ago" },
-            ]} />
-            <Divider />
-            <Section title="ACTIVE PROJECTS:">
-              <Line neon>→ Data recovery: Corporate exec's deleted emails (80% complete)</Line>
-              <Line neon>→ Security audit: Small business network (in progress)</Line>
-              <Line neon>→ Forensics: Divorce case evidence (waiting on payment)</Line>
-              <Line yellow>→ Special project: [ENCRYPTED] (no details visible)</Line>
-            </Section>
-            <Divider />
-            <Section title="RECENT FILES:">
-              <Line cyan>Client_447_Recovery.log (2 days ago)</Line>
-              <Line cyan>NetworkMap_SmallBiz_082.png (yesterday)</Line>
-              <Line cyan>Invoice_Template.docx (this morning)</Line>
-              <Line yellow>Personal_Notes_Encrypted.txt (unknown date)</Line>
-            </Section>
-            <Divider />
-            <Section title="INSTALLED TOOLS:">
-              <Line neon>Professional data recovery suite</Line>
-              <Line neon>Network analysis & penetration testing tools</Line>
-              <Line neon>Forensic imaging software</Line>
-              <Line neon>Custom scripts (proprietary)</Line>
-            </Section>
-          </>
+          <PersonnelFile
+            employeeId="TECH-CIPHER-001"
+            name="Cipher"
+            age={36}
+            position="Owner / Security Consultant"
+            department="Independent Data Forensics"
+            hireDate="2075 (7 years in business)"
+            supervisor="Self-employed"
+            clearanceLevel={5}
+            district="Office building, 3rd floor (unknown residence)"
+            emergencyContact="None provided"
+            performance={96}
+            notes={[
+              "Real name unknown - operates under pseudonym 'Cipher'",
+              "Expert: Data recovery, digital forensics, network security",
+              "Reputation: Brilliant but secretive, absolutely trustworthy",
+              "Refuses corporate clients - independents only",
+              "Known for: Military-grade encryption, quantum-secured safe",
+              "Motto: 'Your secrets are safe. From everyone except me.'"
+            ]}
+            status="ACTIVE"
+          />
+        ),
+      },
+
+      "Office Workstation": {
+        // password: {
+        //   pw: "encryption",
+        //   hint: "What Cipher specializes in for security",
+        //   difficulty: "medium",
+        //   content: <Locked theme="terminal" title="WORKSTATION ACCESS" />
+        // },
+        content: (
+          <Workstation
+            owner="Cipher"
+            role="Security Consultant / Data Forensics"
+            status="IDLE"
+            lastActivity="4 hours ago"
+            openTabs={[
+              { title: 'Client 447 - Recovery Progress', type: 'work' },
+              { title: 'Network Analysis - SmallBiz 082', type: 'work' },
+              { title: 'Forensic Imaging Software', type: 'work' },
+              { title: '[ENCRYPTED PROJECT]', type: 'work' },
+            ]}
+            recentFiles={[
+              { name: 'Client_447_Recovery.log', timestamp: '2 days ago' },
+              { name: 'NetworkMap_SmallBiz_082.png', timestamp: 'Yesterday' },
+              { name: 'Invoice_Template.docx', timestamp: 'This morning' },
+              { name: 'Personal_Notes_Encrypted.txt', timestamp: 'Unknown' },
+            ]}
+            emails={8}
+            productivity={94}
+          />
         ),
       },
 
       "Office Safe": {
-        password: {
-          pw: "decryption",
-          hint: "Opposite of encryption",
-          hintStrength: 1,
-        },
+        // password: {
+        //   pw: "decryption",
+        //   hint: "Opposite of encryption",
+        //   difficulty: "easy",
+        //   content: <Locked theme="safe" title="OFFICE SAFE" />
+        // },
         content: (
           <Safe
-            id="cipher-suite-307"
+            id="cipher-office-safe"
             model="DS-500X"
             location="Suite 307, wall-mounted behind desk"
             owner="Cipher (proprietor)"
@@ -723,7 +898,7 @@ export const FUN_COMMANDS = {
               {
                 id: "cipher_business_credchip",
                 label: "Credchip",
-                description: "95¤ (business account, transferable)",
+                description: "95¤ (business account)",
                 value: 95,
                 isCredits: true
               },
@@ -741,45 +916,88 @@ export const FUN_COMMANDS = {
 
   "The Compiler Bar": {
     content: (
-      <>
-        <Line cyan large bold>THE COMPILER BAR</Line>
-        <Line yellow>"Where Code Meets Culture."</Line>
-        <Divider />
-        <Line neon>Connecting to bar terminal...</Line>
-        <Line cyan>[PUBLIC ACCESS]</Line>
-        <Divider />
-        <Section title="BAR MENU:">
-          <KeyValue label="Beer (craft local)" value="10¤" />
-          <KeyValue label="Coffee (actually good)" value="6¤" />
-          <KeyValue label="Whiskey (imported)" value="15¤" />
-          <KeyValue label="Energy Drink" value="7¤" />
-          <KeyValue label="The Infinite Loop" value="12¤ (house special)" />
-        </Section>
-        <Divider />
-        <Section title="FOOD MENU:">
-          <Line neon>Code-fuel nachos: 12¤</Line>
-          <Line neon>Syntax error sandwich: 14¤</Line>
-          <Line neon>Debugging pizza (personal): 16¤</Line>
-          <Line neon>Stack overflow fries: 8¤</Line>
-        </Section>
-        <Divider />
-        <Section title="HOURS & LOCATION:">
-          <Line neon>Open: 14:00-02:00 (every day)</Line>
-          <Line neon>Location: Tech district, near startup corridor</Line>
-          <Line neon>Atmosphere: Casual, tech-heavy crowd</Line>
-        </Section>
-        <Divider />
-        <Section title="FEATURES:">
-          <Line yellow>• Free wifi (gigabit fiber, no restrictions)</Line>
-          <Line yellow>• Charging stations at every table</Line>
-          <Line yellow>• Weekly coding meetups (Thursdays, 19:00)</Line>
-          <Line yellow>• Whiteboard wall (collaborative problem-solving)</Line>
-        </Section>
-        <Divider />
-        <Line pink>"// TODO: Get another drink"</Line>
-      </>
+      <PublicPortal
+        name="THE COMPILER BAR"
+        tagline="Where Code Meets Culture."
+        network="COMPILER_GUEST_WIFI"
+        signalStrength="strong"
+        status="✓ OPEN"
+        statusColor="neon"
+        nowPlaying="Recursion Blues - The Stack Overflow"
+        notes={[
+          "Free wifi (gigabit fiber)",
+          "Weekly coding meetups (Thursdays, 19:00)",
+          "Whiteboard wall for collaborative problem-solving"
+        ]}
+        theme="casual"
+      >
+        <HoursBanner
+          name="Schedule"
+          hours="14:00 - 02:00"
+          days="Every Day"
+        />
+      </PublicPortal>
     ),
     related_commands: {
+      "Bar Menu": {
+        content: (
+          <Menu
+            title="THE COMPILER BAR"
+            subtitle="Tech District's Favorite Watering Hole"
+            signType="cocktail"
+            categories={[
+              {
+                name: "DRINKS",
+                items: [
+                  { name: "Beer (craft local)", price: "10¤" },
+                  { name: "Coffee (actually good)", price: "6¤" },
+                  { name: "Whiskey (imported)", price: "15¤" },
+                  { name: "Energy Drink", price: "7¤" },
+                  { name: "The Infinite Loop", price: "12¤ (house special)" },
+                ],
+              },
+              {
+                name: "FOOD",
+                items: [
+                  { name: "Code-fuel nachos", price: "12¤" },
+                  { name: "Syntax error sandwich", price: "14¤" },
+                  { name: "Debugging pizza (personal)", price: "16¤" },
+                  { name: "Stack overflow fries", price: "8¤" },
+                ],
+              },
+            ]}
+            footer="// TODO: Get another drink"
+          />
+        ),
+      },
+
+      "Personnel File": {
+        content: (
+          <PersonnelFile
+            employeeId="BAR-COMPILER-001"
+            name="Morgan Patel"
+            age={39}
+            position="Owner / Bartender"
+            department="Independent Hospitality"
+            hireDate="2074 (8 years in business)"
+            supervisor="Self-employed"
+            clearanceLevel={5}
+            district="Tech district (lives in apartment above bar)"
+            emergencyContact="Dev Patel (sibling)"
+            performance={89}
+            notes={[
+              "Former software engineer - left tech to open bar",
+              "Knows programming, creates themed drinks and menu items",
+              "Hosts weekly coding meetups (popular with local devs)",
+              "Reputation: Friendly, tech-savvy, understands the crowd",
+              "Known for: Whiteboard wall, free gigabit wifi",
+              "Bar motto: '// TODO: Get another drink'"
+            ]}
+            status="ACTIVE"
+          />
+        ),
+      },
+
       "Bar Jukebox": {
         content: (
           <Jukebox
@@ -798,11 +1016,12 @@ export const FUN_COMMANDS = {
       },
 
       "Bar Safe": {
-        password: {
-          pw: "algorithm",
-          hint: "What programmers write to solve problems",
-          hintStrength: 2,
-        },
+        // password: {
+        //   pw: "algorithm",
+        //   hint: "What programmers write to solve problems",
+        //   difficulty: "medium",
+        //   content: <Locked theme="safe" title="BAR SAFE" />
+        // },
         content: (
           <Safe
             id="compiler-bar-safe"
@@ -815,7 +1034,7 @@ export const FUN_COMMANDS = {
               {
                 id: "compiler_cash",
                 label: "Cash",
-                description: "340¤ (daily receipts from card payments)",
+                description: "340¤ (daily receipts)",
                 value: 340,
                 isCredits: true
               },
@@ -834,7 +1053,7 @@ export const FUN_COMMANDS = {
               {
                 id: "compiler_petty_cash",
                 label: "Credchip",
-                description: "32¤ (bar petty cash, transferable)",
+                description: "32¤ (bar petty cash)",
                 value: 32,
                 isCredits: true
               },
@@ -849,36 +1068,39 @@ export const FUN_COMMANDS = {
         ),
       },
 
-      access_internal: {
-        password: {
-          pw: "debug",
-          hint: "What programmers do when code doesn't work",
-          hintStrength: 3,
-        },
+      "Internal Systems": {
+        // password: {
+        //   pw: "debug",
+        //   hint: "What programmers do when code doesn't work",
+        //   difficulty: "hard",
+        //   content: <Locked theme="terminal" title="BAR SYSTEMS" />
+        // },
         content: (
-          <>
-            <Line smoke large bold>[BAR INTERNAL SYSTEMS]</Line>
-            <Line cyan>[STAFF ACCESS]</Line>
+          <MaintenanceAccess
+            title="[BAR INTERNAL SYSTEMS]"
+            deviceModel="POS & Inventory System"
+            deviceId="BAR-COMPILER-01"
+            firmwareVersion="v4.2.0"
+            systemStatus="OPERATIONAL"
+            notes={[
+              "Today's transactions: 67",
+              "Revenue: 823¤ (above average for weekday)",
+              "Occupancy: 24 customers (moderate)",
+              "Most ordered: Coffee, Beer, Energy drinks"
+            ]}
+          >
             <Divider />
-            <Section title="TODAY'S METRICS:">
-              <Line neon>Transactions: 67 (as of current time)</Line>
-              <Line neon>Revenue: 823¤ (above average for weekday)</Line>
-              <Line neon>Most ordered: Coffee (32), Beer (28), Energy drinks (18)</Line>
-              <Line neon>Occupancy: 24 customers (moderate)</Line>
-            </Section>
-            <Divider />
-            <Section title="INVENTORY ALERTS:">
+            <InsetBox title="INVENTORY ALERTS:">
               <Line yellow>Low stock: Imported whiskey, craft beer (IPA)</Line>
               <Line yellow>Reorder needed: Coffee beans, energy drinks</Line>
               <Line red>Out of stock: The Infinite Loop ingredients (signature drink)</Line>
-            </Section>
-            <Divider />
-            <Section title="UPCOMING EVENTS:">
+            </InsetBox>
+            <InsetBox title="UPCOMING EVENTS:">
               <Line cyan>Tomorrow: Coding meetup (expected 15-20 attendees)</Line>
               <Line cyan>This weekend: Live music - "The Exception Handlers"</Line>
               <Line cyan>Next week: Startup pitch night (reserved area)</Line>
-            </Section>
-          </>
+            </InsetBox>
+          </MaintenanceAccess>
         ),
       },
     },
@@ -890,43 +1112,44 @@ export const FUN_COMMANDS = {
 
   "Public Terminal (Tech District)": {
     content: (
-      <>
-        <Line smoke large bold>[PUBLIC INFORMATION TERMINAL]</Line>
-        <Line cyan>Location: Tech district plaza, near transit stop</Line>
+      <MaintenanceAccess
+        title="[PUBLIC INFORMATION TERMINAL]"
+        deviceModel="CityInfo Kiosk 3000"
+        deviceId="KIOSK-TECH-047"
+        firmwareVersion="v5.1.2"
+        systemStatus="OPERATIONAL"
+        notes={[
+          "Location: Tech district plaza, near transit stop",
+          "Purpose: City directory, maps, internet access",
+          "Cost: 10¤ per 15 minutes (internet)",
+          "Condition: Good (regular maintenance)",
+          "Serviced weekly by Cynergy infrastructure division"
+        ]}
+      >
         <Divider />
-        <DataTable data={[
-          { label: "Status", value: "OPERATIONAL" },
-          { label: "Purpose", value: "City directory, maps, internet access" },
-          { label: "Cost", value: "10¤ per 15 minutes (internet)" },
-          { label: "Condition", value: "Good (regular maintenance)" },
-        ]} />
-        <Divider />
-        <Section title="AVAILABLE SERVICES:">
+        <InsetBox title="AVAILABLE SERVICES:">
           <Line neon>• City maps & navigation</Line>
           <Line neon>• Transit schedules & routes</Line>
           <Line neon>• Business directory</Line>
           <Line neon>• Emergency contacts</Line>
           <Line neon>• Public announcements</Line>
           <Line neon>• Internet access (paid)</Line>
-        </Section>
-        <Divider />
-        <Section title="RECENT SEARCHES (Anonymous):">
+        </InsetBox>
+        <InsetBox title="RECENT SEARCHES (Anonymous):">
           <Line pink>→ "cipher solutions reviews"</Line>
           <Line pink>→ "data recovery success rate"</Line>
           <Line pink>→ "is AI sentient yet"</Line>
           <Line pink>→ "best bars near me"</Line>
           <Line pink>→ "how to leave cy permanently"</Line>
-        </Section>
-        <Divider />
-        <Line yellow>Terminal serviced weekly by Cynergy infrastructure division</Line>
-      </>
+        </InsetBox>
+      </MaintenanceAccess>
     ),
   },
 
   "Smart Vending Machine (SMV_729)": {
     content: (
       <VendingMachine
-        id="tech-district-plaza-vending"
+        id="tech-plaza-vending"
         model="SVM-700"
         location="Tech district plaza, near benches"
         drinks={[
@@ -940,27 +1163,36 @@ export const FUN_COMMANDS = {
     ),
     related_commands: {
       "Maintenance Access": {
-        password: {
-          pw: "restock",
-          hint: "What you do when inventory runs low",
-          hintStrength: 2,
-        },
+        // password: {
+        //   pw: "restock",
+        //   hint: "What you do when inventory runs low",
+        //   difficulty: "medium",
+        //   content: <Locked theme="terminal" title="VENDING MAINTENANCE" />
+        // },
         content: (
           <MaintenanceAccess
+            title="[VENDING MACHINE MAINTENANCE]"
             deviceModel="SVM-700"
             deviceId="PLAZA-VM-2891"
             firmwareVersion="v3.2.1"
             systemStatus="OPERATIONAL"
             uptime="12 days, 4 hours"
+            notes={[
+              "Last service: 2 days ago (routine)",
+              "Next service: Thursday, 09:00",
+              "Owner: VendCorp (vending division)",
+              "Machine empties to central vault weekly"
+            ]}
           />
         ),
         related_commands: {
           "Internal Safe": {
-            password: {
-              pw: "coins",
-              hint: "What accumulates in the cash box",
-              hintStrength: 1,
-            },
+            // password: {
+            //   pw: "coins",
+            //   hint: "What accumulates in the cash box",
+            //   difficulty: "easy",
+            //   content: <Locked theme="safe" title="CASH BOX" />
+            // },
             content: (
               <Safe
                 id="tech-plaza-vending-safe"
@@ -994,7 +1226,7 @@ export const FUN_COMMANDS = {
                   {
                     id: "vending_credchip",
                     label: "Credchip",
-                    description: "95¤ (2 days of receipts, transferable)",
+                    description: "95¤ (2 days of receipts)",
                     value: 95,
                     isCredits: true
                   },
@@ -1014,19 +1246,20 @@ export const FUN_COMMANDS = {
   },
 
   "ATM (Tech District Corner)": {
-    password: {
-      pw: "fiatvalue",
-      hint: "It’s worth something because everyone agrees it is",
-      hintStrength: 1,
-    },
+    // password: {
+    //   pw: "fiatvalue",
+    //   hint: "It's worth something because everyone agrees it is",
+    //   difficulty: "easy",
+    //   content: <Locked theme="terminal" title="ATM ACCESS" />
+    // },
     content: (
       <ATM
         id="tech-district-atm"
         model="ATM-600"
         location="Tech district, corner of Innovation Ave & 7th"
         network="CityBank Network"
-        accountHolder="Sarah Chen (tech worker)"
-        balance="847¤"
+        credits={200}
+        lastService="5 days ago"
         transactions={[
           "08:15 → Withdrawal: 100¤",
           "09:42 → Balance inquiry",
@@ -1034,73 +1267,71 @@ export const FUN_COMMANDS = {
           "14:33 → Deposit: 200¤ (paycheck)",
           "16:08 → Withdrawal: 40¤",
         ]}
-        lastService="5 days ago"
       />
     ),
   },
 
   "Traffic Signal Control (Innovation & 7th)": {
     content: (
-      <>
-        <Line smoke large bold>[TRAFFIC SIGNAL - INNOVATION AVE & 7TH ST]</Line>
-        <Line cyan>Automated signal control system</Line>
+      <MaintenanceAccess
+        title="[TRAFFIC SIGNAL - INNOVATION AVE & 7TH ST]"
+        deviceModel="Traffic Control System"
+        deviceId="TRAFFIC-INNO7-01"
+        firmwareVersion="v6.0.3"
+        systemStatus="OPERATIONAL"
+        notes={[
+          "Operation Mode: AUTOMATED (adaptive timing)",
+          "Cycle Time: 80 seconds (adjusts to traffic)",
+          "Last Malfunction: 6 weeks ago (resolved)",
+          "Maintained by: Cynergy Infrastructure Division"
+        ]}
+      >
         <Divider />
-        <DataTable data={[
-          { label: "Operation Mode", value: "AUTOMATED (adaptive timing)" },
-          { label: "Cycle Time", value: "80 seconds (adjusts to traffic)" },
-          { label: "Last Malfunction", value: "6 weeks ago (resolved)" },
-          { label: "Pedestrian Signals", value: "FUNCTIONAL" },
-        ]} />
-        <Divider />
-        <Section title="CURRENT TIMING:">
+        <InsetBox title="CURRENT TIMING:">
           <Line neon>Innovation Ave (East-West): 40 seconds green</Line>
           <Line neon>7th St (North-South): 30 seconds green</Line>
           <Line neon>All-red phase: 5 seconds (safety buffer)</Line>
           <Line neon>Pedestrian crossing: 20 seconds</Line>
-        </Section>
-        <Divider />
-        <Section title="TRAFFIC METRICS (Last Hour):">
+        </InsetBox>
+        <InsetBox title="TRAFFIC METRICS (Last Hour):">
           <Line cyan>Vehicles: 287 (Innovation Ave), 156 (7th St)</Line>
           <Line cyan>Pedestrians: 67 crossings</Line>
           <Line cyan>Emergency vehicle overrides: 1</Line>
           <Line cyan>Average wait time: 32 seconds</Line>
-        </Section>
-        <Divider />
-        <Line yellow>Maintained by: Cynergy Infrastructure Division</Line>
-      </>
+        </InsetBox>
+      </MaintenanceAccess>
     ),
   },
 
   "Streetlight Grid (Innovation Ave)": {
     content: (
-      <>
-        <Line smoke large bold>[STREETLIGHT CONTROL - INNOVATION AVENUE]</Line>
-        <Line cyan>Grid management system (45 units)</Line>
+      <MaintenanceAccess
+        title="[STREETLIGHT CONTROL - INNOVATION AVENUE]"
+        deviceModel="Street Lighting System"
+        deviceId="LIGHTS-INNO-01"
+        firmwareVersion="v4.1.0"
+        systemStatus="OPERATIONAL"
+        notes={[
+          "Grid management: 45 units total",
+          "Active lights: 43/45 (95.6%)",
+          "Malfunctioning: 2 units (repair scheduled)",
+          "System managed by Cynergy Water & Power Co."
+        ]}
+      >
         <Divider />
-        <Section title="CURRENT STATUS:">
-          <DataTable data={[
-            { label: "Active lights", value: "43/45 (95.6%)" },
-            { label: "Malfunctioning", value: "2 units (repair scheduled)" },
-            { label: "Power consumption", value: "Normal (energy-saving mode active)" },
-            { label: "Brightness", value: "75% (adaptive based on ambient light)" },
-          ]} />
-        </Section>
-        <Divider />
-        <Section title="SCHEDULED OPERATIONS:">
+        <InsetBox title="SCHEDULED OPERATIONS:">
           <Line neon>Auto-on: 18:30 (dusk sensor)</Line>
           <Line neon>Auto-off: 06:00 (dawn sensor)</Line>
           <Line neon>Dimming: 23:00-05:00 (reduced brightness during low traffic)</Line>
-        </Section>
-        <Divider />
-        <Section title="MAINTENANCE LOG:">
+          <Line neon>Brightness: 75% (adaptive based on ambient light)</Line>
+        </InsetBox>
+        <InsetBox title="MAINTENANCE LOG:">
           <Line yellow>Last service: 3 weeks ago</Line>
           <Line yellow>Next scheduled: 5 weeks</Line>
           <Line yellow>Failed units: #23 (ballast issue), #37 (vandalism)</Line>
           <Line red>Vandalism incidents: 2 this quarter</Line>
-        </Section>
-        <Divider />
-        <Line cyan>System managed by Cynergy Water & Power Co.</Line>
-      </>
+        </InsetBox>
+      </MaintenanceAccess>
     ),
   },
 
@@ -1110,122 +1341,100 @@ export const FUN_COMMANDS = {
 
   "NetBattler Arcade (Tech Mall)": {
     content: (
-      <>
-        <Line cyan large bold>NETBATTLER ARCADE</Line>
-        <Line yellow>"Jack In. Battle. Win."</Line>
+      <PublicPortal
+        name="NETBATTLER ARCADE"
+        tagline="Jack In. Battle. Win."
+        network="ARCADE_GUEST"
+        signalStrength="strong"
+        status="✓ OPEN"
+        statusColor="neon"
+        nowPlaying="NetBattle Tournament Stream (live)"
+        notes={[
+          "Cost: 5¤ per game, 20¤ for 5 games",
+          "Players online: 18 (across 12 terminals)",
+          "Weekly tournaments - Saturday, 14:00"
+        ]}
+        theme="friendly"
+      >
+        <HoursBanner
+          name="Schedule"
+          hours="10:00 - 22:00"
+          days="Every Day"
+        />
         <Divider />
-        <Line neon>Connecting to arcade network...</Line>
-        <Line cyan>[PLAYER ACCESS]</Line>
-        <Divider />
-        <Section title="ARCADE INFO:">
-          <Line neon>Location: Tech district shopping mall, 2nd floor</Line>
-          <Line neon>Hours: 10:00-22:00 (every day)</Line>
-          <Line neon>Cost: 5¤ per game, 20¤ for 5 games</Line>
-          <Line neon>Players online: 18 (across 12 terminals)</Line>
-        </Section>
-        <Divider />
-        <Section title="AVAILABLE GAMES:">
-          <Line pink>→ NetBattle Arena (PvP virus busting)</Line>
-          <Line pink>→ Chip Trader Simulator (collect & trade)</Line>
-          <Line pink>→ Cyber World Explorer (story mode)</Line>
-          <Line pink>→ Tournament Mode (weekly competitions)</Line>
-        </Section>
-        <Divider />
-        <Section title="LEADERBOARD (This Week):">
-          <Line yellow>1st: "MegaFan_42" - 2,847 points</Line>
-          <Line yellow>2nd: "Roll_Backup" - 2,301 points</Line>
-          <Line yellow>3rd: "HubStyle" - 1,998 points</Line>
-        </Section>
-        <Divider />
-        <Section title="UPCOMING TOURNAMENT:">
+        <InsetBox title="UPCOMING TOURNAMENT:">
           <Line cyan>Date: This Saturday, 14:00</Line>
           <Line cyan>Prize: 200¤ + Rare chip code</Line>
           <Line cyan>Registration: Open (12/16 slots filled)</Line>
-        </Section>
-        <Divider />
+        </InsetBox>
         <Line pink>"Jack in! MegaMan, execute!"</Line>
-      </>
+      </PublicPortal>
     ),
   },
 
   "Trauma Response Station (Medical District)": {
     content: (
-      <>
-        <Line cyan large bold>TRAUMA RESPONSE COORDINATION</Line>
-        <Line yellow>"Critical Care. Rapid Deployment."</Line>
-        <Divider />
-        <Line neon>Accessing public information...</Line>
-        <Line cyan>[EMERGENCY SERVICES PORTAL]</Line>
-        <Divider />
-        <Section title="SERVICE OVERVIEW:">
-          <Line neon>Emergency medical response (platinum tier)</Line>
-          <Line neon>Air & ground ambulance services</Line>
-          <Line neon>Combat trauma specialists</Line>
-          <Line neon>Corporate contract coverage</Line>
-        </Section>
-        <Divider />
-        <Section title="RESPONSE TIMES:">
-          <KeyValue label="Platinum Members" value="<3 minutes (air), <5 minutes (ground)" />
-          <KeyValue label="Gold Members" value="<5 minutes (air), <8 minutes (ground)" />
-          <KeyValue label="Silver Members" value="<10 minutes (ground only)" />
-          <KeyValue label="Non-Members" value="Standard emergency services apply" />
-        </Section>
-        <Divider />
-        <Section title="MEMBERSHIP FEES:">
+      <PublicPortal
+        name="TRAUMA RESPONSE COORDINATION"
+        tagline="Critical Care. Rapid Deployment."
+        network="TRAUMA_PUBLIC"
+        signalStrength="strong"
+        status="✓ ACCEPTING MEMBERS"
+        statusColor="neon"
+        notes={[
+          "Emergency medical response (platinum tier)",
+          "Air & ground ambulance services",
+          "Corporate contract coverage available"
+        ]}
+        theme="friendly"
+      >
+        <InsetBox title="MEMBERSHIP FEES:">
           <Line yellow>Platinum: 5,000¤/month (individual), 15,000¤/month (family)</Line>
           <Line yellow>Gold: 2,500¤/month (individual), 7,500¤/month (family)</Line>
           <Line yellow>Silver: 800¤/month (individual), 2,000¤/month (family)</Line>
-        </Section>
+        </InsetBox>
         <Divider />
-        <Section title="COVERAGE AREAS:">
+        <InsetBox title="COVERAGE AREAS:">
           <Line cyan>Central districts: Full air coverage</Line>
           <Line cyan>Mid-tier districts: Ground priority</Line>
           <Line cyan>Outer districts: Limited (contract dependent)</Line>
           <Line red>Slums: No service (corporate policy)</Line>
-        </Section>
-        <Divider />
+        </InsetBox>
         <Line pink>"Your life. Our priority. Their profit."</Line>
-      </>
+      </PublicPortal>
     ),
   },
 
   "Samurai Memorabilia Shop": {
     content: (
-      <>
-        <Line cyan large bold>CHROME & STEEL COLLECTIBLES</Line>
-        <Line yellow>"Legends Never Die. They Just Get Merchandised."</Line>
+      <PublicPortal
+        name="CHROME & STEEL COLLECTIBLES"
+        tagline="Legends Never Die. They Just Get Merchandised."
+        network="CHROME_STEEL_GUEST"
+        signalStrength="strong"
+        status="✓ OPEN"
+        statusColor="neon"
+        nowPlaying="Samurai - Chippin' In (1996 remaster)"
+        notes={[
+          "Vintage & reproduction band merchandise",
+          "Bar area with themed drinks",
+          "Signed memorabilia available"
+        ]}
+        theme="friendly"
+      >
+        <HoursBanner
+          name="Schedule"
+          hours="Mon-Sat: 12:00-00:00 | Sun: 14:00-22:00"
+          days="7 Days a Week"
+        />
         <Divider />
-        <Line neon>Connecting to shop catalog...</Line>
-        <Line cyan>[CUSTOMER ACCESS]</Line>
-        <Divider />
-        <Section title="FEATURED COLLECTIONS:">
-          <Line pink>→ "Samurai" band merchandise (vintage & reproductions)</Line>
-          <Line pink>→ Rockerboy memorabilia (various artists)</Line>
-          <Line pink>→ Corporate war artifacts (authenticated pieces)</Line>
-          <Line pink>→ Cyberpunk culture items (books, posters, media)</Line>
-        </Section>
-        <Divider />
-        <Section title="HIGHLIGHTED ITEMS:">
-          <KeyValue label="Samurai concert poster (2020)" value="450¤ (reproduction)" />
-          <KeyValue label="Johnny's guitar replica" value="1,200¤ (limited edition)" />
-          <KeyValue label="Alt Cunningham biography" value="35¤ (signed copy)" />
-          <KeyValue label="Arasaka War memorabilia" value="Varies (ask owner)" />
-        </Section>
-        <Divider />
-        <Section title="SPECIAL DRINKS (Bar Area):">
+        <InsetBox title="SPECIAL DRINKS (Bar Area):">
           <Line neon>"Johnny Silverhand Special": 18¤ (whiskey, ice, attitude)</Line>
           <Line neon>"Relic Runner": 15¤ (mystery cocktail, glows slightly)</Line>
           <Line neon>"Netrunner's Choice": 12¤ (energy drink + vodka)</Line>
-        </Section>
-        <Divider />
-        <Section title="HOURS & LOCATION:">
-          <Line cyan>Hours: 12:00-midnight (Mon-Sat), 14:00-22:00 (Sun)</Line>
-          <Line cyan>Location: Entertainment district, near music venues</Line>
-          <Line cyan>Atmosphere: Dark, nostalgic, chrome everywhere</Line>
-        </Section>
-        <Divider />
+        </InsetBox>
         <Line pink>"Wake the fuck up, samurai. We have merch to sell."</Line>
-      </>
+      </PublicPortal>
     ),
   },
 };

@@ -13,6 +13,14 @@ import {
   Workstation,
   VendingMachine,
   FacilityPortal,
+  HoursBanner,
+  IncidentLog,
+  NetworkDevices,
+  CommunityBoard,
+  MaintenanceAccess,
+  Locked,
+  SecureAccessControl,
+  NetworkTrafficMonitor,
 } from "@terminal/retcomdevice"
 
 export const WAREHOUSE_COMMANDS = {
@@ -37,12 +45,43 @@ export const WAREHOUSE_COMMANDS = {
       />
     ),
     related_commands: {
+      "Operating Hours": {
+        content: (
+          <HoursBanner
+            name="Alliansen Warehouse #47"
+            hours="24/7 Operations"
+            days="Day Shift: 06:00-22:00 | Night Shift: 22:00-06:00"
+            status="NIGHT SHIFT ACTIVE"
+            statusColor="open"
+            location="Ports Industrial District"
+            note="Reduced staffing during night shift (6 personnel vs 8 day shift)"
+          >
+            <Divider />
+            <Section title="CURRENT SHIFT:">
+              <Line cyan>Night Shift (22:00 - 06:00)</Line>
+              <Line cyan>Staff: 1 Supervisor + 5 Security Guards</Line>
+              <Line yellow>Deliveries accepted 24/7 at loading dock</Line>
+            </Section>
+          </HoursBanner>
+        ),
+      },
+
       "Shipping Manifests": {
         content: (
-          <>
-            <Line smoke large bold>[SHIPPING DATABASE]</Line>
-            <Line cyan>Public shipping records (last 30 days)</Line>
-            <Divider />
+          <MaintenanceAccess
+            title="[SHIPPING DATABASE]"
+            deviceModel="Logistics Management System"
+            deviceId="SHIP-DB-47"
+            firmwareVersion="v6.2.1"
+            systemStatus="OPERATIONAL"
+            uptime="89 days, 14 hours"
+            notes={[
+              "Public shipping records available (last 30 days)",
+              "Classified shipments require SecOps authorization",
+              "Tonight's classified cargo: Military-grade (01:00 arrival)",
+              "Current location: Secure Cargo area - Container 7B"
+            ]}
+          >
             <Section title="RECENT INCOMING SHIPMENTS:">
               <Line neon>Jan 15 → Electronics components (TechCore Industries)</Line>
               <Line neon>Jan 14 → Industrial machinery parts (MetalWorks Co.)</Line>
@@ -57,18 +96,26 @@ export const WAREHOUSE_COMMANDS = {
               <Line red>01:00 → [CLASSIFIED] - Military-grade cargo</Line>
               <Line yellow>↑ Requires Level 3 clearance to view details</Line>
             </Section>
-            <Divider />
-            <Line pink>Classified shipment currently in Secure Cargo area</Line>
-          </>
+          </MaintenanceAccess>
         ),
       },
 
       "Employee Roster": {
         content: (
-          <>
-            <Line smoke large bold>[PERSONNEL DATABASE]</Line>
-            <Line cyan>Current shift: Night crew (22:00 - 06:00)</Line>
-            <Divider />
+          <MaintenanceAccess
+            title="[PERSONNEL DATABASE]"
+            deviceModel="HR Management System"
+            deviceId="HR-WH47"
+            firmwareVersion="v4.1.0"
+            systemStatus="OPERATIONAL"
+            notes={[
+              "Current shift: Night crew (22:00 - 06:00)",
+              "On duty tonight: 6 personnel total",
+              "1 Supervisor: Marcus Webb",
+              "5 Security Guards: Chen, Martinez, Park, Foster, Volkov",
+              "Full employee records require internal network access"
+            ]}
+          >
             <Section title="ON DUTY TONIGHT:">
               <Line neon>→ Marcus Webb (Night Supervisor)</Line>
               <Line neon>→ David Chen (Security - Main station)</Line>
@@ -77,18 +124,25 @@ export const WAREHOUSE_COMMANDS = {
               <Line neon>→ Andre Foster (Security - Secure Cargo checkpoint)</Line>
               <Line neon>→ Nina Volkov (Security - Secure Cargo interior)</Line>
             </Section>
-            <Divider />
-            <Line yellow>Full employee records require internal network access</Line>
-          </>
+          </MaintenanceAccess>
         ),
       },
 
       "Floor Plan (Public)": {
         content: (
-          <>
-            <Line smoke large bold>[FACILITY LAYOUT]</Line>
-            <Line cyan>Basic floor plan (fire safety documentation)</Line>
-            <Divider />
+          <MaintenanceAccess
+            title="[FACILITY LAYOUT]"
+            deviceModel="Facility Management System"
+            deviceId="FAC-MAP-47"
+            firmwareVersion="v2.0.0"
+            systemStatus="OPERATIONAL"
+            notes={[
+              "Basic floor plan (fire safety documentation)",
+              "Main areas: Administrative offices, warehouse floor, loading dock",
+              "Secure Cargo area: RESTRICTED ACCESS (Level 2+)",
+              "Detailed security layout requires elevated clearance"
+            ]}
+          >
             <Section title="MAIN AREAS:">
               <Line neon>→ Administrative offices (northwest)</Line>
               <Line neon>→ Main warehouse floor (center/east)</Line>
@@ -103,9 +157,7 @@ export const WAREHOUSE_COMMANDS = {
               <Line yellow>→ Side exit (east warehouse)</Line>
               <Line yellow>→ Emergency exit (south, alarm)</Line>
             </Section>
-            <Divider />
-            <Line pink>Detailed security layout requires Level 2+ access</Line>
-          </>
+          </MaintenanceAccess>
         ),
       },
 
@@ -136,22 +188,108 @@ export const WAREHOUSE_COMMANDS = {
         ),
       },
 
-      access_internal_network: {
-        password: {
-          pw: "logistics47",
-          hint: "Facility number + warehouse function (all lowercase)",
-          hintStrength: 2,
-        },
+      "Internal Network": {
+        // password: {
+        //   pw: "logistics47",
+        //   hint: "Facility number + warehouse function (all lowercase)",
+        //   difficulty: "medium",
+        //   content: <Locked theme="terminal" title="EMPLOYEE NETWORK" />
+        // },
         content: (
-          <Message
-            title="ALLIANSEN WAREHOUSE"
-            message="EMPLOYEE NETWORK CONNECTED"
-            note="⚠ All access logged to corporate security | Connection: RCD-#8834"
-            theme="corporate"
+          <MaintenanceAccess
+            title="[ALLIANSEN WAREHOUSE NETWORK]"
+            deviceModel="Corporate Network Gateway"
+            deviceId="NET-WH47-MAIN"
+            firmwareVersion="v7.3.2"
+            systemStatus="OPERATIONAL"
+            uptime="156 days, 8 hours"
+            notes={[
+              "All access logged to corporate security",
+              "Connection: RCD-#8834",
+              "Access Level: Employee (standard systems)",
+              "Supervisor terminal and secure cargo require elevated credentials",
+              "Security cameras, shift schedules, and facility data available"
+            ]}
           />
         ),
         related_commands: {
-          // NEW - Shift schedule
+          "Access Control System": {
+            content: (
+              <SecureAccessControl
+                systemName="WAREHOUSE ACCESS CONTROL"
+                location="Alliansen Warehouse #47"
+                systemVersion="v3.8.2"
+                lastUpdate="1 month ago"
+                accessPoints={[
+                  {
+                    name: "Loading Dock",
+                    status: "UNLOCKED",
+                    security: "NONE (24/7 access)",
+                    authorized: "All personnel",
+                    lastAccess: "Continuous",
+                    accessCount: 247
+                  },
+                ]}
+              />
+            )
+          },
+          "Network Traffic Monitor": {
+            content: (
+              <NetworkTrafficMonitor
+                systemName="WAREHOUSE NETWORK MONITOR"
+                location="Alliansen Warehouse #47"
+                bandwidth="124 MB/s (Normal)"
+                activeConnections={18}
+                transfers={[
+                  {
+                    timestamp: "22:47",
+                    filename: "Classified_Manifest_SEC-2082.pdf",
+                    size: "1.2 MB",
+                    source: "10.47.1.105 (Supervisor Terminal)",
+                    destination: "SecOps Equipment Division",
+                    protocol: "ENCRYPTED",
+                    status: "COMPLETE"
+                  },
+                  {
+                    timestamp: "23:15",
+                    filename: "night_shift_logs.txt",
+                    size: "45 KB",
+                    destination: "Corporate servers",
+                    protocol: "HTTPS",
+                    status: "COMPLETE"
+                  },
+                ]}
+              />
+            )
+          },
+          "Facility Operations": {
+            content: (
+              <MaintenanceAccess
+                title="[WAREHOUSE OPERATIONS]"
+                deviceModel="Facility Management System"
+                deviceId="OPS-WH47"
+                firmwareVersion="v5.1.0"
+                systemStatus="OPERATIONAL"
+                uptime="234 days, 11 hours"
+                notes={[
+                  "Current shift: Night (6 personnel)",
+                  "Climate control: Active (temperature-sensitive cargo)",
+                  "Forklift status: 2 operational, 1 in maintenance",
+                  "Next inventory audit: End of week",
+                  "Loading dock: Available for deliveries 24/7",
+                  "Power consumption: Normal (no anomalies)"
+                ]}
+              >
+                <Section title="FACILITY STATUS:">
+                  <Line cyan>Main warehouse: Operational</Line>
+                  <Line cyan>Secure cargo: Locked, climate controlled</Line>
+                  <Line cyan>Loading dock: Available</Line>
+                  <Line yellow>Forklift #3: Scheduled maintenance tomorrow</Line>
+                </Section>
+              </MaintenanceAccess>
+            ),
+          },
+
           "Current Shift Schedule": {
             content: (
               <ShiftSchedule
@@ -168,6 +306,74 @@ export const WAREHOUSE_COMMANDS = {
                   { name: 'Nina Volkov', role: 'Security Guard', location: 'Secure Cargo Interior', status: 'ACTIVE' },
                 ]}
                 nextShift="06:00 (Day Shift)"
+              />
+            ),
+          },
+
+          "Security Incident Log": {
+            content: (
+              <IncidentLog
+                title="SECURITY INCIDENTS"
+                timeframe="Last 30 days"
+                incidents={[
+                  {
+                    timestamp: "Jan 18 (02:15)",
+                    type: "False Alarm",
+                    details: {
+                      Event: "Motion sensor triggered in main warehouse",
+                      Resolution: "Rat infestation - exterminator scheduled",
+                      Status: "Closed - no security threat"
+                    }
+                  },
+                  {
+                    timestamp: "Jan 12 (23:40)",
+                    type: "Delivery Delay",
+                    details: {
+                      Event: "Late shipment arrival (authorized)",
+                      Resolution: "Logged, no security issues",
+                      Status: "Closed"
+                    }
+                  },
+                  {
+                    timestamp: "Jan 7 (01:20)",
+                    type: "Equipment Malfunction",
+                    details: {
+                      Event: "Camera #3 offline for 15 minutes",
+                      Resolution: "Auto-reboot successful",
+                      Status: "Closed"
+                    }
+                  },
+                  {
+                    timestamp: "Jan 3 (03:45)",
+                    type: "Patrol Report",
+                    details: {
+                      Event: "Suspicious vehicle near perimeter",
+                      Resolution: "Driver lost, provided directions",
+                      Status: "Closed - no threat"
+                    }
+                  },
+                ]}
+              >
+                <Divider />
+                <Line cyan>Overall assessment: Low-risk facility, minimal incidents</Line>
+                <Line yellow>Guard complacency noted - standard for this location</Line>
+                <Line smoke>Last serious incident: 8 months ago (attempted theft)</Line>
+              </IncidentLog>
+            ),
+          },
+
+          "Camera Network Overview": {
+            content: (
+              <NetworkDevices
+                networkName="SURVEILLANCE_SYSTEM"
+                devices={[
+                  { name: "Front Entrance", ip: "10.47.1.101", type: "Security Camera", status: "ONLINE", lastSeen: "Just now" },
+                  { name: "Main Warehouse", ip: "10.47.1.102", type: "Security Camera", status: "ONLINE", lastSeen: "Just now" },
+                  { name: "Loading Dock", ip: "10.47.1.103", type: "Security Camera", status: "ONLINE", lastSeen: "Just now" },
+                  { name: "Rec Room", ip: "10.47.1.104", type: "Security Camera", status: "ONLINE", lastSeen: "Just now" },
+                  { name: "Secure Cargo Gate", ip: "10.47.2.201", type: "Security Camera (Isolated)", status: "ONLINE", lastSeen: "Just now" },
+                  { name: "Secure Cargo Interior", ip: "10.47.2.202", type: "Security Camera (Isolated)", status: "ONLINE", lastSeen: "Just now" },
+                ]}
               />
             ),
           },
@@ -199,11 +405,12 @@ export const WAREHOUSE_COMMANDS = {
             ),
             related_commands: {
               "Secure Cargo Camera": {
-                password: {
-                  pw: "secops2082",
-                  hint: "Who authorized tonight's classified shipment? (Check manifest)",
-                  hintStrength: 2,
-                },
+                // password: {
+                //   pw: "secops2082",
+                //   hint: "Who authorized tonight's classified shipment? (Check manifest)",
+                //   difficulty: "medium",
+                //   content: <Locked theme="terminal" title="SECURE CAMERAS" />
+                // },
                 content: (
                   <Camera
                     id="alliansen-warehouse-securecargo"
@@ -229,12 +436,45 @@ export const WAREHOUSE_COMMANDS = {
             },
           },
 
+          "Employee Notice Board": {
+            content: (
+              <CommunityBoard
+                id="warehouse-board"
+                boardName="EMPLOYEE NOTICES"
+                location="Break room - Wall near coffee station"
+                posts={[
+                  { text: "Reminder: Lock all doors when leaving secure areas", color: "yellow" },
+                  { text: "Pizza party Friday for meeting safety goals!", color: "cyan" },
+                  { text: "Anyone want to trade Saturday shift? Contact James", color: "pink" },
+                  { text: "Lost jacket in rec room - contact Marcus if found", color: "smoke" },
+                  { text: "Forklift #3 out of service tomorrow - use #1 or #2", color: "yellow" },
+                  { text: "Exterminator coming Monday - warehouse will smell", color: "smoke" },
+                ]}
+                services={[
+                  "Union rep available Tuesdays 14:00-16:00",
+                  "Free coffee in break room (bring your own mug)",
+                  "Break room vending machine accepts credits only",
+                ]}
+                vibe="Standard warehouse - boring but steady work"
+              />
+            ),
+          },
+
           "Personnel Records": {
             content: (
-              <>
-                <Line smoke large bold>[PERSONNEL FILES]</Line>
-                <Line cyan>Night shift employees - Detailed records</Line>
-                <Divider />
+              <MaintenanceAccess
+                title="[PERSONNEL FILES]"
+                deviceModel="HR Database"
+                deviceId="HR-STAFF-47"
+                firmwareVersion="v4.1.0"
+                systemStatus="OPERATIONAL"
+                notes={[
+                  "Night shift employees - Detailed records",
+                  "6 personnel on duty tonight",
+                  "Performance reviews current as of last month",
+                  "Emergency contact info verified quarterly"
+                ]}
+              >
                 <Section title="QUICK ACCESS:">
                   <Line neon>→ Marcus Webb (Supervisor)</Line>
                   <Line neon>→ David Chen (Security)</Line>
@@ -243,7 +483,7 @@ export const WAREHOUSE_COMMANDS = {
                   <Line neon>→ Andre Foster (Security)</Line>
                   <Line neon>→ Nina Volkov (Security)</Line>
                 </Section>
-              </>
+              </MaintenanceAccess>
             ),
             related_commands: {
               "Marcus Webb": {
@@ -405,11 +645,12 @@ export const WAREHOUSE_COMMANDS = {
           },
 
           "Supervisor's Terminal": {
-            password: {
-              pw: "webb2041",
-              hint: "Supervisor's last name + birth year (check personnel file)",
-              hintStrength: 2,
-            },
+            // password: {
+            //   pw: "webb2041",
+            //   hint: "Supervisor's last name + birth year (check personnel file)",
+            //   difficulty: "medium",
+            //   content: <Locked theme="terminal" title="SUPERVISOR WORKSTATION" />
+            // },
             content: (
               <Workstation
                 owner="Marcus Webb"
@@ -472,7 +713,8 @@ export const WAREHOUSE_COMMANDS = {
                 password: {
                   pw: "emergency",
                   hint: "What type of situation would require these codes?",
-                  hintStrength: 1,
+                  difficulty: "expert",
+                  content: <Locked theme="terminal" title="EMERGENCY SYSTEMS" />
                 },
                 content: (
                   <>
@@ -501,11 +743,12 @@ export const WAREHOUSE_COMMANDS = {
           },
 
           "Supervisor's Office Safe": {
-            password: {
-              pw: "fisherman",
-              hint: "Marcus Webb's favorite hobby (check his profile)",
-              hintStrength: 2,
-            },
+            // password: {
+            //   pw: "fisherman",
+            //   hint: "Marcus Webb's favorite hobby (check his profile)",
+            //   difficulty: "medium",
+            //   content: <Locked theme="safe" title="SUPERVISOR SAFE" />
+            // },
             content: (
               <Safe
                 id="alliansen-warehouse-supervisor"
@@ -557,7 +800,6 @@ export const WAREHOUSE_COMMANDS = {
             ),
           },
 
-          // NEW - Break room terminal
           "Rec Room Terminal": {
             content: (
               <Workstation
@@ -580,7 +822,6 @@ export const WAREHOUSE_COMMANDS = {
             ),
           },
 
-          // NEW - Main security workstation
           "Main Security Workstation": {
             content: (
               <Workstation
@@ -604,7 +845,6 @@ export const WAREHOUSE_COMMANDS = {
             ),
           },
 
-          // NEW - Vending machine
           "Warehouse Vending Machine": {
             content: (
               <VendingMachine
@@ -627,3 +867,5 @@ export const WAREHOUSE_COMMANDS = {
     },
   },
 };
+
+export default WAREHOUSE_COMMANDS;

@@ -23,9 +23,13 @@ import {
   VIPList,
   IncidentLog,
   MaintenanceAccess,
+  NetworkTrafficMonitor,
+  SecureAccessControl,
+  Locked,
 } from "@terminal/retcomdevice"
 
-import LuckyFlightAd from './ad'
+import LuckyFlightAd from './casino_ad'
+
 import basementImage from '@images/blueprints/lucky_flight_basement.png';
 import floor1Image from '@images/blueprints/lucky_flight_floor_1.png';
 import floor2Image from '@images/blueprints/lucky_flight_floor_2.png';
@@ -40,7 +44,7 @@ export const LUCKY_FLIGHT_CASINO = {
         password: {
           pw: "liquidity",
           hint: "You don’t need more money. You need to move it.",
-          hintStrength: 1,
+          difficulty: "expert",
         },
         content: (
           <ATM
@@ -166,11 +170,11 @@ export const LUCKY_FLIGHT_CASINO = {
         ),
         related_commands: {
           "Maintenance Access": {
-            password: {
-              pw: "quantum",
-              hint: "Top selling soda",
-              hintStrength: 2,
-            },
+            // password: {
+            //   pw: "quantum",
+            //   hint: "Top selling soda",
+            //   difficulty: "medium",
+            // },
             content: (
               <>
                 <Line smoke large bold>[MAINTENANCE MENU]</Line>
@@ -212,11 +216,11 @@ export const LUCKY_FLIGHT_CASINO = {
       },
 
       "Casino Internal Network [PRIVATE]": {
-        password: {
-          pw: "loadeddice",
-          hint: "Better not get caught",
-          hintStrength: 1,
-        },
+        // password: {
+        //   pw: "loadeddice",
+        //   hint: "Better not get caught",
+        //   difficulty: "expert",
+        // },
         content: (
           <MaintenanceAccess
             title="[CASINO INTERNAL NETWORK]"
@@ -235,11 +239,11 @@ export const LUCKY_FLIGHT_CASINO = {
         ),
         related_commands: {
           "Facility Files": {
-            password: {
-              pw: "architecture",
-              hint: "What blueprints are a form of",
-              hintStrength: 2,
-            },
+            // password: {
+            //   pw: "architecture",
+            //   hint: "What blueprints are a form of",
+            //   difficulty: "medium",
+            // },
             content: (
               <>
                 <Line smoke large bold>[FACILITY BLUEPRINTS]</Line>
@@ -343,38 +347,28 @@ export const LUCKY_FLIGHT_CASINO = {
             },
           },
           "Personnel Files": {
-            password: {
-              pw: "gibos",
-              hint: "Nickname of the cyborg grandpa winning big at slots",
-              hintStrength: 2,
-            },
+            // password: {
+            //   pw: "gibos",
+            //   hint: "Nickname of the cyborg grandpa winning big at slots",
+            //   difficulty: "hard",
+            // },
             content: (
-              <>
-                <Line smoke large bold>[HR DATABASE]</Line>
-                <Line cyan>Personnel files accessed</Line>
-                <Divider />
-                <Section title="CATEGORIES:">
-                  <Line neon>→ Management (2 active)</Line>
-                  <Line neon>→ Security personnel (5 active)</Line>
-                  <Line neon>→ Floor staff (18 active)</Line>
-                  <Line neon>→ Special assets (1 classified)</Line>
-                </Section>
-                <Divider />
-                <Section title="EMPLOYEE ROSTER:">
-                  <Line cyan>Management:</Line>
-                  <Line neon>  → Vaska Jordan (Casino Manager)</Line>
-                  <Line neon>  → Wattana Kovit (Head of Security)</Line>
-                  <Divider />
-                  <Line cyan>Security Staff:</Line>
-                  <Line neon>  → Wingus Drey (Entrance Security)</Line>
-                  <Line neon>  → Dingus Marks (Entrance Security)</Line>
-                  <Line neon>  → Adilet Nurlan (Guest Services Officer)</Line>
-                  <Line neon>  → [3 additional SecOps - files locked]</Line>
-                  <Divider />
-                  <Line cyan>Special Assets:</Line>
-                  <Line red>  → [CLASSIFIED - Executive Access Only]</Line>
-                </Section>
-              </>
+              <MaintenanceAccess
+                title="[HR DATABASE]"
+                deviceModel="Personnel Management System"
+                deviceId="HR-DB-MAIN"
+                firmwareVersion="v4.1.2"
+                systemStatus="OPERATIONAL"
+                uptime="89 days, 4 hours"
+                notes={[
+                  "Access Level: Standard HR queries",
+                  "Management: 2 active employees",
+                  "Security Personnel: 5 active employees",
+                  "Floor Staff: 18 active employees",
+                  "Special Assets: 1 classified (Executive access only)",
+                  "Last database update: 6 hours ago"
+                ]}
+              />
             ),
             related_commands: {
               "Wingus Drey": {
@@ -496,11 +490,11 @@ export const LUCKY_FLIGHT_CASINO = {
                 ),
               },
               "UNNAMED ENTRY": {
-                password: {
-                  pw: "database",
-                  hint: "Please help! I've been turned into a living...",
-                  hintStrength: 0,
-                },
+                // password: {
+                //   pw: "database",
+                //   hint: "Please help! I've been turned into a living...",
+                //   difficulty: "corporate",
+                // },
                 content: (
                   <Box color="pink">
                     <Line pink large bold>[CLASSIFIED FILE: ZOLA]</Line>
@@ -541,11 +535,11 @@ export const LUCKY_FLIGHT_CASINO = {
             },
           },
           "Security Coverage": {
-            password: {
-              pw: "surveillance",
-              hint: "What cameras are used for",
-              hintStrength: 2,
-            },
+            // password: {
+            //   pw: "surveillance",
+            //   hint: "What cameras are used for",
+            //   difficulty: "hard",
+            // },
             content: (
               <>
                 <Line smoke large bold>[SECURITY DATABASE]</Line>
@@ -561,6 +555,40 @@ export const LUCKY_FLIGHT_CASINO = {
               </>
             ),
             related_commands: {
+              "Access Control System": {
+                // password: {
+                //   pw: "keycard",
+                //   hint: "What employees swipe to get in",
+                //   difficulty: "medium",
+                //   content: <Locked theme="terminal" title="ACCESS CONTROL" />
+                // },
+                content: (
+                  <SecureAccessControl
+                    systemName="ACCESS CONTROL SYSTEM"
+                    location="Lucky Flight Casino"
+                    systemVersion="v4.2.1"
+                    lastUpdate="2 weeks ago"
+                    accessPoints={[
+                      {
+                        name: "Vault (Floor 2)",
+                        status: "SEALED",
+                        security: "BIOMETRIC + RETINAL SCAN + DUAL KEY",
+                        lastAccess: "3 days ago (Vaska Jordan)",
+                        accessCount: 2,
+                        flags: ["ENHANCED SECURITY", "DATABASE DETAINED"],
+                      },
+                      {
+                        name: "Manager's Office (Vaska, Floor 2)",
+                        status: "UNLOCKED",
+                        security: "KEYCARD",
+                        authorized: "Management",
+                        lastAccess: "4 hours ago (Vaska Jordan)",
+                        accessCount: 8
+                      },
+                    ]}
+                  />
+                )
+              },
               "Camera Coverage - Floor 1": {
                 content: (
                   <NetworkDevices
@@ -620,11 +648,11 @@ export const LUCKY_FLIGHT_CASINO = {
             },
           },
           "Financial Records": {
-            password: {
-              pw: "debt",
-              hint: "What casino uses to control neighborhood",
-              hintStrength: 2,
-            },
+            // password: {
+            //   pw: "debt",
+            //   hint: "What casino uses to control neighborhood",
+            //   difficulty: "hard",
+            // },
             content: (
               <>
                 <Line smoke large bold>[FINANCIAL DATABASE]</Line>
@@ -682,6 +710,34 @@ export const LUCKY_FLIGHT_CASINO = {
               },
             },
           },
+          "Network Traffic Monitor": {
+            // password: {
+            //   pw: "packets",
+            //   hint: "What travels across a network",
+            //   difficulty: "medium",
+            //   content: <Locked theme="terminal" title="NETWORK MONITOR" />
+            // },
+            content: (
+              <NetworkTrafficMonitor
+                systemName="CASINO NETWORK TRAFFIC"
+                location="Lucky Flight Casino - IT Infrastructure"
+                bandwidth="847 MB/s (High)"
+                activeConnections={142}
+                transfers={[
+                  {
+                    timestamp: "23:47",
+                    filename: "debt_ledger_backup_ENCRYPTED.db",
+                    size: "2.4 GB",
+                    source: "10.0.2.205 (Office 2)",
+                    destination: "INTERNAL - 192.168.45.12",
+                    protocol: "ENCRYPTED - TLS 1.3",
+                    status: "ACTIVE",
+                    progress: 67,
+                  },
+                ]}
+              />
+            )
+          },
           "Operations": {
             content: (
               <MaintenanceAccess
@@ -701,11 +757,11 @@ export const LUCKY_FLIGHT_CASINO = {
             ),
             related_commands: {
               "Incident Log": {
-                password: {
-                  pw: "chaos",
-                  hint: "Casino's natural state",
-                  difficulty: "expert",
-                },
+                // password: {
+                //   pw: "chaos",
+                //   hint: "Casino's natural state",
+                //   difficulty: "expert",
+                // },
                 content: (
                   <IncidentLog
                     title="RECENT INCIDENTS"
@@ -753,11 +809,11 @@ export const LUCKY_FLIGHT_CASINO = {
                 ),
               },
               "Power Core Status": {
-                password: {
-                  pw: "unstable",
-                  hint: "Condition of Room 16",
-                  hintStrength: 3,
-                },
+                // password: {
+                //   pw: "unstable",
+                //   hint: "Condition of Room 16",
+                //   difficulty: "easy",
+                // },
                 content: (
                   <MaintenanceAccess
                     title="[POWER CORE - ROOM 16]"

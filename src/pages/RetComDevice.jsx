@@ -8,7 +8,7 @@ import {
 import CY_CITY_COMMANDS from '@terminal/commands/cy_city';
 import LUCKY_FLIGHT_TAKEDOWN_COMMANDS from "@terminal/commands/lucky_flight_campaign";
 import THE_55_COMMANDS from '../components/terminal/commands/the_55';
-import DOC_JOY_CLINIC_COMMANDS from '../components/terminal/commands/reaper_repo';
+import REAPER_REPO_COMMANDS from '../components/terminal/commands/reaper_repo';
 
 import TerminalShell, {
   TerminalHistoryArea,
@@ -41,11 +41,11 @@ import {
 // ============================================================================
 
 const CAMPAIGN_COMMANDS = {
+  ...MINIGAME_COMMANDS,
   ...CY_CITY_COMMANDS,
   ...LUCKY_FLIGHT_TAKEDOWN_COMMANDS,
-  ...THE_55_COMMANDS,
-  ...DOC_JOY_CLINIC_COMMANDS,
-  ...MINIGAME_COMMANDS,
+  ...REAPER_REPO_COMMANDS,
+  // ...THE_55_COMMANDS,
 };
 
 const CAMPAIGN_COMMANDS_LIST = Object.entries(CAMPAIGN_COMMANDS).map(([id, cmdDef]) => ({

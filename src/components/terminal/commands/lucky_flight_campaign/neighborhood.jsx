@@ -1,10 +1,9 @@
 import {
   Line,
   Section,
-  ListItem,
   Divider,
   KeyValue,
-  DataTable,
+  InsetBox,
 } from '@terminal/TerminalComponents';
 import {
   ATM,
@@ -14,10 +13,18 @@ import {
   Camera,
   Tenet,
   Jukebox,
+  Menu,
+  HoursBanner,
+  CommunityBoard,
+  MaintenanceAccess,
+  PublicPortal,
+  PersonnelFile,
+  IncidentLog,
+  NetworkDevices,
 } from "@terminal/retcomdevice"
 
 export const NEIGHBORHOOD_COMMANDS = {
-  "Dice_Emporium_Ad": {
+  "Dice Emporium [Ad]": {
     content: (
       <LocalAd
         corp="THE LOADED DICE"
@@ -30,7 +37,6 @@ export const NEIGHBORHOOD_COMMANDS = {
         ]}
         cta="Roll With The Best - 2 Blocks From Lucky Flight"
         theme="purple"
-        logo="🎲"
       >
         <p className="text-xs text-purple-300/60 italic text-center mt-4">
           We don't ask how you use them.
@@ -39,7 +45,7 @@ export const NEIGHBORHOOD_COMMANDS = {
     ),
   },
 
-  "Ports_Bar_Ad": {
+  "Ports Bar [Ad]": {
     content: (
       <LocalAd
         corp="THE ANCHOR BAR"
@@ -52,7 +58,6 @@ export const NEIGHBORHOOD_COMMANDS = {
         ]}
         cta="WATERFRONT VIEWS. DIVE BAR PRICES."
         theme="dystopian"
-        logo="⚓"
       >
         <p className="text-sm text-orange-200 text-center mt-4">
           Near Dock 5 - Open 2PM-2AM Daily
@@ -61,7 +66,7 @@ export const NEIGHBORHOOD_COMMANDS = {
     ),
   },
 
-  "Street_Doc_Ad": {
+  "Street Doc [Ad]": {
     content: (
       <LocalAd
         corp="EMERGENCY MEDICAL"
@@ -74,7 +79,6 @@ export const NEIGHBORHOOD_COMMANDS = {
         ]}
         cta="WHEN YOU CAN'T GO TO A REAL HOSPITAL"
         theme="sleek"
-        logo="💉"
       >
         <p className="text-xs text-gray-400 italic text-center mt-4">
           Cash only. Location disclosed to verified clients.
@@ -83,7 +87,7 @@ export const NEIGHBORHOOD_COMMANDS = {
     ),
   },
 
-  "SecOps_Recruitment": {
+  "SecOps Recruitment [Ad]": {
     content: (
       <LocalAd
         corp="CY SECURITY OPERATIONS"
@@ -97,18 +101,16 @@ export const NEIGHBORHOOD_COMMANDS = {
         ]}
         cta="APPLY NOW - SECOPS.CY/CAREERS"
         theme="corporate"
-        logo="👮"
       />
     ),
   },
 
-  "Public_Safety_Warning": {
+  "Public Safety Warning": {
     content: (
       <LocalAd
         corp="PUBLIC SAFETY NOTICE"
         slogan="Stay Alert. Stay Safe."
         theme="dystopian"
-        logo="⚠️"
       >
         <div className="space-y-3 text-orange-200">
           <p className="font-bold text-lg">CURRENT THREAT LEVEL: MODERATE</p>
@@ -126,13 +128,12 @@ export const NEIGHBORHOOD_COMMANDS = {
     ),
   },
 
-  "Corp_Compliance": {
+  "Corp Compliance Alert": {
     content: (
       <LocalAd
         corp="CORPORATE RELATIONS BUREAU"
         slogan="Working Together Works"
         theme="corporate"
-        logo="🏢"
       >
         <div className="space-y-3 text-blue-200">
           <p className="font-bold">REMEMBER:</p>
@@ -150,14 +151,13 @@ export const NEIGHBORHOOD_COMMANDS = {
     ),
   },
 
-  "Samurai_Concert_Ad": {
+  "Samurai Concert [Ad]": {
     content: (
       <LocalAd
         corp="SAMURAI"
         slogan="Never Fade Away"
         tagline="Legendary Rockerboy Legacy Tour"
         theme="neon"
-        logo="🎸"
       >
         <div className="space-y-3 text-center">
           <p className="text-2xl font-black text-fuchsia-200">TRIBUTE CONCERT</p>
@@ -175,24 +175,22 @@ export const NEIGHBORHOOD_COMMANDS = {
     ),
   },
 
-  "NetBattler_Tournament": {
+  "NetBattler Tournament": {
     content: (
       <LocalAd
         corp="NETBATTLER CHAMPIONSHIP"
         slogan="Jack In. Battle. Win."
         products={[
-          "🏆 Grand Prize: 5,000¤",
-          "🥇 Top 3 Win Rare Chip Codes",
-          "🎮 Professional Commentary",
-          "📺 Live Streamed Globally"
+          "Grand Prize: 500¤",
+          "Professional Commentary",
+          "Live Streamed Globally"
         ]}
         cta="REGISTER NOW - LIMITED SLOTS"
         theme="cyber"
-        logo="⚡"
       >
         <div className="text-center mt-4 space-y-1">
-          <p className="text-cyan-200 font-bold">NEXT SATURDAY - TECH MALL ARENA</p>
-          <p className="text-cyan-300/80 text-sm">Entry Fee: 25¤ | Ages 16+</p>
+          <p className="text-cyan-200 font-bold">PERPETUALLY NEXT SATURDAY - TECH MALL ARENA</p>
+          <p className="text-cyan-300/80 text-sm">Entry Fee: 5¤ | Ages 11+</p>
         </div>
       </LocalAd>
     ),
@@ -200,103 +198,164 @@ export const NEIGHBORHOOD_COMMANDS = {
 
   "Ports District Guide": {
     content: (
-      <>
-        <Line cyan large bold>PORTS DISTRICT - VISITOR INFORMATION</Line>
-        <Line yellow>"Working-class waterfront. Watch your step."</Line>
+      <MaintenanceAccess
+        title="[PORTS DISTRICT - VISITOR INFORMATION]"
+        deviceModel="Public Info Kiosk"
+        deviceId="KIOSK-PORTS-MAIN"
+        firmwareVersion="v3.0.1"
+        systemStatus="OPERATIONAL"
+        notes={[
+          "Tourist Mode: Active",
+          "Population: ~15,000 residents",
+          "Primary Industry: Canal shipping, service work",
+          "Transit: Water taxis (24/7)",
+          "Reputation: Working-class waterfront - rough but navigable"
+        ]}
+      >
         <Divider />
-        <Line neon>Accessing public info kiosk...</Line>
-        <Line cyan>[TOURIST MODE ACTIVE]</Line>
-        <Divider />
-        <DataTable data={[
-          { label: "Population", value: "~15,000 residents" },
-          { label: "Primary Industry", value: "Canal shipping, service work" },
-          { label: "Transit", value: "Water taxis (24/7)" },
-          { label: "Reputation", value: "Rough but navigable" },
-        ]} />
-        <Divider />
-        <Section title="NOTABLE LOCATIONS:">
+        <InsetBox title="NOTABLE LOCATIONS:">
           <Line neon>→ Canal docks (main transport hub)</Line>
           <Line neon>→ Market district (daily 06:00-18:00)</Line>
           <Line neon>→ Residential blocks (mixed apartment buildings)</Line>
           <Line neon>→ Industrial zone (warehouses, mostly abandoned)</Line>
           <Line yellow>→ Entertainment district (bars, clubs, late hours)</Line>
-        </Section>
-        <Divider />
-        <Section title="VISITOR ADVISORY:">
+        </InsetBox>
+        <InsetBox title="VISITOR ADVISORY:">
           <Line yellow>• Keep valuables secured</Line>
           <Line yellow>• Avoid industrial zone after dark</Line>
           <Line yellow>• Water taxis safer than walking at night</Line>
           <Line red>• Corporate security limited - local issues handled locally</Line>
-        </Section>
-        <Divider />
+        </InsetBox>
         <Line pink>"Not the worst place to be. Not the best either."</Line>
-      </>
+      </MaintenanceAccess>
     ),
   },
 
+  "Canal Water Taxi Network": {
+    content: (
+      <MaintenanceAccess
+        title="[PORTS CANAL TRANSIT]"
+        deviceModel="Transit Information System"
+        deviceId="TRANSIT-CANAL-01"
+        firmwareVersion="v2.5.0"
+        systemStatus="OPERATIONAL"
+        notes={[
+          "Operating: 24/7 (all docks)",
+          "Peak hours: 06:00-09:00, 17:00-20:00",
+          "Average wait time: Under 5 minutes",
+          "Payment: Cash or credchip accepted"
+        ]}
+      >
+        <Divider />
+        <InsetBox title="STANDARD RATES:">
+          <KeyValue label="Short trip (under 1km)" value="10¤" />
+          <KeyValue label="Medium trip (1-3km)" value="20¤" />
+          <KeyValue label="Long trip (over 3km)" value="40¤" />
+          <KeyValue label="Private charter (1 hour)" value="150¤" />
+        </InsetBox>
+        <InsetBox title="MAJOR ROUTES:">
+          <Line neon>→ Residential docks ⟷ Market district</Line>
+          <Line neon>→ Industrial zone ⟷ Entertainment district</Line>
+          <Line neon>→ North pier ⟷ South docks</Line>
+          <Line yellow>→ Special routes available (negotiate with driver)</Line>
+        </InsetBox>
+        <InsetBox title="PASSENGER INFO:">
+          <Line cyan>Capacity: Up to 6 passengers per boat</Line>
+          <Line cyan>Luggage: Equipment/cargo allowed (driver discretion)</Line>
+          <Line yellow>Tip expected for after-hours or special requests</Line>
+        </InsetBox>
+        <Line pink>"Cleanest water transport in Ports. That's not saying much."</Line>
+      </MaintenanceAccess>
+    ),
+  },
 
   "Fingers' Clinic": {
     content: (
-      <>
-        <Line cyan large bold>FINGERS' MEDICAL SERVICES</Line>
-        <Line yellow>"Walk-ins Welcome. Cash Preferred."</Line>
+      <MaintenanceAccess
+        title="[FINGERS' MEDICAL SERVICES]"
+        deviceModel="Clinic Management System"
+        deviceId="CLINIC-FINGERS-01"
+        firmwareVersion="v2.1.0"
+        systemStatus="OPERATIONAL"
+        notes={[
+          "Walk-ins welcome - Cash preferred",
+          "Hours: 24/7 (emergencies always accepted)",
+          "Location: 2 blocks south of main market, basement entrance",
+          "Access: Knock three times, wait for response",
+          "Proprietor: 'Fingers' (licensed medical training, former corporate medic)"
+        ]}
+      >
         <Divider />
-        <Line neon>Accessing clinic terminal...</Line>
-        <Line cyan>[PUBLIC ACCESS]</Line>
-        <Divider />
-        <Section title="SERVICES & RATES:">
+        <InsetBox title="SERVICES & RATES:">
           <KeyValue label="Emergency treatment" value="100¤" />
           <KeyValue label="Trauma surgery" value="150¤" />
           <KeyValue label="Cyberware installation" value="Variable (consultation required)" />
           <KeyValue label="Prescriptions (stims, painkillers)" value="20¤ per dose" />
           <KeyValue label="Medical record services" value="80¤" />
-        </Section>
-        <Divider />
-        <Section title="HOURS & LOCATION:">
-          <Line neon>Hours: 24/7 (emergencies always accepted)</Line>
-          <Line neon>Location: 2 blocks south of main market, basement entrance</Line>
-          <Line neon>Access: Knock three times, wait for response</Line>
-          <Line yellow>Payment: Cash only (no credchip records)</Line>
-        </Section>
-        <Divider />
-        <Section title="ABOUT:">
-          <Line cyan>Proprietor: "Fingers" (licensed medical training)</Line>
-          <Line cyan>Specialty: Trauma care, emergency cyberware repairs</Line>
-          <Line cyan>Established: 8 years in Ports district</Line>
-        </Section>
-        <Divider />
+        </InsetBox>
         <Line pink>"Former corporate medic. Credentials don't matter when you're bleeding."</Line>
-      </>
+      </MaintenanceAccess>
     ),
     related_commands: {
-      access_atient_records: {
-        password: {
-          pw: "scalpel",
-          hint: "Surgical cutting tool",
-          hintStrength: 2,
-        },
+      "Personnel File": {
         content: (
-          <>
-            <Line smoke large bold>[PATIENT DATABASE]</Line>
-            <Line cyan>Last 30 days</Line>
+          <PersonnelFile
+            employeeId="CLINIC-DOC-001"
+            name="Victor 'Fingers' Chen"
+            position="Proprietor / Street Doctor"
+            department="Independent Medical Practice"
+            supervisor="Self-employed"
+            clearanceLevel={5}
+            performance={88}
+            notes={[
+              "Former corporate medic - MediCorp (10 years service)",
+              "Left corporate medicine after ethics dispute",
+              "Specialty: Trauma care, emergency cyberware repairs",
+              "Reputation: Discreet, skilled, expensive but fair",
+              "No questions asked policy - maintains strict patient confidentiality",
+              "Maintains connections with black market medical suppliers",
+              "Known weakness: Soft spot for desperate cases (sometimes works pro bono)"
+            ]}
+          />
+        ),
+      },
+
+      "Patient Records [CONFIDENTIAL]": {
+        // password: {
+        //   pw: "scalpel",
+        //   hint: "Surgical cutting tool",
+        //   difficulty: "medium",
+        //   content: <Locked theme="terminal" title="PATIENT DATABASE" />
+        // },
+        content: (
+          <MaintenanceAccess
+            title="[PATIENT DATABASE]"
+            deviceModel="Medical Records System"
+            deviceId="MED-REC-FINGERS"
+            firmwareVersion="v1.8.0"
+            systemStatus="OPERATIONAL"
+            notes={[
+              "Last 30 days of records",
+              "Patient identities not recorded per policy",
+              "All records encrypted and air-gapped",
+              "Supply orders tracked for inventory management"
+            ]}
+          >
             <Divider />
-            <Section title="RECENT CASES:">
+            <InsetBox title="RECENT CASES:">
               <Line neon>Patient #447 - Gunshot wound (shoulder), treated, stable</Line>
               <Line neon>Patient #448 - Cyberware rejection, stabilized, referred</Line>
               <Line neon>Patient #449 - Blunt trauma (multiple), treated, discharged</Line>
               <Line yellow>Patient #450 - Stim overdose, critical, stabilized</Line>
               <Line neon>Patient #451 - Lacerations (defensive wounds), treated</Line>
-            </Section>
-            <Divider />
-            <Section title="SUPPLY ORDERS:">
+            </InsetBox>
+            <InsetBox title="SUPPLY ORDERS:">
               <Line cyan>Last order: 5 days ago</Line>
               <Line neon>Items: Synthetic skin, antibiotics, painkillers</Line>
               <Line neon>Supplier: Black market medical (no receipts)</Line>
               <Line yellow>Next order: Low on trauma supplies</Line>
-            </Section>
-            <Divider />
-            <Line yellow>Note: Patient identities not recorded per policy</Line>
-          </>
+            </InsetBox>
+          </MaintenanceAccess>
         ),
       },
     },
@@ -304,306 +363,315 @@ export const NEIGHBORHOOD_COMMANDS = {
 
   "Razor's Garage": {
     content: (
-      <>
-        <Line cyan large bold>RAZOR'S TECHNICAL SERVICES</Line>
-        <Line yellow>"Modifications. Repairs. Discretion."</Line>
+      <MaintenanceAccess
+        title="[RAZOR'S TECHNICAL SERVICES]"
+        deviceModel="Shop Management System"
+        deviceId="SHOP-RAZOR-01"
+        firmwareVersion="v3.0.2"
+        systemStatus="OPERATIONAL"
+        notes={[
+          "Modifications. Repairs. Discretion.",
+          "Hours: 14:00-02:00 (closed mornings)",
+          "Location: 3 blocks east, abandoned garage complex",
+          "Access: Side entrance, ask for Razor",
+          "Premium: +50¤ for 'no questions asked' service"
+        ]}
+      >
         <Divider />
-        <Line neon>Connecting to shop terminal...</Line>
-        <Line cyan>[CUSTOMER ACCESS]</Line>
-        <Divider />
-        <Section title="SERVICES OFFERED:">
+        <InsetBox title="SERVICES OFFERED:">
           <Line neon>• Cyberware sales & installation</Line>
           <Line neon>• Weapon modifications</Line>
           <Line neon>• Vehicle repairs & upgrades</Line>
           <Line neon>• Electronics & hacking tools</Line>
           <Line neon>• ID & credential services</Line>
-        </Section>
-        <Divider />
-        <Section title="PRICING:">
+        </InsetBox>
+        <InsetBox title="PRICING:">
           <Line cyan>Cyberware: Market rate minus 40% (used/refurbished)</Line>
           <Line cyan>Weapons: Custom work, 80¤ base + parts</Line>
           <Line cyan>IDs/Credentials: 80¤ (quality varies)</Line>
           <Line cyan>Vehicle work: Consultation required</Line>
-          <Line yellow>Premium: +50¤ for "no questions asked" service</Line>
-        </Section>
-        <Divider />
-        <Section title="HOURS & LOCATION:">
-          <Line neon>Hours: 14:00-02:00 (closed mornings)</Line>
-          <Line neon>Location: 3 blocks east, abandoned garage complex</Line>
-          <Line neon>Access: Side entrance, ask for Razor</Line>
-        </Section>
-        <Divider />
+        </InsetBox>
         <Line pink>"You get what you pay for. Sometimes you get more."</Line>
         <Line red>* All sales final - No refunds or exchanges</Line>
-      </>
+      </MaintenanceAccess>
     ),
     related_commands: {
-      access_inventory_system: {
-        password: {
-          pw: "razor",
-          hint: "The shop owner's nickname",
-          hintStrength: 1,
-        },
+      "Personnel File": {
         content: (
-          <>
-            <Line smoke large bold>[INVENTORY DATABASE]</Line>
-            <Line yellow>Current stock - Last updated 2 hours ago</Line>
+          <PersonnelFile
+            employeeId="SHOP-TECH-001"
+            name="Razor"
+            age={35}
+            position="Proprietor / Chop Shop Technician"
+            department="Independent Technical Services"
+            hireDate="2075 (7 years in Ports)"
+            supervisor="Self-employed"
+            clearanceLevel={5}
+            district="Ports (unknown residence)"
+            emergencyContact="None listed"
+            performance={91}
+            notes={[
+              "Background: Unknown (suspected former corpo tech)",
+              "Specialty: Cyberware modification, weapons tech, vehicle work",
+              "Reputation: Skilled but paranoid, high quality work",
+              "Known for: Refusing jobs from corps, SecOps, Virid Vipers",
+              "Maintains strict 'no questions' policy on all work",
+              "Excellent connections to black market suppliers",
+              "Will sometimes trade services for interesting tech/parts"
+            ]}
+            status="ACTIVE"
+          />
+        ),
+      },
+
+      access_inventory_system: {
+        // password: {
+        //   pw: "razor",
+        //   hint: "The shop owner's nickname",
+        //   difficulty: "easy",
+        //   content: <Locked theme="terminal" title="INVENTORY SYSTEM" />
+        // },
+        content: (
+          <MaintenanceAccess
+            title="[INVENTORY DATABASE]"
+            deviceModel="Shop Inventory System"
+            deviceId="INV-RAZOR-01"
+            firmwareVersion="v2.0.1"
+            systemStatus="OPERATIONAL"
+            uptime="234 days, 6 hours"
+            notes={[
+              "Current stock - Last updated 2 hours ago",
+              "Source: Various (stolen, salvaged, black market)",
+              "Shipment expected: 3 days (canal delivery)",
+              "All items tested before sale (mostly)"
+            ]}
+          >
             <Divider />
-            <Section title="CYBERWARE (Refurbished):">
+            <InsetBox title="CYBERWARE (Refurbished):">
               <Line neon>Neural interface (basic) - 3 units</Line>
               <Line neon>Subdermal armor plates - 2 units</Line>
               <Line neon>Optical enhancement (low-grade) - 4 units</Line>
               <Line yellow>Reflex booster (untested) - 1 unit</Line>
-            </Section>
-            <Divider />
-            <Section title="WEAPONS & PARTS:">
+            </InsetBox>
+            <InsetBox title="WEAPONS & PARTS:">
               <Line neon>Pistol frames (no serial) - 6 units</Line>
               <Line neon>Ammunition (various calibers) - Mixed stock</Line>
               <Line neon>Suppressors (homemade) - 3 units</Line>
-            </Section>
-            <Divider />
-            <Section title="ELECTRONICS:">
+            </InsetBox>
+            <InsetBox title="ELECTRONICS:">
               <Line cyan>Signal jammers - 2 units</Line>
               <Line cyan>Lockpick kits (electronic) - 5 units</Line>
               <Line cyan>Surveillance counter-measures - 4 units</Line>
-            </Section>
-            <Divider />
-            <Section title="SUPPLIER NOTES:">
-              <Line yellow>Shipment expected: 3 days (canal delivery)</Line>
-              <Line yellow>Source: Various (stolen, salvaged, black market)</Line>
-            </Section>
-          </>
+            </InsetBox>
+          </MaintenanceAccess>
         ),
       },
     },
   },
 
-  "Canal Water Taxi Network": {
-    content: (
-      <>
-        <Line cyan large bold>PORTS CANAL TRANSIT</Line>
-        <Line yellow>"Fast. Cheap. Always Running."</Line>
-        <Divider />
-        <Line neon>Accessing transit info...</Line>
-        <Line cyan>[PUBLIC SCHEDULE]</Line>
-        <Divider />
-        <Section title="SERVICE HOURS:">
-          <Line neon>Operating: 24/7 (all docks)</Line>
-          <Line neon>Peak hours: 06:00-09:00, 17:00-20:00</Line>
-          <Line neon>Wait time: Usually under 5 minutes</Line>
-        </Section>
-        <Divider />
-        <Section title="STANDARD RATES:">
-          <KeyValue label="Short trip (under 1km)" value="10¤" />
-          <KeyValue label="Medium trip (1-3km)" value="20¤" />
-          <KeyValue label="Long trip (over 3km)" value="40¤" />
-          <KeyValue label="Private charter (1 hour)" value="150¤" />
-        </Section>
-        <Divider />
-        <Section title="MAJOR ROUTES:">
-          <Line neon>→ Residential docks ⟷ Market district</Line>
-          <Line neon>→ Industrial zone ⟷ Entertainment district</Line>
-          <Line neon>→ North pier ⟷ South docks</Line>
-          <Line yellow>→ Special routes available (negotiate with driver)</Line>
-        </Section>
-        <Divider />
-        <Section title="PASSENGER INFO:">
-          <Line cyan>Payment: Cash or credchip accepted</Line>
-          <Line cyan>Capacity: Up to 6 passengers per boat</Line>
-          <Line cyan>Luggage: Equipment/cargo allowed (driver discretion)</Line>
-          <Line yellow>Tip expected for after-hours or special requests</Line>
-        </Section>
-        <Divider />
-        <Line pink>"Cleanest water transport in Ports. That's not saying much."</Line>
-      </>
-    ),
-  },
-
   // ============================================================================
-  // CORNER SHOP
+  // MIRA'S CORNER SHOP
   // ============================================================================
 
   "Mira's Corner Shop": {
     content: (
-      <>
-        <Line cyan large bold>MIRA'S CORNER SHOP</Line>
-        <Line yellow>"Groceries. Supplies. Gossip."</Line>
-        <Divider />
-        <Line neon>Connecting to shop network...</Line>
-        <Line cyan>[WELCOME CUSTOMER]</Line>
-        <Divider />
-        <Section title="TODAY'S SPECIALS:">
-          <KeyValue label="Synth-protein bars (10 pack)" value="15¤" />
-          <KeyValue label="Energy drinks (6 pack)" value="18¤" />
-          <KeyValue label="Instant ramen (case)" value="12¤" />
-          <KeyValue label="Credchip top-up (10¤ value)" value="11¤" />
-        </Section>
-        <Divider />
-        <Section title="ALWAYS STOCKED:">
-          <Line neon>• Basic groceries & household items</Line>
-          <Line neon>• Cigarettes & alcohol</Line>
-          <Line neon>• First aid supplies (basic)</Line>
-          <Line neon>• Lottery tickets & scratch-offs</Line>
-          <Line neon>• Phone charging station (2¤)</Line>
-        </Section>
-        <Divider />
-        <Section title="SERVICES:">
-          <Line cyan>✓ Package pickup/dropoff (courier hub)</Line>
-          <Line cyan>✓ Credchip exchange (small fee)</Line>
-          <Line cyan>✓ Community bulletin board</Line>
-          <Line cyan>✓ Public restroom (customers only)</Line>
-        </Section>
-        <Divider />
-        <Section title="HOURS & LOCATION:">
-          <Line neon>Monday-Saturday: 06:00-22:00</Line>
-          <Line neon>Sunday: 08:00-18:00</Line>
-          <Line neon>Location: Corner of Canal Street & 3rd Ave</Line>
-        </Section>
-        <Divider />
-        <Line pink>"Mira knows everyone's business. Don't give her more to talk about."</Line>
-      </>
+      <PublicPortal
+        name="MIRA'S CORNER SHOP"
+        tagline="Groceries. Supplies. Gossip."
+        network="MIRA_GUEST_WIFI"
+        signalStrength="strong"
+        status="✓ OPEN"
+        statusColor="neon"
+        nowPlaying="Local radio - Ports Community Hour"
+        notes={[
+          "Free WiFi with purchase",
+          "Package pickup available",
+          "Bathroom for customers only"
+        ]}
+        theme="casual"
+      >
+        <HoursBanner
+          name="Schedule"
+          hours="Mon-Sat: 06:00-22:00 | Sun: 08:00-18:00"
+          days="7 Days a Week"
+        />
+      </PublicPortal>
     ),
-
     related_commands: {
       "Community Bulletin": {
         content: (
-          <>
-            <Line smoke large bold>[COMMUNITY BOARD]</Line>
-            <Line neon>Recent postings - Updated daily</Line>
-            <Divider />
-            <Section title="RECENT POSTS:">
-              <Line pink>→ "Roommate needed - 300¤/month, utilities split"</Line>
-              <Line pink>→ "Lost cat - grey tabby, answers to 'Static'"</Line>
-              <Line pink>→ "Selling bicycle - needs work, 50¤"</Line>
-              <Line pink>→ "Looking for work - have tools, will travel"</Line>
-              <Line pink>→ "Poker night Fridays - basement of The Anchor bar"</Line>
-              <Line pink>→ "Musician seeking bandmates - synth & drums especially"</Line>
-            </Section>
-            <Divider />
-            <Section title="SERVICES ADVERTISED:">
-              <ListItem>Handyman - odd jobs, fair rates (RCD: fix_it_vic@local)</ListItem>
-              <ListItem>Tutor - math & science, evenings (knock apt 4B)</ListItem>
-              <ListItem>Bicycle repair - mobile service, call ahead</ListItem>
-            </Section>
-            <Divider />
-            <Line yellow>Neighborhood vibe: Tight-knit, everyone knows everyone</Line>
-          </>
+          <CommunityBoard
+            id="miras-shop-board"
+            boardName="COMMUNITY BULLETIN BOARD"
+            location="Inside Mira's Corner Shop - Wall near register"
+            posts={[
+              { text: "Roommate needed - 300¤/month, utilities split", color: "pink" },
+              { text: "Lost cat - grey tabby, answers to 'Static'", color: "pink" },
+              { text: "Selling bicycle - needs work, 50¤", color: "pink" },
+              { text: "Looking for work - have tools, will travel", color: "pink" },
+              { text: "Poker night Fridays - basement of The Anchor bar", color: "cyan" },
+              { text: "Musician seeking bandmates - synth & drums especially", color: "pink" },
+            ]}
+            services={[
+              "Handyman - odd jobs, fair rates (RCD: fix_it_vic@local)",
+              "Tutor - math & science, evenings (knock apt 4B)",
+              "Bicycle repair - mobile service, call ahead",
+            ]}
+            vibe="Tight-knit neighborhood, everyone knows everyone"
+          />
         ),
       },
 
-      access_shop_internal: {
-        password: {
-          pw: "boxesboxesboxes",
-          hint: "So many boxes",
-          hintStrength: 1,
-        },
+      "Personnel File": {
         content: (
-          <>
-            <Line smoke large bold>[SHOP INTERNAL SYSTEMS]</Line>
-            <Line cyan>[EMPLOYEE ACCESS]</Line>
+          <PersonnelFile
+            employeeId="SHOP-OWNER-001"
+            name="Mira Patel"
+            age={52}
+            position="Owner / Operator"
+            department="Independent Retail"
+            hireDate="2069 (13 years in business)"
+            supervisor="Self-employed"
+            clearanceLevel={5}
+            district="Ports (lives in apartment above shop)"
+            emergencyContact="Daughter - Priya Patel"
+            performance={84}
+            notes={[
+              "Third-generation Ports resident",
+              "Known as neighborhood information hub",
+              "Maintains good relationships with all local factions",
+              "Fair prices, extends credit to regulars during hard times",
+              "Gossip network: Knows everything happening in 5-block radius",
+              "Protective of neighborhood - reports suspicious outsiders",
+              "Daughter Priya helps with shop on weekends"
+            ]}
+            status="ACTIVE"
+          />
+        ),
+      },
+
+      "Internal Access": {
+        // password: {
+        //   pw: "boxesboxesboxes",
+        //   hint: "So many boxes",
+        //   difficulty: "easy",
+        //   content: <Locked theme="terminal" title="SHOP SYSTEMS" />
+        // },
+        content: (
+          <MaintenanceAccess
+            title="[SHOP INTERNAL SYSTEMS]"
+            deviceModel="Retail Management System"
+            deviceId="RETAIL-MIRA-01"
+            firmwareVersion="v1.9.2"
+            systemStatus="OPERATIONAL"
+            uptime="412 days, 3 hours"
+            notes={[
+              "Last 24h transactions: 47",
+              "Revenue: 412¤",
+              "Most popular: Cigarettes, energy drinks, lottery",
+              "Next delivery: Tomorrow morning (06:00)"
+            ]}
+          >
             <Divider />
-            <Section title="RECENT SALES (Last 24h):">
-              <Line neon>Total transactions: 47</Line>
-              <Line neon>Revenue: 412¤</Line>
-              <Line neon>Most popular: Cigarettes, energy drinks, lottery</Line>
-            </Section>
-            <Divider />
-            <Section title="INVENTORY ALERTS:">
+            <InsetBox title="INVENTORY ALERTS:">
               <Line yellow>Low stock: Milk, bread, batteries</Line>
               <Line yellow>Reorder needed: Snacks, alcohol</Line>
               <Line red>Expired soon: Check cooler items</Line>
-            </Section>
-            <Divider />
-            <Section title="SUPPLIER DELIVERIES:">
-              <Line neon>Next delivery: Tomorrow morning (06:00)</Line>
-              <Line neon>Pending: 3 customer package pickups</Line>
-            </Section>
-          </>
+            </InsetBox>
+            <InsetBox title="PENDING:">
+              <Line neon>Customer package pickups: 3</Line>
+              <Line neon>Credchip exchange requests: 2</Line>
+            </InsetBox>
+          </MaintenanceAccess>
         ),
       },
     },
   },
 
   // ============================================================================
-  // BAR
+  // THE RUSTY ANCHOR BAR
   // ============================================================================
 
   "The Rusty Anchor": {
     content: (
-      <>
-        <Line cyan large bold>THE RUSTY ANCHOR</Line>
-        <Line yellow>"Cheap drinks. Cheaper conversation."</Line>
-        <Divider />
-        <Line neon>Connecting to bar terminal...</Line>
-        <Line cyan>[PUBLIC ACCESS]</Line>
-        <Divider />
-        <Section title="BAR MENU:">
-          <KeyValue label="Beer (local)" value="8¤" />
-          <KeyValue label="Whiskey (synth)" value="12¤" />
-          <KeyValue label="Vodka" value="10¤" />
-          <KeyValue label="Well drinks" value="10¤" />
-          <KeyValue label="Water (free)" value="0¤" />
-          <Line yellow>Happy Hour: 17:00-19:00 (half price beer)</Line>
-        </Section>
-        <Divider />
-        <Section title="FOOD:">
-          <Line neon>Pretzels & peanuts (complimentary with drink)</Line>
-          <Line neon>Synth-meat sandwich: 15¤</Line>
-          <Line neon>Protein bowl: 12¤</Line>
-        </Section>
-        <Divider />
-        <Section title="HOURS & LOCATION:">
-          <Line neon>Open: 14:00-02:00 (every day)</Line>
-          <Line neon>Location: Waterfront, near dock 5</Line>
-          <Line neon>Atmosphere: Dive bar, locals only vibe</Line>
-        </Section>
-        <Divider />
-        <Section title="HOUSE RULES:">
-          <Line yellow>• Pay as you go or start a tab (regulars only)</Line>
-          <Line yellow>• No fighting (take it outside)</Line>
-          <Line yellow>• Pool table: 5¤ per game</Line>
-          <Line red>• Management reserves right to refuse service</Line>
-        </Section>
-        <Divider />
-        <Line pink>"If you can't find it at the Anchor, you don't need it."</Line>
-      </>
+      <PublicPortal
+        name="THE RUSTY ANCHOR"
+        tagline="Cheap drinks. Cheaper conversation."
+        network="ANCHOR_GUEST"
+        signalStrength="medium"
+        status="✓ OPEN"
+        statusColor="neon"
+        nowPlaying="Jukebox: Canal Blues - The Ports Drifters"
+        notes={[
+          "Happy Hour: 17:00-19:00",
+          "Pool table: 5¤ per game",
+          "Cash or credchip accepted"
+        ]}
+        theme="casual"
+      >
+        <HoursBanner
+          name="Schedule"
+          hours="14:00 - 02:00"
+          days="Every Day"
+        />
+      </PublicPortal>
     ),
     related_commands: {
-      access_bar_safe: {
-        password: {
-          pw: "crustacean",
-          hint: "Crabs and such",
-          hintStrength: 2,
-        },
+      "Bar Menu": {
         content: (
-          <Safe
-            id="rusty-anchor-bar"
-            model="DS-300"
-            location="Behind bar, under counter"
-            owner="Voss (bar owner)"
-            security="Electronic keypad"
-            lastAccess="6 hours ago"
-            physical={[
+          <Menu
+            title="THE RUSTY ANCHOR"
+            subtitle="Waterfront Dive Since 2070"
+            signType="cocktail"
+            categories={[
               {
-                id: "anchor_receipts",
-                label: "Daily receipts",
-                description: "200-400¤ (cash, mixed bills)",
-                value: 300, // Using midpoint of range
-                isCredits: true
+                name: "DRINKS",
+                items: [
+                  { name: "Beer (local)", price: "8¤" },
+                  { name: "Whiskey (synth)", price: "12¤" },
+                  { name: "Vodka", price: "10¤" },
+                  { name: "Well drinks", price: "10¤" },
+                  { name: "Water (free)", price: "0¤" },
+                ],
               },
               {
-                id: "anchor_personal_credchip",
-                label: "Personal credchip",
-                description: "Unknown amount"
-              },
-              {
-                id: "anchor_documents",
-                label: "Bar license & documents",
-                description: "Business papers, permits"
+                name: "FOOD",
+                items: [
+                  { name: "Pretzels & peanuts", price: "Free with drink" },
+                  { name: "Synth-meat sandwich", price: "15¤" },
+                  { name: "Protein bowl", price: "12¤" },
+                ],
               },
             ]}
-            digital={[]}
-            notes="Safe checked at closing (02:00) and opening (14:00)"
+            footer="If you can't find it at the Anchor, you don't need it."
+          />
+        ),
+      },
+
+      "Personnel File": {
+        content: (
+          <PersonnelFile
+            employeeId="BAR-OWNER-001"
+            name="Voss Andersen"
+            age={58}
+            position="Owner / Bartender"
+            department="Independent Hospitality"
+            hireDate="2070 (12 years in business)"
+            supervisor="Self-employed"
+            clearanceLevel={5}
+            district="Ports (lives in back room behind bar)"
+            emergencyContact="None listed"
+            performance={79}
+            notes={[
+              "Former dockworker - saved for 10 years to buy bar",
+              "No-nonsense personality, maintains order through respect",
+              "Extends credit to unemployed regulars (within reason)",
+              "Known for: Remembering everyone's usual drink",
+              "Neutral ground policy - all factions welcome if they behave",
+              "Information broker (passive) - hears everything, shares selectively",
+              "Pool shark - don't bet against him"
+            ]}
+            status="ACTIVE"
           />
         ),
       },
@@ -624,60 +692,98 @@ export const NEIGHBORHOOD_COMMANDS = {
           />
         ),
       },
+
+      "Bar Safe": {
+        // password: {
+        //   pw: "crustacean",
+        //   hint: "Crabs and such",
+        //   difficulty: "medium",
+        //   content: <Locked theme="safe" title="BAR SAFE" />
+        // },
+        content: (
+          <Safe
+            id="rusty-anchor-bar-safe"
+            model="DS-300"
+            location="Behind bar, under counter"
+            owner="Voss (bar owner)"
+            security="Electronic keypad"
+            lastAccess="6 hours ago"
+            physical={[
+              {
+                id: "bar_safe_cash",
+                label: "Daily collected cash",
+                description: "300¤ (cash, mixed bills)",
+                value: 300,
+                isCredits: true
+              },
+            ]}
+            digital={[
+              {
+                id: "bar_safe_credchip",
+                label: "Digitally collection credits",
+                description: "125¤",
+                value: 125,
+                isCredits: true
+              },
+            ]}
+            notes="Safe checked at closing (02:00) and opening (14:00)"
+          />
+        ),
+      },
     },
   },
 
   // ============================================================================
-  // APARTMENT BUILDING
+  // TORRES APARTMENTS
   // ============================================================================
 
   "Torres Apartments": {
     content: (
-      <>
-        <Line cyan large bold>TORRES APARTMENTS</Line>
-        <Line yellow>"Affordable Living Since 2071"</Line>
-        <Divider />
-        <Line neon>Accessing building management...</Line>
-        <Line cyan>[RESIDENT PORTAL]</Line>
-        <Divider />
-        <Section title="BUILDING INFO:">
-          <DataTable data={[
-            { label: "Units", value: "24 (6 floors, 4 per floor)" },
-            { label: "Occupancy", value: "92% (2 vacancies)" },
-            { label: "Built", value: "2071" },
-            { label: "Condition", value: "Fair (routine maintenance)" },
-          ]} />
-        </Section>
-        <Divider />
-        <Section title="AMENITIES:">
-          <Line neon>• Laundry room (ground floor) - 5¤ wash, 3¤ dry</Line>
-          <Line neon>• Roof access (residents only)</Line>
-          <Line neon>• Package lockers (lobby)</Line>
-          <Line neon>• Security cameras (entrance, hallways)</Line>
-        </Section>
-        <Divider />
+      <PublicPortal
+        name="TORRES APARTMENTS"
+        tagline="Affordable Living Since 2071"
+        network="TORRES_RESIDENT_WIFI"
+        signalStrength="strong"
+        status="✓ ACCEPTING APPLICATIONS"
+        statusColor="neon"
+        notes={[
+          "24 units (6 floors, 4 per floor)",
+          "2 vacancies available",
+          "Building Manager: Rosa Mendez (Unit 1A)",
+          "Laundry: 5¤ wash, 3¤ dry"
+        ]}
+        theme="casual"
+      >
         <Section title="RENT INFO:">
           <KeyValue label="Studio" value="350¤/month" />
           <KeyValue label="1-bedroom" value="500¤/month" />
           <KeyValue label="2-bedroom" value="700¤/month" />
-          <Line yellow>Utilities: Additional 80-120¤/month</Line>
-        </Section>
-        <Divider />
-        <Section title="CONTACT:">
-          <Line neon>Building Manager: Rosa Mendez (Unit 1A)</Line>
-          <Line neon>Emergency Maintenance: 24/7 hotline</Line>
-          <Line neon>Office Hours: Mon-Fri 09:00-17:00</Line>
+          <Line smoke>Utilities: Additional 80-120¤/month</Line>
         </Section>
         <Divider />
         <Line pink>"Quiet building. Good neighbors. Mostly."</Line>
-      </>
+      </PublicPortal>
     ),
     related_commands: {
+      "Security Cameras": {
+        content: (
+          <NetworkDevices
+            networkName="TORRES_SECURITY"
+            devices={[
+              { name: "Lobby Camera", ip: "10.88.1.101", type: "Security Camera", status: "ONLINE", lastSeen: "Just now" },
+              { name: "Floor 2 Hallway", ip: "10.88.1.102", type: "Security Camera", status: "ONLINE", lastSeen: "Just now" },
+              { name: "Floor 4 Hallway", ip: "10.88.1.103", type: "Security Camera", status: "ONLINE", lastSeen: "Just now" },
+              { name: "Floor 6 Hallway", ip: "10.88.1.104", type: "Security Camera", status: "ONLINE", lastSeen: "Just now" },
+            ]}
+          />
+        ),
+      },
+
       "Camera - Lobby": {
         content: (
           <Camera
             id="torres-lobby-cam"
-            location="Torres Apartments - Entrance view"
+            location="Torres Apartments - Entrance lobby"
             coverage="Front entrance, mailboxes, stairs"
             status="ACTIVE"
             recording={true}
@@ -698,107 +804,48 @@ export const NEIGHBORHOOD_COMMANDS = {
         ),
       },
 
-      "Unit 3B Safe": {
-        password: {
-          pw: "localhost",
-          hint: "This terminal doesn’t trust the outside world",
-          hintStrength: 1,
-        },
+      "Building Incident Log": {
         content: (
-          <Safe
-            id="torres-unit3b-silva"
-            model="PS-150"
-            location="Unit 3B, bedroom closet"
-            owner="Marco Silva"
-            security="4-digit PIN"
-            lastAccess="2 days ago"
-            physical={[
+          <IncidentLog
+            title="BUILDING INCIDENTS"
+            timeframe="Last 30 days"
+            incidents={[
               {
-                id: "silva_cash",
-                label: "Cash",
-                description: "95¤ (emergency fund, mixed bills)",
-                value: 95,
-                isCredits: true
+                timestamp: "Jan 15 (22:30)",
+                type: "Noise Complaint",
+                details: {
+                  Unit: "6A (musician)",
+                  Complaint: "Loud music during quiet hours",
+                  Resolution: "Verbal warning issued",
+                  Status: "Resolved"
+                }
               },
               {
-                id: "silva_documents",
-                label: "Documents",
-                description: "Passport, birth certificate"
+                timestamp: "Jan 8 (14:00)",
+                type: "Maintenance",
+                details: {
+                  Unit: "4C",
+                  Issue: "Plumbing leak",
+                  Resolution: "Repaired same day",
+                  Status: "Closed"
+                }
               },
               {
-                id: "silva_bracelet",
-                label: "Jewelry",
-                description: "Gold bracelet (family heirloom)"
-              },
-            ]}
-            digital={[
-              {
-                id: "silva_credchip",
-                label: "Credchip",
-                description: "40¤ (transferable)",
-                value: 40,
-                isCredits: true
-              },
-              {
-                id: "silva_coupon",
-                label: "Coupon code",
-                description: "TORRES10 (10% off building maintenance services, expires in 3 months)"
+                timestamp: "Jan 3 (09:00)",
+                type: "Payment Issue",
+                details: {
+                  Unit: "5A",
+                  Issue: "Late rent (14 days overdue)",
+                  Resolution: "Payment plan arranged",
+                  Status: "Monitoring"
+                }
               },
             ]}
-            notes="Safe mounted to wall, relatively new installation"
-          />
-        ),
-      },
-
-      "Unit 4B Safe": {
-        password: {
-          pw: "dealer",
-          hint: "The resident's job at the casino",
-          hintStrength: 2,
-        },
-        content: (
-          <Safe
-            id="apartment-4b-dealer"
-            model="DS-250"
-            location="Unit 4B, bedroom closet shelf"
-            owner="Marcus Reeves (blackjack dealer)"
-            security="Digital keypad"
-            lastAccess="Yesterday evening"
-            physical={[
-              {
-                id: "reeves_uniform",
-                label: "Staff uniform",
-                description: "Lucky Flight dealer vest and badge (clean, ready for shift)"
-              },
-              {
-                id: "reeves_keycard",
-                label: "Staff keycard",
-                description: "Employee access (gaming floor, break room, employee entrance)"
-              },
-              {
-                id: "reeves_cash",
-                label: "Cash",
-                description: "280¤ (tips from last 2 weeks, unbanked)",
-                value: 280,
-                isCredits: true
-              },
-              {
-                id: "reeves_documents",
-                label: "Documents",
-                description: "Pay stubs, employee handbook, locker key"
-              },
-            ]}
-            digital={[
-              {
-                id: "reeves_credchip",
-                label: "Credchip",
-                description: "15¤ (personal spending money, transferable)",
-                value: 15,
-                isCredits: true
-              },
-            ]}
-            notes="Safe checked daily before and after casino shifts"
-          />
+          >
+            <Divider />
+            <Line cyan>Overall: Quiet building, minimal issues</Line>
+            <Line yellow>Next maintenance: HVAC inspection (next week)</Line>
+          </IncidentLog>
         ),
       },
 
@@ -820,7 +867,7 @@ export const NEIGHBORHOOD_COMMANDS = {
           />
         ),
         related_commands: {
-          "Unit 2A Console": {
+          "Game Console": {
             content: (
               <GameConsole
                 model="CyberDeck Pro X"
@@ -836,15 +883,16 @@ export const NEIGHBORHOOD_COMMANDS = {
             )
           },
 
-          "Unit 2A Safe": {
-            password: {
-              pw: "maintenance",
-              hint: "The resident's department at the casino",
-              hintStrength: 2,
-            },
+          "Personal Safe": {
+            // password: {
+            //   pw: "maintenance",
+            //   hint: "The resident's department at the casino",
+            //   difficulty: "medium",
+            //   content: <Locked theme="safe" title="PERSONAL SAFE" />
+            // },
             content: (
               <Safe
-                id="apartment-2a-maintenance"
+                id="torres-2a-safe"
                 model="DS-200"
                 location="Unit 2A, kitchen cabinet (hidden)"
                 owner="Jake Torres (facilities maintenance)"
@@ -852,38 +900,32 @@ export const NEIGHBORHOOD_COMMANDS = {
                 lastAccess="2 days ago"
                 physical={[
                   {
-                    id: "torres_coveralls",
+                    id: "torres_2a_coveralls",
                     label: "Work coveralls",
                     description: "Lucky Flight maintenance uniform (dirty, needs washing)"
                   },
                   {
-                    id: "torres_keycard",
+                    id: "torres_2a_keycard",
                     label: "Staff keycard",
                     description: "Maintenance access (service corridors, mechanical rooms, roof access)"
                   },
                   {
-                    id: "torres_tools",
-                    label: "Tools",
-                    description: "Personal toolkit (screwdrivers, multimeter, duct tape)"
-                  },
-                  {
-                    id: "torres_cash",
+                    id: "torres_2a_cash",
                     label: "Cash",
-                    description: "120¤ (emergency fund, small bills)",
-                    value: 120,
+                    value: 20,
                     isCredits: true
                   },
                 ]}
                 digital={[
                   {
-                    id: "torres_credchip",
+                    id: "torre_2a_credchip",
                     label: "Credchip",
-                    description: "85¤ (weekly pay, transferable)",
+                    description: "85¤",
                     value: 85,
                     isCredits: true
                   },
                   {
-                    id: "torres_lfc_password",
+                    id: "torres_2a_lfc_password",
                     label: "LFC Facilities PW",
                     description: "architecture"
                   },
@@ -895,97 +937,192 @@ export const NEIGHBORHOOD_COMMANDS = {
         }
       },
 
-      access_building_management: {
-        password: {
-          pw: "blind",
-          hint: "You pay before you see",
-          hintStrength: 2,
-        },
+      "Unit 3B - Personal Safe": {
+        // password: {
+        //   pw: "localhost",
+        //   hint: "This terminal doesn't trust the outside world",
+        //   difficulty: "easy",
+        //   content: <Locked theme="safe" title="PERSONAL SAFE" />
+        // },
         content: (
-          <>
-            <Line smoke large bold>[BUILDING MANAGEMENT SYSTEM]</Line>
-            <Line cyan>[MANAGER ACCESS]</Line>
-            <Divider />
-            <Section title="RECENT ISSUES:">
+          <Safe
+            id="torres-3b-safe"
+            model="PS-150"
+            location="Unit 3B, bedroom closet"
+            owner="Marco Silva"
+            security="4-digit PIN"
+            lastAccess="2 days ago"
+            physical={[
+              {
+                id: "torres_3b_documents",
+                label: "Documents",
+                description: "Passport, birth certificate"
+              },
+              {
+                id: "torres_3b_bracelet",
+                label: "Jewelry",
+                description: "Gold bracelet (family heirloom)"
+              },
+            ]}
+            digital={[
+              {
+                id: "torres_3b_credchip",
+                label: "Credchip",
+                description: "40¤",
+                value: 40,
+                isCredits: true
+              },
+            ]}
+            notes="Safe mounted to wall, relatively new installation"
+          />
+        ),
+      },
+
+      "Unit 4B - Personal Safe": {
+        // password: {
+        //   pw: "dealer",
+        //   hint: "The resident's job at the casino",
+        //   difficulty: "medium",
+        //   content: <Locked theme="safe" title="PERSONAL SAFE" />
+        // },
+        content: (
+          <Safe
+            id="torres-4b-safe"
+            model="DS-250"
+            location="Unit 4B, bedroom closet shelf"
+            owner="Marcus Reeves"
+            security="Digital keypad"
+            lastAccess="Yesterday evening"
+            physical={[
+              {
+                id: "reeves_documents",
+                label: "Documents",
+                description: "Pay stubs, employee handbook, locker key"
+              },
+            ]}
+            digital={[
+              {
+                id: "reeves_credchip",
+                label: "Credchip",
+                description: "15¤ (personal spending money, transferable)",
+                value: 15,
+                isCredits: true
+              },
+            ]}
+            notes="Safe checked daily before and after casino shifts"
+          />
+        ),
+      },
+
+      access_building_management: {
+        // password: {
+        //   pw: "blind",
+        //   hint: "You pay before you see",
+        //   difficulty: "medium",
+        //   content: <Locked theme="terminal" title="BUILDING MANAGEMENT" />
+        // },
+        content: (
+          <MaintenanceAccess
+            title="[BUILDING MANAGEMENT SYSTEM]"
+            deviceModel="Property Management Software"
+            deviceId="BLD-MGMT-TORRES"
+            firmwareVersion="v3.1.0"
+            systemStatus="OPERATIONAL"
+            notes={[
+              "Manager Access: Rosa Mendez",
+              "Upcoming maintenance: HVAC inspection (next week)",
+              "Annual fire safety check: Next month",
+              "Vacancies: 2 units available"
+            ]}
+          >
+            <InsetBox title="RECENT ISSUES:">
               <Line yellow>Unit 4C: Plumbing leak (resolved)</Line>
               <Line yellow>Floor 2: Hallway light replacement (scheduled)</Line>
               <Line red>Unit 5A: Late payment (14 days overdue)</Line>
               <Line yellow>Roof access: Door lock needs repair</Line>
-            </Section>
-            <Divider />
-            <Section title="UPCOMING MAINTENANCE:">
-              <Line neon>Next week: HVAC inspection</Line>
-              <Line neon>Next month: Annual fire safety check</Line>
-            </Section>
-            <Divider />
-            <Section title="RESIDENT NOTES:">
+            </InsetBox>
+            <InsetBox title="RESIDENT NOTES:">
               <Line cyan>Unit 2B: Hosting weekly poker games</Line>
               <Line cyan>Unit 6A: Musician (occasional noise complaints)</Line>
               <Line cyan>Unit 3D: Quiet, pays early, model tenant</Line>
-            </Section>
-          </>
+            </InsetBox>
+          </MaintenanceAccess>
         ),
       },
     },
   },
 
   // ============================================================================
-  // PAWN SHOP
+  // LUCKY'S PAWN & TRADE
   // ============================================================================
 
   "Lucky's Pawn & Trade": {
     content: (
-      <>
-        <Line cyan large bold>LUCKY'S PAWN & TRADE</Line>
-        <Line yellow>"Buy. Sell. Trade. No Judgments."</Line>
-        <Divider />
-        <Line neon>Accessing shop catalog...</Line>
-        <Line cyan>[CUSTOMER ACCESS]</Line>
-        <Divider />
-        <Section title="SERVICES:">
-          <Line neon>• Buy used goods (electronics, tools, jewelry)</Line>
-          <Line neon>• Sell unwanted items (immediate cash offers)</Line>
-          <Line neon>• Pawn items (30-90 day terms, 15% interest)</Line>
-          <Line neon>• Trade & barter (negotiable)</Line>
-        </Section>
-        <Divider />
-        <Section title="CURRENT INVENTORY (Highlights):">
-          <Line cyan>Tools: Power drill set (60¤), Welding torch (80¤)</Line>
-          <Line cyan>Electronics: Used tablets (40-70¤), Old phones (20-40¤)</Line>
-          <Line cyan>Jewelry: Rings, watches, chains (various prices)</Line>
-          <Line cyan>Miscellaneous: Bikes, musical instruments, vintage items</Line>
-        </Section>
-        <Divider />
-        <Section title="HOURS & LOCATION:">
-          <Line neon>Hours: 10:00-19:00 (Mon-Sat), Closed Sunday</Line>
-          <Line neon>Location: Market district, near canal dock</Line>
-        </Section>
-        <Divider />
-        <Section title="POLICIES:">
-          <Line yellow>• Valid ID required for all transactions</Line>
-          <Line yellow>• No stolen goods accepted (officially)</Line>
-          <Line yellow>• All sales final</Line>
-          <Line cyan>• Appraisals: Free (under 5 items)</Line>
-        </Section>
-        <Divider />
-        <Line pink>"One person's trash is Lucky's treasure."</Line>
-      </>
+      <PublicPortal
+        name="LUCKY'S PAWN & TRADE"
+        tagline="Buy. Sell. Trade. No Judgments."
+        network="LUCKY_PAWN_PUBLIC"
+        signalStrength="strong"
+        status="✓ OPEN"
+        statusColor="neon"
+        notes={[
+          "Valid ID required",
+          "All sales final",
+          "Free appraisals (under 5 items)"
+        ]}
+        theme="friendly"
+      >
+        <HoursBanner
+          name="LUCKY'S PAWN & TRADE"
+          hours="10:00 - 19:00"
+          days="Monday - Saturday (Closed Sunday)"
+        />
+      </PublicPortal>
     ),
     related_commands: {
+      "Personnel File": {
+        content: (
+          <PersonnelFile
+            employeeId="PAWN-OWNER-001"
+            name="'Lucky' Lucas Kane"
+            age={44}
+            position="Owner / Pawnbroker"
+            department="Independent Retail"
+            hireDate="2074 (8 years in business)"
+            supervisor="Self-employed"
+            clearanceLevel={5}
+            district="Ports (unknown residence)"
+            emergencyContact="None listed"
+            performance={82}
+            notes={[
+              "Background: Former fence for minor gangs",
+              "Went legitimate after corp crackdown in 2074",
+              "Sharp appraiser - rarely pays more than item is worth",
+              "Reputation: Fair but shrewd businessman",
+              "Known for: Accepting 'no questions asked' items (for premium)",
+              "Connections: Maintains relationships with collectors, dealers",
+              "Will occasionally tip off Stone Eels about valuable items"
+            ]}
+            status="ACTIVE"
+          />
+        ),
+      },
+
       "ATM": {
-        password: {
-          pw: "cash",
-          hint: "What everyone wants from an ATM",
-          hintStrength: 1,
-        },
+        // password: {
+        //   pw: "cash",
+        //   hint: "What everyone wants from an ATM",
+        //   difficulty: "easy",
+        //   content: <Locked theme="terminal" title="ATM ACCESS" />
+        // },
         content: (
           <ATM
             id="lucky-pawn-atm"
             model="ATM-500"
             location="Inside Lucky's Pawn (by entrance)"
             network="CityBank"
-            accountHolder="Marcus Chen (last accessed)"
-            balance="287¤"
+            credits={20}
+            lastService="1 week ago"
             transactions={[
               "14:32 → Withdrawal: 40¤",
               "15:18 → Withdrawal: 100¤",
@@ -993,43 +1130,53 @@ export const NEIGHBORHOOD_COMMANDS = {
               "16:47 → Failed transaction (insufficient funds)",
               "17:23 → Withdrawal: 20¤",
             ]}
-            lastService="1 week ago"
           />
         ),
       },
 
       access_pawn_records: {
-        password: {
-          pw: "thehouse",
-          hint: "It always wins",
-          hintStrength: 1,
-        },
+        // password: {
+        //   pw: "thehouse",
+        //   hint: "It always wins",
+        //   difficulty: "easy",
+        //   content: <Locked theme="terminal" title="PAWN RECORDS" />
+        // },
         content: (
-          <>
-            <Line smoke large bold>[PAWN RECORDS DATABASE]</Line>
-            <Line cyan>Active loans & transactions</Line>
-            <Divider />
-            <Section title="RECENT PAWNS (Last 7 days):">
+          <MaintenanceAccess
+            title="[PAWN RECORDS DATABASE]"
+            deviceModel="Pawn Shop Management System"
+            deviceId="PAWN-LUCKY-01"
+            firmwareVersion="v2.4.0"
+            systemStatus="OPERATIONAL"
+            notes={[
+              "Active loans & transaction history",
+              "Last 7 days of pawn activity",
+              "High-value items tracked separately",
+              "Back room inventory unsorted"
+            ]}
+          >
+             <Divider />
+            <InsetBox title="RECENT PAWNS (Last 7 days):">
               <Line neon>Item: Synthesizer keyboard, Loan: 80¤, Due: 22 days</Line>
               <Line neon>Item: Gold watch, Loan: 120¤, Due: 18 days</Line>
               <Line neon>Item: Power tools (set), Loan: 60¤, Due: 25 days</Line>
               <Line yellow>Item: Wedding ring, Loan: 40¤, Due: 3 days (redemption likely)</Line>
-            </Section>
-            <Divider />
-            <Section title="HIGH-VALUE ITEMS (In Stock):">
+            </InsetBox>
+            <InsetBox title="HIGH-VALUE ITEMS (In Stock):">
               <Line cyan>Vintage guitar: 200¤ (floor display)</Line>
               <Line cyan>Cyberware components: 150¤ (back room)</Line>
               <Line cyan>Antique watch collection: 180¤ (display case)</Line>
-            </Section>
-            <Divider />
-            <Section title="BACK ROOM INVENTORY:">
+            </InsetBox>
+            <InsetBox title="BACK ROOM INVENTORY:">
               <Line yellow>Unsorted electronics (awaiting testing)</Line>
               <Line yellow>Confiscated items (failed loan redemptions)</Line>
               <Line yellow>Lucky's personal collection (not for sale)</Line>
-            </Section>
-          </>
+            </InsetBox>
+          </MaintenanceAccess>
         ),
       },
     },
   },
 };
+
+export default NEIGHBORHOOD_COMMANDS;

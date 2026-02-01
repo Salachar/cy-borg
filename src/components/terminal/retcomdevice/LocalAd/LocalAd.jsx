@@ -4,10 +4,9 @@ export default function LocalAd({
   name,           // Business name
   tagline,        // Main tagline
   subtitle,       // Secondary subtitle (optional)
-  features = [],  // Array of features/offerings
+  products = [],  // Array of Products/offerings
   cta,            // Call to action text (optional)
   theme = 'warm', // Visual theme
-  icon,           // Optional icon/symbol (emoji or text)
   children,       // Optional custom content (placed mid-section)
 }) {
   // Theme configurations - more colorful, less refined than CorpAd
@@ -111,16 +110,6 @@ export default function LocalAd({
         alignItems: 'center',
         gap: '1.25rem',
       }}>
-        {/* Icon (if provided) */}
-        {icon && (
-          <div style={{
-            flexShrink: 0,
-            fontSize: '2.25rem',
-          }}>
-            {icon}
-          </div>
-        )}
-
         {/* Main content */}
         <div style={{ flex: 1 }}>
           {/* Business name */}
@@ -142,7 +131,7 @@ export default function LocalAd({
               fontSize: '0.875rem',
               color: t.accent,
               fontStyle: 'italic',
-              marginBottom: subtitle || features.length > 0 ? '0.4rem' : 0,
+              marginBottom: subtitle || products.length > 0 ? '0.4rem' : 0,
             }}>
               "{tagline}"
             </p>
@@ -153,21 +142,21 @@ export default function LocalAd({
             <p style={{
               fontSize: '0.75rem',
               color: t.text,
-              marginBottom: features.length > 0 ? '0.5rem' : 0,
+              marginBottom: products.length > 0 ? '0.5rem' : 0,
             }}>
               {subtitle}
             </p>
           )}
 
-          {/* Features - simpler list style */}
-          {features.length > 0 && (
+          {/* Products - simpler list style */}
+          {products.length > 0 && (
             <div style={{
               display: 'flex',
               flexDirection: 'column',
               gap: '0.25rem',
               marginTop: '0.5rem',
             }}>
-              {features.slice(0, 3).map((feature, i) => (
+              {products.slice(0, 3).map((feature, i) => (
                 <div
                   key={i}
                   style={{
