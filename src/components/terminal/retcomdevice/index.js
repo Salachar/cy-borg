@@ -35,6 +35,9 @@ import ArcadeCabinet from "./ArcadeCabinet/ArcadeCabinet";
 import DigitalWallet from "./DigitalWallet/DigitalWallet";
 import IceBreaker from "./IceBreaker/IceBreaker";
 import RetComImage from "./Images/RetComImage";
+import NetworkDevices from "./NetworkDevices/NetworkDevices";
+import VIPList from "./VIPList/VIPList";
+import Locked from "./Locked/Locked";
 
 export {
   ATM,
@@ -74,4 +77,7 @@ export {
   DigitalWallet,
   IceBreaker,
   RetComImage,
+  NetworkDevices,
+  VIPList,
+  Locked,
 };

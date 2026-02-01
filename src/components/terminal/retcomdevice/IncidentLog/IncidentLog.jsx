@@ -3,7 +3,8 @@ import { Line, Section, Divider } from '@terminal/TerminalComponents';
 export default function IncidentLog({
   incidents = [],
   title = "INCIDENT LOG",
-  timeframe = "Recent activity"
+  timeframe = "Recent activity",
+  children,
 }) {
   if (incidents.length === 0) {
     return (
@@ -30,11 +31,11 @@ export default function IncidentLog({
       {incidents.map((incident, idx) => (
         <div key={idx}>
           <Section title={incident.timestamp}>
-            <Line className={getTypeColor(incident.type)}>
+            <Line className={getTypeColor(incident.type)} cyan>
               Incident Type: {incident.type}
             </Line>
             {Object.entries(incident.details).map(([key, value], detailIdx) => (
-              <Line key={detailIdx} neon>
+              <Line key={detailIdx} smoke>
                 {key}: {value}
               </Line>
             ))}
@@ -42,6 +43,8 @@ export default function IncidentLog({
           {idx < incidents.length - 1 && <Divider />}
         </div>
       ))}
+
+      {Boolean(children) && children}
     </>
   );
 }

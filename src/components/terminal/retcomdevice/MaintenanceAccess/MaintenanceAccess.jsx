@@ -1,11 +1,14 @@
 import { Line, Divider, DataTable } from '@terminal/TerminalComponents';
 
 export default function MaintenanceAccess({
+  title = "[MAINTENANCE INTERFACE]",
   deviceModel = "NOT SET BY ADMINISTRATOR",
   deviceId = "UNREGISTERED",
   firmwareVersion = "v2.4.1",
   systemStatus = "OPERATIONAL",
   uptime = "14 days, 7 hours",
+  notes = [],
+  children,
 }) {
   // Status color mapping
   const statusColors = {
@@ -36,7 +39,7 @@ export default function MaintenanceAccess({
           }}
         >
           <Line smoke large bold style={{ margin: 0 }}>
-            [MAINTENANCE INTERFACE]
+            {title}
           </Line>
         </div>
 
@@ -92,6 +95,48 @@ export default function MaintenanceAccess({
               ]}
             />
           </div>
+
+          {notes.length > 0 && (
+            <div
+              style={{
+                backgroundColor: 'rgba(15, 23, 42, 0.6)',
+                border: '1px solid rgb(71, 85, 105)',
+                borderRadius: '3px',
+                padding: '0.75rem',
+              }}
+            >
+              <Line cyan bold style={{ margin: 0, fontSize: '0.95rem', marginBottom: '0.5rem' }}>
+                NOTES
+              </Line>
+              {notes.map((note, i) => (
+                <div
+                  key={i}
+                  style={{
+                    display: 'flex',
+                    gap: '0.5rem',
+                    marginTop: '0.5rem',
+                    paddingLeft: '0.5rem',
+                    borderLeft: '2px solid rgb(251, 191, 36)',
+                  }}
+                >
+                  <span style={{ color: 'rgb(251, 191, 36)', fontSize: '0.75rem', flexShrink: 0 }}>
+                    •
+                  </span>
+                  <Line yellow style={{ margin: 0, fontSize: '0.875rem' }}>
+                    {note}
+                  </Line>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {Boolean(children) && (
+            <div style={{
+              margin: '1rem 0',
+            }}>
+              {children }
+            </div>
+          )}
 
           {/* Footer info */}
           <div style={{ marginTop: '1rem' }}>

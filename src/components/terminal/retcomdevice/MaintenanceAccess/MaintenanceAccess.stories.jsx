@@ -20,6 +20,22 @@ export const VendingMachine = {
   },
 };
 
+export const VendingMachineNote = {
+  args: {
+    title: "[VENDING MAINTENANCE]",
+    deviceModel: 'QuickDrinx 2000',
+    deviceId: 'QD-45782-B',
+    firmwareVersion: 'v2.4.1',
+    systemStatus: 'OPERATIONAL',
+    uptime: '14 days, 7 hours',
+    notes: [
+      "Promoted to manager position in 2065 after 2 years as supervisor",
+      "Completed advanced logistics certification",
+      "Team lead for new inventory management system implementation"
+    ]
+  },
+};
+
 // ATM machine
 export const ATMMachine = {
   args: {

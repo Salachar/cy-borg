@@ -19,6 +19,7 @@ import {
   Radio,
   ArcadeCabinet,
   DigitalWallet,
+  Locked,
 } from "@terminal/retcomdevice"
 
 import BatusBodegaAd from './ad'
@@ -70,7 +71,7 @@ export const BODEGA_COMMANDS = {
               pw: "java",
               hint: "Dan really hates it",
               difficulty: 'expert',
-              content: <DigitalWallet isLocked />
+              content: <Locked theme="wallet" />
             },
             content: (
               <DigitalWallet
@@ -141,7 +142,7 @@ export const BODEGA_COMMANDS = {
               <MaintenanceAccess />
             ),
             related_commands: {
-              "vend_wallet": {
+              "VendWallet": {
                 password: {
                   pw: "coins",
                   hint: "What accumulates in the cash box",
@@ -155,7 +156,7 @@ export const BODEGA_COMMANDS = {
                   />
                 ),
               },
-              "debug": {
+              "DebugMode": {
                 icebreaker: {
                   difficulty: 'easy',
                 },
@@ -189,7 +190,6 @@ export const BODEGA_COMMANDS = {
               <Line neon>• Synth-Ramen 6-pack → 12¤ (was 18¤)</Line>
               <Line neon>• Energy Drinks (any brand) → 2 for 8¤</Line>
               <Line neon>• Protein Bars (expired last week) → 1¤ each</Line>
-              <Line neon>• Credchip Top-Up (10¤ value) → 11¤ (includes fee)</Line>
             </Section>
             <Divider />
             <Section title="ALWAYS IN STOCK:">
@@ -201,11 +201,11 @@ export const BODEGA_COMMANDS = {
             </Section>
             <Divider />
             <Section title="SERVICES:">
+              <Line cyan>✓ Community bulletin board</Line>
               <Line cyan>✓ Credchip exchange (small fee)</Line>
               <Line cyan>✓ Package pickup/dropoff for couriers</Line>
               <Line cyan>✓ Bathroom access (regulars only)</Line>
-              <Line cyan>✓ Free wifi (password: freewifi)</Line>
-              <Line cyan>✓ Community bulletin board</Line>
+              <Line cyan>✓ Free WiFi</Line>
             </Section>
           </Message>
         ),
@@ -242,7 +242,7 @@ export const BODEGA_COMMANDS = {
         ),
       },
 
-      "Neighborhood Bulletin": {
+      "Community Bulletin Board": {
         content: (
           <CommunityBoard
             id="bodega-bulletin"
@@ -251,7 +251,7 @@ export const BODEGA_COMMANDS = {
             posts={[
               { text: '"MISSING: Batu, bodega owner. Anyone seen him?"', color: 'red' },
               { text: '"Lucky Flight took another house on our street this week"', color: 'cyan' },
-              { text: '"Can\'t afford groceries after casino payment this month"', color: 'pink' },
+              { text: '"Cant afford groceries after casino payment this month"', color: 'pink' },
               { text: '"4th eviction on our block this year. When does it stop?"', color: 'pink' },
               { text: '"Organizing neighborhood meeting - discuss casino problem"', color: 'pink' },
               { text: '"We need to do something about that fucking place"', color: 'neon' },
@@ -260,31 +260,29 @@ export const BODEGA_COMMANDS = {
             services={[
               'Street doc - "Fingers" (2 blocks south, knock 3x)',
               "Chop shop - Razor's (3 blocks east, alley entrance)",
-              "Black market credchip exchange (fluctuating rates)",
-              "Cyberware installation (unlicensed, cheap)",
-              "Taxi boat service to canal district (negotiable rates)",
             ]}
             vibe="General mood: Frustrated, angry, desperate"
           />
         ),
       },
 
-      access_internal_network: {
+      "Internal Network": {
         password: {
           pw: "payday",
           hint: "Niece's favorite day and candybar",
           difficulty: 'medium',
+          content: <Locked theme="terminal" />
         },
         content: (
-          <Message
-            title="BODEGA"
-            message="EMPLOYEE ACCESS GRANTED"
-            note="Internal network maintained by Batu (basic security)"
-            theme="casual"
+          <MaintenanceAccess
+            title="BODEGA INTERNAL NETWORK"
+            notes={[
+              'Zara - Please restock the vending machine'
+            ]}
           />
         ),
         related_commands: {
-          access_security_cam: {
+          "Security Camera - Main Shop": {
             content: (
               <Camera
                 id="bodega-main-cam"
@@ -314,7 +312,7 @@ export const BODEGA_COMMANDS = {
             ),
           },
 
-          query_personnel: {
+          "Personnel Files": {
             content: (
               <Message
                 title="BODEGA"
@@ -333,7 +331,7 @@ export const BODEGA_COMMANDS = {
               </Message>
             ),
             related_commands: {
-              query_batu_personnel_file: {
+              "Batu": {
                 password: {
                   pw: "community",
                   hint: "What Batu cares about more than profit",
@@ -369,7 +367,7 @@ export const BODEGA_COMMANDS = {
                 ),
               },
 
-              query_zara_personnel_file: {
+              "Zara": {
                 content: (
                   <PersonnelFile
                     employeeId="BODEGA-002"
@@ -400,7 +398,7 @@ export const BODEGA_COMMANDS = {
             },
           },
 
-          query_inventory: {
+          "Inventory Status": {
             content: (
               <Message
                 title="BODEGA"

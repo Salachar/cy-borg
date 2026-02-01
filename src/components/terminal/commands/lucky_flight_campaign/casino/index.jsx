@@ -16,6 +16,13 @@ import {
   Message,
   RetComImage,
   PersonnelFile,
+  HoursBanner,
+  EventLineup,
+  DigitalWallet,
+  NetworkDevices,
+  VIPList,
+  IncidentLog,
+  MaintenanceAccess,
 } from "@terminal/retcomdevice"
 
 import LuckyFlightAd from './ad'
@@ -41,7 +48,7 @@ export const LUCKY_FLIGHT_CASINO = {
             model="ATM-700X"
             location="Lucky Flight Casino - Main lobby (near entrance)"
             network="CasinoBlizzFunds Network"
-            cashAvailable="5,000¤ (high capacity)"
+            credits={30}
             lastService="Yesterday"
             transactions={[
               "2 hours ago → Withdrawal: 200¤",
@@ -87,32 +94,39 @@ export const LUCKY_FLIGHT_CASINO = {
 
       "Hours of Operation": {
         content: (
-          <>
-            <Line smoke large bold>[OPERATING HOURS]</Line>
-            <KeyValue label="Closed (daily)" value="7:00 AM - 10:00 AM" />
-            <Divider />
-            <Line neon>Maintenance window: 7:00 AM - 10:00 AM</Line>
+          <HoursBanner
+            name="Lucky Strike Casino"
+            hours="10:00 AM - 7:00 AM"
+            days="Daily"
+            status="CLOSED"
+            statusColor="closed"
+            note="Maintenance window: 7:00 AM - 10:00 AM"
+          >
             <Line yellow pulse>Casino Monitoring Increased</Line>
             <Line cyan>Please do not disturb the maintenance crew</Line>
-          </>
+          </HoursBanner>
         ),
       },
 
-      "Entertainment Brochure"  : {
+      "Entertainment Lineup": {
         content: (
-          <>
-            <Line smoke large bold>[TONIGHT'S SHOWS]</Line>
-            <Divider />
-            <Line neon>20:00 - PHASER/MOB</Line>
-            <Line neon>21:30 - G_-.-</Line>
-            <Line neon>23:00 - HeCcc</Line>
-            <Line neon>01:00 - I must leave</Line>
-            <Line neon>02:30 - Sirius Last Light</Line>
-            <Divider />
-            <Line cyan>Stage: Floor 1, Room 3</Line>
-            <Line yellow>Loud music = noise cover</Line>
-            <Line neon>Band entrance: Canal pier</Line>
-          </>
+          <EventLineup
+            venueName="Cave Club"
+            date="Tonight"
+            updateFrequency="Updated hourly"
+            theme="club"
+            performances={[
+              { time: "20:00", artist: "PHASER/MOB", genre: "Synthwave" },
+              { time: "21:30", artist: "G_-.-", genre: "Industrial" },
+              { time: "23:00", artist: "HeCcc", genre: "Darkwave" },
+              { time: "01:00", artist: "I must leave", genre: "Ambient" },
+              { time: "02:30", artist: "Sirius Last Light", genre: "Post-Punk" },
+            ]}
+            entry={{
+              notes: "Stage: Floor 1, Room 3 • Band entrance: Canal pier"
+            }}
+            tagline="Loud music = noise cover"
+          />
         ),
       },
 
@@ -134,7 +148,7 @@ export const LUCKY_FLIGHT_CASINO = {
         ),
       },
 
-      "NukaCola Vending": {
+      "NukaCola Vending Machine": {
         content: (
           <VendingMachine
             id="lfc-lobby-nuka"
@@ -170,69 +184,26 @@ export const LUCKY_FLIGHT_CASINO = {
               </>
             ),
             related_commands: {
-              "Internal Safe": {
-                password: {
-                  pw: "coins",
-                  hint: "What accumulates in the cash box",
-                  hintStrength: 1,
-                },
+              "VendWallet": {
                 content: (
-                  <Safe
-                    id="nukacola-lfc-lobby"
-                    model="VM-CASH-200"
-                    location="Internal cash collection box"
-                    owner="Lucky Flight Casino (vending services)"
-                    security="Maintenance keypad"
-                    lastAccess="Yesterday (routine collection)"
-                    physical={[
-                      {
-                        id: "nukacola_coins",
-                        label: "Coins",
-                        description: "120¤ in change (heavy, mixed denominations)",
-                        value: 120,
-                        isCredits: true
-                      },
-                      {
-                        id: "nukacola_service_log",
-                        label: "Service log",
-                        description: "Paper logbook (last 3 months)"
-                      },
-                    ]}
-                    digital={[
-                      {
-                        id: "nukacola_credchip",
-                        label: "Credchip",
-                        description: "85¤ (daily receipts, transferable)",
-                        value: 85,
-                        isCredits: true
-                      },
-                      {
-                        id: "nukacola_transaction_log",
-                        label: "Transaction log",
-                        description: "Last 500 purchases logged"
-                      },
-                    ]}
-                    notes="Machine empties automatically to casino vault nightly at 03:00"
+                  <DigitalWallet
+                    id="bodega-vending-machine-wallet"
+                    accountHolder="Beverage Corp (vending division)"
+                    credits={15}
                   />
                 ),
               },
-              "Debug Mode": {
-                password: {
-                  pw: "freevend",
-                  hint: "The mode that gives away drinks",
-                  hintStrength: 2,
-                },
+              "DebugMode": {
                 content: (
-                  <>
-                    <Line smoke large bold>[DEBUG MODE ACTIVATED]</Line>
-                    <Divider />
+                  <Message
+                    title="VENDING MACHINE"
+                    message="DEBUG MODE ACTIVATED"
+                    note="Dispense drinks via main interface - no charge"
+                    theme="corporate"
+                  >
                     <Line yellow large>⚠ FREE VEND MODE ENABLED</Line>
                     <Line cyan>All payment verification disabled</Line>
-                    <Line cyan>All selections available without credchip</Line>
-                    <Divider />
-                    <Line neon>Dispense drinks via main interface - no charge</Line>
-                    <Line yellow>Warning: Leaves audit trail in transaction log</Line>
-                  </>
+                  </Message>
                 ),
               },
             },
@@ -240,27 +211,35 @@ export const LUCKY_FLIGHT_CASINO = {
         },
       },
 
-      "access_internal_network": {
-        // password: {
-        //   pw: "loadeddice",
-        //   hint: "Better not get caught",
-        //   hintStrength: 1,
-        // },
+      "Casino Internal Network [PRIVATE]": {
+        password: {
+          pw: "loadeddice",
+          hint: "Better not get caught",
+          hintStrength: 1,
+        },
         content: (
-          <Message
-            title="CASINO"
-            message="ACCESS GRANTED - PERIPHERAL SYSTEMS"
-            note="Higher-value systems require additional credentials"
-            theme="corporate"
+          <MaintenanceAccess
+            title="[CASINO INTERNAL NETWORK]"
+            deviceModel="Lucky Flight Systems Gateway"
+            deviceId="NET-GATEWAY-MAIN"
+            firmwareVersion="v2.7.3"
+            systemStatus="OPERATIONAL"
+            uptime="42 days, 11 hours"
+            notes={[
+              "Access Level: Peripheral systems only",
+              "Higher-value systems require additional credentials",
+              "Camera feeds, operations data, and public terminals accessible",
+              "Vault, power core, and security office require elevated access"
+            ]}
           />
         ),
         related_commands: {
-          access_facility_files: {
-            // password: {
-            //   pw: "architecture",
-            //   hint: "What blueprints are a form of",
-            //   hintStrength: 2,
-            // },
+          "Facility Files": {
+            password: {
+              pw: "architecture",
+              hint: "What blueprints are a form of",
+              hintStrength: 2,
+            },
             content: (
               <>
                 <Line smoke large bold>[FACILITY BLUEPRINTS]</Line>
@@ -363,7 +342,7 @@ export const LUCKY_FLIGHT_CASINO = {
               },
             },
           },
-          access_hr_database: {
+          "Personnel Files": {
             password: {
               pw: "gibos",
               hint: "Nickname of the cyborg grandpa winning big at slots",
@@ -398,24 +377,15 @@ export const LUCKY_FLIGHT_CASINO = {
               </>
             ),
             related_commands: {
-
-              // ====== WINGUS ======
-              profile_wingus: {
-                // password: {
-                //   pw: "bouncer",
-                //   hint: "His job title at the entrance",
-                //   hintStrength: 1,
-                // },
+              "Wingus Drey": {
                 content: (
                   <PersonnelFile
                     employeeId="LFC-SEC-2891"
                     name="Wingus Drey"
                     age={29}
-                    dob="Unknown"
                     position="Entrance Security (Bouncer)"
                     department="Security Division"
-                    hireDate="March 2080"
-                    supervisor="Wattana Kovit (Head of Security)"
+                    supervisor="Wattana"
                     clearanceLevel={1}
                     district="Ports (Torres Apartments, Unit 4B)"
                     emergencyContact="Dingus Marks (work partner) - on-site"
@@ -423,35 +393,22 @@ export const LUCKY_FLIGHT_CASINO = {
                     performance={60}
                     notes={[
                       "Shift: Evening/Night (18:00-04:00, 6 days/week)",
-                      "Partners with Dingus Marks (entrance team)",
                       "Training: Basic security protocols, conflict de-escalation",
                       "Outstanding debt: 1,200¤ — Spectral FT Banks (current, 3 months consecutive)",
                       "Equipment: Security vest, shockstick (permit #SEC-2891), encrypted comms earpiece",
-                      "2 days ago: On-duty altercation (patron ejected, no injury)",
-                      "2 weeks ago: Reprimand — late to shift (15 minutes)",
                       "Lives with Dingus Marks (shared apartment)",
                     ]}
-                    status="ACTIVE"
                   />
                 ),
               },
-
-              // ====== DINGUS ======
-              profile_dingus: {
-                // password: {
-                //   pw: "partner",
-                //   hint: "Wingus's work relationship to him",
-                //   hintStrength: 1,
-                // },
+              "Dingus Marks": {
                 content: (
                   <PersonnelFile
                     employeeId="LFC-SEC-2892"
                     name="Dingus Marks"
                     age={31}
-                    dob="Unknown"
                     position="Entrance Security (Bouncer)"
                     department="Security Division"
-                    hireDate="March 2080"
                     supervisor="Wattana Kovit (Head of Security)"
                     clearanceLevel={1}
                     district="Ports (Torres Apartments, Unit 4B)"
@@ -463,39 +420,24 @@ export const LUCKY_FLIGHT_CASINO = {
                       "Partners with Wingus Drey (entrance team)",
                       "Training: Basic security, first aid certified",
                       "Outstanding debt: 2,100¤ — CasinoBlizzFunds (behind 1 month, collection warning issued)",
-                      "Equipment: Security vest, shockstick (permit #SEC-2892), encrypted comms earpiece",
-                      "3 days ago: Assisted Wingus with patron removal",
-                      "2 weeks ago: Wage garnishment initiated (debt payment)",
-                      "Medical: Shoulder injury 6 months ago (work-related, approved claim 800¤, full duty now)",
-                      "Lives with Wingus Drey (shared apartment)",
                     ]}
-                    status="ACTIVE"
                   />
                 ),
               },
-
-              // ====== ADILET ======
-              profile_adilet: {
-                // password: {
-                //   pw: "enjoyment",
-                //   hint: "The corporate-speak word in his job title",
-                //   hintStrength: 2,
-                // },
+              "Adilet Nurlan": {
                 content: (
                   <PersonnelFile
                     employeeId="LFC-SEC-3104"
                     name="Adilet Nurlan"
                     age={26}
-                    dob="Unknown"
                     position="Guest Enjoyment Officer (Floor Security)"
                     department="Security Division - Floor Operations"
-                    hireDate="January 2081"
                     supervisor="Wattana Kovit (Head of Security)"
                     clearanceLevel={2}
                     district="Ports (Cascade Heights, Unit 12F)"
                     emergencyContact="Kamila Nurlan (sister)"
                     email="a.nurlan@luckyflightcasino.cy"
-                    salary="580¤/month (includes language bonus)"
+                    salary="580¤/month"
                     performance={78}
                     notes={[
                       "Shift: Rotating (covers all casino floor shifts)",
@@ -503,123 +445,62 @@ export const LUCKY_FLIGHT_CASINO = {
                       "2 commendations for guest satisfaction",
                       "Training: Advanced security, customer service, conflict resolution",
                       "Languages: Fluent in Cy-Standard, Kazakh, Russian",
-                      "Outstanding debt: 800¤ — Medical clinic (sister's treatment, current 6 months consecutive)",
                       "Equipment: Security vest, shockstick (permit #SEC-3104), encrypted comms + translation app, Level 2 access card",
                       "Yesterday: Assisted intoxicated patron to exit (no incident)",
                       "3 days ago: Translated for foreign VIP guest",
                       "1 week ago: Commendation — prevented potential brawl on casino floor",
                       "Considered for promotion to floor supervisor",
-                      "Sister's medical condition noted as source of financial pressure",
                     ]}
-                    status="ACTIVE"
                   />
                 ),
               },
-
-              // ====== VASKA JORDAN ======
-              profile_vaska_jordan: {
-                // password: {
-                //   pw: "fixedgame",
-                //   hint: "Fairness is a marketing term",
-                //   hintStrength: 3,
-                // },
+              "Vaska Jordan": {
                 content: (
                   <PersonnelFile
                     employeeId="LFC-MGT-0001"
                     name="Vaska Jordan"
                     age={44}
-                    dob="Unknown"
                     position="Casino Manager"
                     department="Management"
-                    hireDate="August 2077"
                     supervisor="CasinoBlizzFunds (Alliansen Inc. subsidiary)"
                     clearanceLevel={4}
-                    district="[REDACTED - Management only]"
                     emergencyContact="None listed"
                     email="v.jordan@luckyflightcasino.cy (rarely responds)"
-                    salary="3,200¤/month + performance bonuses"
                     performance={65}
                     notes={[
                       "Office: Floor 2, Northwest corner (private)",
                       "Responsibilities: Daily operations, staff management, financial oversight",
                       "Last bonus: 1,500¤ (quarterly target met)",
-                      "Outstanding debt: 12,000¤ — multiple creditors (lifestyle expenses)",
-                      "⚠ Financial pressure noted by corporate oversight",
                       "Attendance irregular — frequently off-site for 'business meetings'",
                       "2 days ago: Off-site (claimed corporate meeting)",
                       "4 days ago: On-site 3 hours (office only)",
                       "2 weeks ago: Complaint filed by employee (dismissed, lack of evidence)",
-                      "Avoids confrontation — delegates security matters to Wattana",
-                      "Rarely interacts directly with floor staff",
-                      "Known to leave at first sign of serious trouble",
-                      "Suspected of skimming (no proof, investigation closed)",
-                      "Personal RCD: [REDACTED - Management only]",
                     ]}
                     status="ACTIVE"
                   />
                 ),
               },
-
-              // ====== WATTANA ======
-              profile_wattana: {
-                // password: {
-                //   pw: "stackedodds",
-                //   hint: "Luck is manufactured",
-                //   hintStrength: 3,
-                // },
+              "Wattana Kovit": {
                 content: (
                   <PersonnelFile
                     employeeId="LFC-SEC-ALPHA"
                     name="Wattana Kovit"
                     age={38}
-                    dob="Unknown"
                     position="Head of Security"
                     department="Security Division"
-                    hireDate="November 2078"
                     supervisor="Vaska Jordan (Casino Manager)"
                     clearanceLevel={5}
-                    district="[CLASSIFIED - Security personnel only]"
-                    emergencyContact="[CLASSIFIED]"
                     email="w.kovit@luckyflightcasino.cy"
-                    salary="1,800¤/month + variable incident bonuses"
                     performance={88}
-                    notes={[
-                      "Office: Basement Security Room",
-                      "Access: ALPHA — unrestricted all areas, biometric (retinal) for Power Core and Locker Room, master keycard, override authority over all security personnel",
-                      "⚠ Multiple brutality complaints on record (all dismissed or settled)",
-                      "Assets above salary level — source undisclosed",
-                      "Prior employment: Private military contractor (8 years)",
-                      "Military service: [REDACTED]",
-                      "Criminal record: None (sealed records suspected)",
-                      "⚠ Psychological evaluation passed — notes: aggressive tendencies controlled",
-                      "Registered weapons: Wrist-mounted blade (permit #SEC-ALPHA-001), suppressed submachine gun (permit #SEC-ALPHA-002)",
-                      "Cyberware: Subdermal armor (torso, arms), enhanced reflexes (nervous system), cybereye (low-light, thermal)",
-                      "⚠ Toxin dispenser installed in wrist-blade — restricted compound",
-                      "Today: On-duty (basement patrol)",
-                      "Yesterday: Interrogation session (Locker Room, 3 hours)",
-                      "3 days ago: Detained individual for alleged theft",
-                      "4 days ago: Use of force incident — no report filed",
-                      "Patrol pattern focuses heavily on basement level",
-                      "Management style: Authoritarian, demands strict compliance",
-                      "Known to 'handle problems personally' rather than delegate",
-                      "⚠ Multiple staff fear him (unofficial feedback)",
-                      "⚠ Suspected of unauthorized interrogation methods",
-                      "Personal RCD: [ENCRYPTED]",
-                    ]}
-                    status="ACTIVE"
                   />
                 ),
               },
-
-              // ====== ZOLA (CLASSIFIED) ======
-              // Kept as Box — this is a corrupted/classified special case,
-              // not a standard HR record. PersonnelFile would normalize it.
-              profile_zola: {
-                // password: {
-                //   pw: "database",
-                //   hint: "Please help! I've been turned into a living...",
-                //   hintStrength: 0,
-                // },
+              "UNNAMED ENTRY": {
+                password: {
+                  pw: "database",
+                  hint: "Please help! I've been turned into a living...",
+                  hintStrength: 0,
+                },
                 content: (
                   <Box color="pink">
                     <Line pink large bold>[CLASSIFIED FILE: ZOLA]</Line>
@@ -653,13 +534,13 @@ export const LUCKY_FLIGHT_CASINO = {
                     <Line red pulse>[MEDICAL RECORDS: ACCESS DENIED]</Line>
                     <Line red pulse>[ACQUISITION DETAILS: ACCESS DENIED]</Line>
                     <Divider color="pink" />
-                    <Line pink>If you can read this, get me out. -Z</Line>
+                    <Line pink pulse bold>If you can read this, get me out. -Z</Line>
                   </Box>
                 ),
               },
             },
           },
-          access_security_database: {
+          "Security Coverage": {
             password: {
               pw: "surveillance",
               hint: "What cameras are used for",
@@ -680,94 +561,65 @@ export const LUCKY_FLIGHT_CASINO = {
               </>
             ),
             related_commands: {
-              query_camera_coverage: {
+              "Camera Coverage - Floor 1": {
+                content: (
+                  <NetworkDevices
+                    networkName="CCTV_FLOOR_1"
+                    devices={[
+                      { name: "Entrance", ip: "10.0.1.101", type: "Security Camera", status: "ONLINE" },
+                      { name: "Plant 1", ip: "10.0.1.102", type: "Security Camera", status: "ONLINE" },
+                      { name: "Plant 2", ip: "10.0.1.103", type: "Security Camera", status: "ONLINE" },
+                      { name: "Vending Machine", ip: "10.0.1.104", type: "Security Camera", status: "ONLINE" },
+                      { name: "Holo Games 1", ip: "10.0.1.105", type: "Security Camera", status: "ONLINE" },
+                      { name: "Holo Games 2", ip: "10.0.1.106", type: "Security Camera", status: "ONLINE" },
+                      { name: "Bathroom", ip: "10.0.1.107", type: "Security Camera", status: "ONLINE" },
+                      { name: "Stage Left", ip: "10.0.1.108", type: "Security Camera", status: "ONLINE" },
+                      { name: "Stage Right", ip: "10.0.1.109", type: "Security Camera", status: "ONLINE" },
+                    ]}
+                  />
+                ),
+              },
+
+              "Camera Coverage - Floor 2": {
+                content: (
+                  <NetworkDevices
+                    networkName="CCTV_FLOOR_2"
+                    devices={[
+                      { name: "Tech 1", ip: "10.0.2.201", type: "Security Camera", status: "ONLINE" },
+                      { name: "Tech 2", ip: "10.0.2.202", type: "Security Camera", status: "ONLINE" },
+                      { name: "Vending Machine", ip: "10.0.2.203", type: "Security Camera", status: "ONLINE" },
+                      { name: "Aquarium 1", ip: "10.0.2.204", type: "Security Camera", status: "ONLINE" },
+                      { name: "Office 1", ip: "10.0.2.205", type: "Security Camera", status: "ONLINE" },
+                      { name: "Office 2", ip: "10.0.2.206", type: "Security Camera", status: "ONLINE" },
+                      { name: "Office 3", ip: "10.0.2.207", type: "Security Camera", status: "ONLINE" },
+                      { name: "Balcony", ip: "10.0.2.208", type: "Security Camera", status: "ONLINE" },
+                      { name: "VIP", ip: "10.0.2.209", type: "Security Camera", status: "ONLINE" },
+                    ]}
+                  />
+                ),
+              },
+
+              "Camera Coverage - Basement": {
                 content: (
                   <>
-                    <Line smoke large bold>[CAMERA COVERAGE]</Line>
-                    <Divider />
-                    <Section title="FLOOR 1:">
-                      <DataTable data={[
-                        { label: "Entrance", value: "Online" },
-                        { label: "Plant 1", value: "Online" },
-                        { label: "Plant 2", value: "Online" },
-                        { label: "Vending Machine", value: "Online" },
-                        { label: "Holo Games 1", value: "Online" },
-                        { label: "Holo Games 2", value: "Online" },
-                        { label: "Bathroom", value: "Online" },
-                        { label: "Stage Left", value: "Online" },
-                        { label: "Stage Right", value: "Online" },
-                      ]} />
-                    </Section>
-                    <Divider />
-                    <Section title="FLOOR 2:">
-                      <DataTable data={[
-                        { label: "Tech 1", value: "Online" },
-                        { label: "Tech 2", value: "Online" },
-                        { label: "Vending Machine", value: "Online" },
-                        { label: "Aquarium 1", value: "Online" },
-                        { label: "Office 1", value: "Online" },
-                        { label: "Office 2", value: "Online" },
-                        { label: "Office 3", value: "Online" },
-                        { label: "Balcony", value: "Online" },
-                        { label: "VIP", value: "Online" },
-                      ]} />
-                    </Section>
-                    <Divider />
-                    <Section title="BASEMENT:">
-                      <Line red pulse>ERROR: DIRECT LINK REQUIRED</Line>
-                    </Section>
+                    <NetworkDevices
+                      networkName="CCTV_BASEMENT"
+                      devices={[]}
+                    />
+                    <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgb(239, 68, 68)', borderRadius: '4px' }}>
+                      <Line red pulse bold style={{ margin: 0 }}>
+                        ⚠ ERROR: DIRECT NETWORK ACCESS REQUIRED
+                      </Line>
+                      <Line smoke style={{ fontSize: '0.75rem', marginTop: '0.5rem' }}>
+                        Basement CCTV operates on isolated subnet. Physical connection needed.
+                      </Line>
+                    </div>
                   </>
-                ),
-              },
-              query_alarm_response: {
-                content: (
-                  <Box color="red">
-                    <Line red bold>[ALARM PROTOCOLS]</Line>
-                    <Divider color="red" />
-                    <Section title="OPEN HOURS:">
-                      <Line neon>Response: ~1 minute</Line>
-                      <Line neon>Force: ~10 SecOps</Line>
-                    </Section>
-                    <Divider color="red" />
-                    <Section title="CLOSED HOURS:">
-                      <Line neon>Response: ~2 minutes</Line>
-                      <Line cyan>CySG Team: ~10 minutes</Line>
-                    </Section>
-                  </Box>
-                ),
-              },
-              query_entry_points: {
-                password: {
-                  pw: "breach",
-                  hint: "What you're planning to do",
-                  hintStrength: 2,
-                },
-                content: (
-                  <Box color="cyan">
-                    <Line smoke large bold>[ENTRY ANALYSIS]</Line>
-                    <Divider color="cyan" />
-                    <Section title="A - MAIN ENTRANCE:">
-                      <Line neon>2 bouncers on guard</Line>
-                      <Line yellow>Risk: MODERATE</Line>
-                    </Section>
-                    <Divider color="cyan" />
-                    <Section title="B - STAFF DOOR:">
-                      <Line neon>Dark alley, damaged lock</Line>
-                      <Line neon>Possibly unlocked</Line>
-                      <Line yellow>Risk: LOW-MODERATE</Line>
-                    </Section>
-                    <Divider color="cyan" />
-                    <Section title="C - CANAL PIER:">
-                      <Line neon>Water approach, minimal visibility</Line>
-                      <Line neon>Band equipment cover story</Line>
-                      <Line yellow>Risk: LOW</Line>
-                    </Section>
-                  </Box>
                 ),
               },
             },
           },
-          access_financial_database: {
+          "Financial Records": {
             password: {
               pw: "debt",
               hint: "What casino uses to control neighborhood",
@@ -787,112 +639,148 @@ export const LUCKY_FLIGHT_CASINO = {
               </>
             ),
             related_commands: {
-              query_debt_ledger: {
+              "Debt Ledger": {
                 content: (
-                  <Box color="red">
-                    <Line red bold>[DEBT LEDGER]</Line>
-                    <Divider color="red" />
+                  <Message
+                    title="DEBT LEDGER"
+                    subtitle="FINANCIAL RECORDS"
+                    message="MISSION TARGET - DESTROY TO COMPLETE OBJECTIVE"
+                    theme="secure"
+                    note="Backup status: None (offline database)"
+                  >
                     <DataTable data={[
                       { label: "Total Owed", value: "2,847,350¤" },
                       { label: "Accounts", value: "247 residents" },
                       { label: "Default Rate", value: "89%" },
                     ]} />
-                    <Divider color="red" />
-                    <Line red pulse> MISSION TARGET</Line>
-                    <Line neon>Backup: None (offline)</Line>
-                  </Box>
+                  </Message>
                 ),
               },
-              query_high_rollers: {
+              "High Roller List": {
                 content: (
-                  <>
-                    <Line smoke large bold>[HIGH ROLLERS]</Line>
-                    <Divider />
-                    <Section title="TOP WINNER:">
-                      <Line cyan>"Gibos" (cyborg grandpa)</Line>
-                      <Line neon>Won: 84,200¤ this month</Line>
-                      <Line yellow>Legs glitching, seated</Line>
-                    </Section>
-                    <Divider />
-                    <Section title="VIP TONIGHT:">
-                      <Line pink>Saša (Stone Eels leader)</Line>
-                      <Line neon>+ 3 bodyguards</Line>
-                      <Warning>Avoid confrontation</Warning>
-                    </Section>
-                  </>
-                ),
-              },
-              query_corporate_structure: {
-                password: {
-                  pw: "subsidiary",
-                  hint: "How corps hide ownership",
-                  hintStrength: 2,
-                },
-                content: (
-                  <Box color="yellow">
-                    <Line yellow bold>[CORPORATE STRUCTURE]</Line>
-                    <Divider color="yellow" />
-                    <Line neon>Parent: Alliansen Inc.</Line>
-                    <Line neon>Subsidiary: CasinoBlizzFunds</Line>
-                    <Line neon>Property: Lucky Flight Casino</Line>
-                  </Box>
+                  <VIPList
+                    eventName="High Rollers - Tonight"
+                    location="Lucky Flight Casino"
+                    vips={[
+                      {
+                        name: "Gibos",
+                        alias: "cyborg grandpa",
+                        status: "ARRIVED",
+                        notes: "Won 84,200¤ this month. Legs glitching, seated at slots.",
+                        clearance: "VIP"
+                      },
+                      {
+                        name: "Saša",
+                        alias: "Stone Eels leader",
+                        status: "ARRIVED",
+                        notes: "With 3 bodyguards. AVOID CONFRONTATION.",
+                        clearance: "VIP"
+                      },
+                    ]}
+                  />
                 ),
               },
             },
           },
-          access_operations_database: {
+          "Operations": {
             content: (
-              <>
-                <Line smoke large bold>[OPERATIONS]</Line>
-                <Line cyan>Intelligence accessed</Line>
-                <Divider />
-                <Section title="AVAILABLE:">
-                  <Line neon>→ Mission briefing</Line>
-                  <Line neon>→ Maintenance schedule</Line>
-                  <Line neon>→ Recent incidents</Line>
-                  <Line neon>→ Entertainment calendar</Line>
-                </Section>
-              </>
+              <MaintenanceAccess
+                title="[OPERATIONS DASHBOARD]"
+                deviceModel="Security Operations Terminal"
+                deviceId="SEC-OPS-MAIN"
+                firmwareVersion="v3.1.4"
+                systemStatus="OPERATIONAL"
+                uptime="6 days, 2 hours"
+                notes={[
+                  "Last login: Wattana (Security Chief) - 2 hours ago",
+                  "Active alerts: 3 pending review",
+                  "Next patrol rotation: 02:00",
+                  "Cross-reference with camera feeds for full situational awareness"
+                ]}
+              />
             ),
             related_commands: {
-              query_recent_incidents: {
+              "Incident Log": {
                 password: {
                   pw: "chaos",
                   hint: "Casino's natural state",
-                  hintStrength: 1,
+                  difficulty: "expert",
                 },
                 content: (
-                  <>
-                    <Line smoke large bold>[RECENT INCIDENTS]</Line>
-                    <Divider />
-                    <Line neon>• Patron vomiting black tar</Line>
-                    <Line neon>• Pickpocket at slots</Line>
-                    <Line neon>• Band contract dispute</Line>
-                    <Line neon>• Brawl on casino floor</Line>
-                    <Line neon>• Scammer running magnetic chips</Line>
+                  <IncidentLog
+                    title="RECENT INCIDENTS"
+                    timeframe="Last 24 hours"
+                    incidents={[
+                      {
+                        timestamp: "23:47",
+                        type: "Medical Alert",
+                        details: {
+                          Description: "Patron vomiting black tar",
+                          Location: "Slots section",
+                        }
+                      },
+                      {
+                        timestamp: "22:15",
+                        type: "Theft",
+                        details: {
+                          Description: "Pickpocket at slots",
+                          Location: "Near high roller area",
+                        }
+                      },
+                      {
+                        timestamp: "21:30",
+                        type: "Dispute",
+                        details: {
+                          Description: "Band contract dispute",
+                          Location: "Green room",
+                        }
+                      },
+                      {
+                        timestamp: "20:05",
+                        type: "Violence",
+                        details: {
+                          Description: "Brawl on casino floor",
+                          Location: "Bar area",
+                          Status: "4 patrons ejected"
+                        }
+                      },
+                    ]}
+                  >
                     <Divider />
                     <Line cyan>High chaos = good cover</Line>
                     <Line yellow>Security spread thin</Line>
-                  </>
+                  </IncidentLog>
                 ),
               },
-              query_power_core_status: {
+              "Power Core Status": {
                 password: {
                   pw: "unstable",
                   hint: "Condition of Room 16",
                   hintStrength: 3,
                 },
                 content: (
-                  <Box color="red">
-                    <Line red bold>[POWER CORE - ROOM 16]</Line>
-                    <Divider color="red" />
-                    <Warning>99% POWER LOAD</Warning>
-                    <Divider color="red" />
-                    <Line neon>Maintenance: frequent</Line>
-                    <Line neon>Modifications: Illegal</Line>
-                    <Line yellow pulse>STARTUP PROTOCOL DELETED</Line>
-                    <Line red>Tamper Risk: Catastrophic failure</Line>
-                  </Box>
+                  <MaintenanceAccess
+                    title="[POWER CORE - ROOM 16]"
+                    deviceModel="Military-Grade Power Node (Modified)"
+                    deviceId="PWR-CORE-B1-016"
+                    firmwareVersion="v1.8.2-CUSTOM"
+                    systemStatus="ERROR"
+                    uptime="127 days, 14 hours"
+                    notes={[
+                      "CRITICAL LOAD: 99% capacity",
+                      "Illegal modifications detected",
+                      "Safety protocols DISABLED",
+                      "Startup failsafe DELETED",
+                      "Tampering risk: Catastrophic explosion (4d6 damage)",
+                      "Blast affects entire basement + north section of Floor 1"
+                    ]}
+                  >
+                    <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: 'rgba(239, 68, 68, 0.1)', border: '2px solid rgb(239, 68, 68)', borderRadius: '4px' }}>
+                      <Line red bold pulse style={{ textAlign: 'center' }}>
+                        ⚠ EXTREME HAZARD - AUTHORIZED PERSONNEL ONLY ⚠
+                      </Line>
+                    </div>
+                  </MaintenanceAccess>
                 ),
               },
             },
