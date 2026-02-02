@@ -11,12 +11,24 @@ import {
   EventFeed,
   CyWeather,
   CySports,
+  RetComImage
 } from "@terminal/retcomdevice"
 
 import CyCityPublicAccessBanner from '@terminal/retcomdevice/CyCityPortals/CyCityPublicPortals';
 import CyCityCorporatePortalsBanner from '@terminal/retcomdevice/CyCityPortals/CyCityCorpPortals';
 
+import CY_CITY_MAP from '@images/cycity_overview.png';
+
 export const CY_CITY_NETWORK = {
+  "Cy City Map": {
+    content: (
+      <RetComImage
+        src={CY_CITY_MAP}
+        theme="red"
+      />
+    ),
+  },
+
   "Cy City News Network": {
     content: (
       <EventFeed />

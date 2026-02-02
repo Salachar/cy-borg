@@ -8,7 +8,6 @@ import {
 
 import {
   ATM,
-  BiometricRecognition,
   Camera,
   Extractable,
   FacilityPortal,
