@@ -6,9 +6,10 @@ import {
 } from "@terminal/commands/Commands";
 
 import CY_CITY_COMMANDS from '@terminal/commands/cy_city';
-import LUCKY_FLIGHT_TAKEDOWN_COMMANDS from "@terminal/commands/lucky_flight_campaign";
-import THE_55_COMMANDS from '../components/terminal/commands/the_55';
-import REAPER_REPO_COMMANDS from '../components/terminal/commands/reaper_repo';
+import BIGMOSSE_PORTS_COMMANDS from "@terminal/commands/bigmosse_ports";
+import THE_INBETWEENS_DISTRICT from '../components/terminal/commands/the_inbetweens/the_inbetweens';
+import CENTRAL_DISTRICT from '../components/terminal/commands/central_district/central_district';
+import SOUTH_CENTRAL_DISTRICT_COMMANDS from '../components/terminal/commands/south_central_district';
 
 import TerminalShell, {
   TerminalHistoryArea,
@@ -43,9 +44,10 @@ import {
 const CAMPAIGN_COMMANDS = {
   ...MINIGAME_COMMANDS,
   ...CY_CITY_COMMANDS,
-  ...LUCKY_FLIGHT_TAKEDOWN_COMMANDS,
-  ...REAPER_REPO_COMMANDS,
-  ...THE_55_COMMANDS,
+  ...BIGMOSSE_PORTS_COMMANDS,
+  ...SOUTH_CENTRAL_DISTRICT_COMMANDS,
+  ...THE_INBETWEENS_DISTRICT,
+  ...CENTRAL_DISTRICT,
 };
 
 const CAMPAIGN_COMMANDS_LIST = Object.entries(CAMPAIGN_COMMANDS).map(([id, cmdDef]) => ({

@@ -15,7 +15,7 @@ import MemoryGame from '@terminal/retcomdevice/Games/MemoryGame/MemoryGame';
 import CyberPoker from '@terminal/retcomdevice/Games/CyberPoker/CyberPoker';
 
 export const MINIGAME_COMMANDS = {
-  "Games": {
+  "Cy City Games": {
     content: (
       <GamesBanner />
     ),

@@ -22,18 +22,20 @@ import { Line, Divider, DataTable, Box, Section } from '@terminal/TerminalCompon
  */
 export default function PersonnelFile({
   employeeId,
-  name = "NOT SET",
-  position = "NOT SET",
-  department = "NOT SET",
-  hireDate = "NOT SET",
-  supervisor = "NOT SET",
-  clearanceLevel = 'NONE',
-  salary = "NOT SET",
-  location = "NOT SET",
+  name,
+  position,
+  occupation,
+  department,
+  hireDate,
+  joinDate,
+  supervisor,
+  clearanceLevel,
+  salary,
+  location,
   email = "NOT SET",
   phone = "NOT SET",
   emergencyContact = "NOT SET",
-  performance = 50,
+  performance,
   notes = [],
   status = 'ACTIVE',
 }) {
@@ -70,6 +72,16 @@ export default function PersonnelFile({
 
   const statusColor = getStatusColor();
   const clearanceColor = getClearanceColor();
+
+  const emp_info = [];
+  if (name) emp_info.push({ label: 'Name', value: name });
+  if (position) emp_info.push({ label: 'Position', value: position });
+  if (occupation) emp_info.push({ label: 'Occupation', value: occupation });
+  if (department) emp_info.push({ label: 'Department', value: department });
+  if (supervisor) emp_info.push({ label: 'Supervisor', value: supervisor });
+  if (hireDate) emp_info.push({ label: 'Hire Date', value: hireDate });
+  if (joinDate) emp_info.push({ label: 'Joined On', value: joinDate });
+  if (location) emp_info.push({ label: 'Location', value: location });
 
   return (
     <div style={{ position: 'relative' }}>
@@ -137,18 +149,11 @@ export default function PersonnelFile({
             }}
           >
             <Line cyan bold style={{ margin: 0, fontSize: '0.95rem', marginBottom: '0.5rem' }}>
-              EMPLOYEE INFORMATION
+              INFORMATION
             </Line>
             <Divider />
             <DataTable
-              data={[
-                { label: 'Name', value: name },
-                { label: 'Position', value: position },
-                { label: 'Department', value: department },
-                { label: 'Supervisor', value: supervisor },
-                { label: 'Hire Date', value: hireDate },
-                ...(location ? [{ label: 'Location', value: location }] : []),
-              ]}
+              data={emp_info}
             />
           </div>
 
@@ -164,7 +169,7 @@ export default function PersonnelFile({
               }}
             >
               <Line cyan bold style={{ margin: 0, fontSize: '0.95rem', marginBottom: '0.5rem' }}>
-                CONTACT INFORMATION
+                CONTACT
               </Line>
               <Divider />
               <DataTable
@@ -177,41 +182,36 @@ export default function PersonnelFile({
             </div>
           )}
 
-          {/* Clearance & Performance */}
-          <div
-            style={{
-              marginBottom: notes.length > 0 ? '1rem' : '0',
-            }}
-          >
+          {(clearanceLevel || performance || salary) && (
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '0.5rem' }}>
-              {/* Clearance Badge */}
-              <div
-                style={{
-                  flex: '1 1 150px',
-                  padding: '0.75rem',
-                  backgroundColor: 'rgba(15, 23, 42, 0.8)',
-                  border: `1px solid ${clearanceColor}`,
-                  borderRadius: '3px',
-                  textAlign: 'center',
-                }}
-              >
-                <div style={{ fontSize: '0.7rem', color: 'rgb(148, 163, 184)', marginBottom: '0.25rem' }}>
-                  CLEARANCE
-                </div>
+              {clearanceLevel && (
                 <div
                   style={{
-                    fontSize: '1.25rem',
-                    fontWeight: 'bold',
-                    color: clearanceColor,
-                    fontFamily: 'monospace',
+                    flex: '1 1 150px',
+                    padding: '0.75rem',
+                    backgroundColor: 'rgba(15, 23, 42, 0.8)',
+                    border: `1px solid ${clearanceColor}`,
+                    borderRadius: '3px',
+                    textAlign: 'center',
                   }}
                 >
-                  LEVEL {clearanceLevel}
+                  <div style={{ fontSize: '0.7rem', color: 'rgb(148, 163, 184)', marginBottom: '0.25rem' }}>
+                    CLEARANCE
+                  </div>
+                  <div
+                    style={{
+                      fontSize: '1.25rem',
+                      fontWeight: 'bold',
+                      color: clearanceColor,
+                      fontFamily: 'monospace',
+                    }}
+                  >
+                    LEVEL {clearanceLevel}
+                  </div>
                 </div>
-              </div>
+              )}
 
-              {/* Performance Badge */}
-              {performance !== undefined && (
+              {performance && (
                 <div
                   style={{
                     flex: '1 1 150px',
@@ -241,7 +241,6 @@ export default function PersonnelFile({
                 </div>
               )}
 
-              {/* Salary Badge */}
               {salary && (
                 <div
                   style={{
@@ -269,7 +268,7 @@ export default function PersonnelFile({
                 </div>
               )}
             </div>
-          </div>
+          )}
 
           {/* HR Notes */}
           {notes.length > 0 && (
@@ -279,10 +278,11 @@ export default function PersonnelFile({
                 border: '1px solid rgb(71, 85, 105)',
                 borderRadius: '3px',
                 padding: '0.75rem',
+                marginTop: "1rem",
               }}
             >
               <Line cyan bold style={{ margin: 0, fontSize: '0.95rem', marginBottom: '0.5rem' }}>
-                HR NOTES
+                NOTES
               </Line>
               <Divider />
               {notes.map((note, i) => (

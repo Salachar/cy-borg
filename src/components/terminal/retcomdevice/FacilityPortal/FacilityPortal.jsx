@@ -13,6 +13,7 @@ export default function FacilityPortal({
   securityLevel = 'MEDIUM',
   warnings = [],
   theme = 'corporate',
+  children,
 }) {
   const [signalStrength, setSignalStrength] = useState(3);
 
@@ -263,6 +264,14 @@ export default function FacilityPortal({
               ))}
             </div>
           </>
+        )}
+
+        {Boolean(children) && (
+          <div style={{
+            margin: '1rem 0',
+          }}>
+            {children }
+          </div>
         )}
 
         {/* Footer */}

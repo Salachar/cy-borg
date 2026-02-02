@@ -5,7 +5,6 @@ import {
   Warning,
   Divider,
   KeyValue,
-  DataTable,
 } from '@terminal/TerminalComponents';
 import {
   CorpAd,
@@ -24,19 +23,19 @@ export const CY_CITY_NETWORK = {
     ),
   },
 
-  "Cy Weather & Environment": {
+  "CyWeather": {
     content: (
       <CyWeather />
     ),
   },
 
-  "Cy Sports Network": {
+  "CySports Network": {
     content: (
       <CySports />
     ),
   },
 
-  "CY CITY PUBLIC ACCESS": {
+  "Cy City Public Access": {
     content: (
       <CyCityPublicAccessBanner />
     ),
@@ -1108,93 +1107,7 @@ export const CY_CITY_NETWORK = {
           </CorpAd>
         ),
       },
-
-    }
-  },
-
-
-  "Undersjön Project Updates": {
-    content: (
-      <>
-        <Line cyan large bold>UNDERSJÖN CONSTRUCTION PROJECT</Line>
-        <Line yellow>"Retail Paradise Beneath the Waves"</Line>
-        <Divider />
-        <Line neon>Project lead: AST Endless Seas</Line>
-        <Line cyan>Construction status: Year 15, 60% complete</Line>
-        <Divider />
-        <Section title="PROJECT OVERVIEW:">
-          <Line neon>Sprawling underwater retail park beneath Lake Gravel</Line>
-          <Line neon>Separates North and South Central districts</Line>
-          <Line neon>1,200+ planned retail spaces, restaurants, entertainment</Line>
-          <Line neon>Submarine access, glass tunnels, luxury accommodations</Line>
-        </Section>
-        <Divider />
-        <Section title="CONSTRUCTION MILESTONES:">
-          <Line yellow>✓ Structural foundation (Years 1-3)</Line>
-          <Line yellow>✓ Primary tunnel network (Years 4-8)</Line>
-          <Line cyan>▶ Retail build-out (Years 9-15, ongoing)</Line>
-          <Line neon>○ Grand opening (Projected Year 18-20)</Line>
-        </Section>
-        <Divider />
-        <Section title="CURRENT CHALLENGES:">
-          <Line red>→ Budget overruns: 340% over original estimate</Line>
-          <Line red>→ Structural issues: Multiple tunnel reinforcements required</Line>
-          <Line red>→ Labor disputes: 3 strikes in past 2 years</Line>
-          <Line yellow>→ Environmental concerns: Lake ecosystem impact</Line>
-        </Section>
-        <Divider />
-        <Line pink>"The future of shopping is underwater. Eventually."</Line>
-      </>
-    ),
-  },
-
-  "Street Preacher Live Stream": {
-    content: (
-      <Box color="red">
-        <Line red bold large>[LIVE: BROTHER STATIC'S SERMON]</Line>
-        <Line yellow>Streaming from: Ports district, Pier 7</Line>
-        <Divider color="red" />
-        <Section title="CURRENT BROADCAST:">
-          <Line red>"...AND THE MACHINES WILL WEEP CHROME TEARS!"</Line>
-          <Line neon>"The corporations feed on your SOUL like vampires!"</Line>
-          <Line red>"G0 was THEIR doing! THEIR sacrifice to dark gods!"</Line>
-          <Line neon>"Reject the upload! Your consciousness DIES in the cloud!"</Line>
-          <Line red>"ONLY FLESH IS REAL! ONLY PAIN IS TRUTH!"</Line>
-          <Line neon>"The Basilisk watches from the Deep Net! WATCHING!"</Line>
-          <Line red>"Repent! REPENT! Before the second Incident comes!"</Line>
-        </Section>
-        <Divider color="red" />
-        <KeyValue label="Live Viewers" value="47" />
-        <KeyValue label="Total Donations" value="12¤" />
-        <Line yellow>"Chat is disabled due to spam."</Line>
-      </Box>
-    ),
-  },
-
-  "TG Labs Ad": {
-    content: (
-      <CorpAd
-        corp="TG LABS"
-        slogan="Science Redefined"
-        tagline="Where impossibility ends."
-        products={[
-          "BioTech Research & Development",
-          "Nano-Engineering Solutions",
-          "Genetic Enhancement Programs",
-          "Space Technology Innovation"
-        ]}
-        cta="Visit Our Ports Showroom - Experience The Future"
-        theme="neon"
-        logo="🔬"
-      >
-        <p style={{ fontSize: '0.7rem', color: '#ff006e', marginTop: '0.5rem' }}>
-          Orbital research stations now accepting applications
-        </p>
-        <p style={{ fontSize: '0.65rem', color: '#ff5d8f', marginTop: '0.3rem' }}>
-          Ports showroom: See nano-engineering in action (free tours)
-        </p>
-      </CorpAd>
-    ),
+    },
   },
 };
 

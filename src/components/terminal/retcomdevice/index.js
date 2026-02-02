@@ -4,6 +4,7 @@ import BiometricRecognition from "./BiometricRecognition/BiometricRecognition";
 import BountyCard from "./BountyCard/BountyCard";
 import Briefing from "./Briefing/Briefing";
 import Camera from "./Camera/Camera";
+import CCTV from "./Camera/CCTV";
 import CoffeeMachine from "./CoffeeMachine/CoffeeMachine";
 import CommercialCamera from "./CommercialCamera/CommercialCamera";
 import CommunityBoard from "./CommunityBoard/CommunityBoard";
@@ -11,6 +12,7 @@ import CorpAd from "./CorpAd/CorpAd";
 import CySports from "./CySports/CySports";
 import CyWeather from "./CyWeather/CyWeather";
 import DigitalWallet from "./DigitalWallet/DigitalWallet";
+import DistrictPortal from "./DistrictPortal/DistrictPortal";
 import EncryptedMessage from "./EncryptedMessage/EncryptedMessage";
 import EventFeed from "./EventFeed/EventFeed";
 import EventLineup from "./EventLineup/EventLineup";
@@ -53,6 +55,7 @@ export {
   BountyCard,
   Briefing,
   Camera,
+  CCTV,
   CoffeeMachine,
   CommercialCamera,
   CommunityBoard,
@@ -60,6 +63,7 @@ export {
   CySports,
   CyWeather,
   DigitalWallet,
+  DistrictPortal,
   EncryptedMessage,
   EventFeed,
   EventLineup,
