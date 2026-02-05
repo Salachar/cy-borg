@@ -3,8 +3,8 @@ import { Line, Divider } from '@terminal/TerminalComponents';
 export default function ShiftSchedule({
   location = 'Facility',
   shift = 'Current Shift',
-  shiftTime = '00:00 - 00:00',
-  currentTime = '00:00',
+  shiftTime,
+  currentTime,
   personnel = [],
   nextShift = 'Unknown',
 }) {
@@ -16,7 +16,7 @@ export default function ShiftSchedule({
       'MONITORING': 'rgb(133, 175, 231)',
       'IDLE': 'rgb(148, 163, 184)',
     };
-    return statusColors[status] || 'rgb(148, 163, 184)';
+    return statusColors[status] || statusColors['ACTIVE'];
   };
 
   return (
@@ -33,14 +33,20 @@ export default function ShiftSchedule({
         <Line smoke large bold style={{ margin: 0 }}>
           [{location.toUpperCase()} - {shift.toUpperCase()}]
         </Line>
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '0.5rem' }}>
-          <Line cyan style={{ margin: 0, fontSize: '0.875rem' }}>
-            Shift: {shiftTime}
-          </Line>
-          <Line yellow style={{ margin: 0, fontSize: '0.875rem' }}>
-            Current: {currentTime}
-          </Line>
-        </div>
+        {(shiftTime || currentTime) && (
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '0.5rem' }}>
+            {shiftTime && (
+              <Line cyan style={{ margin: 0, fontSize: '0.875rem' }}>
+                Shift: {shiftTime}
+              </Line>
+            )}
+            {currentTime && (
+              <Line yellow style={{ margin: 0, fontSize: '0.875rem' }}>
+                Current: {currentTime}
+              </Line>
+            )}
+          </div>
+        )}
       </div>
 
       <Divider />
@@ -105,26 +111,28 @@ export default function ShiftSchedule({
                 textAlign: 'right',
               }}
             >
-              📍 {person.location}
+              {person.location}
             </div>
 
             {/* Status badge */}
+            {person?.status && (
             <div
-              style={{
-                padding: '0.25rem 0.5rem',
-                fontSize: '0.7rem',
-                fontWeight: 'bold',
-                color: getStatusColor(person.status),
-                backgroundColor: `${getStatusColor(person.status)}20`,
-                border: `1px solid ${getStatusColor(person.status)}`,
-                borderRadius: '3px',
-                minWidth: '80px',
-                textAlign: 'center',
-                fontFamily: 'monospace',
-              }}
-            >
-              {person.status}
-            </div>
+                style={{
+                  padding: '0.25rem 0.5rem',
+                  fontSize: '0.7rem',
+                  fontWeight: 'bold',
+                  color: getStatusColor(person.status),
+                  backgroundColor: `${getStatusColor(person.status)}20`,
+                  border: `1px solid ${getStatusColor(person.status)}`,
+                  borderRadius: '3px',
+                  minWidth: '80px',
+                  textAlign: 'center',
+                  fontFamily: 'monospace',
+                }}
+              >
+                {person.status}
+              </div>
+            )}
 
             {/* Break time (if applicable) */}
             {person.breakTime && (
@@ -147,9 +155,11 @@ export default function ShiftSchedule({
       <Divider />
 
       {/* Footer */}
-      <Line smoke style={{ fontSize: '0.75rem', marginTop: '0.5rem' }}>
-        Next shift change: {nextShift}
-      </Line>
+      {nextShift && (
+        <Line smoke style={{ fontSize: '0.75rem', marginTop: '0.5rem' }}>
+          Next shift change: {nextShift}
+        </Line>
+      )}
     </div>
   );
 }

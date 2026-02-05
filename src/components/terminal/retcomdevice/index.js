@@ -37,6 +37,7 @@ import PasswordPrompt from "./PasswordPrompt/PasswordPrompt";
 import PersonnelFile from "./PersonnelFile/PersonnelFile";
 import PublicPortal from "./PublicPortal/PublicPortal";
 import Radio from "./Radio/Radio";
+import RCDAlert from "./RCDAlert/RCDAlert";
 import RelatedCommands from "./RelatedCommands/RelatedCommands";
 import RetComImage from "./Images/RetComImage";
 import Safe from "./Safe/Safe";
@@ -88,6 +89,7 @@ export {
   PersonnelFile,
   PublicPortal,
   Radio,
+  RCDAlert,
   RelatedCommands,
   RetComImage,
   Safe,

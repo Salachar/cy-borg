@@ -8,7 +8,7 @@ import {
 import THE_55_COMMANDS from './the_55';
 
 export const THE_INBETWEENS_DISTRICT = {
-  "The Inbetweens District": {
+  "The Inbetweens": {
     content: (
       <DistrictPortal
         districtName="THE INBETWEENS"

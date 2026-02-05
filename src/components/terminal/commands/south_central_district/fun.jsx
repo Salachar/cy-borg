@@ -154,31 +154,6 @@ export const SOUTH_CENTRAL_FUN_COMMANDS = {
         content: (
           <CoffeeMachine />
         ),
-        related_commands: {
-          "Maintenance Panel": {
-            // password: {
-            //   pw: "espresso",
-            //   hint: "Strong Italian coffee",
-            //   difficulty: "easy",
-            //   content: <Locked theme="terminal" title="COFFEE MAINTENANCE" />
-            // },
-            content: (
-              <MaintenanceAccess
-                title="[BREWLUX MAINTENANCE PANEL]"
-                deviceModel="BrewLux Executive 9000"
-                deviceId="COFFEE-GMT-18"
-                firmwareVersion="v8.2.4"
-                systemStatus="OPERATIONAL"
-                notes={[
-                  "Premium model - partners insisted",
-                  "Water filter status: Good",
-                  "Bean hopper: 45% full (premium blend)",
-                  "Note: Security uses this for dead drops (ignore it)"
-                ]}
-              />
-            ),
-          },
-        },
       },
     },
   },
@@ -395,7 +370,7 @@ export const SOUTH_CENTRAL_FUN_COMMANDS = {
         tagline="Where the people who make South Central run come to drink"
         network="SHAFT_PISTON_GUEST"
         signalStrength="medium"
-        status="✓ OPEN"
+        status="OPEN"
         statusColor="neon"
         nowPlaying="Industrial rock - The Maintenance Crew"
         notes={[

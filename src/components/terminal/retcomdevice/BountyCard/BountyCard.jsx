@@ -49,6 +49,7 @@ export default function BountyCard({
   lastSeen,
   notes,
   threat,
+  children,
 }) {
   let imageSource = image;
   if (typeof image === "number" && IMAGES_ARRAY[image]) {
@@ -285,7 +286,7 @@ export default function BountyCard({
               </div>
 
               {/* Notes */}
-              {notes && (
+              {notes && notes.length > 0 && (
                 <div
                   style={{
                     marginTop: '1rem',
@@ -295,9 +296,19 @@ export default function BountyCard({
                     borderRadius: '3px',
                   }}
                 >
-                  <Line yellow style={{ margin: 0, fontSize: '0.875rem' }}>
-                    {notes}
-                  </Line>
+                  {notes.map((note, i) => (
+                    <Line
+                      key={i}
+                      yellow
+                      style={{
+                        margin: 0,
+                        fontSize: '0.875rem',
+                        marginBottom: i < notes.length - 1 ? '0.5rem' : '0'
+                      }}
+                    >
+                      • {note}
+                    </Line>
+                  ))}
                 </div>
               )}
             </div>
@@ -425,6 +436,16 @@ export default function BountyCard({
             stealing={false}
           />
         </div>
+
+        {Boolean(children) && (
+          <div style={{
+            padding: '1rem',
+            background: 'rgba(0, 0, 0, 0.5)',
+            borderRadius: '6px',
+          }}>
+            {children}
+          </div>
+        )}
 
         {/* Footer warning */}
         <div

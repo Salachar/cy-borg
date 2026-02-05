@@ -8,6 +8,7 @@ export default function CommercialCamera({
   details = [],
   alerts = [],
   lastService,
+  children,
 }) {
   const isOnline = status.includes('ACTIVE') || status.includes('RECORDING');
 
@@ -211,6 +212,16 @@ export default function CommercialCamera({
               ))}
             </Section>
           </>
+        )}
+
+        {Boolean(children) && (
+          <div style={{
+            padding: '1rem',
+            background: 'rgba(0, 0, 0, 0.5)',
+            borderRadius: '6px',
+          }}>
+            {children}
+          </div>
         )}
 
         {/* Maintenance info */}

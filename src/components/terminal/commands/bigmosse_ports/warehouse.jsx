@@ -15,6 +15,7 @@ import {
   FacilityPortal,
   HoursBanner,
   IncidentLog,
+  RCDAlert,
   NetworkDevices,
   CommunityBoard,
   MaintenanceAccess,
@@ -24,7 +25,7 @@ import {
 } from "@terminal/retcomdevice"
 
 export const WAREHOUSE_COMMANDS = {
-  "Alliansen Inc. Warehouse (Ports)": {
+  "Alliansen Inc. Warehouse": {
     content: (
       <FacilityPortal
         companyName="Alliansen Inc."
@@ -36,13 +37,16 @@ export const WAREHOUSE_COMMANDS = {
         personnel="Night crew (6 personnel)"
         networkStatus="Corporate WAN (limited external access)"
         securityLevel="HIGH"
-        warnings={[
-          "Active security systems detected",
-          "Limited RCD access from outside perimeter",
-          "Full systems require physical network access inside",
-        ]}
         theme="industrial"
-      />
+      >
+        <RCDAlert
+          message="Signal jamming device detected at facility perimeter"
+          details={[
+            "External RCD communication range limited to ~50m from building",
+            "ICE Breakers not available inside facility",
+          ]}
+        />
+      </FacilityPortal>
     ),
     related_commands: {
       "Operating Hours": {
@@ -296,17 +300,20 @@ export const WAREHOUSE_COMMANDS = {
                 location="Alliansen Warehouse"
                 shift="Night Shift"
                 shiftTime="22:00 - 06:00"
-                currentTime="23:15"
                 personnel={[
-                  { name: 'Marcus Webb', role: 'Night Supervisor', location: 'Main Office', status: 'ACTIVE' },
-                  { name: 'David Chen', role: 'Security Guard', location: 'Main Security Room', status: 'MONITORING' },
-                  { name: 'Sofia Martinez', role: 'Security Guard', location: 'Warehouse Floor', status: 'PATROL' },
-                  { name: 'James Park', role: 'Security Guard', location: 'Rec Room', status: 'BREAK', breakTime: '15 min' },
-                  { name: 'Andre Foster', role: 'Security Guard', location: 'Secure Cargo Gate', status: 'ACTIVE' },
-                  { name: 'Nina Volkov', role: 'Security Guard', location: 'Secure Cargo Interior', status: 'ACTIVE' },
+                  { name: 'Marcus Webb', role: 'Night Supervisor', location: 'Main Office' },
+                  { name: 'David Chen', role: 'Security Guard', location: 'Main Security Room (Monitoring)' },
+                  { name: 'Sofia Martinez', role: 'Security Guard', location: 'Main Warehouse (Patrol)' },
+                  { name: 'James Park', role: 'Security Guard', location: 'Break Rotation / Relief' },
+                  { name: 'Andre Foster', role: 'Security Guard', location: 'Secure Cargo Checkpoint' },
+                  { name: 'Nina Volkov', role: 'Security Guard', location: 'Secure Cargo Interior' },
                 ]}
-                nextShift="06:00 (Day Shift)"
-              />
+                nextShift="06:00 (Day Shift - 8 personnel)"
+              >
+                <Divider />
+                <Line yellow>Break Policy: 30-minute rotations, staggered throughout shift</Line>
+                <Line smoke>Supervisor notes: Park frequently exceeds allotted break time</Line>
+              </ShiftSchedule>
             ),
           },
 
@@ -685,26 +692,32 @@ export const WAREHOUSE_COMMANDS = {
                       { label: "Shipment ID", value: "SEC-2082-0147" },
                       { label: "Origin", value: "TechCore Industries (Military Division)" },
                       { label: "Destination", value: "SecOps Equipment Division" },
-                      { label: "Arrival", value: "Tonight, 01:00 (received)" },
-                      { label: "Pickup", value: "Tomorrow, 08:00" },
+                      { label: "Arrival", value: "01:00 (confirmed received)" },
+                      { label: "Pickup Window", value: "08:00 tomorrow" },
                       { label: "Current Location", value: "Secure Cargo - Container 7B" },
                     ]} />
                     <Divider />
                     <Section title="CONTENTS:">
                       <Line cyan>→ 12x MilSpec Neural Interface Modules</Line>
-                      <Line cyan>→ Estimated Value: 5,000¤</Line>
                       <Line cyan>→ Classification: Military-grade cyberware</Line>
-                      <Line cyan>→ Intended Use: SecOps tactical enhancement program</Line>
+                      <Line cyan>→ Estimated Value: 5,000¤</Line>
+                      <Line cyan>→ End User: SecOps tactical enhancement program</Line>
                     </Section>
                     <Divider />
-                    <Section title="SECURITY NOTES:">
-                      <Line yellow>→ Guards 4 & 5 (Foster & Volkov) assigned to Secure Cargo</Line>
-                      <Line yellow>→ No entry without supervisor authorization</Line>
-                      <Line yellow>→ Alarm system armed (30-second delay)</Line>
-                      <Line yellow>→ Backup response time: 10 minutes</Line>
+                    <Section title="HANDLING PROTOCOL - LEVEL 3 CARGO:">
+                      <Line yellow>Assigned Security Personnel:</Line>
+                      <Line yellow>  • A. Foster (Checkpoint - ID verification required)</Line>
+                      <Line yellow>  • N. Volkov (Interior - container monitoring)</Line>
+                      <Line yellow>Authorization: Supervisor Webb or SecOps direct override only</Line>
+                      <Line yellow>Alarm Status: ARMED (30-second egress delay active per fire code)</Line>
+                      <Line yellow>Access Logging: All entry/exit logged to corporate security database</Line>
                     </Section>
                     <Divider />
-                    <Line red>⚠ THEFT RISK: HIGH - Stone Eels gang active in area</Line>
+                    <Section title="REGIONAL THREAT ASSESSMENT:">
+                      <Line red>Intelligence indicates Stone Eels gang activity in Ports sector.</Line>
+                      <Line red>High-value cargo may be targeted. Maintain heightened vigilance.</Line>
+                      <Line red>Unauthorized access: Immediate SecOps notification required.</Line>
+                    </Section>
                   </>
                 ),
               },

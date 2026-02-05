@@ -9,7 +9,7 @@ import {
 } from '@terminal/retcomdevice';
 
 export const CENTRAL_DISTRICT = {
-  "Central District": {
+  "Central": {
     content: (
       <DistrictPortal
         districtName="CENTRAL"

@@ -939,7 +939,7 @@ export const FUN_COMMANDS = {
         tagline="Where Code Meets Culture."
         network="COMPILER_GUEST_WIFI"
         signalStrength="strong"
-        status="✓ OPEN"
+        status="OPEN"
         statusColor="neon"
         nowPlaying="Recursion Blues - The Stack Overflow"
         notes={[
@@ -1128,167 +1128,6 @@ export const FUN_COMMANDS = {
   // CITY INFRASTRUCTURE & DEVICES
   // ============================================================================
 
-  "Public Terminal (Tech District)": {
-    content: (
-      <MaintenanceAccess
-        title="[PUBLIC INFORMATION TERMINAL]"
-        deviceModel="CityInfo Kiosk 3000"
-        deviceId="KIOSK-TECH-047"
-        firmwareVersion="v5.1.2"
-        systemStatus="OPERATIONAL"
-        notes={[
-          "Location: Tech district plaza, near transit stop",
-          "Purpose: City directory, maps, internet access",
-          "Cost: 10¤ per 15 minutes (internet)",
-          "Condition: Good (regular maintenance)",
-          "Serviced weekly by Cynergy infrastructure division"
-        ]}
-      >
-        <Divider />
-        <InsetBox title="AVAILABLE SERVICES:">
-          <Line neon>• City maps & navigation</Line>
-          <Line neon>• Transit schedules & routes</Line>
-          <Line neon>• Business directory</Line>
-          <Line neon>• Emergency contacts</Line>
-          <Line neon>• Public announcements</Line>
-          <Line neon>• Internet access (paid)</Line>
-        </InsetBox>
-        <InsetBox title="RECENT SEARCHES (Anonymous):">
-          <Line pink>→ "cipher solutions reviews"</Line>
-          <Line pink>→ "data recovery success rate"</Line>
-          <Line pink>→ "is AI sentient yet"</Line>
-          <Line pink>→ "best bars near me"</Line>
-          <Line pink>→ "how to leave cy permanently"</Line>
-        </InsetBox>
-      </MaintenanceAccess>
-    ),
-  },
-
-  "Smart Vending Machine (SMV_729)": {
-    content: (
-      <VendingMachine
-        id="tech-plaza-vending"
-        model="SVM-700"
-        location="Tech district plaza, near benches"
-        drinks={[
-          { name: 'ENERGY DRINK', pattern: 'lines', color: 'yellow', available: true },
-          { name: 'WATER BOTTLE', pattern: 'waves', color: 'blue', available: true },
-          { name: 'PROTEIN BAR', pattern: 'blocks', color: 'green', available: true },
-          { name: 'SYNTH-CHIPS', pattern: 'dots', color: 'orange', available: true },
-          { name: 'MYSTERY SNACK', pattern: 'circles', color: 'purple', available: true },
-        ]}
-      />
-    ),
-    related_commands: {
-      "Maintenance Access": {
-        // password: {
-        //   pw: "restock",
-        //   hint: "What you do when inventory runs low",
-        //   difficulty: "medium",
-        //   content: <Locked theme="terminal" title="VENDING MAINTENANCE" />
-        // },
-        content: (
-          <MaintenanceAccess
-            title="[VENDING MACHINE MAINTENANCE]"
-            deviceModel="SVM-700"
-            deviceId="PLAZA-VM-2891"
-            firmwareVersion="v3.2.1"
-            systemStatus="OPERATIONAL"
-            uptime="12 days, 4 hours"
-            notes={[
-              "Last service: 2 days ago (routine)",
-              "Next service: Thursday, 09:00",
-              "Owner: VendCorp (vending division)",
-              "Machine empties to central vault weekly"
-            ]}
-          />
-        ),
-        related_commands: {
-          "Internal Safe": {
-            // password: {
-            //   pw: "coins",
-            //   hint: "What accumulates in the cash box",
-            //   difficulty: "easy",
-            //   content: <Locked theme="safe" title="CASH BOX" />
-            // },
-            content: (
-              <Safe
-                id="tech-plaza-vending-safe"
-                model="VM-CASH-200"
-                location="Internal cash collection box"
-                owner="VendCorp (vending division)"
-                security="Maintenance keypad"
-                lastAccess="2 days ago (routine service)"
-                physical={[
-                  {
-                    id: "vending_coins",
-                    label: "Coins",
-                    description: "140¤ in change (mixed denominations)",
-                    value: 140,
-                    isCredits: true
-                  },
-                  {
-                    id: "vending_bills",
-                    label: "Bills",
-                    description: "80¤ (small bills)",
-                    value: 80,
-                    isCredits: true
-                  },
-                  {
-                    id: "vending_service_log",
-                    label: "Service log",
-                    description: "Paper logbook (last 6 months)"
-                  },
-                ]}
-                digital={[
-                  {
-                    id: "vending_credchip",
-                    label: "Credchip",
-                    description: "95¤ (2 days of receipts)",
-                    value: 95,
-                    isCredits: true
-                  },
-                  {
-                    id: "vending_transaction_log",
-                    label: "Transaction log",
-                    description: "Last 1000 purchases logged"
-                  },
-                ]}
-                notes="Machine empties to central vault weekly (Thursdays, 09:00)"
-              />
-            ),
-          },
-        },
-      },
-    },
-  },
-
-  "ATM (Tech District Corner)": {
-    // password: {
-    //   pw: "fiatvalue",
-    //   hint: "It's worth something because everyone agrees it is",
-    //   difficulty: "easy",
-    //   content: <Locked theme="terminal" title="ATM ACCESS" />
-    // },
-    content: (
-      <ATM
-        id="tech-district-atm"
-        model="ATM-600"
-        location="Tech district, corner of Innovation Ave & 7th"
-        network="CityBank Network"
-        credits={200}
-        lastService="5 days ago"
-        transactions={[
-          "08:15 → Withdrawal: 100¤",
-          "09:42 → Balance inquiry",
-          "11:18 → Withdrawal: 60¤",
-          "14:33 → Deposit: 200¤ (paycheck)",
-          "16:08 → Withdrawal: 40¤",
-        ]}
-      />
-    ),
-  },
-
   "Traffic Signal Control (Innovation & 7th)": {
     content: (
       <MaintenanceAccess
@@ -1316,38 +1155,6 @@ export const FUN_COMMANDS = {
           <Line cyan>Pedestrians: 67 crossings</Line>
           <Line cyan>Emergency vehicle overrides: 1</Line>
           <Line cyan>Average wait time: 32 seconds</Line>
-        </InsetBox>
-      </MaintenanceAccess>
-    ),
-  },
-
-  "Streetlight Grid (Innovation Ave)": {
-    content: (
-      <MaintenanceAccess
-        title="[STREETLIGHT CONTROL - INNOVATION AVENUE]"
-        deviceModel="Street Lighting System"
-        deviceId="LIGHTS-INNO-01"
-        firmwareVersion="v4.1.0"
-        systemStatus="OPERATIONAL"
-        notes={[
-          "Grid management: 45 units total",
-          "Active lights: 43/45 (95.6%)",
-          "Malfunctioning: 2 units (repair scheduled)",
-          "System managed by Cynergy Water & Power Co."
-        ]}
-      >
-        <Divider />
-        <InsetBox title="SCHEDULED OPERATIONS:">
-          <Line neon>Auto-on: 18:30 (dusk sensor)</Line>
-          <Line neon>Auto-off: 06:00 (dawn sensor)</Line>
-          <Line neon>Dimming: 23:00-05:00 (reduced brightness during low traffic)</Line>
-          <Line neon>Brightness: 75% (adaptive based on ambient light)</Line>
-        </InsetBox>
-        <InsetBox title="MAINTENANCE LOG:">
-          <Line yellow>Last service: 3 weeks ago</Line>
-          <Line yellow>Next scheduled: 5 weeks</Line>
-          <Line yellow>Failed units: #23 (ballast issue), #37 (vandalism)</Line>
-          <Line red>Vandalism incidents: 2 this quarter</Line>
         </InsetBox>
       </MaintenanceAccess>
     ),
@@ -1397,7 +1204,7 @@ export const FUN_COMMANDS = {
         tagline="Critical Care. Rapid Deployment."
         network="TRAUMA_PUBLIC"
         signalStrength="strong"
-        status="✓ ACCEPTING MEMBERS"
+        status="ACCEPTING MEMBERS"
         statusColor="neon"
         notes={[
           "Emergency medical response (platinum tier)",
@@ -1419,39 +1226,6 @@ export const FUN_COMMANDS = {
           <Line red>Slums: No service (corporate policy)</Line>
         </InsetBox>
         <Line pink>"Your life. Our priority. Their profit."</Line>
-      </PublicPortal>
-    ),
-  },
-
-  "Samurai Memorabilia Shop": {
-    content: (
-      <PublicPortal
-        name="CHROME & STEEL COLLECTIBLES"
-        tagline="Legends Never Die. They Just Get Merchandised."
-        network="CHROME_STEEL_GUEST"
-        signalStrength="strong"
-        status="✓ OPEN"
-        statusColor="neon"
-        nowPlaying="Samurai - Chippin' In (1996 remaster)"
-        notes={[
-          "Vintage & reproduction band merchandise",
-          "Bar area with themed drinks",
-          "Signed memorabilia available"
-        ]}
-        theme="friendly"
-      >
-        <HoursBanner
-          name="Schedule"
-          hours="Mon-Sat: 12:00-00:00 | Sun: 14:00-22:00"
-          days="7 Days a Week"
-        />
-        <Divider />
-        <InsetBox title="SPECIAL DRINKS (Bar Area):">
-          <Line neon>"Johnny Silverhand Special": 18¤ (whiskey, ice, attitude)</Line>
-          <Line neon>"Relic Runner": 15¤ (mystery cocktail, glows slightly)</Line>
-          <Line neon>"Netrunner's Choice": 12¤ (energy drink + vodka)</Line>
-        </InsetBox>
-        <Line pink>"Wake the fuck up, samurai. We have merch to sell."</Line>
       </PublicPortal>
     ),
   },

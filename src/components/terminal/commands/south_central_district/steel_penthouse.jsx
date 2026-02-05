@@ -568,20 +568,66 @@ export const STEEL_PENTHOUSE_COMMANDS = {
                 model="CoolTech VIP-9000"
                 location="Kitchen"
                 temperature={38}
-                items={[
-                  { name: "Beer", quantity: "48 bottles", description: "Various brands for party" },
-                  { name: "Energy Drinks", quantity: "32 cans", description: "Party fuel" },
-                  { name: "Synth-juice", quantity: "12 bottles", description: "Synthetic fruit juice" },
-                  { name: "Pre-mixed Cocktails", quantity: "18 cans", description: "Ready to drink" },
-                  { name: "Water", quantity: "24 bottles", description: "Mostly untouched" },
-                  { name: "Protein Packs", quantity: 8, description: "Meal replacement" },
-                  { name: "Leftover Takeout", quantity: "Various", description: "Days old, probably bad" },
+                physicalItems={[
+                  {
+                    id: "fridge_beer",
+                    label: "Beer x48 bottles",
+                    description: "Various brands for party"
+                  },
+                  {
+                    id: "fridge_energy",
+                    label: "Energy Drinks x32 cans",
+                    description: "Party fuel"
+                  },
+                  {
+                    id: "fridge_synth_juice",
+                    label: "Synth-juice x12 bottles",
+                    description: "Synthetic fruit juice"
+                  },
+                  {
+                    id: "fridge_cocktails",
+                    label: "Pre-mixed Cocktails x18 cans",
+                    description: "Ready to drink"
+                  },
+                  {
+                    id: "fridge_water",
+                    label: "Water x24 bottles",
+                    description: "Mostly untouched"
+                  },
+                  {
+                    id: "fridge_protein",
+                    label: "Protein Packs x8",
+                    description: "Meal replacement"
+                  },
+                  {
+                    id: "fridge_takeout",
+                    label: "Leftover Takeout",
+                    description: "Days old, probably bad"
+                  },
                 ]}
                 freezerItems={[
-                  { name: "Blackout", quantity: 10, description: "Sedative drug - kept frozen for preservation", value: 1500 },
-                  { name: "Ice Cream", quantity: 3, description: "Containers (various flavors)" },
-                  { name: "Frozen Pizza", quantity: 4, description: "Untouched boxes" },
-                  { name: "Ice", quantity: "2 bags", description: "For drinks" },
+                  {
+                    id: "freezer_blackout",
+                    label: "Blackout x10 doses",
+                    description: "Sedative drug - kept frozen for preservation",
+                    value: 1500,
+                    isCredits: false
+                  },
+                  {
+                    id: "freezer_ice_cream",
+                    label: "Ice Cream x3 containers",
+                    description: "Various flavors"
+                  },
+                  {
+                    id: "freezer_pizza",
+                    label: "Frozen Pizza x4 boxes",
+                    description: "Untouched"
+                  },
+                  {
+                    id: "freezer_ice",
+                    label: "Ice x2 bags",
+                    description: "For drinks"
+                  },
                 ]}
                 freezerTemp={0}
                 notes="Auto-reorder disabled - party consumption too high. Fridge desperately trying to order supplies but gave up."

@@ -1,0 +1,210 @@
+/* rcdAlert.css */
+
+.rcd-alert {
+  font-family: 'Courier New', 'Courier', monospace;
+  background: rgb(20, 20, 30);
+  border: none;
+  margin-bottom: 1rem;
+  position: relative;
+  box-shadow:
+    0 0 15px rgba(168, 85, 247, 0.2),
+    inset 0 0 60px rgba(0, 0, 0, 0.5);
+}
+
+/* CRT screen curvature effect */
+/* .rcd-alert::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.15) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+  pointer-events: none;
+  z-index: 10;
+} */
+
+/* Critical alert - more intense glow */
+.rcd-alert-critical {
+  box-shadow:
+    0 0 25px rgba(236, 72, 153, 0.4),
+    inset 0 0 60px rgba(0, 0, 0, 0.5);
+}
+
+/* Header section */
+.rcd-alert-header {
+  user-select: none;
+}
+
+.rcd-alert-border-top,
+.rcd-alert-border-mid,
+.rcd-alert-border-bottom {
+  font-size: 0.7rem;
+  line-height: 1;
+  color: rgb(168, 85, 247);
+  text-shadow:
+    0 0 5px rgba(168, 85, 247, 0.8),
+    0 0 10px rgba(168, 85, 247, 0.4);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.rcd-alert-critical .rcd-alert-border-top,
+.rcd-alert-critical .rcd-alert-border-mid,
+.rcd-alert-critical .rcd-alert-border-bottom {
+  color: rgb(236, 72, 153);
+  text-shadow:
+    0 0 5px rgba(236, 72, 153, 0.8),
+    0 0 10px rgba(236, 72, 153, 0.4);
+}
+
+.rcd-alert-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  line-height: 1;
+  padding: 0.25rem 0;
+  color: rgb(168, 85, 247);
+}
+
+.rcd-alert-bracket {
+  color: rgb(168, 85, 247);
+  text-shadow:
+    0 0 5px rgba(168, 85, 247, 0.8);
+  font-size: 0.7rem;
+}
+
+.rcd-alert-icon {
+  color: rgb(168, 85, 247);
+  text-shadow:
+    0 0 8px rgba(168, 85, 247, 0.8),
+    0 0 12px rgba(168, 85, 247, 0.4);
+  font-size: 0.75rem;
+  margin: 0 0.25rem;
+}
+
+.rcd-alert-critical .rcd-alert-icon {
+  color: rgb(236, 72, 153);
+  text-shadow:
+    0 0 8px rgba(236, 72, 153, 0.8),
+    0 0 12px rgba(236, 72, 153, 0.4);
+}
+
+.rcd-alert-label {
+  color: rgb(168, 85, 247);
+  font-weight: bold;
+  text-shadow:
+    0 0 5px rgba(168, 85, 247, 0.6);
+  letter-spacing: 0.05em;
+}
+
+.rcd-alert-critical .rcd-alert-label {
+  color: rgb(236, 72, 153);
+  text-shadow:
+    0 0 5px rgba(236, 72, 153, 0.6);
+}
+
+.rcd-alert-critical-indicator {
+  margin-left: auto;
+  color: rgb(236, 72, 153);
+  font-weight: bold;
+  text-shadow:
+    0 0 8px rgba(236, 72, 153, 0.8);
+}
+
+.rcd-blink {
+  animation: rcd-blink 0.5s step-end infinite;
+}
+
+@keyframes rcd-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Body content */
+.rcd-alert-body {
+  padding: 0.5rem 0.75rem;
+  position: relative;
+  z-index: 2;
+}
+
+.rcd-alert-prompt {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.rcd-alert-prompt-symbol {
+  color: rgb(168, 85, 247);
+  font-size: 0.875rem;
+  font-weight: bold;
+  flex-shrink: 0;
+  text-shadow:
+    0 0 5px rgba(168, 85, 247, 0.8);
+}
+
+.rcd-alert-critical .rcd-alert-prompt-symbol {
+  color: rgb(236, 72, 153);
+  text-shadow:
+    0 0 5px rgba(236, 72, 153, 0.8);
+}
+
+.rcd-alert-message {
+  color: rgb(203, 213, 225);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  text-shadow: 0 0 1px rgba(203, 213, 225, 0.5);
+}
+
+/* Details section - cyan for secondary info */
+.rcd-alert-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.rcd-alert-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.rcd-alert-detail-marker {
+  color: rgb(79, 209, 197);
+  flex-shrink: 0;
+  font-weight: bold;
+  text-shadow:
+    0 0 3px rgba(79, 209, 197, 0.6);
+}
+
+.rcd-alert-detail-text {
+  color: rgb(148, 163, 184);
+  text-shadow: 0 0 1px rgba(148, 163, 184, 0.3);
+}
+
+/* Optional children */
+.rcd-alert-children {
+  margin-top: 0.75rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed rgba(168, 85, 247, 0.3);
+}
+
+/* Footer */
+.rcd-alert-footer {
+  user-select: none;
+}
+
+/* Phosphor glow effect */
+.rcd-alert * {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}

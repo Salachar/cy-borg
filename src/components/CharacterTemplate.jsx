@@ -265,7 +265,7 @@ export default function CharacterTemplate({
             <>
               <Callout title="NanoPaower, Infestations, Cyberdeck, Cybertech">
                 <p className="text-gray-300 leading-relaxed">
-                  You don't get these by default, unless your class uniques explicity state so. Any class can be acquire them during gameplay though.
+                  You don't start with these unless your class uniques explicity state so. Any class can acquire them during gameplay though, and some in the market.
                 </p>
               </Callout>
               <div className="divider" />

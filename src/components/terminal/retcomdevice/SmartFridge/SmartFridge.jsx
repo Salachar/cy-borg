@@ -9,12 +9,13 @@ import Extractable from '../Extractable/Extractable';
  * - model: String (default: "CoolTech Pro-5000")
  * - location: String (optional, e.g., "Kitchen")
  * - temperature: Number (default: 38°F)
- * - items: Array of item objects
- *   - name: String
- *   - quantity: Number or String
+ * - physicalItems: Array of item objects (Extractable schema)
+ *   - id: String
+ *   - label: String
  *   - description: String
  *   - value: Number (optional)
- * - freezerItems: Array of item objects (same format as items)
+ *   - isCredits: Boolean (optional)
+ * - freezerItems: Array of item objects (same Extractable schema)
  * - freezerTemp: Number (default: 0°F)
  * - notes: String (optional, additional info)
  */
@@ -23,7 +24,7 @@ export default function SmartFridge({
   model = 'CoolTech Pro-5000',
   location,
   temperature = 38,
-  items = [],
+  physicalItems = [],
   freezerItems = [],
   freezerTemp = 0,
   notes,
@@ -42,19 +43,6 @@ export default function SmartFridge({
 
   const tempStatus = getTempStatus(temperature);
   const freezerStatus = getTempStatus(freezerTemp, true);
-
-  // Convert items to Extractable format
-  const fridgePhysicalItems = items.map(item => ({
-    item: typeof item.quantity === 'string' ? item.name : `${item.name} (${item.quantity})`,
-    desc: item.description,
-    value: item.value,
-  }));
-
-  const freezerPhysicalItems = freezerItems.map(item => ({
-    item: typeof item.quantity === 'string' ? item.name : `${item.name} (${item.quantity})`,
-    desc: item.description,
-    value: item.value,
-  }));
 
   return (
     <div style={{ position: 'relative' }}>
@@ -212,7 +200,7 @@ export default function SmartFridge({
                   INVENTORY:
                 </Line>
                 <Line cyan style={{ margin: 0, fontSize: '0.875rem', fontWeight: 500 }}>
-                  {items.length} item{items.length !== 1 ? 's' : ''} in fridge
+                  {physicalItems.length} item{physicalItems.length !== 1 ? 's' : ''} in fridge
                   {freezerItems.length > 0 && `, ${freezerItems.length} item${freezerItems.length !== 1 ? 's' : ''} in freezer`}
                 </Line>
               </div>
@@ -220,7 +208,7 @@ export default function SmartFridge({
           )}
 
           {/* Refrigerator contents */}
-          {items.length > 0 && (
+          {physicalItems.length > 0 && (
             <div
               style={{
                 marginBottom: freezerItems.length > 0 ? '1.5rem' : '0',
@@ -248,8 +236,8 @@ export default function SmartFridge({
               </div>
 
               <Extractable
-                id={`${id}-fridge-extractable`}
-                physicalItems={fridgePhysicalItems}
+                id={`${id}-fridge`}
+                physicalItems={physicalItems}
                 stealing={false}
               />
             </div>
@@ -281,7 +269,7 @@ export default function SmartFridge({
 
               <Extractable
                 id={`${id}-freezer`}
-                physicalItems={freezerPhysicalItems}
+                physicalItems={freezerItems}
                 stealing={false}
               />
             </div>

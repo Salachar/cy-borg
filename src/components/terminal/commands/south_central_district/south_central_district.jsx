@@ -12,7 +12,7 @@ import { CENTRAL_PLAZA_TOWER_COMMANDS } from './central_plaza_tower';
 import { SOUTH_CENTRAL_FUN_COMMANDS } from "./fun";
 
 export const SOUTH_CENTRAL_DISTRICT_COMMANDS = {
-  "South Central District": {
+  "South Central": {
     content: (
       <DistrictPortal
         districtName="SOUTH CENTRAL"

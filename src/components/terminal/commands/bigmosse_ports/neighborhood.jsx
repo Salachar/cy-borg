@@ -188,62 +188,6 @@ export const NEIGHBORHOOD_COMMANDS = {
     ),
   },
 
-  "NetBattler Tournament": {
-    content: (
-      <LocalAd
-        corp="NETBATTLER CHAMPIONSHIP"
-        slogan="Jack In. Battle. Win."
-        products={[
-          "Grand Prize: 500¤",
-          "Professional Commentary",
-          "Live Streamed Globally"
-        ]}
-        cta="REGISTER NOW - LIMITED SLOTS"
-        theme="cyber"
-      >
-        <div className="text-center mt-4 space-y-1">
-          <p className="text-cyan-200 font-bold">PERPETUALLY NEXT SATURDAY - TECH MALL ARENA</p>
-          <p className="text-cyan-300/80 text-sm">Entry Fee: 5¤ | Ages 11+</p>
-        </div>
-      </LocalAd>
-    ),
-  },
-
-  "Ports District Guide": {
-    content: (
-      <MaintenanceAccess
-        title="[PORTS DISTRICT - VISITOR INFORMATION]"
-        deviceModel="Public Info Kiosk"
-        deviceId="KIOSK-PORTS-MAIN"
-        firmwareVersion="v3.0.1"
-        systemStatus="OPERATIONAL"
-        notes={[
-          "Tourist Mode: Active",
-          "Population: ~15,000 residents",
-          "Primary Industry: Canal shipping, service work",
-          "Transit: Water taxis (24/7)",
-          "Reputation: Working-class waterfront - rough but navigable"
-        ]}
-      >
-        <Divider />
-        <InsetBox title="NOTABLE LOCATIONS:">
-          <Line neon>→ Canal docks (main transport hub)</Line>
-          <Line neon>→ Market district (daily 06:00-18:00)</Line>
-          <Line neon>→ Residential blocks (mixed apartment buildings)</Line>
-          <Line neon>→ Industrial zone (warehouses, mostly abandoned)</Line>
-          <Line yellow>→ Entertainment district (bars, clubs, late hours)</Line>
-        </InsetBox>
-        <InsetBox title="VISITOR ADVISORY:">
-          <Line yellow>• Keep valuables secured</Line>
-          <Line yellow>• Avoid industrial zone after dark</Line>
-          <Line yellow>• Water taxis safer than walking at night</Line>
-          <Line red>• Corporate security limited - local issues handled locally</Line>
-        </InsetBox>
-        <Line pink>"Not the worst place to be. Not the best either."</Line>
-      </MaintenanceAccess>
-    ),
-  },
-
   "Canal Water Taxi Network": {
     content: (
       <MaintenanceAccess

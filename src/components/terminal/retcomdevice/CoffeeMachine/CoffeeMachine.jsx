@@ -20,6 +20,7 @@ export default function CoffeeMachine({
   location,
   disabled = false,
   onPour,
+  children,
 }) {
   const [selectedDrink, setSelectedDrink] = useState(null);
   const [brewing, setBrewing] = useState(false);
@@ -189,6 +190,17 @@ export default function CoffeeMachine({
           </div>
         </div>
       </div>
+
+      {Boolean(children) && (
+        <div style={{
+          margin: '1rem',
+          padding: '1rem',
+          background: 'rgba(0, 0, 0, 0.5)',
+          borderRadius: '6px',
+        }}>
+          {children}
+        </div>
+      )}
 
       {/* Footer */}
       <div className="coffee-footer">
