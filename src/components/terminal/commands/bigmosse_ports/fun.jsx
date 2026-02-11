@@ -7,12 +7,10 @@ import {
   InsetBox,
 } from '@terminal/TerminalComponents';
 import {
-  ATM,
   Safe,
   Camera,
   Jukebox,
   MaintenanceAccess,
-  VendingMachine,
   PublicPortal,
   HoursBanner,
   Menu,

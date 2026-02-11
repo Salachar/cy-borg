@@ -1,5 +1,4 @@
 import {
-  Box,
   Line,
   Section,
   Divider,
@@ -9,19 +8,32 @@ import {
 import {
   ATM,
   Camera,
+  CCTV,
   Extractable,
   FacilityPortal,
-  Locked,
   MaintenanceAccess,
+  Menu,
   NetworkDevices,
-  SecureAccessControl,
-  VendingMachine,
+  PersonnelFile,
+  PublicPortal,
   RetComImage,
+  Safe,
+  SecureAccessControl,
+  Tenet,
+  VendingMachine,
 } from '@terminal/retcomdevice';
 
+import { GLASS_GARDENS_COMMANDS } from './glass_gardens';
 import { STEEL_PENTHOUSE_COMMANDS } from './steel_penthouse';
 
 import penthouseBlueprint from '@images/blueprints/steel_penthouse.png';
+import central_tower_atrium_cctv_image from '@images/locations/central_tower_atrium_cctv.png';
+
+// ============================================================================
+// CENTRAL PLAZA TOWER
+// 51 floors. Ground + Floor 2: open atrium (lobby + ChromeLux).
+// Floors 3-39: Residential. Floors 40-50: Penthouses. Floor 51: Management/Glass Gardens roof.
+// ============================================================================
 
 export const CENTRAL_PLAZA_TOWER_COMMANDS = {
   "Central Plaza Tower": {
@@ -30,163 +42,88 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
         companyName="CENTRAL PLAZA"
         facilityId="TOWER BLOCK 7"
         tagline="Premium Living in the Heart of the City"
-        location="2847 Central Plaza, Central District"
+        location="2847 Central Plaza, South Central District"
         owner="Central District Properties Inc."
-        function="Luxury Residential High-Rise"
+        function="Luxury Residential High-Rise + Retail"
         personnel="198 residential units + 12 penthouses (210 total)"
         networkStatus="TOWER_INTERNAL (Secure building network)"
         securityLevel="HIGH"
         warnings={[
           "Visitor log maintained at security desk",
           "Weapon scanners active at main entrance",
-          "Floors 40+ require keycard authorization"
+          "Floors 40+ require keycard authorization",
+          "ChromeLux security personnel operate throughout atrium"
         ]}
         theme="corporate"
       />
     ),
     related_commands: {
-      "Blueprint: Steel Penthouse": {
-        content: (
-          <Box color="neon">
-            <Section title="LUCKY FLIGHT CASINO - BASEMENT BLUEPRINT" center>
-              <Line red xsmall bottom pulse>CLASSIFIED // SECURITY CLEARANCE 3</Line>
-              <Line neon small>Basement Layout and Intel</Line>
-            </Section>
-            <RetComImage
-              src={penthouseBlueprint}
-              alt="Steel Penthouse"
-              style={{ marginTop: "1rem", width: "100%" }}
-            />
-            <Line neon xsmall style={{ marginTop: "1rem", textAlign: "center" }}>
-              FILE ID: LFC_BASEMENT_V1.2 | LAST UPDATED: 20X2.08.14 | AUTHOR: [REDACTED]
-            </Line>
-            <Divider />
-            <Line cyan bold>KEY LOCATIONS:</Line>
-            <Line neon>• Security Office</Line>
-            <Line neon>• Locker Room</Line>
-            <Line neon>• Green Room</Line>
-            <Line neon>• Maintenance</Line>
-            <Line neon>• Power Core</Line>
-            <Divider />
-            <Line yellow>⚠ Power Core presents explosion risk if tampered with</Line>
-          </Box>
-        ),
-      },
-      "Building Information": {
-        content: (
-          <MaintenanceAccess
-            title="[BUILDING SPECIFICATIONS]"
-            deviceModel="Tower Management System"
-            deviceId="TOWER-BLOCK-7"
-            firmwareVersion="v5.1.2"
-            systemStatus="OPERATIONAL"
-            notes={[
-              "Address: 2847 Central Plaza, Central District",
-              "Height: 51 floors (218 meters)",
-              "Completed: 2051 (16 years old)",
-              "Management: Central District Properties Inc.",
-              "Security Rating: Class-A (High)"
-            ]}
-          >
-            <Divider />
-            <InsetBox title="AMENITIES:">
-              <Line neon>• 24/7 security desk with armed guards</Line>
-              <Line neon>• Elevator access control (keycard required floors 40+)</Line>
-              <Line neon>• Underground parking (3 levels, B1-B3)</Line>
-              <Line neon>• Rooftop helipad (emergency use only)</Line>
-              <Line neon>• Automated package delivery system</Line>
-              <Line neon>• Building-wide high-speed network</Line>
-            </InsetBox>
-            <InsetBox title="ACCESS POINTS:">
-              <Line yellow>Main Entrance: Ground floor lobby (staffed 24/7)</Line>
-              <Line yellow>Service Entrance: East side (keycard required)</Line>
-              <Line yellow>Parking Garage: B1-B3 (resident cards only)</Line>
-              <Line yellow>Roof Access: Floor 51 (maintenance only)</Line>
-            </InsetBox>
-            <InsetBox title="SECURITY NOTES:">
-              <Line red>• Visitor log maintained at desk</Line>
-              <Line red>• Weapon scanners at main entrance</Line>
-              <Line red>• Elevators to floors 40+ require keycard + destination approval</Line>
-              <Line red>• Penthouse residents employ private security (not building staff)</Line>
-            </InsetBox>
-          </MaintenanceAccess>
-        ),
-      },
 
-      "Resident Directory": {
-        content: (
-          <MaintenanceAccess
-            title="[RESIDENT DIRECTORY - PUBLIC ACCESS]"
-            deviceModel="Directory System"
-            deviceId="DIR-TOWER-01"
-            firmwareVersion="v2.0.1"
-            systemStatus="OPERATIONAL"
-            notes={[
-              "Partial listing available",
-              "Premium residents opt for privacy",
-              "Full directory: Building security only",
-              "Public records available through separate search"
-            ]}
-          >
-            <Divider />
-            <InsetBox title="PENTHOUSE RESIDENTS (FLOORS 40-50):">
-              <Line yellow>Many penthouse residents unlisted for privacy</Line>
-              <Line smoke small>Public records available through net search...</Line>
-            </InsetBox>
-            <Divider />
-            <InsetBox title="NOTABLE RESIDENT:">
-              <Line pink bold>Steel Jackhammer</Line>
-              <Line>Unit: 4201 (Floor 42, Southeast corner)</Line>
-              <Line>Type: 3-bedroom penthouse suite</Line>
-              <Line>Status: ACTIVE - Current occupant</Line>
-              <Line>Note: Currently hosting multi-day recovery party</Line>
-            </InsetBox>
-            <Line smoke small>Other residents include corporate executives, celebrities, and high-net-worth individuals.</Line>
-          </MaintenanceAccess>
-        ),
-        related_commands: {
-          ...STEEL_PENTHOUSE_COMMANDS,
-        },
-      },
+      // ========================================================================
+      // ATRIUM (GROUND + FLOOR 2)
+      // ========================================================================
 
-      "Lobby": {
+      "Atrium": {
         content: (
           <MaintenanceAccess
-            title="[LOBBY - PUBLIC AREA]"
+            title="[ATRIUM - GROUND & FLOOR 2]"
             deviceModel="Public Zone Monitoring"
-            deviceId="LOBBY-TOWER-01"
-            firmwareVersion="v3.0.0"
+            deviceId="ATRIUM-TOWER-01"
+            firmwareVersion="v3.2.0"
             systemStatus="OPERATIONAL"
             notes={[
-              "Marble floors, modern design",
-              "Security desk: 2 guards on duty",
-              "Moderate foot traffic",
-              "Party guests flowing to Unit 4201 for days"
+              "Open double-height atrium connecting ground floor and second floor",
+              "Ground floor: Lobby, security desk, ATM, vending",
+              "Second floor: ChromeLux boutique (open to atrium below)",
+              "ChromeLux security doubles as visible deterrent in shared space",
+              "Foot traffic: Residents, visitors, ChromeLux clients"
             ]}
           >
             <Divider />
-            <InsetBox title="LOBBY FEATURES:">
+            <InsetBox title="GROUND FLOOR FEATURES:">
               <Line neon>• Security desk (2 guards on duty, weapon scanners)</Line>
               <Line neon>• Visitor check-in system</Line>
               <Line neon>• ATM (Cy Central Bank)</Line>
-              <Line neon>• Vending machine (upscale products)</Line>
-              <Line neon>• Elevator bank (4 elevators)</Line>
-              <Line neon>• Digital directory board</Line>
+              <Line neon>• Vending machine (VendLux Elite)</Line>
+              <Line neon>• Elevator bank (4 main + 1 service)</Line>
+              <Line neon>• Digital resident directory</Line>
+            </InsetBox>
+            <InsetBox title="SECOND FLOOR FEATURES:">
+              <Line neon>• ChromeLux Boutique (open railing overlooks lobby)</Line>
+              <Line neon>• ChromeLux waiting lounge</Line>
+              <Line neon>• Consultation suites (3 rooms, appointment only)</Line>
+              <Line neon>• Surgical wing (restricted access)</Line>
             </InsetBox>
             <InsetBox title="CURRENT STATUS:">
-              <Line cyan>Moderate traffic. Mix of residents and visitors.</Line>
-              <Line cyan>Guards appear alert but not overly suspicious.</Line>
-              <Line cyan>Party guests have been flowing to Unit 4201 for days.</Line>
+              <Line cyan>Moderate traffic. Mix of residents, visitors, ChromeLux clients.</Line>
+              <Line cyan>Party guests have been flowing to Unit 4201 for 3 days.</Line>
+              <Line cyan>ChromeLux staff visible on second floor railing - visibly chromed.</Line>
             </InsetBox>
           </MaintenanceAccess>
         ),
         related_commands: {
+          "Atrium CCTV": {
+            content: (
+              <CCTV
+                src={central_tower_atrium_cctv_image}
+                cameraId="CAM-CPT-FOYER"
+                location="Entrance"
+                theme="amber"
+                height={500}
+              />
+            ),
+          },
+
+          // ------------------------------------------------------------------
+          // LOBBY DEVICES
+          // ------------------------------------------------------------------
+
           "ATM": {
             content: (
               <ATM
                 id="atm-tower-lobby"
                 model="ATM-600"
-                location="Central Plaza Tower - Lobby"
+                location="Central Plaza Tower - Ground Floor Lobby"
                 network="Cy Central Bank"
                 credits={500}
                 lastService="Yesterday, 14:00"
@@ -201,12 +138,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
             ),
             related_commands: {
               "Maintenance Panel": {
-                // password: {
-                //   pw: "atm_service_2067",
-                //   hint: "Standard ATM service password format",
-                //   difficulty: "medium",
-                //   content: <Locked theme="terminal" title="ATM MAINTENANCE" />
-                // },
                 content: (
                   <MaintenanceAccess
                     title="[ATM MAINTENANCE PANEL]"
@@ -235,12 +166,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                 ),
                 related_commands: {
                   "Cash Box": {
-                    // password: {
-                    //   pw: "cashbox",
-                    //   hint: "What holds the money inside",
-                    //   difficulty: "easy",
-                    //   content: <Locked theme="safe" title="CASH BOX" />
-                    // },
                     content: (
                       <Extractable
                         id="atm-tower-lobby-cash"
@@ -267,7 +192,7 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
               <VendingMachine
                 id="vend-tower-lobby"
                 model="VendLux Elite"
-                location="Central Plaza Tower - Lobby"
+                location="Central Plaza Tower - Ground Floor Lobby"
                 drinks={[
                   { name: 'PREMIUM WATER', pattern: 'waves', color: 'blue', available: true },
                   { name: 'ENERGY DRINK', pattern: 'lines', color: 'orange', available: true },
@@ -279,12 +204,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
             ),
             related_commands: {
               "Maintenance Panel": {
-                // password: {
-                //   pw: "restock",
-                //   hint: "What you do when inventory runs low",
-                //   difficulty: "medium",
-                //   content: <Locked theme="terminal" title="VENDING MAINTENANCE" />
-                // },
                 content: (
                   <MaintenanceAccess
                     title="[VENDING MACHINE MAINTENANCE]"
@@ -297,20 +216,11 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                       "Upscale products for upscale residents",
                       "Prices: 8¤-25¤ (premium pricing)",
                       "Last service: 1 week ago",
-                      "Collection box emptied weekly",
-                      "High profit margins"
+                      "Collection box emptied weekly"
                     ]}
-                  />
-                ),
-                related_commands: {
-                  "Cash Box": {
-                    // password: {
-                    //   pw: "coins",
-                    //   hint: "What accumulates in the cash box",
-                    //   difficulty: "easy",
-                    //   content: <Locked theme="safe" title="CASH BOX" />
-                    // },
-                    content: (
+                  >
+                    <Divider />
+                    <InsetBox title="CASH BOX:">
                       <Extractable
                         id="vending-tower-lobby-cash"
                         physicalItems={[
@@ -331,22 +241,285 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                         ]}
                         stealing={false}
                       />
-                    ),
-                  },
-                },
+                    </InsetBox>
+                  </MaintenanceAccess>
+                ),
+              },
+            },
+          },
+
+          // ------------------------------------------------------------------
+          // CHROMELUX (FLOOR 2 ATRIUM)
+          // ------------------------------------------------------------------
+
+          "ChromeLux Boutique": {
+            content: (
+              <PublicPortal
+                name="CHROMELUX"
+                tagline="Premium augmentation for the discerning individual"
+                network="CHROMELUX_GUEST"
+                signalStrength="strong"
+                status="✓ OPEN (By Appointment)"
+                statusColor="neon"
+                notes={[
+                  "Appointment required (walk-ins discouraged)",
+                  "Consultation fee: 500¤ (credited toward purchase)",
+                  "Installation by certified surgeons only",
+                  "Security services available to Central Plaza Tower residents"
+                ]}
+                theme="fancy"
+              >
+                <Divider />
+                <Section title="LOCATION:">
+                  <Line cyan>Second floor - Central Plaza Tower Atrium</Line>
+                  <Line cyan>Open railing overlooks ground floor lobby</Line>
+                  <Line smoke small>Hours: 10:00 - 20:00, Mon-Sat (closed Sunday)</Line>
+                </Section>
+              </PublicPortal>
+            ),
+            related_commands: {
+              "Product Catalog": {
+                content: (
+                  <Menu
+                    title="CHROMELUX"
+                    subtitle="Premium Cyberware - By Appointment"
+                    signType="food"
+                    categories={[
+                      {
+                        name: "NEURAL AUGMENTS",
+                        items: [
+                          { name: "Reflex Booster MK-II", price: "8,500¤" },
+                          { name: "Neural Interface (Premium)", price: "12,000¤" },
+                          { name: "Memory Expansion Unit", price: "6,000¤" },
+                          { name: "Combat Targeting System", price: "15,000¤" },
+                        ]
+                      },
+                      {
+                        name: "PHYSICAL AUGMENTS",
+                        items: [
+                          { name: "Dermal Plating (Titanium)", price: "10,000¤" },
+                          { name: "Subdermal Armor (Ceramic)", price: "14,000¤" },
+                          { name: "Reinforced Skeleton", price: "18,000¤" },
+                          { name: "Cyber-limbs (per limb)", price: "20,000¤+" },
+                        ]
+                      },
+                      {
+                        name: "OPTICAL AUGMENTS",
+                        items: [
+                          { name: "Low-light Vision", price: "4,500¤" },
+                          { name: "Thermal Imaging", price: "7,000¤" },
+                          { name: "Targeting Reticle", price: "5,500¤" },
+                          { name: "Full Cyber-eyes (premium)", price: "12,000¤" },
+                        ]
+                      },
+                      {
+                        name: "MILITARY-GRADE (⚠ License Required)",
+                        items: [
+                          { name: "Adrenaline Injector System", price: "25,000¤" },
+                          { name: "Pain Editor", price: "30,000¤" },
+                          { name: "Sandevistan Reflex System", price: "45,000¤" },
+                          { name: "Gorilla Arms", price: "35,000¤" },
+                        ]
+                      },
+                    ]}
+                    footer="Consultation fee 500¤ credited toward purchase. Financing at 18% APR."
+                  />
+                ),
+              },
+
+              "Personnel File - Dr. Nakamura": {
+                content: (
+                  <PersonnelFile
+                    employeeId="CHROMELUX-OWNER-001"
+                    name="Dr. Yuki Nakamura"
+                    age={44}
+                    position="Owner / Chief Surgeon"
+                    department="Cyberware Installation"
+                    hireDate="Founded ChromeLux: 2061 (6 years)"
+                    supervisor="Self-employed"
+                    clearanceLevel={5}
+                    district="Central Plaza Tower, Unit 2204 (Floor 22)"
+                    emergencyContact="Private medical insurance"
+                    performance={96}
+                    notes={[
+                      "Former TG Labs researcher - cybernetics division",
+                      "Departed TG Labs 2061 (circumstances undisclosed)",
+                      "Specialization: High-end custom chrome installations",
+                      "Reputation: Best rejection rate in South Central (zero documented)",
+                      "Clientele: Corporate executives, killmatch athletes, wealthy criminals",
+                      "Building security contract: ChromeLux staff supplement Tower security",
+                      "Residence: Unit 2204 - same building as boutique"
+                    ]}
+                    status="ACTIVE"
+                  />
+                ),
+              },
+
+              "Vault Safe": {
+                content: (
+                  <Safe
+                    id="chromelux-vault"
+                    model="MilitaryGrade-X"
+                    location="Secure vault room, Floor 2 surgical wing"
+                    owner="Dr. Yuki Nakamura"
+                    security="Biometric + retinal scan + 8-digit PIN"
+                    lastAccess="Yesterday (inventory check)"
+                    physical={[
+                      {
+                        id: "vault_cyberware_stock",
+                        label: "Premium cyberware inventory",
+                        description: "Various high-end augments (estimated 500k¤+ value)"
+                      },
+                      {
+                        id: "vault_military_chrome",
+                        label: "Military-grade augments",
+                        description: "Restricted stock (requires license to sell legally)"
+                      },
+                      {
+                        id: "vault_custom_parts",
+                        label: "Custom installation components",
+                        description: "Rare parts for specialized builds"
+                      },
+                    ]}
+                    digital={[
+                      {
+                        id: "vault_credchip",
+                        label: "Business credchip",
+                        description: "45,000¤ (operating capital)",
+                        value: 45000,
+                        isCredits: true
+                      },
+                      {
+                        id: "vault_client_list",
+                        label: "Client database",
+                        description: "Complete installation records - all clients (encrypted)"
+                      },
+                    ]}
+                    notes="Vault is military-grade. Client list is worth more than the cash."
+                    stealing={true}
+                  />
+                ),
               },
             },
           },
         },
       },
 
+      // ========================================================================
+      // RESIDENT DIRECTORY (PUBLIC)
+      // ========================================================================
+
+      "Resident Directory": {
+        content: (
+          <MaintenanceAccess
+            title="[RESIDENT DIRECTORY - PUBLIC ACCESS]"
+            deviceModel="Directory System"
+            deviceId="DIR-TOWER-01"
+            firmwareVersion="v2.0.1"
+            systemStatus="OPERATIONAL"
+            notes={[
+              "Partial listing - many residents opt for privacy",
+              "Full directory: Building security only",
+              "210 units total (198 residential, 12 penthouses)",
+              "Floors 3-39: Standard residential",
+              "Floors 40-50: Penthouse level"
+            ]}
+          >
+            <Divider />
+            <InsetBox title="LISTED RESIDENTS (SELECTED):">
+              <Line smoke small>Showing public listings only. 147 residents unlisted by request.</Line>
+            </InsetBox>
+          </MaintenanceAccess>
+        ),
+        related_commands: {
+
+          // ------------------------------------------------------------------
+          // UNIT 2204 - DR. NAKAMURA
+          // ------------------------------------------------------------------
+
+          "Unit 2204 - Floor 22": {
+            content: (
+              <Tenet
+                id="RES-2204"
+                name="Y. Nakamura"
+                unit="2204"
+                building="Central Plaza Tower"
+                moveInDate="March 2061"
+                status="ACTIVE"
+                intercomEnabled={true}
+                emergencyContact="ChromeLux Boutique - Floor 2"
+                notes="Deliveries: Leave with ChromeLux reception (Floor 2). Do not leave at door."
+              />
+            ),
+          },
+
+          // ------------------------------------------------------------------
+          // UNIT 1508 - RANDOM RESIDENT A
+          // ------------------------------------------------------------------
+
+          "Unit 1508 - Floor 15": {
+            content: (
+              <Tenet
+                id="RES-1508"
+                name="D. & P. Osei"
+                unit="1508"
+                building="Central Plaza Tower"
+                moveInDate="January 2065"
+                status="ACTIVE"
+                intercomEnabled={true}
+                notes="Deliveries: Ring intercom. Do not leave unattended."
+              />
+            ),
+          },
+
+          // ------------------------------------------------------------------
+          // UNIT 3302 - RANDOM RESIDENT B
+          // ------------------------------------------------------------------
+
+          "Unit 3302 - Floor 33": {
+            content: (
+              <Tenet
+                id="RES-3302"
+                name="T. Halverson"
+                unit="3302"
+                building="Central Plaza Tower"
+                moveInDate="August 2063"
+                status="ACTIVE"
+                intercomEnabled={false}
+                notes="All correspondence via building management. Do not buzz directly."
+              />
+            ),
+          },
+
+          // ------------------------------------------------------------------
+          // STEEL JACKHAMMER'S PENTHOUSE
+          // ------------------------------------------------------------------
+
+          "Unit 4201 - Floor 42": {
+            content: (
+              <Tenet
+                id="RES-4201"
+                name="Jackhammer"
+                unit="4201"
+                building="Central Plaza Tower"
+                moveInDate="September 2066"
+                status="ACTIVE"
+                intercomEnabled={false}
+                notes="All deliveries: Contact Alliansen Inc. management. Do not buzz directly."
+              />
+            ),
+            related_commands: {
+              ...STEEL_PENTHOUSE_COMMANDS,
+            }
+          },
+        },
+      },
+
+      // ========================================================================
+      // SECURITY SYSTEMS
+      // ========================================================================
+
       "Security Systems": {
-        // password: {
-        //   pw: "tower_sec_admin",
-        //   hint: "Building security admin credentials",
-        //   difficulty: "hard",
-        //   content: <Locked theme="terminal" title="SECURITY SYSTEMS" />
-        // },
         content: (
           <MaintenanceAccess
             title="[BUILDING SECURITY SYSTEMS]"
@@ -355,10 +528,10 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
             firmwareVersion="v6.0.3"
             systemStatus="OPERATIONAL"
             notes={[
-              "Central monitoring station",
-              "Full building coverage",
+              "Central monitoring station - Floor 51 management level",
+              "Full building coverage (48 cameras)",
               "⚠ RESTRICTED ACCESS - Authorized security personnel only",
-              "All access logged and monitored"
+              "ChromeLux contract supplements lobby and atrium coverage"
             ]}
           >
             <Divider />
@@ -371,6 +544,7 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
           </MaintenanceAccess>
         ),
         related_commands: {
+
           "Camera Grid": {
             content: (
               <MaintenanceAccess
@@ -389,26 +563,28 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
               >
                 <Divider />
                 <InsetBox title="RECENT ALERTS:">
-                  <Line yellow>14:32 - High traffic to Unit 4201 continues (party ongoing)</Line>
+                  <Line yellow>14:32 - High traffic to Unit 4201 continues (party day 3)</Line>
                   <Line yellow>12:15 - Roof camera offline (scheduled maintenance)</Line>
                   <Line yellow>09:45 - Delivery authorization: Unit 4201 (alcohol delivery)</Line>
                 </InsetBox>
                 <InsetBox title="CAMERA LOCATIONS:">
-                  <Line neon>• Lobby & entrance (4 cameras)</Line>
+                  <Line neon>• Atrium ground & second floor (6 cameras)</Line>
                   <Line neon>• Elevator banks (8 cameras)</Line>
-                  <Line neon>• Hallways (24 cameras - 2 per floor, floors 40-50)</Line>
+                  <Line neon>• Penthouse hallways floors 40-50 (20 cameras)</Line>
                   <Line neon>• Service areas (6 cameras)</Line>
                   <Line neon>• Parking garage (5 cameras)</Line>
-                  <Line red>• Roof access (1 camera - OFFLINE)</Line>
+                  <Line neon>• Glass Gardens roof level (3 cameras)</Line>
+                  <Line red>• Roof access door (1 camera - OFFLINE)</Line>
                 </InsetBox>
               </MaintenanceAccess>
             ),
             related_commands: {
-              "Floor 42 - Main Hallway": {
+
+              "Floor 42 - Penthouse Hallway": {
                 content: (
                   <Camera
                     id="cam-fl42-hall-a"
-                    location="Floor 42 - Main Hallway (Penthouse Level)"
+                    location="Floor 42 - Penthouse Hallway"
                     coverage="Full hallway view including Unit 4201 entrance"
                     status="ACTIVE"
                     recording={true}
@@ -427,12 +603,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                 ),
                 related_commands: {
                   "Live Feed": {
-                    // password: {
-                    //   pw: "live_cam_fl42_a",
-                    //   hint: "Format: live_cam_[floor][section]",
-                    //   difficulty: "medium",
-                    //   content: <Locked theme="terminal" title="LIVE CAMERA FEED" />
-                    // },
                     content: (
                       <MaintenanceAccess
                         title="[CAM-FL42-HALL-A LIVE FEED]"
@@ -441,25 +611,24 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                         firmwareVersion="v4.2.1"
                         systemStatus="STREAMING"
                         notes={[
-                          "Floor 42 Main Hallway",
-                          "Real-time surveillance",
+                          "Floor 42 Penthouse Hallway",
                           "Unit 4201 entrance visible"
                         ]}
                       >
                         <Divider />
                         <InsetBox title="CURRENT SCENE:">
                           <Line cyan>• Unit 4201 entrance clearly visible</Line>
-                          <Line cyan>• Two guards stationed outside door (private security)</Line>
-                          <Line cyan>• Guards appear relaxed, chatting - NOT heavily vigilant</Line>
-                          <Line cyan>• Three people just entered unit (party guests)</Line>
-                          <Line cyan>• Music audible even through door (bass thumping)</Line>
-                          <Line cyan>• Hallway shows signs of traffic - empty bottles, trash</Line>
+                          <Line cyan>• Two guards stationed outside (private security, not building staff)</Line>
+                          <Line cyan>• Guards relaxed, chatting - not heavily vigilant</Line>
+                          <Line cyan>• Party guests entering and leaving continuously</Line>
+                          <Line cyan>• Music audible through door (bass thumping)</Line>
+                          <Line cyan>• Hallway: empty bottles, takeout boxes, general chaos</Line>
                         </InsetBox>
-                        <InsetBox title="SECURITY ASSESSMENT:">
-                          <Line yellow>Guards checking for weapons but lenient with party guests</Line>
-                          <Line yellow>If you look like you belong at a party, they're letting people through</Line>
+                        <InsetBox title="ENTRY ASSESSMENT:">
+                          <Line yellow>Guards checking for heavy weapons on entry</Line>
+                          <Line yellow>Lenient with anyone who looks like a party guest</Line>
+                          <Line yellow>Small concealed items likely to pass</Line>
                           <Line yellow>Heavy weapons and explosives will be caught</Line>
-                          <Line yellow>Small concealed items likely to pass inspection</Line>
                         </InsetBox>
                       </MaintenanceAccess>
                     ),
@@ -467,7 +636,7 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                 },
               },
 
-              "Service Entrance": {
+              "Service Entrance Camera": {
                 content: (
                   <Camera
                     id="cam-service-ent"
@@ -483,19 +652,13 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                       "Today, 08:30 → Cleaning crew arrived",
                     ]}
                     blindSpots={[
-                      "Side alley (partially obscured)",
+                      "Side alley (partially obscured by dumpsters)",
                     ]}
                     lastService="2 weeks ago"
                   />
                 ),
                 related_commands: {
                   "Live Feed": {
-                    // password: {
-                    //   pw: "live_cam_service",
-                    //   hint: "Format: live_cam_[location]",
-                    //   difficulty: "medium",
-                    //   content: <Locked theme="terminal" title="LIVE CAMERA FEED" />
-                    // },
                     content: (
                       <MaintenanceAccess
                         title="[CAM-SERVICE-ENT LIVE FEED]"
@@ -505,23 +668,20 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                         systemStatus="STREAMING"
                         notes={[
                           "Service Entrance - East Side",
-                          "Real-time surveillance",
-                          "Unguarded entrance"
+                          "Unguarded - monitored remotely only"
                         ]}
                       >
                         <Divider />
                         <InsetBox title="CURRENT SCENE:">
                           <Line cyan>• Service entrance door closed and locked</Line>
-                          <Line cyan>• Keycard reader visible (maintenance/delivery staff)</Line>
-                          <Line cyan>• Loading area empty</Line>
-                          <Line cyan>• No security guard stationed here (monitored remotely)</Line>
-                          <Line cyan>• Last activity: Delivery truck departed 20 minutes ago</Line>
+                          <Line cyan>• Keycard reader visible (maintenance/delivery access)</Line>
+                          <Line cyan>• Loading area empty - last delivery 20 min ago</Line>
+                          <Line cyan>• No guard posted here</Line>
                         </InsetBox>
                         <InsetBox title="TACTICAL NOTE:">
-                          <Line yellow>Unguarded entrance, but keycard required</Line>
-                          <Line yellow>Could gain access with stolen/cloned service card</Line>
-                          <Line yellow>Would bypass lobby security entirely</Line>
-                          <Line yellow>Service elevator from here accesses all floors including penthouses</Line>
+                          <Line yellow>Unguarded entrance, keycard required</Line>
+                          <Line yellow>Service elevator from here reaches all floors including penthouses</Line>
+                          <Line yellow>Bypasses lobby weapon scanners entirely</Line>
                         </InsetBox>
                       </MaintenanceAccess>
                     ),
@@ -529,7 +689,7 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                 },
               },
 
-              "Roof Access": {
+              "Roof Access Camera": {
                 content: (
                   <MaintenanceAccess
                     title="[CAM-ROOF STATUS]"
@@ -538,20 +698,19 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                     firmwareVersion="v4.2.1"
                     systemStatus="OFFLINE"
                     notes={[
-                      "Status: MAINTENANCE",
-                      "Reason: Scheduled maintenance - weather damage repair",
-                      "Offline Since: 12:00 today",
-                      "Estimated Repair: 2 days"
+                      "Status: MAINTENANCE - Weather damage",
+                      "Offline since: 12:00 today",
+                      "Estimated repair: 2 days",
+                      "Covers: Roof access door and helipad approach"
                     ]}
                   >
                     <Divider />
                     <InsetBox title="⚠ SECURITY BLIND SPOT:">
-                      <Line red bold>Roof access currently unmonitored by cameras</Line>
-                      <Line yellow>Door is locked (keycard required) but no visual confirmation possible</Line>
-                      <Line yellow>Helicopter landing pad accessible from roof</Line>
-                      <Line yellow>Penthouse balconies 9 floors below roof level</Line>
+                      <Line red bold>Roof access currently unmonitored</Line>
+                      <Line yellow>Door locked (keycard required) but no visual confirmation possible</Line>
+                      <Line yellow>Helipad and Glass Gardens service access from this level</Line>
+                      <Line yellow>Penthouse balconies approx. 9 floors below</Line>
                     </InsetBox>
-                    <Line smoke small>Lucky timing? Convenient for someone planning something...</Line>
                   </MaintenanceAccess>
                 ),
               },
@@ -579,11 +738,11 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                     name: "Service Elevator",
                     status: "OPERATIONAL",
                     security: "Staff keycard required (all floors)",
-                    authorized: "Maintenance, delivery personnel",
+                    authorized: "Maintenance, delivery, ChromeLux staff",
                     lastAccess: "20 minutes ago",
                     accessCount: 47,
                     flags: ["BYPASSES LOBBY"],
-                    notes: "Direct access to penthouse level without front desk approval"
+                    notes: "Direct penthouse access without front desk"
                   },
                   {
                     name: "Service Entrance - East Side",
@@ -598,12 +757,12 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                   {
                     name: "Roof Access - Floor 51",
                     status: "LOCKED",
-                    security: "Keycard (maintenance only)",
-                    authorized: "Building maintenance staff only",
+                    security: "Keycard (maintenance + Glass Gardens staff)",
+                    authorized: "Maintenance staff, Glass Gardens service entrance",
                     lastAccess: "This morning (routine check)",
                     accessCount: 2,
                     flags: ["CAMERA OFFLINE"],
-                    notes: "Helipad access. Camera down for maintenance - blind spot for 2 days"
+                    notes: "Camera down for 2 days. Helipad and Glass Gardens accessible from here."
                   },
                   {
                     name: "Parking Garage Gates (B1-B3)",
@@ -619,19 +778,13 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                     security: "One-way exit only (fire code)",
                     authorized: "Emergency exit - no entry from stairwell",
                     lastAccess: "Not tracked (exit only)",
-                    notes: "Door locked from stairwell side - cannot enter penthouse level this way"
+                    notes: "Cannot enter penthouse level from stairwell side"
                   },
                 ]}
               />
             ),
             related_commands: {
               "Elevator Control": {
-                // password: {
-                //   pw: "elevator_override",
-                //   hint: "Admin function to bypass restrictions",
-                //   difficulty: "hard",
-                //   content: <Locked theme="terminal" title="ELEVATOR CONTROL" />
-                // },
                 content: (
                   <MaintenanceAccess
                     title="[ELEVATOR CONTROL SYSTEM]"
@@ -641,31 +794,24 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                     systemStatus="OPERATIONAL"
                     notes={[
                       "Elevators: 4 main + 1 service",
-                      "Status: All operational",
-                      "Restrictions: Floors 40+ require keycard",
-                      "Service Elevator: Staff keycard (all floors access)"
+                      "Status: All operational (Elevator 3 minor noise - inspection pending)",
+                      "Restrictions: Floors 40+ require keycard + destination approval",
+                      "Service elevator: Staff keycard, all floors"
                     ]}
                   >
                     <Divider />
                     <InsetBox title="OVERRIDE OPTIONS (ADMIN ACCESS):">
-                      <Line yellow>• Can disable keycard requirement for specific elevator</Line>
-                      <Line yellow>• Can force elevator to specific floor</Line>
-                      <Line yellow>• Can lock elevator at current floor</Line>
-                      <Line yellow>• Duration: Up to 10 minutes before system auto-resets</Line>
+                      <Line yellow>• Disable keycard requirement for specific elevator</Line>
+                      <Line yellow>• Force elevator to specific floor</Line>
+                      <Line yellow>• Lock elevator at current floor</Line>
+                      <Line yellow>• Duration: Up to 10 minutes (auto-reset)</Line>
                     </InsetBox>
-                    <Line red>⚠ Override generates security log. Use discretion.</Line>
-                    <Line smoke small>Service elevator most useful - direct access to penthouse level without lobby traffic.</Line>
+                    <Line red>⚠ All overrides generate security log entries.</Line>
                   </MaintenanceAccess>
                 ),
               },
 
               "Door Lock Control": {
-                // password: {
-                //   pw: "door_override",
-                //   hint: "Admin function to unlock doors",
-                //   difficulty: "hard",
-                //   content: <Locked theme="terminal" title="DOOR LOCKS" />
-                // },
                 content: (
                   <MaintenanceAccess
                     title="[DOOR LOCK CONTROL]"
@@ -674,25 +820,22 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                     firmwareVersion="v3.5.0"
                     systemStatus="OPERATIONAL"
                     notes={[
-                      "Controllable locks: Service doors, roof access, garage gates",
+                      "Controllable: Service doors, roof access, garage gates",
                       "Individual unit doors: NOT controlled by building system",
-                      "Override duration: 5 minutes before auto-lock",
-                      "All overrides generate security log entries"
+                      "Override duration: 5 minutes before auto-lock"
                     ]}
                   >
                     <Divider />
                     <InsetBox title="CONTROLLABLE LOCKS:">
                       <Line yellow>Service Entrance - East Side</Line>
                       <Line yellow>Roof Access Door - Floor 51</Line>
-                      <Line yellow>Emergency Stairwell Doors - Penthouse level</Line>
+                      <Line yellow>Emergency Stairwell Doors</Line>
                       <Line yellow>Parking Garage Gates (B1-B3)</Line>
-                      <Line smoke small>Note: Individual unit doors NOT controlled by building system</Line>
                     </InsetBox>
-                    <InsetBox title="LIMITATION:">
-                      <Line red bold>Unit 4201 (Steel Jackhammer's penthouse):</Line>
-                      <Line red>Uses PRIVATE security system</Line>
-                      <Line red>Building access control does NOT extend to unit doors</Line>
-                      <Line red>Would need to hack penthouse smart home separately</Line>
+                    <InsetBox title="NOT CONTROLLABLE:">
+                      <Line red bold>Unit 4201 uses a PRIVATE security system.</Line>
+                      <Line red>Building access control does not extend to individual unit doors.</Line>
+                      <Line red>Penthouse smart home requires direct network access to hack separately.</Line>
                     </InsetBox>
                   </MaintenanceAccess>
                 ),
@@ -701,12 +844,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
           },
 
           "Building Network": {
-            // password: {
-            //   pw: "network_admin",
-            //   hint: "Network administrator access",
-            //   difficulty: "hard",
-            //   content: <Locked theme="terminal" title="NETWORK ACCESS" />
-            // },
             content: (
               <MaintenanceAccess
                 title="[BUILDING NETWORK ACCESS]"
@@ -715,24 +852,24 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                 firmwareVersion="v7.2.0"
                 systemStatus="OPERATIONAL"
                 notes={[
-                  "Network: TOWER_INTERNAL (building infrastructure)",
+                  "Network: TOWER_INTERNAL",
                   "Encryption: WPA3-Enterprise",
                   "Bandwidth: 10 Gbps fiber backbone",
-                  "Connected devices: All building systems"
+                  "Covers: All building systems, lobby devices, management floor"
                 ]}
               >
                 <Divider />
-                <InsetBox title="NETWORK CAPABILITIES:">
-                  <Line yellow>• Access to building security systems</Line>
-                  <Line yellow>• Camera feed viewing and control</Line>
-                  <Line yellow>• Access control override (with additional hacking)</Line>
-                  <Line yellow>• Maintenance system access</Line>
-                  <Line yellow>• ATM network connection (transaction data)</Line>
+                <InsetBox title="ACCESSIBLE FROM HERE:">
+                  <Line yellow>• Building security systems (cameras, access control)</Line>
+                  <Line yellow>• Elevator and door controls</Line>
+                  <Line yellow>• HVAC and maintenance systems</Line>
+                  <Line yellow>• ATM network (transaction data)</Line>
+                  <Line yellow>• Glass Gardens management systems</Line>
                 </InsetBox>
                 <InsetBox title="SEPARATE NETWORKS (NOT ACCESSIBLE):">
-                  <Line red>• Individual unit networks (resident privacy)</Line>
-                  <Line red>• Unit 4201 smart home system (private network)</Line>
-                  <Line red>• Would require direct access to penthouse network</Line>
+                  <Line red>• Individual resident unit networks</Line>
+                  <Line red>• Unit 4201 smart home (JACKHAMMER_HOME) - private</Line>
+                  <Line red>• ChromeLux internal network (CHROMELUX_INTERNAL) - separate</Line>
                 </InsetBox>
               </MaintenanceAccess>
             ),
@@ -750,131 +887,238 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                       { name: "Fire Suppression", ip: "10.0.1.201", type: "Safety", status: "ONLINE", lastSeen: "Active now" },
                       { name: "Lobby ATM", ip: "10.0.1.150", type: "Banking", status: "ONLINE", lastSeen: "Active now" },
                       { name: "Parking Gate Control", ip: "10.0.1.102", type: "Access Control", status: "ONLINE", lastSeen: "Active now" },
+                      { name: "Glass Gardens Systems", ip: "10.0.1.300", type: "Facility", status: "ONLINE", lastSeen: "Active now" },
                     ]}
                   />
                 ),
               },
             },
           },
+        },
+      },
 
-          "Maintenance Systems": {
-            // password: {
-            //   pw: "maint_tower_2067",
-            //   hint: "Standard maintenance password format",
-            //   difficulty: "medium",
-            //   content: <Locked theme="terminal" title="MAINTENANCE SYSTEMS" />
-            // },
+      // ========================================================================
+      // TOWER MANAGEMENT (FLOOR 51)
+      // ========================================================================
+
+      "Tower Management": {
+        content: (
+          <MaintenanceAccess
+            title="[TOWER MANAGEMENT - FLOOR 51]"
+            deviceModel="Facility Management System"
+            deviceId="MGMT-TOWER-01"
+            firmwareVersion="v5.0.0"
+            systemStatus="OPERATIONAL"
+            notes={[
+              "Floor 51 - Management and services level",
+              "Building operations, Glass Gardens restaurant above (roof)",
+              "Restricted access - management and authorized staff only",
+              "Central maintenance and security coordination from this floor"
+            ]}
+          >
+            <Divider />
+            <InsetBox title="FLOOR 51 FACILITIES:">
+              <Line neon>• Building management offices</Line>
+              <Line neon>• Security control center (monitors all 48 cameras)</Line>
+              <Line neon>• HVAC and building systems hub</Line>
+              <Line neon>• Service keycard administration</Line>
+              <Line neon>• Roof access (helipad + Glass Gardens service entry)</Line>
+            </InsetBox>
+          </MaintenanceAccess>
+        ),
+        related_commands: {
+
+          "Facility Information": {
             content: (
               <MaintenanceAccess
-                title="[BUILDING MAINTENANCE CONTROL]"
-                deviceModel="Facility Management System"
-                deviceId="MAINT-TOWER-01"
-                firmwareVersion="v5.0.0"
+                title="[BUILDING SPECIFICATIONS]"
+                deviceModel="Tower Management System"
+                deviceId="TOWER-BLOCK-7"
+                firmwareVersion="v5.1.2"
                 systemStatus="OPERATIONAL"
                 notes={[
-                  "Last service: Nov 10, 2067",
-                  "Next scheduled: Dec 1, 2067",
-                  "Current issues: 3 (1 medium, 2 low priority)"
+                  "Address: 2847 Central Plaza, South Central District",
+                  "Height: 51 floors (218 meters)",
+                  "Completed: 2051 (16 years old)",
+                  "Management: Central District Properties Inc.",
+                  "Security Rating: Class-A (High)",
+                  "Building security contract: ChromeLux (atrium + lobby supplement)"
                 ]}
               >
                 <Divider />
-                <InsetBox title="CURRENT ISSUES:">
-                  <Line yellow bold>MEDIUM: Roof camera offline</Line>
-                  <Line yellow>Weather damage repair in progress</Line>
-                  <Line yellow>Reported: Nov 15, 12:00</Line>
-                  <Line smoke small>Status: Technician scheduled, 2 days to completion</Line>
-
-                  <Divider />
-
-                  <Line cyan>LOW: HVAC filter replacement due</Line>
-                  <Line cyan>Routine maintenance, 3 weeks out</Line>
-                  <Line cyan>Reported: Nov 10</Line>
-
-                  <Divider />
-
-                  <Line cyan>LOW: Elevator 3 slight noise</Line>
-                  <Line cyan>Inspection scheduled</Line>
-                  <Line cyan>Reported: Nov 12</Line>
+                <InsetBox title="FLOOR PLAN:">
+                  <Line yellow>Ground + Floor 2: Open atrium (Lobby, ChromeLux)</Line>
+                  <Line yellow>Floors 3-39: Residential (198 units)</Line>
+                  <Line yellow>Floors 40-50: Penthouse level (12 units)</Line>
+                  <Line yellow>Floor 51: Management + Glass Gardens service</Line>
+                  <Line yellow>Roof: The Glass Gardens restaurant + helipad</Line>
+                </InsetBox>
+                <InsetBox title="ACCESS POINTS:">
+                  <Line cyan>Main Entrance: Ground floor atrium (staffed 24/7)</Line>
+                  <Line cyan>Service Entrance: East side (keycard required, unguarded)</Line>
+                  <Line cyan>Parking Garage: B1-B3 (resident keycards only)</Line>
+                  <Line cyan>Roof: Floor 51 access door (maintenance + Glass Gardens staff)</Line>
+                </InsetBox>
+                <InsetBox title="SECURITY NOTES:">
+                  <Line red>• Visitor log at desk - all guests signed in</Line>
+                  <Line red>• Weapon scanners at main atrium entrance</Line>
+                  <Line red>• Elevators to floors 40+ require keycard + approval</Line>
+                  <Line red>• Penthouse residents employ private security (not building staff)</Line>
+                  <Line red>• ChromeLux staff armed - operate throughout atrium floors</Line>
                 </InsetBox>
               </MaintenanceAccess>
             ),
             related_commands: {
-              "HVAC Control": {
+              "Penthouse Blueprint": {
                 content: (
                   <MaintenanceAccess
-                    title="[HVAC CONTROL SYSTEM]"
-                    deviceModel="Climate Control"
-                    deviceId="HVAC-TOWER-01"
-                    firmwareVersion="v4.1.0"
-                    systemStatus="OPERATIONAL"
+                    title="[UNIT 4201 - MAINTENANCE FILE]"
+                    deviceModel="Building Records"
+                    deviceId="BLUEPRINT-4201"
+                    firmwareVersion="v1.0.0"
+                    systemStatus="ARCHIVED"
                     notes={[
-                      "Heating, ventilation, and air conditioning",
-                      "System Status: OPERATIONAL",
-                      "Temperature: 21°C (building average)",
-                      "Mode: Auto (climate control)",
-                      "Air Quality: Good"
+                      "Unit 4201 - Floor 42, Southeast corner",
+                      "3-bedroom penthouse suite",
+                      "Tenant: Jackhammer (Alliansen Inc. lease)",
+                      "Last inspection: Aug 2067"
                     ]}
                   >
-                    <Divider />
-                    <InsetBox title="ZONE CONTROL:">
-                      <Line neon>• Lobby & Common Areas</Line>
-                      <Line neon>• Residential Floors (1-39)</Line>
-                      <Line neon>• Penthouse Level (40-50)</Line>
-                      <Line neon>• Parking Garage</Line>
-                      <Line smoke small>Individual units have local thermostats (limited override)</Line>
+                    <RetComImage
+                      src={penthouseBlueprint}
+                      alt="Steel Jackhammer Penthouse Layout"
+                      caption="Unit 4201 floor plan - Central Plaza Tower Block 7"
+                    />
+                    <InsetBox title="STANDARD AMENITIES:">
+                      <Line neon>• Master bedroom (soundproofed - standard penthouse spec)</Line>
+                      <Line neon>• Open kitchen with Smart™ appliance suite</Line>
+                      <Line neon>• Holo space (multi-projector entertainment, 4 units)</Line>
+                      <Line neon>• Dining room</Line>
+                      <Line neon>• Spa (hot tub pool + sauna)</Line>
+                      <Line neon>• Gym</Line>
+                      <Line neon>• Guest room</Line>
+                      <Line neon>• Balcony (full perimeter, southeast exposure)</Line>
                     </InsetBox>
-                    <InsetBox title="SABOTAGE OPTIONS (ADMIN ACCESS):">
-                      <Line yellow>• Can disable AC to specific floor/zone</Line>
-                      <Line yellow>• Can set temperature to uncomfortable levels</Line>
-                      <Line yellow>• Can trigger false maintenance alerts</Line>
-                      <Line smoke small>Effect: Penthouse party gets uncomfortably hot, people move to balcony...</Line>
+                    <InsetBox title="TENANT MODIFICATIONS (PERMITTED):">
+                      <Line yellow>• Balcony glazing upgrade - full bulletproof replacement (Nov 2066)</Line>
+                      <Line yellow>• Dining room partition - structural cage installation, load-bearing approved (Jan 2067)</Line>
+                      <Line yellow>• Gym - cydroid anchor points, reinforced flooring (Mar 2067)</Line>
+                      <Line yellow>• Sensory deprivation chamber - wet room conversion, spa annex (Jun 2067)</Line>
                     </InsetBox>
-                    <Line red>⚠ HVAC changes take 15-30 minutes to have noticeable effect</Line>
-                  </MaintenanceAccess>
-                ),
-              },
-
-              "Service Keycard Database": {
-                content: (
-                  <MaintenanceAccess
-                    title="[SERVICE KEYCARD DATABASE]"
-                    deviceModel="Access Card Management"
-                    deviceId="KEYCARD-DB-01"
-                    firmwareVersion="v3.0.0"
-                    systemStatus="OPERATIONAL"
-                    notes={[
-                      "Active maintenance and delivery staff credentials",
-                      "Service cards provide: Elevator, entrance, roof access",
-                      "Cards can be cloned with proper equipment"
-                    ]}
-                  >
-                    <Divider />
-                    <InsetBox title="ACTIVE KEYCARDS:">
-                      <Line yellow>MAINT-001: Carlos Rodriguez (Building maintenance)</Line>
-                      <Line yellow>MAINT-002: Kim Lee (HVAC specialist)</Line>
-                      <Line yellow>MAINT-003: Sarah Johnson (Cleaning crew supervisor)</Line>
-                      <Line yellow>DELIV-101: Various (Rotating delivery personnel)</Line>
-                      <Line yellow>EMER-001: Fire/Emergency services (always active)</Line>
-                    </InsetBox>
-                    <InsetBox title="KEYCARD ACCESS LEVELS:">
-                      <Line cyan>• Service elevator (all floors)</Line>
-                      <Line cyan>• Service entrance</Line>
-                      <Line cyan>• Maintenance areas</Line>
-                      <Line cyan>• Roof access (MAINT-level only)</Line>
-                    </InsetBox>
-                    <InsetBox title="TACTICAL NOTE:">
-                      <Line pink>Service personnel blend in easily</Line>
-                      <Line pink>Maintenance uniform + keycard = access</Line>
-                      <Line pink>Building security doesn't scrutinize maintenance staff heavily</Line>
-                      <Line pink>Could clone keycard data if you can scan one...</Line>
+                    <InsetBox title="OPEN MAINTENANCE ITEMS:">
+                      <Line red>• Dining room cage - inspection overdue (tenant unresponsive)</Line>
+                      <Line red>• Balcony floor - stress fracture reported (under review)</Line>
+                      <Line smoke small>Tenant contact: Alliansen Inc. management - direct contact not available</Line>
                     </InsetBox>
                   </MaintenanceAccess>
                 ),
               },
             },
           },
+
+          "HVAC Control": {
+            content: (
+              <MaintenanceAccess
+                title="[HVAC CONTROL SYSTEM]"
+                deviceModel="Climate Control"
+                deviceId="HVAC-TOWER-01"
+                firmwareVersion="v4.1.0"
+                systemStatus="OPERATIONAL"
+                notes={[
+                  "Building average: 21°C",
+                  "Mode: Auto",
+                  "Air quality: Good (except Floor 42 - elevated CO2, party ongoing day 3)",
+                  "Pending: Filter replacement in 3 weeks"
+                ]}
+              >
+                <Divider />
+                <InsetBox title="ZONE CONTROL:">
+                  <Line neon>• Atrium (Ground + Floor 2)</Line>
+                  <Line neon>• Residential Floors (3-39)</Line>
+                  <Line neon>• Penthouse Level (40-50)</Line>
+                  <Line neon>• Management Floor (51)</Line>
+                  <Line neon>• Parking Garage</Line>
+                  <Line smoke small>Individual units have local thermostats (limited override available)</Line>
+                </InsetBox>
+              </MaintenanceAccess>
+            ),
+          },
+
+          "Service Keycard Database": {
+            content: (
+              <MaintenanceAccess
+                title="[SERVICE KEYCARD DATABASE]"
+                deviceModel="Access Card Management"
+                deviceId="KEYCARD-DB-01"
+                firmwareVersion="v3.0.0"
+                systemStatus="OPERATIONAL"
+                notes={[
+                  "Active maintenance and delivery staff credentials",
+                  "ChromeLux staff have separate CHROMELUX-tier cards (atrium only)",
+                  "Glass Gardens staff have ROOF-tier access",
+                  "Cards can be cloned with appropriate equipment"
+                ]}
+              >
+                <Divider />
+                <InsetBox title="ACTIVE KEYCARDS:">
+                  <Line yellow>MAINT-001: Carlos Rodriguez (Building maintenance - all floors)</Line>
+                  <Line yellow>MAINT-002: Kim Lee (HVAC specialist - all floors)</Line>
+                  <Line yellow>MAINT-003: Sarah Johnson (Cleaning supervisor - floors 3-39)</Line>
+                  <Line yellow>DELIV-101: Rotating delivery personnel (ground + service lift)</Line>
+                  <Line yellow>ROOF-001: Glass Gardens staff (Floor 51 + roof)</Line>
+                  <Line yellow>EMER-001: Fire/Emergency services (all floors, always active)</Line>
+                </InsetBox>
+                <InsetBox title="ACCESS LEVELS:">
+                  <Line cyan>MAINT: Service elevator (all floors), service entrance, roof</Line>
+                  <Line cyan>DELIV: Service entrance, service elevator (delivery floors only)</Line>
+                  <Line cyan>ROOF: Floor 51 stairwell, roof access door</Line>
+                </InsetBox>
+              </MaintenanceAccess>
+            ),
+          },
+
+          "Maintenance Log": {
+            content: (
+              <MaintenanceAccess
+                title="[BUILDING MAINTENANCE LOG]"
+                deviceModel="Facility Management System"
+                deviceId="MAINT-LOG-01"
+                firmwareVersion="v5.0.0"
+                systemStatus="OPERATIONAL"
+                notes={[
+                  "Last full service: Nov 10, 2067",
+                  "Next scheduled: Dec 1, 2067",
+                  "Current open issues: 3"
+                ]}
+              >
+                <Divider />
+                <InsetBox title="OPEN ISSUES:">
+                  <Line yellow bold>MEDIUM - Roof camera offline</Line>
+                  <Line yellow>Weather damage, technician scheduled, 2-day repair window</Line>
+                  <Line yellow>Reported: Nov 15, 12:00</Line>
+
+                  <Divider />
+
+                  <Line cyan>LOW - HVAC filter replacement overdue (Floor 3-15 zone)</Line>
+                  <Line cyan>Routine, 3 weeks out</Line>
+                  <Line cyan>Reported: Nov 10</Line>
+
+                  <Divider />
+
+                  <Line cyan>LOW - Elevator 3 bearing noise</Line>
+                  <Line cyan>Inspection pending, safe to use</Line>
+                  <Line cyan>Reported: Nov 12</Line>
+                </InsetBox>
+              </MaintenanceAccess>
+            ),
+          },
         },
       },
+
+      // ========================================================================
+      // THE GLASS GARDENS (ROOF)
+      // ========================================================================
+      ...GLASS_GARDENS_COMMANDS,
     },
   },
 };

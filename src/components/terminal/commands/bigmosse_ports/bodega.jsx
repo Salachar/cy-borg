@@ -18,12 +18,15 @@ import {
   CoffeeMachine,
   HoursBanner,
   Radio,
+  RetComImage,
   ArcadeCabinet,
   DigitalWallet,
   Locked,
 } from "@terminal/retcomdevice"
 
 import BatusBodegaAd from './bodega_ad'
+
+import cop_car_image from '@images/cop_car.png';
 
 export const BODEGA_COMMANDS = {
   "Batu's Bodega (FREE ACCESS)": {
@@ -72,7 +75,12 @@ export const BODEGA_COMMANDS = {
               "Workers are victims too - avoid unnecessary casualties",
             ]}
             footer="Note: Charlie wasn't here when you arrived. Thugs spooked him. He left this briefing and will return in 2 days. You're on your own until then. — Good luck."
+          >
+          <RetComImage
+            src={cop_car_image}
+            alt="Cop Car"
           />
+          </Briefing>
         ),
       },
       "Bodega Menu": {

@@ -10,7 +10,6 @@ import {
   ATM,
   CCTV,
   VendingMachine,
-  Safe,
   Menu,
   Message,
   RetComImage,
@@ -29,7 +28,7 @@ import {
 
 import LuckyFlightAd from './casino_ad'
 
-import lfc_cctv from '@images/lfc_cctv.jpg';
+import lfc_cctv from '@images/locations/lfc_cctv.jpg';
 import basementImage from '@images/blueprints/lucky_flight_basement.png';
 import floor1Image from '@images/blueprints/lucky_flight_floor_1.png';
 import floor2Image from '@images/blueprints/lucky_flight_floor_2.png';

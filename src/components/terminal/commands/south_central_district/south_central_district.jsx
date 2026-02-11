@@ -4,12 +4,15 @@ import {
   Divider,
 } from '@terminal/TerminalComponents';
 import {
+  CCTV,
   DistrictPortal,
 } from "@terminal/retcomdevice"
 
 import { DOC_JOY_CLINIC_COMMANDS } from './doc_joy_clinic';
 import { CENTRAL_PLAZA_TOWER_COMMANDS } from './central_plaza_tower';
 import { SOUTH_CENTRAL_FUN_COMMANDS } from "./fun";
+
+import south_central_cctv from '@images/locations/south_central_cctv.png';
 
 export const SOUTH_CENTRAL_DISTRICT_COMMANDS = {
   "South Central": {
@@ -53,6 +56,18 @@ export const SOUTH_CENTRAL_DISTRICT_COMMANDS = {
       </DistrictPortal>
     ),
     related_commands: {
+      "South Central CCTV": {
+        content: (
+          <CCTV
+            src={south_central_cctv}
+            cameraId="CAM-CPT-FOYER"
+            location="Entrance"
+            theme="amber"
+            height={500}
+          />
+        ),
+      },
+
       ...DOC_JOY_CLINIC_COMMANDS,
       ...CENTRAL_PLAZA_TOWER_COMMANDS,
       ...SOUTH_CENTRAL_FUN_COMMANDS,

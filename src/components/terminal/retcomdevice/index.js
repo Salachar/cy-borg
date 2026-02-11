@@ -17,7 +17,7 @@ import EncryptedMessage from "./EncryptedMessage/EncryptedMessage";
 import EventFeed from "./EventFeed/EventFeed";
 import EventLineup from "./EventLineup/EventLineup";
 import Extractable from "./Extractable/Extractable";
-import FacilityPortal from "./FacilityPortal/FacilityPortal";
+import FacilityPortal from "./Portals/FacilityPortal";
 import GameConsole from "./GameConsole/GameConsole";
 import HistoryEntryWrapper from "./HistoryEntryWrapper/HistoryEntryWrapper";
 import HoursBanner from "./HoursBanner/HoursBanner";
@@ -35,7 +35,8 @@ import NetworkDevices from "./NetworkDevices/NetworkDevices";
 import NetworkTrafficMonitor from "./NetworkTrafficMonitor/NetworkTrafficMonitor";
 import PasswordPrompt from "./PasswordPrompt/PasswordPrompt";
 import PersonnelFile from "./PersonnelFile/PersonnelFile";
-import PublicPortal from "./PublicPortal/PublicPortal";
+import PrivateHub from "./Portals/PrivateHub";
+import PublicPortal from "./Portals/PublicPortal";
 import Radio from "./Radio/Radio";
 import RCDAlert from "./RCDAlert/RCDAlert";
 import RelatedCommands from "./RelatedCommands/RelatedCommands";
@@ -87,6 +88,7 @@ export {
   NetworkTrafficMonitor,
   PasswordPrompt,
   PersonnelFile,
+  PrivateHub,
   PublicPortal,
   Radio,
   RCDAlert,

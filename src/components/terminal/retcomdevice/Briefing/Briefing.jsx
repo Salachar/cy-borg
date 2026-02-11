@@ -10,6 +10,7 @@ export default function Briefing({
   payment = [],
   warnings = [],
   footer,
+  children,
 }) {
   // Classification color mapping
   const getClassificationColor = () => {
@@ -321,6 +322,12 @@ export default function Briefing({
               ))}
             </div>
           </>
+        )}
+
+        {Boolean(children) && (
+          <div style={{ margin: '1rem 0' }}>
+            {children}
+          </div>
         )}
 
         {/* Footer */}

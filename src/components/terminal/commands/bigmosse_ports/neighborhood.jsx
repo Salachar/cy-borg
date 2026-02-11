@@ -24,7 +24,7 @@ import {
   NetworkDevices,
 } from "@terminal/retcomdevice"
 
-import bigmosse_ports_cctv from '@images/bigmosse_ports.jpg';
+import bigmosse_ports_cctv from '@images/locations/bigmosse_ports.jpg';
 
 export const NEIGHBORHOOD_COMMANDS = {
   "Bigmosse Ports CCTV": {

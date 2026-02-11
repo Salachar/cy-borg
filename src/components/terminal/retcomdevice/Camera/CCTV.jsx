@@ -28,32 +28,9 @@ export default function CCTV({
   theme = 'green',
   recording = true,
   signalStrength = 4,
-  timestamp = true,
   height = 400,
   style = {},
 }) {
-  // Live timestamp that updates every second
-  const [currentTime, setCurrentTime] = React.useState(new Date());
-
-
-  React.useEffect(() => {
-    if (!timestamp) return;
-    const interval = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-    return () => clearInterval(interval);
-  }, [timestamp]);
-
-  const formatTimestamp = (date) => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const seconds = String(date.getSeconds()).padStart(2, '0');
-    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-  };
-
   const getThemeColor = (theme) => {
     const colors = {
       green: 'rgb(0, 255, 136)',
@@ -194,26 +171,23 @@ export default function CCTV({
         )}
       </div>
 
-      {/* Bottom-left: Timestamp */}
-      {timestamp && (
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '12px',
-            left: '12px',
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
-            padding: '6px 12px',
-            borderRadius: '3px',
-            border: `1px solid ${themeColor}`,
-            fontFamily: 'monospace',
-            fontSize: '0.875rem',
-            color: themeColor,
-            zIndex: 10,
-          }}
-        >
-          {formatTimestamp(currentTime)}
-        </div>
-      )}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '12px',
+          left: '12px',
+          backgroundColor: 'rgba(0, 0, 0, 0.8)',
+          padding: '6px 12px',
+          borderRadius: '3px',
+          border: `1px solid ${themeColor}`,
+          fontFamily: 'monospace',
+          fontSize: '0.75rem',
+          color: themeColor,
+          zIndex: 10,
+        }}
+      >
+        CCTV images are for reference only — not an exact representation
+      </div>
 
       {/* Corner brackets (aesthetic) */}
       <div

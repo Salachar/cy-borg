@@ -1,16 +1,11 @@
 import {
   Line,
-  Section,
   Divider,
-  KeyValue,
-  DataTable,
   InsetBox,
 } from '@terminal/TerminalComponents';
 import {
-  ATM,
   BiometricRecognition,
   BountyCard,
-  Camera,
   CoffeeMachine,
   CommercialCamera,
   CommunityBoard,
@@ -21,9 +16,6 @@ import {
   Locked,
   MaintenanceAccess,
   Menu,
-  Message,
-  NetworkDevices,
-  PersonnelFile,
   PublicPortal,
   SmartFridge,
   VendingMachine,
@@ -83,39 +75,19 @@ export const DOC_JOY_CLINIC_COMMANDS = {
               <Line red bold>Time Limit: 36 hours</Line>
               <Line red>Pay deduction: -500¤ per point of damage to merchandise</Line>
             </InsetBox>
+            <InsetBox title="ADDITIONAL INFO:">
+              <Line yellow>Stage name only - real identity unknown</Line>
+              <Line yellow>Division: Heavyweight Killmatch, Rank #18 (climbing)</Line>
+              <Line yellow>Record: 24 wins, 8 losses</Line>
+              <Line yellow>Signature Move: Jackhammer Punch (chained attacks on 5+ damage)</Line>
+              <Line yellow>Recent viral moment: Both legs ripped off by 5 Kroks, continued fighting 30 seconds (50M+ views)</Line>
+              <Line yellow>Chrome legs installed 2 weeks ago by Alliansen Inc. sponsor</Line>
+              <Line yellow>Current status: Day 3+ of recovery party in penthouse</Line>
+              <Line yellow>pcoming match: vs Gargoyle (odds 3:1 against Jackhammer)</Line>
+              <Line yellow>REAPER TARGET: Chrome legs match stolen Doc Joy prototype</Line>
+            </InsetBox>
           </BountyCard>
         ),
-        related_commands: {
-          "Steel Jackhammer Profile": {
-            content: (
-              <PersonnelFile
-                employeeId="KILLMATCH-SJ-01"
-                name="Steel Jackhammer"
-                age={28}
-                position="Professional Killmatch Athlete"
-                occupation="Heavyweight Division Fighter"
-                department="Alliansen Inc. Sponsored"
-                joinDate="2075 (7 years pro)"
-                supervisor="Alliansen Inc. Management"
-                district="Central District, Tower Block 7, Unit 4201"
-                emergencyContact="Alliansen Inc. Medical Team"
-                notes={[
-                  "Stage name only - real identity unknown",
-                  "Division: Heavyweight Killmatch, Rank #18 (climbing)",
-                  "Record: 24 wins, 8 losses",
-                  "Signature Move: Jackhammer Punch (chained attacks on 5+ damage)",
-                  "Recent viral moment: Both legs ripped off by 5 Kroks, continued fighting 30 seconds (50M+ views)",
-                  "Chrome legs installed 2 weeks ago by Alliansen Inc. sponsor",
-                  "Current status: Day 3+ of recovery party in penthouse",
-                  "Upcoming match: vs Gargoyle (odds 3:1 against Jackhammer)",
-                  "REAPER TARGET: Chrome legs match stolen Doc Joy prototype"
-                ]}
-                status="ACTIVE"
-              />
-            ),
-          },
-          // Keep your existing related_commands structure
-        },
       },
 
       "Services Menu": {

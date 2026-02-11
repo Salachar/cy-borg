@@ -8,7 +8,6 @@ import {
   Camera,
   Safe,
   PersonnelFile,
-  Message,
   ShiftSchedule,
   Workstation,
   VendingMachine,
@@ -20,7 +19,6 @@ import {
   CommunityBoard,
   MaintenanceAccess,
   Locked,
-  SecureAccessControl,
   NetworkTrafficMonitor,
 } from "@terminal/retcomdevice"
 
@@ -116,19 +114,9 @@ export const WAREHOUSE_COMMANDS = {
               "Current shift: Night crew (22:00 - 06:00)",
               "On duty tonight: 6 personnel total",
               "1 Supervisor: Marcus Webb",
-              "5 Security Guards: Chen, Martinez, Park, Foster, Volkov",
-              "Full employee records require internal network access"
+              "5 Security Guards",
             ]}
-          >
-            <Section title="ON DUTY TONIGHT:">
-              <Line neon>→ Marcus Webb (Night Supervisor)</Line>
-              <Line neon>→ David Chen (Security - Main station)</Line>
-              <Line neon>→ Sofia Martinez (Security - Patrol)</Line>
-              <Line neon>→ James Park (Security - Break)</Line>
-              <Line neon>→ Andre Foster (Security - Secure Cargo checkpoint)</Line>
-              <Line neon>→ Nina Volkov (Security - Secure Cargo interior)</Line>
-            </Section>
-          </MaintenanceAccess>
+          />
         ),
       },
 
@@ -165,33 +153,6 @@ export const WAREHOUSE_COMMANDS = {
         ),
       },
 
-      "External Security Camera": {
-        content: (
-          <Camera
-            id="alliansen-warehouse-external"
-            location="Alliansen Warehouse - Front entrance (exterior)"
-            coverage="Main gate, parking area, front entrance"
-            status="ACTIVE"
-            recording={true}
-            storage="Alliansen corporate cloud"
-            timeline={[
-              "18:00 → Day shift departs (8 personnel)",
-              "19:30 → Delivery truck arrives, unloads routine supplies",
-              "20:45 → Delivery truck departs",
-              "22:00 → Night shift arrives (6 personnel)",
-              "22:30 → Supervisor's vehicle arrives (late)",
-              "23:00-Present → No activity",
-            ]}
-            blindSpots={[
-              "Loading dock area (separate camera)",
-              "East and south sides of building",
-              "Warehouse interior",
-            ]}
-            lastService="1 week ago"
-          />
-        ),
-      },
-
       "Internal Network": {
         // password: {
         //   pw: "logistics47",
@@ -217,55 +178,6 @@ export const WAREHOUSE_COMMANDS = {
           />
         ),
         related_commands: {
-          "Access Control System": {
-            content: (
-              <SecureAccessControl
-                systemName="WAREHOUSE ACCESS CONTROL"
-                location="Alliansen Warehouse #47"
-                systemVersion="v3.8.2"
-                lastUpdate="1 month ago"
-                accessPoints={[
-                  {
-                    name: "Loading Dock",
-                    status: "UNLOCKED",
-                    security: "NONE (24/7 access)",
-                    authorized: "All personnel",
-                    lastAccess: "Continuous",
-                    accessCount: 247
-                  },
-                ]}
-              />
-            )
-          },
-          "Network Traffic Monitor": {
-            content: (
-              <NetworkTrafficMonitor
-                systemName="WAREHOUSE NETWORK MONITOR"
-                location="Alliansen Warehouse #47"
-                bandwidth="124 MB/s (Normal)"
-                activeConnections={18}
-                transfers={[
-                  {
-                    timestamp: "22:47",
-                    filename: "Classified_Manifest_SEC-2082.pdf",
-                    size: "1.2 MB",
-                    source: "10.47.1.105 (Supervisor Terminal)",
-                    destination: "SecOps Equipment Division",
-                    protocol: "ENCRYPTED",
-                    status: "COMPLETE"
-                  },
-                  {
-                    timestamp: "23:15",
-                    filename: "night_shift_logs.txt",
-                    size: "45 KB",
-                    destination: "Corporate servers",
-                    protocol: "HTTPS",
-                    status: "COMPLETE"
-                  },
-                ]}
-              />
-            )
-          },
           "Facility Operations": {
             content: (
               <MaintenanceAccess
@@ -317,132 +229,6 @@ export const WAREHOUSE_COMMANDS = {
             ),
           },
 
-          "Security Incident Log": {
-            content: (
-              <IncidentLog
-                title="SECURITY INCIDENTS"
-                timeframe="Last 30 days"
-                incidents={[
-                  {
-                    timestamp: "Jan 18 (02:15)",
-                    type: "False Alarm",
-                    details: {
-                      Event: "Motion sensor triggered in main warehouse",
-                      Resolution: "Rat infestation - exterminator scheduled",
-                      Status: "Closed - no security threat"
-                    }
-                  },
-                  {
-                    timestamp: "Jan 12 (23:40)",
-                    type: "Delivery Delay",
-                    details: {
-                      Event: "Late shipment arrival (authorized)",
-                      Resolution: "Logged, no security issues",
-                      Status: "Closed"
-                    }
-                  },
-                  {
-                    timestamp: "Jan 7 (01:20)",
-                    type: "Equipment Malfunction",
-                    details: {
-                      Event: "Camera #3 offline for 15 minutes",
-                      Resolution: "Auto-reboot successful",
-                      Status: "Closed"
-                    }
-                  },
-                  {
-                    timestamp: "Jan 3 (03:45)",
-                    type: "Patrol Report",
-                    details: {
-                      Event: "Suspicious vehicle near perimeter",
-                      Resolution: "Driver lost, provided directions",
-                      Status: "Closed - no threat"
-                    }
-                  },
-                ]}
-              >
-                <Divider />
-                <Line cyan>Overall assessment: Low-risk facility, minimal incidents</Line>
-                <Line yellow>Guard complacency noted - standard for this location</Line>
-                <Line smoke>Last serious incident: 8 months ago (attempted theft)</Line>
-              </IncidentLog>
-            ),
-          },
-
-          "Camera Network Overview": {
-            content: (
-              <NetworkDevices
-                networkName="SURVEILLANCE_SYSTEM"
-                devices={[
-                  { name: "Front Entrance", ip: "10.47.1.101", type: "Security Camera", status: "ONLINE", lastSeen: "Just now" },
-                  { name: "Main Warehouse", ip: "10.47.1.102", type: "Security Camera", status: "ONLINE", lastSeen: "Just now" },
-                  { name: "Loading Dock", ip: "10.47.1.103", type: "Security Camera", status: "ONLINE", lastSeen: "Just now" },
-                  { name: "Rec Room", ip: "10.47.1.104", type: "Security Camera", status: "ONLINE", lastSeen: "Just now" },
-                  { name: "Secure Cargo Gate", ip: "10.47.2.201", type: "Security Camera (Isolated)", status: "ONLINE", lastSeen: "Just now" },
-                  { name: "Secure Cargo Interior", ip: "10.47.2.202", type: "Security Camera (Isolated)", status: "ONLINE", lastSeen: "Just now" },
-                ]}
-              />
-            ),
-          },
-
-          "Security Camera System": {
-            content: (
-              <Camera
-                id="alliansen-warehouse-main"
-                location="Alliansen Warehouse - Main warehouse floor"
-                coverage="Warehouse floor, aisles, loading dock interior"
-                status="ACTIVE"
-                recording={true}
-                storage="Local server + cloud backup"
-                timeline={[
-                  "22:00 → Night shift begins, guards take positions",
-                  "22:15 → Supervisor enters Main Office",
-                  "22:30 → Guard 2 begins patrol route",
-                  "23:00 → Guard 3 takes break in rec room",
-                  "23:15 → Forklift moved to loading dock (routine)",
-                  "23:30-Present → Minimal activity",
-                ]}
-                blindSpots={[
-                  "Inside Secure Cargo area (separate closed system)",
-                  "Bathroom interiors",
-                  "Some corners behind large containers",
-                ]}
-                lastService="2 weeks ago"
-              />
-            ),
-            related_commands: {
-              "Secure Cargo Camera": {
-                // password: {
-                //   pw: "secops2082",
-                //   hint: "Who authorized tonight's classified shipment? (Check manifest)",
-                //   difficulty: "medium",
-                //   content: <Locked theme="terminal" title="SECURE CAMERAS" />
-                // },
-                content: (
-                  <Camera
-                    id="alliansen-warehouse-securecargo"
-                    location="Alliansen Warehouse - Secure Cargo area (interior)"
-                    coverage="High-value storage, electronics lab, security checkpoint"
-                    status="ACTIVE"
-                    recording={true}
-                    storage="Encrypted local server (air-gapped)"
-                    timeline={[
-                      "22:00 → Guards 4 & 5 report to Secure Cargo",
-                      "22:45 → Target crate logged into inventory",
-                      "23:00 → Security sweep completed, all clear",
-                      "23:30-Present → Guards stationed, no movement",
-                    ]}
-                    blindSpots={[
-                      "Electronics lab testing booth (privacy screen)",
-                      "Behind large storage containers",
-                    ]}
-                    lastService="3 days ago"
-                  />
-                ),
-              },
-            },
-          },
-
           "Employee Notice Board": {
             content: (
               <CommunityBoard
@@ -453,7 +239,7 @@ export const WAREHOUSE_COMMANDS = {
                   { text: "Reminder: Lock all doors when leaving secure areas", color: "yellow" },
                   { text: "Pizza party Friday for meeting safety goals!", color: "cyan" },
                   { text: "Anyone want to trade Saturday shift? Contact James", color: "pink" },
-                  { text: "Lost jacket in rec room - contact Marcus if found", color: "smoke" },
+                  { text: "Lost jacket in rec room - contact Supervisor if found", color: "smoke" },
                   { text: "Forklift #3 out of service tomorrow - use #1 or #2", color: "yellow" },
                   { text: "Exterminator coming Monday - warehouse will smell", color: "smoke" },
                 ]}
@@ -465,190 +251,6 @@ export const WAREHOUSE_COMMANDS = {
                 vibe="Standard warehouse - boring but steady work"
               />
             ),
-          },
-
-          "Personnel Records": {
-            content: (
-              <MaintenanceAccess
-                title="[PERSONNEL FILES]"
-                deviceModel="HR Database"
-                deviceId="HR-STAFF-47"
-                firmwareVersion="v4.1.0"
-                systemStatus="OPERATIONAL"
-                notes={[
-                  "Night shift employees - Detailed records",
-                  "6 personnel on duty tonight",
-                  "Performance reviews current as of last month",
-                  "Emergency contact info verified quarterly"
-                ]}
-              >
-                <Section title="QUICK ACCESS:">
-                  <Line neon>→ Marcus Webb (Supervisor)</Line>
-                  <Line neon>→ David Chen (Security)</Line>
-                  <Line neon>→ Sofia Martinez (Security)</Line>
-                  <Line neon>→ James Park (Security)</Line>
-                  <Line neon>→ Andre Foster (Security)</Line>
-                  <Line neon>→ Nina Volkov (Security)</Line>
-                </Section>
-              </MaintenanceAccess>
-            ),
-            related_commands: {
-              "Marcus Webb": {
-                content: (
-                  <PersonnelFile
-                    employeeId="ALI-NS-4721"
-                    name="Marcus Webb"
-                    age={41}
-                    dob="08/23/2041"
-                    position="Night Shift Supervisor"
-                    department="Warehouse Operations"
-                    hireDate="March 2067 (15 years)"
-                    supervisor="Regional Manager - Linda Torres"
-                    clearanceLevel={3}
-                    district="Bigmosse (commutes to Ports)"
-                    emergencyContact="Sarah Webb (spouse) - 555-0147"
-                    performance={87}
-                    notes={[
-                      "Reliable employee, zero disciplinary actions",
-                      "Eligible for early retirement package in 2 years",
-                      "Personal interest: Fishing (keeps lucky lure in office safe)",
-                      "Prefers night shift to avoid traffic",
-                    ]}
-                    status="ACTIVE"
-                  />
-                ),
-              },
-
-              "David Chen": {
-                content: (
-                  <PersonnelFile
-                    employeeId="ALI-SEC-6892"
-                    name="David Chen"
-                    age={28}
-                    dob="03/15/2054"
-                    position="Security Officer"
-                    department="Security Division"
-                    hireDate="January 2080 (2 years)"
-                    supervisor="Marcus Webb (Night Supervisor)"
-                    clearanceLevel={2}
-                    district="Lilypond"
-                    emergencyContact="Ming Chen (brother) - 555-0892"
-                    performance={62}
-                    notes={[
-                      "WARNING: Twice reprimanded for distraction on duty",
-                      "Frequently watches entertainment media during shifts",
-                      "Adequate performance but minimal engagement",
-                      "Reliable for showing up on time",
-                    ]}
-                    status="ACTIVE"
-                  />
-                ),
-              },
-
-              "Sofia Martinez": {
-                content: (
-                  <PersonnelFile
-                    employeeId="ALI-SEC-5438"
-                    name="Sofia Martinez"
-                    age={32}
-                    dob="11/07/2050"
-                    position="Security Officer (Patrol)"
-                    department="Security Division"
-                    hireDate="June 2078 (4 years)"
-                    supervisor="Marcus Webb (Night Supervisor)"
-                    clearanceLevel={2}
-                    district="Ports (local resident)"
-                    emergencyContact="Carlos Martinez (father) - 555-0438"
-                    performance={94}
-                    notes={[
-                      "Former SecOps officer - excellent credentials",
-                      "Most competent guard on night shift",
-                      "Actually conducts thorough patrols",
-                      "Recommended for promotion consideration",
-                    ]}
-                    status="ACTIVE"
-                  />
-                ),
-              },
-
-              "James Park": {
-                content: (
-                  <PersonnelFile
-                    employeeId="ALI-SEC-7821"
-                    name="James Park"
-                    age={26}
-                    dob="06/12/2056"
-                    position="Security Officer"
-                    department="Security Division"
-                    hireDate="September 2081 (6 months)"
-                    supervisor="Marcus Webb (Night Supervisor)"
-                    clearanceLevel={1}
-                    district="Ports"
-                    emergencyContact="Jennifer Park (mother) - 555-0821"
-                    performance={43}
-                    notes={[
-                      "WARNING: Multiple disciplinary warnings for phone use",
-                      "Frequently on break - exceeds allotted time",
-                      "Supervisor considering termination if no improvement",
-                      "Low engagement with security duties",
-                    ]}
-                    status="ACTIVE"
-                  />
-                ),
-              },
-
-              "Andre Foster": {
-                content: (
-                  <PersonnelFile
-                    employeeId="ALI-SEC-5603"
-                    name="Andre Foster"
-                    age={35}
-                    dob="02/19/2047"
-                    position="Security Officer (Checkpoint)"
-                    department="Security Division - Secure Cargo"
-                    hireDate="April 2076 (6 years)"
-                    supervisor="Marcus Webb (Night Supervisor)"
-                    clearanceLevel={3}
-                    district="Ports"
-                    emergencyContact="Lisa Foster (sister) - 555-0603"
-                    performance={91}
-                    notes={[
-                      "Former military - exemplary record",
-                      "Trusted with high-value cargo assignments",
-                      "Follows protocols strictly",
-                      "Recommended for advanced security positions",
-                    ]}
-                    status="ACTIVE"
-                  />
-                ),
-              },
-
-              "Nina Volkov": {
-                content: (
-                  <PersonnelFile
-                    employeeId="ALI-SEC-6234"
-                    name="Nina Volkov"
-                    age={29}
-                    dob="09/03/2053"
-                    position="Security Officer (Secure Cargo)"
-                    department="Security Division - Secure Cargo"
-                    hireDate="November 2077 (5 years)"
-                    supervisor="Marcus Webb (Night Supervisor)"
-                    clearanceLevel={3}
-                    district="Ports"
-                    emergencyContact="Dmitri Volkov (brother) - 555-0234"
-                    performance={88}
-                    notes={[
-                      "Excellent attention to detail",
-                      "Works well with Foster on secure assignments",
-                      "Strong memory for faces and patterns",
-                      "Reliable and professional",
-                    ]}
-                    status="ACTIVE"
-                  />
-                ),
-              },
-            },
           },
 
           "Supervisor's Terminal": {
@@ -682,6 +284,176 @@ export const WAREHOUSE_COMMANDS = {
               />
             ),
             related_commands: {
+              "Personnel Records": {
+                content: (
+                  <MaintenanceAccess
+                    title="[PERSONNEL FILES]"
+                    deviceModel="HR Database"
+                    deviceId="HR-STAFF-47"
+                    firmwareVersion="v4.1.0"
+                    systemStatus="OPERATIONAL"
+                    notes={[
+                      "Night shift employees - Detailed records",
+                      "6 personnel on duty tonight",
+                      "Performance reviews current as of last month",
+                      "Emergency contact info verified quarterly"
+                    ]}
+                  />
+                ),
+                related_commands: {
+                  "Marcus Webb": {
+                    content: (
+                      <PersonnelFile
+                        employeeId="ALI-NS-4721"
+                        name="Marcus Webb"
+                        age={41}
+                        dob="08/23/2041"
+                        position="Night Shift Supervisor"
+                        department="Warehouse Operations"
+                        hireDate="March 2067 (15 years)"
+                        supervisor="Regional Manager - Linda Torres"
+                        clearanceLevel={3}
+                        district="Bigmosse (commutes to Ports)"
+                        emergencyContact="Sarah Webb (spouse) - 555-0147"
+                        performance={87}
+                        notes={[
+                          "Reliable employee, zero disciplinary actions",
+                          "Eligible for early retirement package in 2 years",
+                          "Personal interest: Fishing (keeps lucky lure in office safe)",
+                          "Prefers night shift to avoid traffic",
+                        ]}
+                        status="ACTIVE"
+                      />
+                    ),
+                  },
+
+                  "David Chen": {
+                    content: (
+                      <PersonnelFile
+                        employeeId="ALI-SEC-6892"
+                        name="David Chen"
+                        age={28}
+                        dob="03/15/2054"
+                        position="Security Officer"
+                        department="Security Division"
+                        hireDate="January 2080 (2 years)"
+                        clearanceLevel={2}
+                        district="Lilypond"
+                        emergencyContact="Ming Chen (brother) - 555-0892"
+                        performance={62}
+                        notes={[
+                          "WARNING: Twice reprimanded for distraction on duty",
+                          "Frequently watches entertainment media during shifts",
+                          "Adequate performance but minimal engagement",
+                          "Reliable for showing up on time",
+                        ]}
+                        status="ACTIVE"
+                      />
+                    ),
+                  },
+
+                  "Sofia Martinez": {
+                    content: (
+                      <PersonnelFile
+                        employeeId="ALI-SEC-5438"
+                        name="Sofia Martinez"
+                        age={32}
+                        dob="11/07/2050"
+                        position="Security Officer (Patrol)"
+                        department="Security Division"
+                        hireDate="June 2078 (4 years)"
+                        clearanceLevel={2}
+                        district="Ports (local resident)"
+                        emergencyContact="Carlos Martinez (father) - 555-0438"
+                        performance={94}
+                        notes={[
+                          "Former SecOps officer - excellent credentials",
+                          "Most competent guard on night shift",
+                          "Actually conducts thorough patrols",
+                          "Recommended for promotion consideration",
+                        ]}
+                        status="ACTIVE"
+                      />
+                    ),
+                  },
+
+                  "James Park": {
+                    content: (
+                      <PersonnelFile
+                        employeeId="ALI-SEC-7821"
+                        name="James Park"
+                        age={26}
+                        dob="06/12/2056"
+                        position="Security Officer"
+                        department="Security Division"
+                        hireDate="September 2081 (6 months)"
+                        clearanceLevel={1}
+                        district="Ports"
+                        emergencyContact="Jennifer Park (mother) - 555-0821"
+                        performance={43}
+                        notes={[
+                          "WARNING: Multiple disciplinary warnings for phone use",
+                          "Frequently on break - exceeds allotted time",
+                          "Supervisor considering termination if no improvement",
+                          "Low engagement with security duties",
+                        ]}
+                        status="ACTIVE"
+                      />
+                    ),
+                  },
+
+                  "Andre Foster": {
+                    content: (
+                      <PersonnelFile
+                        employeeId="ALI-SEC-5603"
+                        name="Andre Foster"
+                        age={35}
+                        dob="02/19/2047"
+                        position="Security Officer (Checkpoint)"
+                        department="Security Division - Secure Cargo"
+                        hireDate="April 2076 (6 years)"
+                        clearanceLevel={3}
+                        district="Ports"
+                        emergencyContact="Lisa Foster (sister) - 555-0603"
+                        performance={91}
+                        notes={[
+                          "Former military - exemplary record",
+                          "Trusted with high-value cargo assignments",
+                          "Follows protocols strictly",
+                          "Recommended for advanced security positions",
+                        ]}
+                        status="ACTIVE"
+                      />
+                    ),
+                  },
+
+                  "Nina Volkov": {
+                    content: (
+                      <PersonnelFile
+                        employeeId="ALI-SEC-6234"
+                        name="Nina Volkov"
+                        age={29}
+                        dob="09/03/2053"
+                        position="Security Officer (Secure Cargo)"
+                        department="Security Division - Secure Cargo"
+                        hireDate="November 2077 (5 years)"
+                        clearanceLevel={3}
+                        district="Ports"
+                        emergencyContact="Dmitri Volkov (brother) - 555-0234"
+                        performance={88}
+                        notes={[
+                          "Excellent attention to detail",
+                          "Works well with Foster on secure assignments",
+                          "Strong memory for faces and patterns",
+                          "Reliable and professional",
+                        ]}
+                        status="ACTIVE"
+                      />
+                    ),
+                  },
+                },
+              },
+
               "Classified Shipment Manifest": {
                 content: (
                   <>
@@ -722,117 +494,63 @@ export const WAREHOUSE_COMMANDS = {
                 ),
               },
 
-              "Alarm Override Codes": {
-                password: {
-                  pw: "emergency",
-                  hint: "What type of situation would require these codes?",
-                  difficulty: "expert",
-                  content: <Locked theme="terminal" title="EMERGENCY SYSTEMS" />
-                },
+              "Supervisor's Office Safe": {
+                // password: {
+                //   pw: "fisherman",
+                //   hint: "Marcus Webb's favorite hobby (check his profile)",
+                //   difficulty: "medium",
+                //   content: <Locked theme="safe" title="SUPERVISOR SAFE" />
+                // },
                 content: (
-                  <>
-                    <Line smoke large bold>[EMERGENCY OVERRIDE SYSTEM]</Line>
-                    <Line red>SUPERVISOR ACCESS ONLY</Line>
-                    <Divider />
-                    <Section title="ALARM OVERRIDE CODES:">
-                      <Line cyan>Main Entrance: 4782</Line>
-                      <Line cyan>Loading Dock: 4783</Line>
-                      <Line cyan>Emergency Exits: 4784</Line>
-                      <Line yellow>Secure Cargo: 4785 (30-second window)</Line>
-                    </Section>
-                    <Divider />
-                    <Section title="USAGE INSTRUCTIONS:">
-                      <Line neon>1. Enter override code on security panel</Line>
-                      <Line neon>2. Alarm delay extends to 60 seconds</Line>
-                      <Line neon>3. Must radio Main Security with reason</Line>
-                      <Line neon>4. Override logged automatically</Line>
-                    </Section>
-                    <Divider />
-                    <Line red>⚠ Unauthorized use triggers immediate investigation</Line>
-                  </>
+                  <Safe
+                    id="alliansen-warehouse-supervisor"
+                    model="DS-400"
+                    location="Main Office - Wall safe behind framed Alliansen certificate"
+                    owner="Marcus Webb (Night Supervisor)"
+                    security="4-digit PIN"
+                    lastAccess="Tonight (shift start)"
+                    physical={[
+                      {
+                        id: "webb_keycard",
+                        label: "Master keycard",
+                        description: "All-access (offices, secure cargo, alarm overrides)"
+                      },
+                      {
+                        id: "webb_petty_cash",
+                        label: "Petty cash",
+                        description: "180¤ (small bills for misc expenses)",
+                        value: 180,
+                        isCredits: true
+                      },
+                      {
+                        id: "webb_documents",
+                        label: "Documents",
+                        description: "Employee files, shift reports, inventory logs"
+                      },
+                      {
+                        id: "webb_personal",
+                        label: "Personal items",
+                        description: "Fishing lure (lucky charm), family photo"
+                      },
+                    ]}
+                    digital={[
+                      {
+                        id: "webb_credchip",
+                        label: "Credchip",
+                        description: "120¤ (personal emergency fund)",
+                        value: 120,
+                        isCredits: true
+                      },
+                      {
+                        id: "webb_backup_codes",
+                        label: "Backup access codes",
+                        description: "Security panel passwords, alarm overrides"
+                      },
+                    ]}
+                  />
                 ),
               },
             },
-          },
-
-          "Supervisor's Office Safe": {
-            // password: {
-            //   pw: "fisherman",
-            //   hint: "Marcus Webb's favorite hobby (check his profile)",
-            //   difficulty: "medium",
-            //   content: <Locked theme="safe" title="SUPERVISOR SAFE" />
-            // },
-            content: (
-              <Safe
-                id="alliansen-warehouse-supervisor"
-                model="DS-400"
-                location="Main Office - Wall safe behind framed Alliansen certificate"
-                owner="Marcus Webb (Night Supervisor)"
-                security="4-digit PIN"
-                lastAccess="Tonight (shift start)"
-                physical={[
-                  {
-                    id: "webb_keycard",
-                    label: "Master keycard",
-                    description: "All-access (offices, secure cargo, alarm overrides)"
-                  },
-                  {
-                    id: "webb_petty_cash",
-                    label: "Petty cash",
-                    description: "180¤ (small bills for misc expenses)",
-                    value: 180,
-                    isCredits: true
-                  },
-                  {
-                    id: "webb_documents",
-                    label: "Documents",
-                    description: "Employee files, shift reports, inventory logs"
-                  },
-                  {
-                    id: "webb_personal",
-                    label: "Personal items",
-                    description: "Fishing lure (lucky charm), family photo"
-                  },
-                ]}
-                digital={[
-                  {
-                    id: "webb_credchip",
-                    label: "Credchip",
-                    description: "120¤ (personal emergency fund)",
-                    value: 120,
-                    isCredits: true
-                  },
-                  {
-                    id: "webb_backup_codes",
-                    label: "Backup access codes",
-                    description: "Security panel passwords, alarm overrides"
-                  },
-                ]}
-                notes="Marcus keeps everything by-the-book - safe checked at shift start/end"
-              />
-            ),
-          },
-
-          "Rec Room Terminal": {
-            content: (
-              <Workstation
-                owner="James Park"
-                role="Security Officer"
-                status="ACTIVE"
-                lastActivity="Just now"
-                openTabs={[
-                  { title: 'SwipeRight Dating App', type: 'personal' },
-                  { title: 'Cy Sports Network - Live Scores', type: 'personal' },
-                  { title: 'Social Media Feed', type: 'personal' },
-                  { title: 'Alliansen Shift Schedule', type: 'work' },
-                ]}
-                recentFiles={[
-                  { name: 'Break_Schedule.txt', timestamp: '22:55' },
-                ]}
-                emails={3}
-                productivity={22}
-              />
-            ),
           },
 
           "Main Security Workstation": {
@@ -856,6 +574,184 @@ export const WAREHOUSE_COMMANDS = {
                 productivity={31}
               />
             ),
+            related_commands: {
+              "Network Traffic Monitor": {
+                content: (
+                  <NetworkTrafficMonitor
+                    systemName="WAREHOUSE NETWORK MONITOR"
+                    location="Alliansen Warehouse #47"
+                    bandwidth="124 MB/s (Normal)"
+                    activeConnections={18}
+                    transfers={[
+                      {
+                        timestamp: "22:47",
+                        filename: "Classified_Manifest_SEC-2082.pdf",
+                        size: "1.2 MB",
+                        source: "10.47.1.105 (Supervisor Terminal)",
+                        destination: "SecOps Equipment Division",
+                        protocol: "ENCRYPTED",
+                        status: "COMPLETE"
+                      },
+                      {
+                        timestamp: "23:15",
+                        filename: "night_shift_logs.txt",
+                        size: "45 KB",
+                        destination: "Corporate servers",
+                        protocol: "HTTPS",
+                        status: "COMPLETE"
+                      },
+                    ]}
+                  />
+                )
+              },
+
+              "Security Incident Log": {
+                content: (
+                  <IncidentLog
+                    title="SECURITY INCIDENTS"
+                    timeframe="Last 30 days"
+                    incidents={[
+                      {
+                        timestamp: "Jan 18 (02:15)",
+                        type: "False Alarm",
+                        details: {
+                          Event: "Motion sensor triggered in main warehouse",
+                          Resolution: "Rat infestation - exterminator scheduled",
+                          Status: "Closed - no security threat"
+                        }
+                      },
+                      {
+                        timestamp: "Jan 12 (23:40)",
+                        type: "Delivery Delay",
+                        details: {
+                          Event: "Late shipment arrival (authorized)",
+                          Resolution: "Logged, no security issues",
+                          Status: "Closed"
+                        }
+                      },
+                      {
+                        timestamp: "Jan 7 (01:20)",
+                        type: "Equipment Malfunction",
+                        details: {
+                          Event: "Camera #3 offline for 15 minutes",
+                          Resolution: "Auto-reboot successful",
+                          Status: "Closed"
+                        }
+                      },
+                      {
+                        timestamp: "Jan 3 (03:45)",
+                        type: "Patrol Report",
+                        details: {
+                          Event: "Suspicious vehicle near perimeter",
+                          Resolution: "Driver lost, provided directions",
+                          Status: "Closed - no threat"
+                        }
+                      },
+                    ]}
+                  >
+                    <Divider />
+                    <Line cyan>Overall assessment: Low-risk facility, minimal incidents</Line>
+                    <Line yellow>Guard complacency noted - standard for this location</Line>
+                    <Line smoke>Last serious incident: 8 months ago (attempted theft)</Line>
+                  </IncidentLog>
+                ),
+              },
+
+              "Camera Network Overview": {
+                content: (
+                  <NetworkDevices
+                    networkName="SURVEILLANCE_SYSTEM"
+                    devices={[
+                      { name: "Front Entrance", ip: "10.47.1.101", type: "Security Camera", status: "ONLINE", lastSeen: "Just now" },
+                      { name: "Main Warehouse", ip: "10.47.1.102", type: "Security Camera", status: "ONLINE", lastSeen: "Just now" },
+                      { name: "Loading Dock", ip: "10.47.1.103", type: "Security Camera", status: "ONLINE", lastSeen: "Just now" },
+                      { name: "Rec Room", ip: "10.47.1.104", type: "Security Camera", status: "ONLINE", lastSeen: "Just now" },
+                      { name: "Secure Cargo Gate", ip: "10.47.2.201", type: "Security Camera (Isolated)", status: "ONLINE", lastSeen: "Just now" },
+                      { name: "Secure Cargo Interior", ip: "10.47.2.202", type: "Security Camera (Isolated)", status: "ONLINE", lastSeen: "Just now" },
+                    ]}
+                  />
+                ),
+                related_commands: {
+                  "External Camera": {
+                    content: (
+                      <Camera
+                        id="alliansen-warehouse-external"
+                        location="Alliansen Warehouse - Front entrance (exterior)"
+                        coverage="Main gate, parking area, front entrance"
+                        status="ACTIVE"
+                        recording={true}
+                        storage="Alliansen corporate cloud"
+                        timeline={[
+                          "18:00 → Day shift departs (8 personnel)",
+                          "19:30 → Delivery truck arrives, unloads routine supplies",
+                          "20:45 → Delivery truck departs",
+                          "22:00 → Night shift arrives (6 personnel)",
+                          "22:30 → Supervisor's vehicle arrives (late)",
+                          "23:00-Present → No activity",
+                        ]}
+                        blindSpots={[
+                          "Loading dock area (separate camera)",
+                          "East and south sides of building",
+                          "Warehouse interior",
+                        ]}
+                        lastService="1 week ago"
+                      />
+                    ),
+                  },
+
+                  "Main Floor Camera": {
+                    content: (
+                      <Camera
+                        id="alliansen-warehouse-main"
+                        location="Alliansen Warehouse - Main warehouse floor"
+                        coverage="Warehouse floor, aisles, loading dock interior"
+                        status="ACTIVE"
+                        recording={true}
+                        storage="Local server + cloud backup"
+                        timeline={[
+                          "22:00 → Night shift begins, guards take positions",
+                          "22:15 → Supervisor enters Main Office",
+                          "22:30 → Guard 2 begins patrol route",
+                          "23:00 → Guard 3 takes break in rec room",
+                          "23:15 → Forklift moved to loading dock (routine)",
+                          "23:30-Present → Minimal activity",
+                        ]}
+                        blindSpots={[
+                          "Inside Secure Cargo area (separate closed system)",
+                          "Bathroom interiors",
+                          "Some corners behind large containers",
+                        ]}
+                        lastService="2 weeks ago"
+                      />
+                    ),
+                  },
+
+                  "Secure Cargo Camera": {
+                    content: (
+                      <Camera
+                        id="alliansen-warehouse-securecargo"
+                        location="Alliansen Warehouse - Secure Cargo area (interior)"
+                        coverage="High-value storage, electronics lab, security checkpoint"
+                        status="ACTIVE"
+                        recording={true}
+                        storage="Encrypted local server (air-gapped)"
+                        timeline={[
+                          "22:00 → Guards 4 & 5 report to Secure Cargo",
+                          "22:45 → Target crate logged into inventory",
+                          "23:00 → Security sweep completed, all clear",
+                          "23:30-Present → Guards stationed, no movement",
+                        ]}
+                        blindSpots={[
+                          "Electronics lab testing booth (privacy screen)",
+                          "Behind large storage containers",
+                        ]}
+                        lastService="3 days ago"
+                      />
+                    ),
+                  },
+                }
+              },
+            }
           },
 
           "Warehouse Vending Machine": {
