@@ -439,7 +439,7 @@ export const WAREHOUSE_COMMANDS = {
                         hireDate="November 2077 (5 years)"
                         clearanceLevel={3}
                         district="Ports"
-                        emergencyContact="Dmitri Volkov (brother) - 555-0234"
+                        emergencyContact="Kaz Volkov (brother) - 555-0234"
                         performance={88}
                         notes={[
                           "Excellent attention to detail",
@@ -486,7 +486,7 @@ export const WAREHOUSE_COMMANDS = {
                     </Section>
                     <Divider />
                     <Section title="REGIONAL THREAT ASSESSMENT:">
-                      <Line red>Intelligence indicates Stone Eels gang activity in Ports sector.</Line>
+                      <Line red>Current threat advisory: Ports sector — elevated (gang activity).</Line>
                       <Line red>High-value cargo may be targeted. Maintain heightened vigilance.</Line>
                       <Line red>Unauthorized access: Immediate SecOps notification required.</Line>
                     </Section>
@@ -650,8 +650,6 @@ export const WAREHOUSE_COMMANDS = {
                     ]}
                   >
                     <Divider />
-                    <Line cyan>Overall assessment: Low-risk facility, minimal incidents</Line>
-                    <Line yellow>Guard complacency noted - standard for this location</Line>
                     <Line smoke>Last serious incident: 8 months ago (attempted theft)</Line>
                   </IncidentLog>
                 ),

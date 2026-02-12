@@ -76,10 +76,10 @@ export const BODEGA_COMMANDS = {
             ]}
             footer="Note: Charlie wasn't here when you arrived. Thugs spooked him. He left this briefing and will return in 2 days. You're on your own until then. — Good luck."
           >
-          <RetComImage
-            src={cop_car_image}
-            alt="Cop Car"
-          />
+            <RetComImage
+              src={cop_car_image}
+              alt="Cop Car"
+            />
           </Briefing>
         ),
       },

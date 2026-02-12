@@ -28,7 +28,7 @@ import {
 
 import LuckyFlightAd from './casino_ad'
 
-import lfc_cctv from '@images/locations/lfc_cctv.jpg';
+import lfc_cctv from '@images/locations/lfc_cctv.png';
 import basementImage from '@images/blueprints/lucky_flight_basement.png';
 import floor1Image from '@images/blueprints/lucky_flight_floor_1.png';
 import floor2Image from '@images/blueprints/lucky_flight_floor_2.png';
@@ -45,7 +45,7 @@ export const LUCKY_FLIGHT_CASINO = {
             src={lfc_cctv}
             cameraId="CAM-FL42-HALL-A"
             location="Lobby"
-            theme="purple"
+            theme="amber"
             height={500}
           />
         ),

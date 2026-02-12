@@ -24,14 +24,14 @@ import {
   NetworkDevices,
 } from "@terminal/retcomdevice"
 
-import bigmosse_ports_cctv from '@images/locations/bigmosse_ports.jpg';
+import bigmosse_ports_cctv from '@images/locations/bigmosse_ports_cctv.png';
 
 export const NEIGHBORHOOD_COMMANDS = {
   "Bigmosse Ports CCTV": {
     content: (
       <CCTV
         src={bigmosse_ports_cctv}
-        theme="green"
+        theme="amber"
         height={500}
       />
     ),
