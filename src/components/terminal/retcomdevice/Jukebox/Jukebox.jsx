@@ -11,7 +11,7 @@ export default function Jukebox({
   songs,
 }) {
   // Determine which songs to use
-  const displaySongs = songs || (musicType ? getJukeboxTracks(musicType, trackLimit) : []);
+  const displaySongs = songs || getJukeboxTracks(musicType || "synthwave", trackLimit);
   const displayCost = cost || (musicType ? getDefaultCost(musicType) : "2¤");
 
   const [selectedSongIndex, setSelectedSongIndex] = useState(0);

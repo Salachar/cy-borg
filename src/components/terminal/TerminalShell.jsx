@@ -102,7 +102,7 @@ export function TerminalHistoryArea({ children, historyContainerRef, historyEndR
       className="flex-1 rounded-lg p-4 mb-4 overflow-y-auto border"
       style={{
         minHeight: 0, // Critical for proper flexbox behavior
-        textShadow: '0 0 5px rgba(0, 255, 65, 0.5)',
+        // textShadow: '0 0 5px rgba(0, 255, 65, 0.5)',
         backgroundColor: COLORS.bg.panel,
         borderColor: COLORS.border.default,
         color: COLORS.text.terminal,

@@ -1,7 +1,5 @@
 import {
-  Box,
   Line,
-  Section,
   Divider,
   InsetBox,
 } from '@terminal/TerminalComponents';
@@ -18,14 +16,12 @@ import {
   Message,
   NetworkDevices,
   NetworkTrafficMonitor,
-  PersonnelFile,
   RCDAlert,
   RetComImage,
   RoomAccess,
   Safe,
   SmartFridge,
   VIPList,
-  Workstation,
 } from '@terminal/retcomdevice';
 
 import cyberlich_painting_image from '@images/cyberlich_painting.png';
@@ -51,10 +47,6 @@ export const STEEL_PENTHOUSE_COMMANDS = {
       </Message>
     ),
     related_commands: {
-
-      // ============================================================
-      // BUILDING SERVICES
-      // ============================================================
       "Building Services": {
         content: (
           <MaintenanceAccess
@@ -151,9 +143,6 @@ export const STEEL_PENTHOUSE_COMMANDS = {
         },
       },
 
-      // ============================================================
-      // Internal
-      // ============================================================
       "Internal Access": {
         content: (
           <MaintenanceAccess
@@ -165,9 +154,6 @@ export const STEEL_PENTHOUSE_COMMANDS = {
           />
         ),
         related_commands: {
-          // ============================================================
-          // NETWORK STATUS
-          // ============================================================
           "Network Traffic": {
             content: (
               <NetworkTrafficMonitor
@@ -248,20 +234,20 @@ export const STEEL_PENTHOUSE_COMMANDS = {
               <NetworkDevices
                 networkName="JACKHAMMER_HOME"
                 devices={[
-                  { name: "Security Console", ip: "192.168.1.10", type: "Security", status: "ONLINE", lastSeen: "Active now" },
-                  { name: "Camera System", ip: "192.168.1.20-28", type: "Surveillance", status: "ONLINE", lastSeen: "Active now" },
-                  { name: "NAS Storage", ip: "192.168.1.29", type: "Storage", status: "ONLINE", lastSeen: "Active now" },
-                  { name: "Entertainment Hub", ip: "192.168.1.30", type: "Media", status: "ONLINE", lastSeen: "Active now" },
-                  { name: "Jukebox", ip: "192.168.1.31", type: "Audio", status: "ONLINE", lastSeen: "Active now" },
-                  { name: "Holo Projectors", ip: "192.168.1.40-50", type: "Display", status: "ONLINE", lastSeen: "Active now" },
-                  { name: "Game Console", ip: "192.168.1.51", type: "Entertainment", status: "ONLINE", lastSeen: "Active now" },
-                  { name: "Smart Fridge", ip: "192.168.1.60", type: "Appliance", status: "ONLINE", lastSeen: "Active now" },
-                  { name: "Coffee Machine", ip: "192.168.1.62", type: "Appliance", status: "ONLINE", lastSeen: "Active now" },
-                  { name: "HVAC Control", ip: "192.168.1.70", type: "Climate", status: "ONLINE", lastSeen: "Active now" },
-                  { name: "Lighting System", ip: "192.168.1.71", type: "Climate", status: "ONLINE", lastSeen: "Active now" },
-                  { name: "Gym Equipment Hub", ip: "192.168.1.80", type: "Fitness", status: "ONLINE", lastSeen: "Active now" },
-                  { name: "Sparring Cydroid", ip: "192.168.1.81", type: "Training", status: "ONLINE", lastSeen: "Active now" },
-                  { name: "Holo Safe (encrypted)", ip: "192.168.1.90", type: "Security", status: "ONLINE", lastSeen: "Active now" },
+                  { name: "Security Console", ip: "192.168.1.10", type: "Security" },
+                  { name: "Camera System", ip: "192.168.1.20-28", type: "Surveillance" },
+                  { name: "NAS Storage", ip: "192.168.1.29", type: "Storage" },
+                  { name: "Entertainment Hub", ip: "192.168.1.30", type: "Media" },
+                  { name: "Jukebox", ip: "192.168.1.31", type: "Audio" },
+                  { name: "Holo Projectors", ip: "192.168.1.40-50", type: "Display" },
+                  { name: "Game Console", ip: "192.168.1.51", type: "Entertainment" },
+                  { name: "Smart Fridge", ip: "192.168.1.60", type: "Appliance" },
+                  { name: "Coffee Machine", ip: "192.168.1.62", type: "Appliance" },
+                  { name: "HVAC Control", ip: "192.168.1.70", type: "Climate" },
+                  { name: "Lighting System", ip: "192.168.1.71", type: "Climate" },
+                  { name: "Gym Equipment Hub", ip: "192.168.1.80", type: "Fitness" },
+                  { name: "Sparring Cydroid", ip: "192.168.1.81", type: "Training" },
+                  { name: "Wall Safe", ip: "192.168.1.90", type: "Security" },
                 ]}
               />
             ),
@@ -506,53 +492,6 @@ export const STEEL_PENTHOUSE_COMMANDS = {
         },
       },
 
-      "Jukebox": {
-        content: (
-          <Jukebox
-            location="Steel Jackhammer's Penthouse - Holo Space"
-            credits={0}
-            theme="club"
-            nowPlaying={{
-              title: "Chrome Fist Fury",
-              artist: "Killmatch Anthems Vol. 3",
-              genre: "Industrial Techno"
-            }}
-            queue={[
-              { title: "Blood on the Canvas", artist: "Cage Kings", genre: "Heavy Metal" },
-              { title: "Victory Lap", artist: "Champion Sounds", genre: "Trap" }
-            ]}
-            library={[
-              {
-                genre: "Industrial Techno",
-                songs: [
-                  { title: "Chrome Fist Fury", artist: "Killmatch Anthems Vol. 3" },
-                  { title: "Steel Rain", artist: "Cyber Assault" },
-                  { title: "Hydraulic Pressure", artist: "Machine Gods" }
-                ]
-              },
-              {
-                genre: "Heavy Metal",
-                songs: [
-                  { title: "Blood on the Canvas", artist: "Cage Kings" },
-                  { title: "Warrior's Anthem", artist: "Battle Cry" },
-                  { title: "No Mercy", artist: "Killzone" }
-                ]
-              },
-              {
-                genre: "Synthwave",
-                songs: [
-                  { title: "Neon Victory", artist: "Retro Fighters" },
-                  { title: "Digital Champion", artist: "ChromeCast" }
-                ]
-              }
-            ]}
-          />
-        ),
-      },
-
-      // ============================================================
-      // SMART APPLIANCES
-      // ============================================================
       "Smart Appliances": {
         content: (
           <MaintenanceAccess
@@ -570,6 +509,78 @@ export const STEEL_PENTHOUSE_COMMANDS = {
           />
         ),
         related_commands: {
+          "Jukebox": {
+            content: (
+              <Jukebox
+                location="Steel Jackhammer's Penthouse - Holo Space"
+                credits={0}
+                theme="club"
+                nowPlaying={{
+                  title: "Chrome Fist Fury",
+                  artist: "Killmatch Anthems Vol. 3",
+                  genre: "Industrial Techno"
+                }}
+                queue={[
+                  { title: "Blood on the Canvas", artist: "Cage Kings", genre: "Heavy Metal" },
+                  { title: "Victory Lap", artist: "Champion Sounds", genre: "Trap" }
+                ]}
+                library={[
+                  {
+                    genre: "Industrial Techno",
+                    songs: [
+                      { title: "Chrome Fist Fury", artist: "Killmatch Anthems Vol. 3" },
+                      { title: "Steel Rain", artist: "Cyber Assault" },
+                      { title: "Hydraulic Pressure", artist: "Machine Gods" }
+                    ]
+                  },
+                  {
+                    genre: "Heavy Metal",
+                    songs: [
+                      { title: "Blood on the Canvas", artist: "Cage Kings" },
+                      { title: "Warrior's Anthem", artist: "Battle Cry" },
+                      { title: "No Mercy", artist: "Killzone" }
+                    ]
+                  },
+                  {
+                    genre: "Synthwave",
+                    songs: [
+                      { title: "Neon Victory", artist: "Retro Fighters" },
+                      { title: "Digital Champion", artist: "ChromeCast" }
+                    ]
+                  }
+                ]}
+              />
+            ),
+          },
+
+          "Sparring Cydroid": {
+            content: (
+              <MaintenanceAccess
+                title="[SPARRING CYDROID CONTROL]"
+                deviceModel="CombatTrain Pro-X"
+                deviceId="CYDROID-GYM"
+                firmwareVersion="v3.0.0"
+                systemStatus="ACTIVE / STANDBY"
+                notes={[
+                  "Set to MAXIMUM DIFFICULTY (10/10)",
+                  "Programmed with Steel's fighting style",
+                  "Safety protocols DISABLED",
+                  "Attacks anyone entering training ring",
+                ]}
+              >
+                <Divider />
+                <InsetBox title="ADMIN CONTROL OPTIONS:">
+                  <Line yellow>Change difficulty level (1-10)</Line>
+                  <Line yellow>Enable/disable safety protocols</Line>
+                  <Line yellow>Set specific target person</Line>
+                  <Line yellow>Emergency shutdown</Line>
+                  <Line yellow>Activate outside ring (chaos mode)</Line>
+                </InsetBox>
+                <Line red>WARNING: Activating outside ring will cause extreme chaos and injuries</Line>
+              </MaintenanceAccess>
+            ),
+          },
+
           "Game Console": {
             content: (
               <GameConsole
@@ -774,9 +785,6 @@ export const STEEL_PENTHOUSE_COMMANDS = {
         },
       },
 
-      // ============================================================
-      // ROOM SYSTEMS
-      // ============================================================
       "Room Systems": {
         content: (
           <RoomAccess
@@ -918,57 +926,9 @@ export const STEEL_PENTHOUSE_COMMANDS = {
                     lastAccess="4 days ago (pre-party)"
                     physical={[]}
                     digital={[]}
-                    notes="Nothing of value or interest inside. Just an empty safe for show."
                     stealing={true}
                   />
                 ),
-              },
-
-              "Closet Inventory": {
-                content: (
-                  <RoomAccess
-                    title="MASTER BEDROOM CLOSET"
-                    network="JACKHAMMER_HOME"
-                    status="OPERATIONAL"
-                  >
-                    <InsetBox title="CONTENTS:">
-                      <Line smoke>Designer clothes everywhere</Line>
-                      <Line smoke>30+ pairs of shoes</Line>
-                      <Line smoke>Multiple gym bags</Line>
-                    </InsetBox>
-                    <InsetBox title="BACKPACK DETECTED:">
-                      <Line yellow>Weight sensors indicate hidden items inside</Line>
-                      <Line yellow>Appears empty at first glance</Line>
-                    </InsetBox>
-                  </RoomAccess>
-                ),
-                related_commands: {
-                  "Backpack Contents": {
-                    content: (
-                      <Extractable
-                        id="penthouse-master-backpack"
-                        digitalItems={[
-                          {
-                            id: "credstick_2500",
-                            label: "Credstick",
-                            description: "2,500¤",
-                            value: 2500,
-                            isCredits: true
-                          },
-                        ]}
-                        physicalItems={[
-                          {
-                            id: "vurt_dose",
-                            label: "Vurt",
-                            description: "1 dose - high-grade hallucinogen",
-                            value: 300
-                          },
-                        ]}
-                        stealing={true}
-                      />
-                    ),
-                  },
-                },
               },
             },
           },
@@ -989,10 +949,10 @@ export const STEEL_PENTHOUSE_COMMANDS = {
               </RoomAccess>
             ),
             related_commands: {
-              "Cyber-Lich Painting": {
+              "Cyber-Lich Holo Painting": {
                 content: (
                   <RoomAccess
-                    title="CYBER-LICH PAINTING"
+                    title="CYBER-LICH HOLO PAINTING"
                     network="JACKHAMMER_HOME"
                   >
                     <RetComImage
@@ -1003,7 +963,11 @@ export const STEEL_PENTHOUSE_COMMANDS = {
                   </RoomAccess>
                 ),
                 related_commands: {
-                  "Hidden Safe": {
+                  "Holo Display Memory": {
+                    password: {
+                      pw: 'lich',
+                      content: <EncryptedMessage />
+                    },
                     content: (
                       <EncryptedMessage
                         messages={[
@@ -1049,53 +1013,6 @@ export const STEEL_PENTHOUSE_COMMANDS = {
                 </InsetBox>
               </RoomAccess>
             ),
-          },
-
-          "Gym": {
-            content: (
-              <RoomAccess
-                title="GYM"
-                network="JACKHAMMER_HOME"
-                status="ACTIVE"
-                stats={{ occupancy: "Empty", noise: "LOW", power: "MODERATE" }}
-              >
-                <InsetBox title="EQUIPMENT:">
-                  <Line cyan>Weight machines (actual weights, not VR)</Line>
-                  <Line cyan>Cardio equipment</Line>
-                  <Line cyan>Mirror wall (AR workout feedback)</Line>
-                  <Line red bold>Sparring Cydroid (ACTIVE — ATTACKS ON SIGHT IN RING)</Line>
-                </InsetBox>
-              </RoomAccess>
-            ),
-            related_commands: {
-              "Sparring Cydroid": {
-                content: (
-                  <MaintenanceAccess
-                    title="[SPARRING CYDROID CONTROL]"
-                    deviceModel="CombatTrain Pro-X"
-                    deviceId="CYDROID-GYM"
-                    firmwareVersion="v3.0.0"
-                    systemStatus="ACTIVE / STANDBY"
-                    notes={[
-                      "Set to MAXIMUM DIFFICULTY (10/10)",
-                      "Programmed with Steel's fighting style",
-                      "Safety protocols DISABLED",
-                      "Attacks anyone entering training ring",
-                    ]}
-                  >
-                    <Divider />
-                    <InsetBox title="ADMIN CONTROL OPTIONS:">
-                      <Line yellow>Change difficulty level (1-10)</Line>
-                      <Line yellow>Enable/disable safety protocols</Line>
-                      <Line yellow>Set specific target person</Line>
-                      <Line yellow>Emergency shutdown</Line>
-                      <Line yellow>Activate outside ring (chaos mode)</Line>
-                    </InsetBox>
-                    <Line red>WARNING: Activating outside ring will cause extreme chaos and injuries</Line>
-                  </MaintenanceAccess>
-                ),
-              },
-            },
           },
         },
       },
