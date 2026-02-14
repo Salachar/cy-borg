@@ -41,6 +41,7 @@ import Radio from "./Radio/Radio";
 import RCDAlert from "./RCDAlert/RCDAlert";
 import RelatedCommands from "./RelatedCommands/RelatedCommands";
 import RetComImage from "./Images/RetComImage";
+import RoomAccess from "./MaintenanceAccess/RoomAccess";
 import Safe from "./Safe/Safe";
 import SecureAccessControl from "./SecureAccessControl/SecureAccessControl";
 import ShiftSchedule from "./ShiftSchedule/ShiftSchedule";
@@ -94,6 +95,7 @@ export {
   RCDAlert,
   RelatedCommands,
   RetComImage,
+  RoomAccess,
   Safe,
   SecureAccessControl,
   ShiftSchedule,

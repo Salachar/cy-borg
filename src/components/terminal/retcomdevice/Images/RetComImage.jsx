@@ -19,6 +19,13 @@
  */
 
 const THEMES = {
+  blue: {
+    scanline: 'rgba(59, 130, 246, 0.04)',
+    beam: 'rgba(147, 197, 253, 0.9)',
+    beamShadow: 'rgba(59, 130, 246, 0.7)',
+    tint: 'rgba(30, 93, 175, 0.12)',
+    border: 'rgba(147, 197, 253, 0.6)',
+  },
   green: {
     scanline: 'rgba(0, 255, 136, 0.03)',
     beam: 'rgba(0, 255, 136, 0.8)',

@@ -26,7 +26,7 @@ import {
 import { GLASS_GARDENS_COMMANDS } from './glass_gardens';
 import { STEEL_PENTHOUSE_COMMANDS } from './steel_penthouse';
 
-import penthouseBlueprint from '@images/blueprints/steel_penthouse.png';
+import penthouseBlueprint from '@images/blueprints/steel_penthouse_2.png';
 import central_tower_atrium_cctv_image from '@images/locations/central_tower_atrium_cctv.png';
 
 // ============================================================================
@@ -985,9 +985,9 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                     ]}
                   >
                     <RetComImage
+                      theme="blue"
                       src={penthouseBlueprint}
                       alt="Steel Jackhammer Penthouse Layout"
-                      caption="Unit 4201 floor plan - Central Plaza Tower Block 7"
                     />
                     <InsetBox title="STANDARD AMENITIES:">
                       <Line neon>• Master bedroom (soundproofed - standard penthouse spec)</Line>
