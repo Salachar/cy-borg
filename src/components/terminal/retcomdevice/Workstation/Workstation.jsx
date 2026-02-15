@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Line, Divider, Section } from '@terminal/TerminalComponents';
+import {
+  Line,
+  Divider,
+  Section,
+  InsetBox,
+} from '@terminal/TerminalComponents';
 
 export default function Workstation({
   owner = 'Employee',
@@ -183,32 +188,28 @@ export default function Workstation({
               </div>
             ))}
           </Section>
-          <Divider />
         </>
       )}
 
       {/* Recent files */}
       {recentFiles.length > 0 && (
-        <>
-          <Section title="RECENT FILES:" color="smoke">
-            {recentFiles.map((file, i) => (
-              <div
-                key={i}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  marginBottom: '0.35rem',
-                  fontSize: '0.8rem',
-                  fontFamily: 'monospace',
-                }}
-              >
-                <span style={{ color: 'rgb(133, 175, 231)' }}>{file.name}</span>
-                <span style={{ color: 'rgb(148, 163, 184)' }}>{file.timestamp}</span>
-              </div>
-            ))}
-          </Section>
-          <Divider />
-        </>
+        <InsetBox title="RECENT FILES:" color="smoke">
+          {recentFiles.map((file, i) => (
+            <div
+              key={i}
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                marginBottom: '0.35rem',
+                fontSize: '0.8rem',
+                fontFamily: 'monospace',
+              }}
+            >
+              <span style={{ color: 'rgb(133, 175, 231)' }}>{file.name}</span>
+              <span style={{ color: 'rgb(148, 163, 184)' }}>{file.timestamp}</span>
+            </div>
+          ))}
+        </InsetBox>
       )}
 
       {/* Productivity joke */}

@@ -4,6 +4,7 @@ import {
   Line,
   Section,
   Divider,
+  InsetBox,
 } from '@terminal/TerminalComponents';
 
 import List from '@terminal/retcomdevice/List/List';
@@ -14,31 +15,26 @@ export const SYSTEM_COMMANDS = {
     content: (
       <>
         <Line smoke large bold>RCD-7 RETINAL INTERFACE v2.047</Line>
-        <Divider />
-
-        <Section title="BASIC COMMANDS:">
+        <InsetBox title="BASIC COMMANDS:">
           <Line neon>help - Display this message</Line>
           <Line neon>list - View all access points and status</Line>
           <Line neon>clear - Clear terminal display</Line>
-        </Section>
-
-        <Section title="NAVIGATION:">
+        </InsetBox>
+        <InsetBox title="NAVIGATION:">
           <Line yellow top>• Type or tap any command name to execute</Line>
           <Line yellow top>• Commands marked [PW] require password authentication</Line>
           <Line yellow top>• Click ▶/▼ to expand/collapse command groups</Line>
-        </Section>
-
-        <Section title="PASSWORD SYSTEM:">
+        </InsetBox>
+        <InsetBox title="PASSWORD SYSTEM:">
           <Line yellow top>• Passwords discovered through exploration, NPCs, documents</Line>
           <Line yellow top>• Once entered correctly, passwords are saved automatically</Line>
           <Line yellow top>• Virtual keyboard shows only valid characters</Line>
-        </Section>
-
-        <Section title="PROGRESS:">
+        </InsetBox>
+        <InsetBox title="PROGRESS:">
           <Line yellow top>• Access points unlock related sub-commands when accessed</Line>
           <Line yellow top>• Terminal history persists between sessions</Line>
           <Line yellow top>• All discoveries saved to device memory</Line>
-        </Section>
+        </InsetBox>
       </>
     )
   }),

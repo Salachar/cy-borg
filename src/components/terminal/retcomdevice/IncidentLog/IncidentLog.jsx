@@ -1,4 +1,9 @@
-import { Line, Section, Divider } from '@terminal/TerminalComponents';
+import {
+  Line,
+  Section,
+  Divider,
+  InsetBox,
+} from '@terminal/TerminalComponents';
 
 export default function IncidentLog({
   incidents = [],
@@ -26,24 +31,18 @@ export default function IncidentLog({
     <>
       <Line smoke large bold>[{title}]</Line>
       <Line cyan>{timeframe}</Line>
-      <Divider />
-
-      {incidents.map((incident, idx) => (
-        <div key={idx}>
-          <Section title={incident.timestamp}>
-            <Line className={getTypeColor(incident.type)} cyan>
-              Incident Type: {incident.type}
+      {incidents.map((incident) => (
+        <InsetBox title={incident.timestamp} color="yellow">
+          <Line className={getTypeColor(incident.type)} cyan>
+            Incident Type: {incident.type}
+          </Line>
+          {Object.entries(incident.details).map(([key, value], detailIdx) => (
+            <Line key={detailIdx} smoke>
+              {key}: {value}
             </Line>
-            {Object.entries(incident.details).map(([key, value], detailIdx) => (
-              <Line key={detailIdx} smoke>
-                {key}: {value}
-              </Line>
-            ))}
-          </Section>
-          {idx < incidents.length - 1 && <Divider />}
-        </div>
+          ))}
+        </InsetBox>
       ))}
-
       {Boolean(children) && children}
     </>
   );

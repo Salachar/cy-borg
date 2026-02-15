@@ -511,25 +511,21 @@ export const CY_CITY_NETWORK = {
             <Line red pulse>⚠ Currently in corporate conflict with UCS</Line>
             <Line neon>Welcome to Alliansen corporate network</Line>
             <Line cyan>[PUBLIC ACCESS]</Line>
-            <Divider />
-            <Section title="ABOUT ALLIANSEN:">
+            <InsetBox title="ABOUT ALLIANSEN:">
               <Line neon>Real estate, security, entertainment, behavioral analytics</Line>
               <Line neon>Leasing infrastructure to half of Cy's SecOps divisions</Line>
               <Line neon>Controls most of the Borghold prison complex</Line>
-            </Section>
-            <Divider />
-            <Section title="FEATURED PROPERTIES:">
+            </InsetBox>
+            <InsetBox title="FEATURED PROPERTIES:">
               <Line cyan>→ Luxury apartments in South Central (starting at 50,000¤/month)</Line>
               <Line cyan>→ Commercial space in the Ports (SecOps-protected zones)</Line>
               <Line cyan>→ Entertainment venues (turnkey operations available)</Line>
-            </Section>
-            <Divider />
-            <Section title="SECURITY SERVICES:">
+            </InsetBox>
+            <InsetBox title="SECURITY SERVICES:">
               <Line yellow>Premium SecOps contracts available</Line>
               <Line yellow>Behavioral analytics for workplace optimization</Line>
               <Line yellow>Surveillance infrastructure (turnkey solutions)</Line>
-            </Section>
-            <Divider />
+            </InsetBox>
             <Line red>⚠ Currently engaged in corporate conflict with UCS</Line>
             <Line pink>"Building tomorrow's Cy, one district at a time."</Line>
           </CorpAd>
@@ -556,26 +552,22 @@ export const CY_CITY_NETWORK = {
             <Line smoke large>Now with 30% real fish in all protein bowls</Line>
             <Line neon>Accessing AST corporate network...</Line>
             <Line cyan>[CONSUMER ACCESS]</Line>
-            <Divider />
-            <Section title="ABOUT AST:">
+            <InsetBox title="ABOUT AST:">
               <Line neon>Leading fish/algae products, restaurants, submarine construction</Line>
               <Line neon>Gigantic processing plant in south Mosscroft</Line>
               <Line neon>Project lead for Undersjön construction</Line>
-            </Section>
-            <Divider />
-            <Section title="POPULAR PRODUCTS:">
+            </InsetBox>
+            <InsetBox title="POPULAR PRODUCTS:">
               <Line cyan>→ AST Fresh Protein Bowls (Now with 30% real fish!)</Line>
               <Line cyan>→ AlgaeBars™ - Nutrient-dense meal replacement</Line>
               <Line cyan>→ SynthSalmon™ - "Tastes almost like the real thing"</Line>
               <Line cyan>→ BioBrew™ - Energy drink made from ocean nutrients</Line>
-            </Section>
-            <Divider />
-            <Section title="DINING LOCATIONS:">
+            </InsetBox>
+            <InsetBox title="DINING LOCATIONS:">
               <Line yellow>15 AST Fresh locations across Cy</Line>
               <Line yellow>Now delivering via drone to Central and Ports</Line>
               <Line yellow>Submarine dining experiences available (Undersjön preview)</Line>
-            </Section>
-            <Divider />
+            </InsetBox>
             <Line pink>"The future is underwater. The future is AST."</Line>
           </CorpAd>
         ),
@@ -637,26 +629,22 @@ export const CY_CITY_NETWORK = {
           >
             <Line neon>Welcome to the Path of Transformation</Line>
             <Line cyan>[SEEKER ACCESS]</Line>
-            <Divider />
-            <Section title="ABOUT THE CHURCH:">
+            <InsetBox title="ABOUT THE CHURCH:">
               <Line neon>Religion, cerebral interfaces, egotech, medtech</Line>
               <Line neon>Megatemple in the Neon Pillar, North Central</Line>
               <Line neon>Promise of eternal singularity through mind-upload</Line>
-            </Section>
-            <Divider />
-            <Section title="SERVICES OFFERED:">
+            </InsetBox>
+            <InsetBox title="SERVICES OFFERED:">
               <Line cyan>→ Free personality scans (first session complimentary)</Line>
               <Line cyan>→ Ego-mapping consultations (determine upload readiness)</Line>
               <Line cyan>→ Neural interface installations (certified technicians)</Line>
               <Line cyan>→ Transformation ceremonies (packages starting at 5,000¤)</Line>
-            </Section>
-            <Divider />
-            <Section title="TESTIMONIALS:">
+            </InsetBox>
+            <InsetBox title="TESTIMONIALS:">
               <Line pink>"I feel closer to divinity every day." - Anonymous Devotee</Line>
               <Line pink>"My consciousness expanded beyond flesh." - Former Executive</Line>
               <Line pink>"The upload changed everything." - [DATA CORRUPTED]</Line>
-            </Section>
-            <Divider />
+            </InsetBox>
             <Warning>Upload success rates and ego continuance results not publicly disclosed</Warning>
             <Line yellow>"Transcend the meat. Embrace eternity."</Line>
           </CorpAd>
@@ -680,27 +668,23 @@ export const CY_CITY_NETWORK = {
           >
             <Line neon>Accessing Kaytell corporate systems...</Line>
             <Line cyan>[CONSUMER PORTAL]</Line>
-            <Divider />
-            <Section title="ABOUT KAYTELL:">
+            <InsetBox title="ABOUT KAYTELL:">
               <Line neon>Materials, production, construction, bio/cybertech</Line>
               <Line neon>Several large factories on Mosscroft</Line>
               <Line neon>150 years of continuous operation under Mr. Kaytell</Line>
-            </Section>
-            <Divider />
-            <Section title="PRODUCT LINES:">
+            </InsetBox>
+            <InsetBox title="PRODUCT LINES:">
               <Line cyan>→ Kaytell Home™ - Furniture, appliances, decor</Line>
               <Line cyan>→ Kaytell Fashion™ - Synthetic textiles, workwear</Line>
               <Line cyan>→ Kaytell Construction™ - Building materials, prefab units</Line>
               <Line cyan>→ Kaytell Bio™ - Basic cyberware, medical devices</Line>
-            </Section>
-            <Divider />
-            <Section title="EMPLOYMENT:">
+            </InsetBox>
+            <InsetBox title="EMPLOYMENT:">
               <Line yellow>Now hiring: Factory workers (all shifts, Mosscroft)</Line>
               <Line yellow>Starting pay: 800¤/month + company housing</Line>
               <Line yellow>Benefits: Medical coverage (Kaytell Bio facilities only)</Line>
               <Line red>Average injury rate: [REDACTED]</Line>
-            </Section>
-            <Divider />
+            </InsetBox>
             <Line pink>"If it's made, Kaytell made it first."</Line>
           </CorpAd>
         ),
@@ -723,26 +707,22 @@ export const CY_CITY_NETWORK = {
           >
             <Line neon>Welcome to Spectral Financial Services</Line>
             <Line cyan>[ACCOUNT ACCESS]</Line>
-            <Divider />
-            <Section title="ABOUT SPECTRAL FT:">
+            <InsetBox title="ABOUT SPECTRAL FT:">
               <Line neon>Financial services, real estate, infrastructure investment</Line>
               <Line neon>Headquarters in the Neon Pillar, North Central</Line>
               <Line neon>Focus on medtech sector investment opportunities</Line>
-            </Section>
-            <Divider />
-            <Section title="FINANCIAL PRODUCTS:">
+            </InsetBox>
+            <InsetBox title="FINANCIAL PRODUCTS:">
               <Line cyan>→ Personal checking accounts (minimum 5,000¤ balance)</Line>
               <Line cyan>→ High-yield savings (3% APY for balances over 50,000¤)</Line>
               <Line cyan>→ Investment portfolios (managed by AI advisors)</Line>
               <Line cyan>→ Real estate loans (competitive rates for qualified buyers)</Line>
-            </Section>
-            <Divider />
-            <Section title="CURRENT PROMOTIONS:">
+            </InsetBox>
+            <InsetBox title="CURRENT PROMOTIONS:">
               <Line yellow>New account bonus: 100¤ credit (terms apply)</Line>
               <Line yellow>Referral program: Earn 50¤ per new customer</Line>
               <Line yellow>Premium tier: Waived fees for 100,000¤+ accounts</Line>
-            </Section>
-            <Divider />
+            </InsetBox>
             <Line pink>"Building wealth. Building Cy. Building tomorrow."</Line>
           </CorpAd>
         ),
@@ -765,27 +745,23 @@ export const CY_CITY_NETWORK = {
           >
             <Line neon>Accessing UCS corporate network...</Line>
             <Line cyan>[PUBLIC ACCESS]</Line>
-            <Divider />
-            <Section title="ABOUT UCS:">
+            <InsetBox title="ABOUT UCS:">
               <Line neon>Security, weapontech, combat enhancers</Line>
               <Line neon>Headquarters in Citadel Tower, South Central</Line>
               <Line neon>Outfitting most of Cy's SecOps divisions</Line>
-            </Section>
-            <Divider />
-            <Section title="SECURITY SOLUTIONS:">
+            </InsetBox>
+            <InsetBox title="SECURITY SOLUTIONS:">
               <Line cyan>→ Personal protection services (armed detail available)</Line>
               <Line cyan>→ Home security systems (AI-monitored, armed response)</Line>
               <Line cyan>→ Corporate security contracts (customizable threat levels)</Line>
               <Line cyan>→ Automated weapon platforms (residential & commercial)</Line>
-            </Section>
-            <Divider />
-            <Section title="LATEST PRODUCTS:">
+            </InsetBox>
+            <InsetBox title="LATEST PRODUCTS:">
               <Line yellow>NEW: Sentinel™ Auto-Turret (home defense edition)</Line>
               <Line yellow>NEW: Guardian™ Combat Enhancer (legal for licensed security)</Line>
               <Line yellow>COMING SOON: Aegis™ Personal Shield Generator</Line>
-            </Section>
-            <Divider />
-            <Line red>⚠ Currently engaged in corporate conflict with Alliansen Inc.</Line>
+            </InsetBox>
+            <Line red>Currently engaged in corporate conflict with Alliansen Inc.</Line>
             <Line pink>"When safety matters, trust UCS."</Line>
           </CorpAd>
         ),
@@ -808,27 +784,23 @@ export const CY_CITY_NETWORK = {
           >
             <Line neon>Accessing celebrity lifestyle feed...</Line>
             <Line cyan>[PUBLIC ACCESS - ALL FEEDS]</Line>
-            <Divider />
-            <Section title="LATEST FROM T&D:">
+            <InsetBox title="LATEST FROM T&D:">
               <Line pink>→ Just announced: Merger with mystery partner (reveal in 48hrs!)</Line>
               <Line pink>→ New fashion line dropping next week (pre-order now)</Line>
               <Line pink>→ Club opening in Ports (VIP list already at capacity)</Line>
               <Line pink>→ Exclusive interview: "Why we're better than you" (premium access)</Line>
-            </Section>
-            <Divider />
-            <Section title="TRENDING POSTS:">
+            </InsetBox>
+            <InsetBox title="TRENDING POSTS:">
               <Line neon>• Photo dump from our yacht party (47k likes)</Line>
               <Line neon>• Rate our matching chrome upgrades (89k comments)</Line>
               <Line neon>• New sponsorship deal announced (mystery corp)</Line>
-            </Section>
-            <Divider />
-            <Section title="LIFESTYLE PRODUCTS:">
+            </InsetBox>
+            <InsetBox title="LIFESTYLE PRODUCTS:">
               <Line cyan>T&D Signature Fragrance: 450¤</Line>
               <Line cyan>Limited Edition Sunglasses: 890¤</Line>
               <Line cyan>Energy Drink Collab: 15¤ per can</Line>
               <Line yellow>"Live like us. Buy like us. Be like us (but not really)."</Line>
-            </Section>
-            <Divider />
+            </InsetBox>
             <Line pink>"Subscribe to premium for exclusive behind-the-scenes content!"</Line>
           </CorpAd>
         ),
@@ -852,51 +824,44 @@ export const CY_CITY_NETWORK = {
           >
             <Line neon>Accessing logistics network...</Line>
             <Line cyan>[PUBLIC PORTAL]</Line>
-            <Divider />
-            <Section title="ABOUT ROYAL WEST:">
+            <InsetBox title="ABOUT ROYAL WEST:">
               <Line neon>Global shipping, warehousing, retail distribution</Line>
               <Line neon>NordShip™ AI manages all operations (zero human error)</Line>
               <Line neon>Primary warehouse hub: Mosscroft industrial district</Line>
               <Line neon>Partnerships: Major retailers, corps, government contracts</Line>
-            </Section>
-            <Divider />
-            <Section title="SERVICES OFFERED:">
+            </InsetBox>
+            <InsetBox title="SERVICES OFFERED:">
               <Line cyan>→ Global freight shipping (air, sea, land, automated)</Line>
               <Line cyan>→ Warehouse storage solutions (short/long-term)</Line>
               <Line cyan>→ Last-mile delivery (drone, vehicle, water taxi)</Line>
               <Line cyan>→ Supply chain optimization (AI-powered forecasting)</Line>
               <Line cyan>→ Retail fulfillment (direct-to-consumer solutions)</Line>
-            </Section>
-            <Divider />
-            <Section title="SHIPPING RATES (Cy Local):">
+            </InsetBox>
+            <InsetBox title="SHIPPING RATES (Cy Local):">
               <KeyValue label="Standard (2-5 days)" value="15¤" />
               <KeyValue label="Express (1-2 days)" value="35¤" />
               <KeyValue label="Same-day (Central only)" value="80¤" />
               <KeyValue label="Drone delivery" value="+20¤ (restrictions apply)" />
               <Line yellow>* Slums deliveries subject to additional fees</Line>
-            </Section>
-            <Divider />
-            <Section title="TRACK YOUR SHIPMENT:">
+            </InsetBox>
+            <InsetBox title="TRACK YOUR SHIPMENT:">
               <Line neon>Enter tracking number: [_______________]</Line>
               <Line cyan>Real-time GPS tracking powered by NordShip™</Line>
               <Line yellow>Delivery notifications via RCD</Line>
-            </Section>
-            <Divider />
-            <Section title="WAREHOUSE SERVICES:">
+            </InsetBox>
+            <InsetBox title="WAREHOUSE SERVICES:">
               <Line cyan>Small locker (1m³): 50¤/month</Line>
               <Line cyan>Standard unit (10m³): 200¤/month</Line>
               <Line cyan>Large unit (50m³): 800¤/month</Line>
               <Line cyan>Climate-controlled: +40%</Line>
               <Line yellow>Security: 24/7 monitoring, biometric access</Line>
-            </Section>
-            <Divider />
-            <Section title="CAREER OPPORTUNITIES:">
+            </InsetBox>
+            <InsetBox title="CAREER OPPORTUNITIES:">
               <Line yellow>Now hiring: Warehouse operators (Mosscroft)</Line>
               <Line yellow>Starting: 750¤/month + overtime</Line>
               <Line yellow>Benefits: Medical coverage, company discounts</Line>
               <Line red>Note: All operations managed by NordShip AI (human oversight minimal)</Line>
-            </Section>
-            <Divider />
+            </InsetBox>
             <Line pink>"The world moves. We move it faster."</Line>
           </CorpAd>
         ),
@@ -920,47 +885,41 @@ export const CY_CITY_NETWORK = {
           >
             <Line neon>Accessing legal services portal...</Line>
             <Line cyan>[CONSULTATION REQUIRED]</Line>
-            <Divider />
-            <Section title="ABOUT THE FIRM:">
+            <InsetBox title="ABOUT THE FIRM:">
               <Line neon>Premier corporate law firm, established 2044</Line>
               <Line neon>Headquartered in The Neon Pillar, North Central</Line>
               <Line neon>Specialties: Corporate law, criminal defense, contract disputes</Line>
               <Line neon>Motto: "No paying client of ours ever goes to Borghold"</Line>
               <Line yellow>Track record: 94% acquittal rate for criminal cases</Line>
-            </Section>
-            <Divider />
-            <Section title="LEGAL SERVICES:">
+            </InsetBox>
+            <InsetBox title="LEGAL SERVICES:">
               <Line cyan>→ Corporate representation (mergers, acquisitions, disputes)</Line>
               <Line cyan>→ Criminal defense (white-collar, violent crimes, all charges)</Line>
               <Line cyan>→ Contract law (review, negotiation, breach litigation)</Line>
               <Line cyan>→ Regulatory compliance (corp law, environmental, labor)</Line>
               <Line cyan>→ Risk management consulting (pre-emptive legal strategy)</Line>
               <Line cyan>→ Litigation support (trial preparation, expert witnesses)</Line>
-            </Section>
-            <Divider />
-            <Section title="RETAINER PACKAGES:">
+            </InsetBox>
+            <InsetBox title="RETAINER PACKAGES:">
               <KeyValue label="Basic consultation" value="500¤ (1 hour)" />
               <KeyValue label="Standard retainer" value="5,000¤/month" />
               <KeyValue label="Premium retainer" value="20,000¤/month" />
               <KeyValue label="Crisis response" value="50,000¤+ (immediate deployment)" />
               <Line yellow>Payment plans available for qualified clients</Line>
               <Line red>Corporate accounts receive priority scheduling</Line>
-            </Section>
-            <Divider />
-            <Section title="RECENT VICTORIES:">
+            </InsetBox>
+            <InsetBox title="RECENT VICTORIES:">
               <Line pink>→ ACGS v. Alliansen Inc. - Contract upheld, 12M¤ settlement</Line>
               <Line pink>→ Executive murder trial - Full acquittal (self-defense)</Line>
               <Line pink>→ Kaytell regulatory violation - Charges dismissed</Line>
               <Line pink>→ UCS weapons trafficking - Reduced to misdemeanor fine</Line>
-            </Section>
-            <Divider />
-            <Section title="OUR ATTORNEYS:">
+            </InsetBox>
+            <InsetBox title="OUR ATTORNEYS:">
               <Line neon>Senior Partner: Ms. Gravf (Corporate law, 45 years)</Line>
               <Line neon>Senior Partner: Mr. Mellberg (Criminal defense, 38 years)</Line>
               <Line neon>Senior Partner: Dr. Tosk (Contract law, 42 years)</Line>
               <Line cyan>+ 47 associate attorneys across all specialties</Line>
-            </Section>
-            <Divider />
+            </InsetBox>
             <Warning>Legal advice is attorney-client privileged and confidential</Warning>
             <Line pink>"When the stakes are high, we don't lose."</Line>
           </CorpAd>

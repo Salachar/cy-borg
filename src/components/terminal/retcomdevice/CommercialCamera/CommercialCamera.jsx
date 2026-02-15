@@ -1,4 +1,10 @@
-import { Line, Divider, Section } from '@terminal/TerminalComponents';
+import {
+  Line,
+  Divider,
+  Section,
+  InsetBox,
+  Spacer,
+} from '@terminal/TerminalComponents';
 
 export default function CommercialCamera({
   location,
@@ -141,17 +147,14 @@ export default function CommercialCamera({
           </div>
         </div>
 
-        <Divider />
-
         {/* Coverage info */}
-        <Section title="COVERAGE AREA">
+        <InsetBox title="COVERAGE AREA">
           <Line neon>{coverage}</Line>
-        </Section>
+        </InsetBox>
 
         {/* Technical specifications grid */}
         {details.length > 0 && (
           <>
-            <Divider />
             <Section title="SPECIFICATIONS">
               <div style={{ display: 'grid', gap: '0.5rem' }}>
                 {details.map((detail, i) => (
@@ -189,7 +192,7 @@ export default function CommercialCamera({
         {/* Recent alerts */}
         {alerts.length > 0 && (
           <>
-            <Divider />
+            <Spacer />
             <Section title="RECENT ACTIVITY">
               {alerts.map((alert, i) => (
                 <div
@@ -227,7 +230,7 @@ export default function CommercialCamera({
         {/* Maintenance info */}
         {lastService && (
           <>
-            <Divider />
+            <Spacer />
             <div
               style={{
                 display: 'flex',

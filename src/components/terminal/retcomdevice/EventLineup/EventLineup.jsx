@@ -1,4 +1,10 @@
-import { Line, Divider, Section } from '@terminal/TerminalComponents';
+import {
+  Line,
+  Divider,
+  Section,
+  InsetBox,
+  Spacer,
+} from '@terminal/TerminalComponents';
 
 export default function EventLineup({
   venueName = "The Venue",
@@ -116,160 +122,155 @@ export default function EventLineup({
         {/* Live Performances */}
         {performances.length > 0 && (
           <>
-            <div style={{ marginTop: '1rem' }}>
-              <div
-                style={{
-                  fontSize: '0.875rem',
-                  fontWeight: 'bold',
-                  color: themeColor.secondary,
-                  marginBottom: '0.75rem',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.05em',
-                }}
-              >
-                ♫ Live Performances:
-              </div>
-
-              {performances.map((perf, i) => {
-                const isNow = isPerformanceNow(i);
-
-                return (
-                  <div
-                    key={i}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.75rem',
-                      padding: '0.5rem 0.75rem',
-                      marginBottom: '0.5rem',
-                      backgroundColor: isNow ? `${themeColor.primary}20` : 'rgba(51, 65, 85, 0.3)',
-                      border: isNow ? `1px solid ${themeColor.primary}` : '1px solid rgba(71, 85, 105, 0.5)',
-                      borderRadius: '3px',
-                      borderLeft: isNow ? `3px solid ${themeColor.primary}` : '3px solid transparent',
-                    }}
-                  >
-                    {/* Time */}
-                    <div
-                      style={{
-                        fontSize: '0.875rem',
-                        fontWeight: 'bold',
-                        color: isNow ? themeColor.primary : 'rgb(148, 163, 184)',
-                        fontFamily: 'monospace',
-                        minWidth: '50px',
-                      }}
-                    >
-                      {perf.time}
-                    </div>
-
-                    {/* Arrow */}
-                    <div
-                      style={{
-                        fontSize: '0.875rem',
-                        color: 'rgb(148, 163, 184)',
-                      }}
-                    >
-                      →
-                    </div>
-
-                    {/* Artist & Genre */}
-                    <div style={{ flex: 1 }}>
-                      <div
-                        style={{
-                          fontSize: '0.875rem',
-                          fontWeight: 'bold',
-                          color: isNow ? themeColor.primary : 'rgb(0, 255, 255)',
-                        }}
-                      >
-                        {perf.artist}
-                      </div>
-                      <div
-                        style={{
-                          fontSize: '0.75rem',
-                          color: 'rgb(148, 163, 184)',
-                          fontStyle: 'italic',
-                          marginTop: '0.15rem',
-                        }}
-                      >
-                        {perf.genre}
-                      </div>
-                    </div>
-
-                    {/* Status badge */}
-                    {isNow && (
-                      <div
-                        style={{
-                          fontSize: '0.65rem',
-                          fontWeight: 'bold',
-                          color: themeColor.primary,
-                          padding: '0.2rem 0.5rem',
-                          backgroundColor: `${themeColor.primary}30`,
-                          border: `1px solid ${themeColor.primary}`,
-                          borderRadius: '2px',
-                          textTransform: 'uppercase',
-                          animation: 'pulse 2s infinite',
-                        }}
-                      >
-                        Live Now
-                      </div>
-                    )}
-                    {perf.status && !isNow && (
-                      <div
-                        style={{
-                          fontSize: '0.65rem',
-                          fontWeight: 'bold',
-                          color: 'rgb(250, 204, 21)',
-                          padding: '0.2rem 0.5rem',
-                          backgroundColor: 'rgba(250, 204, 21, 0.2)',
-                          border: '1px solid rgb(250, 204, 21)',
-                          borderRadius: '2px',
-                          textTransform: 'uppercase',
-                        }}
-                      >
-                        {perf.status}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+            <Spacer />
+            <div
+              style={{
+                fontSize: '0.875rem',
+                fontWeight: 'bold',
+                color: themeColor.secondary,
+                marginBottom: '0.75rem',
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
+              }}
+            >
+              ♫ Live Performances:
             </div>
-            <Divider />
-          </>
-        )}
 
-        {/* Resident DJs */}
-        {djs.length > 0 && (
-          <>
-            <Section title="Resident DJs:" color="yellow">
-              {djs.map((dj, i) => (
+            {performances.map((perf, i) => {
+              const isNow = isPerformanceNow(i);
+
+              return (
                 <div
                   key={i}
                   style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '0.5rem',
-                    marginBottom: '0.35rem',
+                    gap: '0.75rem',
+                    padding: '0.5rem 0.75rem',
+                    marginBottom: '0.5rem',
+                    backgroundColor: isNow ? `${themeColor.primary}20` : 'rgba(51, 65, 85, 0.3)',
+                    border: isNow ? `1px solid ${themeColor.primary}` : '1px solid rgba(71, 85, 105, 0.5)',
+                    borderRadius: '3px',
+                    borderLeft: isNow ? `3px solid ${themeColor.primary}` : '3px solid transparent',
                   }}
                 >
-                  <span style={{ color: 'rgb(250, 204, 21)' }}>→</span>
-                  <span style={{ color: 'rgb(250, 204, 21)', fontWeight: 'bold' }}>{dj.name}</span>
-                  <span style={{ color: 'rgb(148, 163, 184)' }}>-</span>
-                  <span style={{ color: 'rgb(148, 163, 184)', fontStyle: 'italic' }}>{dj.genre}</span>
-                  {dj.note && (
-                    <span
+                  {/* Time */}
+                  <div
+                    style={{
+                      fontSize: '0.875rem',
+                      fontWeight: 'bold',
+                      color: isNow ? themeColor.primary : 'rgb(148, 163, 184)',
+                      fontFamily: 'monospace',
+                      minWidth: '50px',
+                    }}
+                  >
+                    {perf.time}
+                  </div>
+
+                  {/* Arrow */}
+                  <div
+                    style={{
+                      fontSize: '0.875rem',
+                      color: 'rgb(148, 163, 184)',
+                    }}
+                  >
+                    →
+                  </div>
+
+                  {/* Artist & Genre */}
+                  <div style={{ flex: 1 }}>
+                    <div
                       style={{
-                        color: 'rgb(79, 209, 197)',
-                        fontSize: '0.75rem',
-                        marginLeft: '0.5rem',
+                        fontSize: '0.875rem',
+                        fontWeight: 'bold',
+                        color: isNow ? themeColor.primary : 'rgb(0, 255, 255)',
                       }}
                     >
-                      ({dj.note})
-                    </span>
+                      {perf.artist}
+                    </div>
+                    <div
+                      style={{
+                        fontSize: '0.75rem',
+                        color: 'rgb(148, 163, 184)',
+                        fontStyle: 'italic',
+                        marginTop: '0.15rem',
+                      }}
+                    >
+                      {perf.genre}
+                    </div>
+                  </div>
+
+                  {/* Status badge */}
+                  {isNow && (
+                    <div
+                      style={{
+                        fontSize: '0.65rem',
+                        fontWeight: 'bold',
+                        color: themeColor.primary,
+                        padding: '0.2rem 0.5rem',
+                        backgroundColor: `${themeColor.primary}30`,
+                        border: `1px solid ${themeColor.primary}`,
+                        borderRadius: '2px',
+                        textTransform: 'uppercase',
+                        animation: 'pulse 2s infinite',
+                      }}
+                    >
+                      Live Now
+                    </div>
+                  )}
+                  {perf.status && !isNow && (
+                    <div
+                      style={{
+                        fontSize: '0.65rem',
+                        fontWeight: 'bold',
+                        color: 'rgb(250, 204, 21)',
+                        padding: '0.2rem 0.5rem',
+                        backgroundColor: 'rgba(250, 204, 21, 0.2)',
+                        border: '1px solid rgb(250, 204, 21)',
+                        borderRadius: '2px',
+                        textTransform: 'uppercase',
+                      }}
+                    >
+                      {perf.status}
+                    </div>
                   )}
                 </div>
-              ))}
-            </Section>
-            <Divider />
+              );
+            })}
           </>
+        )}
+
+        {/* Resident DJs */}
+        {djs.length > 0 && (
+          <InsetBox title="Resident DJs:" color="yellow">
+            {djs.map((dj, i) => (
+              <div
+                key={i}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  marginBottom: '0.35rem',
+                }}
+              >
+                <span style={{ color: 'rgb(250, 204, 21)' }}>→</span>
+                <span style={{ color: 'rgb(250, 204, 21)', fontWeight: 'bold' }}>{dj.name}</span>
+                <span style={{ color: 'rgb(148, 163, 184)' }}>-</span>
+                <span style={{ color: 'rgb(148, 163, 184)', fontStyle: 'italic' }}>{dj.genre}</span>
+                {dj.note && (
+                  <span
+                    style={{
+                      color: 'rgb(79, 209, 197)',
+                      fontSize: '0.75rem',
+                      marginLeft: '0.5rem',
+                    }}
+                  >
+                    ({dj.note})
+                  </span>
+                )}
+              </div>
+            ))}
+          </InsetBox>
         )}
 
         {/* Entry & Pricing */}

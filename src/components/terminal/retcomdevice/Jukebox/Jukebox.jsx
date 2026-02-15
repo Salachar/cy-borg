@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Line, Divider, Section } from '@terminal/TerminalComponents';
+import {
+  Line,
+  Divider,
+  Section,
+  InsetBox,
+} from '@terminal/TerminalComponents';
 import { getJukeboxTracks, getDefaultCost } from '@data/random/audioTracks';
 
 export default function Jukebox({
@@ -74,7 +79,7 @@ export default function Jukebox({
         <div style={{ display: 'flex', gap: '1.5rem', marginTop: '1rem' }}>
           {/* Left side - Song list */}
           <div style={{ flex: 1 }}>
-            <Section title="NOW PLAYING:">
+            <InsetBox title="NOW PLAYING:">
               {currentSong.title ? (
                 <>
                   <Line neon>Track: "{currentSong.title}"</Line>
@@ -85,9 +90,7 @@ export default function Jukebox({
               ) : (
                 <Line yellow>Select a song to play</Line>
               )}
-            </Section>
-
-            <Divider />
+            </InsetBox>
 
             <Section title="SONG SELECTION:">
               {displaySongs.map((song, i) => {

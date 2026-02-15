@@ -103,23 +103,20 @@ export const THE_INBETWEENS_DISTRICT = {
             ]}
             theme="casual"
           >
-            <Divider />
-            <Section title="WHAT'S ON OFFER:">
+            <InsetBox title="WHAT'S ON OFFER:">
               <Line cyan>• Mycobiotic meat steaks (10¤-25¤)</Line>
               <Line cyan>• Mystery meat skewers (5¤-15¤)</Line>
               <Line cyan>• "Fish" tacos (questionable origin, 8¤)</Line>
               <Line cyan>• Fungal burgers (12¤, actually not bad)</Line>
               <Line cyan>• Noodle bowls with "protein" (7¤)</Line>
-            </Section>
-            <Divider />
-            <Section title="THE STALLS (Currently Active):">
+            </InsetBox>
+            <InsetBox title="THE STALLS (Currently Active):">
               <Line neon>• Mama Kez's Grill - Best fungal burgers</Line>
               <Line neon>• The Wet Market - Mystery meats, don't ask</Line>
               <Line neon>• Skewer Station - Quick bites on the go</Line>
               <Line neon>• Uncle Cho's Noodles - Cheapest meal around</Line>
               <Line neon>• 2d6 other vendors (rotating daily)</Line>
-            </Section>
-            <Divider />
+            </InsetBox>
             <Line yellow bold>⚠ BUYER BEWARE:</Line>
             <Line smoke small>
               No guarantees on freshness, safety, or species of origin. Eat at your own risk.
@@ -150,31 +147,27 @@ export const THE_INBETWEENS_DISTRICT = {
             ]}
             theme="secure"
           >
-            <Divider />
-            <Section title="FACILITY OVERVIEW:">
+            <InsetBox title="FACILITY OVERVIEW:">
               <Line cyan>• Oldest sections: ~500 years old (pre-Incident)</Line>
               <Line cyan>• Medieval Cy architecture still standing</Line>
               <Line cyan>• New blocks constructed yearly (prison always growing)</Line>
               <Line cyan>• Current capacity: 12,000+ inmates</Line>
               <Line cyan>• Actual population: ~15,000 (overcrowded)</Line>
-            </Section>
-            <Divider />
-            <Section title="SURROUNDING NEIGHBORHOOD:">
+            </InsetBox>
+            <InsetBox title="SURROUNDING NEIGHBORHOOD:">
               <Line yellow>• Locals live in small villas and multi-family houses</Line>
               <Line yellow>• Community insular - view outsiders with suspicion</Line>
               <Line yellow>• Many families work at the prison (generational employment)</Line>
               <Line yellow>• "We know the city by whom we hold in cages"</Line>
-            </Section>
-            <Divider />
-            <Section title="PRISON BLOCKS (Known):">
+            </InsetBox>
+            <InsetBox title="PRISON BLOCKS (Known):">
               <Line neon>• Old Wing - Medieval cells, stone walls</Line>
               <Line neon>• Maximum Security - Violent offenders</Line>
               <Line neon>• Corporate Detention - White-collar crimes</Line>
               <Line neon>• Quarantine Block - Nano-infected inmates</Line>
               <Line neon>• Death Row - Capital punishment wing</Line>
               <Line neon>• New Construction - Blocks 12-15 (in progress)</Line>
-            </Section>
-            <Divider />
+            </InsetBox>
             <Line red bold>⚠ SECURITY NOTICE:</Line>
             <Line smoke small>
               This is a maximum security facility. Unauthorized access will result in immediate
