@@ -27,11 +27,6 @@ export const BodegaMainCamera = {
       '23:19 - Camera briefly loses signal',
       '23:21 - Signal restored, store empty',
     ],
-    blindSpots: [
-      'Back corner near refrigerators (blocked by shelving)',
-      'Storage room entrance (outside camera arc)',
-      'Area behind register counter (limited visibility)',
-    ],
     lastService: 'March 15, 2024',
   },
 };
@@ -56,11 +51,6 @@ export const WarehouseCamera = {
       '02:36 - Container 7B door ajar, guard unconscious nearby',
       '02:41 - Backup guards arrive, secure area',
     ],
-    blindSpots: [
-      'Between containers (narrow gaps create shadows)',
-      'North fence line (trees obstruct view)',
-      'Guard station interior (separate camera system)',
-    ],
     lastService: 'January 8, 2025',
   },
 };
@@ -82,11 +72,6 @@ export const CasinoCamera = {
       '23:30 - Maintenance crew cleans bar area',
       '00:05 - Unidentified individual lingers near manager office',
     ],
-    blindSpots: [
-      'Private booth seating (intentional privacy zones)',
-      'Restroom corridor (separate monitoring)',
-      'Upper mezzanine sections (different camera coverage)',
-    ],
     lastService: 'December 2, 2024',
   },
 };
@@ -107,11 +92,6 @@ export const ApartmentCamera = {
       '23:52 - Unknown person attempts door (locked)',
       '00:17 - Same person tests side entrance (also locked)',
     ],
-    blindSpots: [
-      'Stairwell landings (individual floor cameras)',
-      'Parking garage (separate system)',
-      'Service entrance (blind spot - pending camera install)',
-    ],
     lastService: 'November 20, 2024',
   },
 };
@@ -131,11 +111,6 @@ export const OfflineCamera = {
       '20:42 - ⚠ Camera feed becomes unstable',
       '20:45 - SIGNAL LOST (camera offline)',
       '20:46 - NO DATA AVAILABLE',
-    ],
-    blindSpots: [
-      'Deep alley sections (lighting insufficient)',
-      'Rooftop access points (outside range)',
-      'Adjacent building doorways (camera angle limitation)',
     ],
     lastService: 'October 5, 2024',
   },
@@ -160,11 +135,6 @@ export const DataCenterCamera = {
       '22:22 - Employee #4782 exits sector normally',
       '22:45 - Area secured, incident logged',
     ],
-    blindSpots: [
-      'Server rack interiors (physical access only)',
-      'HVAC maintenance crawlspaces',
-      'Executive terminal area (privacy shutters active)',
-    ],
     lastService: 'January 18, 2025',
   },
 };
@@ -186,11 +156,6 @@ export const StreetCamera = {
       '22:45 - Vehicle parks near pier entrance',
       '23:00 - Multiple figures exit vehicle',
       '23:15 - Vehicle departs rapidly',
-    ],
-    blindSpots: [
-      'Canal underpass areas (separate camera needed)',
-      'Building alcoves and doorways',
-      'Pier end sections (beyond camera range)',
     ],
     lastService: 'January 10, 2025',
   },
@@ -234,11 +199,6 @@ export const MaxSecurityCamera = {
       '23:31 - Response team deployed (ETA 4 minutes)',
       '23:34 - False alarm: Maintenance bot malfunction',
       '23:40 - All systems confirmed secure',
-    ],
-    blindSpots: [
-      'NONE - Full coverage with overlapping fields',
-      'Backup cameras cover all redundancies',
-      'AI-assisted blind spot elimination active',
     ],
     lastService: 'January 20, 2025 (daily inspection protocol)',
   },

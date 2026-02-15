@@ -686,12 +686,6 @@ export const WAREHOUSE_COMMANDS = {
                           "22:30 → Supervisor's vehicle arrives (late)",
                           "23:00-Present → No activity",
                         ]}
-                        blindSpots={[
-                          "Loading dock area (separate camera)",
-                          "East and south sides of building",
-                          "Warehouse interior",
-                        ]}
-                        lastService="1 week ago"
                       />
                     ),
                   },
@@ -713,12 +707,6 @@ export const WAREHOUSE_COMMANDS = {
                           "23:15 → Forklift moved to loading dock (routine)",
                           "23:30-Present → Minimal activity",
                         ]}
-                        blindSpots={[
-                          "Inside Secure Cargo area (separate closed system)",
-                          "Bathroom interiors",
-                          "Some corners behind large containers",
-                        ]}
-                        lastService="2 weeks ago"
                       />
                     ),
                   },
@@ -738,11 +726,6 @@ export const WAREHOUSE_COMMANDS = {
                           "23:00 → Security sweep completed, all clear",
                           "23:30-Present → Guards stationed, no movement",
                         ]}
-                        blindSpots={[
-                          "Electronics lab testing booth (privacy screen)",
-                          "Behind large storage containers",
-                        ]}
-                        lastService="3 days ago"
                       />
                     ),
                   },

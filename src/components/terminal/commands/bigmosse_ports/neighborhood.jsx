@@ -739,11 +739,6 @@ export const NEIGHBORHOOD_COMMANDS = {
               "Today, 12:00 → Mail carrier delivery",
               "Today, 15:45 → Maintenance worker entered (scheduled repair)",
             ]}
-            blindSpots={[
-              "Side entrance (emergency exit only)",
-              "Package locker area (partially blocked)",
-            ]}
-            lastService="3 months ago"
           />
         ),
       },

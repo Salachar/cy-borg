@@ -30,12 +30,6 @@ import { STEEL_PENTHOUSE_COMMANDS } from './steel_penthouse';
 import penthouseBlueprint from '@images/blueprints/steel_penthouse_2.png';
 import central_tower_atrium_cctv_image from '@images/locations/central_tower_atrium_cctv.png';
 
-// ============================================================================
-// CENTRAL PLAZA TOWER
-// 51 floors. Ground + Floor 2: open atrium (lobby + ChromeLux).
-// Floors 3-39: Residential. Floors 40-50: Penthouses. Floor 51: Management/Glass Gardens roof.
-// ============================================================================
-
 export const CENTRAL_PLAZA_TOWER_COMMANDS = {
   "Central Plaza Tower": {
     content: (
@@ -103,9 +97,9 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
           },
 
           "Atrium ATM": {
-            // mastermind: {
-            //   difficulty: 'easy',
-            // },
+            mastermind: {
+              difficulty: 'easy',
+            },
             content: (
               <ATM
                 id="atm-tower-lobby"
@@ -217,12 +211,12 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
               },
 
               "Management Portal": {
-                // password: {
-                //   pw: "chromelux2067",
-                //   hint: "Current year + company name",
-                //   difficulty: "easy",
-                //   content: <Locked theme="terminal" title="CHROMELUX STAFF PORTAL" />
-                // },
+                password: {
+                  pw: "chromelux2067",
+                  hint: "Current year + company name",
+                  difficulty: "easy",
+                  content: <Locked theme="terminal" title="CHROMELUX STAFF PORTAL" />
+                },
                 content: (
                   <MaintenanceAccess
                     title="[CHROMELUX — STAFF PORTAL]"
@@ -237,7 +231,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                       "Next delivery: Tomorrow 09:00 — Alliansen Inc. supply chain",
                     ]}
                   >
-                    <Divider />
                     <InsetBox title="TODAY'S SCHEDULE:">
                       <Line cyan>10:00 — Consultation (RESIDENT: 3201) — completed</Line>
                       <Line cyan>13:30 — Installation (RESIDENT: 1804) — completed</Line>
@@ -337,10 +330,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
         },
       },
 
-      // ========================================================================
-      // RESIDENT DIRECTORY (PUBLIC)
-      // ========================================================================
-
       "Resident Directory": {
         content: (
           <MaintenanceAccess
@@ -357,18 +346,12 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
               "Floors 40-50: Penthouse level"
             ]}
           >
-            <Divider />
             <InsetBox title="LISTED RESIDENTS (SELECTED):">
               <Line smoke small>Showing public listings only. 147 residents unlisted by request.</Line>
             </InsetBox>
           </MaintenanceAccess>
         ),
         related_commands: {
-
-          // ------------------------------------------------------------------
-          // UNIT 2204 - DR. NAKAMURA
-          // ------------------------------------------------------------------
-
           "Unit 2204 - Floor 22": {
             content: (
               <Tenet
@@ -385,10 +368,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
             ),
           },
 
-          // ------------------------------------------------------------------
-          // UNIT 1508 - RANDOM RESIDENT A
-          // ------------------------------------------------------------------
-
           "Unit 1508 - Floor 15": {
             content: (
               <Tenet
@@ -404,10 +383,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
             ),
           },
 
-          // ------------------------------------------------------------------
-          // UNIT 3302 - RANDOM RESIDENT B
-          // ------------------------------------------------------------------
-
           "Unit 3302 - Floor 33": {
             content: (
               <Tenet
@@ -422,10 +397,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
               />
             ),
           },
-
-          // ------------------------------------------------------------------
-          // STEEL JACKHAMMER'S PENTHOUSE
-          // ------------------------------------------------------------------
 
           "Unit 4201 - Floor 42": {
             content: (
@@ -447,10 +418,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
         },
       },
 
-      // ========================================================================
-      // TOWER MANAGEMENT (FLOOR 51)
-      // ========================================================================
-
       "Tower Management": {
         content: (
           <MaintenanceAccess
@@ -466,7 +433,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
               "Central maintenance and security coordination from this floor"
             ]}
           >
-            <Divider />
             <InsetBox title="FLOOR 51 FACILITIES:">
               <Line neon>• Building management offices</Line>
               <Line neon>• Security control center (monitors all 48 cameras)</Line>
@@ -493,7 +459,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                   "1 camera offline: Roof (scheduled maintenance)"
                 ]}
               >
-                <Divider />
                 <InsetBox title="RECENT ALERTS:">
                   <Line yellow>14:32 - High traffic to Unit 4201 continues (party day 3)</Line>
                   <Line yellow>12:15 - Roof camera offline (scheduled maintenance)</Line>
@@ -511,7 +476,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
               </MaintenanceAccess>
             ),
             related_commands: {
-
               "Floor 42 - Penthouse Hallway": {
                 content: (
                   <Camera
@@ -527,10 +491,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                       "14:25 → Food delivery, guards checked bags briefly",
                       "14:20 → Guards swapped out for break rotation",
                     ]}
-                    blindSpots={[
-                      "Interior of Unit 4201 (private)",
-                    ]}
-                    lastService="2 weeks ago"
                   />
                 ),
                 related_commands: {
@@ -547,7 +507,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                           "Unit 4201 entrance visible"
                         ]}
                       >
-                        <Divider />
                         <InsetBox title="CURRENT SCENE:">
                           <Line cyan>• Unit 4201 entrance clearly visible</Line>
                           <Line cyan>• Two guards stationed outside (private security, not building staff)</Line>
@@ -583,10 +542,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                       "Today, 11:20 → Maintenance worker entered (HVAC repair)",
                       "Today, 08:30 → Cleaning crew arrived",
                     ]}
-                    blindSpots={[
-                      "Side alley (partially obscured by dumpsters)",
-                    ]}
-                    lastService="2 weeks ago"
                   />
                 ),
                 related_commands: {
@@ -603,7 +558,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                           "Unguarded - monitored remotely only"
                         ]}
                       >
-                        <Divider />
                         <InsetBox title="CURRENT SCENE:">
                           <Line cyan>• Service entrance door closed and locked</Line>
                           <Line cyan>• Keycard reader visible (maintenance/delivery access)</Line>
@@ -636,7 +590,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                       "Covers: Roof access door and helipad approach"
                     ]}
                   >
-                    <Divider />
                     <InsetBox title="⚠ SECURITY BLIND SPOT:">
                       <Line red bold>Roof access currently unmonitored</Line>
                       <Line yellow>Door locked (keycard required) but no visual confirmation possible</Line>
@@ -732,7 +685,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                   "Covers: All building systems, lobby devices, management floor"
                 ]}
               >
-                <Divider />
                 <InsetBox title="ACCESSIBLE FROM HERE:">
                   <Line yellow>• Building security systems (cameras, access control)</Line>
                   <Line yellow>• Elevator and door controls</Line>
@@ -763,7 +715,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                       "Cards can be cloned with appropriate equipment"
                     ]}
                   >
-                    <Divider />
                     <InsetBox title="ACTIVE KEYCARDS:">
                       <Line yellow>MAINT-001: Carlos Rodriguez (Building maintenance - all floors)</Line>
                       <Line yellow>MAINT-002: Kim Lee (HVAC specialist - all floors)</Line>
@@ -819,7 +770,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                   "Building security contract: ChromeLux (atrium + lobby supplement)"
                 ]}
               >
-                <Divider />
                 <InsetBox title="FLOOR PLAN:">
                   <Line yellow>Ground + Floor 2: Open atrium (Lobby, ChromeLux)</Line>
                   <Line yellow>Floors 3-39: Residential (198 units)</Line>
@@ -905,7 +855,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                   "Pending: Filter replacement in 3 weeks"
                 ]}
               >
-                <Divider />
                 <InsetBox title="ZONE CONTROL:">
                   <Line neon>• Atrium (Ground + Floor 2)</Line>
                   <Line neon>• Residential Floors (3-39)</Line>
@@ -932,20 +881,15 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                   "Current open issues: 3"
                 ]}
               >
-                <Divider />
                 <InsetBox title="OPEN ISSUES:">
                   <Line yellow bold>MEDIUM - Roof camera offline</Line>
                   <Line yellow>Weather damage, technician scheduled, 2-day repair window</Line>
                   <Line yellow>Reported: Nov 15, 12:00</Line>
-
                   <Divider />
-
                   <Line cyan>LOW - HVAC filter replacement overdue (Floor 3-15 zone)</Line>
                   <Line cyan>Routine, 3 weeks out</Line>
                   <Line cyan>Reported: Nov 10</Line>
-
                   <Divider />
-
                   <Line cyan>LOW - Elevator 3 bearing noise</Line>
                   <Line cyan>Inspection pending, safe to use</Line>
                   <Line cyan>Reported: Nov 12</Line>
@@ -956,9 +900,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
         },
       },
 
-      // ========================================================================
-      // THE GLASS GARDENS (ROOF)
-      // ========================================================================
       ...GLASS_GARDENS_COMMANDS,
     },
   },
