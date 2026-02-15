@@ -1,27 +1,13 @@
 import {
   Line,
-  Section,
-  Divider,
   InsetBox,
 } from '@terminal/TerminalComponents';
 
 import {
-  ATM,
-  Camera,
   CCTV,
-  Extractable,
-  FacilityPortal,
   MaintenanceAccess,
   Menu,
-  NetworkDevices,
-  PersonnelFile,
-  PrivateHub,
-  PublicPortal,
-  RetComImage,
-  Safe,
-  SecureAccessControl,
-  Tenet,
-  VendingMachine,
+  PrivatePortal,
   VIPList,
 } from '@terminal/retcomdevice';
 
@@ -201,11 +187,11 @@ export const GLASS_GARDENS_COMMANDS = {
       },
 
       "Internal Access": {
-        // password: {
-        //   pw: "lattice",
-        //   hint: "The name of the members club",
-        //   hintStrength: 1,
-        // },
+        password: {
+          pw: "lattice",
+          hint: "The name of the members club",
+          hintStrength: 1,
+        },
         content: (
           <MaintenanceAccess
             title="[GLASS GARDENS — INTERNAL ACCESS]"
@@ -269,7 +255,7 @@ export const GLASS_GARDENS_COMMANDS = {
 
       "Crystal Lattice": {
         content: (
-          <PrivateHub
+          <PrivatePortal
             networkId="CRYSTAL_LATTICE"
             name="Crystal Lattice"
             location="The Glass Gardens — Central Plaza Tower"

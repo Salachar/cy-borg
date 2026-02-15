@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { Line, Divider, Section, InsetBox } from '@terminal/TerminalComponents';
-import Extractable from '../Extractable/Extractable';
+import Extractable from '../../Extractable/Extractable';
 
 export default function ArcadeCabinet({
   id,

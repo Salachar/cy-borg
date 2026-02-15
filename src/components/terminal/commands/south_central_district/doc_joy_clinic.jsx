@@ -166,12 +166,12 @@ export const DOC_JOY_CLINIC_COMMANDS = {
         ),
         related_commands: {
           "Maintenance Panel": {
-            // password: {
-            //   pw: "restock",
-            //   hint: "What you do when inventory runs low",
-            //   difficulty: "medium",
-            //   content: <Locked theme="terminal" title="VENDING MAINTENANCE" />
-            // },
+            password: {
+              pw: "restock",
+              hint: "What you do when inventory runs low",
+              difficulty: "medium",
+              content: <Locked theme="terminal" title="VENDING MAINTENANCE" />
+            },
             content: (
               <MaintenanceAccess
                 title="[VENDING MACHINE MAINTENANCE]"
@@ -205,12 +205,12 @@ export const DOC_JOY_CLINIC_COMMANDS = {
       },
 
       "Internal Systems": {
-        // password: {
-        //   pw: "reaper_work",
-        //   hint: "What Doc Joy calls his specialty contract jobs (check services menu)",
-        //   difficulty: "medium",
-        //   content: <Locked theme="terminal" title="STAFF ACCESS" />
-        // },
+        password: {
+          pw: "reaperwork",
+          hint: "What Doc Joy calls his specialty contract jobs (check services menu)",
+          difficulty: "medium",
+          content: <Locked theme="terminal" title="STAFF ACCESS" />
+        },
         content: (
           <MaintenanceAccess
             title="Doc Joy's Clinic"
@@ -385,12 +385,12 @@ export const DOC_JOY_CLINIC_COMMANDS = {
           },
 
           "CyberWare Lockbox": {
-            // password: {
-            //   pw: "prototype",
-            //   hint: "What was stolen from the lab",
-            //   difficulty: "medium",
-            //   content: <Locked theme="vault" title="SECURE STORAGE" />
-            // },
+            password: {
+              pw: "prototype",
+              hint: "What was stolen from the lab",
+              difficulty: "medium",
+              content: <Locked theme="vault" title="SECURE STORAGE" />
+            },
             content: (
               <Extractable
                 id="docjoy-lab-storage"
@@ -428,12 +428,12 @@ export const DOC_JOY_CLINIC_COMMANDS = {
           },
 
           "MedCryo Storage": {
-            // password: {
-            //   pw: "pharmacy_2067",
-            //   hint: "Standard medical storage password format: pharmacy_[year]",
-            //   difficulty: "medium",
-            //   content: <Locked theme="safe" title="MEDICAL STORAGE" />
-            // },
+            password: {
+              pw: "pharmacy_2067",
+              hint: "Standard medical storage password format: pharmacy_[year]",
+              difficulty: "medium",
+              content: <Locked theme="safe" title="MEDICAL STORAGE" />
+            },
             content: (
               <SmartFridge
                 id="docjoy-medical-fridge"
@@ -496,12 +496,12 @@ export const DOC_JOY_CLINIC_COMMANDS = {
             ),
           },
           "Office Workstation": {
-            // password: {
-            //   pw: "reaperdoc",
-            //   hint: "What Doc Joy's profession is called",
-            //   difficulty: "easy",
-            //   content: <Locked theme="terminal" title="OFFICE COMPUTER" />
-            // },
+            password: {
+              pw: "reaperdoc",
+              hint: "What Doc Joy's profession is called",
+              difficulty: "easy",
+              content: <Locked theme="terminal" title="OFFICE COMPUTER" />
+            },
             content: (
               <Workstation
                 owner="Doc Joy"

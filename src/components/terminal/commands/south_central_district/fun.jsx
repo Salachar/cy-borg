@@ -1,6 +1,5 @@
 import {
   Line,
-  Section,
   Divider,
   InsetBox,
 } from '@terminal/TerminalComponents';
@@ -18,10 +17,6 @@ import {
 } from "@terminal/retcomdevice"
 
 export const SOUTH_CENTRAL_FUN_COMMANDS = {
-  // ============================================================================
-  // GRAVE/MELLBERG/TOSK - MOBSTER LAW FIRM
-  // ============================================================================
-
   "Gravf|Mellberg|Tosk Law Offices": {
     content: (
       <FacilityPortal
@@ -42,34 +37,27 @@ export const SOUTH_CENTRAL_FUN_COMMANDS = {
         ]}
         theme="corporate"
       >
-        <Divider />
-        <Section title="FIRM OVERVIEW:">
+        <InsetBox title="FIRM OVERVIEW:">
           <Line neon bold>The most feared law firm in South Central</Line>
           <Line cyan>• Specialization: Criminal defense, corporate litigation</Line>
           <Line cyan>• Reputation: Never lose (because witnesses disappear)</Line>
           <Line cyan>• Clientele: Organized crime, corrupt corps, wealthy criminals</Line>
           <Line cyan>• Success rate: 98% (cases dismissed or won)</Line>
           <Line cyan>• Known for: Making evidence vanish, witness intimidation</Line>
-        </Section>
-        <Divider />
-        <Section title="THE PARTNERS:">
+        </InsetBox>
+        <InsetBox title="THE PARTNERS:">
           <Line yellow bold>Marcus Grave:</Line>
           <Line yellow>• Senior partner, former prosecutor turned defense</Line>
           <Line yellow>• Specializes in making murder charges disappear</Line>
-
           <Divider />
-
           <Line yellow bold>Helena Mellberg:</Line>
           <Line yellow>• Corporate litigation expert</Line>
           <Line yellow>• Has dirt on every judge in Central District</Line>
-
           <Divider />
-
           <Line yellow bold>Viktor Tosk:</Line>
           <Line yellow>• Former mob enforcer with law degree</Line>
           <Line yellow>• Handles "delicate negotiations"</Line>
-        </Section>
-        <Divider />
+        </InsetBox>
         <Line smoke small>
           They say if you can afford Grave/Mellberg/Tosk, you can afford to get away with murder.
           They're not wrong.
@@ -150,10 +138,6 @@ export const SOUTH_CENTRAL_FUN_COMMANDS = {
     },
   },
 
-  // ============================================================================
-  // UNDERSJON - UNDERWATER RETAIL PARK
-  // ============================================================================
-
   "Undersjon Retail Park": {
     content: (
       <PublicPortal
@@ -172,46 +156,35 @@ export const SOUTH_CENTRAL_FUN_COMMANDS = {
         ]}
         theme="fancy"
       >
-        <Divider />
-        <Section title="RETAIL PARK OVERVIEW:">
+        <InsetBox title="RETAIL PARK OVERVIEW:">
           <Line cyan>• Location: Beneath Lake Gravel (between North/South Central)</Line>
           <Line cyan>• Size: 15 city blocks (underwater)</Line>
           <Line cyan>• Stores: 300+ luxury retailers</Line>
           <Line cyan>• Status: Always expanding (construction never stops)</Line>
           <Line cyan>• Access: Underwater tunnels, submersible taxi service</Line>
-        </Section>
-        <Divider />
-        <Section title="NOTABLE STORES:">
+        </InsetBox>
+        <InsetBox title="NOTABLE STORES:">
           <Line neon>• Tulles&deVerte Flagship (celebrity fashion empire)</Line>
           <Line neon>• ChromeLux (premium cyberware boutique)</Line>
           <Line neon>• Spectral Banking Center (underwater branch)</Line>
           <Line neon>• The Aquarium Restaurant ($$$$)</Line>
           <Line neon>• Idol Coffins Pop-Up (changes location monthly)</Line>
           <Line neon>• 295+ other luxury retailers</Line>
-        </Section>
-        <Divider />
-        <Section title="UNIQUE FEATURES:">
+        </InsetBox>
+        <InsetBox title="UNIQUE FEATURES:">
           <Line yellow>• Floor-to-ceiling aquarium walls (Lake Gravel visible)</Line>
           <Line yellow>• Holographic fish swimming through corridors</Line>
           <Line yellow>• Construction zones randomly close sections (always shifting)</Line>
           <Line yellow>• Premium oxygen filtration (better air than outside)</Line>
           <Line yellow>• Water leaks common but "adds to the ambiance"</Line>
-        </Section>
-        <Divider />
+        </InsetBox>
         <Line smoke small>
           Shopping as religion. Consume or be consumed. The construction never stops because
           capitalism never stops. Lake Gravel occasionally leaks through the ceiling.
         </Line>
       </PublicPortal>
     ),
-    related_commands: {
-      // Individual stores could go here
-    },
   },
-
-  // ============================================================================
-  // THE GOLDEN RATIO - EXECUTIVE FITNESS CLUB
-  // ============================================================================
 
   "The Golden Ratio": {
     content: (
@@ -235,29 +208,23 @@ export const SOUTH_CENTRAL_FUN_COMMANDS = {
           hours="05:00 - 23:00"
           days="Every Day"
         />
-        <Divider />
-        <Section title="MEMBERSHIP TIERS:">
+        <InsetBox title="MEMBERSHIP TIERS:">
           <Line yellow bold>PLATINUM: 50,000¤/year</Line>
           <Line yellow>• Full club access, personal trainer (3x/week)</Line>
           <Line yellow>• Spa services, nutrition consultation</Line>
           <Line yellow>• Private locker, complimentary towel service</Line>
-
           <Divider />
-
           <Line neon bold>DIAMOND: 100,000¤/year</Line>
           <Line neon>• All Platinum benefits</Line>
           <Line neon>• Private training suite, cryotherapy chamber access</Line>
           <Line neon>• Weekly massage, personalized meal prep service</Line>
-
           <Divider />
-
           <Line cyan bold>OLYMPUS: 250,000¤/year (Limited to 50 members)</Line>
           <Line cyan>• All Diamond benefits</Line>
           <Line cyan>• Exclusive rooftop gym with city views</Line>
           <Line cyan>• Personal physician on call, experimental chrome consultations</Line>
           <Line cyan>• Access to private lounge with full bar</Line>
-        </Section>
-        <Divider />
+        </InsetBox>
         <Line smoke small>
           Your body is your temple. Make sure it's expensive enough to keep the poor people out.
         </Line>
@@ -265,12 +232,12 @@ export const SOUTH_CENTRAL_FUN_COMMANDS = {
     ),
     related_commands: {
       "Member Directory": {
-        // password: {
-        //   pw: "olympus",
-        //   hint: "The highest membership tier",
-        //   difficulty: "medium",
-        //   content: <Locked theme="terminal" title="MEMBER RECORDS" />
-        // },
+        password: {
+          pw: "olympus",
+          hint: "The highest membership tier",
+          difficulty: "medium",
+          content: <Locked theme="terminal" title="MEMBER RECORDS" />
+        },
         content: (
           <MaintenanceAccess
             title="[MEMBER DIRECTORY]"
@@ -285,7 +252,6 @@ export const SOUTH_CENTRAL_FUN_COMMANDS = {
               "Celebrity members: 23 confirmed"
             ]}
           >
-            <Divider />
             <InsetBox title="NOTABLE MEMBERS:">
               <Line neon>• 12 corporate CEOs</Line>
               <Line neon>• 8 killmatch athletes (including Steel Jackhammer - Platinum)</Line>
@@ -304,12 +270,12 @@ export const SOUTH_CENTRAL_FUN_COMMANDS = {
       },
 
       "Locker Room Safe": {
-        // password: {
-        //   pw: "platinum",
-        //   hint: "The most common membership tier",
-        //   difficulty: "easy",
-        //   content: <Locked theme="safe" title="MEMBER LOCKER" />
-        // },
+        password: {
+          pw: "platinum",
+          hint: "The most common membership tier",
+          difficulty: "easy",
+          content: <Locked theme="safe" title="MEMBER LOCKER" />
+        },
         content: (
           <Safe
             id="goldenratio-locker-447"
@@ -350,10 +316,6 @@ export const SOUTH_CENTRAL_FUN_COMMANDS = {
       },
     },
   },
-
-  // ============================================================================
-  // SHAFT & PISTON - SERVICE WORKERS BAR
-  // ============================================================================
 
   "Shaft & Piston": {
     content: (
@@ -458,12 +420,12 @@ export const SOUTH_CENTRAL_FUN_COMMANDS = {
       },
 
       "Bar Safe": {
-        // password: {
-        //   pw: "union",
-        //   hint: "What the workers at this bar believe in",
-        //   difficulty: "easy",
-        //   content: <Locked theme="safe" title="BAR SAFE" />
-        // },
+        password: {
+          pw: "union",
+          hint: "What the workers at this bar believe in",
+          difficulty: "easy",
+          content: <Locked theme="safe" title="BAR SAFE" />
+        },
         content: (
           <Safe
             id="shaft-piston-safe"
@@ -507,10 +469,6 @@ export const SOUTH_CENTRAL_FUN_COMMANDS = {
     },
   },
 
-  // ============================================================================
-  // UCS SECORPS STATION
-  // ============================================================================
-
   "UCS SecCorps Station #7": {
     content: (
       <FacilityPortal
@@ -531,46 +489,36 @@ export const SOUTH_CENTRAL_FUN_COMMANDS = {
         ]}
         theme="secure"
       >
-        <Divider />
-        <Section title="STATION OVERVIEW:">
+        <InsetBox title="STATION OVERVIEW:">
           <Line neon bold>One of 12 competing SecCorps in Central District</Line>
           <Line cyan>• Jurisdiction: South Central (street level to mid-rise)</Line>
           <Line cyan>• Personnel: 47 officers (3 shifts, 15-16 per shift)</Line>
           <Line cyan>• Equipment: Lethal weapons, armored vehicles, drones</Line>
           <Line cyan>• Funding: Corporate contracts + protection fees</Line>
-        </Section>
-        <Divider />
-        <Section title="SERVICE TIERS:">
+        </InsetBox>
+        <InsetBox title="SERVICE TIERS:">
           <Line yellow bold>PLATINUM CONTRACT: 10,000¤/month</Line>
           <Line yellow>• Response time: ~2 minutes</Line>
           <Line yellow>• Armed response team (4 officers minimum)</Line>
           <Line yellow>• Property protection, personal security details available</Line>
-
           <Divider />
-
           <Line neon bold>GOLD CONTRACT: 5,000¤/month</Line>
           <Line neon>• Response time: ~5 minutes</Line>
           <Line neon>• Standard patrol response (2 officers)</Line>
-
           <Divider />
-
           <Line cyan bold>SILVER CONTRACT: 2,000¤/month</Line>
           <Line cyan>• Response time: ~15 minutes (if available)</Line>
           <Line cyan>• Single officer response</Line>
-
           <Divider />
-
           <Line red bold>NO CONTRACT: Not our problem</Line>
           <Line red>• Response time: Never</Line>
           <Line red>• SecCorps will NOT respond to calls from non-clients</Line>
-        </Section>
-        <Divider />
-        <Section title="COMPETING JURISDICTIONS:">
+        </InsetBox>
+        <InsetBox title="COMPETING JURISDICTIONS:">
           <Line red>UCS vs. 11 other SecCorps in Central District</Line>
           <Line red>Turf wars common - jurisdictional disputes turn violent</Line>
           <Line red>Contracts signed in blood (metaphorically, usually)</Line>
-        </Section>
-        <Divider />
+        </InsetBox>
         <Line smoke small>
           Your safety is our business. Literally. No contract? No protection.
           Welcome to private law enforcement.
@@ -579,12 +527,12 @@ export const SOUTH_CENTRAL_FUN_COMMANDS = {
     ),
     related_commands: {
       "Duty Roster": {
-        // password: {
-        //   pw: "secops",
-        //   hint: "What the security personnel are called",
-        //   difficulty: "easy",
-        //   content: <Locked theme="terminal" title="DUTY ROSTER" />
-        // },
+        password: {
+          pw: "secops",
+          hint: "What the security personnel are called",
+          difficulty: "easy",
+          content: <Locked theme="terminal" title="DUTY ROSTER" />
+        },
         content: (
           <MaintenanceAccess
             title="[DUTY ROSTER - CURRENT SHIFT]"
@@ -599,7 +547,6 @@ export const SOUTH_CENTRAL_FUN_COMMANDS = {
               "Dispatcher: 2 on duty"
             ]}
           >
-            <Divider />
             <InsetBox title="PATROL UNITS (ACTIVE):">
               <Line neon>UNIT 1: Officers Chen & Rodriguez (Sector A patrol)</Line>
               <Line neon>UNIT 2: Officers Kim & Foster (Sector B patrol)</Line>
@@ -621,12 +568,12 @@ export const SOUTH_CENTRAL_FUN_COMMANDS = {
       },
 
       "Evidence Locker": {
-        // password: {
-        //   pw: "evidence",
-        //   hint: "What's stored in this room",
-        //   difficulty: "medium",
-        //   content: <Locked theme="vault" title="EVIDENCE STORAGE" />
-        // },
+        password: {
+          pw: "evidence",
+          hint: "What's stored in this room",
+          difficulty: "medium",
+          content: <Locked theme="vault" title="EVIDENCE STORAGE" />
+        },
         content: (
           <MaintenanceAccess
             title="[EVIDENCE LOCKER]"
@@ -641,7 +588,6 @@ export const SOUTH_CENTRAL_FUN_COMMANDS = {
               "Items mysteriously disappear sometimes"
             ]}
           >
-            <Divider />
             <InsetBox title="CURRENT INVENTORY:">
               <Line neon>Case #2847: Stolen credchip (12,000¤ value) - Awaiting trial</Line>
               <Line neon>Case #2848: Illegal firearm (9mm pistol, serial filed) - Pending</Line>

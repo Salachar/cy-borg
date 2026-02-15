@@ -1,53 +1,53 @@
-import ArcadeCabinet from "./ArcadeCabinet/ArcadeCabinet";
+import ArcadeCabinet from "./Devices/ArcadeCabinet/ArcadeCabinet";
 import ATM from "./ATM/ATM";
 import BiometricRecognition from "./BiometricRecognition/BiometricRecognition";
 import BountyCard from "./BountyCard/BountyCard";
 import Briefing from "./Briefing/Briefing";
 import Camera from "./Camera/Camera";
 import CCTV from "./Camera/CCTV";
-import CoffeeMachine from "./CoffeeMachine/CoffeeMachine";
-import CommercialCamera from "./CommercialCamera/CommercialCamera";
+import CoffeeMachine from "./Devices/CoffeeMachine/CoffeeMachine";
+import CommercialCamera from "./Camera/CommercialCamera";
 import CommunityBoard from "./CommunityBoard/CommunityBoard";
 import CorpAd from "./CorpAd/CorpAd";
 import CySports from "./CySports/CySports";
 import CyWeather from "./CyWeather/CyWeather";
-import DigitalWallet from "./DigitalWallet/DigitalWallet";
-import DistrictPortal from "./DistrictPortal/DistrictPortal";
+import DigitalWallet from "./Extractable/DigitalWallet";
+import DistrictPortal from "./Portals/DistrictPortal";
 import EncryptedMessage from "./EncryptedMessage/EncryptedMessage";
 import EventFeed from "./EventFeed/EventFeed";
 import EventLineup from "./EventLineup/EventLineup";
 import Extractable from "./Extractable/Extractable";
 import FacilityPortal from "./Portals/FacilityPortal";
-import GameConsole from "./GameConsole/GameConsole";
-import HistoryEntryWrapper from "./HistoryEntryWrapper/HistoryEntryWrapper";
+import GameConsole from "./Devices/GameConsole/GameConsole";
+import HistoryEntryWrapper from "./Basic/HistoryEntryWrapper/HistoryEntryWrapper";
 import HoursBanner from "./HoursBanner/HoursBanner";
-import IceBreaker from "./IceBreaker/IceBreaker";
+import IceBreaker from "./Blockers/IceBreaker/IceBreaker";
 import IncidentLog from "./IncidentLog/IncidentLog";
-import Jukebox from "./Jukebox/Jukebox";
-import LiveCameraFeed from "./LiveCameraFeed/LiveCameraFeed";
+import Jukebox from "./Devices/Jukebox/Jukebox";
+import LiveCameraFeed from "./Camera/LiveCameraFeed";
 import LocalAd from "./LocalAd/LocalAd";
-import Locked from "./Locked/Locked";
+import Locked from "./Blockers/Locked/Locked";
 import MaintenanceAccess from "./MaintenanceAccess/MaintenanceAccess";
-import MastermindHack from "./MastermindHack/MastermindHack";
+import MastermindHack from "./Blockers/MastermindHack/MastermindHack";
 import Menu from "./Menu/Menu";
-import Message from "./Message/Message";
+import Message from "./Basic/Message/Message";
 import NetworkDevices from "./NetworkDevices/NetworkDevices";
 import NetworkTrafficMonitor from "./NetworkTrafficMonitor/NetworkTrafficMonitor";
-import PasswordPrompt from "./PasswordPrompt/PasswordPrompt";
+import PasswordPrompt from "./Blockers/PasswordPrompt/PasswordPrompt";
 import PersonnelFile from "./PersonnelFile/PersonnelFile";
-import PrivateHub from "./Portals/PrivateHub";
+import PrivatePortal from "./Portals/PrivatePortal";
 import PublicPortal from "./Portals/PublicPortal";
-import Radio from "./Radio/Radio";
+import Radio from "./Devices/Radio/Radio";
 import RCDAlert from "./RCDAlert/RCDAlert";
-import RelatedCommands from "./RelatedCommands/RelatedCommands";
+import RelatedCommands from "./Basic/RelatedCommands/RelatedCommands";
 import RetComImage from "./Images/RetComImage";
 import RoomAccess from "./MaintenanceAccess/RoomAccess";
-import Safe from "./Safe/Safe";
+import Safe from "./Extractable/Safe";
 import SecureAccessControl from "./SecureAccessControl/SecureAccessControl";
 import ShiftSchedule from "./ShiftSchedule/ShiftSchedule";
-import SmartFridge from "./SmartFridge/SmartFridge";
+import SmartFridge from "./Devices/SmartFridge/SmartFridge";
 import Tenet from "./Tenet/Tenet";
-import VendingMachine from "./VendingMachine/VendingMachine";
+import VendingMachine from "./Devices/VendingMachine/VendingMachine";
 import VIPList from "./VIPList/VIPList";
 import Workstation from "./Workstation/Workstation";
 
@@ -89,7 +89,7 @@ export {
   NetworkTrafficMonitor,
   PasswordPrompt,
   PersonnelFile,
-  PrivateHub,
+  PrivatePortal,
   PublicPortal,
   Radio,
   RCDAlert,

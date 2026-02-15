@@ -39,6 +39,7 @@ export default function HistoryEntryWrapper({
   onRemove,
   collapsedState,
 }) {
+  console.log(collapsedState)
   const [isCollapsed, setIsCollapsed] = collapsedState || useState(false);
 
   const handleCollapse = () => {

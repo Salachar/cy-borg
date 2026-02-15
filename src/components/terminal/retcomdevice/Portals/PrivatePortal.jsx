@@ -1,5 +1,5 @@
 /**
- * PrivateHub - Private members network hub
+ * PrivatePortal - Private members network hub
  *
  * A themed shell for high-end private networks. The component provides
  * the ambient "you're in the room" feeling - presence, tickers, notices.
@@ -17,7 +17,7 @@
 
 const THEMES = {
   crystal: {
-    primary: 'rgb(186, 230, 253)',       // ice blue
+    primary: 'rgb(186, 230, 253)',
     secondary: 'rgba(186, 230, 253, 0.5)',
     dim: 'rgba(186, 230, 253, 0.25)',
     bg: 'rgba(8, 12, 20, 0.97)',
@@ -50,7 +50,7 @@ const THEMES = {
   },
 };
 
-export default function PrivateHub({
+export default function PrivatePortal({
   networkId = "PRIVATE_HUB",
   name = "Private Network",
   location = "",

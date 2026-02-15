@@ -1,7 +1,6 @@
 import {
   Box,
   Line,
-  Section,
   Divider,
   KeyValue,
   InsetBox,

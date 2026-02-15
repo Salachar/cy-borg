@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Line, Divider, Spacer } from '@terminal/TerminalComponents';
+import { Line, Spacer } from '@terminal/TerminalComponents';
 
 export default function DistrictPortal({
   districtName,

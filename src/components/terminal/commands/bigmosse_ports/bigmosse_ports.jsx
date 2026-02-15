@@ -1,8 +1,6 @@
 import {
   InsetBox,
   Line,
-  Divider,
-  Section,
 } from '@terminal/TerminalComponents';
 import {
   DistrictPortal,

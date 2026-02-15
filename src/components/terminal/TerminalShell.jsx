@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TerminalHeader from './retcomdevice/TerminalHeader/TerminalHeader';
+import TerminalHeader from './retcomdevice/Basic/TerminalHeader/TerminalHeader';
 
 const COLORS = {
   // Background colors

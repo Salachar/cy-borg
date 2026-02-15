@@ -1,8 +1,6 @@
 import {
   Line,
-  Section,
   Divider,
-  DataTable,
   InsetBox,
 } from '@terminal/TerminalComponents';
 import {

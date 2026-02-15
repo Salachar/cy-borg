@@ -1,4 +1,7 @@
-import { Line, Section, Divider, InsetBox } from '@terminal/TerminalComponents';
+import {
+  Line,
+  InsetBox,
+} from '@terminal/TerminalComponents';
 import { PublicPortal, FacilityPortal } from '@terminal/retcomdevice';
 
 export const IDOL_COFFINS_HOTEL = {

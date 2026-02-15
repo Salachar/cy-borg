@@ -1,7 +1,5 @@
 import {
   Line,
-  Section,
-  Divider,
   InsetBox,
 } from '@terminal/TerminalComponents';
 import {

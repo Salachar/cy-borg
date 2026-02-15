@@ -2,13 +2,11 @@ import React from 'react';
 
 import {
   Line,
-  Section,
-  Divider,
   InsetBox,
 } from '@terminal/TerminalComponents';
 
-import List from '@terminal/retcomdevice/List/List';
-import TerminalWallet from '@terminal/retcomdevice/TerminalWallet/TerminalWallet'
+import List from '@terminal/retcomdevice/Basic/List/List';
+import TerminalWallet from '@terminal/retcomdevice/Basic/TerminalWallet/TerminalWallet'
 
 export const SYSTEM_COMMANDS = {
   "Help": () => ({

@@ -1,5 +1,5 @@
 import { Line, Divider } from '@terminal/TerminalComponents';
-import Extractable from '../Extractable/Extractable';
+import Extractable from '../../Extractable/Extractable';
 
 /**
  * SmartFridge - Smart kitchen appliance with inventory tracking

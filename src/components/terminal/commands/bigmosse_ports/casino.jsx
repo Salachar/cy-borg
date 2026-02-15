@@ -2,7 +2,6 @@ import {
   InsetBox,
   Line,
   Box,
-  Section,
   Divider,
   DataTable,
 } from '@terminal/TerminalComponents';

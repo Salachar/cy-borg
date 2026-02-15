@@ -1,4 +1,4 @@
-import { Line, Divider } from '@terminal/TerminalComponents';
+import { Line } from '@terminal/TerminalComponents';
 import CommandButton from '../CommandButton/CommandButton';
 
 import { getDiscoveredSecrets, getDiscoveredPasswords } from '@utils/terminal';
@@ -10,9 +10,7 @@ export default function RelatedCommands({ commands = [], commandList = [], onSel
   const discoveredPasswords = getDiscoveredPasswords();
 
   return (
-    <div style={{ marginTop: '1rem', marginBottom: '1rem' }}>
-      <Divider color="cyan" />
-
+    <>
       <Line cyan bold style={{ marginTop: '0.75rem', marginBottom: '0.75rem' }}>
         ┌─ AVAILABLE ACCESS POINTS ─┐
       </Line>
@@ -44,10 +42,8 @@ export default function RelatedCommands({ commands = [], commandList = [], onSel
       </div>
 
       <Line smoke style={{ marginTop: '0.75rem', fontSize: '0.75rem' }}>
-        └─ Click to execute | Also available via 'list' command
+        Click to execute | Also available via 'list' command
       </Line>
-
-      <Divider color="cyan" />
-    </div>
+    </>
   );
 }

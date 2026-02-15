@@ -81,7 +81,7 @@ function findCommandByPath(path, commands) {
 // History Entry Component
 function HistoryEntry({ entry, index, onCommandSelect, collapsedEntries, setCollapsedEntries, onRemove }) {
   const entryId = `${entry.timestamp}_${index}`;
-  const isCollapsed = collapsedEntries[entryId] || false;
+  const isCollapsed = collapsedEntries[entryId] ?? (entry.type === 'related_commands');
 
   const setIsCollapsed = (collapsed) => {
     setCollapsedEntries(prev => {

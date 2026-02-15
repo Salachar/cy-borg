@@ -4,12 +4,6 @@ import {
   Spacer,
 } from '@terminal/TerminalComponents';
 
-/**
- * CityPortal - Main city overview (unique component for Cy City itself)
- *
- * A grander, more ominous version of DistrictPortal for the city as a whole.
- * Shows the big picture: megacity stats, major zones, threats, and the crushing reality.
- */
 export default function CityPortal({
   cityName = "CY",
   cityId = "MEGACITY-01",
@@ -289,7 +283,7 @@ export default function CityPortal({
           {/* Major threats */}
           {majorThreats && majorThreats.length > 0 && (
             <>
-              <Section title="⚠ EXISTENTIAL THREATS:">
+              <Section title="EXISTENTIAL THREATS:">
                 <div
                   style={{
                     padding: '1rem',

@@ -1,9 +1,6 @@
 import {
   Line,
-  Box,
-  Section,
   Warning,
-  Divider,
   KeyValue,
   InsetBox,
 } from '@terminal/TerminalComponents';
@@ -16,8 +13,8 @@ import {
   RetComImage
 } from "@terminal/retcomdevice"
 
-import CyCityPublicAccessBanner from '@terminal/retcomdevice/CyCityPortals/CyCityPublicPortals';
-import CyCityCorporatePortalsBanner from '@terminal/retcomdevice/CyCityPortals/CyCityCorpPortals';
+import CyCityPublicAccessBanner from '@terminal/retcomdevice/Portals/CyCityPublicPortals';
+import CyCityCorporatePortalsBanner from '@terminal/retcomdevice/Portals/CyCityCorpPortals';
 
 import CY_CITY_MAP from '@images/cycity_overview.png';
 
