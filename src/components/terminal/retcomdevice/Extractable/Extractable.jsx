@@ -22,7 +22,6 @@ import { Line, Divider } from '@terminal/TerminalComponents';
  *       isCredits: true (optional, flags as credits vs item)
  *     }
  * - digitalItems: Array of item objects (same schema as physicalItems)
- * - stealing: Boolean - changes UI tone (default: false)
  * - disabled: Disable extraction (default: false)
  * - onExtract: Callback function when extracted (optional)
  */
@@ -32,7 +31,6 @@ export default function Extractable({
   credits = 0,
   physicalItems = [],
   digitalItems = [],
-  stealing = false,
   disabled = false,
   onExtract,
 }) {
@@ -84,6 +82,7 @@ export default function Extractable({
             description: item.description,
             die: item.die,
             cost: item.cost,
+            value: item.value,
           });
         }
       });
@@ -141,16 +140,10 @@ export default function Extractable({
   const hasPhysical = physicalItems.length > 0;
   const hasDigital = useDigitalItems.length > 0;
 
-  // Labels based on stealing mode
-  const labels = stealing
-    ? {
-        physical: { label: 'PHYSICAL CONTENTS', button: 'STEAL', buttonPast: 'STOLEN' },
-        digital: { label: 'DIGITAL CONTENTS', button: 'EXTRACT', buttonPast: 'EXTRACTED' },
-      }
-    : {
-        physical: { label: 'PHYSICAL ITEMS', button: 'TAKE', buttonPast: 'TAKEN' },
-        digital: { label: 'DIGITAL ITEMS', button: 'CLAIM', buttonPast: 'CLAIMED' },
-      };
+  const labels = {
+    physical: { label: 'PHYSICAL ITEMS', button: 'TAKE', buttonPast: 'TAKEN' },
+    digital: { label: 'DIGITAL ITEMS', button: 'CLAIM', buttonPast: 'CLAIMED' },
+  };
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
@@ -159,7 +152,7 @@ export default function Extractable({
         <div
           style={{
             backgroundColor: 'rgba(15, 23, 42, 0.6)',
-            border: `1px solid ${extractedPhysical && stealing ? 'rgba(239, 68, 68, 0.4)' : 'rgb(71, 85, 105)'}`,
+            border: '1px solid rgb(71, 85, 105)',
             borderRadius: '3px',
             padding: '0.75rem',
           }}
@@ -183,20 +176,11 @@ export default function Extractable({
                 }}
               >
                 {labels.physical.label}
-                {stealing && (
-                  <span style={{
-                    marginLeft: '0.5rem',
-                    color: 'rgb(239, 68, 68)',
-                    fontSize: '0.75rem',
-                    fontWeight: 'bold',
-                  }}>
-                    [THEFT]
-                  </span>
-                )}
               </Line>
+
               {!extractedPhysical && (
                 <Line smoke style={{ fontSize: '0.7rem', margin: 0, marginTop: '0.25rem' }}>
-                  {stealing ? 'Physical presence required' : 'Requires physical access'}
+                  Physical presence required
                 </Line>
               )}
             </div>
@@ -291,7 +275,7 @@ export default function Extractable({
         <div
           style={{
             backgroundColor: 'rgba(15, 23, 42, 0.6)',
-            border: `1px solid ${extractedDigital && stealing ? 'rgba(239, 68, 68, 0.4)' : 'rgb(71, 85, 105)'}`,
+            border: '1px solid rgb(71, 85, 105)',
             borderRadius: '3px',
             padding: '0.75rem',
           }}
@@ -315,20 +299,10 @@ export default function Extractable({
                 }}
               >
                 {labels.digital.label}
-                {stealing && (
-                  <span style={{
-                    marginLeft: '0.5rem',
-                    color: 'rgb(239, 68, 68)',
-                    fontSize: '0.75rem',
-                    fontWeight: 'bold',
-                  }}>
-                    [THEFT]
-                  </span>
-                )}
               </Line>
               {!extractedDigital && (
                 <Line smoke style={{ fontSize: '0.7rem', margin: 0, marginTop: '0.25rem' }}>
-                  {stealing ? 'Extractable remotely via network connection' : 'Remote extraction available'}
+                  Extractable remotely via network connection
                 </Line>
               )}
             </div>

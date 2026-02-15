@@ -10,6 +10,16 @@ const COLOR_MAP = {
   teal: 'rgb(79, 209, 197)',
 }
 
+export const Spacer = () => {
+  return (
+    <div
+      style={{
+        height: '1rem',
+      }}
+    />
+  );
+}
+
 // Text styling components
 export const Line = ({
   className = "",
@@ -143,12 +153,13 @@ export const InsetBox = ({ children, title, color = "cyan", className = "", styl
 };
 
 // Divider
-export const Divider = ({ color = "cyan" }) => {
+export const Divider = ({ color = "cyan", style }) => {
   return (
     <div style={{
       borderTop: `1px solid ${COLOR_MAP[color]}`,
       marginTop: "0.5rem",
-      marginBottom: "0.5rem"
+      marginBottom: "0.5rem",
+      ...style,
     }} />
   );
 };

@@ -205,19 +205,20 @@ export default function ArcadeCabinet({
         <Divider />
 
         {/* Wallet section - using Extractable component */}
-        <Extractable
-          id={`${id}-arcade-extractable`}
-          digitalItems={[
-            {
-              id: `${id}-arcade-credits-item`,
-              label: 'Last Account Connected',
-              description: `${credits} credits available`,
-              value: credits,
-              isCredits: true,
-            }
-          ]}
-          stealing={true}
-        />
+        {Boolean(credits && credits > 0) && (
+          <Extractable
+            id={`${id}-arcade-extractable`}
+            digitalItems={[
+              {
+                id: `${id}-arcade-credits-item`,
+                label: 'Last Account Connected',
+                description: `${credits} credits available`,
+                value: credits,
+                isCredits: true,
+              }
+            ]}
+          />
+        )}
 
         {/* Footer */}
         <Line

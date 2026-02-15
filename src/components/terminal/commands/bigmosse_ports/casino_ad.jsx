@@ -102,7 +102,7 @@ export function LuckyFlightAd() {
           signalStrength="strong"
           status="✓ OPEN NOW - Live Music Tonight!"
           statusColor="neon"
-          nowPlaying="Now playing: PHASER/MOB (blackened chromecore)"
+          nowPlaying="PHASER/MOB (blackened chromecore)"
           notes={[
             "Water taxi service available to canal pier!",
           ]}

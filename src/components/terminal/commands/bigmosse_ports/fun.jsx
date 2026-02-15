@@ -7,6 +7,7 @@ import {
   InsetBox,
 } from '@terminal/TerminalComponents';
 import {
+  ArcadeCabinet,
   Safe,
   Camera,
   Jukebox,
@@ -44,396 +45,6 @@ export const FUN_COMMANDS = {
     ),
   },
 
-  "Silverpeak Residences": {
-    content: (
-      <PublicPortal
-        name="SILVERPEAK RESIDENCES"
-        tagline="Modern Living. Classic Community."
-        network="SILVERPEAK_RESIDENT_WIFI"
-        signalStrength="strong"
-        status="✓ NOW LEASING"
-        statusColor="neon"
-        notes={[
-          "32 units (8 floors, 4 per floor)",
-          "2 vacancies available",
-          "Fitness center & roof deck access",
-          "Monthly resident mixer (first Friday)"
-        ]}
-        theme="casual"
-      >
-        <Section title="RENT INFO:">
-          <KeyValue label="Studio" value="420¤/month" />
-          <KeyValue label="1-bedroom" value="580¤/month" />
-          <KeyValue label="2-bedroom" value="800¤/month" />
-          <Line smoke>Utilities: Additional 100-140¤/month</Line>
-        </Section>
-        <Divider />
-        <Line pink>"Good neighbors make good neighborhoods."</Line>
-      </PublicPortal>
-    ),
-    related_commands: {
-      "Fitness Center Console": {
-        content: (
-          <MaintenanceAccess
-            title="[ENTERTAINMENT CONSOLE - FITNESS CENTER]"
-            deviceModel="FitScreen Pro"
-            deviceId="FITNESS-SP-01"
-            firmwareVersion="v2.8.1"
-            systemStatus="OPERATIONAL"
-            notes={[
-              "Location: Community fitness center, wall-mounted",
-              "Status: ON (workout mode)",
-              "Last Used: 45 minutes ago",
-              "Primary Function: Workout programs & streaming"
-            ]}
-          >
-            <Divider />
-            <InsetBox title="INSTALLED PROGRAMS:">
-              <Line neon>→ CardioClimb Challenge (treadmill sync enabled)</Line>
-              <Line neon>→ Strength Training Guide (video tutorials)</Line>
-              <Line neon>→ Yoga Flow Sequences (morning routines popular)</Line>
-              <Line neon>→ Combat Training Sim (VR compatible, 3 residents use regularly)</Line>
-              <Line neon>→ Meditation & Recovery (cool-down programs)</Line>
-            </InsetBox>
-            <InsetBox title="USAGE STATS (This Week):">
-              <Line yellow>Total sessions: 47</Line>
-              <Line yellow>Most popular: CardioClimb (23 sessions)</Line>
-              <Line yellow>Average session: 38 minutes</Line>
-              <Line yellow>Peak usage: 06:00-08:00, 18:00-20:00</Line>
-            </InsetBox>
-            <Line pink>"Your body is your temple. Also your weapon."</Line>
-          </MaintenanceAccess>
-        ),
-      },
-
-      "Building Incident Log": {
-        content: (
-          <IncidentLog
-            title="BUILDING INCIDENTS"
-            timeframe="Last 30 days"
-            incidents={[
-              {
-                timestamp: "Jan 12 (08:00)",
-                type: "Package Delivery",
-                details: {
-                  Unit: "3A",
-                  Issue: "Package delivery complaint",
-                  Resolution: "Improved lobby notification system",
-                  Status: "Resolved"
-                }
-              },
-              {
-                timestamp: "Jan 7 (23:15)",
-                type: "Noise Complaint",
-                details: {
-                  Unit: "2B",
-                  Issue: "Loud music during quiet hours",
-                  Resolution: "Warning issued to resident",
-                  Status: "Resolved"
-                }
-              },
-            ]}
-          >
-            <Divider />
-            <Line cyan>Overall: Well-maintained building, minimal issues</Line>
-            <Line yellow>Floor 7 elevator: Maintenance scheduled next week</Line>
-            <Line red>Roof deck lock: Repair pending</Line>
-          </IncidentLog>
-        ),
-      },
-
-      "Unit 6C": {
-        content: (
-          <PersonnelFile
-            employeeId="RESIDENT-SP-6C"
-            name="Mira Chen"
-            age={31}
-            position="Fitness Instructor"
-            department="Independent / Freelance"
-            hireDate="Resident since 2079 (3 years)"
-            supervisor="Self-employed"
-            clearanceLevel={5}
-            district="Silverpeak Residences, Unit 6C"
-            emergencyContact="Wei Chen (brother)"
-            performance={92}
-            notes={[
-              "Profession: Fitness instructor, personal trainer",
-              "Community involvement: Hosts informal classes in lounge",
-              "Excellent tenant - pays rent early, no complaints",
-              "Fitness goal for year: Marathon training",
-              "Known for: Early morning workouts, friendly to neighbors"
-            ]}
-            status="ACTIVE"
-          />
-        ),
-        related_commands: {
-          "Personal Safe": {
-            // password: {
-            //   pw: "marathon",
-            //   hint: "Fitness goal for the new year!",
-            //   difficulty: "hard",
-            //   content: <Locked theme="safe" title="PERSONAL SAFE" />
-            // },
-            content: (
-              <Safe
-                id="silverpeak-6c-safe"
-                model="DS-400"
-                location="Unit 6C, bedroom closet shelf"
-                owner="Mira Chen (fitness instructor)"
-                security="Digital keypad + biometric"
-                lastAccess="3 days ago"
-                physical={[
-                  {
-                    id: "chen_cash",
-                    label: "Cash",
-                    description: "180¤ (emergency fund)",
-                    value: 180,
-                    isCredits: true
-                  },
-                ]}
-                digital={[
-                  {
-                    id: "chen_credchip",
-                    label: "Credchip",
-                    description: "25¤",
-                    value: 25,
-                    isCredits: true
-                  },
-                ]}
-                notes="Safe installed 18 months ago"
-              />
-            ),
-          },
-        },
-      },
-
-      "Management Portal": {
-        // password: {
-        //   pw: "community",
-        //   hint: "What the building emphasizes in its culture",
-        //   difficulty: "medium",
-        //   content: <Locked theme="terminal" title="BUILDING MANAGEMENT" />
-        // },
-        content: (
-          <MaintenanceAccess
-            title="[BUILDING MANAGEMENT SYSTEM]"
-            deviceModel="Property Management Software"
-            deviceId="BLD-MGMT-SP"
-            firmwareVersion="v3.5.0"
-            systemStatus="OPERATIONAL"
-            notes={[
-              "Manager Access: Building Administration",
-              "Occupancy: 94% (2 vacancies)",
-              "Next resident mixer: First Friday of month",
-              "Maintenance schedule: Current"
-            ]}
-          >
-            <Divider />
-            <InsetBox title="RECENT ISSUES:">
-              <Line yellow>Unit 3A: Package delivery complaint (resolved)</Line>
-              <Line yellow>Floor 7: Elevator maintenance needed (scheduled next week)</Line>
-              <Line yellow>Unit 2B: Noise complaint during quiet hours (warning issued)</Line>
-              <Line red>Roof deck: Lock mechanism damaged (repair pending)</Line>
-            </InsetBox>
-            <InsetBox title="RESIDENT NOTES:">
-              <Line cyan>Unit 6C: Fitness instructor, hosts informal classes in lounge</Line>
-              <Line cyan>Unit 4A: Works night shift, requested noise considerations</Line>
-              <Line cyan>Unit 8D: Monthly mixer organizer, excellent tenant</Line>
-            </InsetBox>
-          </MaintenanceAccess>
-        ),
-      },
-    },
-  },
-
-  "Cascade Heights": {
-    content: (
-      <PublicPortal
-        name="CASCADE HEIGHTS"
-        tagline="Waterfront Views. Urban Convenience."
-        network="CASCADE_RESIDENT_WIFI"
-        signalStrength="medium"
-        status="✓ NOW LEASING"
-        statusColor="neon"
-        notes={[
-          "20 units (5 floors, 4 per floor)",
-          "3 vacancies available",
-          "Canal dock access (small boats permitted)",
-          "Elevator out of service - repair estimate: 3 months"
-        ]}
-        theme="casual"
-      >
-        <Section title="RENT INFO:">
-          <KeyValue label="Studio" value="380¤/month" />
-          <KeyValue label="1-bedroom" value="520¤/month" />
-          <KeyValue label="2-bedroom (canal view)" value="750¤/month" />
-          <Line smoke>Utilities: Additional 90-130¤/month</Line>
-        </Section>
-        <Divider />
-        <Line pink>"Character building. Literally."</Line>
-      </PublicPortal>
-    ),
-    related_commands: {
-      "Dock Security Camera": {
-        content: (
-          <Camera
-            id="cascade-dock-cam"
-            location="Cascade Heights - Rear dock entrance"
-            coverage="Dock entrance, partial water view"
-            status="ACTIVE"
-            recording={true}
-            storage="Local server (basement, often offline)"
-            timeline={[
-              "08:15 → Resident departed by small boat",
-              "14:30 → Delivery boat docked (package dropoff)",
-              "19:45 → Resident returned, boat secured",
-              "23:00 → Unknown individual near dock (obscured by lens damage)",
-            ]}
-            blindSpots={[
-              "Left side of dock (camera angle issue)",
-              "Under dock platform (structural obstruction)",
-              "Water approach from east (lens damage)",
-            ]}
-            lastService="8 months ago (overdue for cleaning/repair)"
-          />
-        ),
-      },
-
-      "Building Incident Log": {
-        content: (
-          <IncidentLog
-            title="BUILDING INCIDENTS"
-            timeframe="Last 30 days"
-            incidents={[
-              {
-                timestamp: "Jan 20 (Storm)",
-                type: "Flooding",
-                details: {
-                  Location: "Basement",
-                  Issue: "Heavy rain caused basement flooding",
-                  Resolution: "Water pumped out, resident items damaged",
-                  Status: "Ongoing issue (monthly occurrence)"
-                }
-              },
-              {
-                timestamp: "Jan 10 (Ongoing)",
-                type: "Equipment Failure",
-                details: {
-                  Issue: "Elevator out of service",
-                  Resolution: "Awaiting parts, repair estimate 3 months",
-                  Status: "Unresolved"
-                }
-              },
-              {
-                timestamp: "Jan 5 (Ongoing)",
-                type: "Security",
-                details: {
-                  Location: "Dock gate",
-                  Issue: "Lock broken, residents prop it open",
-                  Resolution: "Repair scheduled (low priority)",
-                  Status: "Unresolved"
-                }
-              },
-            ]}
-          >
-            <Divider />
-            <Line red>Overall: Building maintenance significantly behind</Line>
-            <Line yellow>Known issues: Basement floods, elevator broken, dock unsecured</Line>
-          </IncidentLog>
-        ),
-      },
-
-      "Unit 2A": {
-        content: (
-          <PersonnelFile
-            employeeId="RESIDENT-CH-2A"
-            name="Jonas Verne"
-            age={38}
-            position="Boat Repair Technician"
-            department="Independent / Freelance"
-            hireDate="Resident since 2075 (7 years)"
-            supervisor="Self-employed"
-            clearanceLevel={5}
-            district="Cascade Heights, Unit 2A"
-            emergencyContact="Marina Verne (ex-spouse)"
-            performance={85}
-            notes={[
-              "Profession: Boat repair technician (small vessels)",
-              "Uses building dock for work - neighbors don't complain",
-              "Divorced, kept wedding ring for sentimental reasons",
-              "Reliable tenant despite building issues",
-              "Known for: Early morning work, skilled craftsman"
-            ]}
-            status="ACTIVE"
-          />
-        ),
-        related_commands: {
-          "Personal Safe": {
-            // password: {
-            //   pw: "tides",
-            //   hint: "What the canal experiences twice daily",
-            //   difficulty: "easy",
-            //   content: <Locked theme="safe" title="PERSONAL SAFE" />
-            // },
-            content: (
-              <Safe
-                id="cascade-2a-safe"
-                model="PS-250"
-                location="Unit 2A, hall closet upper shelf"
-                owner="Jonas Verne (boat repair technician)"
-                security="Combination lock (mechanical + digital)"
-                lastAccess="1 week ago"
-                physical={[
-                  {
-                    id: "verne_cash",
-                    label: "Cash",
-                    description: "95¤ (mixed bills, rent savings)",
-                    value: 95,
-                    isCredits: true
-                  },
-                  {
-                    id: "verne_documents",
-                    label: "Documents",
-                    description: "Boat registration, repair licenses"
-                  },
-                  {
-                    id: "verne_tools",
-                    label: "Tools",
-                    description: "Precision screwdriver set (professional quality)"
-                  },
-                  {
-                    id: "verne_ring",
-                    label: "Personal",
-                    description: "Wedding ring (divorced, kept for sentimental reasons)"
-                  },
-                ]}
-                digital={[
-                  {
-                    id: "verne_credchip",
-                    label: "Credchip",
-                    description: "22¤",
-                    value: 22,
-                    isCredits: true
-                  },
-                  {
-                    id: "verne_coupon",
-                    label: "Coupon code",
-                    description: "BOATPARTS15 (15% off marine supplies, expires in 2 months)"
-                  },
-                ]}
-                notes="Safe showing signs of water damage (external), still functional"
-              />
-            ),
-          },
-        },
-      },
-    },
-  },
-
-  // ============================================================================
-  // SHOPS & SERVICES
-  // ============================================================================
-
   "Sanchez Electronics & Repair": {
     content: (
       <PublicPortal
@@ -441,13 +52,13 @@ export const FUN_COMMANDS = {
         tagline="Interdimensional Selection. Dimensional Prices."
         network="SANCHEZ_SHOP_GUEST"
         signalStrength="strong"
-        status="✓ OPEN"
+        status="OPEN"
         statusColor="neon"
         nowPlaying="Interdimensional Cable (signal unstable)"
         notes={[
           "All sales final (seriously, don't even try)",
           "Repairs: 3-5 day turnaround (maybe longer)",
-          "Management not responsible for existential side effects"
+          "Management not responsible for existential side effects",
         ]}
         theme="friendly"
       >
@@ -470,16 +81,15 @@ export const FUN_COMMANDS = {
             hireDate="2069 (13 years in business)"
             supervisor="Self-employed"
             clearanceLevel={5}
-            district="Market district (unknown residence)"
-            emergencyContact="Morty (grandson?)"
+            district="Market District (unknown residence)"
+            emergencyContact="Morty Smith (grandson)"
             performance={94}
             notes={[
               "Genius-level intellect, specializes in unusual electronics",
               "Often smells like alcohol, burps frequently",
               "Refuses to explain modifications or special inventory",
-              "Reputation: Brilliant but erratic, customers nervous but loyal",
-              "Known for: 'Infinite channels' cable boxes, mysterious back room",
-              "Warning: Do NOT touch green vials or activate portal device"
+              "Reputation: Brilliant but erratic — customers nervous but loyal",
+              "Known for: 'infinite channels' cable boxes, mysterious back room",
             ]}
             status="ACTIVE"
           />
@@ -487,12 +97,6 @@ export const FUN_COMMANDS = {
       },
 
       "Shop Inventory": {
-        // password: {
-        //   pw: "portalgun",
-        //   hint: "Device in back room (broken, parts only)",
-        //   difficulty: "easy",
-        //   content: <Locked theme="terminal" title="INVENTORY SYSTEM" />
-        // },
         content: (
           <MaintenanceAccess
             title="[INVENTORY DATABASE]"
@@ -502,9 +106,8 @@ export const FUN_COMMANDS = {
             systemStatus="OPERATIONAL"
             notes={[
               "Last updated: 2 hours ago",
-              "Standard stock tracked",
-              "Back room inventory NOT for sale under any circumstances",
-              "Repair queue: 3 items waiting"
+              "Back room inventory not tracked here",
+              "Repair queue: 3 items waiting",
             ]}
           >
             <Divider />
@@ -516,88 +119,77 @@ export const FUN_COMMANDS = {
             </InsetBox>
             <InsetBox title="BACK ROOM (Special Items):">
               <Line cyan>Weird cable boxes: 3 units (claim to receive "infinite channels")</Line>
-              <Line cyan>Portal device: 1 unit (BROKEN - parts only, DO NOT ACTIVATE)</Line>
+              <Line cyan>Portal device: 1 unit (parts only — do not activate)</Line>
               <Line cyan>Strange blue boxes: 4 units (unknown purpose, owner won't sell)</Line>
-              <Line yellow>Green vials: Unknown quantity (locked cabinet, do not touch)</Line>
+              <Line yellow>Green vials: Unknown quantity (locked cabinet)</Line>
             </InsetBox>
             <InsetBox title="REPAIR QUEUE:">
-              <Line yellow>Smart fridge: Firmware issue (waiting for parts)</Line>
-              <Line yellow>Game console: Overheating problem (in progress)</Line>
-              <Line yellow>Cyberdeck: Unknown fault (customer waiting, frustrated)</Line>
+              <Line smoke>Smart fridge — firmware issue (waiting for parts)</Line>
+              <Line smoke>Game console — overheating (in progress)</Line>
+              <Line smoke>Cyberdeck — unknown fault (customer waiting, frustrated)</Line>
             </InsetBox>
-            <Line red>Note: Back room inventory NOT for sale under any circumstances</Line>
           </MaintenanceAccess>
         ),
       },
 
       "Demo Console": {
         content: (
-          <MaintenanceAccess
-            title="[DEMO CONSOLE - SHOP FLOOR]"
-            deviceModel="CyStation Pro (Modified - unknown alterations)"
-            deviceId="DEMO-SANCHEZ-01"
-            firmwareVersion="v?.?.?"
-            systemStatus="OPERATIONAL"
-            notes={[
-              "Location: Display near front counter",
-              "Status: ON (demo mode, glitches occasionally)",
-              "Last Reset: Yesterday",
-              "Purpose: Customer testing & owner's personal use"
+          <ArcadeCabinet
+            id="demo-sanchez-console"
+            name="CYSTATION PRO"
+            location="Display near front counter"
+            screenState="DEMO MODE"
+            lastPlayed="Yesterday"
+            user="R_SANCHEZ"
+            credits={0}
+            gamesAvailable={[
+              "LIFE SIMULATOR VR",
+              "COSMIC HORROR ADVENTURE",
+              "DIMENSION JUMPER",
+              "CABLE SURFING SIMULATOR",
+              "POCKET CREATURES",
             ]}
           >
             <Divider />
-            <InsetBox title="INSTALLED GAMES:">
-              <Line neon>→ Life Simulator VR (suspiciously realistic, 200+ playthroughs)</Line>
-              <Line neon>→ Cosmic Horror Adventure (banned in 3 districts, owner doesn't care)</Line>
-              <Line neon>→ Dimension Jumper (physics seem wrong, makes players dizzy)</Line>
-              <Line neon>→ Cable Surfing Simulator (connects to weird cable boxes?)</Line>
-              <Line neon>→ Pocket Creatures (creature collection game, complete collection)</Line>
-            </InsetBox>
             <InsetBox title="HIGH SCORES:">
-              <Line yellow>Life Simulator VR: "R_Sanchez" - 55 years (off the grid ending)</Line>
-              <Line yellow>Dimension Jumper: "Morty" - 2.4M points (second place)</Line>
-              <Line yellow>Pocket Creatures: "BirdPrsn" - All 151 captured</Line>
+              <Line yellow>Life Simulator VR: R_Sanchez — 55 years (off the grid ending)</Line>
+              <Line yellow>Dimension Jumper: Morty — 2.4M points (second place)</Line>
+              <Line yellow>Pocket Creatures: BirdPrsn — All 151 captured</Line>
             </InsetBox>
-            <Line pink>"Don't ask about the modifications. Just... don't."</Line>
-          </MaintenanceAccess>
+            <Line smoke small>Modified hardware. Don't ask about the modifications.</Line>
+          </ArcadeCabinet>
         ),
       },
 
       "Back Room Safe": {
-        // password: {
-        //   pw: "C137",
-        //   hint: "Dimension number written on portal device",
-        //   difficulty: "easy",
-        //   content: <Locked theme="safe" title="BACK ROOM SAFE" />
-        // },
         content: (
           <Safe
             id="sanchez-backroom-safe"
             model="???"
-            location="Back room, behind shelving unit"
+            location="Back room — behind shelving unit"
             owner="R. Sanchez"
             security="Unknown technology (not standard)"
-            lastAccess="Unknown (no logs available)"
+            lastAccess="Unknown (no logs)"
             physical={[
               {
                 id: "sanchez_cash",
                 label: "Cash",
-                description: "Unknown amount (safe makes weird noises)"
+                description: "Unknown amount (safe makes weird noises)",
               },
               {
                 id: "sanchez_documents",
                 label: "Documents",
-                description: "Patents? Blueprints? (language unrecognizable)"
+                description: "Patents? Blueprints? Language unrecognizable.",
               },
               {
                 id: "sanchez_vials",
                 label: "Vials",
-                description: "Green liquid (DO NOT CONSUME)"
+                description: "Green liquid — do not consume",
               },
               {
                 id: "sanchez_components",
                 label: "Device components",
-                description: "Unknown purpose (possibly dangerous)"
+                description: "Unknown purpose",
               },
             ]}
             digital={[
@@ -606,23 +198,24 @@ export const FUN_COMMANDS = {
                 label: "Credchip",
                 description: "28¤",
                 value: 28,
-                isCredits: true
+                isCredits: true,
               },
               {
                 id: "sanchez_cable_app",
                 label: "App",
-                description: "Inter-D Cable Guide (0¤ value, completely non-functional)"
+                description: "Inter-D Cable Guide (non-functional)",
               },
               {
                 id: "sanchez_encrypted_file",
-                label: "Data file",
-                description: "boogeraids_aidsbooger.enc (encrypted, unknown contents)"
+                label: "Encrypted file",
+                description: "boogeraids_aidsbooger.enc",
               },
             ]}
             notes="⚠ Safe appears to phase in and out of visibility occasionally"
           />
         ),
       },
+
     },
   },
 
@@ -696,24 +289,20 @@ export const FUN_COMMANDS = {
               {
                 id: "pawn_cash",
                 label: "Cash",
-                description: "520¤ (daily receipts + emergency fund)",
-                value: 520,
+                description: "daily receipts + emergency fund",
+                value: 200,
                 isCredits: true
               },
               {
                 id: "pawn_jewelry",
                 label: "High-value jewelry",
-                description: "Wedding rings (3), gold chains (2)"
-              },
-              {
-                id: "pawn_documents",
-                label: "Documents",
-                description: "Business license, insurance papers"
+                description: "Wedding rings (3), gold chains (2)",
+                value: 100,
               },
               {
                 id: "pawn_disguises",
                 label: "Personal items",
-                description: "Collection of disguises (wigs, glasses, prosthetics)"
+                description: "Collection of disguises (wigs, glasses, prosthetics)",
               },
             ]}
             digital={[
@@ -724,13 +313,7 @@ export const FUN_COMMANDS = {
                 value: 18,
                 isCredits: true
               },
-              {
-                id: "pawn_coupon",
-                label: "Coupon code",
-                description: "PAWN20 (20% bonus on next pawn, expires in 1 month)"
-              },
             ]}
-            notes="Voice recognition changes weekly (matches current 'persona')"
           />
         ),
       },
@@ -772,16 +355,6 @@ export const FUN_COMMANDS = {
               <Line pink>The golden statue (shop mascot, mysterious origins)</Line>
               <Line pink>Owner's personal effects (changes with each owner)</Line>
               <Line pink>Previous owners' belongings (unclaimed)</Line>
-            </InsetBox>
-            <InsetBox title="OWNER HISTORY:">
-              <Line yellow>2067-2068: Original owner (disappeared)</Line>
-              <Line yellow>2068-2070: Second owner (committed suicide)</Line>
-              <Line yellow>2070-2072: Third owner (killed in robbery)</Line>
-              <Line yellow>2072-2074: Fourth owner (vanished overnight)</Line>
-              <Line yellow>2074-2076: Fifth owner (fatal accident)</Line>
-              <Line yellow>2076-2078: Sixth owner (murdered)</Line>
-              <Line yellow>2078-2080: Seventh owner (heart attack)</Line>
-              <Line yellow>2080-Present: Current owner (Roger Smith)</Line>
             </InsetBox>
           </MaintenanceAccess>
         ),

@@ -128,7 +128,7 @@ export function StoneEelsAd({ children }) {
           signalStrength="medium"
           status="✓ OPEN (20:00-06:00)"
           statusColor="neon"
-          nowPlaying="Now spinning: Underground beats - Ports hardcore mix"
+          nowPlaying="Underground beats - Ports hardcore mix"
           notes={[
             "Stone Eels territory - Neutral ground, no drama",
             "Weapon check at door (non-negotiable)",

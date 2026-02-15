@@ -37,9 +37,9 @@ export default function PublicPortal({
       bg: 'rgba(29, 35, 50, 0.6)',
     },
     fancy: {
-      primary: 'rgb(170, 7, 7)',
-      secondary: 'rgb(248, 206, 101)',
-      bg: 'rgba(21, 35, 26, 0.6)',
+      primary: 'rgb(217, 160, 80)',
+      secondary: 'rgb(180, 130, 55)',
+      bg: 'rgba(12, 9, 6, 0.85)',
     },
   };
 
@@ -166,29 +166,26 @@ export default function PublicPortal({
         )}
       </div>
 
-      {Boolean(name && tagline) && (
-        <Divider />
-      )}
-
-      {/* Connection status with animation */}
-      <div style={{ marginTop: '0.75rem', marginBottom: '0.75rem' }}>
-        <Line neon style={{ fontSize: '0.875rem', margin: 0, marginBottom: '0.25rem' }}>
-          Connecting to {network}...
+      {/* Network handshake */}
+      <div style={{ marginTop: '0.75rem', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Line smoke style={{ fontSize: '0.8rem', margin: 0, fontFamily: 'monospace' }}>
+          {network}
         </Line>
-        <Line
-          cyan
-          bold
-          style={{
-            fontSize: '0.875rem',
-            margin: 0,
-            textShadow: `0 0 8px ${colors.primary}`,
-          }}
-        >
-          [CONNECTION ESTABLISHED]
-        </Line>
+        <span style={{
+          fontSize: '0.65rem',
+          fontFamily: 'monospace',
+          color: getStatusColor(),
+          fontWeight: 'bold',
+          letterSpacing: '0.1em',
+          textShadow: signalBlink ? `0 0 6px ${getStatusColor()}` : 'none',
+        }}>
+          ● CONNECTED
+        </span>
       </div>
 
-      <Divider />
+      <Divider style={{
+        borderColor: colors.primary,
+      }} />
 
       {/* Network details with signal animation */}
       <div style={{ marginTop: '0.75rem', marginBottom: '0.75rem' }}>
@@ -222,14 +219,13 @@ export default function PublicPortal({
         />
       </div>
 
-      <Divider />
 
       {/* Now playing with styled box */}
       {nowPlaying && (
         <>
           <div
             style={{
-              padding: '0.5rem',
+              // padding: '0.5rem',
               backgroundColor: `${colors.secondary}15`,
               border: `1px solid ${colors.secondary}40`,
               borderRadius: '4px',
@@ -245,7 +241,7 @@ export default function PublicPortal({
                 fontWeight: 'bold',
               }}
             >
-              🎵 {nowPlaying}
+              Current Steam: {nowPlaying}
             </Line>
           </div>
         </>
@@ -253,38 +249,45 @@ export default function PublicPortal({
 
       {/* Notes with bullet styling */}
       {notes.length > 0 && (
-        <div style={{ marginTop: '0.75rem' }}>
-          {notes.map((note, i) => (
-            <div
-              key={i}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                marginBottom: '0.35rem',
-              }}
-            >
-              <span
+        <>
+          <Divider
+            style={{
+              borderColor: colors.primary,
+            }}
+          />
+          <div style={{ marginTop: '0.75rem' }}>
+            {notes.map((note, i) => (
+              <div
+                key={i}
                 style={{
-                  color: colors.secondary,
-                  fontSize: '0.7rem',
-                  flexShrink: 0,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  marginBottom: '0.35rem',
                 }}
               >
-                ▸
-              </span>
-              <Line
-                yellow
-                style={{
-                  fontSize: '0.8rem',
-                  margin: 0,
-                }}
-              >
-                {note}
-              </Line>
-            </div>
-          ))}
-        </div>
+                <span
+                  style={{
+                    color: colors.secondary,
+                    fontSize: '0.7rem',
+                    flexShrink: 0,
+                  }}
+                >
+                  ▸
+                </span>
+                <Line
+                  yellow
+                  style={{
+                    fontSize: '0.8rem',
+                    margin: 0,
+                  }}
+                >
+                  {note}
+                </Line>
+              </div>
+            ))}
+          </div>
+        </>
       )}
 
       {Boolean(children) && (

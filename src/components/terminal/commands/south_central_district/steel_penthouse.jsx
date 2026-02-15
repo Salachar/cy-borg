@@ -5,11 +5,11 @@ import {
 } from '@terminal/TerminalComponents';
 
 import {
+  ArcadeCabinet,
   Camera,
   CoffeeMachine,
   EncryptedMessage,
   Extractable,
-  GameConsole,
   Jukebox,
   Locked,
   MaintenanceAccess,
@@ -583,44 +583,20 @@ export const STEEL_PENTHOUSE_COMMANDS = {
 
           "Game Console": {
             content: (
-              <GameConsole
+              <ArcadeCabinet
                 id="console-penthouse-elite"
-                model="GameBox Elite Pro"
-                location="Steel Jackhammer's Penthouse - Holo Space"
-                onlineStatus={true}
-                games={[
-                  {
-                    title: "Killmatch Champions",
-                    genre: "Fighting Sim",
-                    players: "1-8 Online",
-                    lastPlayed: "Currently running (4 players in tournament)"
-                  },
-                  {
-                    title: "Street Wars Online",
-                    genre: "Action RPG",
-                    players: "1-4 Co-op",
-                    lastPlayed: "6 hours ago"
-                  },
-                  {
-                    title: "Cyber Racing Unlimited",
-                    genre: "Racing",
-                    players: "1-12 Online",
-                    lastPlayed: "2 days ago"
-                  }
+                name="GAMEBOX ELITE PRO"
+                location="Steel Jackhammer's Penthouse — Main Living Area"
+                screenState="TOURNAMENT ACTIVE"
+                lastPlayed="Now (4 players)"
+                user="STEEL_J"
+                credits={47500}
+                gamesAvailable={[
+                  "KILLMATCH CHAMPIONS",
+                  "STREET WARS ONLINE",
+                  "CYBER RACING UNLIMITED",
                 ]}
-                wallet={{
-                  credits: 47500,
-                  items: []
-                }}
-              >
-                <Divider />
-                <InsetBox title="IN-GAME WALLET DETECTED:">
-                  <Line yellow bold>47,500 in-game credits available</Line>
-                  <Line yellow>Can be converted to real currency on black market</Line>
-                  <Line yellow>Conversion rate: ~25% (11,875¤ real value)</Line>
-                  <Line smoke small>Pro gamers with money to burn. Lots of microtransactions...</Line>
-                </InsetBox>
-              </GameConsole>
+              />
             ),
           },
 
@@ -848,7 +824,6 @@ export const STEEL_PENTHOUSE_COMMANDS = {
                         value: 450
                       },
                     ]}
-                    stealing={true}
                   />
                 ),
               },
@@ -926,7 +901,6 @@ export const STEEL_PENTHOUSE_COMMANDS = {
                     lastAccess="4 days ago (pre-party)"
                     physical={[]}
                     digital={[]}
-                    stealing={true}
                   />
                 ),
               },

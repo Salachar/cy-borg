@@ -187,7 +187,7 @@ export const GLASS_GARDENS_COMMANDS = {
       "Reservation System": {
         content: (
           <MaintenanceAccess
-            title="[RESERVATION SYSTEM — NOV 16, 2067]"
+            title="[RESERVATION SYSTEM]"
             deviceModel="TableMaster Pro"
             deviceId="GLASS-GARDENS-RES"
             firmwareVersion="v2.0.0"
@@ -195,18 +195,8 @@ export const GLASS_GARDENS_COMMANDS = {
             notes={[
               "Covers tonight: 17 (5 parties)",
               "Cancellations today: 1 (19:00 slot reallocated)",
-              "Next available standard reservation: Dec 1, 2067",
             ]}
-          >
-            <Divider />
-            <InsetBox title="TONIGHT'S COVERS:">
-              <Line neon>17:30 — 2 covers — Sterling (standard)</Line>
-              <Line neon>18:00 — 4 covers — Alliansen Inc. (corporate account)</Line>
-              <Line neon>19:00 — 6 covers — Reyes party (anniversary)</Line>
-              <Line neon>20:00 — 2 covers — [NAME WITHHELD] (priority fee)</Line>
-              <Line neon>21:00 — 3 covers — [NAME WITHHELD] (priority fee)</Line>
-            </InsetBox>
-          </MaintenanceAccess>
+          />
         ),
       },
 
@@ -225,8 +215,7 @@ export const GLASS_GARDENS_COMMANDS = {
             systemStatus="OPERATIONAL"
             notes={[
               "Staff and management access only",
-              "Crystal Lattice club operations on separate node",
-              "All access logged"
+              "All access logged",
             ]}
           />
         ),
@@ -236,7 +225,6 @@ export const GLASS_GARDENS_COMMANDS = {
               <VIPList
                 eventName="Glass Gardens — Tonight"
                 location="Central Plaza Tower, Rooftop"
-                date="Nov 16, 2067"
                 vips={[
                   {
                     name: "Mr. & Mrs. Sterling",

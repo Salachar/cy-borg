@@ -501,7 +501,8 @@ export default function RetComDevice() {
               commandDef={commandDef}
               password={commandDef.password.pw}
               hint={commandDef.password.hint}
-              hintStrength={commandDef.password.hintStrength || 1}
+              difficulty={commandDef.password.difficulty || 'corporate'}
+              decoyLetters={commandDef.password.decoyLetters}
               onSubmit={(cmdPath, commandDef, password) => {
                 setDiscoveredPasswords(prev => ({
                   ...prev,

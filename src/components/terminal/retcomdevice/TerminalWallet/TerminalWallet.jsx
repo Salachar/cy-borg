@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Line, Divider, Section } from '@terminal/TerminalComponents';
+import { Line, Section, Spacer } from '@terminal/TerminalComponents';
 import { formatCredits } from '@utils/general';
 
 /**
@@ -40,22 +40,22 @@ export default function TerminalWallet({ onTransfer }) {
     return () => window.removeEventListener('walletUpdated', loadWallet);
   }, []);
 
-  const handleTransfer = () => {
-    if (onTransfer) {
-      onTransfer({
-        credits: wallet.credits,
-        items: wallet.items,
-      });
-    }
-  };
+  // const handleTransfer = () => {
+  //   if (onTransfer) {
+  //     onTransfer({
+  //       credits: wallet.credits,
+  //       items: wallet.items,
+  //     });
+  //   }
+  // };
 
-  const handleClearWallet = () => {
-    if (window.confirm('Clear all extracted items and credits? This cannot be undone.')) {
-      localStorage.setItem(WALLET_STORAGE_KEY, JSON.stringify({ credits: 0, items: [] }));
-      setWallet({ credits: 0, items: [] });
-      window.dispatchEvent(new Event('walletUpdated'));
-    }
-  };
+  // const handleClearWallet = () => {
+  //   if (window.confirm('Clear all extracted items and credits? This cannot be undone.')) {
+  //     localStorage.setItem(WALLET_STORAGE_KEY, JSON.stringify({ credits: 0, items: [] }));
+  //     setWallet({ credits: 0, items: [] });
+  //     window.dispatchEvent(new Event('walletUpdated'));
+  //   }
+  // };
 
   const totalItems = wallet.items.length;
   const isEmpty = wallet.credits === 0 && totalItems === 0;
@@ -136,101 +136,106 @@ export default function TerminalWallet({ onTransfer }) {
           </div>
         ) : (
           <>
-            {/* Credits section */}
-            {wallet.credits > 0 && (
-              <>
-                <Section title="CREDITS EXTRACTED:" color="yellow">
+            <Section title="CREDITS EXTRACTED:" color="yellow">
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  padding: '0.75rem',
+                  backgroundColor: 'rgba(251, 191, 36, 0.1)',
+                  border: '1px solid rgba(251, 191, 36, 0.3)',
+                  borderRadius: '3px',
+                }}
+              >
+                <Line yellow style={{ margin: 0 }}>
+                  Digital currency (transferable)
+                </Line>
+                <Line yellow bold style={{ margin: 0, fontSize: '1.25rem' }}>
+                  {formatCredits(wallet.credits)}
+                </Line>
+              </div>
+            </Section>
+
+            <Spacer />
+
+            <Section title={`ITEMS EXTRACTED: (${totalItems})`} color="cyan">
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                {wallet.items.map((item, i) => (
                   <div
+                    key={i}
                     style={{
                       display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
+                      alignItems: 'flex-start',
+                      gap: '0.5rem',
                       padding: '0.75rem',
-                      backgroundColor: 'rgba(251, 191, 36, 0.1)',
-                      border: '1px solid rgba(251, 191, 36, 0.3)',
+                      backgroundColor: 'rgba(15, 23, 42, 0.6)',
+                      border: '1px solid rgb(71, 85, 105)',
                       borderRadius: '3px',
                     }}
                   >
-                    <Line yellow style={{ margin: 0 }}>
-                      Digital currency (transferable)
-                    </Line>
-                    <Line yellow bold style={{ margin: 0, fontSize: '1.25rem' }}>
-                      {formatCredits(wallet.credits)}
-                    </Line>
-                  </div>
-                </Section>
-                {totalItems > 0 && <Divider />}
-              </>
-            )}
-
-            {/* Items section */}
-            {totalItems > 0 && (
-              <Section title={`ITEMS EXTRACTED: (${totalItems})`} color="cyan">
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  {wallet.items.map((item, i) => (
-                    <div
-                      key={i}
+                    <span
                       style={{
-                        display: 'flex',
-                        alignItems: 'flex-start',
-                        gap: '0.5rem',
-                        padding: '0.75rem',
-                        backgroundColor: 'rgba(15, 23, 42, 0.6)',
-                        border: '1px solid rgb(71, 85, 105)',
-                        borderRadius: '3px',
+                        color: 'rgb(79, 209, 197)',
+                        fontSize: '0.875rem',
+                        flexShrink: 0,
                       }}
                     >
-                      <span
+                      →
+                    </span>
+                    <div style={{ flex: 1 }}>
+                      <Line
+                        cyan
+                        bold
                         style={{
-                          color: 'rgb(79, 209, 197)',
+                          margin: 0,
                           fontSize: '0.875rem',
-                          flexShrink: 0,
                         }}
                       >
-                        →
-                      </span>
-                      <div style={{ flex: 1 }}>
+                        {item.label}
+                      </Line>
+                      {item.description && (
                         <Line
-                          cyan
-                          bold
+                          smoke
                           style={{
                             margin: 0,
-                            fontSize: '0.875rem',
+                            fontSize: '0.8rem',
+                            marginTop: '0.25rem',
                           }}
                         >
-                          {item.label}
+                          {item.description}
                         </Line>
-                        {item.description && (
-                          <Line
-                            smoke
-                            style={{
-                              margin: 0,
-                              fontSize: '0.8rem',
-                              marginTop: '0.25rem',
-                            }}
-                          >
-                            {item.description}
-                          </Line>
-                        )}
-                        {item.die && (
-                          <Line
-                            yellow
-                            style={{
-                              margin: 0,
-                              fontSize: '0.75rem',
-                              marginTop: '0.25rem',
-                              fontFamily: 'monospace',
-                            }}
-                          >
-                            [{item.die}]
-                          </Line>
-                        )}
-                      </div>
+                      )}
+                      {item.value && (
+                        <Line
+                          yellow
+                          style={{
+                            margin: 0,
+                            fontSize: '0.8rem',
+                            marginTop: '0.25rem',
+                          }}
+                        >
+                          Estimated value: {formatCredits(item.value)}
+                        </Line>
+                      )}
+                      {item.die && (
+                        <Line
+                          yellow
+                          style={{
+                            margin: 0,
+                            fontSize: '0.75rem',
+                            marginTop: '0.25rem',
+                            fontFamily: 'monospace',
+                          }}
+                        >
+                          [{item.die}]
+                        </Line>
+                      )}
                     </div>
-                  ))}
-                </div>
-              </Section>
-            )}
+                  </div>
+                ))}
+              </div>
+            </Section>
 
             {/* <Divider />
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Line, Divider, DataTable } from '@terminal/TerminalComponents';
+import { Line } from '@terminal/TerminalComponents';
 import Extractable from '../Extractable/Extractable';
 
 export default function Safe({
@@ -26,19 +26,7 @@ export default function Safe({
     return 'rgb(79, 209, 197)';
   };
 
-  const getSecurityLevel = () => {
-    const secLower = security?.toLowerCase() || '';
-    if (secLower.includes('retinal') || secLower.includes('biometric')) {
-      return 'HIGH';
-    }
-    if (secLower.includes('keypad') || secLower.includes('pin')) {
-      return 'MEDIUM';
-    }
-    return 'STANDARD';
-  };
-
   const securityColor = getSecurityColor();
-  const securityLevel = getSecurityLevel();
 
   return (
     <div style={{ position: 'relative' }}>
@@ -96,31 +84,9 @@ export default function Safe({
               [MODEL {model}]
             </Line>
           </div>
-
-          {/* Security level indicator */}
-          <div
-            style={{
-              padding: '0.25rem 0.75rem',
-              borderRadius: '3px',
-              backgroundColor: `${securityColor}20`,
-              border: `1px solid ${securityColor}`,
-            }}
-          >
-            <span
-              style={{
-                fontSize: '0.7rem',
-                fontWeight: 'bold',
-                color: securityColor,
-                fontFamily: 'monospace',
-              }}
-            >
-              {securityLevel}
-            </span>
-          </div>
         </div>
 
         <div style={{ padding: '1rem' }}>
-          {/* Safe information - sleeker grid layout */}
           <div
             style={{
               display: 'grid',
@@ -129,33 +95,49 @@ export default function Safe({
               marginBottom: (physical.length > 0 || digital.length > 0) ? '1rem' : '0',
             }}
           >
-            <Line smoke style={{ margin: 0, fontSize: '0.75rem', opacity: 0.7 }}>
-              LOCATION:
-            </Line>
-            <Line cyan style={{ margin: 0, fontSize: '0.875rem', fontWeight: 500 }}>
-              {location}
-            </Line>
+            {location && (
+              <>
+                <Line smoke style={{ margin: 0, fontSize: '0.75rem', opacity: 0.7 }}>
+                  LOCATION:
+                </Line>
+                <Line cyan style={{ margin: 0, fontSize: '0.875rem', fontWeight: 500 }}>
+                  {location}
+                </Line>
+              </>
+            )}
 
-            <Line smoke style={{ margin: 0, fontSize: '0.75rem', opacity: 0.7 }}>
-              OWNER:
-            </Line>
-            <Line cyan style={{ margin: 0, fontSize: '0.875rem', fontWeight: 500 }}>
-              {owner}
-            </Line>
+            {owner && (
+              <>
+                <Line smoke style={{ margin: 0, fontSize: '0.75rem', opacity: 0.7 }}>
+                  OWNER:
+                </Line>
+                <Line cyan style={{ margin: 0, fontSize: '0.875rem', fontWeight: 500 }}>
+                  {owner}
+                </Line>
+              </>
+            )}
 
-            <Line smoke style={{ margin: 0, fontSize: '0.75rem', opacity: 0.7 }}>
-              SECURITY:
-            </Line>
-            <Line style={{ margin: 0, fontSize: '0.875rem', fontWeight: 500, color: securityColor }}>
-              {security}
-            </Line>
+            {security && (
+              <>
+                <Line smoke style={{ margin: 0, fontSize: '0.75rem', opacity: 0.7 }}>
+                  SECURITY:
+                </Line>
+                <Line style={{ margin: 0, fontSize: '0.875rem', fontWeight: 500, color: securityColor }}>
+                  {security}
+                </Line>
+              </>
+            )}
 
-            <Line smoke style={{ margin: 0, fontSize: '0.75rem', opacity: 0.7 }}>
-              LAST ACCESS:
-            </Line>
-            <Line yellow style={{ margin: 0, fontSize: '0.875rem', fontWeight: 500 }}>
-              {lastAccess}
-            </Line>
+            {lastAccess && (
+              <>
+                <Line smoke style={{ margin: 0, fontSize: '0.75rem', opacity: 0.7 }}>
+                  LAST ACCESS:
+                </Line>
+                <Line yellow style={{ margin: 0, fontSize: '0.875rem', fontWeight: 500 }}>
+                  {lastAccess}
+                </Line>
+              </>
+            )}
           </div>
 
           {/* Extractable contents */}
@@ -164,7 +146,6 @@ export default function Safe({
               id={`${id}-safe-extractable`}
               physicalItems={physical}
               digitalItems={digital}
-              stealing={stealing}
             />
           )}
 
@@ -180,7 +161,7 @@ export default function Safe({
               }}
             >
               <Line yellow style={{ margin: 0, fontSize: '0.875rem' }}>
-                ⚠ {notes}
+                {notes}
               </Line>
             </div>
           )}

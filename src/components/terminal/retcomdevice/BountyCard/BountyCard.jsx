@@ -433,7 +433,6 @@ export default function BountyCard({
                 isCredits: true,
               }
             ]}
-            stealing={false}
           />
         </div>
 

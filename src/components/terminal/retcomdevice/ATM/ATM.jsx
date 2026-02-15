@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Line, Divider, DataTable, Section } from '@terminal/TerminalComponents';
+import { Line, Divider, DataTable, Section, Spacer } from '@terminal/TerminalComponents';
 import Extractable from '../Extractable/Extractable';
 
 export default function ATM({
@@ -13,6 +13,7 @@ export default function ATM({
   transactions = [],
   lastService = "2 weeks ago",
   credits = 0,
+  physicalCredits = 0,
 }) {
   return (
     <div style={{ position: 'relative' }}>
@@ -119,7 +120,24 @@ export default function ATM({
                   isCredits: true,
                 },
               ]}
-              stealing={true}
+            />
+          </>
+        )}
+
+        {Boolean(physicalCredits) && (
+          <>
+            <Spacer />
+            <Line yellow bold>SECURE LOCKBOX</Line>
+            <Extractable
+              id={`${id}-atm-lockbox-extractable`}
+              physicalItems={[
+                {
+                  id: `${id}-atm-lockbox-item`,
+                  label: 'Lockbox Holdings',
+                  value: physicalCredits,
+                  isCredits: true,
+                },
+              ]}
             />
           </>
         )}

@@ -90,7 +90,6 @@ export default function DigitalWallet({
                 isCredits: true,
               }
             ]}
-            stealing={true}
           />
         </div>
       )}

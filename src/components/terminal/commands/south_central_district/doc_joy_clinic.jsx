@@ -424,7 +424,6 @@ export const DOC_JOY_CLINIC_COMMANDS = {
                     description: "Black market chrome and medical suppliers",
                   },
                 ]}
-                stealing={false}
               />
             ),
           },

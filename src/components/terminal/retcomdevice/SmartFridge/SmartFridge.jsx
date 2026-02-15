@@ -238,7 +238,6 @@ export default function SmartFridge({
               <Extractable
                 id={`${id}-fridge`}
                 physicalItems={physicalItems}
-                stealing={false}
               />
             </div>
           )}
@@ -270,7 +269,6 @@ export default function SmartFridge({
               <Extractable
                 id={`${id}-freezer`}
                 physicalItems={freezerItems}
-                stealing={false}
               />
             </div>
           )}
