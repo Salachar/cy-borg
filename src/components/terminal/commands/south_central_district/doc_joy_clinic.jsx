@@ -132,8 +132,7 @@ export const DOC_JOY_CLINIC_COMMANDS = {
       "Community Board": {
         content: (
           <CommunityBoard
-            id="docjoy-bulletin"
-            boardName="CLINIC BULLETIN BOARD"
+            name="CLINIC BULLETIN BOARD"
             location="Near entrance - Public access"
             posts={[
               { text: "Lost cat - grey with chrome leg - answers to 'Static'", color: "pink" },

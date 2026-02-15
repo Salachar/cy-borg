@@ -3,217 +3,244 @@ import { Line, Divider, Section, ListItem } from '@terminal/TerminalComponents';
 /**
  * CommunityBoard Component - Physical bulletin board scanner
  *
- * Shows recent community postings, classified ads, warnings, and neighborhood vibe.
- * Purely informational - captures the feel and concerns of different communities.
- * Like scanning a physical corkboard covered in flyers and handwritten notes.
- *
  * Props:
- * - id: Unique identifier (e.g., "cave-club-board")
- * - boardName: Name of the board (e.g., "Community Bulletin Board")
- * - location: Where the board is physically located
- * - lastUpdate: When board was last updated/scanned
- * - posts: Array of post objects with:
- *   - text: The post content
- *   - color: Optional color override ("pink", "yellow", "red", "neon")
- * - services: Array of service listing strings (optional)
- * - warnings: Array of warning objects (optional) with:
- *   - text: Warning content
- *   - severity: "high" | "medium" | "low"
- * - vibe: Overall neighborhood mood/atmosphere description
- * - sections: Custom sections array (optional) - overrides default structure
- *   Each section: { title, color, items: [{ text, color }] }
+ * - id: String
+ * - name: String
+ * - posts: Array of { text, color }
+ * - services: Array of strings
+ * - warnings: Array of { text, severity: "high"|"medium"|"low" }
+ * - vibe: String
+ * - sections: Array of { title, color, items: [{ text, color }] }
  */
 export default function CommunityBoard({
-  id,
-  boardName = "COMMUNITY BULLETIN BOARD",
-  location,
-  lastUpdate = "Daily",
+  id = "",
+  name = "COMMUNITY BULLETIN BOARD",
   posts = [],
   services = [],
   warnings = [],
   vibe,
   sections = null,
 }) {
-  return (
-    <div style={{ position: 'relative' }}>
-      {/* Main container */}
-      <div
-        style={{
-          border: '2px solid rgb(0, 187, 255)',
-          borderRadius: '4px',
-          padding: '1rem',
-          backgroundColor: 'rgba(29, 35, 50, 0.3)',
-          position: 'relative',
-        }}
-      >
-        {/* Header with bulletin board icon */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.75rem' }}>
-          {/* CSS Bulletin Board Icon */}
-          <div style={{ position: 'relative', width: '24px', height: '20px', flexShrink: 0 }}>
-            {/* Board frame */}
-            <div
-              style={{
-                position: 'absolute',
-                top: '0',
-                left: '0',
-                width: '24px',
-                height: '20px',
-                border: '2px solid rgb(255, 0, 128)',
-                borderRadius: '2px',
-                backgroundColor: 'rgba(255, 0, 128, 0.1)',
-              }}
-            />
-            {/* Pinned notes */}
-            <div
-              style={{
-                position: 'absolute',
-                top: '3px',
-                left: '3px',
-                width: '6px',
-                height: '6px',
-                backgroundColor: 'rgb(250, 204, 21)',
-                borderRadius: '1px',
-              }}
-            />
-            <div
-              style={{
-                position: 'absolute',
-                top: '3px',
-                right: '3px',
-                width: '5px',
-                height: '7px',
-                backgroundColor: 'rgb(79, 209, 197)',
-                borderRadius: '1px',
-              }}
-            />
-            <div
-              style={{
-                position: 'absolute',
-                bottom: '3px',
-                left: '5px',
-                width: '7px',
-                height: '5px',
-                backgroundColor: 'rgb(133, 175, 231)',
-                borderRadius: '1px',
-              }}
-            />
-            {/* Push pins */}
-            <div
-              style={{
-                position: 'absolute',
-                top: '2px',
-                left: '5px',
-                width: '2px',
-                height: '2px',
-                backgroundColor: 'rgb(239, 68, 68)',
-                borderRadius: '50%',
-              }}
-            />
-            <div
-              style={{
-                position: 'absolute',
-                top: '2px',
-                right: '5px',
-                width: '2px',
-                height: '2px',
-                backgroundColor: 'rgb(239, 68, 68)',
-                borderRadius: '50%',
-              }}
-            />
-          </div>
+  const postColors = {
+    pink:   { text: 'rgb(244, 114, 182)', bg: 'rgba(244, 114, 182, 0.06)', border: 'rgba(244, 114, 182, 0.25)' },
+    yellow: { text: 'rgb(251, 191, 36)',  bg: 'rgba(251, 191, 36, 0.06)',  border: 'rgba(251, 191, 36, 0.25)'  },
+    red:    { text: 'rgb(239, 68, 68)',   bg: 'rgba(239, 68, 68, 0.06)',   border: 'rgba(239, 68, 68, 0.25)'   },
+    neon:   { text: 'rgb(34, 197, 94)',   bg: 'rgba(34, 197, 94, 0.06)',   border: 'rgba(34, 197, 94, 0.25)'   },
+    cyan:   { text: 'rgb(79, 209, 197)',  bg: 'rgba(79, 209, 197, 0.06)',  border: 'rgba(79, 209, 197, 0.25)'  },
+    smoke:  { text: 'rgb(148, 163, 184)', bg: 'rgba(148, 163, 184, 0.04)', border: 'rgba(148, 163, 184, 0.15)' },
+  };
 
-          <Line smoke large bold style={{ margin: 0, flex: 1 }}>
-            [{boardName}]
-          </Line>
+  const severityColors = {
+    high:   postColors.red,
+    medium: postColors.yellow,
+    low:    postColors.pink,
+  };
+
+  const sectionAccents = {
+    smoke: 'rgb(100, 116, 139)',
+    cyan:  'rgb(79, 209, 197)',
+    yellow:'rgb(251, 191, 36)',
+    red:   'rgb(239, 68, 68)',
+    pink:  'rgb(244, 114, 182)',
+    neon:  'rgb(34, 197, 94)',
+  };
+
+  // Total post count for header
+  const totalPosts = sections
+    ? sections.reduce((acc, s) => acc + s.items.length, 0)
+    : posts.length + warnings.length + services.length;
+
+  const PostItem = ({ text, color = 'smoke' }) => {
+    const c = postColors[color] || postColors.smoke;
+    return (
+      <div style={{
+        display: 'flex',
+        gap: '0.6rem',
+        padding: '0.35rem 0.6rem',
+        backgroundColor: c.bg,
+        borderLeft: `2px solid ${c.border}`,
+        borderRadius: '0 3px 3px 0',
+        marginBottom: '0.3rem',
+      }}>
+        <span style={{
+          color: c.border,
+          fontSize: '0.7rem',
+          flexShrink: 0,
+          marginTop: '0.1rem',
+          fontFamily: 'monospace',
+        }}>›</span>
+        <span style={{
+          color: c.text,
+          fontSize: '0.8rem',
+          fontFamily: 'monospace',
+          lineHeight: '1.5',
+        }}>{text}</span>
+      </div>
+    );
+  };
+
+  const SectionBlock = ({ title, color = 'smoke', items = [] }) => {
+    const accent = sectionAccents[color] || sectionAccents.smoke;
+    return (
+      <div style={{ marginBottom: '0.85rem' }}>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.5rem',
+          marginBottom: '0.4rem',
+        }}>
+          <div style={{
+            width: '3px',
+            height: '0.7rem',
+            backgroundColor: accent,
+            borderRadius: '2px',
+            flexShrink: 0,
+          }} />
+          <span style={{
+            color: accent,
+            fontSize: '0.6rem',
+            fontFamily: 'monospace',
+            fontWeight: 'bold',
+            letterSpacing: '0.2em',
+          }}>{title}</span>
+        </div>
+        {items.map((item, i) => (
+          <PostItem key={i} text={item.text} color={item.color || color} />
+        ))}
+      </div>
+    );
+  };
+
+  return (
+    <div style={{
+      border: '1px solid rgba(0, 187, 255, 0.3)',
+      borderRadius: '6px',
+      backgroundColor: 'rgba(15, 23, 42, 0.6)',
+      overflow: 'hidden',
+    }}>
+
+      {/* Header bar */}
+      <div style={{
+        background: 'linear-gradient(135deg, rgba(0, 187, 255, 0.12), rgba(0, 187, 255, 0.05))',
+        borderBottom: '1px solid rgba(0, 187, 255, 0.2)',
+        padding: '0.65rem 1rem',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: '1rem',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+          {/* Pin icon */}
+          <div style={{ position: 'relative', width: '14px', height: '14px', flexShrink: 0 }}>
+            <div style={{
+              width: '10px',
+              height: '10px',
+              borderRadius: '50%',
+              backgroundColor: 'rgb(239, 68, 68)',
+              boxShadow: '0 0 6px rgba(239, 68, 68, 0.6)',
+              position: 'absolute',
+              top: 0,
+              left: '2px',
+            }} />
+            <div style={{
+              width: '2px',
+              height: '7px',
+              backgroundColor: 'rgba(239, 68, 68, 0.6)',
+              position: 'absolute',
+              bottom: 0,
+              left: '6px',
+              borderRadius: '1px',
+            }} />
+          </div>
+          <span style={{
+            color: 'rgb(148, 163, 184)',
+            fontSize: '0.75rem',
+            fontFamily: 'monospace',
+            fontWeight: 'bold',
+            letterSpacing: '0.08em',
+          }}>
+            {name}
+          </span>
         </div>
 
-        {location && <Line cyan>{location}</Line>}
-        <Line neon>
-          {location ? 'Accessing physical postings via photo scan...' : 'Recent postings - Updated daily'}
-        </Line>
-        <Divider />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <span style={{
+            color: 'rgba(0, 187, 255, 0.5)',
+            fontSize: '0.6rem',
+            fontFamily: 'monospace',
+            letterSpacing: '0.1em',
+          }}>{totalPosts} POSTS</span>
+        </div>
+      </div>
 
-        {/* Custom sections (if provided) */}
+      {/* Body */}
+      <div style={{ padding: '0.85rem 1rem' }}>
+
         {sections ? (
           sections.map((section, i) => (
-            <div key={i}>
-              <Section title={section.title} color={section.color || 'smoke'}>
-                {section.items.map((item, j) => (
-                  <Line
-                    key={j}
-                    smoke={!item.color || item.color === 'smoke'}
-                    pink={item.color === 'pink'}
-                    yellow={item.color === 'yellow'}
-                    red={item.color === 'red'}
-                    neon={item.color === 'neon'}
-                    cyan={item.color === 'cyan'}
-                  >
-                    → {item.text}
-                  </Line>
-                ))}
-              </Section>
-              {i < sections.length - 1 && <Divider />}
-            </div>
+            <SectionBlock
+              key={i}
+              title={section.title}
+              color={section.color}
+              items={section.items}
+            />
           ))
         ) : (
           <>
-            {/* Standard posts section */}
             {posts.length > 0 && (
-              <>
-                <Section title="RECENT POSTS:" color="smoke">
-                  {posts.map((post, i) => (
-                    <Line
-                      key={i}
-                      smoke={!post.color || post.color === 'smoke'}
-                      pink={post.color === 'pink'}
-                      yellow={post.color === 'yellow'}
-                      red={post.color === 'red'}
-                      neon={post.color === 'neon'}
-                      cyan={post.color === 'cyan'}
-                    >
-                      → {post.text}
-                    </Line>
-                  ))}
-                </Section>
-                {(services.length > 0 || warnings.length > 0 || vibe) && <Divider />}
-              </>
+              <SectionBlock
+                title="RECENT POSTS"
+                color="smoke"
+                items={posts}
+              />
             )}
 
-            {/* Warnings section */}
             {warnings.length > 0 && (
-              <>
-                <Section title="WARNINGS:" color="red">
-                  {warnings.map((warning, i) => (
-                    <Line
-                      key={i}
-                      red={warning.severity === 'high'}
-                      yellow={warning.severity === 'medium'}
-                      pink={warning.severity === 'low'}
-                    >
-                      → {warning.text}
-                    </Line>
-                  ))}
-                </Section>
-                {(services.length > 0 || vibe) && <Divider />}
-              </>
+              <SectionBlock
+                title="WARNINGS"
+                color="red"
+                items={warnings.map(w => ({ text: w.text, color: severityColors[w.severity]?.text ? w.severity === 'high' ? 'red' : w.severity === 'medium' ? 'yellow' : 'pink' : 'yellow' }))}
+              />
             )}
 
-            {/* Services section */}
             {services.length > 0 && (
-              <>
-                <Section title="SERVICES ADVERTISED:" color="yellow">
-                  {services.map((service, i) => (
-                    <ListItem key={i}>{service}</ListItem>
-                  ))}
-                </Section>
-                {vibe && <Divider />}
-              </>
+              <SectionBlock
+                title="SERVICES"
+                color="yellow"
+                items={services.map(s => ({ text: s, color: 'yellow' }))}
+              />
             )}
           </>
         )}
 
-        {/* Neighborhood vibe */}
-        {vibe && <Line yellow>{vibe}</Line>}
+        {/* Vibe footer */}
+        {vibe && (
+          <div style={{
+            marginTop: '0.25rem',
+            paddingTop: '0.65rem',
+            borderTop: '1px solid rgba(148, 163, 184, 0.1)',
+            display: 'flex',
+            gap: '0.5rem',
+            alignItems: 'flex-start',
+          }}>
+            <span style={{
+              color: 'rgba(251, 191, 36, 0.4)',
+              fontSize: '0.65rem',
+              fontFamily: 'monospace',
+              letterSpacing: '0.15em',
+              flexShrink: 0,
+              paddingTop: '0.05rem',
+            }}>LOCALCAST AUTO-ASSESSMENT:</span>
+            <span style={{
+              color: 'rgb(251, 191, 36)',
+              fontSize: '0.78rem',
+              fontFamily: 'monospace',
+              lineHeight: '1.5',
+              fontStyle: 'italic',
+            }}>{vibe}</span>
+          </div>
+        )}
+
       </div>
     </div>
   );

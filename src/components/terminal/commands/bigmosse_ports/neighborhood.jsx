@@ -14,6 +14,7 @@ import {
   Camera,
   Tenet,
   Jukebox,
+  Locked,
   Menu,
   HoursBanner,
   CommunityBoard,
@@ -278,12 +279,12 @@ export const NEIGHBORHOOD_COMMANDS = {
       },
 
       "Patient Records [CONFIDENTIAL]": {
-        // password: {
-        //   pw: "scalpel",
-        //   hint: "Surgical cutting tool",
-        //   difficulty: "medium",
-        //   content: <Locked theme="terminal" title="PATIENT DATABASE" />
-        // },
+        password: {
+          pw: "scalpel",
+          hint: "Surgical cutting tool",
+          difficulty: "medium",
+          content: <Locked theme="terminal" title="PATIENT DATABASE" />
+        },
         content: (
           <MaintenanceAccess
             title="[PATIENT DATABASE]"
@@ -381,13 +382,13 @@ export const NEIGHBORHOOD_COMMANDS = {
         ),
       },
 
-      access_inventory_system: {
-        // password: {
-        //   pw: "razor",
-        //   hint: "The shop owner's nickname",
-        //   difficulty: "easy",
-        //   content: <Locked theme="terminal" title="INVENTORY SYSTEM" />
-        // },
+      "Inventory System": {
+        password: {
+          pw: "razor",
+          hint: "The shop owner's nickname",
+          difficulty: "easy",
+          content: <Locked theme="terminal" title="INVENTORY SYSTEM" />
+        },
         content: (
           <MaintenanceAccess
             title="[INVENTORY DATABASE]"
@@ -426,10 +427,6 @@ export const NEIGHBORHOOD_COMMANDS = {
     },
   },
 
-  // ============================================================================
-  // MIRA'S CORNER SHOP
-  // ============================================================================
-
   "Mira's Corner Shop": {
     content: (
       <PublicPortal
@@ -458,9 +455,7 @@ export const NEIGHBORHOOD_COMMANDS = {
       "Community Bulletin": {
         content: (
           <CommunityBoard
-            id="miras-shop-board"
-            boardName="COMMUNITY BULLETIN BOARD"
-            location="Inside Mira's Corner Shop - Wall near register"
+            name="COMMUNITY BULLETIN BOARD"
             posts={[
               { text: "Roommate needed - 300¤/month, utilities split", color: "pink" },
               { text: "Lost cat - grey tabby, answers to 'Static'", color: "pink" },
@@ -508,12 +503,12 @@ export const NEIGHBORHOOD_COMMANDS = {
       },
 
       "Internal Access": {
-        // password: {
-        //   pw: "boxesboxesboxes",
-        //   hint: "So many boxes",
-        //   difficulty: "easy",
-        //   content: <Locked theme="terminal" title="SHOP SYSTEMS" />
-        // },
+        password: {
+          pw: "boxesboxesboxes",
+          hint: "So many boxes",
+          difficulty: "easy",
+          content: <Locked theme="terminal" title="SHOP SYSTEMS" />
+        },
         content: (
           <MaintenanceAccess
             title="[SHOP INTERNAL SYSTEMS]"
@@ -544,10 +539,6 @@ export const NEIGHBORHOOD_COMMANDS = {
       },
     },
   },
-
-  // ============================================================================
-  // THE RUSTY ANCHOR BAR
-  // ============================================================================
 
   "The Rusty Anchor": {
     content: (
@@ -651,12 +642,12 @@ export const NEIGHBORHOOD_COMMANDS = {
       },
 
       "Bar Safe": {
-        // password: {
-        //   pw: "crustacean",
-        //   hint: "Crabs and such",
-        //   difficulty: "medium",
-        //   content: <Locked theme="safe" title="BAR SAFE" />
-        // },
+        password: {
+          pw: "crustacean",
+          hint: "Crabs and such",
+          difficulty: "medium",
+          content: <Locked theme="safe" title="BAR SAFE" />
+        },
         content: (
           <Safe
             id="rusty-anchor-bar-safe"
@@ -689,10 +680,6 @@ export const NEIGHBORHOOD_COMMANDS = {
       },
     },
   },
-
-  // ============================================================================
-  // TORRES APARTMENTS
-  // ============================================================================
 
   "Torres Apartments": {
     content: (
@@ -841,12 +828,12 @@ export const NEIGHBORHOOD_COMMANDS = {
           },
 
           "Personal Safe": {
-            // password: {
-            //   pw: "maintenance",
-            //   hint: "The resident's department at the casino",
-            //   difficulty: "medium",
-            //   content: <Locked theme="safe" title="PERSONAL SAFE" />
-            // },
+            password: {
+              pw: "maintenance",
+              hint: "The resident's department at the casino",
+              difficulty: "medium",
+              content: <Locked theme="safe" title="PERSONAL SAFE" />
+            },
             content: (
               <Safe
                 id="torres-2a-safe"
@@ -895,12 +882,12 @@ export const NEIGHBORHOOD_COMMANDS = {
       },
 
       "Unit 3B - Personal Safe": {
-        // password: {
-        //   pw: "localhost",
-        //   hint: "This terminal doesn't trust the outside world",
-        //   difficulty: "easy",
-        //   content: <Locked theme="safe" title="PERSONAL SAFE" />
-        // },
+        password: {
+          pw: "localhost",
+          hint: "This terminal doesn't trust the outside world",
+          difficulty: "easy",
+          content: <Locked theme="safe" title="PERSONAL SAFE" />
+        },
         content: (
           <Safe
             id="torres-3b-safe"
@@ -936,12 +923,12 @@ export const NEIGHBORHOOD_COMMANDS = {
       },
 
       "Unit 4B - Personal Safe": {
-        // password: {
-        //   pw: "dealer",
-        //   hint: "The resident's job at the casino",
-        //   difficulty: "medium",
-        //   content: <Locked theme="safe" title="PERSONAL SAFE" />
-        // },
+        password: {
+          pw: "dealer",
+          hint: "The resident's job at the casino",
+          difficulty: "medium",
+          content: <Locked theme="safe" title="PERSONAL SAFE" />
+        },
         content: (
           <Safe
             id="torres-4b-safe"
@@ -971,13 +958,13 @@ export const NEIGHBORHOOD_COMMANDS = {
         ),
       },
 
-      access_building_management: {
-        // password: {
-        //   pw: "blind",
-        //   hint: "You pay before you see",
-        //   difficulty: "medium",
-        //   content: <Locked theme="terminal" title="BUILDING MANAGEMENT" />
-        // },
+      "Building Management": {
+        password: {
+          pw: "blind",
+          hint: "You pay before you see",
+          difficulty: "medium",
+          content: <Locked theme="terminal" title="BUILDING MANAGEMENT" />
+        },
         content: (
           <MaintenanceAccess
             title="[BUILDING MANAGEMENT SYSTEM]"
@@ -1008,10 +995,6 @@ export const NEIGHBORHOOD_COMMANDS = {
       },
     },
   },
-
-  // ============================================================================
-  // LUCKY'S PAWN & TRADE
-  // ============================================================================
 
   "Lucky's Pawn & Trade": {
     content: (
@@ -1066,12 +1049,12 @@ export const NEIGHBORHOOD_COMMANDS = {
       },
 
       "ATM": {
-        // password: {
-        //   pw: "cash",
-        //   hint: "What everyone wants from an ATM",
-        //   difficulty: "easy",
-        //   content: <Locked theme="terminal" title="ATM ACCESS" />
-        // },
+        password: {
+          pw: "cash",
+          hint: "What everyone wants from an ATM",
+          difficulty: "easy",
+          content: <Locked theme="terminal" title="ATM ACCESS" />
+        },
         content: (
           <ATM
             id="lucky-pawn-atm"
@@ -1091,13 +1074,13 @@ export const NEIGHBORHOOD_COMMANDS = {
         ),
       },
 
-      access_pawn_records: {
-        // password: {
-        //   pw: "thehouse",
-        //   hint: "It always wins",
-        //   difficulty: "easy",
-        //   content: <Locked theme="terminal" title="PAWN RECORDS" />
-        // },
+      "Access Pawn Records": {
+        password: {
+          pw: "thehouse",
+          hint: "It always wins",
+          difficulty: "easy",
+          content: <Locked theme="terminal" title="PAWN RECORDS" />
+        },
         content: (
           <MaintenanceAccess
             title="[PAWN RECORDS DATABASE]"

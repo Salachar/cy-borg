@@ -113,18 +113,6 @@ export default function Jukebox({
                       textAlign: 'left',
                       fontFamily: 'monospace',
                     }}
-                    onMouseEnter={(e) => {
-                      if (!isSelected) {
-                        e.target.style.backgroundColor = 'rgba(71, 85, 105, 0.4)';
-                        e.target.style.borderColor = 'rgb(100, 116, 139)';
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      if (!isSelected) {
-                        e.target.style.backgroundColor = 'rgba(51, 65, 85, 0.3)';
-                        e.target.style.borderColor = 'rgb(71, 85, 105)';
-                      }
-                    }}
                   >
                     {/* Color indicator dot */}
                     <div
@@ -319,12 +307,6 @@ export default function Jukebox({
                   cursor: 'pointer',
                   fontFamily: 'monospace',
                   transition: 'all 0.2s',
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.backgroundColor = 'rgba(239, 68, 68, 0.3)';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.backgroundColor = 'rgba(239, 68, 68, 0.2)';
                 }}
               >
                 ⏹ STOP

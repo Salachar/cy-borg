@@ -515,14 +515,6 @@ export default function DistrictPortal({
                     borderRadius: '3px',
                     transition: 'all 0.2s',
                   }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = `${colors.primary}20`;
-                    e.currentTarget.style.borderLeftWidth = '6px';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = `${colors.primary}10`;
-                    e.currentTarget.style.borderLeftWidth = '4px';
-                  }}
                 >
                   <Line
                     neon

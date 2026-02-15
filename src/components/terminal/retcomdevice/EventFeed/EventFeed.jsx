@@ -169,18 +169,6 @@ export default function EventFeed({
                       transition: 'all 0.2s',
                       fontFamily: 'monospace',
                     }}
-                    onMouseEnter={(e) => {
-                      if (!isSelected) {
-                        e.target.style.backgroundColor = 'rgba(71, 85, 105, 0.4)';
-                        e.target.style.borderColor = 'rgb(100, 116, 139)';
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      if (!isSelected) {
-                        e.target.style.backgroundColor = 'rgba(51, 65, 85, 0.3)';
-                        e.target.style.borderColor = 'rgb(71, 85, 105)';
-                      }
-                    }}
                   >
                     {filter.label}
                   </button>

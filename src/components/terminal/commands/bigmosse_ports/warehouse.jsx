@@ -154,12 +154,12 @@ export const WAREHOUSE_COMMANDS = {
       },
 
       "Internal Network": {
-        // password: {
-        //   pw: "logistics47",
-        //   hint: "Facility number + warehouse function (all lowercase)",
-        //   difficulty: "medium",
-        //   content: <Locked theme="terminal" title="EMPLOYEE NETWORK" />
-        // },
+        password: {
+          pw: "logistics47",
+          hint: "Facility number + warehouse function (all lowercase)",
+          difficulty: "medium",
+          content: <Locked theme="terminal" title="EMPLOYEE NETWORK" />
+        },
         content: (
           <MaintenanceAccess
             title="[ALLIANSEN WAREHOUSE NETWORK]"
@@ -232,8 +232,7 @@ export const WAREHOUSE_COMMANDS = {
           "Employee Notice Board": {
             content: (
               <CommunityBoard
-                id="warehouse-board"
-                boardName="EMPLOYEE NOTICES"
+                name="EMPLOYEE NOTICES"
                 location="Break room - Wall near coffee station"
                 posts={[
                   { text: "Reminder: Lock all doors when leaving secure areas", color: "yellow" },
@@ -254,12 +253,12 @@ export const WAREHOUSE_COMMANDS = {
           },
 
           "Supervisor's Terminal": {
-            // password: {
-            //   pw: "webb2041",
-            //   hint: "Supervisor's last name + birth year (check personnel file)",
-            //   difficulty: "medium",
-            //   content: <Locked theme="terminal" title="SUPERVISOR WORKSTATION" />
-            // },
+            password: {
+              pw: "webb2041",
+              hint: "Supervisor's last name + birth year (check personnel file)",
+              difficulty: "medium",
+              content: <Locked theme="terminal" title="SUPERVISOR WORKSTATION" />
+            },
             content: (
               <Workstation
                 owner="Marcus Webb"
@@ -495,12 +494,12 @@ export const WAREHOUSE_COMMANDS = {
               },
 
               "Supervisor's Office Safe": {
-                // password: {
-                //   pw: "fisherman",
-                //   hint: "Marcus Webb's favorite hobby (check his profile)",
-                //   difficulty: "medium",
-                //   content: <Locked theme="safe" title="SUPERVISOR SAFE" />
-                // },
+                password: {
+                  pw: "fisherman",
+                  hint: "Marcus Webb's favorite hobby (check his profile)",
+                  difficulty: "medium",
+                  content: <Locked theme="safe" title="SUPERVISOR SAFE" />
+                },
                 content: (
                   <Safe
                     id="alliansen-warehouse-supervisor"

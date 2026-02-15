@@ -8,14 +8,13 @@ export function LuckyFlightAd() {
   return (
     <div style={{
       position: 'relative',
-      backgroundColor: '#0d3d2d', // Dark green base
-      border: '3px solid #8b0000', // Dark red border
+      backgroundColor: '#0d3d2d',
+      border: '3px solid #8b0000',
       borderRadius: '8px',
       padding: '2.5rem',
       overflow: 'hidden',
       boxShadow: '0 4px 12px rgba(0, 0, 0, 0.5)',
     }}>
-      {/* Diagonal stripes */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -34,7 +33,6 @@ export function LuckyFlightAd() {
         pointerEvents: 'none',
       }} />
 
-      {/* Top red accent bar */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -44,7 +42,6 @@ export function LuckyFlightAd() {
         background: '#8b0000',
       }} />
 
-      {/* Bottom gold accent bar */}
       <div style={{
         position: 'absolute',
         bottom: 0,
@@ -54,9 +51,7 @@ export function LuckyFlightAd() {
         background: '#daa520',
       }} />
 
-      {/* Content */}
       <div style={{ position: 'relative', zIndex: 1 }}>
-        {/* Dice graphic (CSS) */}
         <div style={{
           display: 'flex',
           justifyContent: 'center',
@@ -65,7 +60,6 @@ export function LuckyFlightAd() {
           <Dice />
         </div>
 
-        {/* Casino name */}
         <h2 style={{
           fontSize: '2.5rem',
           fontWeight: 900,
@@ -79,7 +73,6 @@ export function LuckyFlightAd() {
           Lucky Flight Casino
         </h2>
 
-        {/* Tagline */}
         <p style={{
           fontSize: '1.125rem',
           color: '#90ee90',
@@ -90,7 +83,6 @@ export function LuckyFlightAd() {
           "Where Fortune Takes Flight"
         </p>
 
-        {/* Features */}
         <div style={{ marginBottom: '1.5rem' }}>
           <Feature text="100+ Slot Machines" />
           <Feature text="Live Entertainment Nightly" />
@@ -110,7 +102,6 @@ export function LuckyFlightAd() {
         />
       </div>
 
-      {/* Corner decorations */}
       <div style={{
         position: 'absolute',
         top: '12px',
@@ -133,7 +124,6 @@ export function LuckyFlightAd() {
   );
 }
 
-// CSS Dice component
 function Dice() {
   return (
     <div style={{

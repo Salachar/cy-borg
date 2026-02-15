@@ -224,8 +224,6 @@ export default function SegmentedDice({
 
               <button
                 onClick={() => rerollDie(idx)}
-                onMouseEnter={() => setHoveredIndex(idx)}
-                onMouseLeave={() => setHoveredIndex(null)}
                 disabled={!allowIndividualReroll || rolling}
                 className={`
                   relative w-12 h-12 font-mono font-bold text-xl flex-shrink-0

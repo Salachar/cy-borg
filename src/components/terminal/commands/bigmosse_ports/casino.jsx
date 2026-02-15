@@ -1,4 +1,5 @@
 import {
+  InsetBox,
   Line,
   Box,
   Section,
@@ -53,7 +54,7 @@ export const LUCKY_FLIGHT_CASINO = {
       "Lobby ATM": {
         password: {
           pw: "liquidity",
-          hint: "You don’t need more money. You need to move it.",
+          hint: "You don't need more money. You need to move it.",
           difficulty: "expert",
         },
         content: (
@@ -180,23 +181,25 @@ export const LUCKY_FLIGHT_CASINO = {
         ),
         related_commands: {
           "Maintenance Access": {
-            // password: {
-            //   pw: "quantum",
-            //   hint: "Top selling soda",
-            //   difficulty: "medium",
-            // },
+            password: {
+              pw: "quantum",
+              hint: "Top selling soda",
+              difficulty: "medium",
+            },
             content: (
-              <>
-                <Line smoke large bold>[MAINTENANCE MENU]</Line>
-                <Line cyan>[EMPLOYEE ACCESS GRANTED]</Line>
-                <Divider />
-                <Section title="AVAILABLE OPTIONS:">
-                  <Line neon>→ Restock inventory</Line>
-                  <Line neon>→ Access internal safe</Line>
-                  <Line neon>→ Debug mode</Line>
-                </Section>
-              </>
-            ),
+             <MaintenanceAccess
+                title="[NUKACOLA DISPENSER 3000 - MAINTENANCE]"
+                deviceModel="NukaCola Dispenser 3000"
+                deviceId="LFC-VEND-LOBBY-01"
+                firmwareVersion="v4.1.0"
+                systemStatus="OPERATIONAL"
+                uptime="47 days, 3 hours"
+                notes={[
+                  "Last restocked: 3 days ago",
+                  "No faults logged",
+                ]}
+              />
+             ),
             related_commands: {
               "VendWallet": {
                 content: (
@@ -225,12 +228,12 @@ export const LUCKY_FLIGHT_CASINO = {
         },
       },
 
-      "Casino Internal Network [PRIVATE]": {
-        // password: {
-        //   pw: "loadeddice",
-        //   hint: "Better not get caught",
-        //   difficulty: "expert",
-        // },
+      "Casino Internal Network": {
+        password: {
+          pw: "loadeddice",
+          hint: "Better not get caught",
+          difficulty: "expert",
+        },
         content: (
           <MaintenanceAccess
             title="[CASINO INTERNAL NETWORK]"
@@ -241,7 +244,6 @@ export const LUCKY_FLIGHT_CASINO = {
             uptime="42 days, 11 hours"
             notes={[
               "Access Level: Peripheral systems only",
-              "Higher-value systems require additional credentials",
               "Camera feeds, operations data, and public terminals accessible",
               "Vault, power core, and security office require elevated access"
             ]}
@@ -249,24 +251,31 @@ export const LUCKY_FLIGHT_CASINO = {
         ),
         related_commands: {
           "Facility Files": {
-            // password: {
-            //   pw: "architecture",
-            //   hint: "What blueprints are a form of",
-            //   difficulty: "medium",
-            // },
+            password: {
+              pw: "architecture",
+              hint: "What blueprints are a form of",
+              difficulty: "medium",
+            },
             content: (
-              <>
-                <Line smoke large bold>[FACILITY BLUEPRINTS]</Line>
-                <Line cyan>Architectural database accessed</Line>
-                <Divider />
-                <Section title="AVAILABLE FLOORS:">
-                  <Line neon>→ Basement (mechanical, storage)</Line>
-                  <Line neon>→ Floor 1 (casino floor, gaming)</Line>
-                  <Line neon>→ Floor 2 (VIP, management, vault)</Line>
-                </Section>
-                <Divider />
-                <Line yellow>All floor plans accessible below</Line>
-              </>
+              <MaintenanceAccess
+                title="[LUCKY FLIGHT CASINO — FACILITY FILES]"
+                deviceModel="Architectural Database System"
+                deviceId="LFC-ARCH-DB-01"
+                firmwareVersion="v2.0.0"
+                systemStatus="OPERATIONAL"
+                notes={[
+                  "3 floors on record: Basement, Floor 1, Floor 2",
+                  "Last updated: 20X2.08.14",
+                  "Author: [REDACTED]",
+                  "Security clearance 3 required for full access",
+                ]}
+              >
+                <InsetBox title="AVAILABLE BLUEPRINTS:">
+                  <Line neon>Basement — mechanical, storage</Line>
+                  <Line neon>Floor 1 — casino floor, gaming</Line>
+                  <Line neon>Floor 2 — VIP, management, vault</Line>
+                </InsetBox>
+              </MaintenanceAccess>
             ),
             related_commands: {
               "Blueprint: Basement": {
@@ -320,8 +329,8 @@ export const LUCKY_FLIGHT_CASINO = {
                     <Line neon>• Bathrooms</Line>
                     <Line neon>• VIP access</Line>
                     <Divider />
-                    <Line red>⚠ Full camera coverage on this floor</Line>
-                    <Line yellow>⚠ Cleaning drones active 07:00-10:00 (closed hours)</Line>
+                    <Line red>Full camera coverage on this floor</Line>
+                    <Line yellow>Cleaning drones active 07:00-10:00 (closed hours)</Line>
                   </Box>
                 ),
               },
@@ -357,11 +366,11 @@ export const LUCKY_FLIGHT_CASINO = {
             },
           },
           "Personnel Files": {
-            // password: {
-            //   pw: "gibos",
-            //   hint: "Nickname of the cyborg grandpa winning big at slots",
-            //   difficulty: "hard",
-            // },
+            password: {
+              pw: "gibos",
+              hint: "Nickname of the cyborg grandpa winning big at slots",
+              difficulty: "hard",
+            },
             content: (
               <MaintenanceAccess
                 title="[HR DATABASE]"
@@ -500,11 +509,11 @@ export const LUCKY_FLIGHT_CASINO = {
                 ),
               },
               "UNNAMED ENTRY": {
-                // password: {
-                //   pw: "database",
-                //   hint: "Please help! I've been turned into a living...",
-                //   difficulty: "corporate",
-                // },
+                password: {
+                  pw: "database",
+                  hint: "Please help! I've been turned into a living...",
+                  difficulty: "corporate",
+                },
                 content: (
                   <Box color="pink">
                     <Line pink large bold>[CLASSIFIED FILE: ZOLA]</Line>
@@ -545,11 +554,11 @@ export const LUCKY_FLIGHT_CASINO = {
             },
           },
           "Security Coverage": {
-            // password: {
-            //   pw: "surveillance",
-            //   hint: "What cameras are used for",
-            //   difficulty: "hard",
-            // },
+            password: {
+              pw: "surveillance",
+              hint: "What cameras are used for",
+              difficulty: "hard",
+            },
             content: (
               <>
                 <Line smoke large bold>[SECURITY DATABASE]</Line>
@@ -566,12 +575,12 @@ export const LUCKY_FLIGHT_CASINO = {
             ),
             related_commands: {
               "Access Control System": {
-                // password: {
-                //   pw: "keycard",
-                //   hint: "What employees swipe to get in",
-                //   difficulty: "medium",
-                //   content: <Locked theme="terminal" title="ACCESS CONTROL" />
-                // },
+                password: {
+                  pw: "keycard",
+                  hint: "What employees swipe to get in",
+                  difficulty: "medium",
+                  content: <Locked theme="terminal" title="ACCESS CONTROL" />
+                },
                 content: (
                   <SecureAccessControl
                     systemName="ACCESS CONTROL SYSTEM"
@@ -604,15 +613,15 @@ export const LUCKY_FLIGHT_CASINO = {
                   <NetworkDevices
                     networkName="CCTV_FLOOR_1"
                     devices={[
-                      { name: "Entrance", ip: "10.0.1.101", type: "Security Camera", status: "ONLINE" },
-                      { name: "Plant 1", ip: "10.0.1.102", type: "Security Camera", status: "ONLINE" },
-                      { name: "Plant 2", ip: "10.0.1.103", type: "Security Camera", status: "ONLINE" },
-                      { name: "Vending Machine", ip: "10.0.1.104", type: "Security Camera", status: "ONLINE" },
-                      { name: "Holo Games 1", ip: "10.0.1.105", type: "Security Camera", status: "ONLINE" },
-                      { name: "Holo Games 2", ip: "10.0.1.106", type: "Security Camera", status: "ONLINE" },
-                      { name: "Bathroom", ip: "10.0.1.107", type: "Security Camera", status: "ONLINE" },
-                      { name: "Stage Left", ip: "10.0.1.108", type: "Security Camera", status: "ONLINE" },
-                      { name: "Stage Right", ip: "10.0.1.109", type: "Security Camera", status: "ONLINE" },
+                      { name: "Entrance", ip: "10.0.1.101", type: "Security Camera" },
+                      { name: "Plant 1", ip: "10.0.1.102", type: "Security Camera" },
+                      { name: "Plant 2", ip: "10.0.1.103", type: "Security Camera" },
+                      { name: "Vending Machine", ip: "10.0.1.104", type: "Security Camera" },
+                      { name: "Holo Games 1", ip: "10.0.1.105", type: "Security Camera" },
+                      { name: "Holo Games 2", ip: "10.0.1.106", type: "Security Camera" },
+                      { name: "Bathroom", ip: "10.0.1.107", type: "Security Camera" },
+                      { name: "Stage Left", ip: "10.0.1.108", type: "Security Camera" },
+                      { name: "Stage Right", ip: "10.0.1.109", type: "Security Camera" },
                     ]}
                   />
                 ),
@@ -623,15 +632,15 @@ export const LUCKY_FLIGHT_CASINO = {
                   <NetworkDevices
                     networkName="CCTV_FLOOR_2"
                     devices={[
-                      { name: "Tech 1", ip: "10.0.2.201", type: "Security Camera", status: "ONLINE" },
-                      { name: "Tech 2", ip: "10.0.2.202", type: "Security Camera", status: "ONLINE" },
-                      { name: "Vending Machine", ip: "10.0.2.203", type: "Security Camera", status: "ONLINE" },
-                      { name: "Aquarium 1", ip: "10.0.2.204", type: "Security Camera", status: "ONLINE" },
-                      { name: "Office 1", ip: "10.0.2.205", type: "Security Camera", status: "ONLINE" },
-                      { name: "Office 2", ip: "10.0.2.206", type: "Security Camera", status: "ONLINE" },
-                      { name: "Office 3", ip: "10.0.2.207", type: "Security Camera", status: "ONLINE" },
-                      { name: "Balcony", ip: "10.0.2.208", type: "Security Camera", status: "ONLINE" },
-                      { name: "VIP", ip: "10.0.2.209", type: "Security Camera", status: "ONLINE" },
+                      { name: "Tech 1", ip: "10.0.2.201", type: "Security Camera" },
+                      { name: "Tech 2", ip: "10.0.2.202", type: "Security Camera" },
+                      { name: "Vending Machine", ip: "10.0.2.203", type: "Security Camera" },
+                      { name: "Aquarium 1", ip: "10.0.2.204", type: "Security Camera" },
+                      { name: "Office 1", ip: "10.0.2.205", type: "Security Camera" },
+                      { name: "Office 2", ip: "10.0.2.206", type: "Security Camera" },
+                      { name: "Office 3", ip: "10.0.2.207", type: "Security Camera" },
+                      { name: "Balcony", ip: "10.0.2.208", type: "Security Camera" },
+                      { name: "VIP", ip: "10.0.2.209", type: "Security Camera" },
                     ]}
                   />
                 ),
@@ -645,9 +654,7 @@ export const LUCKY_FLIGHT_CASINO = {
                       devices={[]}
                     />
                     <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgb(239, 68, 68)', borderRadius: '4px' }}>
-                      <Line red pulse bold style={{ margin: 0 }}>
-                        ⚠ ERROR: DIRECT NETWORK ACCESS REQUIRED
-                      </Line>
+                      <Line red pulse bold>ERROR: DIRECT NETWORK ACCESS REQUIRED</Line>
                       <Line smoke style={{ fontSize: '0.75rem', marginTop: '0.5rem' }}>
                         Basement CCTV operates on isolated subnet. Physical connection needed.
                       </Line>
@@ -658,23 +665,25 @@ export const LUCKY_FLIGHT_CASINO = {
             },
           },
           "Financial Records": {
-            // password: {
-            //   pw: "debt",
-            //   hint: "What casino uses to control neighborhood",
-            //   difficulty: "hard",
-            // },
+            password: {
+              pw: "debt",
+              hint: "What casino uses to control neighborhood",
+              difficulty: "hard",
+            },
             content: (
-              <>
-                <Line smoke large bold>[FINANCIAL DATABASE]</Line>
-                <Line cyan>Records accessed</Line>
-                <Divider />
-                <Section title="AVAILABLE:">
-                  <Line neon>→ Neighborhood debt ledger</Line>
-                  <Line neon>→ High roller stats</Line>
-                  <Line neon>→ Vault inventory</Line>
-                  <Line neon>→ Corporate structure</Line>
-                </Section>
-              </>
+              <MaintenanceAccess
+                title="[LUCKY FLIGHT CASINO — FINANCIAL DATABASE]"
+                deviceModel="Financial Records System"
+                deviceId="LFC-FIN-DB-01"
+                firmwareVersion="v3.1.0"
+                systemStatus="OPERATIONAL"
+                notes={[
+                  "Neighborhood debt ledger on file",
+                  "High roller stats and transaction history",
+                  "Vault inventory records",
+                  "Corporate structure documentation",
+                ]}
+              />
             ),
             related_commands: {
               "Debt Ledger": {
@@ -721,12 +730,12 @@ export const LUCKY_FLIGHT_CASINO = {
             },
           },
           "Network Traffic Monitor": {
-            // password: {
-            //   pw: "packets",
-            //   hint: "What travels across a network",
-            //   difficulty: "medium",
-            //   content: <Locked theme="terminal" title="NETWORK MONITOR" />
-            // },
+            password: {
+              pw: "packets",
+              hint: "What travels across a network",
+              difficulty: "medium",
+              content: <Locked theme="terminal" title="NETWORK MONITOR" />
+            },
             content: (
               <NetworkTrafficMonitor
                 systemName="CASINO NETWORK TRAFFIC"
@@ -767,11 +776,11 @@ export const LUCKY_FLIGHT_CASINO = {
             ),
             related_commands: {
               "Incident Log": {
-                // password: {
-                //   pw: "chaos",
-                //   hint: "Casino's natural state",
-                //   difficulty: "expert",
-                // },
+                password: {
+                  pw: "chaos",
+                  hint: "Casino's natural state",
+                  difficulty: "expert",
+                },
                 content: (
                   <IncidentLog
                     title="RECENT INCIDENTS"
@@ -819,11 +828,11 @@ export const LUCKY_FLIGHT_CASINO = {
                 ),
               },
               "Power Core Status": {
-                // password: {
-                //   pw: "unstable",
-                //   hint: "Condition of Room 16",
-                //   difficulty: "easy",
-                // },
+                password: {
+                  pw: "unstable",
+                  hint: "Condition of Room 16",
+                  difficulty: "easy",
+                },
                 content: (
                   <MaintenanceAccess
                     title="[POWER CORE - ROOM 16]"
@@ -843,7 +852,7 @@ export const LUCKY_FLIGHT_CASINO = {
                   >
                     <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: 'rgba(239, 68, 68, 0.1)', border: '2px solid rgb(239, 68, 68)', borderRadius: '4px' }}>
                       <Line red bold pulse style={{ textAlign: 'center' }}>
-                        ⚠ EXTREME HAZARD - AUTHORIZED PERSONNEL ONLY ⚠
+                        EXTREME HAZARD - AUTHORIZED PERSONNEL ONLY
                       </Line>
                     </div>
                   </MaintenanceAccess>

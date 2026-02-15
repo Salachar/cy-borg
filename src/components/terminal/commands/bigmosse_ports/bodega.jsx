@@ -3,6 +3,7 @@ import {
   Section,
   Divider,
   DataTable,
+  InsetBox,
 } from '@terminal/TerminalComponents';
 import {
   ATM,
@@ -83,6 +84,7 @@ export const BODEGA_COMMANDS = {
           </Briefing>
         ),
       },
+
       "Bodega Menu": {
         content: (
           <Menu
@@ -124,7 +126,7 @@ export const BODEGA_COMMANDS = {
               pw: "java",
               hint: "Dan really hates it",
               difficulty: 'expert',
-              content: <Locked theme="wallet" />
+              content: <DigitalWallet isLocked />
             },
             content: (
               <DigitalWallet
@@ -196,11 +198,6 @@ export const BODEGA_COMMANDS = {
             ),
             related_commands: {
               "VendWallet": {
-                password: {
-                  pw: "coins",
-                  hint: "What accumulates in the cash box",
-                  difficulty: 'expert',
-                },
                 content: (
                   <DigitalWallet
                     id="bodega-vending-machine-wallet"
@@ -220,7 +217,7 @@ export const BODEGA_COMMANDS = {
                     note="Dispense drinks via main interface - no charge"
                     theme="corporate"
                   >
-                    <Line yellow large>⚠ FREE VEND MODE ENABLED</Line>
+                    <Line yellow large>FREE VEND MODE ENABLED</Line>
                     <Line cyan>All payment verification disabled</Line>
                   </Message>
                 ),
@@ -239,27 +236,25 @@ export const BODEGA_COMMANDS = {
             note={'"Fair prices. No questions." - Batu'}
             theme="casual"
           >
-            <Section title="WEEKLY DEALS:">
+            <InsetBox title="WEEKLY DEALS:">
               <Line neon>• Synth-Ramen 6-pack → 12¤ (was 18¤)</Line>
               <Line neon>• Energy Drinks (any brand) → 2 for 8¤</Line>
               <Line neon>• Protein Bars (expired last week) → 1¤ each</Line>
-            </Section>
-            <Divider />
-            <Section title="ALWAYS IN STOCK:">
+            </InsetBox>
+            <InsetBox title="ALWAYS IN STOCK:">
               <Line yellow>→ Cigarettes (all brands)</Line>
               <Line yellow>→ Lottery tickets (Ports Weekly Draw)</Line>
               <Line yellow>→ Basic first aid supplies</Line>
               <Line yellow>→ Cheap liquor & beer</Line>
               <Line yellow>→ Snacks & candy</Line>
-            </Section>
-            <Divider />
-            <Section title="SERVICES:">
+            </InsetBox>
+            <InsetBox title="SERVICES:">
               <Line cyan>✓ Community bulletin board</Line>
               <Line cyan>✓ Credchip exchange (small fee)</Line>
               <Line cyan>✓ Package pickup/dropoff for couriers</Line>
               <Line cyan>✓ Bathroom access (regulars only)</Line>
               <Line cyan>✓ Free WiFi</Line>
-            </Section>
+            </InsetBox>
           </Message>
         ),
       },
@@ -300,7 +295,6 @@ export const BODEGA_COMMANDS = {
           <CommunityBoard
             id="bodega-bulletin"
             boardName="COMMUNITY BULLETIN BOARD"
-            location="Inside Batu's Bodega - Near counter"
             posts={[
               { text: '"MISSING: Batu, bodega owner. Anyone seen him?"', color: 'red' },
               { text: '"Lucky Flight took another house on our street this week"', color: 'cyan' },
@@ -312,9 +306,8 @@ export const BODEGA_COMMANDS = {
             ]}
             services={[
               'Street doc - "Fingers" (2 blocks south, knock 3x)',
-              "Chop shop - Razor's (3 blocks east, alley entrance)",
             ]}
-            vibe="General mood: Frustrated, angry, desperate"
+            vibe="Frustrated, angry, desperate"
           />
         ),
       },

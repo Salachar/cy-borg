@@ -260,14 +260,6 @@ export default function CityPortal({
                         borderRadius: '4px',
                         transition: 'all 0.2s',
                       }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = 'rgba(30, 41, 59, 0.8)';
-                        e.currentTarget.style.borderLeftColor = 'rgb(251, 191, 36)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = 'rgba(30, 41, 59, 0.6)';
-                        e.currentTarget.style.borderLeftColor = 'rgb(239, 68, 68)';
-                      }}
                     >
                       <Line red bold style={{ margin: 0, fontSize: '1.1rem' }}>
                         {district.name}

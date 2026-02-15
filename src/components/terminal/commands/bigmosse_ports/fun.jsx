@@ -9,14 +9,12 @@ import {
 import {
   ArcadeCabinet,
   Safe,
-  Camera,
   Jukebox,
   MaintenanceAccess,
   PublicPortal,
   HoursBanner,
   Menu,
   PersonnelFile,
-  IncidentLog,
   Workstation,
   Locked,
 } from "@terminal/retcomdevice"
@@ -91,7 +89,6 @@ export const FUN_COMMANDS = {
               "Reputation: Brilliant but erratic — customers nervous but loyal",
               "Known for: 'infinite channels' cable boxes, mysterious back room",
             ]}
-            status="ACTIVE"
           />
         ),
       },
@@ -271,12 +268,12 @@ export const FUN_COMMANDS = {
       },
 
       "Shop Safe": {
-        // password: {
-        //   pw: "persona",
-        //   hint: "What the owner seems to change regularly",
-        //   difficulty: "easy",
-        //   content: <Locked theme="safe" title="SHOP SAFE" />
-        // },
+        password: {
+          pw: "persona",
+          hint: "What the owner seems to change regularly",
+          difficulty: "easy",
+          content: <Locked theme="safe" title="SHOP SAFE" />
+        },
         content: (
           <Safe
             id="pawn-counter-safe"
@@ -319,12 +316,12 @@ export const FUN_COMMANDS = {
       },
 
       "Pawn Records": {
-        // password: {
-        //   pw: "goldenturd",
-        //   hint: "What locals call the shop mascot statue",
-        //   difficulty: "hard",
-        //   content: <Locked theme="terminal" title="PAWN RECORDS" />
-        // },
+        password: {
+          pw: "goldenturd",
+          hint: "What locals call the shop mascot statue",
+          difficulty: "hard",
+          content: <Locked theme="terminal" title="PAWN RECORDS" />
+        },
         content: (
           <MaintenanceAccess
             title="[PAWN RECORDS]"
@@ -414,12 +411,12 @@ export const FUN_COMMANDS = {
       },
 
       "Office Workstation": {
-        // password: {
-        //   pw: "encryption",
-        //   hint: "What Cipher specializes in for security",
-        //   difficulty: "medium",
-        //   content: <Locked theme="terminal" title="WORKSTATION ACCESS" />
-        // },
+        password: {
+          pw: "encryption",
+          hint: "What Cipher specializes in for security",
+          difficulty: "medium",
+          content: <Locked theme="terminal" title="WORKSTATION ACCESS" />
+        },
         content: (
           <Workstation
             owner="Cipher"
@@ -445,12 +442,12 @@ export const FUN_COMMANDS = {
       },
 
       "Office Safe": {
-        // password: {
-        //   pw: "decryption",
-        //   hint: "Opposite of encryption",
-        //   difficulty: "easy",
-        //   content: <Locked theme="safe" title="OFFICE SAFE" />
-        // },
+        password: {
+          pw: "decryption",
+          hint: "Opposite of encryption",
+          difficulty: "easy",
+          content: <Locked theme="safe" title="OFFICE SAFE" />
+        },
         content: (
           <Safe
             id="cipher-office-safe"
@@ -467,21 +464,6 @@ export const FUN_COMMANDS = {
                 value: 680,
                 isCredits: true
               },
-              {
-                id: "cipher_usb_drives",
-                label: "USB drives",
-                description: "Client data backups (3 drives, encrypted)"
-              },
-              {
-                id: "cipher_documents",
-                label: "Documents",
-                description: "Business license, insurance, client NDAs"
-              },
-              {
-                id: "cipher_personal_credchip",
-                label: "Personal credchip",
-                description: "Unknown amount (separate from business)"
-              },
             ]}
             digital={[
               {
@@ -492,16 +474,12 @@ export const FUN_COMMANDS = {
                 isCredits: true
               },
             ]}
-            notes="⚠ Safe features quantum encryption - extremely difficult to crack"
+            notes="Safe features quantum encryption - extremely difficult to crack"
           />
         ),
       },
     },
   },
-
-  // ============================================================================
-  // ENTERTAINMENT & VENUES
-  // ============================================================================
 
   "The Compiler Bar": {
     content: (
@@ -605,12 +583,12 @@ export const FUN_COMMANDS = {
       },
 
       "Bar Safe": {
-        // password: {
-        //   pw: "algorithm",
-        //   hint: "What programmers write to solve problems",
-        //   difficulty: "medium",
-        //   content: <Locked theme="safe" title="BAR SAFE" />
-        // },
+        password: {
+          pw: "algorithm",
+          hint: "What programmers write to solve problems",
+          difficulty: "medium",
+          content: <Locked theme="safe" title="BAR SAFE" />
+        },
         content: (
           <Safe
             id="compiler-bar-safe"
@@ -658,12 +636,12 @@ export const FUN_COMMANDS = {
       },
 
       "Internal Systems": {
-        // password: {
-        //   pw: "debug",
-        //   hint: "What programmers do when code doesn't work",
-        //   difficulty: "hard",
-        //   content: <Locked theme="terminal" title="BAR SYSTEMS" />
-        // },
+        password: {
+          pw: "debug",
+          hint: "What programmers do when code doesn't work",
+          difficulty: "hard",
+          content: <Locked theme="terminal" title="BAR SYSTEMS" />
+        },
         content: (
           <MaintenanceAccess
             title="[BAR INTERNAL SYSTEMS]"
@@ -694,10 +672,6 @@ export const FUN_COMMANDS = {
       },
     },
   },
-
-  // ============================================================================
-  // CITY INFRASTRUCTURE & DEVICES
-  // ============================================================================
 
   "Traffic Signal Control (Innovation & 7th)": {
     content: (
@@ -730,10 +704,6 @@ export const FUN_COMMANDS = {
       </MaintenanceAccess>
     ),
   },
-
-  // ============================================================================
-  // GAME REFERENCES & EASTER EGGS
-  // ============================================================================
 
   "NetBattler Arcade (Tech Mall)": {
     content: (

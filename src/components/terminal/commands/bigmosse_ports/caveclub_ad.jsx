@@ -4,18 +4,17 @@ import {
   PublicPortal,
 } from "@terminal/retcomdevice"
 
-export function StoneEelsAd({ children }) {
+export function StoneEelsAd() {
   return (
     <div style={{
       position: 'relative',
-      backgroundColor: '#1a1a1a', // Deep black
-      border: '4px solid #00ff41', // Electric green
+      backgroundColor: '#1a1a1a',
+      border: '4px solid #00ff41',
       borderRadius: '4px',
       padding: '2.5rem',
       overflow: 'hidden',
       boxShadow: '0 0 20px rgba(0, 255, 65, 0.3)',
     }}>
-      {/* Circuit pattern background */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -42,7 +41,6 @@ export function StoneEelsAd({ children }) {
         pointerEvents: 'none',
       }} />
 
-      {/* Side accent bars */}
       <div style={{
         position: 'absolute',
         top: 0,
@@ -60,9 +58,7 @@ export function StoneEelsAd({ children }) {
         background: '#00ff41',
       }} />
 
-      {/* Content */}
       <div style={{ position: 'relative', zIndex: 1 }}>
-        {/* Eel graphic */}
         <div style={{
           display: 'flex',
           justifyContent: 'center',
@@ -71,7 +67,6 @@ export function StoneEelsAd({ children }) {
           <EelIcon />
         </div>
 
-        {/* Venue name */}
         <h2 style={{
           fontSize: '2.75rem',
           fontWeight: 900,
@@ -85,7 +80,6 @@ export function StoneEelsAd({ children }) {
           CAVE CLUB
         </h2>
 
-        {/* Gang marker */}
         <p style={{
           fontSize: '0.875rem',
           color: '#666',
@@ -97,7 +91,6 @@ export function StoneEelsAd({ children }) {
           Stone Eels Territory
         </p>
 
-        {/* Tagline */}
         <p style={{
           fontSize: '1.25rem',
           color: '#fff',
@@ -108,7 +101,6 @@ export function StoneEelsAd({ children }) {
           "Underground. Literally."
         </p>
 
-        {/* Divider */}
         <div style={{
           height: '2px',
           background: '#00ff41',
@@ -116,7 +108,6 @@ export function StoneEelsAd({ children }) {
           width: '70%',
         }} />
 
-        {/* Features */}
         <div style={{ marginBottom: '1.5rem' }}>
           <StoneFeature text="Live Music Every Night" />
           <StoneFeature text="Neutral Ground - No Drama" />
@@ -137,7 +128,6 @@ export function StoneEelsAd({ children }) {
         />
       </div>
 
-      {/* Corner tech details */}
       <TechCorner style={{ top: '12px', left: '12px' }} />
       <TechCorner style={{ top: '12px', right: '12px', transform: 'scaleX(-1)' }} />
       <TechCorner style={{ bottom: '12px', left: '12px', transform: 'scaleY(-1)' }} />

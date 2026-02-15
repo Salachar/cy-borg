@@ -1,6 +1,6 @@
 // Terminal UI Helper Components
 
-const COLOR_MAP = {
+export const COLOR_MAP = {
   cyan: 'rgb(0, 255, 255)',
   smoke: 'rgb(133, 175, 231)',
   neon: 'rgb(0, 170, 40)',
@@ -79,7 +79,7 @@ export const Line = ({
   if (left) appliedStyles.marginLeft = "0.5rem";
 
   if (bold) appliedClassname += " font-bold";
-  if (pulse) appliedClassname += " animate-pulse";
+  if (pulse) appliedStyles.animation = 'pulse-text 2s ease-in-out infinite';
   if (xsmall) appliedClassname += " text-xs";
   if (small) appliedClassname += " text-sm";
   if (large) appliedClassname += " text-lg";
@@ -229,8 +229,6 @@ export const CommandLink = ({ command, children, onClick }) => {
         cursor: "pointer",
         textDecoration: "none"
       }}
-      onMouseEnter={(e) => e.target.style.textDecoration = "underline"}
-      onMouseLeave={(e) => e.target.style.textDecoration = "none"}
       onClick={() => onClick && onClick(command)}
     >
       {children || command}

@@ -101,9 +101,7 @@ export const STONE_EELS_COMMANDS = {
       "Community Board": {
         content: (
           <CommunityBoard
-            id="cave-club-board"
-            boardName="COMMUNITY BOARD"
-            location="Cave Club - Main floor near entrance"
+            name="COMMUNITY BOARD"
             posts={[
               { text: "New band forming - need drummer with own kit", color: "pink" },
               { text: "Selling modified amp - 200¤ OBO", color: "pink" },
@@ -294,11 +292,6 @@ export const STONE_EELS_COMMANDS = {
                     description: "1,200¤ (nightly bar receipts, mixed bills)",
                     value: 1200,
                     isCredits: true
-                  },
-                  {
-                    id: "cave_club_documents",
-                    label: "Documents",
-                    description: "Property deed, business licenses, insurance"
                   },
                   {
                     id: "cave_club_weapons",

@@ -139,12 +139,6 @@ export default function Radio({
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}
-                onMouseEnter={(e) => {
-                  e.target.style.backgroundColor = 'rgba(79, 209, 197, 0.3)';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.backgroundColor = 'rgba(79, 209, 197, 0.2)';
-                }}
               >
                 ◀
               </button>
@@ -167,12 +161,6 @@ export default function Radio({
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                }}
-                onMouseEnter={(e) => {
-                  e.target.style.backgroundColor = 'rgba(79, 209, 197, 0.3)';
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.backgroundColor = 'rgba(79, 209, 197, 0.2)';
                 }}
               >
                 ▶

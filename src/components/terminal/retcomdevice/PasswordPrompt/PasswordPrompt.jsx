@@ -28,7 +28,6 @@ export default function PasswordPrompt({
   difficulty = "expert",
   decoyLetters = "",
   onSubmit,
-  onCancel,
   children,
 }) {
   const [currentPassword, setCurrentPassword] = useState("");
@@ -36,30 +35,25 @@ export default function PasswordPrompt({
   const [keyFrequency, setKeyFrequency] = useState({});
   const [feedback, setFeedback] = useState("");
   const [clickedKey, setClickedKey] = useState(null);
-  const [isActive, setIsActive] = useState(true);
   const [showSuccess, setShowSuccess] = useState(false);
 
   // Initialize shuffled keys
   useEffect(() => {
     const freq = getUniqueKeysWithFrequency(password);
     setKeyFrequency(freq);
-
     // Get base keys from password
     let keysToShuffle = Object.keys(freq);
-
     // Add decoy letters for corporate difficulty
     if (difficulty === 'corporate' && decoyLetters) {
       const decoyArray = decoyLetters.split(',').map(l => l.trim().toUpperCase()).filter(Boolean);
       keysToShuffle = [...keysToShuffle, ...decoyArray];
     }
-
     setShuffledKeys(shuffleArray(keysToShuffle));
   }, [password, difficulty, decoyLetters]);
 
   const handleKeyClick = (key) => {
     setCurrentPassword(prev => prev + key);
     setFeedback(""); // Clear feedback on new input
-
     // Visual feedback
     setClickedKey(key);
     setTimeout(() => setClickedKey(null), 150);
@@ -78,16 +72,10 @@ export default function PasswordPrompt({
   const handleSubmit = () => {
     if (currentPassword.toUpperCase() === password.toUpperCase()) {
       setShowSuccess(true);
-      setIsActive(false);
       onSubmit(command, commandDef, password);
     } else {
       setFeedback("INCORRECT PASSWORD");
     }
-  };
-
-  const handleCancel = () => {
-    setIsActive(false);
-    onCancel();
   };
 
   // Character count display
@@ -124,11 +112,10 @@ export default function PasswordPrompt({
     >
       {/* Header */}
       <div
-        className={isActive ? `mb-4 pb-2 border-b` : ""}
+        className="mb-4 pb-2 border-b"
         style={{ borderColor: 'rgb(77, 167, 188)' }}
         onClick={() => {
           if (showSuccess) return;
-          setIsActive(!isActive);
         }}
       >
         {!showSuccess && (
@@ -153,7 +140,7 @@ export default function PasswordPrompt({
         </div>
       </div>
 
-      {isActive && (
+      {!showSuccess && (
         <>
           {/* Current Password Display */}
           <div className="mb-4">
@@ -184,16 +171,6 @@ export default function PasswordPrompt({
                     color: 'rgb(133, 175, 231)',
                     border: '2px solid rgb(77, 167, 188)',
                     minWidth: '48px',
-                  }}
-                  onMouseEnter={(e) => {
-                    if (clickedKey !== key) {
-                      e.target.style.backgroundColor = 'rgb(56, 178, 172)';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (clickedKey !== key) {
-                      e.target.style.backgroundColor = 'rgb(45, 53, 72)';
-                    }
                   }}
                 >
                   {key}
@@ -266,8 +243,6 @@ export default function PasswordPrompt({
                 color: 'rgb(133, 175, 231)',
                 border: '2px solid rgb(77, 167, 188)',
               }}
-              onMouseEnter={(e) => e.target.style.backgroundColor = 'rgb(56, 178, 172)'}
-              onMouseLeave={(e) => e.target.style.backgroundColor = 'rgb(45, 53, 72)'}
             >
               ← Backspace
             </button>
@@ -279,8 +254,6 @@ export default function PasswordPrompt({
                 color: 'rgb(133, 175, 231)',
                 border: '2px solid rgb(77, 167, 188)',
               }}
-              onMouseEnter={(e) => e.target.style.backgroundColor = 'rgb(56, 178, 172)'}
-              onMouseLeave={(e) => e.target.style.backgroundColor = 'rgb(45, 53, 72)'}
             >
               Clear
             </button>
@@ -292,23 +265,22 @@ export default function PasswordPrompt({
                 color: 'rgb(19, 23, 34)',
                 border: '2px solid rgb(79, 209, 197)',
               }}
-              onMouseEnter={(e) => e.target.style.backgroundColor = 'rgb(56, 178, 172)'}
-              onMouseLeave={(e) => e.target.style.backgroundColor = 'rgb(79, 209, 197)'}
             >
               Submit
             </button>
             <button
-              onClick={handleCancel}
+              onClick={() => {
+                setShowSuccess(true);
+                onSubmit(command, commandDef, password);
+              }}
               className="px-4 py-2 font-bold rounded transition-colors"
               style={{
                 backgroundColor: 'rgba(252, 129, 129, 0.2)',
                 color: 'rgb(252, 129, 129)',
                 border: '2px solid rgb(252, 129, 129)',
               }}
-              onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(252, 129, 129, 0.4)'}
-              onMouseLeave={(e) => e.target.style.backgroundColor = 'rgba(252, 129, 129, 0.2)'}
             >
-              X Cancel
+              Override
             </button>
           </div>
         </>
