@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Line, Divider, Section } from '@terminal/TerminalComponents';
+import { Line, Divider, Spacer } from '@terminal/TerminalComponents';
 
 export default function DistrictPortal({
   districtName,
@@ -189,9 +189,13 @@ export default function DistrictPortal({
               textTransform: 'uppercase',
               marginBottom: '0.75rem',
               textShadow: `0 0 15px ${colors.primary}, 0 0 30px ${colors.primary}60`,
+              display: 'flex',
+              justifyContent: 'space-between',
             }}
           >
-            ▂▃▅▇ {districtName} ▇▅▃▂
+            <span>▂▃▅▇</span>
+            <span>{districtName}</span>
+            <span>▇▅▃▂</span>
           </div>
 
           {districtId && (
@@ -229,7 +233,6 @@ export default function DistrictPortal({
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
             gap: '1rem',
-            marginBottom: '1.5rem',
           }}
         >
           {/* Region info */}
@@ -245,7 +248,6 @@ export default function DistrictPortal({
               style={{
                 fontSize: '0.7rem',
                 color: colors.secondary,
-                marginBottom: '0.25rem',
                 opacity: 0.8,
               }}
             >
@@ -277,7 +279,6 @@ export default function DistrictPortal({
                 style={{
                   fontSize: '0.7rem',
                   color: colors.secondary,
-                  marginBottom: '0.25rem',
                   opacity: 0.8,
                 }}
               >
@@ -310,7 +311,6 @@ export default function DistrictPortal({
                 style={{
                   fontSize: '0.7rem',
                   color: colors.secondary,
-                  marginBottom: '0.25rem',
                   opacity: 0.8,
                 }}
               >
@@ -330,7 +330,7 @@ export default function DistrictPortal({
           )}
         </div>
 
-        <Divider color="cyan" />
+        <Spacer />
 
         {/* Threat assessment */}
         <div
@@ -338,8 +338,6 @@ export default function DistrictPortal({
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
             gap: '1rem',
-            marginTop: '1rem',
-            marginBottom: '1rem',
           }}
         >
           <div
@@ -354,7 +352,6 @@ export default function DistrictPortal({
               style={{
                 fontSize: '0.7rem',
                 color: colors.secondary,
-                marginBottom: '0.25rem',
               }}
             >
               THREAT LEVEL
@@ -384,7 +381,6 @@ export default function DistrictPortal({
               style={{
                 fontSize: '0.7rem',
                 color: colors.secondary,
-                marginBottom: '0.25rem',
               }}
             >
               SECURITY
@@ -403,55 +399,52 @@ export default function DistrictPortal({
           </div>
         </div>
 
-        <Divider color="cyan" />
+        <Spacer />
 
         {/* Atmosphere */}
         {atmosphere && (
           <>
-            <div style={{ marginTop: '1rem', marginBottom: '1rem' }}>
+            <Spacer />
+            <Line
+              cyan
+              bold
+              style={{
+                margin: 0,
+                marginBottom: '0.5rem',
+                fontSize: '0.9rem',
+              }}
+            >
+              DISTRICT ATMOSPHERE:
+            </Line>
+            <div
+              style={{
+                padding: '0.75rem',
+                backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                border: `1px solid ${colors.secondary}40`,
+                borderLeft: `3px solid ${colors.accent}`,
+                borderRadius: '3px',
+              }}
+            >
               <Line
-                cyan
-                bold
                 style={{
                   margin: 0,
-                  marginBottom: '0.5rem',
-                  fontSize: '0.9rem',
+                  fontSize: '0.875rem',
+                  color: colors.secondary,
+                  fontStyle: 'italic',
                 }}
               >
-                DISTRICT ATMOSPHERE:
+                {atmosphere}
               </Line>
-              <div
-                style={{
-                  padding: '0.75rem',
-                  backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                  border: `1px solid ${colors.secondary}40`,
-                  borderLeft: `3px solid ${colors.accent}`,
-                  borderRadius: '3px',
-                }}
-              >
-                <Line
-                  style={{
-                    margin: 0,
-                    fontSize: '0.875rem',
-                    color: colors.secondary,
-                    fontStyle: 'italic',
-                  }}
-                >
-                  {atmosphere}
-                </Line>
-              </div>
             </div>
-            <Divider color="cyan" />
           </>
         )}
 
         {/* Warnings */}
         {warnings.length > 0 && (
           <>
+            <Spacer />
             <div
               style={{
-                marginTop: '1rem',
-                marginBottom: '1rem',
                 padding: '0.75rem',
                 backgroundColor: 'rgba(239, 68, 68, 0.1)',
                 border: '2px solid rgba(239, 68, 68, 0.4)',
@@ -484,13 +477,13 @@ export default function DistrictPortal({
                 </Line>
               ))}
             </div>
-            <Divider color="cyan" />
           </>
         )}
 
         {/* Access points */}
         {accessPoints.length > 0 && (
-          <div style={{ marginTop: '1rem' }}>
+          <>
+            <Spacer />
             <Line
               neon
               bold
@@ -529,21 +522,20 @@ export default function DistrictPortal({
                 </div>
               ))}
             </div>
-          </div>
+          </>
         )}
 
         {/* Children content */}
-        {children && (
-          <div style={{ marginTop: '1rem' }}>
+        {Boolean(children) && (
+          <>
             {children}
-          </div>
+          </>
         )}
 
         {/* Footer */}
-        <Divider color="cyan" style={{ marginTop: '1.5rem' }} />
+        <Spacer />
         <div
           style={{
-            marginTop: '1rem',
             textAlign: 'center',
             fontSize: '0.7rem',
             color: colors.secondary,

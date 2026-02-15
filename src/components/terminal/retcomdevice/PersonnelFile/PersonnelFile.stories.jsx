@@ -16,7 +16,6 @@ export const ActiveEmployee = () => (
     name="Sarah Webb"
     position="Warehouse Operations Manager"
     department="Logistics"
-    hireDate="March 15, 2063"
     supervisor="David Martinez"
     clearanceLevel={2}
     salary="65,000¤/year"
@@ -41,7 +40,6 @@ export const HighClearanceEmployee = () => (
     name="Marcus Chen"
     position="Security Director"
     department="Corporate Security"
-    hireDate="January 8, 2060"
     supervisor="Elena Rodriguez (VP Operations)"
     clearanceLevel={5}
     salary="125,000¤/year"
@@ -67,7 +65,6 @@ export const SuspendedEmployee = () => (
     name="Alex Torres"
     position="Junior Analyst"
     department="Data Analysis"
-    hireDate="June 12, 2067"
     supervisor="Rachel Kim"
     clearanceLevel={1}
     salary="42,000¤/year"
@@ -91,7 +88,6 @@ export const TerminatedEmployee = () => (
     name="Jordan Blake"
     position="Maintenance Technician"
     department="Facilities"
-    hireDate="September 3, 2064"
     supervisor="Tom Harrison"
     clearanceLevel={1}
     salary="38,000¤/year"
@@ -115,7 +111,6 @@ export const EntryLevelEmployee = () => (
     name="Riley Park"
     position="Administrative Assistant"
     department="Human Resources"
-    hireDate="February 1, 2068"
     supervisor="Morgan Davis"
     clearanceLevel="NONE"
     salary="35,000¤/year"
@@ -140,7 +135,6 @@ export const MinimalRecord = () => (
     name="Chris Anderson"
     position="Security Guard"
     department="Security"
-    hireDate="November 20, 2066"
     supervisor="Marcus Chen"
     clearanceLevel={1}
     status="ACTIVE"
@@ -154,7 +148,6 @@ export const ExecutiveEmployee = () => (
     name="Dr. Elena Rodriguez"
     position="Vice President of Operations"
     department="Executive Leadership"
-    hireDate="May 15, 2058"
     supervisor="CEO - Henrik Alliansen"
     clearanceLevel={5}
     salary="285,000¤/year"

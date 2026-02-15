@@ -8,7 +8,6 @@ import { Line, Divider, DataTable, Box, Section } from '@terminal/TerminalCompon
  * - name: String
  * - position: String
  * - department: String
- * - hireDate: String
  * - supervisor: String
  * - clearanceLevel: Number or String (1-5, or "NONE")
  * - salary: String (optional)
@@ -26,7 +25,6 @@ export default function PersonnelFile({
   position,
   occupation,
   department,
-  hireDate,
   joinDate,
   supervisor,
   clearanceLevel,
@@ -79,7 +77,6 @@ export default function PersonnelFile({
   if (occupation) emp_info.push({ label: 'Occupation', value: occupation });
   if (department) emp_info.push({ label: 'Department', value: department });
   if (supervisor) emp_info.push({ label: 'Supervisor', value: supervisor });
-  if (hireDate) emp_info.push({ label: 'Hire Date', value: hireDate });
   if (joinDate) emp_info.push({ label: 'Joined On', value: joinDate });
   if (location) emp_info.push({ label: 'Location', value: location });
 

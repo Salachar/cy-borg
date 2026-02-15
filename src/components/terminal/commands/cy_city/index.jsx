@@ -1,4 +1,7 @@
-import { Line, Section, Divider } from '@terminal/TerminalComponents';
+import {
+  Line,
+  InsetBox,
+} from '@terminal/TerminalComponents';
 import CityPortal from './CityPortal';
 
 import BIGMOSSE_PORTS_COMMANDS from "../bigmosse_ports/bigmosse_ports";
@@ -41,7 +44,7 @@ export const CY_CITY_PORTAL = {
         The city consumes everything - hope, humanity, history - and excretes chrome, concrete, and corpses.
         Welcome to Cy. You were born here. You'll die here. There is no escape."
       >
-        <Section title="THE INCIDENT (Year Zero):">
+        <InsetBox title="THE INCIDENT (Year Zero):">
           <Line red bold>Nobody knows what happened.</Line>
           <Line smoke>
             Official story: Industrial accident at Cy Labs. Nanomantic containment breach.
@@ -54,33 +57,27 @@ export const CY_CITY_PORTAL = {
           <Line red style={{ marginTop: '0.5rem' }}>
             What really happened: [DATA CORRUPTED - SECTOR CLEARANCE REQUIRED]
           </Line>
-        </Section>
+        </InsetBox>
 
-        <Divider />
-
-        <Section title="ECONOMIC STRATIFICATION:">
+        <InsetBox title="ECONOMIC STRATIFICATION:">
           <Line neon bold>The Higher You Live, The Longer You Survive</Line>
           <Line cyan>• THE PEAKS (Ultra-wealthy): Pre-Incident villas, penthouse clouds. Climate controlled. Private security. Immortality research.</Line>
           <Line cyan>• THE HEIGHTS (Corporate): Executive suites, corporate towers. Clean air. Premium healthcare. Genetic optimization.</Line>
           <Line yellow>• THE MIDDLE (Salary workers): Mid-rise apartments, The 55's upper floors. Filtered air. Basic healthcare. Chrome loans.</Line>
           <Line yellow>• THE LOWS (Service workers): Capsule coffins, basement levels. Recycled air. Street clinics. Survival mode.</Line>
           <Line red>• THE DEPTHS (The expendable): Slums, underground, fringe camps. Toxic air. No healthcare. Life expectancy: 35.</Line>
-        </Section>
+        </InsetBox>
 
-        <Divider />
-
-        <Section title="CORPORATE DOMINANCE:">
+        <InsetBox title="CORPORATE DOMINANCE:">
           <Line neon>The megacorps don't just own Cy - they ARE Cy.</Line>
           <Line cyan>• Alliansen Inc. - Manufacturing, weapons, chrome, real estate. Everywhere.</Line>
           <Line cyan>• TG Labs - Research, biotech, AI, nanomantic containment (allegedly). The Enemy.</Line>
           <Line cyan>• Spectral FT Banks - Finance, insurance, debt collection. They own your debt. They own you.</Line>
           <Line cyan>• Cynergy Water & Power - Utilities monopoly. Turn off your water. Turn off your life.</Line>
           <Line cyan>• And 200+ others fighting for dominance in an endless corporate war.</Line>
-        </Section>
+        </InsetBox>
 
-        <Divider />
-
-        <Section title="SURVIVAL GUIDE:">
+        <InsetBox title="SURVIVAL GUIDE:">
           <Line yellow>1. Don't go to G0. Ever. No exceptions. No heroics. Just death.</Line>
           <Line yellow>2. Pay your protection money. Gang, SecCorps, building manager - doesn't matter. Pay or die.</Line>
           <Line yellow>3. Chrome is survival. But chrome is debt. But debt is death. Choose carefully.</Line>
@@ -89,9 +86,7 @@ export const CY_CITY_PORTAL = {
           <Line yellow>6. If the Heirs of Kergoz invite you to something, RUN. Cult recruiters don't take no for an answer.</Line>
           <Line yellow>7. The feeds lie. The corps lie. The government lies. Reality itself might be lying. Believe nothing.</Line>
           <Line yellow>8. There is no escape. The city won't let you leave. Accept it or break trying.</Line>
-        </Section>
-
-        <Divider />
+        </InsetBox>
 
         <Line smoke small style={{ fontStyle: 'italic', textAlign: 'center' }}>
           "Cy is a wound that won't heal. We're all just maggots feeding on the rot."
@@ -146,7 +141,7 @@ export const CY_CITY_PORTAL = {
           },
         ]}
       >
-        <Section title="ACCESS MAJOR DISTRICTS:">
+        <InsetBox title="ACCESS MAJOR DISTRICTS:">
           <Line neon>→ Central District - Where money rules</Line>
           <Line neon>→ The Inbetweens - Where most people survive</Line>
           <Line neon>→ Bigmosse & Ports - Where danger thrives</Line>
@@ -154,7 +149,7 @@ export const CY_CITY_PORTAL = {
           <Line smoke small style={{ marginTop: '0.75rem' }}>
             Select a district to access detailed information, locations, and navigation.
           </Line>
-        </Section>
+        </InsetBox>
       </CityPortal>
     ),
     related_commands: {

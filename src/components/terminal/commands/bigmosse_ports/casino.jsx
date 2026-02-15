@@ -147,19 +147,22 @@ export const LUCKY_FLIGHT_CASINO = {
 
       "Available Transportation": {
         content: (
-          <>
-            <Line smoke large bold>[TRANSPORT OPTIONS]</Line>
-            <Section title="MAIN ENTRANCE:">
+          <Message
+            title="LUCKY FLIGHT CASINO"
+            subtitle="TRANSPORT OPTIONS"
+            message="Multiple arrival options available — pre-approval required for water taxi"
+            theme="corporate"
+          >
+            <InsetBox title="MAIN ENTRANCE:">
               <Line neon>Car bridge or broken escalators</Line>
-            </Section>
-            <Divider />
-            <Section title="WATER TAXI:">
-              <Line cyan>⚠ Recommended for patrons wanting s more discrete arrival</Line>
+            </InsetBox>
+            <InsetBox title="WATER TAXI:">
+              <Line cyan>Recommended for patrons wanting a more discrete arrival</Line>
               <Line neon>Cost: 200¤ to canal pier</Line>
               <Line neon>Docks at basement level (Green Room)</Line>
               <Line yellow pulse>Must be pre-approved with security</Line>
-            </Section>
-          </>
+            </InsetBox>
+          </Message>
         ),
       },
 
@@ -280,11 +283,12 @@ export const LUCKY_FLIGHT_CASINO = {
             related_commands: {
               "Blueprint: Basement": {
                 content: (
-                  <Box color="neon">
-                    <Section title="LUCKY FLIGHT CASINO - BASEMENT BLUEPRINT" center>
-                      <Line red xsmall bottom pulse>CLASSIFIED // SECURITY CLEARANCE 3</Line>
-                      <Line neon small>Basement Layout and Intel</Line>
-                    </Section>
+                  <Message
+                    title="LUCKY FLIGHT CASINO - BASEMENT BLUEPRINT"
+                    subtitle="CLASSIFIED // SECURITY CLEARANCE 3"
+                    message="Basement Layout and Intel"
+                    theme="corporate"
+                  >
                     <RetComImage
                       src={basementImage}
                       alt="Lucky Flight Casino Basement"
@@ -293,26 +297,26 @@ export const LUCKY_FLIGHT_CASINO = {
                     <Line neon xsmall style={{ marginTop: "1rem", textAlign: "center" }}>
                       FILE ID: LFC_BASEMENT_V1.2 | LAST UPDATED: 20X2.08.14 | AUTHOR: [REDACTED]
                     </Line>
-                    <Divider />
-                    <Line cyan bold>KEY LOCATIONS:</Line>
-                    <Line neon>• Security Office</Line>
-                    <Line neon>• Locker Room</Line>
-                    <Line neon>• Green Room</Line>
-                    <Line neon>• Maintenance</Line>
-                    <Line neon>• Power Core</Line>
-                    <Divider />
+                    <InsetBox title="KEY LOCATIONS">
+                      <Line neon>• Security Office</Line>
+                      <Line neon>• Locker Room</Line>
+                      <Line neon>• Green Room</Line>
+                      <Line neon>• Maintenance</Line>
+                      <Line neon>• Power Core</Line>
+                    </InsetBox>
                     <Line yellow>⚠ Power Core presents explosion risk if tampered with</Line>
-                  </Box>
+                  </Message>
                 ),
               },
 
               "Blueprint: Floor 1": {
                 content: (
-                  <Box color="neon">
-                    <Section title="LUCKY FLIGHT CASINO - FLOOR 1 BLUEPRINT" center>
-                      <Line red xsmall bottom pulse>CLASSIFIED // SECURITY CLEARANCE 3</Line>
-                      <Line neon small>Floor 1 Layout and Intel</Line>
-                    </Section>
+                  <Message
+                    title="LUCKY FLIGHT CASINO - FLOOR 1 BLUEPRINT"
+                    subtitle="CLASSIFIED // SECURITY CLEARANCE 3"
+                    message="Floor 1 Layout and Intel"
+                    theme="corporate"
+                  >
                     <RetComImage
                       src={floor1Image}
                       alt="Lucky Flight Casino Floor 1"
@@ -321,26 +325,26 @@ export const LUCKY_FLIGHT_CASINO = {
                     <Line neon xsmall style={{ marginTop: "1rem", textAlign: "center" }}>
                       FILE ID: LFC_FLOOR_01_V1.2 | LAST UPDATED: 20X2.08.14 | AUTHOR: [REDACTED]
                     </Line>
-                    <Divider />
-                    <Line cyan bold>KEY LOCATIONS:</Line>
-                    <Line neon>• Main entrance</Line>
-                    <Line neon>• Casino floor</Line>
-                    <Line neon>• Live stage</Line>
-                    <Line neon>• Bathrooms</Line>
-                    <Line neon>• VIP access</Line>
-                    <Divider />
+                    <InsetBox title="KEY LOCATIONS">
+                      <Line neon>• Main entrance</Line>
+                      <Line neon>• Casino floor</Line>
+                      <Line neon>• Live stage</Line>
+                      <Line neon>• Bathrooms</Line>
+                      <Line neon>• VIP access</Line>
+                    </InsetBox>
                     <Line red>Full camera coverage on this floor</Line>
                     <Line yellow>Cleaning drones active 07:00-10:00 (closed hours)</Line>
-                  </Box>
+                  </Message>
                 ),
               },
               "Blueprint: Floor 2": {
                 content: (
-                  <Box color="neon">
-                    <Section title="LUCKY FLIGHT CASINO - FLOOR 2 BLUEPRINT" center>
-                      <Line red xsmall bottom pulse>CLASSIFIED // SECURITY CLEARANCE 3</Line>
-                      <Line neon small>Floor 2 Layout and Intel</Line>
-                    </Section>
+                  <Message
+                    title="LUCKY FLIGHT CASINO - FLOOR 2 BLUEPRINT"
+                    subtitle="CLASSIFIED // SECURITY CLEARANCE 3"
+                    message="Floor 2 Layout and Intel"
+                    theme="corporate"
+                  >
                     <RetComImage
                       src={floor2Image}
                       alt="Lucky Flight Casino Floor 2"
@@ -350,17 +354,17 @@ export const LUCKY_FLIGHT_CASINO = {
                       FILE ID: LFC_FLOOR_02_V1.2 | LAST UPDATED: 20X2.08.14 | AUTHOR: [REDACTED]
                     </Line>
                     <Divider />
-                    <Line cyan bold>KEY LOCATIONS:</Line>
-                    <Line neon>• VIP lounge</Line>
-                    <Line neon>• Office space</Line>
-                    <Line neon>• Vaska's Office</Line>
-                    <Line neon>• Tech room</Line>
+                    <InsetBox title="KEY LOCATIONS">
+                      <Line neon>• VIP lounge</Line>
+                      <Line neon>• Office space</Line>
+                      <Line neon>• Vaska's Office</Line>
+                      <Line neon>• Tech room</Line>
+                      <Line red pulse bod>REDACTED</Line>
+                    </InsetBox>
                     <Line red pulse bod>REDACTED</Line>
-                    <Divider />
                     <Line red pulse bod>REDACTED</Line>
                     <Line red pulse bod>REDACTED</Line>
-                    <Line red pulse bod>REDACTED</Line>
-                  </Box>
+                  </Message>
                 ),
               },
             },
@@ -528,21 +532,18 @@ export const LUCKY_FLIGHT_CASINO = {
                       { label: "Position", value: "Special Asset - Accounting" },
                       { label: "Status", value: "ACTIVE (confined)" },
                     ]} />
-                    <Divider color="pink" />
-                    <Section title="PROJECT DESIGNATION:">
+                    <InsetBox title="PROJECT DESIGNATION:">
                       <Line red>Code Name: ZOLA</Line>
                       <Line red>Classification: Living Database</Line>
                       <Line red>Location: Vault & Prison (Room 11, Floor 2)</Line>
                       <Line red>Function: Real-time accounting, debt calculation, balance sheet</Line>
-                    </Section>
-                    <Divider color="pink" />
-                    <Section title="CAPABILITIES:">
+                    </InsetBox>
+                    <InsetBox title="CAPABILITIES:">
                       <Line yellow>Perfect numerical recall (unlimited capacity)</Line>
                       <Line yellow>Real-time data processing via cerebral jack</Line>
                       <Line yellow>All casino financial data stored in biological memory</Line>
                       <Line red>⚠ CRITICAL: Offline backup - no network connection</Line>
-                    </Section>
-                    <Divider color="pink" />
+                    </InsetBox>
                     <Line red pulse>[FURTHER DATA CORRUPTED OR RESTRICTED]</Line>
                     <Line red pulse>[MEDICAL RECORDS: ACCESS DENIED]</Line>
                     <Line red pulse>[ACQUISITION DETAILS: ACCESS DENIED]</Line>
@@ -560,18 +561,20 @@ export const LUCKY_FLIGHT_CASINO = {
               difficulty: "hard",
             },
             content: (
-              <>
-                <Line smoke large bold>[SECURITY DATABASE]</Line>
-                <Line cyan>Infrastructure accessed</Line>
-                <Divider />
-                <Section title="MODULES:">
-                  <Line neon>→ Camera coverage</Line>
-                  <Line neon>→ Patrol schedules</Line>
-                  <Line neon>→ Alarm protocols</Line>
-                  <Line neon>→ Lock systems</Line>
-                  <Line neon>→ Entry points</Line>
-                </Section>
-              </>
+              <MaintenanceAccess
+                title="[LUCKY FLIGHT CASINO — SECURITY DATABASE]"
+                deviceModel="Security Management System"
+                deviceId="LFC-SEC-DB-01"
+                firmwareVersion="v3.2.0"
+                systemStatus="OPERATIONAL"
+                notes={[
+                  "Camera coverage and blind spots",
+                  "Patrol schedules and rotation times",
+                  "Alarm protocols and trigger conditions",
+                  "Lock systems and access points",
+                  "Entry point assessment",
+                ]}
+              />
             ),
             related_commands: {
               "Access Control System": {

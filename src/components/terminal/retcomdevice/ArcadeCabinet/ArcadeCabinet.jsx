@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { Line, Divider, Section } from '@terminal/TerminalComponents';
+import { Line, Divider, Section, InsetBox } from '@terminal/TerminalComponents';
 import Extractable from '../Extractable/Extractable';
 
 export default function ArcadeCabinet({
@@ -170,39 +170,34 @@ export default function ArcadeCabinet({
 
         {/* Available games */}
         {gamesAvailable.length > 0 && (
-          <>
-            <Divider />
-            <Section title="GAMES AVAILABLE ON THIS CABINET:" color="cyan">
-              <div
-                style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  gap: '0.5rem',
-                  marginTop: '0.5rem',
-                }}
-              >
-                {gamesAvailable.map((game, i) => (
-                  <span
-                    key={i}
-                    style={{
-                      padding: '0.35rem 0.6rem',
-                      fontSize: '0.75rem',
-                      backgroundColor: 'rgba(45, 53, 72, 0.4)',
-                      border: '1px solid rgb(71, 85, 105)',
-                      borderRadius: '3px',
-                      color: 'rgb(133, 175, 231)',
-                      fontFamily: 'monospace',
-                    }}
-                  >
-                    {game}
-                  </span>
-                ))}
-              </div>
-            </Section>
-          </>
+          <InsetBox title="GAMES AVAILABLE ON THIS CABINET:">
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: '0.5rem',
+                marginTop: '0.5rem',
+              }}
+            >
+              {gamesAvailable.map((game, i) => (
+                <span
+                  key={i}
+                  style={{
+                    padding: '0.35rem 0.6rem',
+                    fontSize: '0.75rem',
+                    backgroundColor: 'rgba(45, 53, 72, 0.4)',
+                    border: '1px solid rgb(71, 85, 105)',
+                    borderRadius: '3px',
+                    color: 'rgb(133, 175, 231)',
+                    fontFamily: 'monospace',
+                  }}
+                >
+                  {game}
+                </span>
+              ))}
+            </div>
+          </InsetBox>
         )}
-
-        <Divider />
 
         {/* Wallet section - using Extractable component */}
         {Boolean(credits && credits > 0) && (

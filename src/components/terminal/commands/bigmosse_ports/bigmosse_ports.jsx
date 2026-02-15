@@ -1,4 +1,5 @@
 import {
+  InsetBox,
   Line,
   Divider,
   Section,
@@ -39,30 +40,29 @@ export const BIGMOSSE_PORTS_COMMANDS = {
         ]}
         theme="slums"
       >
-        <Divider />
-        <Section title="MAJOR FACTIONS:">
+        <InsetBox title="MAJOR FACTIONS:">
           <Line red bold>• Virid Vipers - Drug trade kingpins</Line>
           <Line red bold>• Heirs of Kergoz - Cult with Barnyard Fields base</Line>
           <Line yellow>• Royal West Shipping - Legitimate (armed) warehouses</Line>
           <Line yellow>• Idol Coffins - Pop-up rock-star hotels</Line>
           <Line yellow>• Various street gangs and smaller factions</Line>
-        </Section>
-        <Divider />
-        <Section title="BORDER ZONE CHARACTERISTICS:">
+        </InsetBox>
+
+        <InsetBox title="BORDER ZONE CHARACTERISTICS:">
           <Line cyan>• Slums side: Festering scars from G0 Incident, rundown</Line>
           <Line cyan>• Ports side: Entertainment, black market, hedonism</Line>
           <Line cyan>• Canal access: Taxi boats, smuggling routes</Line>
           <Line cyan>• Mixed architecture: Cargo containers, warehouses, clubs</Line>
-        </Section>
-        <Divider />
-        <Section title="SURVIVAL TIPS:">
+        </InsetBox>
+
+        <InsetBox title="SURVIVAL TIPS:">
           <Line yellow>• Pay protection money or have gang connections</Line>
           <Line yellow>• Don't ask questions about cargo or packages</Line>
           <Line yellow>• Avoid Barnyard Fields (cult territory)</Line>
           <Line yellow>• Water must be filtered - trust nothing from taps</Line>
           <Line yellow>• Night activity dangerous - travel in groups</Line>
-        </Section>
-        <Divider />
+        </InsetBox>
+
         <Line smoke small>
           Drugs and guns, clubs and fun - this is the entertainment district of Cy's true citizens. If you can't pay, you can't stay. If you can't fight, you won't survive.
         </Line>

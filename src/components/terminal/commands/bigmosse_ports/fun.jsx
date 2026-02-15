@@ -25,8 +25,7 @@ export const FUN_COMMANDS = {
       <Box color="red">
         <Line red bold large>[LIVE: BROTHER STATIC'S SERMON]</Line>
         <Line yellow>Streaming from: Ports district, Pier 7</Line>
-        <Divider color="red" />
-        <Section title="CURRENT BROADCAST:">
+        <InsetBox title="CURRENT BROADCAST:" color="yellow">
           <Line red>"...AND THE MACHINES WILL WEEP CHROME TEARS!"</Line>
           <Line neon>"The corporations feed on your SOUL like vampires!"</Line>
           <Line red>"G0 was THEIR doing! THEIR sacrifice to dark gods!"</Line>
@@ -34,8 +33,7 @@ export const FUN_COMMANDS = {
           <Line red>"ONLY FLESH IS REAL! ONLY PAIN IS TRUTH!"</Line>
           <Line neon>"The Basilisk watches from the Deep Net! WATCHING!"</Line>
           <Line red>"Repent! REPENT! Before the second Incident comes!"</Line>
-        </Section>
-        <Divider color="red" />
+        </InsetBox>
         <KeyValue label="Live Viewers" value="47" />
         <KeyValue label="Total Donations" value="12¤" />
         <Line yellow>"Chat is disabled due to spam."</Line>
@@ -76,7 +74,6 @@ export const FUN_COMMANDS = {
             age={67}
             position="Owner / Electronics Technician"
             department="Independent Electronics Repair"
-            hireDate="2069 (13 years in business)"
             supervisor="Self-employed"
             clearanceLevel={5}
             district="Market District (unknown residence)"
@@ -248,7 +245,6 @@ export const FUN_COMMANDS = {
             age={42}
             position="Owner / Pawnbroker"
             department="Independent Retail"
-            hireDate="2080 (2 years in business)"
             supervisor="Self-employed"
             clearanceLevel={5}
             district="Near waterfront (unknown residence)"
@@ -391,7 +387,6 @@ export const FUN_COMMANDS = {
             age={36}
             position="Owner / Security Consultant"
             department="Independent Data Forensics"
-            hireDate="2075 (7 years in business)"
             supervisor="Self-employed"
             clearanceLevel={5}
             district="Office building, 3rd floor (unknown residence)"
@@ -546,7 +541,6 @@ export const FUN_COMMANDS = {
             age={39}
             position="Owner / Bartender"
             department="Independent Hospitality"
-            hireDate="2074 (8 years in business)"
             supervisor="Self-employed"
             clearanceLevel={5}
             district="Tech district (lives in apartment above bar)"

@@ -1,18 +1,18 @@
 import './hoursBanner.css';
 
 /**
- * HoursBanner - Slick hours of operation display
- *
- * A nice visual banner showing business hours, status, and location.
+ * HoursBanner - Hours of operation display
  *
  * Props:
  * - name: String (e.g., "Cave Club")
  * - hours: String (e.g., "20:00 - 06:00")
- * - days: String (optional, e.g., "Every Night", "Mon-Fri")
+ * - days: String (e.g., "Every Night", "Mon-Fri")
  * - status: String (e.g., "OPEN", "CLOSED")
- * - statusColor: String (optional, color class: "open", "closed", "warning")
- * - location: String (optional, e.g., "Ports District, Eastern Section")
- * - note: String (optional, additional info)
+ * - statusColor: String ("open" | "closed" | "warning")
+ * - location: String (optional)
+ * - note: String (optional)
+ * - theme: String ("default" | "fancy")
+ * - children: ReactNode (optional)
  */
 export default function HoursBanner({
   name,
@@ -22,10 +22,14 @@ export default function HoursBanner({
   statusColor = "open",
   location,
   note,
+  theme = "default",
   children,
 }) {
+  const fancy = theme === "fancy";
+
   return (
-    <div className="hours-banner">
+    <div className={`hours-banner${fancy ? ' hours-banner-fancy' : ''}`}>
+
       {/* Header */}
       <div className="hours-banner-header">
         <div className="hours-banner-business">{name}</div>
@@ -34,13 +38,11 @@ export default function HoursBanner({
         </div>
       </div>
 
-      {/* Main hours display */}
+      {/* Hours */}
       <div className="hours-banner-main">
-        <div className="hours-banner-time">
-          <div className="hours-banner-label">HOURS OF OPERATION</div>
-          <div className="hours-banner-hours">{hours}</div>
-          <div className="hours-banner-days">{days}</div>
-        </div>
+        <div className="hours-banner-label">HOURS OF OPERATION</div>
+        <div className="hours-banner-hours">{hours}</div>
+        <div className="hours-banner-days">{days}</div>
       </div>
 
       {/* Location */}
@@ -52,7 +54,7 @@ export default function HoursBanner({
       )}
 
       {Boolean(children) && (
-        <div style={{ margin: '1rem 0' }}>
+        <div style={{ margin: '0.75rem 0' }}>
           {children}
         </div>
       )}
@@ -63,6 +65,7 @@ export default function HoursBanner({
           {note}
         </div>
       )}
+
     </div>
   );
 }

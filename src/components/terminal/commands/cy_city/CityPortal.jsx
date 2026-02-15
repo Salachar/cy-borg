@@ -1,4 +1,8 @@
-import { Line, Section, Divider } from '@terminal/TerminalComponents';
+import {
+  Line,
+  Section,
+  Spacer,
+} from '@terminal/TerminalComponents';
 
 /**
  * CityPortal - Main city overview (unique component for Cy City itself)
@@ -240,7 +244,7 @@ export default function CityPortal({
                   {atmosphere}
                 </Line>
               </Section>
-              <Divider />
+              <Spacer />
             </>
           )}
 
@@ -278,7 +282,7 @@ export default function CityPortal({
                   ))}
                 </div>
               </Section>
-              <Divider />
+              <Spacer />
             </>
           )}
 
@@ -310,7 +314,7 @@ export default function CityPortal({
                   ))}
                 </div>
               </Section>
-              <Divider />
+              <Spacer />
             </>
           )}
 

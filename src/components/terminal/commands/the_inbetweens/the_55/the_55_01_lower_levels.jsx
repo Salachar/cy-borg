@@ -137,7 +137,6 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
                 age="Unknown"
                 position="Cult Leader"
                 department="The Offertory"
-                hireDate="Unknown (years active)"
                 supervisor="The Dead Queen (allegedly)"
                 clearanceLevel={0}
                 district="The Synk (Sewage Chasm)"

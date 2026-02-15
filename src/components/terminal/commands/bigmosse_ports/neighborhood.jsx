@@ -362,7 +362,6 @@ export const NEIGHBORHOOD_COMMANDS = {
             age={35}
             position="Proprietor / Chop Shop Technician"
             department="Independent Technical Services"
-            hireDate="2075 (7 years in Ports)"
             supervisor="Self-employed"
             clearanceLevel={5}
             district="Ports (unknown residence)"
@@ -482,7 +481,6 @@ export const NEIGHBORHOOD_COMMANDS = {
             age={52}
             position="Owner / Operator"
             department="Independent Retail"
-            hireDate="2069 (13 years in business)"
             supervisor="Self-employed"
             clearanceLevel={5}
             district="Ports (lives in apartment above shop)"
@@ -604,7 +602,6 @@ export const NEIGHBORHOOD_COMMANDS = {
             age={58}
             position="Owner / Bartender"
             department="Independent Hospitality"
-            hireDate="2070 (12 years in business)"
             supervisor="Self-employed"
             clearanceLevel={5}
             district="Ports (lives in back room behind bar)"
@@ -698,13 +695,12 @@ export const NEIGHBORHOOD_COMMANDS = {
         ]}
         theme="casual"
       >
-        <Section title="RENT INFO:">
+        <InsetBox title="RENT INFO:">
           <KeyValue label="Studio" value="350¤/month" />
           <KeyValue label="1-bedroom" value="500¤/month" />
           <KeyValue label="2-bedroom" value="700¤/month" />
           <Line smoke>Utilities: Additional 80-120¤/month</Line>
-        </Section>
-        <Divider />
+        </InsetBox>
         <Line pink>"Quiet building. Good neighbors. Mostly."</Line>
       </PublicPortal>
     ),
@@ -1023,7 +1019,6 @@ export const NEIGHBORHOOD_COMMANDS = {
             age={44}
             position="Owner / Pawnbroker"
             department="Independent Retail"
-            hireDate="2074 (8 years in business)"
             supervisor="Self-employed"
             clearanceLevel={5}
             district="Ports (unknown residence)"

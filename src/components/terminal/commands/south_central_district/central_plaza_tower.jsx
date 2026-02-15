@@ -1,6 +1,5 @@
 import {
   Line,
-  Section,
   Divider,
   InsetBox,
 } from '@terminal/TerminalComponents';
@@ -9,8 +8,8 @@ import {
   ATM,
   Camera,
   CCTV,
-  Extractable,
-  FacilityPortal,
+  DistrictPortal,
+  HoursBanner,
   Locked,
   MaintenanceAccess,
   Menu,
@@ -33,31 +32,42 @@ import central_tower_atrium_cctv_image from '@images/locations/central_tower_atr
 export const CENTRAL_PLAZA_TOWER_COMMANDS = {
   "Central Plaza Tower": {
     content: (
-      <FacilityPortal
-        companyName="CENTRAL PLAZA"
-        facilityId="TOWER BLOCK 7"
+      <DistrictPortal
+        districtName="CENTRAL PLAZA TOWER"
+        districtId="CPT-BLOCK-7"
         tagline="Premium Living in the Heart of the City"
-        location="2847 Central Plaza, South Central District"
-        owner="Central District Properties Inc."
-        function="Luxury Residential High-Rise + Retail"
-        personnel="198 residential units + 12 penthouses (210 total)"
-        networkStatus="TOWER_INTERNAL (Secure building network)"
-        securityLevel="HIGH"
+        region="2847 Central Plaza, South Central District"
+        population="210 units (198 residential, 12 penthouses)"
+        corporatePresence="ChromeLux + Alliansen (tenants)"
+        crimeThreat="LOW"
+        securityResponse="MAXIMUM"
+        atmosphere="51 floors of glass and steel overlooking the district. Weapon scanners at the door, keycards past floor 40, private security on the penthouse level. The kind of building that makes you feel poor just walking past it. If you belong here, you know it. If you don't, so does everyone else."
+        accessPoints={[
+          "Main Atrium — Ground floor, staffed 24/7, weapon scanners active",
+          "Parking Garage — B1-B3, resident keycards only",
+        ]}
         warnings={[
-          "Visitor log maintained at security desk",
           "Weapon scanners active at main entrance",
+          "Visitor log maintained — all guests signed in",
           "Floors 40+ require keycard authorization",
-          "ChromeLux security personnel operate throughout atrium"
+          "ChromeLux armed staff operate throughout atrium",
+          "Penthouse residents employ private security (not building staff)",
+          "Roof camera currently offline — scheduled maintenance",
         ]}
         theme="corporate"
-      />
+      >
+        <InsetBox title="DIRECTORY:">
+          <Line smoke>B1-B3: Parking Garage</Line>
+          <Line smoke>G: Lobby · Security · ATM · Vending</Line>
+          <Line smoke>2: ChromeLux Boutique</Line>
+          <Line smoke>3-39: Residential (198 units)</Line>
+          <Line smoke>40-50: Penthouse Level (12 units)</Line>
+          <Line smoke>51: Tower Management</Line>
+          <Line smoke>R: The Glass Gardens · Helipad</Line>
+        </InsetBox>
+      </DistrictPortal>
     ),
     related_commands: {
-
-      // ========================================================================
-      // ATRIUM (GROUND + FLOOR 2)
-      // ========================================================================
-
       "Atrium": {
         content: (
           <PublicPortal
@@ -106,8 +116,8 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                 model="ATM-600"
                 location="Central Plaza Tower - Ground Floor Lobby"
                 network="Cy Central Bank"
-                credits={500}
-                physicalCredits={1000}
+                credits={200}
+                physicalCredits={400}
                 lastService="Yesterday, 14:00"
                 transactions={[
                   "14:32 → Withdrawal: 500¤",
@@ -126,12 +136,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                 id="vend-tower-lobby"
                 model="VendLux Elite"
                 location="Central Plaza Tower - Ground Floor Lobby"
-                drinks={[
-                  { name: 'PREMIUM WATER', pattern: 'waves', color: 'blue', available: true },
-                  { name: 'ENERGY DRINK', pattern: 'swirl', color: 'orange', available: true },
-                  { name: 'SYNTH-CAF', pattern: 'bubbles', color: 'yellow', available: true },
-                  { name: 'PROTEIN BAR', pattern: 'stripe', color: 'green', available: true },
-                ]}
               />
             ),
           },
@@ -153,11 +157,16 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                 ]}
                 theme="fancy"
               >
-                <InsetBox title="LOCATION:" color="yellow">
-                  <Line smoke>Second floor - Central Plaza Tower Atrium</Line>
-                  <Line smoke>Open railing overlooks ground floor lobby</Line>
-                  <Line smoke small>Hours: 10:00 - 20:00, Mon-Sat (closed Sunday)</Line>
-                </InsetBox>
+                <HoursBanner
+                  name="CHROMELUX"
+                  hours="10:00 - 20:00"
+                  days="Mon-Sat — Closed Sunday"
+                  status="OPEN"
+                  statusColor="open"
+                  location="Second Floor — Central Plaza Tower Atrium"
+                  note="Open railing overlooks ground floor lobby"
+                  theme="fancy"
+                />
               </PublicPortal>
             ),
             related_commands: {
@@ -261,7 +270,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                         age={44}
                         position="Owner / Chief Surgeon"
                         department="Cyberware Installation"
-                        hireDate="Founded ChromeLux: 2061 (6 years)"
                         supervisor="Self-employed"
                         clearanceLevel={5}
                         district="Central Plaza Tower, Unit 2204 (Floor 22)"
@@ -347,7 +355,7 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
             ]}
           >
             <InsetBox title="LISTED RESIDENTS (SELECTED):">
-              <Line smoke small>Showing public listings only. 147 residents unlisted by request.</Line>
+              <Line smoke small>Showing public listings only.</Line>
             </InsetBox>
           </MaintenanceAccess>
         ),

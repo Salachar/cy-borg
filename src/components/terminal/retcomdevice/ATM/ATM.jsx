@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Line, Divider, DataTable, Section, Spacer } from '@terminal/TerminalComponents';
+import { Line, Divider, DataTable, InsetBox, Spacer } from '@terminal/TerminalComponents';
 import Extractable from '../Extractable/Extractable';
 
 export default function ATM({
@@ -84,20 +84,16 @@ export default function ATM({
             { label: 'Current Balance', value: balance },
           ]}
         />
-        <Divider />
 
         {/* Recent Transactions */}
         {transactions.length > 0 && (
-          <>
-            <Section title="RECENT TRANSACTIONS:">
-              {transactions.map((transaction, i) => (
-                <Line key={i} neon style={{ fontSize: '0.875rem' }}>
-                  {transaction}
-                </Line>
-              ))}
-            </Section>
-            <Divider />
-          </>
+          <InsetBox title="RECENT TRANSACTIONS:">
+            {transactions.map((transaction, i) => (
+              <Line key={i} neon style={{ fontSize: '0.875rem' }}>
+                {transaction}
+              </Line>
+            ))}
+          </InsetBox>
         )}
 
         {lastService && (

@@ -53,6 +53,7 @@ export const CENTRAL_DISTRICT = {
           <Line cyan>• Ego continuance unknown</Line>
           <Line yellow>• Congregation of the desperate wealthy</Line>
         </InsetBox>
+
         <InsetBox title="SOUTH CENTRAL:" color="yellow">
           <Line neon bold>Major Players:</Line>
           <Line cyan>• Alliansen Inc. - Dominates southern sector</Line>
@@ -64,6 +65,7 @@ export const CENTRAL_DISTRICT = {
           <Line yellow>• Central Plaza Tower Block 7 - Luxury residential</Line>
           <Line yellow>• Premium penthouses and executive suites</Line>
         </InsetBox>
+
         <InsetBox title="UNDERSJON (Lake Gravel Retail Park):" color="yellow">
           <Line neon bold>"An altar to consumerism"</Line>
           <Line cyan>• Sprawling retail park BENEATH Lake Gravel</Line>
@@ -71,6 +73,7 @@ export const CENTRAL_DISTRICT = {
           <Line yellow>• Perpetually under construction (always expanding)</Line>
           <Line smoke>• Shopping as religion - consume or be consumed</Line>
         </InsetBox>
+
         <InsetBox title="SECURITY SITUATION:" color="yellow">
           <Line red bold>SecCorps Presence: EXTREME</Line>
           <Line yellow>• Multiple firms with competing jurisdictions</Line>
@@ -79,6 +82,7 @@ export const CENTRAL_DISTRICT = {
           <Line yellow>• Jurisdictional disputes = shootouts</Line>
           <Line cyan>• They're not here for you - they're here for THEM</Line>
         </InsetBox>
+
         <InsetBox title="CRIME PROFILE:" color="yellow">
           <Line neon bold>White Collar Paradise:</Line>
           <Line cyan>• Financial crimes: High yields, low convictions</Line>
@@ -88,6 +92,7 @@ export const CENTRAL_DISTRICT = {
           <Line yellow>• Street crime? Crushed instantly by SecCorps</Line>
           <Line yellow>• Boardroom crime? What crime?</Line>
         </InsetBox>
+
         <InsetBox title="COST OF LIVING:" color="yellow">
           <Line red bold>EXTREME - Beyond most comprehension</Line>
           <Line yellow>• Coffin apartment: 10+ lifetimes of earnings</Line>
@@ -96,6 +101,7 @@ export const CENTRAL_DISTRICT = {
           <Line yellow>• Simply existing here costs more than breathing</Line>
           <Line smoke>• You can't afford to be here. They know it. You know it.</Line>
         </InsetBox>
+
         <Line smoke small>
           Once this was woodland and villas. The Incident ravaged it into an iron horizon.
           Now crystal and neon overlook G0 and the piss-poor city below. The money lives here.

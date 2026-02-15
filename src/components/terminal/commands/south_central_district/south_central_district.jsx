@@ -2,6 +2,7 @@ import {
   Line,
   Section,
   Divider,
+  InsetBox,
 } from '@terminal/TerminalComponents';
 import {
   CCTV,
@@ -36,20 +37,19 @@ export const SOUTH_CENTRAL_DISTRICT_COMMANDS = {
         ]}
         theme="corporate"
       >
-        <Divider />
-        <Section title="MAJOR PLAYERS:">
+        <InsetBox title="MAJOR PLAYERS:">
           <Line neon>• Alliansen Inc. - Southern sector dominance</Line>
           <Line neon>• Grave/Mellberg/Tosk - Mobster law firm</Line>
           <Line neon>• Tulles&deVerte - Current superstar it couple</Line>
           <Line neon>• Spectral FT Banks & Holdings - Financial district</Line>
-        </Section>
-        <Divider />
-        <Section title="SECURITY CONTRACTORS:">
+        </InsetBox>
+
+        <InsetBox title="SECURITY CONTRACTORS:">
           <Line yellow>• Multiple SecCorps with competing jurisdictions</Line>
           <Line yellow>• Response time to threats: ~2 minutes</Line>
           <Line yellow>• Private security available for hire (premium rates)</Line>
-        </Section>
-        <Divider />
+        </InsetBox>
+
         <Line smoke small>
           A coffin apartment here costs more than you'd make in ten lifetimes. It won't let you forget that.
         </Line>

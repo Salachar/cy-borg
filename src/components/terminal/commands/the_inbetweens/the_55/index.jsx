@@ -16,7 +16,8 @@ import THE_55_IMAGE from '@images/the55.png';
 import {
   Divider,
   Line,
-  Section,
+  Spacer,
+  InsetBox,
 } from '@terminal/TerminalComponents';
 import {
   DistrictPortal,
@@ -45,6 +46,7 @@ export const THE_55_COMMANDS = {
         ]}
         theme="district"
       >
+        <Spacer />
         <div style={{
           display: "flex",
           marginBottom: "1rem",
@@ -52,14 +54,15 @@ export const THE_55_COMMANDS = {
           <div style={{
             paddingRight: "2rem",
           }}>
-            <Section title="STACK STATISTICS:">
+            <InsetBox title="STACK STATISTICS:" style={{
+              margin: "0 0 2rem 0",
+            }}>
               <Line cyan>• Total floors: 365 (Ground to roofline)</Line>
               <Line cyan>• Residential units: 6,000+ (capsules to penthouses)</Line>
               <Line cyan>• Commercial spaces: 800+ vendors and businesses</Line>
               <Line cyan>• Corporate offices: 150+ companies</Line>
               <Line cyan>• Emergency hotline: 95563-HELP (24/7)</Line>
-            </Section>
-            <Divider />
+            </InsetBox>
             <Line smoke small>
               The 55 is self-contained: live, work, die without ever leaving. Some haven't seen ground level in years.
             </Line>
@@ -72,8 +75,6 @@ export const THE_55_COMMANDS = {
             }}
           />
         </div>
-
-
       </DistrictPortal>
     ),
     related_commands: {

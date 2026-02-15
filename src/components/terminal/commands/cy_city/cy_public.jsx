@@ -5,12 +5,14 @@ import {
   Warning,
   Divider,
   KeyValue,
+  InsetBox,
 } from '@terminal/TerminalComponents';
 import {
   CorpAd,
   EventFeed,
   CyWeather,
   CySports,
+  Message,
   RetComImage
 } from "@terminal/retcomdevice"
 
@@ -54,73 +56,72 @@ export const CY_CITY_NETWORK = {
     related_commands: {
       "Cy Traffic (Real-Time)": {
         content: (
-          <>
-            <Line smoke large bold>[CY TRAFFIC - LIVE UPDATES]</Line>
-            <Line cyan>Powered by ACGS Chariot AI</Line>
-            <Divider />
-            <Section title="MAJOR ROUTES:">
+          <Message
+            title="CY TRAFFIC"
+            subtitle="ACGS CHARIOT AI"
+            message="Live route updates — plan your route, save your life"
+            theme="corporate"
+          >
+            <InsetBox title="MAJOR ROUTES:">
               <Line red>Central Bridge (North-South): GRIDLOCK</Line>
-              <Line neon>  → Accident scene - 3 fatalities, SecOps on site</Line>
-              <Line neon>  → Estimated clearance: 2-3 hours</Line>
-              <Divider />
+              <Line neon>Accident scene — 3 fatalities, SecOps on site</Line>
+              <Line neon>Estimated clearance: 2-3 hours</Line>
               <Line yellow>Ports Canal Route: DELAYED</Line>
-              <Line neon>  → Fatberg collision near Dock 12</Line>
-              <Line neon>  → Water taxi diversions in effect</Line>
-              <Divider />
+              <Line neon>Fatberg collision near Dock 12</Line>
+              <Line neon>Water taxi diversions in effect</Line>
               <Line cyan>Metro Lines: 75% OPERATIONAL</Line>
-              <Line neon>  → Central-5 closed for maintenance</Line>
-              <Line neon>  → Slums-3 suspended due to "security concerns"</Line>
-            </Section>
-            <Divider />
-            <Section title="DISTRICT ADVISORIES:">
+              <Line neon>Central-5 closed for maintenance</Line>
+              <Line neon>Slums-3 suspended (security concerns)</Line>
+            </InsetBox>
+            <InsetBox title="DISTRICT ADVISORIES:">
               <Line red>⚠ AVOID: Bigmosse (gang activity reported)</Line>
               <Line yellow>⚠ CAUTION: South Central (heavy SecOps presence)</Line>
               <Line yellow>⚠ CAUTION: Mosscroft West (chemical leak, respirators required)</Line>
-            </Section>
-            <Divider />
-            <Line pink>"Plan your route. Save your life. Trust ACGS."</Line>
-          </>
+            </InsetBox>
+            <Line pink small>"Plan your route. Save your life. Trust ACGS."</Line>
+          </Message>
         ),
       },
 
       "Cy Entertainment Guide": {
         content: (
-          <>
-            <Line smoke large bold>[CY ENTERTAINMENT DIRECTORY]</Line>
-            <Line yellow>What's hot in the city tonight</Line>
-            <Divider />
-            <Section title="TRENDING VENUES:">
-              <Line pink>→ HELLSCAPE (Ports) - Industrial nightclub, VIP available</Line>
-              <Line pink>→ The Neon Pillar (Central) - Corporate lounge & temple</Line>
-              <Line pink>→ Idol Coffins Hotels (Various) - Rock-star themed pop-ups</Line>
-              <Line pink>→ The Salmon Door (Ports) - Ultra-exclusive restaurant [RUMORED]</Line>
-            </Section>
-            <Divider />
-            <Section title="LIVE MUSIC TONIGHT:">
-              <Line neon>→ PHASER/MOB @ Underground Venue TBA</Line>
-              <Line neon>→ HeCcc @ The Pit (Ports district)</Line>
-              <Line neon>→ I must leave @ Secret location (password required)</Line>
-            </Section>
-            <Divider />
-            <Section title="CURRENT TRENDS:">
-              <Line cyan>• Mycobiotic cuisine (Burnchurch Hex pop-ups)</Line>
-              <Line cyan>• Cyberbike racing (illegal street events)</Line>
-              <Line cyan>• G0 artifacts (black market collectibles)</Line>
-              <Line cyan>• Mind-upload parties (Fideistic Transformation sponsored)</Line>
-            </Section>
-            <Divider />
-            <Line yellow>"Paid placements available. Contact Tulles&deVerte."</Line>
-          </>
+          <Message
+            title="CY ENTERTAINMENT"
+            subtitle="DIRECTORY"
+            message="What's hot in the city tonight"
+            theme="casual"
+          >
+            <InsetBox title="TRENDING VENUES:">
+              <Line pink>HELLSCAPE (Ports) — Industrial nightclub, VIP available</Line>
+              <Line pink>The Neon Pillar (Central) — Corporate lounge & temple</Line>
+              <Line pink>Idol Coffins Hotels (Various) — Rock-star themed pop-ups</Line>
+              <Line pink>The Salmon Door (Ports) — Ultra-exclusive restaurant [RUMORED]</Line>
+            </InsetBox>
+            <InsetBox title="LIVE MUSIC TONIGHT:">
+              <Line neon>PHASER/MOB @ Underground Venue TBA</Line>
+              <Line neon>HeCcc @ The Pit (Ports district)</Line>
+              <Line neon>I must leave @ Secret location (password required)</Line>
+            </InsetBox>
+            <InsetBox title="CURRENT TRENDS:">
+              <Line cyan>Mycobiotic cuisine (Burnchurch Hex pop-ups)</Line>
+              <Line cyan>Cyberbike racing (illegal street events)</Line>
+              <Line cyan>G0 artifacts (black market collectibles)</Line>
+              <Line cyan>Mind-upload parties (Fideistic Transformation sponsored)</Line>
+            </InsetBox>
+            <Line yellow small>"Paid placements available. Contact Tulles&deVerte."</Line>
+          </Message>
         ),
       },
 
       "Cy Survival Tips": {
         content: (
-          <>
-            <Line smoke large bold>[UNOFFICIAL CY SURVIVAL GUIDE]</Line>
-            <Line yellow>User-contributed wisdom from the streets</Line>
-            <Divider />
-            <Section title="ESSENTIAL TIPS:">
+          <Message
+            title="CY SURVIVAL GUIDE"
+            subtitle="UNOFFICIAL"
+            message="User-contributed wisdom from the streets"
+            theme="casual"
+          >
+            <InsetBox title="ESSENTIAL TIPS:">
               <Line neon>1. Never drink canal water (not even filtered)</Line>
               <Line neon>2. SecOps response time: 4-12 minutes (if they bother)</Line>
               <Line neon>3. Respirator mandatory in Mosscroft (your lungs will thank you)</Line>
@@ -131,77 +132,74 @@ export const CY_CITY_NETWORK = {
               <Line neon>8. The Stone Eels are surprisingly reasonable (comparatively)</Line>
               <Line neon>9. Never trust anyone from the Hills (they're not like you)</Line>
               <Line neon>10. The city wants you dead. Prove it wrong.</Line>
-            </Section>
-            <Divider />
-            <Line pink>"Stay smart. Stay alive. Stay cynical."</Line>
-          </>
+            </InsetBox>
+            <Line pink small>"Stay smart. Stay alive. Stay cynical."</Line>
+          </Message>
         ),
       },
 
       "Cy Dating Network": {
         content: (
-          <>
-            <Line smoke large bold>[CY-MATCH SOCIAL NETWORK]</Line>
-            <Line pink>"Find Connection in the Disconnected City"</Line>
-            <Divider />
-            <Section title="NEARBY PROFILES:">
-              <Line pink>→ "CHROME_QUEEN_23" - 2km away</Line>
+          <Message
+            title="CY-MATCH"
+            subtitle="SOCIAL NETWORK"
+            message="Find Connection in the Disconnected City"
+            note="Platform disclaimer: 78% of profiles may be bots, scams, or law enforcement"
+            theme="casual"
+          >
+            <InsetBox title="NEARBY PROFILES:">
+              <Line pink>"CHROME_QUEEN_23" — 2km away</Line>
               <Line neon>"Looking for someone who isn't a corpo rat"</Line>
-              <Divider />
-              <Line pink>→ "DEFINITELY_HUMAN" - 0.5km away</Line>
+              <Line pink>"DEFINITELY_HUMAN" — 0.5km away</Line>
               <Line neon>"I promise I'm not a SecOps honey trap (really)"</Line>
-              <Divider />
-              <Line pink>→ "NEON_DREAMS_CY" - 4km away</Line>
+              <Line pink>"NEON_DREAMS_CY" — 4km away</Line>
               <Line neon>"Swipe right if you have a working cyberdeck ;)"</Line>
-              <Divider />
-              <Line pink>→ "JUST_SURVIVING" - 1.2km away</Line>
+              <Line pink>"JUST_SURVIVING" — 1.2km away</Line>
               <Line neon>"Not looking for love, just someone to split rent"</Line>
-            </Section>
-            <Divider />
-            <Line yellow>* Platform disclaimer: 78% of profiles may be bots, scams, or law enforcement</Line>
-            <Line cyan>"Love in the time of corporate dystopia. Good luck."</Line>
-          </>
+            </InsetBox>
+            <Line cyan small>"Love in the time of corporate dystopia. Good luck."</Line>
+          </Message>
         ),
       },
 
       "Cy Food Delivery App": {
         content: (
-          <>
-            <Line smoke large bold>[CY-EATS DELIVERY SERVICE]</Line>
-            <Line yellow>"Hot food. Cold city. Fast delivery (eventually)."</Line>
-            <Divider />
-            <Section title="TRENDING RESTAURANTS:">
-              <Line neon>→ Body's Pho - Synthetic Beef Noodle Soup</Line>
-              <Line cyan>  Price: 35¤ | Rating: 4.2/5 | Delivery: 45-90min</Line>
-              <Divider />
-              <Line neon>→ Mosscroft Grill - "Mystery Meat" Skewers</Line>
-              <Line cyan>  Price: 22¤ | Rating: 3.8/5 | Delivery: 30-60min</Line>
-              <Divider />
-              <Line neon>→ AST Fresh - Biomatter Protein Bowl</Line>
-              <Line cyan>  Price: 18¤ | Rating: 4.0/5 | Delivery: 20-40min</Line>
-              <Divider />
-              <Line neon>→ Fungi Garden - Mycobiotic Burger</Line>
-              <Line cyan>  Price: 28¤ | Rating: 4.5/5 | Delivery: 60-120min</Line>
-            </Section>
-            <Divider />
-            <Section title="DELIVERY STATUS:">
+          <Message
+            title="CY-EATS"
+            subtitle="DELIVERY SERVICE"
+            message="Hot food. Cold city. Fast delivery (eventually)."
+            theme="casual"
+          >
+            <InsetBox title="TRENDING RESTAURANTS:">
+              <Line neon>Body's Pho — Synthetic Beef Noodle Soup</Line>
+              <Line cyan>35¤ | Rating: 4.2/5 | Delivery: 45-90min</Line>
+              <Line neon>Mosscroft Grill — "Mystery Meat" Skewers</Line>
+              <Line cyan>22¤ | Rating: 3.8/5 | Delivery: 30-60min</Line>
+              <Line neon>AST Fresh — Biomatter Protein Bowl</Line>
+              <Line cyan>18¤ | Rating: 4.0/5 | Delivery: 20-40min</Line>
+              <Line neon>Fungi Garden — Mycobiotic Burger</Line>
+              <Line cyan>28¤ | Rating: 4.5/5 | Delivery: 60-120min</Line>
+            </InsetBox>
+            <InsetBox title="DELIVERY STATUS:">
               <Line yellow>Current wait times: 2-4 hours (high demand)</Line>
               <Line red>⚠ Drone delivery suspended in Slums districts (too many shootdowns)</Line>
               <Line yellow>⚠ Water taxi couriers experiencing fatberg delays</Line>
-            </Section>
-            <Divider />
-            <Line pink>"Hungry? We'll get there. Probably."</Line>
-          </>
+            </InsetBox>
+            <Line pink small>"Hungry? We'll get there. Probably."</Line>
+          </Message>
         ),
       },
 
       "Cy Horoscope Network": {
         content: (
-          <Box color="pink">
-            <Line pink bold large>[DAILY HOROSCOPE - THE NET ORACLE]</Line>
-            <Line yellow>Cosmic guidance for the cybernetic age</Line>
-            <Divider color="pink" />
-            <Section title="TODAY'S READING (ALL SIGNS):">
+          <Message
+            title="NET ORACLE"
+            subtitle="DAILY HOROSCOPE"
+            message="Cosmic guidance for the cybernetic age"
+            note="Brought to you by Fideistic Transformation — Upload your destiny!"
+            theme="casual"
+          >
+            <InsetBox title="TODAY'S READING (ALL SIGNS):">
               <Line pink>The stars align in a pattern of corporate oppression.</Line>
               <Line pink>Your lucky number is: [REDACTED FOR PROFIT]</Line>
               <Line pink>Avoid: SecOps, gang territory, G0, the rich, the poor, everyone.</Line>
@@ -211,306 +209,240 @@ export const CY_CITY_NETWORK = {
               <Line neon>Health: The smog will outlast you. Accept it.</Line>
               <Line neon>Wealth: Money is fleeting. Debt is eternal.</Line>
               <Line pink>Overall: The city wants you dead. Don't give it satisfaction.</Line>
-            </Section>
-            <Divider color="pink" />
-            <Line yellow>"Brought to you by Fideistic Transformation - Upload your destiny!"</Line>
-          </Box>
+            </InsetBox>
+          </Message>
         ),
       },
 
       "Cy Urban Legends Archive": {
         content: (
-          <>
-            <Line smoke large bold>[CY URBAN LEGENDS DATABASE]</Line>
-            <Line yellow>Separating fact from fiction (probably)</Line>
-            <Divider />
-            <Section title="MOST SEARCHED LEGENDS:">
-              <Line pink>→ The Salmon Door - Ultra-exclusive Ports restaurant</Line>
-              <Line neon>  Guards in brown tailcoats, salmon-painted door</Line>
-              <Line neon>  Allegedly so exclusive even the Guide can't get a table</Line>
-              <Divider />
-              <Line pink>→ My Wall - Underground killclub/music venue</Line>
-              <Line neon>  Entrance allegedly through door on G0 containment wall</Line>
-              <Line neon>  Rumored meeting place for Terpischore Sisters</Line>
-              <Divider />
-              <Line pink>→ The Terpischore Sisters - Secret society</Line>
-              <Line neon>  Base allegedly beneath Old Cy, accessible via My Wall</Line>
-              <Line neon>  Purpose unknown, members unknown</Line>
-              <Divider />
-              <Line pink>→ The Night Sound - What screams in G0</Line>
-              <Line neon>  Heard nightly from within quarantine zone</Line>
-              <Line neon>  Neither human nor machine</Line>
-              <Divider />
-              <Line pink>→ Basilisk Entities - Deep Net manifestations</Line>
-              <Line neon>  AI? Gods? Demons? Aliens?</Line>
-              <Line neon>  Hacker collectives whisper of encounters</Line>
-            </Section>
-            <Divider />
-            <Line yellow>* 78% of legends have some basis in documented events</Line>
-            <Line cyan>"Believe what you want. The city doesn't care."</Line>
-          </>
+          <Message
+            title="CY URBAN LEGENDS"
+            subtitle="DATABASE"
+            message="Separating fact from fiction (probably)"
+            note="78% of legends have some basis in documented events"
+            theme="casual"
+          >
+            <InsetBox title="MOST SEARCHED LEGENDS:">
+              <Line pink>The Salmon Door — Ultra-exclusive Ports restaurant</Line>
+              <Line neon>Guards in brown tailcoats, salmon-painted door</Line>
+              <Line neon>Allegedly so exclusive even the Guide can't get a table</Line>
+              <Line pink>My Wall — Underground killclub/music venue</Line>
+              <Line neon>Entrance allegedly through door on G0 containment wall</Line>
+              <Line neon>Rumored meeting place for Terpischore Sisters</Line>
+              <Line pink>The Terpischore Sisters — Secret society</Line>
+              <Line neon>Base allegedly beneath Old Cy, accessible via My Wall</Line>
+              <Line neon>Purpose unknown, members unknown</Line>
+              <Line pink>The Night Sound — What screams in G0</Line>
+              <Line neon>Heard nightly from within quarantine zone</Line>
+              <Line neon>Neither human nor machine</Line>
+              <Line pink>Basilisk Entities — Deep Net manifestations</Line>
+              <Line neon>AI? Gods? Demons? Aliens?</Line>
+              <Line neon>Hacker collectives whisper of encounters</Line>
+            </InsetBox>
+            <Line cyan small>"Believe what you want. The city doesn't care."</Line>
+          </Message>
         ),
       },
 
       "Cy Public Services": {
         content: (
-          <>
-            <Line smoke large bold>[CY PUBLIC SERVICES PORTAL]</Line>
-            <Line cyan>Citizen resources and emergency information</Line>
-            <Divider />
-            <Section title="EMERGENCY CONTACTS:">
-              <KeyValue label="SecOps (Emergency)" value="911" />
-              <KeyValue label="Fire Response" value="912" />
-              <KeyValue label="Medical Emergency" value="913" />
-              <KeyValue label="Infrastructure Failure" value="914" />
+          <Message
+            title="CY PUBLIC SERVICES"
+            subtitle="CITIZEN PORTAL"
+            message="Citizen resources and emergency information"
+            note="Your safety is our priority. (Terms and conditions apply.)"
+            theme="corporate"
+          >
+            <InsetBox title="EMERGENCY CONTACTS:">
+              <Line neon>SecOps (Emergency): 911</Line>
+              <Line neon>Fire Response: 912</Line>
+              <Line neon>Medical Emergency: 913</Line>
+              <Line neon>Infrastructure Failure: 914</Line>
               <Line yellow>Average response time: 8-45 minutes (varies by district)</Line>
-            </Section>
-            <Divider />
-            <Section title="TRANSIT INFORMATION:">
+            </InsetBox>
+            <InsetBox title="TRANSIT INFORMATION:">
               <Line neon>Metro: 75% operational (see route map for closures)</Line>
               <Line neon>Water taxis: Available 24/7 at all major docks</Line>
               <Line neon>Automated vehicles: ACGS Chariot network active</Line>
               <Line red>Air transit: Restricted to licensed commercial operations</Line>
-            </Section>
-            <Divider />
-            <Section title="HEALTH ADVISORIES:">
-              <Line yellow>→ Laketon: Water boil advisory (nanomold contamination)</Line>
-              <Line yellow>→ Mosscroft West: Chemical leak - respirators required</Line>
-              <Line yellow>→ Barnyard Fields: Avoid area (cult activity)</Line>
-              <Line red>→ G0: QUARANTINE ZONE - Entry prohibited without authorization</Line>
-            </Section>
-            <Divider />
-            <Line cyan>"Your safety is our priority. (Terms and conditions apply.)"</Line>
-          </>
+            </InsetBox>
+            <InsetBox title="HEALTH ADVISORIES:">
+              <Line yellow>Laketon: Water boil advisory (nanomold contamination)</Line>
+              <Line yellow>Mosscroft West: Chemical leak — respirators required</Line>
+              <Line yellow>Barnyard Fields: Avoid area (cult activity)</Line>
+              <Line red>G0: QUARANTINE ZONE — Entry prohibited without authorization</Line>
+            </InsetBox>
+          </Message>
         ),
       },
 
       "Cy Job Board": {
         content: (
-          <>
-            <Line smoke large bold>[CY EMPLOYMENT NETWORK]</Line>
-            <Line yellow>"Your Future. Their Profit."</Line>
-            <Divider />
-            <Line cyan>Connecting to job database...</Line>
-            <Line neon>Current listings: 1,247 active positions</Line>
-            <Divider />
-            <Section title="FEATURED OPPORTUNITIES:">
-              <Line pink>→ FACTORY WORKER - Kaytell Makers (Mosscroft)</Line>
-              <Line neon>  Pay: 800¤/month + company housing</Line>
-              <Line neon>  Shifts: 12-hour rotations (day/night available)</Line>
-              <Line yellow>  Benefits: Medical (on-site only), meal vouchers</Line>
-              <Line red>  Note: Injury rate 14% (within acceptable limits)</Line>
-              <Divider />
-              <Line pink>→ WAREHOUSE OPERATOR - Royal West (Multiple locations)</Line>
-              <Line neon>  Pay: 750¤/month + overtime opportunities</Line>
-              <Line neon>  Requirements: Basic literacy, ability to lift 25kg</Line>
-              <Line yellow>  Benefits: Medical, employee discounts</Line>
-              <Line red>  Note: All operations monitored by NordShip AI</Line>
-              <Divider />
-              <Line pink>→ SECOPS TRAINEE - UCS Academy (Central)</Line>
-              <Line neon>  Pay: 1,200¤/month (during training)</Line>
-              <Line neon>  Requirements: Physical fitness, clean record preferred</Line>
-              <Line yellow>  Benefits: Full corpo package after graduation</Line>
-              <Line red>  Note: 6-month contract, combat deployment likely</Line>
-              <Divider />
-              <Line pink>→ DATA ENTRY CLERK - ACGS (Industries)</Line>
-              <Line neon>  Pay: 650¤/month</Line>
-              <Line neon>  Requirements: Typing 60 WPM, basic AI interface skills</Line>
-              <Line yellow>  Benefits: None (contract position)</Line>
-              <Line red>  Note: Remote work not available</Line>
-            </Section>
-            <Divider />
-            <Section title="GIG ECONOMY LISTINGS:">
-              <Line cyan>• Drone delivery pilot: 8¤/delivery (bring your own drone)</Line>
-              <Line cyan>• Water taxi operator: 12¤/hour (license required)</Line>
-              <Line cyan>• Street vendor permit: 200¤/month (location lottery)</Line>
-              <Line cyan>• Courier (foot): 5¤/delivery (Ports/Slums only)</Line>
-            </Section>
-            <Divider />
-            <Section title="EXECUTIVE POSITIONS:">
-              <Line yellow>→ Senior AI Ethics Consultant - ACGS</Line>
-              <Line neon>  Pay: Competitive (disclosed upon interview)</Line>
-              <Line neon>  Requirements: PhD preferred, 5-year NDA mandatory</Line>
-              <Divider />
-              <Line yellow>→ Security Director - Alliansen Inc.</Line>
-              <Line neon>  Pay: 15,000¤/month + performance bonuses</Line>
-              <Line neon>  Requirements: Military/SecOps experience, clean record</Line>
-              <Divider />
-              <Line yellow>→ Regional Manager - AST Endless Seas</Line>
-              <Line neon>  Pay: 12,000¤/month + housing stipend</Line>
-              <Line neon>  Requirements: 10+ years food service management</Line>
-            </Section>
-            <Divider />
-            <Warning>All positions subject to background checks and corporate loyalty agreements</Warning>
-            <Line pink>"Work hard. Die young. Leave a profitable corpse."</Line>
-          </>
+          <Message
+            title="CY EMPLOYMENT NETWORK"
+            subtitle="JOB BOARD"
+            message="Your Future. Their Profit."
+            note="All positions subject to background checks and corporate loyalty agreements"
+            theme="corporate"
+          >
+            <InsetBox title="FEATURED OPPORTUNITIES:">
+              <Line pink>FACTORY WORKER — Kaytell Makers (Mosscroft)</Line>
+              <Line neon>Pay: 800¤/month + company housing | Shifts: 12-hour rotations</Line>
+              <Line yellow>Benefits: Medical (on-site only), meal vouchers</Line>
+              <Line red>Injury rate: 14% (within acceptable limits)</Line>
+              <Line pink>WAREHOUSE OPERATOR — Royal West (Multiple locations)</Line>
+              <Line neon>Pay: 750¤/month + overtime | Requirements: Basic literacy, 25kg lift</Line>
+              <Line yellow>Benefits: Medical, employee discounts</Line>
+              <Line red>All operations monitored by NordShip AI</Line>
+              <Line pink>SECOPS TRAINEE — UCS Academy (Central)</Line>
+              <Line neon>Pay: 1,200¤/month during training | Requirements: Physical fitness</Line>
+              <Line yellow>Benefits: Full corpo package after graduation</Line>
+              <Line red>6-month contract, combat deployment likely</Line>
+              <Line pink>DATA ENTRY CLERK — ACGS Industries</Line>
+              <Line neon>Pay: 650¤/month | Requirements: 60 WPM, basic AI interface skills</Line>
+              <Line red>No benefits. Remote work not available.</Line>
+            </InsetBox>
+            <InsetBox title="GIG ECONOMY:">
+              <Line cyan>Drone delivery pilot: 8¤/delivery (bring your own drone)</Line>
+              <Line cyan>Water taxi operator: 12¤/hour (license required)</Line>
+              <Line cyan>Street vendor permit: 200¤/month (location lottery)</Line>
+              <Line cyan>Courier (foot): 5¤/delivery (Ports/Slums only)</Line>
+            </InsetBox>
+            <InsetBox title="EXECUTIVE POSITIONS:">
+              <Line yellow>Senior AI Ethics Consultant — ACGS</Line>
+              <Line neon>Pay: Competitive (disclosed upon interview) | 5-year NDA mandatory</Line>
+              <Line yellow>Security Director — Alliansen Inc.</Line>
+              <Line neon>Pay: 15,000¤/month + bonuses | Military/SecOps experience required</Line>
+              <Line yellow>Regional Manager — AST Endless Seas</Line>
+              <Line neon>Pay: 12,000¤/month + housing | 10+ years food service management</Line>
+            </InsetBox>
+            <Line pink small>"Work hard. Die young. Leave a profitable corpse."</Line>
+          </Message>
         ),
       },
 
       "Cy Housing Market": {
         content: (
-          <>
-            <Line smoke large bold>[CY REAL ESTATE LISTINGS]</Line>
-            <Line yellow>"Affordable is a relative term."</Line>
-            <Divider />
-            <Line cyan>Accessing property database...</Line>
-            <Line neon>Current listings: 342 rentals, 18 sales</Line>
-            <Divider />
-            <Section title="RENTALS - CENTRAL DISTRICT:">
-              <Line pink>→ Luxury 2BR Apartment (South Central)</Line>
-              <Line neon>  Rent: 8,500¤/month</Line>
-              <Line neon>  Features: 120m², filtered air, SecOps patrol, parking</Line>
-              <Line yellow>  Utilities: Additional 600¤/month (estimate)</Line>
-              <Line red>  Available: Next month (current tenant being evicted)</Line>
-              <Divider />
-              <Line pink>→ Studio Apartment (North Central)</Line>
-              <Line neon>  Rent: 3,200¤/month</Line>
-              <Line neon>  Features: 35m², shared bathroom, filtered water</Line>
-              <Line yellow>  Utilities: Included (basic tier only)</Line>
-              <Line red>  Note: Building has "minor" mold issues</Line>
-            </Section>
-            <Divider />
-            <Section title="RENTALS - PORTS DISTRICT:">
-              <Line pink>→ 1BR Apartment (East Ports)</Line>
-              <Line neon>  Rent: 900¤/month</Line>
-              <Line neon>  Features: 45m², canal view, basic utilities</Line>
-              <Line yellow>  Security: Minimal (Stone Eels territory)</Line>
-              <Line red>  Note: Noise from nearby clubs 20:00-06:00</Line>
-              <Divider />
-              <Line pink>→ Shared Housing (West Ports)</Line>
-              <Line neon>  Rent: 300¤/month per person (4-person unit)</Line>
-              <Line neon>  Features: Shared kitchen/bathroom, no frills</Line>
-              <Line yellow>  Utilities: Split between tenants</Line>
-              <Line red>  Current occupants: 2 factory workers seeking roommates</Line>
-            </Section>
-            <Divider />
-            <Section title="RENTALS - SLUMS DISTRICTS:">
-              <Line pink>→ Coffin Apartment (Laketon)</Line>
-              <Line neon>  Rent: 180¤/month</Line>
-              <Line neon>  Features: 2m × 1m × 1m sleeping pod, shared facilities</Line>
-              <Line yellow>  Security: None</Line>
-              <Line red>  Note: Water currently under boil advisory</Line>
-              <Divider />
-              <Line pink>→ Converted Shipping Container (Various)</Line>
-              <Line neon>  Rent: 250¤/month</Line>
-              <Line neon>  Features: 6m × 2.5m space, basic electrical hookup</Line>
-              <Line yellow>  Heating: Space heater (not included)</Line>
-              <Line red>  Legal status: Technically not residential zoning</Line>
-            </Section>
-            <Divider />
-            <Section title="FOR SALE:">
-              <Line yellow>→ Luxury Penthouse (The Neon Pillar)</Line>
-              <Line neon>  Price: 15,000,000¤</Line>
-              <Line neon>  Features: 400m², rooftop access, corpo-level everything</Line>
-              <Divider />
-              <Line yellow>→ Commercial Warehouse (Mosscroft)</Line>
-              <Line neon>  Price: 2,500,000¤</Line>
-              <Line neon>  Features: 1,200m², zoned industrial, rail access</Line>
-            </Section>
-            <Divider />
-            <Section title="BUYER BEWARE:">
-              <Line red>• All prices subject to "market adjustment" fees</Line>
-              <Line red>• Background checks required (corporate credit preferred)</Line>
-              <Line red>• First/last/security deposit standard (3 months upfront)</Line>
-              <Line red>• Eviction proceedings average 2 weeks (tenant rights limited)</Line>
-            </Section>
-            <Divider />
-            <Line pink>"Home is where your credchip works."</Line>
-          </>
+          <Message
+            title="CY REAL ESTATE"
+            subtitle="LISTINGS"
+            message="Affordable is a relative term."
+            note="All prices subject to market adjustment fees. First/last/security deposit standard (3 months upfront)."
+            theme="corporate"
+          >
+            <InsetBox title="RENTALS — CENTRAL DISTRICT:">
+              <Line pink>Luxury 2BR Apartment (South Central) — 8,500¤/month</Line>
+              <Line neon>120m², filtered air, SecOps patrol, parking | Utilities: +600¤</Line>
+              <Line red>Available next month (current tenant being evicted)</Line>
+              <Line pink>Studio Apartment (North Central) — 3,200¤/month</Line>
+              <Line neon>35m², shared bathroom, filtered water | Utilities: Included (basic)</Line>
+              <Line red>Building has "minor" mold issues</Line>
+            </InsetBox>
+            <InsetBox title="RENTALS — PORTS DISTRICT:">
+              <Line pink>1BR Apartment (East Ports) — 900¤/month</Line>
+              <Line neon>45m², canal view | Security: Minimal (Stone Eels territory)</Line>
+              <Line red>Noise from nearby clubs 20:00-06:00</Line>
+              <Line pink>Shared Housing (West Ports) — 300¤/month per person</Line>
+              <Line neon>4-person unit, shared kitchen/bathroom | Current occupants: 2 factory workers</Line>
+            </InsetBox>
+            <InsetBox title="RENTALS — SLUMS DISTRICTS:">
+              <Line pink>Coffin Apartment (Laketon) — 180¤/month</Line>
+              <Line neon>2m × 1m × 1m sleeping pod, shared facilities | Security: None</Line>
+              <Line red>Water currently under boil advisory</Line>
+              <Line pink>Converted Shipping Container (Various) — 250¤/month</Line>
+              <Line neon>6m × 2.5m, basic electrical | Legal status: Not residential zoning</Line>
+            </InsetBox>
+            <InsetBox title="FOR SALE:">
+              <Line yellow>Luxury Penthouse (The Neon Pillar) — 15,000,000¤</Line>
+              <Line neon>400m², rooftop access, corpo-level everything</Line>
+              <Line yellow>Commercial Warehouse (Mosscroft) — 2,500,000¤</Line>
+              <Line neon>1,200m², zoned industrial, rail access</Line>
+            </InsetBox>
+            <Line pink small>"Home is where your credchip works."</Line>
+          </Message>
         ),
       },
 
       "Cy Crime Reports": {
         content: (
-          <Box color="red">
-            <Line red bold large>[CY CRIME STATISTICS - PUBLIC DIGEST]</Line>
-            <Line yellow>Sanitized for public consumption</Line>
-            <Divider color="red" />
-            <Section title="LAST 24 HOURS (Official Reports):">
-              <Line pink>CENTRAL DISTRICT:</Line>
-              <Line neon>• Reported incidents: 0</Line>
-              <Line cyan>  (SecOps coverage: Excellent)</Line>
-              <Line cyan>  (Corporate confidence: High)</Line>
-              <Divider color="red" />
-              <Line pink>PORTS DISTRICT:</Line>
-              <Line neon>• Reported incidents: 47</Line>
-              <Line yellow>  - Gang-related: 23 (expected/acceptable)</Line>
-              <Line yellow>  - Property crime: 18</Line>
-              <Line yellow>  - Assaults: 6</Line>
-              <Line cyan>  (SecOps coverage: Minimal by design)</Line>
-              <Divider color="red" />
-              <Line pink>MOSSCROFT INDUSTRIAL:</Line>
-              <Line neon>• Reported incidents: 12</Line>
-              <Line yellow>  - Workplace accidents: 8 (within projections)</Line>
-              <Line yellow>  - Theft: 3</Line>
-              <Line yellow>  - Trespassing: 1</Line>
-              <Divider color="red" />
-              <Line pink>SLUMS DISTRICTS:</Line>
-              <Line neon>• Reported incidents: [DATA INSUFFICIENT]</Line>
-              <Line red>  (SecOps coverage: None)</Line>
-              <Line red>  (Civilian estimates: 200+ unreported)</Line>
-            </Section>
-            <Divider color="red" />
-            <Section title="MAJOR INVESTIGATIONS (Active):">
-              <Line yellow>→ Central Bridge fatalities (traffic incident)</Line>
-              <Line yellow>→ Mosscroft chemical leak (industrial accident)</Line>
-              <Line yellow>→ [REDACTED] (corporate matter, sealed)</Line>
-            </Section>
-            <Divider color="red" />
-            <Section title="MOST WANTED:">
-              <Line red>1. "GHOST" - Cybercrime, data theft (reward: 50,000¤)</Line>
-              <Line red>2. "SCALPEL" - Multiple homicides (reward: 75,000¤)</Line>
-              <Line red>3. [CLASSIFIED] - Corporate espionage</Line>
-            </Section>
-            <Divider color="red" />
-            <Warning>Crime reporting varies by district corporate investment</Warning>
-            <Line pink>"Stay safe. Stay compliant. Stay profitable."</Line>
-          </Box>
+          <Message
+            title="CY CRIME STATISTICS"
+            subtitle="PUBLIC DIGEST"
+            message="Sanitized for public consumption"
+            note="Crime reporting varies by district corporate investment"
+            theme="secure"
+          >
+            <InsetBox title="LAST 24 HOURS — CENTRAL DISTRICT:">
+              <Line neon>Reported incidents: 0</Line>
+              <Line cyan>SecOps coverage: Excellent | Corporate confidence: High</Line>
+            </InsetBox>
+            <InsetBox title="LAST 24 HOURS — PORTS DISTRICT:">
+              <Line neon>Reported incidents: 47</Line>
+              <Line yellow>Gang-related: 23 (expected/acceptable)</Line>
+              <Line yellow>Property crime: 18 | Assaults: 6</Line>
+              <Line cyan>SecOps coverage: Minimal by design</Line>
+            </InsetBox>
+            <InsetBox title="LAST 24 HOURS — MOSSCROFT INDUSTRIAL:">
+              <Line neon>Reported incidents: 12</Line>
+              <Line yellow>Workplace accidents: 8 (within projections)</Line>
+              <Line yellow>Theft: 3 | Trespassing: 1</Line>
+            </InsetBox>
+            <InsetBox title="LAST 24 HOURS — SLUMS DISTRICTS:">
+              <Line neon>Reported incidents: [DATA INSUFFICIENT]</Line>
+              <Line red>SecOps coverage: None</Line>
+              <Line red>Civilian estimates: 200+ unreported</Line>
+            </InsetBox>
+            <InsetBox title="MAJOR INVESTIGATIONS (ACTIVE):">
+              <Line yellow>Central Bridge fatalities (traffic incident)</Line>
+              <Line yellow>Mosscroft chemical leak (industrial accident)</Line>
+              <Line yellow>[REDACTED] (corporate matter, sealed)</Line>
+            </InsetBox>
+            <InsetBox title="MOST WANTED:">
+              <Line red>1. "GHOST" — Cybercrime, data theft (reward: 50,000¤)</Line>
+              <Line red>2. "SCALPEL" — Multiple homicides (reward: 75,000¤)</Line>
+              <Line red>3. [CLASSIFIED] — Corporate espionage</Line>
+            </InsetBox>
+            <Line pink small>"Stay safe. Stay compliant. Stay profitable."</Line>
+          </Message>
         ),
       },
 
       "Cy Meme Feed": {
         content: (
-          <Box color="pink">
-            <Line pink bold large>[CY VIRAL CONTENT NETWORK]</Line>
-            <Line yellow>"The People's Voice (Probably)"</Line>
-            <Divider color="pink" />
-            <Section title="TRENDING NOW:">
-              <Line neon>→ "TAG YOURSELF I'M THE DRONE THAT GOT SHOT DOWN"</Line>
-              <Line cyan>  (Image: Crashed delivery drone in Slums)</Line>
-              <Line yellow>  Engagement: 847k shares, 2.1M likes</Line>
-              <Divider color="pink" />
-              <Line neon>→ "POV: You're a Mosscroft factory worker"</Line>
-              <Line cyan>  (Video: Guy coughing for 30 seconds straight)</Line>
-              <Line yellow>  Engagement: 1.2M views, 450k shares</Line>
-              <Divider color="pink" />
-              <Line neon>→ "Undersjön opening in Year 18" Timeline meme</Line>
-              <Line cyan>  2064: "Opens in 5 years!"</Line>
-              <Line cyan>  2069: "Opens in 5 years!"</Line>
-              <Line cyan>  2074: "Opens in 5 years!"</Line>
-              <Line cyan>  2082: "Opens in 5 years!"</Line>
-              <Line yellow>  Engagement: 3.4M shares, AST legal takedown pending</Line>
-            </Section>
-            <Divider color="pink" />
-            <Section title="CLASSIC HITS:">
+          <Message
+            title="CY VIRAL CONTENT"
+            subtitle="NETWORK"
+            message="The People's Voice (Probably)"
+            note="Platform moderation provided by ACGS sentiment analysis AI"
+            theme="casual"
+          >
+            <InsetBox title="TRENDING NOW:">
+              <Line neon>"TAG YOURSELF I'M THE DRONE THAT GOT SHOT DOWN"</Line>
+              <Line cyan>Image: Crashed delivery drone in Slums</Line>
+              <Line yellow>Engagement: 847k shares, 2.1M likes</Line>
+              <Line neon>"POV: You're a Mosscroft factory worker"</Line>
+              <Line cyan>Video: Guy coughing for 30 seconds straight</Line>
+              <Line yellow>Engagement: 1.2M views, 450k shares</Line>
+              <Line neon>Undersjön opening in Year 18 — Timeline meme</Line>
+              <Line cyan>2064: "Opens in 5 years!" → 2069: "Opens in 5 years!" → 2082: "Opens in 5 years!"</Line>
+              <Line yellow>Engagement: 3.4M shares | AST legal takedown pending</Line>
+            </InsetBox>
+            <InsetBox title="CLASSIC HITS:">
               <Line pink>• "Corpo meeting could have been an RCD"</Line>
               <Line pink>• "That's not smog, that's Cy seasoning"</Line>
               <Line pink>• "My cyberdeck vs the cyberdeck she told me not to worry about"</Line>
               <Line pink>• "When your rent is due but you already sold your kidney"</Line>
               <Line pink>• "G0 incident survivors be like: [IMAGE CORRUPTED]"</Line>
-            </Section>
-            <Divider color="pink" />
-            <Section title="CONTROVERSIAL (Flagged):">
-              <Line red>→ "How many corpos does it take to screw in a lightbulb?"</Line>
-              <Line yellow>  [Content removed - violates community guidelines]</Line>
-              <Divider color="pink" />
-              <Line red>→ "Actual photo of Fideistic Transformation upload process"</Line>
-              <Line yellow>  [Content removed - corporate complaint]</Line>
-            </Section>
-            <Divider color="pink" />
-            <Warning>Platform moderation provided by ACGS sentiment analysis AI</Warning>
-            <Line yellow>"Laugh now. Cry later. Delete before SecOps sees."</Line>
-          </Box>
+            </InsetBox>
+            <InsetBox title="CONTROVERSIAL (FLAGGED):">
+              <Line red>"How many corpos does it take to screw in a lightbulb?"</Line>
+              <Line yellow>[Content removed — violates community guidelines]</Line>
+              <Line red>"Actual photo of Fideistic Transformation upload process"</Line>
+              <Line yellow>[Content removed — corporate complaint]</Line>
+            </InsetBox>
+            <Line yellow small>"Laugh now. Cry later. Delete before SecOps sees."</Line>
+          </Message>
         ),
       },
     }
@@ -539,25 +471,21 @@ export const CY_CITY_NETWORK = {
           >
             <Line neon>Connecting to corporate network...</Line>
             <Line cyan>[PUBLIC ACCESS GRANTED]</Line>
-            <Divider />
-            <Section title="ABOUT ACGS:">
+            <InsetBox title="ABOUT ACGS:">
               <Line neon>Leading provider of AI solutions, weapontech, and vehicles</Line>
               <Line neon>Home to Chariot - The first "true" AI controlling Cy's transport</Line>
               <Line neon>Decentralized offices throughout Central and Industries</Line>
-            </Section>
-            <Divider />
-            <Section title="LATEST INNOVATIONS:">
+            </InsetBox>
+            <InsetBox title="LATEST INNOVATIONS:">
               <Line cyan>→ Chariot 2.0 - Enhanced traffic prediction algorithms</Line>
               <Line cyan>→ Bio-Enhanced Combat Platforms (military exclusive)</Line>
               <Line cyan>→ Neural Insurance Protocols (predict health issues before they occur)</Line>
-            </Section>
-            <Divider />
-            <Section title="CAREER OPPORTUNITIES:">
+            </InsetBox>
+            <InsetBox title="CAREER OPPORTUNITIES:">
               <Line yellow>Now hiring: AI Ethics Consultants (5-year NDA required)</Line>
               <Line yellow>Now hiring: Weapons Testing Personnel (hazard pay included)</Line>
               <Line yellow>Now hiring: Data Entry (Mosscroft facility)</Line>
-            </Section>
-            <Divider />
+            </InsetBox>
             <Line pink>"Your future, automated. Your success, inevitable."</Line>
           </CorpAd>
         ),
@@ -670,27 +598,23 @@ export const CY_CITY_NETWORK = {
           >
             <Line neon>Connecting to infrastructure network...</Line>
             <Line cyan>[PUBLIC PORTAL]</Line>
-            <Divider />
-            <Section title="ABOUT CYNERGY:">
+            <InsetBox title="ABOUT CYNERGY:">
               <Line neon>Facilities, infrastructure, transportation, real estate</Line>
               <Line neon>Headquarters in The Floating Hive, North Central</Line>
               <Line neon>Official utility provider (mandatory service agreements)</Line>
-            </Section>
-            <Divider />
-            <Section title="SERVICE RATES (Monthly):">
+            </InsetBox>
+            <InsetBox title="SERVICE RATES (Monthly):">
               <KeyValue label="Water (basic tier)" value="120¤" />
               <KeyValue label="Water (filtered tier)" value="280¤" />
               <KeyValue label="Water (premium clean)" value="650¤" />
               <KeyValue label="Power (residential)" value="180-450¤" />
               <KeyValue label="Late Payment Fee" value="50¤ per day" />
-            </Section>
-            <Divider />
-            <Section title="CURRENT ADVISORIES:">
+            </InsetBox>
+            <InsetBox title="CURRENT ADVISORIES:">
               <Line yellow>→ Planned outages: Slums districts (rotating schedule)</Line>
               <Line yellow>→ Water quality notice: Laketon (boil advisory active)</Line>
               <Line red>→ Power surge warning: Mosscroft industrial zones</Line>
-            </Section>
-            <Divider />
+            </InsetBox>
             <Line pink>"We keep Cy running. You keep paying."</Line>
           </CorpAd>
         ),
@@ -1039,83 +963,6 @@ export const CY_CITY_NETWORK = {
             <Divider />
             <Warning>Legal advice is attorney-client privileged and confidential</Warning>
             <Line pink>"When the stakes are high, we don't lose."</Line>
-          </CorpAd>
-        ),
-      },
-
-      "Idol Coffins Hotels": {
-        content: (
-          <CorpAd
-            corp="IDOL COFFINS"
-            slogan="Live Fast. Die Young. Sleep In Style."
-            tagline="Rock-star themed pop-up hotels across Cy."
-            products={[
-              "Themed Luxury Suites",
-              "24/7 Room Service & Bar",
-              "Private Concert Access",
-              "Memorabilia Collections"
-            ]}
-            cta="Book Your Rock-Star Experience Today"
-            theme="neon"
-            logo="🎸"
-          >
-            <Line neon>Connecting to hotel network...</Line>
-            <Line cyan>[RESERVATIONS OPEN]</Line>
-            <Divider />
-            <Section title="ABOUT IDOL COFFINS:">
-              <Line neon>Pop-up hotel chain themed around legendary dead musicians</Line>
-              <Line neon>Each location: 6-month residency, then relocates</Line>
-              <Line neon>Luxury suites, rock memorabilia, live music venues</Line>
-              <Line neon>Target clientele: Music fans, wealthy tourists, corpo elite</Line>
-            </Section>
-            <Divider />
-            <Section title="CURRENT LOCATION (Ports District):">
-              <Line yellow>Hotel Theme: "The Neon Graveyard"</Line>
-              <Line yellow>Address: Converted warehouse, Canal Dock 9</Line>
-              <Line yellow>Open: Now through end of year</Line>
-              <Line yellow>Rooms: 24 themed suites + 1 penthouse</Line>
-            </Section>
-            <Divider />
-            <Section title="FEATURED SUITES:">
-              <Line pink>→ "The Purple Haze" Suite (Hendrix-inspired)</Line>
-              <Line neon>  King bed, vintage amp decor, purple velvet everywhere</Line>
-              <Line neon>  Rate: 800¤/night</Line>
-              <Divider />
-              <Line pink>→ "27 Club" Penthouse (Mixed legends)</Line>
-              <Line neon>  Rooftop access, full bar, stage equipment</Line>
-              <Line neon>  Rate: 2,500¤/night</Line>
-              <Divider />
-              <Line pink>→ "Electric Chapel" Suite (Bowie tribute)</Line>
-              <Line neon>  Mirror walls, neon lighting, avant-garde design</Line>
-              <Line neon>  Rate: 950¤/night</Line>
-              <Divider />
-              <Line pink>→ "Nevermind" Suite (Grunge aesthetic)</Line>
-              <Line neon>  Distressed furniture, vinyl collection, pacific northwest vibe</Line>
-              <Line neon>  Rate: 700¤/night</Line>
-            </Section>
-            <Divider />
-            <Section title="HOTEL AMENITIES:">
-              <Line cyan>• 24/7 room service (bar + food)</Line>
-              <Line cyan>• Private concert venue (capacity: 200)</Line>
-              <Line cyan>• Museum wing (authentic memorabilia)</Line>
-              <Line cyan>• Rooftop bar (guests only)</Line>
-              <Line cyan>• Recording studio (available for booking)</Line>
-            </Section>
-            <Divider />
-            <Section title="UPCOMING EVENTS:">
-              <Line yellow>Tonight: PHASER/MOB live performance (10pm)</Line>
-              <Line yellow>This weekend: Vinyl swap meet (Saturday, noon-6pm)</Line>
-              <Line yellow>Next week: HeCcc acoustic set (Thursday, 9pm)</Line>
-            </Section>
-            <Divider />
-            <Section title="BOOKING:">
-              <Line neon>Reserve online: idolcoffins.cy</Line>
-              <Line neon>Walk-ins accepted (subject to availability)</Line>
-              <Line yellow>Discounts: Musicians (20%), corpo accounts (15%)</Line>
-              <Line red>No refunds. No questions. Rock on.</Line>
-            </Section>
-            <Divider />
-            <Line pink>"Where legends sleep. Where you party."</Line>
           </CorpAd>
         ),
       },

@@ -3,6 +3,7 @@ import {
   Section,
   Divider,
   DataTable,
+  InsetBox,
 } from '@terminal/TerminalComponents';
 import {
   Camera,
@@ -13,6 +14,7 @@ import {
   VendingMachine,
   FacilityPortal,
   HoursBanner,
+  Message,
   IncidentLog,
   RCDAlert,
   NetworkDevices,
@@ -58,12 +60,11 @@ export const WAREHOUSE_COMMANDS = {
             location="Ports Industrial District"
             note="Reduced staffing during night shift (6 personnel vs 8 day shift)"
           >
-            <Divider />
-            <Section title="CURRENT SHIFT:">
+            <InsetBox title="CURRENT SHIFT:">
               <Line cyan>Night Shift (22:00 - 06:00)</Line>
               <Line cyan>Staff: 1 Supervisor + 5 Security Guards</Line>
               <Line yellow>Deliveries accepted 24/7 at loading dock</Line>
-            </Section>
+            </InsetBox>
           </HoursBanner>
         ),
       },
@@ -84,20 +85,19 @@ export const WAREHOUSE_COMMANDS = {
               "Current location: Secure Cargo area - Container 7B"
             ]}
           >
-            <Section title="RECENT INCOMING SHIPMENTS:">
+            <InsetBox title="RECENT INCOMING SHIPMENTS:">
               <Line neon>Jan 15 → Electronics components (TechCore Industries)</Line>
               <Line neon>Jan 14 → Industrial machinery parts (MetalWorks Co.)</Line>
               <Line neon>Jan 12 → Office supplies (standard)</Line>
               <Line yellow>Jan 11 → [REDACTED] - SecOps authorization required</Line>
               <Line neon>Jan 10 → Synthetic food products (NutriCorp)</Line>
               <Line neon>Jan 8 → Building materials (ConStruct Ltd.)</Line>
-            </Section>
-            <Divider />
-            <Section title="TONIGHT'S EXPECTED ARRIVALS:">
+            </InsetBox>
+            <InsetBox title="TONIGHT'S EXPECTED ARRIVALS:">
               <Line cyan>22:30 → Routine supply delivery (already received)</Line>
               <Line red>01:00 → [CLASSIFIED] - Military-grade cargo</Line>
               <Line yellow>↑ Requires Level 3 clearance to view details</Line>
-            </Section>
+            </InsetBox>
           </MaintenanceAccess>
         ),
       },
@@ -135,20 +135,19 @@ export const WAREHOUSE_COMMANDS = {
               "Detailed security layout requires elevated clearance"
             ]}
           >
-            <Section title="MAIN AREAS:">
+            <InsetBox title="MAIN AREAS:">
               <Line neon>→ Administrative offices (northwest)</Line>
               <Line neon>→ Main warehouse floor (center/east)</Line>
               <Line neon>→ Loading dock (north entrance)</Line>
               <Line neon>→ Employee facilities (bathrooms, rec room, rest area)</Line>
               <Line red>→ Secure Cargo area (southwest - RESTRICTED)</Line>
-            </Section>
-            <Divider />
-            <Section title="EMERGENCY EXITS:">
+            </InsetBox>
+            <InsetBox title="EMERGENCY EXITS:">
               <Line yellow>→ Front entrance (main)</Line>
               <Line yellow>→ Loading dock (north)</Line>
               <Line yellow>→ Side exit (east warehouse)</Line>
               <Line yellow>→ Emergency exit (south, alarm)</Line>
-            </Section>
+            </InsetBox>
           </MaintenanceAccess>
         ),
       },
@@ -196,12 +195,12 @@ export const WAREHOUSE_COMMANDS = {
                   "Power consumption: Normal (no anomalies)"
                 ]}
               >
-                <Section title="FACILITY STATUS:">
+                <InsetBox title="FACILITY STATUS:">
                   <Line cyan>Main warehouse: Operational</Line>
                   <Line cyan>Secure cargo: Locked, climate controlled</Line>
                   <Line cyan>Loading dock: Available</Line>
                   <Line yellow>Forklift #3: Scheduled maintenance tomorrow</Line>
-                </Section>
+                </InsetBox>
               </MaintenanceAccess>
             ),
           },
@@ -309,7 +308,6 @@ export const WAREHOUSE_COMMANDS = {
                         dob="08/23/2041"
                         position="Night Shift Supervisor"
                         department="Warehouse Operations"
-                        hireDate="March 2067 (15 years)"
                         supervisor="Regional Manager - Linda Torres"
                         clearanceLevel={3}
                         district="Bigmosse (commutes to Ports)"
@@ -335,7 +333,6 @@ export const WAREHOUSE_COMMANDS = {
                         dob="03/15/2054"
                         position="Security Officer"
                         department="Security Division"
-                        hireDate="January 2080 (2 years)"
                         clearanceLevel={2}
                         district="Lilypond"
                         emergencyContact="Ming Chen (brother) - 555-0892"
@@ -360,7 +357,6 @@ export const WAREHOUSE_COMMANDS = {
                         dob="11/07/2050"
                         position="Security Officer (Patrol)"
                         department="Security Division"
-                        hireDate="June 2078 (4 years)"
                         clearanceLevel={2}
                         district="Ports (local resident)"
                         emergencyContact="Carlos Martinez (father) - 555-0438"
@@ -385,7 +381,6 @@ export const WAREHOUSE_COMMANDS = {
                         dob="06/12/2056"
                         position="Security Officer"
                         department="Security Division"
-                        hireDate="September 2081 (6 months)"
                         clearanceLevel={1}
                         district="Ports"
                         emergencyContact="Jennifer Park (mother) - 555-0821"
@@ -410,7 +405,6 @@ export const WAREHOUSE_COMMANDS = {
                         dob="02/19/2047"
                         position="Security Officer (Checkpoint)"
                         department="Security Division - Secure Cargo"
-                        hireDate="April 2076 (6 years)"
                         clearanceLevel={3}
                         district="Ports"
                         emergencyContact="Lisa Foster (sister) - 555-0603"
@@ -435,7 +429,6 @@ export const WAREHOUSE_COMMANDS = {
                         dob="09/03/2053"
                         position="Security Officer (Secure Cargo)"
                         department="Security Division - Secure Cargo"
-                        hireDate="November 2077 (5 years)"
                         clearanceLevel={3}
                         district="Ports"
                         emergencyContact="Kaz Volkov (brother) - 555-0234"
@@ -455,41 +448,37 @@ export const WAREHOUSE_COMMANDS = {
 
               "Classified Shipment Manifest": {
                 content: (
-                  <>
-                    <Line smoke large bold>[CLASSIFIED CARGO MANIFEST]</Line>
-                    <Line red>SecOps Authorization Required - Level 3</Line>
-                    <Divider />
-                    <DataTable data={[
-                      { label: "Shipment ID", value: "SEC-2082-0147" },
-                      { label: "Origin", value: "TechCore Industries (Military Division)" },
-                      { label: "Destination", value: "SecOps Equipment Division" },
-                      { label: "Arrival", value: "01:00 (confirmed received)" },
-                      { label: "Pickup Window", value: "08:00 tomorrow" },
-                      { label: "Current Location", value: "Secure Cargo - Container 7B" },
-                    ]} />
-                    <Divider />
-                    <Section title="CONTENTS:">
-                      <Line cyan>→ 12x MilSpec Neural Interface Modules</Line>
-                      <Line cyan>→ Classification: Military-grade cyberware</Line>
-                      <Line cyan>→ Estimated Value: 5,000¤</Line>
-                      <Line cyan>→ End User: SecOps tactical enhancement program</Line>
-                    </Section>
-                    <Divider />
-                    <Section title="HANDLING PROTOCOL - LEVEL 3 CARGO:">
-                      <Line yellow>Assigned Security Personnel:</Line>
-                      <Line yellow>  • A. Foster (Checkpoint - ID verification required)</Line>
-                      <Line yellow>  • N. Volkov (Interior - container monitoring)</Line>
-                      <Line yellow>Authorization: Supervisor Webb or SecOps direct override only</Line>
-                      <Line yellow>Alarm Status: ARMED (30-second egress delay active per fire code)</Line>
-                      <Line yellow>Access Logging: All entry/exit logged to corporate security database</Line>
-                    </Section>
-                    <Divider />
-                    <Section title="REGIONAL THREAT ASSESSMENT:">
-                      <Line red>Current threat advisory: Ports sector — elevated (gang activity).</Line>
-                      <Line red>High-value cargo may be targeted. Maintain heightened vigilance.</Line>
-                      <Line red>Unauthorized access: Immediate SecOps notification required.</Line>
-                    </Section>
-                  </>
+                  <Message
+                    title="SECURE CARGO"
+                    subtitle="SEC-2082-0147"
+                    message="SecOps Authorization Required — Level 3"
+                    note="Pickup window: 08:00 tomorrow — Supervisor Webb or SecOps direct override only"
+                    theme="secure"
+                  >
+                    <InsetBox title="SHIPMENT DETAILS:">
+                      <Line cyan>Origin: TechCore Industries (Military Division)</Line>
+                      <Line cyan>Destination: SecOps Equipment Division</Line>
+                      <Line cyan>Arrived: 01:00 (confirmed received)</Line>
+                      <Line cyan>Current location: Secure Cargo — Container 7B</Line>
+                    </InsetBox>
+                    <InsetBox title="CONTENTS:">
+                      <Line cyan>12x MilSpec Neural Interface Modules</Line>
+                      <Line cyan>Classification: Military-grade cyberware</Line>
+                      <Line cyan>Estimated value: 5,000¤</Line>
+                      <Line cyan>End user: SecOps tactical enhancement program</Line>
+                    </InsetBox>
+                    <InsetBox title="HANDLING PROTOCOL:">
+                      <Line yellow>A. Foster — Checkpoint (ID verification required)</Line>
+                      <Line yellow>N. Volkov — Interior (container monitoring)</Line>
+                      <Line yellow>Alarm: ARMED — 30-second egress delay active (fire code)</Line>
+                      <Line yellow>All entry/exit logged to corporate security database</Line>
+                    </InsetBox>
+                    <InsetBox title="THREAT ASSESSMENT:">
+                      <Line red>Ports sector advisory: Elevated (gang activity)</Line>
+                      <Line red>High-value cargo may be targeted — maintain heightened vigilance</Line>
+                      <Line red>Unauthorized access: Immediate SecOps notification required</Line>
+                    </InsetBox>
+                  </Message>
                 ),
               },
 

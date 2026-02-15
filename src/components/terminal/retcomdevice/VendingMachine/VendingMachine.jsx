@@ -15,12 +15,24 @@ import './vendingMachine.css';
  *   - color: String ("red", "blue", "green", "yellow", "orange", "purple")
  *   - available: Boolean (default: true)
  * - children: React nodes (for ads, promotions, etc.)
+ *
+ [
+                  { name: 'PREMIUM WATER', pattern: 'waves', color: 'blue' },
+                  { name: 'ENERGY DRINK', pattern: 'swirl', color: 'orange' },
+                  { name: 'SYNTH-CAF', pattern: 'bubbles', color: 'yellow' },
+                  { name: 'PROTEIN BAR', pattern: 'stripe', color: 'green' },
+                ]
  */
 export default function VendingMachine({
   id = 'vm-unknown',
   location,
   temperature = 35,
-  drinks = [],
+  drinks = [
+    { name: 'ENERGY Z++', pattern: 'lines', color: 'yellow', available: true },
+    { name: 'COLA SYNTH', pattern: 'blocks', color: 'red', available: true },
+    { name: 'CYBORANGE', pattern: 'circles', color: 'orange', available: true },
+    { name: 'WATER', pattern: 'waves', color: 'blue', available: true },
+  ],
   children,
 }) {
   const [selectedDrink, setSelectedDrink] = useState(null);

@@ -1,6 +1,5 @@
 import {
   Line,
-  Section,
   Divider,
   DataTable,
   InsetBox,
@@ -177,13 +176,6 @@ export const BODEGA_COMMANDS = {
           <VendingMachine
             id="bodega-outside-vending"
             location="Outside Batu's Bodega - Street side"
-            drinks={[
-              { name: 'ENERGY Z++', pattern: 'lines', color: 'yellow', available: true },
-              { name: 'COLA SYNTH', pattern: 'blocks', color: 'red', available: true },
-              { name: 'CYBORANGE', pattern: 'circles', color: 'orange', available: true },
-              { name: 'WATER', pattern: 'waves', color: 'blue', available: false }, // Sold out
-              { name: 'COFFEE STIM', pattern: 'dots', color: 'purple', available: true },
-            ]}
           />
         ),
         related_commands: {
@@ -278,12 +270,10 @@ export const BODEGA_COMMANDS = {
               { label: "Owner Contact", value: "NO RESPONSE" },
               { label: "Sunday Hours", value: "08:00 - 20:00 (when open)" },
             ]} />
-            <Divider />
-            <Section title="ADDITIONAL LOCATION INFO:">
+            <InsetBox title="ADDITIONAL LOCATION INFO:" color="yellow">
               <Line cyan>4 blocks from Lucky Flight Casino</Line>
               <Line cyan>Ground floor of old apartment complex</Line>
-            </Section>
-            <Divider />
+            </InsetBox>
             <Line red>⚠ Store appears damaged - front window broken</Line>
             <Line yellow>Neighbors report no sign of Batu for 3 days</Line>
           </HoursBanner>
@@ -381,11 +371,10 @@ export const BODEGA_COMMANDS = {
               >
                 <Line smoke large bold>[PERSONNEL RECORDS]</Line>
                 <Line cyan>Active employees: 2</Line>
-                <Divider />
-                <Section title="EMPLOYEE ROSTER:">
+                <InsetBox title="EMPLOYEE ROSTER:" color="yellow">
                   <Line neon>→ Batu (Owner/Operator)</Line>
                   <Line neon>→ Zara (Part-time, Batu's niece)</Line>
-                </Section>
+                </InsetBox>
               </Message>
             ),
             related_commands: {
@@ -401,7 +390,6 @@ export const BODEGA_COMMANDS = {
                     name="Batu Khamidov"
                     position="Owner/Operator"
                     department="Self-Employed"
-                    hireDate="May 2067 (15 years)"
                     supervisor="N/A - Owner"
                     clearanceLevel="OWNER"
                     salary="~800¤/month (variable)"
@@ -432,7 +420,6 @@ export const BODEGA_COMMANDS = {
                     name="Zara Khamidova"
                     position="Part-time Associate"
                     department="Retail (intermittent)"
-                    hireDate="June 2081"
                     supervisor="Batu Khamidov (uncle)"
                     clearanceLevel={1}
                     salary="Unpaid (family arrangement)"
@@ -465,27 +452,25 @@ export const BODEGA_COMMANDS = {
                 note="Free wifi still active"
                 theme="casual"
               >
-                <Section title="CURRENT STOCK STATUS:">
+                <InsetBox title="CURRENT STOCK STATUS:">
                   <Line red>⚠ Significant inventory loss detected</Line>
                   <Line red>⚠ Physical count required for accuracy</Line>
-                </Section>
-                <Divider />
-                <Section title="ESTIMATED REMAINING STOCK:">
+                </InsetBox>
+                <InsetBox title="ESTIMATED REMAINING STOCK:">
                   <Line neon>Credchips (loose change in register): Present</Line>
                   <Line neon>Energy drinks/stims: Low stock</Line>
                   <Line neon>First aid supplies: Partial kit remaining</Line>
                   <Line neon>Synth-food rations: Minimal</Line>
                   <Line neon>Batu's personal items: 1 casino chip (sentimental)</Line>
-                </Section>
-                <Divider />
-                <Section title="EQUIPMENT STATUS:">
+                </InsetBox>
+                <InsetBox title="EQUIPMENT STATUS:">
                   <Line cyan>✓ Wifi router: Operational</Line>
                   <Line cyan>✓ Security system: Online</Line>
                   <Line cyan>✓ Under-counter storage: Intact</Line>
                   <Line yellow>? Old taser (Batu's personal defense): Location unknown</Line>
                   <Line yellow>? Fire extinguisher: Should be under counter</Line>
                   <Line yellow>? Bottle inventory: Needs physical inspection</Line>
-                </Section>
+                </InsetBox>
               </Message>
             ),
           },

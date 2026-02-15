@@ -1,4 +1,4 @@
-import { Line, Divider, DataTable, Section } from '@terminal/TerminalComponents';
+import { Line, Divider, DataTable, InsetBox, Spacer } from '@terminal/TerminalComponents';
 
 export default function Camera({
   id = "",
@@ -110,29 +110,23 @@ export default function Camera({
 
         {/* Timeline */}
         {timeline.length > 0 && (
-          <>
-            <Divider />
-            <Section title="FOOTAGE TIMELINE:">
-              {timeline.map((event, i) => (
-                <Line
-                  key={i}
-                  neon={!event.includes('LOST') && !event.includes('offline')}
-                  red={event.includes('LOST') || event.includes('offline') || event.includes('shattered')}
-                  yellow={event.includes('suspicious') || event.includes('⚠')}
-                >
-                  {event}
-                </Line>
-              ))}
-            </Section>
-          </>
+          <InsetBox title="FOOTAGE TIMELINE:">
+            {timeline.map((event, i) => (
+              <Line
+                key={i}
+                neon={!event.includes('LOST') && !event.includes('offline')}
+                red={event.includes('LOST') || event.includes('offline') || event.includes('shattered')}
+                yellow={event.includes('suspicious') || event.includes('⚠')}
+              >
+                {event}
+              </Line>
+            ))}
+          </InsetBox>
         )}
 
         {/* Maintenance info */}
         {lastService && (
-          <>
-            <Divider />
-            <Line neon>Last maintenance: {lastService}</Line>
-          </>
+          <Line neon>Last maintenance: {lastService}</Line>
         )}
       </div>
 

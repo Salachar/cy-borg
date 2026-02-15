@@ -1,4 +1,9 @@
-import { Line, Section, Divider } from '@terminal/TerminalComponents';
+import {
+  Line,
+  Section,
+  Divider,
+  InsetBox,
+} from '@terminal/TerminalComponents';
 import {
   FacilityPortal,
   DistrictPortal,
@@ -37,45 +42,40 @@ export const THE_INBETWEENS_DISTRICT = {
         ]}
         theme="district"
       >
-        <Divider />
-        <Section title="DISTRICT CHARACTERISTICS:">
+        <InsetBox title="DISTRICT CHARACTERISTICS:">
           <Line cyan>• Mixed-income residential towers and apartment blocks</Line>
           <Line cyan>• Salary workers, mid-level employees, service industry</Line>
           <Line cyan>• Neither slums nor luxury - the grinding middle</Line>
           <Line cyan>• Transit hubs connect to all major districts</Line>
           <Line cyan>• Corporate housing blocks owned by various megacorps</Line>
-        </Section>
-        <Divider />
-        <Section title="MAJOR STRUCTURES:">
+        </InsetBox>
+
+        <InsetBox title="MAJOR STRUCTURES:">
           <Line neon bold>Stack #95563 "The 55":</Line>
           <Line yellow>• 365 floors from basement to roofline</Line>
           <Line yellow>• ~47,000 residents (capsules to penthouses)</Line>
           <Line yellow>• Self-contained: shops, factories, offices, clinics</Line>
           <Line yellow>• Some residents haven't left in years</Line>
-
           <Divider />
-
           <Line neon bold>Burnchurch Hex:</Line>
           <Line yellow>• Illegal mycobiotic meat grown underwater in G0</Line>
           <Line yellow>• Pop-up food stalls surge and scatter</Line>
           <Line yellow>• Health inspections? What's that?</Line>
-
           <Divider />
-
           <Line neon bold>Borghold Prison Complex:</Line>
           <Line yellow>• Parts nearly 500 years old, new additions yearly</Line>
           <Line yellow>• Locals insular, suspicious of outsiders</Line>
           <Line yellow>• Multi-family houses and small villas</Line>
           <Line yellow>• "We know the city by whom we hold in cages"</Line>
-        </Section>
-        <Divider />
-        <Section title="RECENT EVENTS:">
+        </InsetBox>
+
+        <InsetBox title="RECENT EVENTS:">
           <Line red>• Svarta cyberbike hype ended in bombings (rival roadrunner clans)</Line>
           <Line red>• Most of the area destroyed in turf war</Line>
           <Line yellow>• Burnchurch Hex food stalls currently surging</Line>
           <Line yellow>• Transit hub upgrades planned (corporate funding TBD)</Line>
-        </Section>
-        <Divider />
+        </InsetBox>
+
         <Line smoke small>
           The Inbetweens never changes, it just rearranges its misery. You live here because you can't afford Central and you're too good for the Slums. Keep telling yourself that.
         </Line>
