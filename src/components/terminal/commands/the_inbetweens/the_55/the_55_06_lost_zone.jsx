@@ -1,18 +1,17 @@
 import {
   Line,
-  Section,
-  Divider,
-  KeyValue,
-  DataTable,
   InsetBox,
 } from "@terminal/TerminalComponents";
 
 import {
+  CCTV,
   Locked,
   MaintenanceAccess,
   Message,
   PublicPortal,
 } from "@terminal/retcomdevice";
+
+import cctv_image from '@images/the55/lost_zone_cctv.png';
 
 export const THE_55_LOST_ZONE_COMMANDS = {
   "[U125 - U147] Lost Zone": {
@@ -22,7 +21,7 @@ export const THE_55_LOST_ZONE_COMMANDS = {
         tagline="Abandoned construction zone"
         network="NONE"
         signalStrength="weak"
-        status="⚠ HAZARDOUS AREA"
+        status="HAZARDOUS AREA"
         statusColor="red"
         notes={[
           "Abandoned mid-construction decades ago",
@@ -34,6 +33,17 @@ export const THE_55_LOST_ZONE_COMMANDS = {
       />
     ),
     related_commands: {
+      "CCTV": {
+        content: (
+          <CCTV
+            src={cctv_image}
+            cameraId="CAM-CC-MAIN"
+            theme="amber"
+            height={500}
+          />
+        ),
+      },
+
       "Zone Overview": {
         content: (
           <MaintenanceAccess
@@ -48,7 +58,7 @@ export const THE_55_LOST_ZONE_COMMANDS = {
               "Now serves as no-man's-land between lower and upper levels"
             ]}
           >
-            <Divider />
+
             <InsetBox title="HISTORY:">
               <Line>Construction began 30+ years ago during expansion boom</Line>
               <Line>Project abandoned when funding collapsed</Line>
@@ -108,7 +118,7 @@ export const THE_55_LOST_ZONE_COMMANDS = {
                   "DO NOT ENTER"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="CONTAMINATION DETAILS:">
                   <Line red bold>FUNGAL INFESTATION:</Line>
                   <Line red>Unknown species of aggressive fungus</Line>
@@ -118,11 +128,10 @@ export const THE_55_LOST_ZONE_COMMANDS = {
                 </InsetBox>
                 <InsetBox title="STRUCTURAL STATUS:">
                   <Line yellow>Creates unstable 3-floor open pit</Line>
-                  <Line yellow>Falling debris common (DR14 Agility to dodge)</Line>
+                  <Line yellow>Falling debris common</Line>
                 </InsetBox>
                 <InsetBox title="ACCESS:">
                   <Line neon>Entry points sealed by Stack Command</Line>
-                  <Line neon>DR16 to breach seals (not recommended)</Line>
                   <Line neon>Alternative: Navigate through mid-zone (dangerous)</Line>
                   <Line yellow>No reason to enter - avoid entirely</Line>
                 </InsetBox>
@@ -151,7 +160,7 @@ export const THE_55_LOST_ZONE_COMMANDS = {
                   "United Citadel bounty: 50k¤ per disabled robot"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="ABOUT:">
                   <Line>Autonomous robots left behind when construction abandoned</Line>
                   <Line>Continued operating without supervision for 30+ years</Line>
@@ -171,14 +180,6 @@ export const THE_55_LOST_ZONE_COMMANDS = {
                   <Line yellow>Occasionally repair themselves using salvaged parts</Line>
                   <Line yellow>May ignore humans, may treat them as obstacles to remove</Line>
                   <Line red>Have killed trespassers (accidental and intentional unclear)</Line>
-                </InsetBox>
-                <InsetBox title="THREAT ASSESSMENT:">
-                  <Line red>HP: 20 (armored chassis)</Line>
-                  <Line red>Armor: Heavy plating (-d6)</Line>
-                  <Line red>Weapons: Industrial tools (d8 damage)</Line>
-                  <Line smoke>Not designed for combat but extremely dangerous</Line>
-                  <Line smoke>Tools can cut through metal, crush bone, burn flesh</Line>
-                  <Line yellow>Best strategy: Avoid or disable (DR16 to hack)</Line>
                 </InsetBox>
                 <InsetBox title="CORPORATE INTEREST:">
                   <Line neon>United Citadel attempting to recover units</Line>
@@ -204,7 +205,7 @@ export const THE_55_LOST_ZONE_COMMANDS = {
                   "Project details classified"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="ABOUT:">
                   <Line>United Citadel Corp has claimed upper Lost Zone for operations</Line>
                   <Line>Legal status unclear (abandoned space, no official ownership)</Line>
@@ -212,7 +213,7 @@ export const THE_55_LOST_ZONE_COMMANDS = {
                   <Line>Project details classified</Line>
                 </InsetBox>
                 <InsetBox title="SECURITY PRESENCE:">
-                  <Line red bold>ARMED GUARDS (2d6 present):</Line>
+                  <Line red bold>ARMED GUARDS:</Line>
                   <Line red>Personnel: 12-18 security operatives</Line>
                   <Line red>Equipment: Body armor, assault rifles, stun weapons</Line>
                   <Line red>Stance: Hostile to unauthorized personnel</Line>
@@ -258,7 +259,7 @@ export const THE_55_LOST_ZONE_COMMANDS = {
               "High-value targets require risk"
             ]}
           >
-            <Divider />
+
             <InsetBox title="CONSTRUCTION MATERIALS (Lower Zone):">
               <Line cyan>Steel beams & rebar: 10¤ - 50¤ per piece</Line>
               <Line cyan>Copper wiring: 30¤ per kg</Line>
@@ -313,7 +314,7 @@ export const THE_55_LOST_ZONE_COMMANDS = {
               "Technically illegal but rarely enforced"
             ]}
           >
-            <Divider />
+
             <InsetBox title="MAJOR CAMPS:">
               <Line neon bold>CAMP ALPHA:</Line>
               <Line smoke>~15 residents in corner of east wing</Line>
@@ -321,7 +322,7 @@ export const THE_55_LOST_ZONE_COMMANDS = {
               <Line smoke>Community rules and shared resources</Line>
               <Line smoke>Leader: "Old Jack" (resident for 8+ years)</Line>
 
-              <Divider />
+
 
               <Line neon bold>CAMP BRAVO:</Line>
               <Line smoke>~8 residents in mid-zone skeletal structure</Line>
@@ -329,7 +330,7 @@ export const THE_55_LOST_ZONE_COMMANDS = {
               <Line smoke>Higher risk location (structural instability)</Line>
               <Line smoke>Residents often salvagers working in zone</Line>
 
-              <Divider />
+
 
               <Line neon bold>TRANSIENT CAMPS (Various):</Line>
               <Line smoke>Individuals or small groups (2-3 people)</Line>
@@ -361,17 +362,17 @@ export const THE_55_LOST_ZONE_COMMANDS = {
       },
 
       "Construction Systems": {
-        // password: {
-        //   pw: "abandoned",
-        //   hint: "What the Lost Zone construction project was",
-        //   difficulty: "easy",
-        //   content: <Locked theme="terminal" title="CONSTRUCTION SYSTEMS" />
-        // },
+        password: {
+          pw: "abandoned",
+          hint: "What the Lost Zone construction project was",
+          difficulty: "easy",
+          content: <Locked theme="terminal" title="CONSTRUCTION SYSTEMS" />
+        },
         content: (
           <Message
             title="LOST ZONE CONSTRUCTION SYSTEMS"
             message="LEGACY SYSTEM ACCESS"
-            note="⚠ Outdated systems - Limited functionality"
+            note="Outdated systems - Limited functionality"
             theme="limeade"
           />
         ),
@@ -390,7 +391,7 @@ export const THE_55_LOST_ZONE_COMMANDS = {
                   "Status: ABANDONED (40% complete when halted)"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="PROJECT OVERVIEW:">
                   <Line>Project Name: "The 55 Expansion Initiative"</Line>
                   <Line>Purpose: Mixed-use residential and commercial</Line>
@@ -417,12 +418,12 @@ export const THE_55_LOST_ZONE_COMMANDS = {
           },
 
           "C.R.A.W.L.E.R. Control": {
-            // password: {
-            //   pw: "robots",
-            //   hint: "What the C.R.A.W.L.E.R. units are",
-            //   difficulty: "medium",
-            //   content: <Locked theme="terminal" title="ROBOT CONTROL" />
-            // },
+            password: {
+              pw: "robots",
+              hint: "What the C.R.A.W.L.E.R. units are",
+              difficulty: "medium",
+              content: <Locked theme="terminal" title="ROBOT CONTROL" />
+            },
             content: (
               <MaintenanceAccess
                 title="[C.R.A.W.L.E.R. CONTROL SYSTEM]"
@@ -437,20 +438,6 @@ export const THE_55_LOST_ZONE_COMMANDS = {
                   "Override commands may or may not work"
                 ]}
               >
-                <Divider />
-                <InsetBox title="CONTROL COMMANDS (May fail):">
-                  <Line yellow>• HALT - Emergency stop (50% success rate)</Line>
-                  <Line yellow>• RETURN - Return to charging station (20% success)</Line>
-                  <Line yellow>• SHUTDOWN - Power down robot (40% success)</Line>
-                  <Line yellow>• REBOOT - Restart system (60% success, unpredictable)</Line>
-                  <Line red>Failed commands may trigger aggressive behavior</Line>
-                </InsetBox>
-                <InsetBox title="HACKING OPPORTUNITY:">
-                  <Line neon>DR16 to successfully hack individual unit</Line>
-                  <Line neon>Success: Gain control for 1d6 hours</Line>
-                  <Line red>Failure: Robot becomes hostile and attacks</Line>
-                  <Line red>Critical failure: Robot sounds alarm to all other units</Line>
-                </InsetBox>
                 <InsetBox title="UNITED CITADEL BOUNTY:">
                   <Line neon bold>50,000¤ per intact C.R.A.W.L.E.R. delivered</Line>
                   <Line neon>Must be disabled but repairable</Line>
@@ -475,7 +462,6 @@ export const THE_55_LOST_ZONE_COMMANDS = {
                   "Effectively permanent quarantine"
                 ]}
               >
-                <Divider />
                 <InsetBox title="CONTAINMENT STATUS:">
                   <Line red>Threat Level: HIGH (Biohazard)</Line>
                   <Line red>Contamination Type: Fungal infestation</Line>
@@ -487,7 +473,6 @@ export const THE_55_LOST_ZONE_COMMANDS = {
                   <Line neon>Ventilation ducts blocked and filtered</Line>
                   <Line neon>Elevator bypasses floors (no stops)</Line>
                   <Line neon>Warning signs posted at all approaches</Line>
-                  <Line yellow>DR16 to breach seals (strongly discouraged)</Line>
                 </InsetBox>
                 <InsetBox title="ENVIRONMENTAL READINGS:">
                   <Line red>Air quality: TOXIC (spore concentration high)</Line>
@@ -528,7 +513,7 @@ export const THE_55_LOST_ZONE_COMMANDS = {
                   "Last 12 months: 3 deaths, 8 serious injuries"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="REGISTERED SALVAGERS:">
                   <Line>47 individuals have registered with Stack Command</Line>
                   <Line>Registration optional but provides legal protection</Line>

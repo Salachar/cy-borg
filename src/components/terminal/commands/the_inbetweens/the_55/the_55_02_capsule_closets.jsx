@@ -1,13 +1,10 @@
 import {
   Line,
-  Section,
-  Divider,
-  KeyValue,
-  DataTable,
   InsetBox,
 } from "@terminal/TerminalComponents";
 
 import {
+  CCTV,
   Locked,
   MaintenanceAccess,
   Message,
@@ -15,6 +12,8 @@ import {
   PublicPortal,
   Tenet,
 } from "@terminal/retcomdevice";
+
+import cctv_image from '@images/the55/capsules_cctv.png';
 
 export const THE_55_CAPSULE_CLOSETS_COMMANDS = {
   "[U007 - U050] Capsule Closets": {
@@ -36,6 +35,17 @@ export const THE_55_CAPSULE_CLOSETS_COMMANDS = {
       />
     ),
     related_commands: {
+      "CCTV": {
+        content: (
+          <CCTV
+            src={cctv_image}
+            cameraId="CAM-CC-MAIN"
+            theme="amber"
+            height={500}
+          />
+        ),
+      },
+
       "Building Directory": {
         content: (
           <PublicPortal
@@ -214,7 +224,7 @@ export const THE_55_CAPSULE_CLOSETS_COMMANDS = {
                 building="Capsule Closets"
                 status="ACTIVE"
                 intercomEnabled={true}
-                notes="⚠ AMNESIA CASE. Only remembers memes. Friendly but confused. Help appreciated."
+                notes="AMNESIA CASE. Only remembers memes. Friendly but confused. Help appreciated."
               />
             ),
           },
@@ -237,7 +247,6 @@ export const THE_55_CAPSULE_CLOSETS_COMMANDS = {
               "Modified capsule cluster"
             ]}
           >
-            <Divider />
             <InsetBox title="ABOUT:">
               <Line>Community of dozen escaped clones</Line>
               <Line>Originally used as organ farms or body doubles</Line>
@@ -276,7 +285,7 @@ export const THE_55_CAPSULE_CLOSETS_COMMANDS = {
               "Residents operate remotely"
             ]}
           >
-            <Divider />
+
             <InsetBox title="ABOUT:">
               <Line>Several capsules modified for uploaded residents</Line>
               <Line>Consciousness uploaded to drones, machines, hardware</Line>
@@ -318,7 +327,7 @@ export const THE_55_CAPSULE_CLOSETS_COMMANDS = {
               "Leader: Jade Boomslang"
             ]}
           >
-            <Divider />
+
             <InsetBox title="ABOUT:">
               <Line>Entire floor occupied by Virid Vipers gang</Line>
               <Line>Act as couriers and security for local residents</Line>
@@ -334,7 +343,6 @@ export const THE_55_CAPSULE_CLOSETS_COMMANDS = {
             <InsetBox title="GANG NOTES:">
               <Line neon>Leader: Jade Boomslang</Line>
               <Line neon>Members: ~30 active gang members</Line>
-              <Line yellow>Do not cross them in Capsule Closets</Line>
               <Line smoke>Relatively honorable - keep their word</Line>
             </InsetBox>
           </MaintenanceAccess>
@@ -357,7 +365,7 @@ export const THE_55_CAPSULE_CLOSETS_COMMANDS = {
               "Water redirection (technically illegal)"
             ]}
           >
-            <Divider />
+
             <InsetBox title="ABOUT:">
               <Line>Few dozen capsules converted to planters</Line>
               <Line>Growing fresh fruit and vegetables</Line>
@@ -382,17 +390,17 @@ export const THE_55_CAPSULE_CLOSETS_COMMANDS = {
       },
 
       "Capsule Maintenance": {
-        // password: {
-        //   pw: "closets",
-        //   hint: "What the capsule units are called (second word)",
-        //   difficulty: "easy",
-        //   content: <Locked theme="terminal" title="CAPSULE MAINTENANCE" />
-        // },
+        password: {
+          pw: "closets",
+          hint: "What the capsule units are called (second word)",
+          difficulty: "easy",
+          content: <Locked theme="terminal" title="CAPSULE MAINTENANCE" />
+        },
         content: (
           <Message
             title="CAPSULE CLOSETS MAINTENANCE"
             message="MAINTENANCE ACCESS GRANTED"
-            note="⚠ Building systems - Authorized personnel only"
+            note="Building systems - Authorized personnel only"
             theme="limeade"
           />
         ),
@@ -412,7 +420,7 @@ export const THE_55_CAPSULE_CLOSETS_COMMANDS = {
                   "32 sealed/quarantined (0.5%)"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="COMMUNITY NETWORKS:">
                   <Line cyan>• Eco Hall - Fresh produce gardens</Line>
                   <Line cyan>• The Shades - Escaped clone community</Line>
@@ -574,7 +582,6 @@ export const THE_55_CAPSULE_CLOSETS_COMMANDS = {
                     joinDate="Resident for 5 years"
                     notes={[
                       "Knows everyone's business in Capsule Closets",
-                      "Secret: Actually a Doppel cydroid",
                       "Gathering information for unknown purpose",
                       "Friendly and helpful - provides gossip for free",
                       "May be corpo spy or independent agent",
@@ -660,7 +667,7 @@ export const THE_55_CAPSULE_CLOSETS_COMMANDS = {
                   "Breach protocols in place"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="CAPSULE 13-33 - MAXIMUM SECURITY:">
                   <Line red bold>Contents: 2x Cy-raging menaces</Line>
                   <Line red>Sealed: Years ago (exact date unknown)</Line>
@@ -707,7 +714,7 @@ export const THE_55_CAPSULE_CLOSETS_COMMANDS = {
                   "Collection rate: 72%"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="OCCUPANCY STATUS:">
                   <Line cyan>Occupied units: 5,847 (94%)</Line>
                   <Line cyan>Vacant units: 361 (6%)</Line>
@@ -743,7 +750,7 @@ export const THE_55_CAPSULE_CLOSETS_COMMANDS = {
                   "Priority to safety hazards"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="RECENT WORK ORDERS:">
                   <Line neon bold>WORK ORDER #2847 (2 days ago)</Line>
                   <Line>Location: Floor 23 (The Shades community)</Line>
@@ -751,7 +758,7 @@ export const THE_55_CAPSULE_CLOSETS_COMMANDS = {
                   <Line>Resolution: Upgraded power supply (temporary fix)</Line>
                   <Line yellow>Modifications technically against regulations</Line>
 
-                  <Divider />
+
 
                   <Line neon bold>WORK ORDER #2851 (5 days ago)</Line>
                   <Line>Location: Floor 40 (Eco Hall)</Line>
@@ -759,14 +766,14 @@ export const THE_55_CAPSULE_CLOSETS_COMMANDS = {
                   <Line>Resolution: Maintenance aware but unofficially ignoring</Line>
                   <Line smoke>Community provides maintenance crew with fresh food</Line>
 
-                  <Divider />
+
 
                   <Line neon bold>WORK ORDER #2839 (8 days ago)</Line>
                   <Line>Location: Floor 17 (Serpent's Nest)</Line>
                   <Line>Issue: Structural reinforcement request</Line>
                   <Line>Resolution: Virid Vipers paid extra for priority service</Line>
 
-                  <Divider />
+
 
                   <Line neon bold>WORK ORDER #2862 (1 day ago)</Line>
                   <Line>Location: Capsule 13-33 (sealed unit)</Line>
@@ -779,12 +786,12 @@ export const THE_55_CAPSULE_CLOSETS_COMMANDS = {
           },
 
           "Quarantine Protocols": {
-            // password: {
-            //   pw: "sealed",
-            //   hint: "What dangerous capsules are",
-            //   difficulty: "medium",
-            //   content: <Locked theme="terminal" title="QUARANTINE PROTOCOLS" />
-            // },
+            password: {
+              pw: "sealed",
+              hint: "What dangerous capsules are",
+              difficulty: "medium",
+              content: <Locked theme="terminal" title="QUARANTINE PROTOCOLS" />
+            },
             content: (
               <MaintenanceAccess
                 title="[QUARANTINE PROTOCOLS]"
@@ -799,7 +806,7 @@ export const THE_55_CAPSULE_CLOSETS_COMMANDS = {
                   "Breach protocols established"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="ACTIVE QUARANTINES (32 units):">
                   <Line red>• 3 biohazard (G0 and other infections)</Line>
                   <Line red>• 12 structural collapse (unsafe to enter)</Line>

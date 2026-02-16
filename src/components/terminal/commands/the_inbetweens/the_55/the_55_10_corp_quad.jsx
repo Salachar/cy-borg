@@ -1,13 +1,10 @@
 import {
   Line,
-  Section,
-  Divider,
-  KeyValue,
-  DataTable,
   InsetBox,
 } from "@terminal/TerminalComponents";
 
 import {
+  CCTV,
   Locked,
   MaintenanceAccess,
   Menu,
@@ -15,6 +12,8 @@ import {
   PersonnelFile,
   PublicPortal,
 } from "@terminal/retcomdevice";
+
+import cctv_image from '@images/the55/corp_quad_cctv.png';
 
 export const THE_55_CORP_QUAD_COMMANDS = {
   "[U214 - U264] Corp Quad": {
@@ -36,6 +35,17 @@ export const THE_55_CORP_QUAD_COMMANDS = {
       />
     ),
     related_commands: {
+      "CCTV": {
+        content: (
+          <CCTV
+            src={cctv_image}
+            cameraId="CAM-CC-MAIN"
+            theme="amber"
+            height={500}
+          />
+        ),
+      },
+
       "Corp Quad Directory": {
         content: (
           <MaintenanceAccess
@@ -45,7 +55,7 @@ export const THE_55_CORP_QUAD_COMMANDS = {
             firmwareVersion="v1.0.0"
             systemStatus="OPERATIONAL"
           >
-            <Divider />
+
             <InsetBox title="ACCESS RESTRICTIONS:">
               <Line yellow bold>TIME-BASED RESTRICTIONS:</Line>
               <Line>Peak hours (10:00-20:00): Upper-level residents priority</Line>
@@ -78,7 +88,7 @@ export const THE_55_CORP_QUAD_COMMANDS = {
                   "Owner: Madame Vivienne Laurent"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="ABOUT:">
                   <Line>Luxury fashion store featuring designer brands</Line>
                   <Line>Custom tailoring and personal styling services</Line>
@@ -130,7 +140,7 @@ export const THE_55_CORP_QUAD_COMMANDS = {
                   "Seats 5,000+ for services"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="ABOUT:">
                   <Line>Massive corporate-backed religious organization</Line>
                   <Line>6 floors including worship space, offices, facilities</Line>
@@ -152,7 +162,7 @@ export const THE_55_CORP_QUAD_COMMANDS = {
                   <Line cyan>• Friday "Prosperity Prayer" - 18:00 (800+ attendance)</Line>
                   <Line cyan>• Daily morning prayer - 07:00 (100+ attendance)</Line>
 
-                  <Divider />
+
 
                   <Line cyan bold>PROGRAMS:</Line>
                   <Line cyan>• "Path to Prosperity" seminars (200¤ per session)</Line>
@@ -193,7 +203,7 @@ export const THE_55_CORP_QUAD_COMMANDS = {
                   "Membership-based access"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="ABOUT:">
                   <Line>Private transportation service for wealthy residents</Line>
                   <Line>Armored vehicles, personal drivers, luxury interiors</Line>
@@ -244,7 +254,7 @@ export const THE_55_CORP_QUAD_COMMANDS = {
                   "Director: Dr. Helena Yamamoto"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="ABOUT:">
                   <Line>6-floor vertical garden and park</Line>
                   <Line>Rare and exotic plants from around the world</Line>
@@ -334,7 +344,7 @@ export const THE_55_CORP_QUAD_COMMANDS = {
                   "Waiting list: 2+ years"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="ABOUT:">
                   <Line>Exclusive social club for wealthy and influential residents</Line>
                   <Line>Networking, entertainment, private dining</Line>
@@ -392,7 +402,7 @@ export const THE_55_CORP_QUAD_COMMANDS = {
               "20+ security guards on peak hours"
             ]}
           >
-            <Divider />
+
             <InsetBox title="GENERAL HOURS:">
               <Line cyan>Retail stores: 10:00 - 22:00</Line>
               <Line cyan>Restaurants: 11:00 - 23:00 (varies)</Line>
@@ -407,7 +417,7 @@ export const THE_55_CORP_QUAD_COMMANDS = {
               <Line yellow>Some stores require credit checks before entry</Line>
               <Line yellow>Guards may ask residents to leave if "suspicious"</Line>
 
-              <Divider />
+
 
               <Line cyan bold>OFF-PEAK HOURS (20:00-10:00):</Line>
               <Line cyan>Reduced security presence</Line>
@@ -443,7 +453,7 @@ export const THE_55_CORP_QUAD_COMMANDS = {
               "Management, security, and key figures"
             ]}
           >
-            <Divider />
+
             <InsetBox title="MANAGEMENT & SECURITY:">
               <Line neon>• Richard Sterling - Corp Quad Administrator</Line>
               <Line neon>• Lieutenant James Barrett - Security Chief</Line>
@@ -557,7 +567,6 @@ export const THE_55_CORP_QUAD_COMMANDS = {
                   "Connections to fashion industry worldwide",
                   "Treats all customers with respect (unlike some Corps)",
                   "Will serve lower-level residents if they have credits",
-                  "Secret: Also fences stolen luxury goods on the side"
                 ]}
                 status="ACTIVE"
               />
@@ -619,17 +628,17 @@ export const THE_55_CORP_QUAD_COMMANDS = {
       },
 
       "Corp Services": {
-        // password: {
-        //   pw: "corporate",
-        //   hint: "What type of businesses are in Corp Quad",
-        //   difficulty: "easy",
-        //   content: <Locked theme="terminal" title="CORP SERVICES" />
-        // },
+        password: {
+          pw: "corporate",
+          hint: "What type of businesses are in Corp Quad",
+          difficulty: "easy",
+          content: <Locked theme="terminal" title="CORP SERVICES" />
+        },
         content: (
           <Message
             title="CORP QUAD SERVICES"
             message="BUSINESS ACCESS GRANTED"
-            note="⚠ Corporate systems - Authorized personnel only"
+            note="Corporate systems - Authorized personnel only"
             theme="corporate"
           />
         ),
@@ -649,7 +658,7 @@ export const THE_55_CORP_QUAD_COMMANDS = {
                   "Year-over-year growth: +12.4%"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="TOTAL REVENUE:">
                   <Line neon bold>MONTHLY TOTAL: 4,850,000¤</Line>
                   <Line smoke>Average per business: 485,000¤</Line>
@@ -677,7 +686,7 @@ export const THE_55_CORP_QUAD_COMMANDS = {
                   <Line cyan>• Fine dining (+6% this quarter)</Line>
                   <Line cyan>• Private memberships (+4% this quarter)</Line>
 
-                  <Divider />
+
 
                   <Line red bold>CONCERNS:</Line>
                   <Line red>• Lower-level customer traffic declining (-15%)</Line>
@@ -703,7 +712,7 @@ export const THE_55_CORP_QUAD_COMMANDS = {
                   "100% of ejected individuals were lower-level residents"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="INCIDENT SUMMARY:">
                   <Line cyan>Total incidents: 47</Line>
                   <Line cyan>Ejections/removals: 23 (49%)</Line>
@@ -718,7 +727,7 @@ export const THE_55_CORP_QUAD_COMMANDS = {
                   <Line red>Aggressive panhandling: 3 incidents (13%)</Line>
                   <Line red>Actual criminal activity: 1 incident (4%)</Line>
 
-                  <Divider />
+
 
                   <Line yellow bold>DEMOGRAPHICS OF EJECTED INDIVIDUALS:</Line>
                   <Line red>100% were lower-level residents</Line>
@@ -732,7 +741,7 @@ export const THE_55_CORP_QUAD_COMMANDS = {
                   <Line>Lower-level resident attempted to steal designer jacket (2,800¤)</Line>
                   <Line smoke>Resolution: Detained, handed to C.O.P., prosecuted</Line>
 
-                  <Divider />
+
 
                   <Line neon bold>INCIDENT #CQ-2026-041 (2 days ago):</Line>
                   <Line>Location: Stadium of Prophets</Line>
@@ -753,12 +762,12 @@ export const THE_55_CORP_QUAD_COMMANDS = {
           },
 
           "Tenant Leases": {
-            // password: {
-            //   pw: "revenue",
-            //   hint: "What businesses generate",
-            //   difficulty: "medium",
-            //   content: <Locked theme="terminal" title="TENANT LEASES" />
-            // },
+            password: {
+              pw: "revenue",
+              hint: "What businesses generate",
+              difficulty: "medium",
+              content: <Locked theme="terminal" title="TENANT LEASES" />
+            },
             content: (
               <MaintenanceAccess
                 title="[CORP QUAD TENANT LEASES]"
@@ -772,7 +781,7 @@ export const THE_55_CORP_QUAD_COMMANDS = {
                   "Corporate Consortium owns all property"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="LEASE STRUCTURE:">
                   <Line>All businesses pay base rent + percentage of revenue</Line>
                   <Line>Premium locations command higher rates</Line>
@@ -809,7 +818,7 @@ export const THE_55_CORP_QUAD_COMMANDS = {
                   "Response times: <3 minutes"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="SHIFT STRUCTURE:">
                   <Line cyan>Day shift (08:00-16:00): 12 guards</Line>
                   <Line cyan>Evening shift (16:00-00:00): 10 guards</Line>

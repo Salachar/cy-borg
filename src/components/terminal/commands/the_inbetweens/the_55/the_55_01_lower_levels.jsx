@@ -1,17 +1,11 @@
 import {
   Line,
-  Section,
-  Divider,
-  KeyValue,
-  DataTable,
   InsetBox,
 } from "@terminal/TerminalComponents";
 
 import {
-  Camera,
   Locked,
   MaintenanceAccess,
-  Message,
   PersonnelFile,
   PublicPortal,
 } from "@terminal/retcomdevice";
@@ -33,7 +27,6 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
           "Difficult navigation, bring suitable equipment"
         ]}
       >
-        <Divider />
         <InsetBox title="KNOWN LOCATIONS:">
           <Line neon>• Sewage Chasm - Bottomless cliffs, bridge crossing</Line>
           <Line neon>• The Offertory - Cult chamber in cliff wall</Line>
@@ -52,7 +45,7 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
         </InsetBox>
         <InsetBox title="WARNINGS:">
           <Line red>No light sources - total darkness in most areas</Line>
-          <Line red>Toxic water - DR12 Toughness or take damage</Line>
+          <Line red>Toxic water</Line>
           <Line red>Easy to get lost - navigation extremely difficult</Line>
           <Line red>The Dead Queen will attempt to capture anything nearby</Line>
           <Line yellow>Dredger Priest corpse attracts Dead Queen if killed above</Line>
@@ -72,20 +65,15 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
               "Massive tunnel system with bottomless cliffs",
               "Improvised bridge spans chasm (unstable)",
               "Sound of rushing water from far below",
-              "Guarded by 2d6 Dredgers expecting toll"
             ]}
           >
-            <Divider />
             <InsetBox title="DESCRIPTION:">
               <Line>Enormous tunnels lead to cliff edges and total darkness</Line>
               <Line>Improvised bridge cobbled from scrap metal and cables</Line>
-              <Line>DR12 Agility to cross safely if rushed</Line>
               <Line>Can hold ~6 people at once before risk of collapse</Line>
               <Line smoke small>Dredgers know safe crossing points</Line>
             </InsetBox>
-            <InsetBox title="DREDGERS (2d6 HOSTILE GUARDS):">
-              <Line red bold>HP: 6 | Morale: 7 | Armor: None</Line>
-              <Line red>Weapon: Shivs (D3 damage)</Line>
+            <InsetBox title="DREDGERS (HOSTILE GUARDS):">
               <Line yellow>Demand toll: Useful gear or supplies</Line>
               <Line smoke>Will attack if refused or if group appears weak</Line>
             </InsetBox>
@@ -107,26 +95,7 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
               "Lit by bioluminescent fungi and torches",
               "Altar faces darkness of chasm below"
             ]}
-          >
-            <Divider />
-            <InsetBox title="OCCUPANTS:">
-              <Line neon>• 2d4 Dredgers (worshippers)</Line>
-              <Line neon>• 1 Dredge Priest (cult leader)</Line>
-            </InsetBox>
-            <InsetBox title="DREDGE PRIEST STATS:">
-              <Line red bold>HP: 12 | Morale: 9</Line>
-              <Line red>Armor: Trash Robes (-D2)</Line>
-              <Line red>Weapon: Ancient Revolver (D8)</Line>
-              <Line red bold>ON DEATH (Outside The Synk):</Line>
-              <Line red>The Dead Queen sends appendage to retrieve corpse (unstoppable)</Line>
-            </InsetBox>
-            <InsetBox title="RITUAL ACTIVITY:">
-              <Line>Cultists make offerings to the 'dead god' below</Line>
-              <Line>Items thrown into chasm (into Dead Queen)</Line>
-              <Line>Chanting and prayer at irregular intervals</Line>
-              <Line yellow>Will defend chamber if intruders are hostile</Line>
-            </InsetBox>
-          </MaintenanceAccess>
+          />
         ),
         related_commands: {
           "Dredge Priest": {
@@ -145,7 +114,7 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
                 notes={[
                   "Leader of Dredger cult worshipping 'dead god'",
                   "Conducts regular offerings into Sewage Chasm",
-                  "Commands 2d4 Dredger followers",
+                  "Commands Dredger followers",
                   "Armed with ancient revolver",
                   "Death triggers Dead Queen pursuit (she retrieves corpse)",
                   "Believers think The Dead Queen is their deity",
@@ -171,16 +140,9 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
               "Mass of dying flesh that catches anything falling",
               "Believes it is the 'dead god' worshipped by Dredgers",
               "Partially blocks Path to G0",
-              "⚠ AVOID IF POSSIBLE"
+              "AVOID IF POSSIBLE"
             ]}
           >
-            <Divider />
-            <InsetBox title="THREAT PROFILE:">
-              <Line red bold>Damage (on contact): -2D6 (initial capture)</Line>
-              <Line red bold>Ongoing damage: D3 per round (incorporation)</Line>
-              <Line red bold>Escape: DR14 to break free</Line>
-              <Line red bold>Size: Enormous (fills chasm floor)</Line>
-            </InsetBox>
             <InsetBox title="BEHAVIOR:">
               <Line>Anything that falls into chasm ends up here</Line>
               <Line>Reaches up with appendages to catch victims</Line>
@@ -210,10 +172,8 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
               "Ancient structures predating The 55",
               "Accessible from Kergoz Compound (B15)",
               "Occupied by Heirs of Kergoz cultists",
-              "2d4 Nanogoons + 1 Heir of Kergoz present"
             ]}
           >
-            <Divider />
             <InsetBox title="DESCRIPTION:">
               <Line>Stone structures hundreds of years old</Line>
               <Line>Covered in occult symbols and fresh graffiti</Line>
@@ -221,14 +181,13 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
               <Line>Smells of incense, decay, and Nano-corruption</Line>
             </InsetBox>
             <InsetBox title="OCCUPANTS:">
-              <Line red>• 2d4 Nanogoons (corrupted cultists)</Line>
-              <Line red>• 1 Heir of Kergoz (cult leader)</Line>
+              <Line red>• Nanogoons (corrupted cultists)</Line>
+              <Line red>• Heir of Kergoz (cult leader)</Line>
               <Line yellow>Hostile to non-believers</Line>
               <Line yellow>Conducting sacrifices and Nano rituals</Line>
             </InsetBox>
             <InsetBox title="CONNECTION TO SURFACE:">
               <Line>Secret entrance from Kergoz Compound (B15)</Line>
-              <Line>DR14 to locate without guidance</Line>
               <Line>Heavily guarded by Heir of Kergoz</Line>
             </InsetBox>
           </MaintenanceAccess>
@@ -247,10 +206,9 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
               "Former water spring (semi-clean water)",
               "Natural cave with good cooling",
               "Processors mining cryptocurrency",
-              "Guarded by d6 gang-goons"
+              "Guarded by gang-goons"
             ]}
           >
-            <Divider />
             <InsetBox title="DESCRIPTION:">
               <Line>Natural cave with water trickling through</Line>
               <Line>Cooling water for crypto processors</Line>
@@ -258,7 +216,7 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
               <Line>Slightly cooler than surrounding tunnels</Line>
             </InsetBox>
             <InsetBox title="SECURITY:">
-              <Line yellow>d6 Gang-Goons on guard</Line>
+              <Line yellow>Gang-Goons on guard</Line>
               <Line yellow>Poorly armed but determined</Line>
               <Line yellow>Will negotiate before violence</Line>
             </InsetBox>
@@ -275,7 +233,7 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
         tagline="Foundation levels of The 55"
         network="BASE_MAINTENANCE"
         signalStrength="weak"
-        status="⚠ FOUNDATION LEVELS"
+        status="FOUNDATION LEVELS"
         statusColor="yellow"
         notes={[
           "Levels B20-B1",
@@ -302,25 +260,19 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
               "Mix of official and illegal operations"
             ]}
           >
-            <Divider />
             <InsetBox title="STORAGE & PARKING:">
               <Line neon>1. Resident Storage Drawers</Line>
               <Line smoke>Body-sized units, 50¤/month (questionable uses)</Line>
-
               <Line neon>2. Bike Cages</Line>
               <Line smoke>Forgotten relics, stolen tricycles (Ol' Sam repairs for 50¤)</Line>
-
               <Line neon>3. Parking Pyre</Line>
               <Line smoke>Vehicle husks, trash, scrap metal</Line>
-
               <Line neon>4. Resident Parking</Line>
-              <Line smoke>Junkers and cheap cars (1/4 chance 2d4 carjacking gang-goons)</Line>
-
+              <Line smoke>Junkers and cheap cars</Line>
               <Line neon>5. VIP Parking</Line>
-              <Line smoke>Robot valet, 2d6 cars (D20x1K¤ each), corporate access only</Line>
-
+              <Line smoke>Robot valet, corporate access only</Line>
               <Line neon>6. VIP Storage</Line>
-              <Line smoke>Room-sized units (DR14 to break in, valuable contents)</Line>
+              <Line smoke>Room-sized units</Line>
             </InsetBox>
             <InsetBox title="HOUSING:">
               <Line neon>7. Crypt Rooms</Line>
@@ -328,43 +280,33 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
             </InsetBox>
             <InsetBox title="INFRASTRUCTURE:">
               <Line neon>8. Utility Corridors</Line>
-              <Line smoke>Dark, winding, damp (DR16 to find backdoor to upper levels)</Line>
-
+              <Line smoke>Dark, winding, damp</Line>
               <Line neon>9. Net Control</Line>
               <Line smoke>Absolute mess of wires and cables</Line>
-
               <Line neon>10. Water Reclamation</Line>
               <Line smoke>Sewage processing, grey water, massive tanks</Line>
-
               <Line neon>11. Reactor ('The Devil')</Line>
-              <Line smoke>Nuclear power source (2d4 workers, temperamental, critical)</Line>
-
+              <Line smoke>Nuclear power source</Line>
               <Line neon>12. The Grove</Line>
               <Line smoke>Workshop for cars and local machinery</Line>
             </InsetBox>
             <InsetBox title="ILLEGAL OPERATIONS:">
               <Line neon>13. Crypto Racks</Line>
-              <Line smoke>Processors mining cryptocurrency (2d6 gang-goons, natural cave)</Line>
-
+              <Line smoke>Processors mining cryptocurrency (gang-goons, natural cave)</Line>
               <Line neon>14. The Rot</Line>
-              <Line smoke>Fungal growths, decay (DR12 Toughness or infestation)</Line>
-
+              <Line smoke>Fungal growths, decay</Line>
               <Line neon>15. Kergoz Compound</Line>
               <Line smoke>Cultists in repurposed cars/tents (1 Heir, secret Synk entrance)</Line>
             </InsetBox>
             <InsetBox title="SEALED/DANGEROUS:">
               <Line neon>16. Fallout Shelter</Line>
               <Line smoke>Old, sealed 10+ years (500¤ bounty to open)</Line>
-
               <Line neon>17. Stack Archive</Line>
               <Line smoke>Rusted filing cabinets, hundreds of rats</Line>
-
               <Line neon>18. Stack Graveyard</Line>
               <Line smoke>PO box-sized plots for cremated remains (5¤ toll)</Line>
-
               <Line neon>19. Trash Cave</Line>
               <Line smoke>Compressed trash chunks (salvage opportunity)</Line>
-
               <Line neon>20. Body Compactor</Line>
               <Line smoke>Gang-goons dispose of bodies here</Line>
             </InsetBox>
@@ -385,10 +327,9 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
                   "Primary power source for The 55",
                   "Nicknamed 'The Devil' by workers",
                   "Huge temperamental reactor",
-                  "2d4 workers on 24/7 shifts"
+                  "Workers on 24/7 shifts"
                 ]}
               >
-                <Divider />
                 <InsetBox title="CORE STATUS:">
                   <Line cyan>Core Temperature: 547°C (Normal range)</Line>
                   <Line cyan>Radiation Levels: Contained (0.02 Sv/hr)</Line>
@@ -397,32 +338,31 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
                   <Line cyan>Fuel Rods: 82% life remaining</Line>
                 </InsetBox>
                 <InsetBox title="ALERTS:">
-                  <Line yellow>⚠ COOLING SYSTEM PUMP #3:</Line>
+                  <Line yellow>COOLING SYSTEM PUMP #3:</Line>
                   <Line smoke>Operating at reduced efficiency (96%)</Line>
                   <Line smoke>Maintenance scheduled for next month</Line>
                   <Line smoke>Backup pump ready if needed</Line>
                 </InsetBox>
                 <InsetBox title="STAFF:">
-                  <Line neon>2d4 workers (24/7 shifts)</Line>
+                  <Line neon>Workers (24/7 shifts)</Line>
                   <Line neon>Monitoring and maintaining stability</Line>
                   <Line neon>Paranoid about catastrophic failure</Line>
                   <Line yellow>Will defend reactor from sabotage</Line>
                 </InsetBox>
                 <InsetBox title="HAZARDS:">
                   <Line red>Shielded but not perfectly safe</Line>
-                  <Line red>DR12 Toughness after 1 hour exposure (unshielded areas)</Line>
                   <Line red>Workers rotate shifts to minimize exposure</Line>
                 </InsetBox>
               </MaintenanceAccess>
             ),
             related_commands: {
               "Reactor Monitoring": {
-                // password: {
-                //   pw: "reactor_admin",
-                //   hint: "Nuclear power system administrator access",
-                //   difficulty: "hard",
-                //   content: <Locked theme="terminal" title="REACTOR MONITORING" />
-                // },
+                password: {
+                  pw: "reactor_admin",
+                  hint: "Nuclear power system administrator access",
+                  difficulty: "hard",
+                  content: <Locked theme="terminal" title="REACTOR MONITORING" />
+                },
                 content: (
                   <MaintenanceAccess
                     title="[REACTOR MONITORING SYSTEM]"
@@ -437,7 +377,6 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
                       "Backup power systems monitored"
                     ]}
                   >
-                    <Divider />
                     <InsetBox title="MAINTENANCE LOG (Last 24h):">
                       <Line neon>• Routine inspection completed (all normal)</Line>
                       <Line neon>• Cooling system pressure adjusted</Line>
@@ -475,7 +414,6 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
                   "~20-30 cultists present"
                 ]}
               >
-                <Divider />
                 <InsetBox title="DESCRIPTION:">
                   <Line>Cultists squatting in repurposed cars</Line>
                   <Line>Tents and makeshift shelters</Line>
@@ -484,7 +422,6 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
                 </InsetBox>
                 <InsetBox title="LEADERSHIP:">
                   <Line red bold>1 Heir of Kergoz present</Line>
-                  <Line red>Guards secret entrance to The Synk (DR14 to find)</Line>
                   <Line red>Leads rituals and sacrifices</Line>
                   <Line yellow>Hostile to outsiders unless they show interest in cult</Line>
                 </InsetBox>
@@ -497,7 +434,6 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
                 <InsetBox title="SECRET ENTRANCE:">
                   <Line red bold>Path to The Synk (Medieval Ruins):</Line>
                   <Line>Hidden behind altar in main tent</Line>
-                  <Line>DR14 to locate without guidance</Line>
                   <Line>Heavily guarded by Heir of Kergoz</Line>
                 </InsetBox>
               </MaintenanceAccess>
@@ -517,10 +453,8 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
                   "Cryptocurrency mining operation",
                   "Natural cave (former water spring)",
                   "Hundreds of processing units",
-                  "2d6 gang-goons on guard"
                 ]}
               >
-                <Divider />
                 <InsetBox title="DESCRIPTION:">
                   <Line>Hundreds of processors mining cryptocurrency</Line>
                   <Line>Located in natural cave</Line>
@@ -528,7 +462,7 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
                   <Line>Constant whirring and fan noise</Line>
                 </InsetBox>
                 <InsetBox title="SECURITY:">
-                  <Line yellow>2d6 Gang-Goons on guard</Line>
+                  <Line yellow>Gang-Goons on guard</Line>
                   <Line yellow>Desperate for investors and protection money</Line>
                   <Line yellow>Will negotiate before resorting to violence</Line>
                   <Line yellow>Poorly armed but determined</Line>
@@ -562,10 +496,8 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
                   "Fungal contamination",
                   "Partially contained",
                   "Entire section covered in growth",
-                  "DR12 Toughness when breathing unfiltered air"
                 ]}
               >
-                <Divider />
                 <InsetBox title="HAZARD PROFILE:">
                   <Line red bold>BIOHAZARD - FUNGAL CONTAMINATION</Line>
                   <Line red>Status: Partially contained</Line>
@@ -579,7 +511,6 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
                   <Line>Bioluminescent in places (eerie glow)</Line>
                 </InsetBox>
                 <InsetBox title="EXPOSURE PROTOCOL:">
-                  <Line yellow>DR12 Toughness when breathing unfiltered air</Line>
                   <Line yellow>Random infestation on failed save</Line>
                   <Line yellow>Symptoms appear within 24 hours</Line>
                   <Line smoke>Medical treatment required if infected</Line>
@@ -600,11 +531,9 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
                   "Level B8",
                   "Secret routes through The Base",
                   "Dark, winding, dangerous",
-                  "DR16 to navigate successfully"
                 ]}
               >
-                <Divider />
-                <InsetBox title="KNOWN PASSAGES (DR16 to navigate):">
+                <InsetBox title="KNOWN PASSAGES (Difficult Navigation):">
                   <Line neon>• Base to Capsule Closets (via Net Control)</Line>
                   <Line neon>• Base to The Synk (via maintenance shafts)</Line>
                   <Line neon>• Base to Multimart (via freight corridors)</Line>
@@ -617,7 +546,6 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
                   <Line red>• Exposed electrical wiring</Line>
                   <Line red>• Structural instability (ceiling collapse risk)</Line>
                   <Line red>• Vermin encounters (rats, worse)</Line>
-                  <Line red>• Easy to get lost (DR16 navigation)</Line>
                 </InsetBox>
                 <InsetBox title="ADVANTAGES:">
                   <Line cyan>• Bypass security checkpoints</Line>
@@ -630,12 +558,12 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
           },
 
           "Sealed Areas": {
-            // password: {
-            //   pw: "sealed",
-            //   hint: "What dangerous base areas are",
-            //   difficulty: "medium",
-            //   content: <Locked theme="terminal" title="SEALED AREAS" />
-            // },
+            password: {
+              pw: "sealed",
+              hint: "What dangerous base areas are",
+              difficulty: "medium",
+              content: <Locked theme="terminal" title="SEALED AREAS" />
+            },
             content: (
               <MaintenanceAccess
                 title="[SEALED AREAS - BASE LEVELS]"
@@ -650,7 +578,6 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
                   "Entry at own risk"
                 ]}
               >
-                <Divider />
                 <InsetBox title="FALLOUT SHELTER (Level B17):">
                   <Line yellow bold>SEALED - UNKNOWN CONTENTS</Line>
                   <Line>Status: Locked for 10+ years</Line>
@@ -659,7 +586,6 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
                   <Line smoke>Old Cold War-era shelter, no one knows what's inside</Line>
                   <Line yellow>May contain supplies, corpses, or worse</Line>
                 </InsetBox>
-                <Divider />
                 <InsetBox title="BODY COMPACTOR (Level B19):">
                   <Line yellow bold>UNSANCTIONED USE - GANG ACTIVITY</Line>
                   <Line>Status: Active (illegal use)</Line>
@@ -668,7 +594,6 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
                   <Line smoke>Originally for trash, now disposes of bodies</Line>
                   <Line red>Witnessing disposal is extremely dangerous</Line>
                 </InsetBox>
-                <Divider />
                 <InsetBox title="STACK ARCHIVE (Level B16):">
                   <Line cyan bold>ABANDONED - VERMIN INFESTATION</Line>
                   <Line>Rusted filing cabinets</Line>
@@ -698,7 +623,6 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
               "Hundreds of units"
             ]}
           >
-            <Divider />
             <InsetBox title="DESCRIPTION:">
               <Line>Concrete boxes barely large enough to lie down</Line>
               <Line>No windows, minimal ventilation</Line>
@@ -734,11 +658,9 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
               "Level B5",
               "Corporate access only",
               "Robot valet service",
-              "2d6 expensive vehicles present",
               "Each worth D20x1K¤"
             ]}
           >
-            <Divider />
             <InsetBox title="SECURITY:">
               <Line red>Corporate access only (keycard required)</Line>
               <Line red>Robot valet guards vehicles</Line>
@@ -747,8 +669,6 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
               <Line yellow>Breaking in triggers corporate security response</Line>
             </InsetBox>
             <InsetBox title="VEHICLES PRESENT:">
-              <Line cyan>2d6 high-end vehicles</Line>
-              <Line cyan>Each worth D20x1,000¤</Line>
               <Line cyan>Mix of sports cars, luxury sedans, armored SUVs</Line>
               <Line smoke>Owners: Corporate executives from upper levels</Line>
             </InsetBox>
@@ -792,29 +712,21 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
               "High traffic 24/7"
             ]}
           >
-            <Divider />
             <InsetBox title="KEY LOCATIONS:">
               <Line neon>1. Info Walls</Line>
               <Line smoke>Inner walls covered in printouts, graffiti, requests</Line>
-
               <Line neon>2. Court Market</Line>
-              <Line smoke>Dozens of merchants, basic equipment (DR12 to not get pickpocketed)</Line>
-
+              <Line smoke>Dozens of merchants, basic equipment</Line>
               <Line neon>3. Food Stalls</Line>
               <Line smoke>Locust pizza, synth ramen, moonshine, modified vending machines</Line>
-
               <Line neon>4. C.O.P. Booth</Line>
-              <Line smoke>Corporate Order Police (2d6 sec ops, 2 armored cars, 1 Vindicator)</Line>
-
+              <Line smoke>Corporate Order Police</Line>
               <Line neon>5. Gates (4 total)</Line>
               <Line smoke>Massive accordion doors, open 24/7 (beggars, con artists, preachers)</Line>
-
               <Line neon>6. Fideistic Transformation Kiosk</Line>
               <Line smoke>Religious converts, body rental contracts (2 UCS sec ops on duty)</Line>
-
               <Line neon>7. Elevators</Line>
               <Line smoke>Slow, crowded (hours-long lineups, most use stairs)</Line>
-
               <Line neon>8. Community Outreach Booth</Line>
               <Line smoke>Volunteers protecting The 55 (jobs available, low/no pay)</Line>
             </InsetBox>
@@ -833,10 +745,9 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
                   "Ground level courtyard",
                   "30-40 vendors on any given day",
                   "Basic equipment available",
-                  "DR12 to avoid pickpockets"
+                  "Pickpockets",
                 ]}
               >
-                <Divider />
                 <InsetBox title="AVAILABLE GOODS (Standard prices):">
                   <Line neon>• Food and water (synth and some fresh)</Line>
                   <Line neon>• Clothing (second-hand, some new)</Line>
@@ -852,7 +763,6 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
                   <Line>Some sell questionable goods (buyer beware)</Line>
                 </InsetBox>
                 <InsetBox title="SECURITY WARNING:">
-                  <Line red>DR12 to avoid pickpockets while shopping</Line>
                   <Line red>Multiple incidents daily</Line>
                   <Line yellow>C.O.P. booth nearby but rarely intervenes</Line>
                   <Line smoke>Vendors watch each others' stalls</Line>
@@ -876,7 +786,6 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
                   "Quality varies"
                 ]}
               >
-                <Divider />
                 <InsetBox title="MENU:">
                   <Line cyan>Locust pizza slice: 6¤</Line>
                   <Line cyan>Synth ramen bowl: 8¤</Line>
@@ -890,13 +799,11 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
                 <InsetBox title="POPULAR VENDORS:">
                   <Line neon bold>Mama's Locust Pizza:</Line>
                   <Line smoke>Best pizza in Four Court, always busy</Line>
-
                   <Line neon bold>Synth Ramen Cart:</Line>
                   <Line smoke>Fast service, filling portions</Line>
-
                   <Line neon bold>Moonshine Vendor:</Line>
                   <Line smoke>Homemade alcohol of questionable origin</Line>
-                  <Line yellow>DR10 Toughness or regret it</Line>
+                  <Line yellow>You'll regret it</Line>
                 </InsetBox>
               </MaintenanceAccess>
             ),
@@ -912,17 +819,11 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
                 systemStatus="ACTIVE"
                 notes={[
                   "Ground level security presence",
-                  "2d6 Generic Sec Ops (rotating shifts)",
-                  "2 Armored Cars (garage attached)",
-                  "1 Vindicator Droid (emergency response)"
+                  "Generic Sec Ops (rotating shifts)",
+                  "Armored Cars (garage attached)",
+                  "Vindicator Droid (emergency response)"
                 ]}
               >
-                <Divider />
-                <InsetBox title="STAFFING:">
-                  <Line neon>• 2d6 Generic Sec Ops (rotating shifts)</Line>
-                  <Line neon>• 2 Armored Cars</Line>
-                  <Line neon>• 1 Vindicator Droid</Line>
-                </InsetBox>
                 <InsetBox title="JURISDICTION:">
                   <Line>Officially: Four Court security</Line>
                   <Line>In practice: Minimal enforcement</Line>
@@ -967,7 +868,6 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
                   "Jobs available (low/no pay)"
                 ]}
               >
-                <Divider />
                 <InsetBox title="SERVICES:">
                   <Line neon>• Job board (community defense, investigations)</Line>
                   <Line neon>• Conflict mediation</Line>
@@ -1005,7 +905,7 @@ export const THE_55_LOWER_LEVELS_COMMANDS = {
                   "2 United Citadel sec ops on duty (during hours)"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="SERVICES:">
                   <Line yellow>Religious conversion programs</Line>
                   <Line yellow>Body rental contracts (sell your body when you die)</Line>

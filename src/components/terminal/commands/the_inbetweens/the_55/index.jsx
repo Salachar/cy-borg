@@ -11,10 +11,9 @@ import THE_55_CORP_QUAD_COMMANDS from "./the_55_10_corp_quad";
 import THE_55_SPECTRAL_LUXVITAE_COMMANDS from "./the_55_11_spectral_luxvitae";
 import THE_55_ROOFLINE_COMMANDS from "./the_55_12_roofline"
 
-import THE_55_IMAGE from '@images/the55.png';
+import THE_55_IMAGE from '@images/the55/the55.png';
 
 import {
-  Divider,
   Line,
   Spacer,
   InsetBox,

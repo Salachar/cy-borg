@@ -83,7 +83,6 @@ export const STEEL_PENTHOUSE_COMMANDS = {
                   "Air quality: POOR (smoke, body heat, party)",
                 ]}
               >
-                <Divider />
                 <InsetBox title="OVERRIDE OPTIONS:">
                   <Line yellow>Drop temperature to minimum (15°C)</Line>
                   <Line yellow>Kill AC</Line>
@@ -109,7 +108,6 @@ export const STEEL_PENTHOUSE_COMMANDS = {
                   "Last test: 2 months ago"
                 ]}
               >
-                <Divider />
                 <InsetBox title="COVERAGE:">
                   <Line neon>Sprinkler heads: 12 total</Line>
                   <Line neon>Water pressure: GOOD</Line>
@@ -131,7 +129,6 @@ export const STEEL_PENTHOUSE_COMMANDS = {
                   "Emergency exit lighting functional",
                 ]}
               >
-                <Divider />
                 <InsetBox title="PANIC BUTTON:">
                   <Line yellow>Location: Master bedroom nightstand</Line>
                   <Line yellow>Alert: Building security + SecCorps</Line>
@@ -321,7 +318,6 @@ export const STEEL_PENTHOUSE_COMMANDS = {
                   }
                 ]}
               >
-                <Divider />
                 <Line cyan>Guest list last updated: Nov 18, 14:30</Line>
                 <Line yellow>⚠ All VIP guests are professional killmatch athletes</Line>
                 <Line yellow>Security has been instructed to allow reasonable carry for self-defense</Line>
@@ -344,7 +340,6 @@ export const STEEL_PENTHOUSE_COMMANDS = {
                   "Footage saved to local NAS (30-day retention)",
                 ]}
               >
-                <Divider />
                 <InsetBox title="CAMERA LOCATIONS:">
                   <Line neon>Main Living Area (central party space)</Line>
                   <Line neon>Kitchen</Line>
@@ -568,7 +563,6 @@ export const STEEL_PENTHOUSE_COMMANDS = {
                   "Attacks anyone entering training ring",
                 ]}
               >
-                <Divider />
                 <InsetBox title="ADMIN CONTROL OPTIONS:">
                   <Line yellow>Change difficulty level (1-10)</Line>
                   <Line yellow>Enable/disable safety protocols</Line>
@@ -615,7 +609,6 @@ export const STEEL_PENTHOUSE_COMMANDS = {
                   "Real guests mixed with projections"
                 ]}
               >
-                <Divider />
                 <InsetBox title="ACTIVE PROJECTORS:">
                   <Line neon>Holo Space: 4 projectors (main entertainment)</Line>
                   <Line neon>Master Bedroom: 2 projectors (ambient/entertainment)</Line>
@@ -742,7 +735,6 @@ export const STEEL_PENTHOUSE_COMMANDS = {
                   "Temperature stable"
                 ]}
               >
-                <Divider />
                 <InsetBox title="HOT TUB:">
                   <Line cyan>Temperature: 40°C (104°F)</Line>
                   <Line cyan>Jets: ACTIVE</Line>

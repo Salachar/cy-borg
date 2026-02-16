@@ -1,13 +1,10 @@
 import {
   Line,
-  Section,
-  Divider,
-  KeyValue,
-  DataTable,
   InsetBox,
 } from "@terminal/TerminalComponents";
 
 import {
+  CCTV,
   Locked,
   MaintenanceAccess,
   Message,
@@ -15,6 +12,8 @@ import {
   PublicPortal,
   Tenet,
 } from "@terminal/retcomdevice";
+
+import cctv_image from '@images/the55/spectral_lux_cctv.png';
 
 export const THE_55_SPECTRAL_LUXVITAE_COMMANDS = {
   "[U265 - U331] Spectral Luxvitae": {
@@ -36,6 +35,17 @@ export const THE_55_SPECTRAL_LUXVITAE_COMMANDS = {
       />
     ),
     related_commands: {
+      "CCTV": {
+        content: (
+          <CCTV
+            src={cctv_image}
+            cameraId="CAM-CC-MAIN"
+            theme="amber"
+            height={500}
+          />
+        ),
+      },
+
       "Luxvitae Overview": {
         content: (
           <MaintenanceAccess
@@ -45,7 +55,6 @@ export const THE_55_SPECTRAL_LUXVITAE_COMMANDS = {
             firmwareVersion="v1.0.0"
             systemStatus="RESIDENTS ONLY"
           >
-            <Divider />
             <InsetBox title="ABOUT:">
               <Line>67 floors of ultra-luxury penthouses</Line>
               <Line>Each unit occupies entire floor or multiple floors</Line>
@@ -401,7 +410,6 @@ export const THE_55_SPECTRAL_LUXVITAE_COMMANDS = {
                   "DO NOT ENGAGE"
                 ]}
               >
-                <Divider />
                 <InsetBox title="KNOWN INFORMATION:">
                   <Line red>Real name never confirmed</Line>
                   <Line red>Always appears in public wearing silk suits</Line>
@@ -511,7 +519,6 @@ export const THE_55_SPECTRAL_LUXVITAE_COMMANDS = {
               "Shared facilities and exclusive privileges"
             ]}
           >
-            <Divider />
             <InsetBox title="CONCIERGE SERVICES (24/7):">
               <Line neon>• Restaurant reservations (citywide)</Line>
               <Line neon>• Travel arrangements (private jet, helicopter)</Line>
@@ -574,7 +581,6 @@ export const THE_55_SPECTRAL_LUXVITAE_COMMANDS = {
               "All sign extensive NDAs"
             ]}
           >
-            <Divider />
             <InsetBox title="MANAGEMENT:">
               <Line neon>• Geoffrey Sterling - Building Manager</Line>
               <Line neon>• Isabelle Chen - Head Concierge</Line>
@@ -698,17 +704,17 @@ export const THE_55_SPECTRAL_LUXVITAE_COMMANDS = {
       },
 
       "Luxury Management": {
-        // password: {
-        //   pw: "spectral",
-        //   hint: "The first word of this building's name",
-        //   difficulty: "easy",
-        //   content: <Locked theme="terminal" title="LUXURY MANAGEMENT" />
-        // },
+        password: {
+          pw: "spectral",
+          hint: "The first word of this building's name",
+          difficulty: "easy",
+          content: <Locked theme="terminal" title="LUXURY MANAGEMENT" />
+        },
         content: (
           <Message
             title="SPECTRAL LUXVITAE MANAGEMENT"
             message="MANAGEMENT ACCESS GRANTED"
-            note="⚠ Resident systems - Authorized personnel only"
+            note="Resident systems - Authorized personnel only"
             theme="secure"
           />
         ),
@@ -727,7 +733,6 @@ export const THE_55_SPECTRAL_LUXVITAE_COMMANDS = {
                   "Average net worth: 380M¤ per household"
                 ]}
               >
-                <Divider />
                 <InsetBox title="OCCUPANCY STATUS:">
                   <Line cyan>Total units: 45 penthouses</Line>
                   <Line cyan>Occupied: 42 (93%)</Line>
@@ -757,12 +762,12 @@ export const THE_55_SPECTRAL_LUXVITAE_COMMANDS = {
           },
 
           "Financial Records": {
-            // password: {
-            //   pw: "luxury",
-            //   hint: "What type of living Spectral Luxvitae provides",
-            //   difficulty: "medium",
-            //   content: <Locked theme="terminal" title="FINANCIAL RECORDS" />
-            // },
+            password: {
+              pw: "luxury",
+              hint: "What type of living Spectral Luxvitae provides",
+              difficulty: "medium",
+              content: <Locked theme="terminal" title="FINANCIAL RECORDS" />
+            },
             content: (
               <MaintenanceAccess
                 title="[FINANCIAL RECORDS]"
@@ -776,7 +781,6 @@ export const THE_55_SPECTRAL_LUXVITAE_COMMANDS = {
                   "Annual revenue: ~70.2M¤"
                 ]}
               >
-                <Divider />
                 <InsetBox title="MONTHLY REVENUE:">
                   <Line cyan>Rent (all units): 4,200,000¤</Line>
                   <Line cyan>HOA fees: 850,000¤</Line>
@@ -825,7 +829,6 @@ export const THE_55_SPECTRAL_LUXVITAE_COMMANDS = {
                   "Zero unauthorized access incidents (last year)"
                 ]}
               >
-                <Divider />
                 <InsetBox title="ACCESS CONTROL - MULTI-LAYER VERIFICATION:">
                   <Line red>Level 1: Building entrance (biometric + face recognition)</Line>
                   <Line red>Level 2: Elevator access (resident-specific floors only)</Line>
@@ -865,12 +868,12 @@ export const THE_55_SPECTRAL_LUXVITAE_COMMANDS = {
           },
 
           "Incident Log": {
-            // password: {
-            //   pw: "penthouse",
-            //   hint: "What the luxury units are called",
-            //   difficulty: "medium",
-            //   content: <Locked theme="terminal" title="INCIDENT LOG" />
-            // },
+            password: {
+              pw: "penthouse",
+              hint: "What the luxury units are called",
+              difficulty: "medium",
+              content: <Locked theme="terminal" title="INCIDENT LOG" />
+            },
             content: (
               <MaintenanceAccess
                 title="[SECURITY INCIDENT LOG]"
@@ -884,7 +887,6 @@ export const THE_55_SPECTRAL_LUXVITAE_COMMANDS = {
                   "1 resident death (natural causes)"
                 ]}
               >
-                <Divider />
                 <InsetBox title="INCIDENT #SL-2025-008 (3 months ago):">
                   <Line red>Type: Attempted break-in</Line>
                   <Line red>Location: Unit 295 (Stella Nova)</Line>
@@ -940,11 +942,9 @@ export const THE_55_SPECTRAL_LUXVITAE_COMMANDS = {
                   "Sensitive requests redacted or coded"
                 ]}
               >
-                <Divider />
                 <InsetBox title="TRAVEL ARRANGEMENTS:">
                   <Line neon>• Unit 301 (Cassandra Vex): Private jet to Paris</Line>
                   <Line smoke>  Departure: Tomorrow, 14:00 | Return: 5 days</Line>
-
                   <Line neon>• Unit 315 (Alexander Hightower): Helicopter to heliport</Line>
                   <Line smoke>  Departure: Today, 09:00 | Business meeting downtown</Line>
                 </InsetBox>
@@ -952,21 +952,18 @@ export const THE_55_SPECTRAL_LUXVITAE_COMMANDS = {
                   <Line neon>• Unit 295 (Stella Nova): Party planning</Line>
                   <Line smoke>  Date: This Saturday | Guests: 50+ | Budget: 100k¤</Line>
                   <Line smoke>  Requirements: DJ, catering, security, cleanup</Line>
-
                   <Line neon>• Unit 320 (Prophet Gold): Charity gala organization</Line>
                   <Line smoke>  Date: Next month | Guests: 200 | Venue: Off-site</Line>
                 </InsetBox>
                 <InsetBox title="PERSONAL SHOPPING:">
                   <Line neon>• Unit 310 (Lady Pembroke): Rare orchid procurement</Line>
                   <Line smoke>  Specific species requested, budget: 20k¤</Line>
-
                   <Line neon>• Unit 318 (Dmitri Volkov): Custom suit tailoring</Line>
                   <Line smoke>  Designer: Exotique | Rush order: 3 days</Line>
                 </InsetBox>
                 <InsetBox title="UNUSUAL REQUESTS:">
                   <Line yellow>• Unit 331 (Mr. Silk): "Problem resolution" (no details logged)</Line>
                   <Line smoke>  Status: Handled discreetly by Isabelle Chen</Line>
-
                   <Line yellow>• Unit 325 (Ashford Family): Family therapist (confidential)</Line>
                   <Line smoke>  In-home sessions, NDA required</Line>
                 </InsetBox>

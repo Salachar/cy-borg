@@ -219,7 +219,6 @@ export const WAREHOUSE_COMMANDS = {
                 ]}
                 nextShift="06:00 (Day Shift - 8 personnel)"
               >
-                <Divider />
                 <Line yellow>Break Policy: 30-minute rotations, staggered throughout shift</Line>
                 <Line smoke>Supervisor notes: Park frequently exceeds allotted break time</Line>
               </ShiftSchedule>
@@ -635,7 +634,6 @@ export const WAREHOUSE_COMMANDS = {
                       },
                     ]}
                   >
-                    <Divider />
                     <Line smoke>Last serious incident: 8 months ago (attempted theft)</Line>
                   </IncidentLog>
                 ),

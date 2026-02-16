@@ -1,22 +1,22 @@
 import {
   Line,
-  Section,
   Divider,
-  KeyValue,
-  DataTable,
   InsetBox,
 } from "@terminal/TerminalComponents";
 
 import {
+  Camera,
+  CCTV,
   Locked,
   MaintenanceAccess,
   Message,
   PersonnelFile,
   PublicPortal,
-  CommercialCamera,
   LiveCameraFeed,
   IncidentLog,
 } from "@terminal/retcomdevice";
+
+import cctv_image from '@images/the55/stack_command_cctv.png';
 
 export const THE_55_STACK_COMMAND_COMMANDS = {
   "[U201 - U213] Stack Command & Control": {
@@ -38,6 +38,17 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
       />
     ),
     related_commands: {
+      "CCTV": {
+        content: (
+          <CCTV
+            src={cctv_image}
+            cameraId="CAM-CC-MAIN"
+            theme="amber"
+            height={500}
+          />
+        ),
+      },
+
       "Stack Status Overview": {
         content: (
           <MaintenanceAccess
@@ -52,14 +63,14 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
               "24/7 emergency hotline: 95563-HELP"
             ]}
           >
-            <Divider />
+
             <InsetBox title="VITAL SYSTEMS:">
-              <Line neon>Power Generation: 🟢 OPERATIONAL (98%)</Line>
-              <Line neon>Water Systems: 🟢 OPERATIONAL (95%)</Line>
-              <Line yellow>Climate Control: 🟡 DEGRADED (73%)</Line>
-              <Line neon>Elevator Network: 🟢 OPERATIONAL (89%)</Line>
-              <Line neon>Network Infrastructure: 🟢 OPERATIONAL (91%)</Line>
-              <Line neon>Security Systems: 🟢 OPERATIONAL (94%)</Line>
+              <Line neon>Power Generation: OPERATIONAL (98%)</Line>
+              <Line neon>Water Systems: OPERATIONAL (95%)</Line>
+              <Line yellow>Climate Control: DEGRADED (73%)</Line>
+              <Line neon>Elevator Network: OPERATIONAL (89%)</Line>
+              <Line neon>Network Infrastructure: OPERATIONAL (91%)</Line>
+              <Line neon>Security Systems: OPERATIONAL (94%)</Line>
             </InsetBox>
             <InsetBox title="EMERGENCY HOTLINE:">
               <Line neon bold>Questions or concerns? Dial 95563-HELP</Line>
@@ -83,7 +94,6 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
               "10 staff members + AI systems"
             ]}
           >
-            <Divider />
             <InsetBox title="STAFF ROSTER:">
               <Line neon>• SDS - Stimulant Vendor (AI)</Line>
               <Line neon>• Harlan Vos - System Administrator</Line>
@@ -166,7 +176,6 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
                   "Direct control access is PROHIBITED"
                 ]}
               >
-                <Divider />
                 <InsetBox title="CAPABILITIES:">
                   <Line neon>• Stack resource optimization</Line>
                   <Line neon>• Predictive maintenance scheduling</Line>
@@ -376,17 +385,17 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
       },
 
       "Command Systems": {
-        // password: {
-        //   pw: "command",
-        //   hint: "The first word in this system's name",
-        //   difficulty: "easy",
-        //   content: <Locked theme="terminal" title="COMMAND SYSTEMS" />
-        // },
+        password: {
+          pw: "command",
+          hint: "The first word in this system's name",
+          difficulty: "easy",
+          content: <Locked theme="terminal" title="COMMAND SYSTEMS" />
+        },
         content: (
           <Message
             title="STACK COMMAND & CONTROL"
             message="COMMAND SYSTEMS ACCESS GRANTED"
-            note="⚠ Critical infrastructure - Authorized personnel only"
+            note="Critical infrastructure - Authorized personnel only"
             theme="secure"
           />
         ),
@@ -406,7 +415,7 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
                   "AANI (Vindicator) on standby"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="AVAILABLE SYSTEMS:">
                   <Line neon>• Camera Network (Stack-wide surveillance)</Line>
                   <Line neon>• Access Control (Doors, elevators, zones)</Line>
@@ -437,7 +446,7 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
                       "Central servers + cloud backup"
                     ]}
                   >
-                    <Divider />
+
                     <InsetBox title="COVERAGE ZONES:">
                       <Line neon>• Four Court & Entrances (12 cameras)</Line>
                       <Line neon>• Multimart (18 cameras)</Line>
@@ -469,7 +478,7 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
                 related_commands: {
                   "Four Court Cameras": {
                     content: (
-                      <CommercialCamera
+                      <Camera
                         location="Four Court & Main Entrances"
                         cameraId="CAM-FC-MAIN"
                         status="ACTIVE"
@@ -496,12 +505,12 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
                     ),
                     related_commands: {
                       "Live Feed": {
-                        // password: {
-                        //   pw: "court",
-                        //   hint: "The name of this area (second word)",
-                        //   difficulty: "medium",
-                        //   content: <Locked theme="terminal" title="LIVE FEED" />
-                        // },
+                        password: {
+                          pw: "court",
+                          hint: "The name of this area (second word)",
+                          difficulty: "medium",
+                          content: <Locked theme="terminal" title="LIVE FEED" />
+                        },
                         content: <LiveCameraFeed location="Four Court & Main Entrances" />,
                       },
                     },
@@ -509,7 +518,7 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
 
                   "Multimart Cameras": {
                     content: (
-                      <CommercialCamera
+                      <Camera
                         location="Multimart Shopping District"
                         cameraId="CAM-MM-01"
                         status="ACTIVE"
@@ -536,12 +545,12 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
                     ),
                     related_commands: {
                       "Live Feed": {
-                        // password: {
-                        //   pw: "vendors",
-                        //   hint: "The people who sell things",
-                        //   difficulty: "medium",
-                        //   content: <Locked theme="terminal" title="LIVE FEED" />
-                        // },
+                        password: {
+                          pw: "vendors",
+                          hint: "The people who sell things",
+                          difficulty: "medium",
+                          content: <Locked theme="terminal" title="LIVE FEED" />
+                        },
                         content: <LiveCameraFeed location="Multimart Shopping District" />,
                       },
                     },
@@ -549,7 +558,7 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
 
                   "Kaytell Manufacturing Cameras": {
                     content: (
-                      <CommercialCamera
+                      <Camera
                         location="Kaytell Manufacturing Concern"
                         cameraId="CAM-KMC-01"
                         status="ACTIVE"
@@ -576,12 +585,12 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
                     ),
                     related_commands: {
                       "Live Feed": {
-                        // password: {
-                        //   pw: "factory",
-                        //   hint: "What the Kaytell facility is",
-                        //   difficulty: "medium",
-                        //   content: <Locked theme="terminal" title="LIVE FEED" />
-                        // },
+                        password: {
+                          pw: "factory",
+                          hint: "What the Kaytell facility is",
+                          difficulty: "medium",
+                          content: <Locked theme="terminal" title="LIVE FEED" />
+                        },
                         content: <LiveCameraFeed location="Kaytell Manufacturing Concern" />,
                       },
                     },
@@ -589,7 +598,7 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
 
                   "Green Zone Cameras": {
                     content: (
-                      <CommercialCamera
+                      <Camera
                         location="TG Labs Green Zone"
                         cameraId="CAM-GZ-01"
                         status="ACTIVE"
@@ -616,12 +625,12 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
                     ),
                     related_commands: {
                       "Live Feed": {
-                        // password: {
-                        //   pw: "green",
-                        //   hint: "The first word of this zone's name",
-                        //   difficulty: "medium",
-                        //   content: <Locked theme="terminal" title="LIVE FEED" />
-                        // },
+                        password: {
+                          pw: "green",
+                          hint: "The first word of this zone's name",
+                          difficulty: "medium",
+                          content: <Locked theme="terminal" title="LIVE FEED" />
+                        },
                         content: <LiveCameraFeed location="TG Labs Green Zone" />,
                       },
                     },
@@ -643,7 +652,6 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
                       "Emergency lockdown capability available"
                     ]}
                   >
-                    <Divider />
                     <InsetBox title="CONTROLLED ZONES - RESTRICTIONS ACTIVE:">
                       <Line red>• The REC (Sealed - hazard containment)</Line>
                       <Line red>• TG Labs Green Zone (Credit verification required)</Line>
@@ -684,7 +692,6 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
                       "Evacuation routes defined"
                     ]}
                   >
-                    <Divider />
                     <InsetBox title="FIRE EMERGENCY:">
                       <Line neon>• Activate suppression systems in affected zone</Line>
                       <Line neon>• Alert residents via PA system</Line>
@@ -799,12 +806,12 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
           },
 
           "THOTH Interface": {
-            // password: {
-            //   pw: "thoth",
-            //   hint: "The name of the administrative AI",
-            //   difficulty: "medium",
-            //   content: <Locked theme="terminal" title="THOTH INTERFACE" />
-            // },
+            password: {
+              pw: "thoth",
+              hint: "The name of the administrative AI",
+              difficulty: "medium",
+              content: <Locked theme="terminal" title="THOTH INTERFACE" />
+            },
             content: (
               <MaintenanceAccess
                 title="[THOTH AI INTERFACE]"
@@ -819,9 +826,8 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
                   "Read-only advisory access"
                 ]}
               >
-                <Divider />
                 <InsetBox title="CONNECTION STATUS:">
-                  <Line neon>AI Status: 🟢 ACTIVE (Restricted mode)</Line>
+                  <Line neon>AI Status: ACTIVE (Restricted mode)</Line>
                   <Line neon>Response Time: ~100ms</Line>
                   <Line neon>Hardware Restraints: ✓ ENABLED</Line>
                   <Line neon>ICE Protection: ✓ ACTIVE</Line>
@@ -845,7 +851,7 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
                   <Line smoke>Suggestion: Reroute power from Corp Quad to lower levels during off-hours</Line>
                   <Line smoke>Status: Under review by Emmanuel 5</Line>
 
-                  <Divider />
+
 
                   <Line neon bold>RECOMMENDATION #846 (Yesterday):</Line>
                   <Line smoke>Topic: REC containment breach response</Line>
@@ -853,7 +859,7 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
                   <Line yellow>Status: Overruled - Security handled manually</Line>
                   <Line yellow>THOTH logged "disappointment" at being overruled</Line>
 
-                  <Divider />
+
 
                   <Line neon bold>RECOMMENDATION #845 (3 days ago):</Line>
                   <Line smoke>Topic: Elevator #7 repair priority</Line>
@@ -881,12 +887,12 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
           },
 
           "AANI Control": {
-            // password: {
-            //   pw: "vindicator",
-            //   hint: "The type of cydroid AANI is",
-            //   difficulty: "hard",
-            //   content: <Locked theme="terminal" title="AANI CONTROL" />
-            // },
+            password: {
+              pw: "vindicator",
+              hint: "The type of cydroid AANI is",
+              difficulty: "hard",
+              content: <Locked theme="terminal" title="AANI CONTROL" />
+            },
             content: (
               <MaintenanceAccess
                 title="[AANI VINDICATOR CONTROL]"
@@ -901,10 +907,9 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
                   "3 deployments in 2 years"
                 ]}
               >
-                <Divider />
                 <InsetBox title="UNIT STATUS:">
                   <Line cyan>Unit: AANI (Vindicator-class cydroid)</Line>
-                  <Line yellow>Status: 🟡 STANDBY</Line>
+                  <Line yellow>Status: STANDBY</Line>
                   <Line cyan>Location: Stack Command secure bay</Line>
                   <Line cyan>Power: 100% (Constant charge)</Line>
                   <Line red>Weapons: Armed (Lethal force authorized)</Line>
@@ -913,9 +918,7 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
                   <Line red>1. Director of Operations (Emmanuel 5) OR</Line>
                   <Line red>2. Security Chief (Semlin Tova / Thomas Spode) AND</Line>
                   <Line red>3. THOTH AI recommendation</Line>
-
                   <Divider />
-
                   <Line yellow bold>EMERGENCY OVERRIDE:</Line>
                   <Line yellow>THOTH can deploy AANI autonomously if:</Line>
                   <Line yellow>• Catastrophic structural failure detected</Line>
@@ -928,11 +931,9 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
                   <Line neon>• Retractable blade arrays (lethal melee)</Line>
                   <Line neon>• Riot suppression systems (non-lethal option)</Line>
                   <Line neon>• EMP burst (disable electronics)</Line>
-
                   <Divider />
-
                   <Line neon bold>SYSTEMS:</Line>
-                  <Line neon>• Titanium-alloy armor (-d6 damage reduction)</Line>
+                  <Line neon>• Titanium-alloy armor</Line>
                   <Line neon>• Threat assessment AI (THOTH-linked)</Line>
                   <Line neon>• Enhanced mobility (can traverse all terrain)</Line>
                   <Line neon>• Self-repair protocols (limited)</Line>
@@ -942,16 +943,12 @@ export const THE_55_STACK_COMMAND_COMMANDS = {
                   <Line smoke>Situation: Riot in Multimart over corpo buyout</Line>
                   <Line smoke>Action: Non-lethal suppression, crowd dispersal</Line>
                   <Line smoke>Result: 3 injured, no fatalities, order restored</Line>
-
                   <Divider />
-
                   <Line cyan bold>DEPLOYMENT #2 (9 months ago):</Line>
                   <Line smoke>Situation: REC containment breach (multiple hostiles)</Line>
                   <Line smoke>Action: Lethal force authorized, hostiles neutralized</Line>
                   <Line smoke>Result: 7 Blightlings eliminated, 1 security injury</Line>
-
                   <Divider />
-
                   <Line cyan bold>DEPLOYMENT #3 (4 months ago):</Line>
                   <Line smoke>Situation: Structural collapse in Lost Zone</Line>
                   <Line smoke>Action: Rescue operations, debris removal</Line>

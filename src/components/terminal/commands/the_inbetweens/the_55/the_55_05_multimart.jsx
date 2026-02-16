@@ -1,13 +1,10 @@
 import {
   Line,
-  Section,
-  Divider,
-  KeyValue,
-  DataTable,
   InsetBox,
 } from "@terminal/TerminalComponents";
 
 import {
+  CCTV,
   HoursBanner,
   Locked,
   MaintenanceAccess,
@@ -15,6 +12,8 @@ import {
   Message,
   PublicPortal,
 } from "@terminal/retcomdevice";
+
+import cctv_image from '@images/the55/multimart_cctv.png';
 
 export const THE_55_MULTIMART_COMMANDS = {
   "[U101 - U124] Multimart": {
@@ -29,13 +28,24 @@ export const THE_55_MULTIMART_COMMANDS = {
         notes={[
           "Over 50 vendors",
           "Cash and credchips accepted",
-          "Haggling encouraged - DR14 (DR12 if local)",
+          "Haggling encouraged",
           "Watch belongings - pickpockets active"
         ]}
         theme="limeade"
       />
     ),
     related_commands: {
+      "CCTV": {
+        content: (
+          <CCTV
+            src={cctv_image}
+            cameraId="CAM-CC-MAIN"
+            theme="amber"
+            height={500}
+          />
+        ),
+      },
+
       "Vendor Directory": {
         content: (
           <MaintenanceAccess
@@ -50,11 +60,10 @@ export const THE_55_MULTIMART_COMMANDS = {
               "Community-focused marketplace"
             ]}
           >
-            <Divider />
             <InsetBox title="VENDOR ALERTS:">
-              <Line yellow>⚠ Lot #105-3: Temporarily vacant</Line>
+              <Line yellow>Lot #105-3: Temporarily vacant</Line>
               <Line smoke>Fierce bidding war between locals and corpo reps</Line>
-              <Line yellow>⚠ Lots #43, 61, 124: Under renovation</Line>
+              <Line yellow>Lots #43, 61, 124: Under renovation</Line>
               <Line smoke>Corporate contractors converting to corpo storefronts</Line>
             </InsetBox>
             <InsetBox title="COMMUNITY SPACE:">
@@ -80,7 +89,7 @@ export const THE_55_MULTIMART_COMMANDS = {
                   "Used, custom, and 'liberated' tech"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="ABOUT:">
                   <Line>Dozens of vendors selling refurbished prosthetics and cybertech</Line>
                   <Line>Some used, some custom made, others cleaved from wealthy suits</Line>
@@ -116,7 +125,7 @@ export const THE_55_MULTIMART_COMMANDS = {
                   "Fair dealer, good for basic gear"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="PROPRIETOR:">
                   <Line neon bold>ZED</Line>
                   <Line>Boisterous man with cybertech bear head</Line>
@@ -133,7 +142,7 @@ export const THE_55_MULTIMART_COMMANDS = {
                 <InsetBox title="PRICING:">
                   <Line neon>Basic gear: Standard prices</Line>
                   <Line neon>Used gear: 30-50% off retail</Line>
-                  <Line neon>"Liberated" corpo gear: Negotiable (DR14 to haggle)</Line>
+                  <Line neon>"Liberated" corpo gear: Negotiable</Line>
                 </InsetBox>
               </MaintenanceAccess>
             ),
@@ -153,7 +162,7 @@ export const THE_55_MULTIMART_COMMANDS = {
                   "Also operate from Alliansen Arms"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="PROPRIETORS:">
                   <Line neon bold>THE SAINTS FAMILY</Line>
                   <Line>Tailors and second-hand clothing merchants</Line>
@@ -202,7 +211,7 @@ export const THE_55_MULTIMART_COMMANDS = {
                     ],
                   },
                 ]}
-                footer="⚠ ID required for ammo purchases (loosely enforced)"
+                footer="ID required for ammo purchases (loosely enforced)"
               />
             ),
           },
@@ -221,7 +230,7 @@ export const THE_55_MULTIMART_COMMANDS = {
                   "No refunds on 'experimental' items"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="HOME REMEDIES:">
                   <Line cyan>Painkillers (generic): 10¤</Line>
                   <Line cyan>Antibiotics (bootleg): 25¤</Line>
@@ -236,7 +245,7 @@ export const THE_55_MULTIMART_COMMANDS = {
                 </InsetBox>
                 <InsetBox title="STOLEN CORPORATE MEDICAL EQUIPMENT:">
                   <Line neon>First aid kits, diagnostic tools, nano-patches</Line>
-                  <Line smoke>Prices negotiable (DR14 to haggle)</Line>
+                  <Line smoke>Prices negotiable</Line>
                 </InsetBox>
                 <InsetBox title="VENDOR NOTES:">
                   <Line yellow>Quality varies - buyer beware</Line>
@@ -260,7 +269,7 @@ export const THE_55_MULTIMART_COMMANDS = {
                   "Facing corporate buyout pressure"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="PROPRIETORS:">
                   <Line neon bold>THE CARLYLE FAMILY</Line>
                   <Line>Multi-generational auto shop</Line>
@@ -333,7 +342,7 @@ export const THE_55_MULTIMART_COMMANDS = {
                   "Gene-spliced pets require special care"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="SAMPLE INVENTORY:">
                   <Line cyan>Artificial pets (small): 50¤ - 200¤</Line>
                   <Line cyan>Gene-spliced pets: 400¤ - 2,000¤</Line>
@@ -364,7 +373,7 @@ export const THE_55_MULTIMART_COMMANDS = {
                   "First flight is free (waiver required)"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="PROPRIETOR:">
                   <Line neon bold>BLASTER</Line>
                   <Line>Local legend in underground racing scene</Line>
@@ -389,17 +398,17 @@ export const THE_55_MULTIMART_COMMANDS = {
       },
 
       "Vendor Network": {
-        // password: {
-        //   pw: "multimart",
-        //   hint: "The name of this shopping area",
-        //   difficulty: "easy",
-        //   content: <Locked theme="terminal" title="VENDOR NETWORK" />
-        // },
+        password: {
+          pw: "multimart",
+          hint: "The name of this shopping area",
+          difficulty: "easy",
+          content: <Locked theme="terminal" title="VENDOR NETWORK" />
+        },
         content: (
           <Message
             title="MULTIMART VENDOR NETWORK"
             message="VENDOR ACCESS GRANTED"
-            note="⚠ Shared vendor systems - Authorized merchants only"
+            note="Shared vendor systems - Authorized merchants only"
             theme="limeade"
           />
         ),
@@ -419,28 +428,28 @@ export const THE_55_MULTIMART_COMMANDS = {
                   "Community organizing platform"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="RECENT MESSAGES:">
                   <Line neon bold>FROM: Zed (Zed's Pawn Shop)</Line>
                   <Line smoke>Subject: Lot #105-3 bidding war</Line>
                   <Line>"Heard corpo reps offering 50k¤ for the vacant lot. We need to pool resources and outbid them. Who's in?"</Line>
                   <Line yellow>15 vendors replied (mixed support)</Line>
 
-                  <Divider />
+
 
                   <Line neon bold>FROM: The Saints (Seams Shrine)</Line>
                   <Line smoke>Subject: Corporate renovation crews</Line>
                   <Line>"Lots 43, 61, and 124 being converted to corpo stores. They're pricing us out. Community meeting this Friday at Smile Cafe?"</Line>
                   <Line yellow>22 vendors confirmed attendance</Line>
 
-                  <Divider />
+
 
                   <Line neon bold>FROM: Angela (Angela Ammo's)</Line>
                   <Line smoke>Subject: Pickpocket problem</Line>
                   <Line>"3 customers hit this week alone. Can we pool credits for better security? Or at least share descriptions of known thieves?"</Line>
                   <Line yellow>Ongoing discussion (18 replies)</Line>
 
-                  <Divider />
+
 
                   <Line neon bold>FROM: Carlyle's Cars</Line>
                   <Line smoke>Subject: Help needed</Line>
@@ -465,7 +474,7 @@ export const THE_55_MULTIMART_COMMANDS = {
                   "Hot items and overstock alerts"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="HOT ITEMS (High demand):">
                   <Line yellow bold>LOW STOCK ALERT:</Line>
                   <Line red>• Ammunition (all calibers) - Multiple vendors</Line>
@@ -489,12 +498,12 @@ export const THE_55_MULTIMART_COMMANDS = {
           },
 
           "Sales Records": {
-            // password: {
-            //   pw: "vendors",
-            //   hint: "What the merchants in the Multimart are called",
-            //   difficulty: "easy",
-            //   content: <Locked theme="terminal" title="SALES RECORDS" />
-            // },
+            password: {
+              pw: "vendors",
+              hint: "What the merchants in the Multimart are called",
+              difficulty: "easy",
+              content: <Locked theme="terminal" title="SALES RECORDS" />
+            },
             content: (
               <MaintenanceAccess
                 title="[SALES RECORDS]"
@@ -509,7 +518,7 @@ export const THE_55_MULTIMART_COMMANDS = {
                   "Growth vs last month: +8%"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="TOP PERFORMING VENDORS:">
                   <Line cyan>Smile Cafe: 18,500¤ (Food & beverage)</Line>
                   <Line cyan>Guillotine Row: 16,200¤ (Cybertech)</Line>
@@ -528,7 +537,7 @@ export const THE_55_MULTIMART_COMMANDS = {
                   <Line yellow>• Rising security costs eating into margins</Line>
                   <Line yellow>• Lot #105-3 bidding war draining collective funds</Line>
 
-                  <Divider />
+
 
                   <Line cyan bold>OPPORTUNITIES:</Line>
                   <Line cyan>• Community Centre driving more residents to Multimart</Line>
@@ -553,7 +562,7 @@ export const THE_55_MULTIMART_COMMANDS = {
                   "Pickpocketing remains primary concern"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="THEFT & PICKPOCKETING:">
                   <Line red bold>INCIDENT #1 (3 days ago):</Line>
                   <Line red>Location: Angela Ammo's Auto-Mart</Line>
@@ -561,7 +570,7 @@ export const THE_55_MULTIMART_COMMANDS = {
                   <Line red>Suspect: Male, 20s, hood obscuring face</Line>
                   <Line smoke>Resolution: Escaped before confrontation</Line>
 
-                  <Divider />
+
 
                   <Line red bold>INCIDENT #2 (5 days ago):</Line>
                   <Line red>Location: Bio Court</Line>
@@ -569,7 +578,7 @@ export const THE_55_MULTIMART_COMMANDS = {
                   <Line red>Suspect: Female, 30s, professional demeanor</Line>
                   <Line smoke>Resolution: Victim reported to C.O.P. booth (no action taken)</Line>
 
-                  <Divider />
+
 
                   <Line red bold>INCIDENT #3 (8 days ago):</Line>
                   <Line red>Location: Zed's Pawn Shop</Line>

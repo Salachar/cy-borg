@@ -1,20 +1,20 @@
 import {
   Line,
-  Section,
   Divider,
-  KeyValue,
-  DataTable,
   InsetBox,
 } from "@terminal/TerminalComponents";
 
 import {
+  Camera,
+  CCTV,
   Locked,
   MaintenanceAccess,
   Message,
   PersonnelFile,
   PublicPortal,
-  CommercialCamera,
 } from "@terminal/retcomdevice";
+
+import cctv_image from '@images/the55/stack_rooftop_cctv.png';
 
 export const THE_55_ROOFLINE_COMMANDS = {
   "[U332 - U365] The Roofline": {
@@ -24,11 +24,11 @@ export const THE_55_ROOFLINE_COMMANDS = {
         tagline="Where the tower meets the sky"
         network="ROOFLINE_PUBLIC"
         signalStrength="strong"
-        status="⚠ RESTRICTED ACCESS"
+        status="RESTRICTED ACCESS"
         statusColor="yellow"
         notes={[
           "Unfinished floors and infrastructure",
-          "Security checkpoints active (2d6 Generic Sec Ops)",
+          "Security checkpoints active",
           "Fresh air above The City's smog layer",
           "Graffiti artists and cultists at night"
         ]}
@@ -36,6 +36,17 @@ export const THE_55_ROOFLINE_COMMANDS = {
       />
     ),
     related_commands: {
+      "CCTV": {
+        content: (
+          <CCTV
+            src={cctv_image}
+            cameraId="CAM-CC-MAIN"
+            theme="amber"
+            height={500}
+          />
+        ),
+      },
+
       "Roofline Overview": {
         content: (
           <MaintenanceAccess
@@ -45,7 +56,6 @@ export const THE_55_ROOFLINE_COMMANDS = {
             firmwareVersion="v1.0.0"
             systemStatus="OPERATIONAL"
           >
-            <Divider />
             <InsetBox title="KEY FEATURES:">
               <Line neon>• Construction crane</Line>
               <Line neon>• VIP & Emergency helipads</Line>
@@ -62,12 +72,6 @@ export const THE_55_ROOFLINE_COMMANDS = {
               <Line red>Camera surveillance (limited coverage, blind spots exist)</Line>
               <Line yellow>Purpose: Keep citizens from machinery & vandalism</Line>
             </InsetBox>
-            <InsetBox title="AFTER DARK:">
-              <Line yellow>Observatory: Occupied by 1 Heir of Kergoz + 2d4 Nanogoons</Line>
-              <Line yellow>Graffiti artists active (avoiding patrols)</Line>
-              <Line yellow>Security presence reduced (budget cuts)</Line>
-              <Line cyan>Fresh air and clear skies attract outsiders</Line>
-            </InsetBox>
           </MaintenanceAccess>
         ),
         related_commands: {
@@ -83,10 +87,8 @@ export const THE_55_ROOFLINE_COMMANDS = {
                   "Heavy cargo lift - Upper level access",
                   "Capacity: 50 tons",
                   "Reach: Levels 214-365",
-                  "Control: DR15 to hack"
                 ]}
               >
-                <Divider />
                 <InsetBox title="SPECIFICATIONS:">
                   <Line cyan>Model: TitanLift 9000-XL</Line>
                   <Line cyan>Capacity: 50 tons</Line>
@@ -102,7 +104,6 @@ export const THE_55_ROOFLINE_COMMANDS = {
                 </InsetBox>
                 <InsetBox title="CONTROL REQUIREMENTS:">
                   <Line yellow>Operator license required (corp issued)</Line>
-                  <Line yellow>Remote control: DR15 to hack system</Line>
                   <Line yellow>Physical access: Cabin on Level 340</Line>
                   <Line yellow>Safety override: Emergency stop at checkpoint</Line>
                 </InsetBox>
@@ -130,7 +131,6 @@ export const THE_55_ROOFLINE_COMMANDS = {
                   "Facial recognition + authorization required"
                 ]}
               >
-                <Divider />
                 <InsetBox title="HELIPAD LOCATIONS:">
                   <Line cyan>Pad Alpha (Level 365): VIP primary</Line>
                   <Line cyan>Pad Beta (Level 360): VIP secondary</Line>
@@ -177,7 +177,6 @@ export const THE_55_ROOFLINE_COMMANDS = {
                   "Structural integrity: 98%"
                 ]}
               >
-                <Divider />
                 <InsetBox title="SYSTEM OVERVIEW:">
                   <Line cyan>Size: 1 acre (4,047 m²)</Line>
                   <Line cyan>Material: Reinforced transparent alloy</Line>
@@ -194,10 +193,10 @@ export const THE_55_ROOFLINE_COMMANDS = {
                 <InsetBox title="RECENT ISSUES:">
                   <Line yellow>Last week: Minor crack detected (Sector 7-B)</Line>
                   <Line smoke>Status: Repaired, monitoring</Line>
-
+                  <Divider />
                   <Line yellow>2 weeks ago: Graffiti on exterior (paint removal)</Line>
                   <Line smoke>Perpetrators: Not caught</Line>
-
+                  <Divider />
                   <Line yellow>3 months ago: Bird strike (no structural damage)</Line>
                   <Line smoke>Note: Rare above smog layer</Line>
                 </InsetBox>
@@ -225,7 +224,6 @@ export const THE_55_ROOFLINE_COMMANDS = {
                   "Backup power for upper floors"
                 ]}
               >
-                <Divider />
                 <InsetBox title="STATS:">
                   <Line cyan>Total Panels: 847 units</Line>
                   <Line cyan>Operational: 823 (97.2%)</Line>
@@ -267,7 +265,6 @@ export const THE_55_ROOFLINE_COMMANDS = {
                   "Now: Graffiti monument to failed green energy"
                 ]}
               >
-                <Divider />
                 <InsetBox title="TURBINE STATUS:">
                   <Line red>Model: SkyWind 5000</Line>
                   <Line red>Status: NON-OPERATIONAL (15 years)</Line>
@@ -287,7 +284,6 @@ export const THE_55_ROOFLINE_COMMANDS = {
                   <Line pink>• Political slogans: "GREEN LIES BROWN SKIES"</Line>
                   <Line pink>• Art pieces: Elaborate murals by local artists</Line>
                   <Line pink>• Cult symbols: Keter Protocol, D3BT markings</Line>
-                  <Line yellow>DR16 to add something that stands the test of time</Line>
                 </InsetBox>
                 <InsetBox title="STRIPPED PARTS:">
                   <Line red>Missing components (stolen over 15 years):</Line>
@@ -318,10 +314,8 @@ export const THE_55_ROOFLINE_COMMANDS = {
                 notes={[
                   "Once unblemished walls, now local art collection",
                   "Hidden from main security patrols (blind spot)",
-                  "DR16 to leave lasting mark"
                 ]}
               >
-                <Divider />
                 <InsetBox title="LOCATION:">
                   <Line>Floor 350 interior walls (unfinished construction area)</Line>
                   <Line>Accessible from multiple stairwells and service corridors</Line>
@@ -337,7 +331,6 @@ export const THE_55_ROOFLINE_COMMANDS = {
                   <Line pink>• Collaborative piece - Dozens of artists, evolving</Line>
                 </InsetBox>
                 <InsetBox title="ADDING YOUR MARK:">
-                  <Line yellow>DR16 to add something that stands the test of time</Line>
                   <Line yellow>OR gets noticed by underground art scene</Line>
                   <Line cyan>Success = respect from local crews, potential commissions</Line>
                   <Line smoke>Failure = painted over quickly or mocked publicly</Line>
@@ -346,7 +339,6 @@ export const THE_55_ROOFLINE_COMMANDS = {
                   <Line red>Corpos want to paint over it (haven't done it yet)</Line>
                   <Line yellow>Budget constraints delay action (always "next quarter")</Line>
                   <Line yellow>Security patrols occasionally sweep area</Line>
-                  <Line yellow>2d6 chance each week of major paint-over operation</Line>
                 </InsetBox>
                 <InsetBox title="CULTURAL SIGNIFICANCE:">
                   <Line cyan>Represents resistance against corporate control</Line>
@@ -369,10 +361,8 @@ export const THE_55_ROOFLINE_COMMANDS = {
                 notes={[
                   "Level 365 (highest accessible point)",
                   "Graffiti sigils, clear air, panoramic views",
-                  "Cultist occupation nightly: 1 Heir of Kergoz + 2d4 Nanogoons"
                 ]}
               >
-                <Divider />
                 <InsetBox title="LOCATION:">
                   <Line cyan>Level: 365 (highest accessible point)</Line>
                   <Line cyan>Structure: Unfinished observation platform</Line>
@@ -387,26 +377,7 @@ export const THE_55_ROOFLINE_COMMANDS = {
                   <Line pink>• Directional arrows leading to observatory</Line>
                   <Line pink>• Protective wards (alleged magical significance)</Line>
                 </InsetBox>
-                <InsetBox title="NIGHTLY OCCUPATION:">
-                  <Line red>Occupied at night by 1 Heir of Kergoz</Line>
-                  <Line red>+ 2d4 Nanogoons (cultist followers)</Line>
-                  <Line red>Activity: Rituals, meditation, nano-tech experiments</Line>
-                  <Line yellow>Duration: Sunset to sunrise (every night)</Line>
-                  <Line yellow>Security response: None (orders from above to avoid engagement)</Line>
-                </InsetBox>
-                <InsetBox title="WHAT THEY DO:">
-                  <Line yellow>Heir of Kergoz: Nano-tech meditation rituals</Line>
-                  <Line yellow>Claims to "commune" with nano-entities</Line>
-                  <Line yellow>Nanogoons: Guard heir, observe rituals, train</Line>
-                  <Line yellow>Purpose: Seeking nano-ascension (cult doctrine)</Line>
-                  <Line red>Dangerous if disturbed - nano-tech weaponry</Line>
-                </InsetBox>
-                <InsetBox title="DURING THE DAY:">
-                  <Line cyan>Empty - cultists leave at dawn</Line>
-                  <Line cyan>Popular with urban explorers (great views)</Line>
-                  <Line cyan>Graffiti artists add to sigil collection</Line>
-                  <Line cyan>Occasional meditation spot for residents</Line>
-                </InsetBox>
+
                 <InsetBox title="THE VIEW:">
                   <Line neon>Panoramic view of The City</Line>
                   <Line neon>Above smog layer - see stars at night</Line>
@@ -430,14 +401,12 @@ export const THE_55_ROOFLINE_COMMANDS = {
                   "37 containers total",
                   "Mixed corporate logos",
                   "Official: Building materials | Rumored: Anomalous tech",
-                  "DR12 to pick locks, 50% chance motion alarm"
                 ]}
               >
-                <Divider />
                 <InsetBox title="CONTAINER INVENTORY:">
                   <Line cyan>Total containers: 37 units</Line>
                   <Line cyan>Corporate logos: Mixed (various corps)</Line>
-                  <Line cyan>Security: Basic locks (DR12 to pick)</Line>
+                  <Line cyan>Security: Basic locks</Line>
                   <Line cyan>Official contents: Building materials</Line>
                   <Line yellow>Rumored contents: Anomalous tech (unconfirmed)</Line>
                 </InsetBox>
@@ -460,7 +429,6 @@ export const THE_55_ROOFLINE_COMMANDS = {
                 <InsetBox title="SECURITY:">
                   <Line cyan>Patrolled by security guards (every 2 hours)</Line>
                   <Line cyan>Drone surveillance (Camera 2 monitors area)</Line>
-                  <Line cyan>Basic locks (DR12 to pick, but noisy)</Line>
                   <Line yellow>Opening containers triggers motion alarms (50% chance)</Line>
                 </InsetBox>
                 <InsetBox title="RECENT ACTIVITY:">
@@ -483,10 +451,8 @@ export const THE_55_ROOFLINE_COMMANDS = {
                 notes={[
                   "Dense forest of antennas and satellite dishes",
                   "Control autonomous drones and craft",
-                  "DR14 to hack autonomous systems from here"
                 ]}
               >
-                <Divider />
                 <InsetBox title="INFRASTRUCTURE:">
                   <Line>Dense cluster of receivers and transmitters</Line>
                   <Line>Antenna types: Communication, navigation, surveillance</Line>
@@ -495,7 +461,6 @@ export const THE_55_ROOFLINE_COMMANDS = {
                 </InsetBox>
                 <InsetBox title="HACKING OPPORTUNITY:">
                   <Line yellow bold>DRONE/CRAFT CONTROL:</Line>
-                  <Line yellow>DR14 to hack autonomous systems from this location</Line>
                   <Line yellow>Targets: Delivery drones, security drones, flying cars</Line>
                   <Line yellow>Range: Within visual range of The 55</Line>
                   <Line yellow>Duration: Temporary control (15-30 minutes before re-sync)</Line>
@@ -537,7 +502,6 @@ export const THE_55_ROOFLINE_COMMANDS = {
                   "DO NOT APPROACH"
                 ]}
               >
-                <Divider />
                 <InsetBox title="VEHICLE STATUS:">
                   <Line red>Model: Vindicator-X Combat VTOL</Line>
                   <Line red>Status: PARKED (Helipad Delta)</Line>
@@ -594,15 +558,12 @@ export const THE_55_ROOFLINE_COMMANDS = {
             systemStatus="ACTIVE"
             notes={[
               "Level 340 - Main access point",
-              "Staffed 24/7 by 2d6 Generic Sec Ops",
-              "Low morale (boring job, budget cuts)",
-              "Bribery possible: 50-200¤"
+              "Staffed 24/7 by Sec Ops",
             ]}
           >
-            <Divider />
             <InsetBox title="CHECKPOINT STATUS:">
               <Line cyan>Location: Level 340 - Main access point</Line>
-              <Line cyan>Staffing: 2d6 Generic Sec Ops (6-12 guards)</Line>
+              <Line cyan>Staffing: Sec Ops (6-12 guards)</Line>
               <Line cyan>Hours: 24/7 coverage</Line>
               <Line cyan>Equipment: Basic weapons, stun batons, comms</Line>
               <Line cyan>Drone Control: Remote access to Stinger Drones</Line>
@@ -689,17 +650,17 @@ export const THE_55_ROOFLINE_COMMANDS = {
       },
 
       "Roofline Security": {
-        // password: {
-        //   pw: "roofline",
-        //   hint: "What's this area called?",
-        //   difficulty: "easy",
-        //   content: <Locked theme="terminal" title="ROOFLINE SECURITY" />
-        // },
+        password: {
+          pw: "roofline",
+          hint: "What's this area called?",
+          difficulty: "easy",
+          content: <Locked theme="terminal" title="ROOFLINE SECURITY" />
+        },
         content: (
           <Message
             title="ROOFLINE SECURITY SYSTEMS"
             message="SECURITY ACCESS GRANTED"
-            note="⚠ Checkpoint systems - Guard access only"
+            note="Checkpoint systems - Guard access only"
             theme="secure"
           />
         ),
@@ -713,12 +674,9 @@ export const THE_55_ROOFLINE_COMMANDS = {
                 firmwareVersion="v1.0.0"
                 systemStatus="OPERATIONAL"
                 notes={[
-                  "2d6 Stinger Drones - Remote controlled",
-                  "Current deployment: 8 units (7 operational)",
                   "Guards fly drones for fun when bored"
                 ]}
               >
-                <Divider />
                 <InsetBox title="DRONE INVENTORY:">
                   <Line cyan>Total Drones: 8 units (current roll: 8)</Line>
                   <Line cyan>Operational: 7 units</Line>
@@ -767,7 +725,6 @@ export const THE_55_ROOFLINE_COMMANDS = {
                   "Multiple blind spots (graffiti mural, wind turbine, observatory)"
                 ]}
               >
-                <Divider />
                 <InsetBox title="CAMERA LOCATIONS:">
                   <Line cyan>Checkpoint entrance: 2 cameras (main/backup)</Line>
                   <Line cyan>Helipad Alpha: 1 camera</Line>
@@ -802,7 +759,7 @@ export const THE_55_ROOFLINE_COMMANDS = {
 
           "Checkpoint Camera": {
             content: (
-              <CommercialCamera
+              <Camera
                 id="roofline-checkpoint-main"
                 location="Roofline Security Checkpoint - Main entrance"
                 coverage="Checkpoint entrance, stairwell access, drone garage"
@@ -850,7 +807,6 @@ export const THE_55_ROOFLINE_COMMANDS = {
                   "Cultist activity known but unaddressed"
                 ]}
               >
-                <Divider />
                 <InsetBox title="AUTHORIZED ACCESS (Last 24h):">
                   <Line neon>08:30 - Maintenance: J. Martinez (Solar field repair)</Line>
                   <Line neon>12:00 - VIP: Samuel Samson (Helipad Alpha, departure)</Line>
@@ -862,24 +818,14 @@ export const THE_55_ROOFLINE_COMMANDS = {
                   <Line smoke>Name: Unknown (no ID, gave fake name)</Line>
                   <Line smoke>Reason: "Wanted to see the view"</Line>
                   <Line smoke>Action: Escorted out, warned not to return</Line>
-
                   <Divider />
-
                   <Line red>3 days ago 22:30 - Graffiti artists spotted</Line>
                   <Line smoke>Count: 3 individuals | Location: Floor 350 mural (blind spot)</Line>
                   <Line smoke>Action: Detained briefly, released with warning</Line>
-
                   <Divider />
-
                   <Line red>Last week 03:00 - Unauthorized drone</Line>
                   <Line smoke>Type: Commercial quadcopter (paparazzi suspected)</Line>
                   <Line smoke>Action: Shot down by Stinger Drone 6 | Debris in evidence locker</Line>
-                </InsetBox>
-                <InsetBox title="NIGHTLY OBSERVATORY ACTIVITY (Known but unaddressed):">
-                  <Line yellow>Cultists access observatory every night</Line>
-                  <Line yellow>1 Heir of Kergoz + 2d4 Nanogoons typically present</Line>
-                  <Line yellow>Security does not engage (orders from above)</Line>
-                  <Line smoke>"Not worth the trouble" - Captain's unofficial policy</Line>
                 </InsetBox>
               </MaintenanceAccess>
             ),

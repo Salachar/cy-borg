@@ -1,19 +1,18 @@
 import {
   Line,
-  Section,
-  Divider,
-  KeyValue,
-  DataTable,
   InsetBox,
 } from "@terminal/TerminalComponents";
 
 import {
+  CCTV,
   Locked,
   MaintenanceAccess,
   Message,
   PersonnelFile,
   PublicPortal,
 } from "@terminal/retcomdevice";
+
+import cctv_image from '@images/the55/tg_labs_cctv.png';
 
 export const THE_55_GREEN_ZONE_COMMANDS = {
   "[U171 - U200] TG Labs Green Zone": {
@@ -35,6 +34,17 @@ export const THE_55_GREEN_ZONE_COMMANDS = {
       />
     ),
     related_commands: {
+      "CCTV": {
+        content: (
+          <CCTV
+            src={cctv_image}
+            cameraId="CAM-CC-MAIN"
+            theme="amber"
+            height={500}
+          />
+        ),
+      },
+
       "Green Zone Overview": {
         content: (
           <MaintenanceAccess
@@ -49,7 +59,7 @@ export const THE_55_GREEN_ZONE_COMMANDS = {
               "10,000¤ minimum credit balance required for entry"
             ]}
           >
-            <Divider />
+
             <InsetBox title="ACCESS RESTRICTIONS:">
               <Line red bold>MINIMUM 10,000¤ CREDIT BALANCE REQUIRED</Line>
               <Line red>Facial recognition and credit verification at all entrances</Line>
@@ -97,7 +107,6 @@ export const THE_55_GREEN_ZONE_COMMANDS = {
               "~2% denial rate daily"
             ]}
           >
-            <Divider />
             <InsetBox title="STANDARD ENTRY PROCESS (6 checkpoints):">
               <Line neon>1. Approach checkpoint gate</Line>
               <Line neon>2. Facial recognition scan (automated)</Line>
@@ -114,10 +123,10 @@ export const THE_55_GREEN_ZONE_COMMANDS = {
             </InsetBox>
             <InsetBox title="BYPASS METHODS (Unofficial):">
               <Line yellow bold>KNOWN VULNERABILITIES:</Line>
-              <Line yellow>• Service entrance (employee badges can be forged, DR14)</Line>
-              <Line yellow>• Maintenance tunnels (access from Kaytell, DR16 to find)</Line>
+              <Line yellow>• Service entrance</Line>
+              <Line yellow>• Maintenance tunnels</Line>
               <Line yellow>• Bribed guards (2,000¤ per entry, rare, risky)</Line>
-              <Line yellow>• Identity spoofing (requires hacking, DR16)</Line>
+              <Line yellow>• Identity spoofing</Line>
               <Line red>All methods carry risk of detection and prosecution</Line>
             </InsetBox>
             <InsetBox title="VISITOR PASSES (Temporary 24h access):">
@@ -161,7 +170,6 @@ export const THE_55_GREEN_ZONE_COMMANDS = {
                   "Unauthorized entry is corporate espionage"
                 ]}
               >
-                <Divider />
                 <InsetBox title="OFFICIAL DESCRIPTION:">
                   <Line>"A cutting-edge research facility dedicated to advancing human potential through biotechnology, neural enhancement, and medical innovation."</Line>
                   <Line smoke>- TG Labs public relations statement</Line>
@@ -213,7 +221,7 @@ export const THE_55_GREEN_ZONE_COMMANDS = {
                   "Reservation-only (weeks in advance)"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="ABOUT:">
                   <Line>High-end restaurant in Green Zone</Line>
                   <Line>Celebrity chef Kenji Nakamura</Line>
@@ -224,7 +232,7 @@ export const THE_55_GREEN_ZONE_COMMANDS = {
                   <Line cyan>8 courses, wine pairings included</Line>
                   <Line cyan>Changes seasonally, dietary restrictions accommodated</Line>
 
-                  <Divider />
+
 
                   <Line neon>Current offerings:</Line>
                   <Line smoke>• Amuse-bouche (Chef's choice)</Line>
@@ -267,7 +275,7 @@ export const THE_55_GREEN_ZONE_COMMANDS = {
               "42 total security personnel"
             ]}
           >
-            <Divider />
+
             <InsetBox title="SECURITY & MANAGEMENT:">
               <Line neon>• Director Chen Wei - Green Zone Administrator</Line>
               <Line neon>• Captain Elena Voronin - Security Chief</Line>
@@ -445,17 +453,17 @@ export const THE_55_GREEN_ZONE_COMMANDS = {
       },
 
       "Green Zone Security": {
-        // password: {
-        //   pw: "credit",
-        //   hint: "What you need a balance of to access the Green Zone",
-        //   difficulty: "easy",
-        //   content: <Locked theme="terminal" title="GREEN ZONE SECURITY" />
-        // },
+        password: {
+          pw: "credit",
+          hint: "What you need a balance of to access the Green Zone",
+          difficulty: "easy",
+          content: <Locked theme="terminal" title="GREEN ZONE SECURITY" />
+        },
         content: (
           <Message
             title="GREEN ZONE SECURITY SYSTEMS"
             message="SECURITY ACCESS GRANTED"
-            note="⚠ Access control systems - Authorized personnel only"
+            note="Access control systems - Authorized personnel only"
             theme="secure"
           />
         ),
@@ -475,7 +483,7 @@ export const THE_55_GREEN_ZONE_COMMANDS = {
                   "6 checkpoint monitoring"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="CHECKPOINT ACTIVITY:">
                   <Line cyan>North Gate: 847 entries, 12 denials</Line>
                   <Line cyan>South Gate: 623 entries, 18 denials</Line>
@@ -512,12 +520,12 @@ export const THE_55_GREEN_ZONE_COMMANDS = {
           },
 
           "Credit Verification Database": {
-            // password: {
-            //   pw: "balance",
-            //   hint: "What the system checks in your account",
-            //   difficulty: "medium",
-            //   content: <Locked theme="terminal" title="CREDIT VERIFICATION" />
-            // },
+            password: {
+              pw: "balance",
+              hint: "What the system checks in your account",
+              difficulty: "medium",
+              content: <Locked theme="terminal" title="CREDIT VERIFICATION" />
+            },
             content: (
               <MaintenanceAccess
                 title="[CREDIT VERIFICATION DATABASE]"
@@ -532,7 +540,6 @@ export const THE_55_GREEN_ZONE_COMMANDS = {
                   "Continuous monitoring during visit"
                 ]}
               >
-                <Divider />
                 <InsetBox title="SYSTEM OVERVIEW:">
                   <Line>Automated credit balance verification at all checkpoints</Line>
                   <Line>Queries banking network in real-time (~1 second)</Line>
@@ -560,24 +567,17 @@ export const THE_55_GREEN_ZONE_COMMANDS = {
                   <Line yellow>Highest denial day: 89 denials (3.7%)</Line>
                   <Line smoke>Denial rate increasing 0.3% month-over-month</Line>
                 </InsetBox>
-                <InsetBox title="KNOWN EXPLOITS:">
-                  <Line red>• Identity spoofing (facial reconstruction, DR16)</Line>
-                  <Line red>• Banking system hack (inflate balance, DR18)</Line>
-                  <Line red>• Sponsored visitor fraud (forge sponsorship, DR14)</Line>
-                  <Line red>• Employee badge theft/forgery (DR14 to create)</Line>
-                  <Line yellow>All exploits carry risk of detection and prosecution</Line>
-                </InsetBox>
               </MaintenanceAccess>
             ),
           },
 
           "Missing Persons Database": {
-            // password: {
-            //   pw: "enrichment",
-            //   hint: "The name of TG Labs' research facility",
-            //   difficulty: "hard",
-            //   content: <Locked theme="terminal" title="MISSING PERSONS" />
-            // },
+            password: {
+              pw: "enrichment",
+              hint: "The name of TG Labs' research facility",
+              difficulty: "hard",
+              content: <Locked theme="terminal" title="MISSING PERSONS" />
+            },
             content: (
               <MaintenanceAccess
                 title="[MISSING PERSONS - GREEN ZONE RELATED]"
@@ -592,7 +592,7 @@ export const THE_55_GREEN_ZONE_COMMANDS = {
                   "Official investigations inconclusive"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="CASE SUMMARY:">
                   <Line red bold>47 MISSING PERSONS CASES</Line>
                   <Line red>Last seen in Green Zone: 39 (83%)</Line>
@@ -613,13 +613,13 @@ export const THE_55_GREEN_ZONE_COMMANDS = {
                   <Line smoke>Marcus Chen, Age 28 | Last seen: Service Entrance</Line>
                   <Line smoke>Responded to "paid medical trial" ad | Status: No body found</Line>
 
-                  <Divider />
+
 
                   <Line neon bold>CASE #GZ-2025-008 (2 months ago):</Line>
                   <Line smoke>Sarah Kowalski, Age 34 | Last seen: Near Enrichment Centre</Line>
                   <Line smoke>"Cognitive enhancement study" | Status: Family filed missing persons</Line>
 
-                  <Divider />
+
 
                   <Line neon bold>CASE #GZ-2025-015 (3 weeks ago):</Line>
                   <Line smoke>Diego Martinez, Age 23 | Last seen: Azure Dining (busboy)</Line>
@@ -631,7 +631,7 @@ export const THE_55_GREEN_ZONE_COMMANDS = {
                   <Line red>Cases remain open but inactive</Line>
                   <Line red>TG Labs cooperation limited (corporate lawyers)</Line>
 
-                  <Divider />
+
 
                   <Line yellow bold>COMMUNITY OUTREACH THEORY:</Line>
                   <Line yellow>TG Labs recruiting test subjects from lower levels</Line>
@@ -664,7 +664,7 @@ export const THE_55_GREEN_ZONE_COMMANDS = {
                   "Response times: <3 minutes"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="PATROL STRUCTURE:">
                   <Line cyan>Total security personnel: 42</Line>
                   <Line cyan>Day shift (06:00-18:00): 20 guards</Line>

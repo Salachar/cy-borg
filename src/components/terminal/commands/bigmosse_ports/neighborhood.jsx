@@ -203,7 +203,6 @@ export const NEIGHBORHOOD_COMMANDS = {
           "Payment: Cash or credchip accepted"
         ]}
       >
-        <Divider />
         <InsetBox title="STANDARD RATES:">
           <KeyValue label="Short trip (under 1km)" value="10¤" />
           <KeyValue label="Medium trip (1-3km)" value="20¤" />
@@ -242,7 +241,6 @@ export const NEIGHBORHOOD_COMMANDS = {
           "Proprietor: 'Fingers' (licensed medical training, former corporate medic)"
         ]}
       >
-        <Divider />
         <InsetBox title="SERVICES & RATES:">
           <KeyValue label="Emergency treatment" value="100¤" />
           <KeyValue label="Trauma surgery" value="150¤" />
@@ -298,7 +296,6 @@ export const NEIGHBORHOOD_COMMANDS = {
               "Supply orders tracked for inventory management"
             ]}
           >
-            <Divider />
             <InsetBox title="RECENT CASES:">
               <Line neon>Patient #447 - Gunshot wound (shoulder), treated, stable</Line>
               <Line neon>Patient #448 - Cyberware rejection, stabilized, referred</Line>
@@ -334,7 +331,6 @@ export const NEIGHBORHOOD_COMMANDS = {
           "Premium: +50¤ for 'no questions asked' service"
         ]}
       >
-        <Divider />
         <InsetBox title="SERVICES OFFERED:">
           <Line neon>• Cyberware sales & installation</Line>
           <Line neon>• Weapon modifications</Line>
@@ -402,7 +398,6 @@ export const NEIGHBORHOOD_COMMANDS = {
               "All items tested before sale (mostly)"
             ]}
           >
-            <Divider />
             <InsetBox title="CYBERWARE (Refurbished):">
               <Line neon>Neural interface (basic) - 3 units</Line>
               <Line neon>Subdermal armor plates - 2 units</Line>
@@ -521,7 +516,6 @@ export const NEIGHBORHOOD_COMMANDS = {
               "Next delivery: Tomorrow morning (06:00)"
             ]}
           >
-            <Divider />
             <InsetBox title="INVENTORY ALERTS:">
               <Line yellow>Low stock: Milk, bread, batteries</Line>
               <Line yellow>Reorder needed: Snacks, alcohol</Line>
@@ -776,7 +770,6 @@ export const NEIGHBORHOOD_COMMANDS = {
               },
             ]}
           >
-            <Divider />
             <Line cyan>Overall: Quiet building, minimal issues</Line>
             <Line yellow>Next maintenance: HVAC inspection (next week)</Line>
           </IncidentLog>
@@ -1084,7 +1077,6 @@ export const NEIGHBORHOOD_COMMANDS = {
               "Back room inventory unsorted"
             ]}
           >
-             <Divider />
             <InsetBox title="RECENT PAWNS (Last 7 days):">
               <Line neon>Item: Synthesizer keyboard, Loan: 80¤, Due: 22 days</Line>
               <Line neon>Item: Gold watch, Loan: 120¤, Due: 18 days</Line>

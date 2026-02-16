@@ -64,11 +64,11 @@ export const ROYAL_WEST_WAREHOUSE = {
         networkStatus="CORPORATE PRIVATE NETWORK (Externally inaccessible)"
         securityLevel="MAXIMUM"
         warnings={[
-          "⚠ EXTREME SECURITY - Armed guards patrol 24/7",
-          "⚠ Drone surveillance active across entire perimeter",
-          "⚠ Lethal force authorized for trespassers",
-          "⚠ No external network access - air-gapped systems",
-          "⚠ Nobody challenges Royal West - Nobody."
+          "EXTREME SECURITY - Armed guards patrol 24/7",
+          "Drone surveillance active across entire perimeter",
+          "Lethal force authorized for trespassers",
+          "No external network access - air-gapped systems",
+          "Nobody challenges Royal West - Nobody."
         ]}
         theme="secure"
       >

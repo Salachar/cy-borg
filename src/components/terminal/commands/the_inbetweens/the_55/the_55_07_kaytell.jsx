@@ -1,13 +1,10 @@
 import {
   Line,
-  Section,
-  Divider,
-  KeyValue,
-  DataTable,
   InsetBox,
 } from "@terminal/TerminalComponents";
 
 import {
+  CCTV,
   Locked,
   MaintenanceAccess,
   Message,
@@ -15,6 +12,8 @@ import {
   PublicPortal,
   ShiftSchedule,
 } from "@terminal/retcomdevice";
+
+import cctv_image from '@images/the55/kaytell_cctv.png';
 
 export const THE_55_KAYTELL_MANUFACTURING_COMMANDS = {
   "[U148 - U170] Kaytell Manufacturing": {
@@ -35,6 +34,17 @@ export const THE_55_KAYTELL_MANUFACTURING_COMMANDS = {
       />
     ),
     related_commands: {
+      "CCTV": {
+        content: (
+          <CCTV
+            src={cctv_image}
+            cameraId="CAM-CC-MAIN"
+            theme="amber"
+            height={500}
+          />
+        ),
+      },
+
       "Facility Overview": {
         content: (
           <MaintenanceAccess
@@ -49,7 +59,7 @@ export const THE_55_KAYTELL_MANUFACTURING_COMMANDS = {
               "Strict safety protocols (often ignored)"
             ]}
           >
-            <Divider />
+
             <InsetBox title="EMPLOYEE SERVICES:">
               <Line cyan>• Company cafeteria (subsidized meals)</Line>
               <Line cyan>• Medical bay (work injuries only)</Line>
@@ -81,7 +91,7 @@ export const THE_55_KAYTELL_MANUFACTURING_COMMANDS = {
               "Management, floor workers, support staff"
             ]}
           >
-            <Divider />
+
             <InsetBox title="MANAGEMENT & OFFICE:">
               <Line neon>• Gale Lannister - Facility Manager</Line>
               <Line neon>• Hiro Tanaka - Production Supervisor</Line>
@@ -357,17 +367,17 @@ export const THE_55_KAYTELL_MANUFACTURING_COMMANDS = {
       },
 
       "Kaytell Systems": {
-        // password: {
-        //   pw: "kaytell",
-        //   hint: "The name of the manufacturing company",
-        //   difficulty: "easy",
-        //   content: <Locked theme="terminal" title="KAYTELL SYSTEMS" />
-        // },
+        password: {
+          pw: "kaytell",
+          hint: "The name of the manufacturing company",
+          difficulty: "easy",
+          content: <Locked theme="terminal" title="KAYTELL SYSTEMS" />
+        },
         content: (
           <Message
             title="KAYTELL MANUFACTURING SYSTEMS"
             message="EMPLOYEE ACCESS GRANTED"
-            note="⚠ Production systems - Authorized personnel only"
+            note="Production systems - Authorized personnel only"
             theme="corporate"
           />
         ),
@@ -386,18 +396,18 @@ export const THE_55_KAYTELL_MANUFACTURING_COMMANDS = {
                   "Line 3 chronically underperforming"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="LINE 1 - CONSUMER ELECTRONICS:">
                   <Line cyan>Product: Smartwatches (Model KT-7)</Line>
                   <Line cyan>Daily Target: 2,400 units</Line>
                   <Line cyan>Current Output: 2,180 units (91%)</Line>
-                  <Line yellow>Status: 🟡 Behind target</Line>
+                  <Line yellow>Status: Behind target</Line>
                 </InsetBox>
                 <InsetBox title="LINE 2 - COMPONENT ASSEMBLY:">
                   <Line cyan>Product: Circuit boards (Various)</Line>
                   <Line cyan>Daily Target: 8,000 units</Line>
                   <Line cyan>Current Output: 8,420 units (105%)</Line>
-                  <Line neon>Status: 🟢 Exceeding target</Line>
+                  <Line neon>Status: Exceeding target</Line>
                 </InsetBox>
                 <InsetBox title="LINE 3 - FINAL ASSEMBLY:">
                   <Line cyan>Product: Tablets (Model KT-Pro 4)</Line>
@@ -437,7 +447,7 @@ export const THE_55_KAYTELL_MANUFACTURING_COMMANDS = {
                   "Line 3 exceeds acceptable threshold"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="DEFECT RATES (Last 30 Days):">
                   <Line cyan>Line 1 (Smartwatches): 3.2% defect rate</Line>
                   <Line cyan>Line 2 (Circuit boards): 1.8% defect rate</Line>
@@ -450,13 +460,13 @@ export const THE_55_KAYTELL_MANUFACTURING_COMMANDS = {
                   <Line smoke>• Battery connection failures (0.9%)</Line>
                   <Line smoke>• Cosmetic defects (0.5%)</Line>
 
-                  <Divider />
+
 
                   <Line neon bold>LINE 2:</Line>
                   <Line smoke>• Solder joint failures (1.1%)</Line>
                   <Line smoke>• Component misalignment (0.7%)</Line>
 
-                  <Divider />
+
 
                   <Line neon bold>LINE 3:</Line>
                   <Line smoke>• Screen defects (3.2%)</Line>
@@ -488,7 +498,7 @@ export const THE_55_KAYTELL_MANUFACTURING_COMMANDS = {
                   "1 serious injury (crush injury, Line 3)"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="INCIDENTS (Last 30 Days):">
                   <Line red bold>TOTAL INCIDENTS: 14</Line>
                   <Line cyan>Minor injuries: 9 (cuts, bruises)</Line>
@@ -504,7 +514,7 @@ export const THE_55_KAYTELL_MANUFACTURING_COMMANDS = {
                   <Line red>Cause: Safety guard removed for maintenance</Line>
                   <Line red>Status: Medical leave (4-6 weeks)</Line>
 
-                  <Divider />
+
 
                   <Line yellow bold>INVESTIGATION FINDINGS:</Line>
                   <Line>Safety guard not replaced after maintenance</Line>
@@ -531,12 +541,12 @@ export const THE_55_KAYTELL_MANUFACTURING_COMMANDS = {
           },
 
           "Union Communications": {
-            // password: {
-            //   pw: "solidarity",
-            //   hint: "The core principle of union organizing",
-            //   difficulty: "medium",
-            //   content: <Locked theme="terminal" title="UNION NETWORK" />
-            // },
+            password: {
+              pw: "solidarity",
+              hint: "The core principle of union organizing",
+              difficulty: "medium",
+              content: <Locked theme="terminal" title="UNION NETWORK" />
+            },
             content: (
               <MaintenanceAccess
                 title="[UNOFFICIAL UNION NETWORK]"
@@ -548,10 +558,10 @@ export const THE_55_KAYTELL_MANUFACTURING_COMMANDS = {
                   "Worker organizing communications",
                   "Led by Viktor Sokolov and ~30 core organizers",
                   "Support from ~60% of workforce",
-                  "⚠ Communications monitored by corporate security"
+                  "Communications monitored by corporate security"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="ABOUT:">
                   <Line>Unofficial worker network organizing for formal union recognition</Line>
                   <Line>Led by Viktor Sokolov and ~30 core organizers</Line>
@@ -564,13 +574,13 @@ export const THE_55_KAYTELL_MANUFACTURING_COMMANDS = {
                   <Line smoke>Subject: Safety Meeting - Night Shift</Line>
                   <Line>"Another injury on Line 3. Management calls it 'operator error' but we all know the guard was missing. Meeting Friday night, 23:00, break room. Pass it on quietly."</Line>
 
-                  <Divider />
+
 
                   <Line neon bold>FROM: Maya Patel</Line>
                   <Line smoke>Subject: Overtime Refusal</Line>
                   <Line>"They're forcing mandatory overtime again. Line 3 behind quota because equipment keeps breaking, not our fault. Can we refuse collectively? Legal advice needed."</Line>
 
-                  <Divider />
+
 
                   <Line neon bold>FROM: Anonymous</Line>
                   <Line smoke>Subject: Warning</Line>

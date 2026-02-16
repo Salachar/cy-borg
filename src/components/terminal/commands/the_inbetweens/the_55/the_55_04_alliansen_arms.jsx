@@ -1,13 +1,10 @@
 import {
   Line,
-  Section,
-  Divider,
-  KeyValue,
-  DataTable,
   InsetBox,
 } from "@terminal/TerminalComponents";
 
 import {
+  CCTV,
   Locked,
   MaintenanceAccess,
   Message,
@@ -15,6 +12,8 @@ import {
   PublicPortal,
   Tenet,
 } from "@terminal/retcomdevice";
+
+import cctv_image from '@images/the55/alliansen_arms_cctv.png';
 
 export const THE_55_ALLIANSEN_ARMS_COMMANDS = {
   "[U061 - U100] Alliansen Arms": {
@@ -36,6 +35,17 @@ export const THE_55_ALLIANSEN_ARMS_COMMANDS = {
       />
     ),
     related_commands: {
+      "CCTV": {
+        content: (
+          <CCTV
+            src={cctv_image}
+            cameraId="CAM-CC-MAIN"
+            theme="amber"
+            height={500}
+          />
+        ),
+      },
+
       "Public Directory": {
         "Lazet (Tenet)": {
           content: (
@@ -138,7 +148,7 @@ export const THE_55_ALLIANSEN_ARMS_COMMANDS = {
               status="ACTIVE"
               intercomEnabled={false}
               emergencyContact="Building Security ONLY"
-              notes="⚠ DO NOT DISTURB. Multiple complaints on file. Contact building management for issues."
+              notes="DO NOT DISTURB. Multiple complaints on file. Contact building management for issues."
             />
           ),
         },
@@ -198,7 +208,7 @@ export const THE_55_ALLIANSEN_ARMS_COMMANDS = {
               status="SUSPENDED"
               intercomEnabled={false}
               emergencyContact="Hazmat Team: Contact Building Management"
-              notes="⚠ BIOHAZARD QUARANTINE. DO NOT ENTER. DO NOT TAMPER WITH SEAL. Contact management immediately if seal appears damaged."
+              notes="BIOHAZARD QUARANTINE. DO NOT ENTER. DO NOT TAMPER WITH SEAL. Contact management immediately if seal appears damaged."
             />
           ),
         },
@@ -259,7 +269,7 @@ export const THE_55_ALLIANSEN_ARMS_COMMANDS = {
               status="ACTIVE"
               intercomEnabled={true}
               emergencyContact="Building Management: Extension 100"
-              notes="⚠ LEASE VIOLATIONS ON FILE. Fire safety inspections pending. Deliveries: Leave with management."
+              notes="LEASE VIOLATIONS ON FILE. Fire safety inspections pending. Deliveries: Leave with management."
             />
           ),
         },
@@ -290,7 +300,7 @@ export const THE_55_ALLIANSEN_ARMS_COMMANDS = {
               status="ACTIVE"
               intercomEnabled={true}
               emergencyContact="Building Management: Extension 100"
-              notes="⚠ HOARDING VIOLATION ON FILE. Longtime resident - knows all building history. Ring buzzer (be patient - may take a while to answer)."
+              notes="HOARDING VIOLATION ON FILE. Longtime resident - knows all building history. Ring buzzer (be patient - may take a while to answer)."
             />
           ),
         },
@@ -335,7 +345,7 @@ export const THE_55_ALLIANSEN_ARMS_COMMANDS = {
               moveInDate="Unknown"
               status="ACTIVE"
               intercomEnabled={false}
-              notes="⚠ No response to contact attempts. Rent paid electronically. Do not disturb."
+              notes="No response to contact attempts. Rent paid electronically. Do not disturb."
             />
           ),
         },
@@ -623,10 +633,8 @@ export const THE_55_ALLIANSEN_ARMS_COMMANDS = {
                   "Status: QUARANTINED",
                   "Sealed: 8 months ago",
                   "Threat: BIOHAZARD",
-                  "Access: DR14 to break in"
                 ]}
               >
-                <Divider />
                 <InsetBox title="QUARANTINE STATUS:">
                   <Line red bold>SEALED DUE TO VIRAL CONTAMINATION</Line>
                   <Line red>Former resident exposed to unknown pathogen</Line>
@@ -758,7 +766,6 @@ export const THE_55_ALLIANSEN_ARMS_COMMANDS = {
                 performance={null}
                 notes={[
                   "Member of Cult of Kergoz (lower levels)",
-                  "Has secret entrance to The Synk (DR14 to find)",
                   "Quiet and reclusive, avoids neighbors",
                   "Apartment filled with occult items and texts",
                   "Occasionally disappears for days (cult activities)",
@@ -862,7 +869,7 @@ export const THE_55_ALLIANSEN_ARMS_COMMANDS = {
                   "Constant humming noise from equipment"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="NEIGHBOR THEORIES:">
                   <Line yellow>• Corporate surveillance operation</Line>
                   <Line yellow>• Cryptocurrency mining operation</Line>
@@ -897,21 +904,21 @@ export const THE_55_ALLIANSEN_ARMS_COMMANDS = {
               "Run primarily by Ada Five-Five"
             ]}
           >
-            <Divider />
+
             <InsetBox title="ACTIVE CAMPAIGNS:">
               <Line neon bold>UNIVERSAL BASIC INCOME FUND:</Line>
               <Line>Goal: Provide 50¤/month to every 55 resident</Line>
               <Line>Progress: 12% funded</Line>
               <Line smoke>Need corporate sponsors or donors</Line>
 
-              <Divider />
+
 
               <Line neon bold>ANTI-EVICTION LEGAL DEFENSE:</Line>
               <Line>Lawyer Catie Calahan leading effort</Line>
               <Line>Successfully blocked 23 evictions this year</Line>
               <Line>Constantly battling new corporate buyout attempts</Line>
 
-              <Divider />
+
 
               <Line neon bold>NUFASCIST BOUNTY PROGRAM:</Line>
               <Line>1k¤ per head for confirmed NuFascist extremists</Line>
@@ -936,17 +943,17 @@ export const THE_55_ALLIANSEN_ARMS_COMMANDS = {
       },
 
       "Building Management": {
-        // password: {
-        //   pw: "alliansen",
-        //   hint: "The name of this apartment building (first word)",
-        //   difficulty: "easy",
-        //   content: <Locked theme="terminal" title="BUILDING MANAGEMENT" />
-        // },
+        password: {
+          pw: "alliansen",
+          hint: "The name of this apartment building (first word)",
+          difficulty: "easy",
+          content: <Locked theme="terminal" title="BUILDING MANAGEMENT" />
+        },
         content: (
           <Message
             title="ALLIANSEN ARMS MANAGEMENT"
             message="BUILDING MANAGEMENT ACCESS"
-            note="⚠ Property systems - Authorized personnel only"
+            note="Property systems - Authorized personnel only"
             theme="corporate"
           />
         ),
@@ -966,7 +973,7 @@ export const THE_55_ALLIANSEN_ARMS_COMMANDS = {
                   "Collection rate: 81%"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="OCCUPANCY STATUS:">
                   <Line cyan>Occupied units: 782 (98%)</Line>
                   <Line cyan>Vacant units: 17 (2%)</Line>
@@ -1012,14 +1019,14 @@ export const THE_55_ALLIANSEN_ARMS_COMMANDS = {
                   "Average response time: 2-3 weeks"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="URGENT REQUESTS:">
                   <Line red bold>REQUEST #7841 (Apt. #7529 - Kincaid)</Line>
                   <Line red>Issue: Electrical overload from mech project</Line>
                   <Line red>Status: URGENT - Fire hazard</Line>
                   <Line red>Action: Inspection and possible disconnect</Line>
 
-                  <Divider />
+
 
                   <Line red bold>REQUEST #7833 (Apt. #7121 - Quarantine)</Line>
                   <Line red>Issue: Seal integrity check required</Line>
@@ -1056,7 +1063,7 @@ export const THE_55_ALLIANSEN_ARMS_COMMANDS = {
                   "Multiple ongoing investigations"
                 ]}
               >
-                <Divider />
+
                 <InsetBox title="VIOLENT INCIDENTS:">
                   <Line red bold>INCIDENT #1 (5 days ago):</Line>
                   <Line red>Location: Apt. #6713 (Karl Johnson)</Line>
@@ -1065,7 +1072,7 @@ export const THE_55_ALLIANSEN_ARMS_COMMANDS = {
                   <Line yellow>Resolution: Victim treated, Johnson warned (no arrest)</Line>
                   <Line yellow>Community Outreach increased bounty to 1k¤</Line>
 
-                  <Divider />
+
 
                   <Line red bold>INCIDENT #2 (12 days ago):</Line>
                   <Line red>Location: Floor 72 corridor</Line>
@@ -1079,7 +1086,7 @@ export const THE_55_ALLIANSEN_ARMS_COMMANDS = {
                   <Line yellow>Type: Noise complaint (band practice at 2am)</Line>
                   <Line smoke>Resolution: Final warning issued, lease violation logged</Line>
 
-                  <Divider />
+
 
                   <Line yellow bold>INCIDENT #4 (15 days ago):</Line>
                   <Line yellow>Location: Apt. #7529 (Kincaid)</Line>

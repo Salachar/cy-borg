@@ -80,7 +80,6 @@ export const SOUTH_CENTRAL_FUN_COMMANDS = {
               "Magazines: Luxury Living, Corporate Law Review, KILL!KILL!KILL!"
             ]}
           >
-            <Divider />
             <InsetBox title="SECURITY MEASURES:">
               <Line red>• Metal detector at entrance</Line>
               <Line red>• Armed guard (24/7 presence)</Line>
