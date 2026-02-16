@@ -4,10 +4,10 @@ import {
   InsetBox,
 } from '@terminal/TerminalComponents';
 import {
-  BiometricRecognition,
+  BiometricLog,
   BountyCard,
+  Camera,
   CoffeeMachine,
-  CommercialCamera,
   CommunityBoard,
   DigitalWallet,
   Extractable,
@@ -17,6 +17,7 @@ import {
   MaintenanceAccess,
   Menu,
   PublicPortal,
+  SecureAccessControl,
   SmartFridge,
   VendingMachine,
   Workstation,
@@ -63,18 +64,12 @@ export const DOC_JOY_CLINIC_COMMANDS = {
             threat="MEDIUM"
             notes={[
               "REAPER CONTRACT RR-2067-1104: Chrome legs only - NOT for termination",
-              "Target must be incapacitated. Removal requires DR14 Knowledge test",
-              "Damage to merchandise: -500¤ per point. Time limit: 36 hours",
-              "BONUS: 1 cybertech upgrade (choice of 3) upon delivery",
+              "Damage to merchandise will lead to reduction in payment",
+              "Time limit: 36 hours",
+              "OFFERING: 1 cybertech upgrade (limited options) upon delivery",
               "Target hosting multi-day party - security minimal, likely intoxicated"
             ]}
           >
-            <InsetBox title="CONTRACT PAYMENT:">
-              <Line yellow bold>Base Payment: 5,000¤</Line>
-              <Line yellow bold>Bonus: 1 Cybertech upgrade (choice of 3)</Line>
-              <Line red bold>Time Limit: 36 hours</Line>
-              <Line red>Pay deduction: -500¤ per point of damage to merchandise</Line>
-            </InsetBox>
             <InsetBox title="ADDITIONAL INFO:">
               <Line yellow>Stage name only - real identity unknown</Line>
               <Line yellow>Division: Heavyweight Killmatch, Rank #18 (climbing)</Line>
@@ -198,7 +193,7 @@ export const DOC_JOY_CLINIC_COMMANDS = {
           <CoffeeMachine>
             <DigitalWallet
               id="doc_joy_coffee_machine_wallet"
-              credits={100}
+              credits={50}
             />
           </CoffeeMachine>
         ),
@@ -225,7 +220,6 @@ export const DOC_JOY_CLINIC_COMMANDS = {
               "Side walkways for equipment storage"
             ]}
           >
-            <Divider />
             <InsetBox title="EQUIPMENT STATUS:">
               <Line neon>• Operating chair: READY</Line>
               <Line neon>• Chrome installation tools: STERILIZED</Line>
@@ -236,151 +230,72 @@ export const DOC_JOY_CLINIC_COMMANDS = {
           </MaintenanceAccess>
         ),
         related_commands: {
-          "Security Incident Log": {
+          "Security Footage": {
             content: (
-              <IncidentLog
-                title="SECURITY INCIDENTS"
-                timeframe="Last 30 days"
-                incidents={[
-                  {
-                    timestamp: "Oct 28 (03:47)",
-                    type: "FORCED ENTRY - THEFT",
-                    details: {
-                      Location: "Secure storage area",
-                      Stolen: "Chrome leg prototype (45,000¤ value)",
-                      Method: "Professional - lock bypassed cleanly, no forced entry",
-                      Footage: "Corrupted by professional-grade malware",
-                      Profile: "High-level tech skills, knew exactly what to steal",
-                      Status: "UNSOLVED"
-                    }
-                  },
-                  {
-                    timestamp: "Nov 2 (14:20)",
-                    type: "INTELLIGENCE UPDATE",
-                    details: {
-                      Source: "Anonymous tip",
-                      Info: "Identical design spotted on Steel Jackhammer",
-                      Timeline: "Oct 29: Jackhammer's Krok fight (legs ripped off) → Oct 30: Alliansen announces 'new prototype' → Nov 1: Jackhammer appears with matching legs",
-                      Suspicion: "Timing too convenient - theft likely commissioned by Alliansen Inc.",
-                      Status: "CONFIRMED MATCH"
-                    }
-                  },
-                  {
-                    timestamp: "Nov 14 (09:15)",
-                    type: "REAPER CONTRACT ISSUED",
-                    details: {
-                      Reason: "Legal action impossible - Alliansen claims independent development (no proof)",
-                      Action: "Physical recovery authorized",
-                      Target: "Steel Jackhammer's chrome legs",
-                      Status: "ACTIVE"
-                    }
-                  },
-                ]}
-              >
-                <Divider />
-                <Line red bold>CONCLUSION: Doc Joy's stolen design is on Steel Jackhammer's legs.</Line>
-                <Line red>Either: (1) Alliansen hired thief before Krok fight, (2) Krok fight arranged to create need, or (3) Opportunistic theft sold to Alliansen. Regardless - physical recovery is only option.</Line>
-              </IncidentLog>
-            ),
-            related_commands: {
-              "Biometric Access Log": {
-                content: (
-                  <BiometricRecognition
-                    id="docjoy-secure-storage"
-                    name="SECURE STORAGE ACCESS CONTROL"
-                    location="Doc Joy's Clinic - Secure Storage Area"
-                    lastService="1 week ago (upgraded after breach)"
-                    confidence="95%"
-                    scans={[
-                      {
-                        timestamp: "Today, 20:00",
-                        source: "Storage Access Scanner",
-                        name: "Doc Joy",
-                        result: "MATCHED",
-                        confidence: 98,
-                        details: "Retinal scan + fingerprint verified",
-                        notes: "Evening inventory check - retrieved medical supplies"
-                      },
-                      {
-                        timestamp: "Today, 08:30",
-                        source: "Storage Access Scanner",
-                        name: "Doc Joy",
-                        result: "MATCHED",
-                        confidence: 97,
-                        details: "Retinal scan + fingerprint verified",
-                        notes: "Morning equipment check - chrome components inventory"
-                      },
-                      {
-                        timestamp: "Yesterday, 14:30",
-                        source: "Storage Access Scanner",
-                        name: "Authorized Contractor",
-                        result: "OVERRIDE",
-                        confidence: 0,
-                        details: "Manual override by Doc Joy",
-                        notes: "Equipment delivery - escorted entry, logged by security"
-                      },
-                      {
-                        timestamp: "Nov 15, 03:15",
-                        source: "Storage Access Scanner",
-                        name: "Unknown Individual",
-                        result: "FAILED",
-                        confidence: 0,
-                        details: "No biometric match in database",
-                        notes: "ALERT - Unauthorized access attempt, alarm triggered, suspect fled"
-                      },
-                      {
-                        timestamp: "Oct 28, 03:47",
-                        source: "Storage Access Scanner",
-                        name: "SECURITY BREACH",
-                        result: "FAILED",
-                        confidence: 0,
-                        details: "System bypassed - lock picked, scanner disabled",
-                        notes: "⚠ CRITICAL - Chrome leg prototype stolen, footage corrupted. Security upgraded post-incident."
-                      },
-                    ]}
-                  />
-                ),
-              },
-            },
-          },
-
-          "Main Security Camera": {
-            content: (
-              <CommercialCamera
-                location="Doc Joy's Clinic - Main Floor"
+              <Camera
                 cameraId="CAM-DOCJOY-01"
-                status="ACTIVE - RECORDING"
-                coverage="Operating room, entrance, waiting area (full coverage)"
+                location="Doc Joy's Clinic — Main Floor & Storage"
+                status="ACTIVE"
+                recording={true}
+                storage="7-day loop"
+                coverage="Operating room, entrance, waiting area, secure storage corridor"
                 details={[
                   "Resolution: 1080p HD",
-                  "Recording: 24/7 loop (7-day storage)",
                   "Night vision: Enabled",
-                  "Motion detection: Active"
+                  "Motion detection: Active",
+                  "Biometric scanner on storage door (upgraded post-breach)",
                 ]}
                 alerts={[
-                  {
-                    time: "Today, 20:00",
-                    message: "Doc Joy arrived for night shift"
-                  },
-                  {
-                    time: "Today, 18:30",
-                    message: "Suspicious individual - hooded, no treatment, departed after 3 min"
-                  },
-                  {
-                    time: "Today, 13:30",
-                    message: "Emergency surgery - gunshot wound (stabilized)"
-                  },
-                  {
-                    time: "Today, 09:00",
-                    message: "Chrome installation - arm replacement"
-                  },
-                  {
-                    time: "Oct 28, 03:47",
-                    message: "⚠ THEFT EVENT - Footage corrupted by malware"
-                  }
+                  { time: "Today, 20:00", message: "Doc Joy arrived for night shift" },
+                  { time: "Today, 18:30", message: "Suspicious individual — hooded, no treatment, departed after 3 min" },
+                  { time: "Nov 15, 03:15", message: "Unauthorized storage access attempt — alarm triggered, suspect fled" },
+                  { time: "Nov 2, 14:20", message: "Intel confirmed: stolen design spotted on Steel Jackhammer" },
+                  { time: "Oct 28, 03:47", message: "BREACH — Chrome leg prototype stolen. Footage corrupted by malware. Biometrics bypassed." },
                 ]}
-                lastService="1 week ago"
-              />
+                lastService="1 week ago (security upgrade post-breach)"
+              >
+                <BiometricLog
+                  confidence="95%"
+                  scans={[
+                    {
+                      timestamp: "Today, 20:00",
+                      source: "Storage Access Scanner",
+                      name: "Doc Joy",
+                      result: "MATCHED",
+                      confidence: 98,
+                      details: "Retinal scan + fingerprint verified",
+                      notes: "Evening inventory check — retrieved medical supplies",
+                    },
+                    {
+                      timestamp: "Today, 08:30",
+                      source: "Storage Access Scanner",
+                      name: "Doc Joy",
+                      result: "MATCHED",
+                      confidence: 97,
+                      details: "Retinal scan + fingerprint verified",
+                      notes: "Morning equipment check — chrome components inventory",
+                    },
+                    {
+                      timestamp: "Nov 15, 03:15",
+                      source: "Storage Access Scanner",
+                      name: "Unknown Individual",
+                      result: "FAILED",
+                      confidence: 0,
+                      details: "No biometric match in database",
+                      notes: "ALERT — Unauthorized access attempt, alarm triggered, suspect fled",
+                    },
+                    {
+                      timestamp: "Oct 28, 03:47",
+                      source: "Storage Access Scanner",
+                      name: "SECURITY BREACH",
+                      result: "FAILED",
+                      confidence: 0,
+                      details: "System bypassed — lock picked, scanner disabled",
+                      notes: "⚠ CRITICAL — Chrome leg prototype stolen, footage corrupted. Security upgraded post-incident.",
+                    },
+                  ]}
+                />
+              </Camera>
             ),
           },
 

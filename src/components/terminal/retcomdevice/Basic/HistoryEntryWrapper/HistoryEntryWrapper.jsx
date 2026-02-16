@@ -1,24 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './historyEntryWrapper.css';
-
-const COLORS = {
-  border: {
-    default: 'rgb(77, 167, 188)',
-  },
-  text: {
-    primary: 'rgb(133, 175, 231)',
-    secondary: 'rgb(148, 163, 184)',
-  },
-  accent: {
-    teal: 'rgb(79, 209, 197)',
-    red: 'rgb(252, 129, 129)',
-  },
-  bg: {
-    panel: 'rgba(29, 35, 50, 0.7)',
-  },
-};
-
-const COLLAPSED_STORAGE_KEY = 'terminal_commands_expanded';
 
 /**
  * HistoryEntryWrapper - Generic shell for terminal history entries
@@ -39,7 +20,6 @@ export default function HistoryEntryWrapper({
   onRemove,
   collapsedState,
 }) {
-  console.log(collapsedState)
   const [isCollapsed, setIsCollapsed] = collapsedState || useState(false);
 
   const handleCollapse = () => {

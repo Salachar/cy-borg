@@ -370,8 +370,8 @@ export const LUCKY_FLIGHT_CASINO = {
           },
           "Personnel Files": {
             password: {
-              pw: "gibos",
-              hint: "Nickname of the cyborg grandpa winning big at slots",
+              pw: "Slevin",
+              hint: "Lucky number Kelevra",
               difficulty: "hard",
             },
             content: (
@@ -848,11 +848,18 @@ export const LUCKY_FLIGHT_CASINO = {
                       "Illegal modifications detected",
                       "Safety protocols DISABLED",
                       "Startup failsafe DELETED",
-                      "Tampering risk: Catastrophic explosion (4d6 damage)",
-                      "Blast affects entire basement + north section of Floor 1"
+                      "Tampering risk: Catastrophic explosion",
                     ]}
                   >
-                    <div style={{ marginTop: '1rem', padding: '1rem', backgroundColor: 'rgba(239, 68, 68, 0.1)', border: '2px solid rgb(239, 68, 68)', borderRadius: '4px' }}>
+                    <div
+                      style={{
+                        marginTop: '1rem',
+                        padding: '1rem',
+                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        border: '2px solid rgb(239, 68, 68)',
+                        borderRadius: '4px',
+                      }}
+                    >
                       <Line red bold pulse style={{ textAlign: 'center' }}>
                         EXTREME HAZARD - AUTHORIZED PERSONNEL ONLY
                       </Line>

@@ -122,11 +122,20 @@ function HistoryEntry({ entry, index, onCommandSelect, collapsedEntries, setColl
             {entry.content}
           </div>
         );
+      // case 'related_commands':
+      //   return (
+      //     <RelatedCommands
+      //       commands={entry.commands || []}
+      //       commandList={entry.commandList || []}
+      //       onSelect={onCommandSelect}
+      //     />
+      //   );
       case 'related_commands':
         return (
           <RelatedCommands
-            commands={entry.commands || []}
-            commandList={entry.commandList || []}
+            // commands={entry.commands || []}
+            related_commands={entry.related_commands || []}
+            parentPath={entry.parentPath || ''}
             onSelect={onCommandSelect}
           />
         );
@@ -370,20 +379,11 @@ export default function RetComDevice() {
       content: endCmd.content,
     });
 
-    const related_commands_list = Object.entries(endCmd?.related_commands || {}).map(([id, cmdDef]) => ({
-      id,
-      mastermind: cmdDef.blocker,
-      icebreaker: cmdDef.icebreaker,
-      password: cmdDef.password,
-    }));
-
-    const relatedPaths = related_commands_list.map(cmd => `${path}/${cmd.id}`);
-
-    if (relatedPaths.length) {
+    if (endCmd?.related_commands && Object.keys(endCmd.related_commands).length) {
       addToHistory({
         type: 'related_commands',
-        commands: relatedPaths,
-        commandList: related_commands_list,
+        related_commands: endCmd.related_commands,
+        parentPath: path,
       });
     }
   };
@@ -405,7 +405,6 @@ export default function RetComDevice() {
   };
 
   const handleSystemCommand = (cmd) => {
-    console.log(cmd);
     if (!SYSTEM_COMMANDS[cmd]) return false;
 
     const result = SYSTEM_COMMANDS[cmd]({

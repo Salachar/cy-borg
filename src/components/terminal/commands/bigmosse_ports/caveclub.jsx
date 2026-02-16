@@ -123,8 +123,8 @@ export const STONE_EELS_COMMANDS = {
 
       "Management Network": {
         password: {
-          pw: "serpent",
-          hint: "The Stone Eels gang symbol - what kind of creature?",
+          pw: "python",
+          hint: "Gives the best hugs",
           difficulty: "medium",
           content: <Locked theme="terminal" title="CAVE CLUB NETWORK" />
         },
@@ -272,9 +272,10 @@ export const STONE_EELS_COMMANDS = {
 
           "Back Office Safe": {
             password: {
-              pw: "eels",
-              hint: "The gang's name (plural)",
-              difficulty: "expert",
+              pw: "ekans",
+              hint: "Leader's favorite Pokemon",
+              difficulty: "corporate",
+              decoyLetters: "r,b,o,x,z,h",
               content: <Locked theme="safe" title="MANAGEMENT SAFE" />
             },
             content: (

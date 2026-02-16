@@ -1,12 +1,11 @@
 import ArcadeCabinet from "./Devices/ArcadeCabinet/ArcadeCabinet";
-import ATM from "./ATM/ATM";
-import BiometricRecognition from "./BiometricRecognition/BiometricRecognition";
+import ATM from "./Extractable/ATM";
+import { BiometricLog } from "./SecureAccessControl/SecureAccessControl";
 import BountyCard from "./BountyCard/BountyCard";
 import Briefing from "./Briefing/Briefing";
 import Camera from "./Camera/Camera";
 import CCTV from "./Camera/CCTV";
 import CoffeeMachine from "./Devices/CoffeeMachine/CoffeeMachine";
-import CommercialCamera from "./Camera/CommercialCamera";
 import CommunityBoard from "./CommunityBoard/CommunityBoard";
 import CorpAd from "./CorpAd/CorpAd";
 import CySports from "./CySports/CySports";
@@ -54,13 +53,12 @@ import Workstation from "./Workstation/Workstation";
 export {
   ArcadeCabinet,
   ATM,
-  BiometricRecognition,
+  BiometricLog,
   BountyCard,
   Briefing,
   Camera,
   CCTV,
   CoffeeMachine,
-  CommercialCamera,
   CommunityBoard,
   CorpAd,
   CySports,

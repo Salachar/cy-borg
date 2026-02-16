@@ -319,7 +319,6 @@ export const BODEGA_COMMANDS = {
             uptime="156 days, 3 hours"
             notes={[
               "Owner: Batu Khamidov",
-              "WiFi SSID: Bodega_Guest (password: freewifi)",
               "Connected devices: 3 (security camera, POS terminal, office PC)",
               "Last admin login: 3 days ago (Batu)",
               "Security level: Basic (WPA2, default firewall)",

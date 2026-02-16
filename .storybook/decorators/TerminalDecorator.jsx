@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import HistoryEntryWrapper from "../../src/components/terminal/retcomdevice/HistoryEntryWrapper/HistoryEntryWrapper";
+import HistoryEntryWrapper from "../../src/components/terminal/retcomdevice/Basic/HistoryEntryWrapper/HistoryEntryWrapper";
 
 const COLORS = {
   bg: {

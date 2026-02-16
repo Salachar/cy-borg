@@ -5,201 +5,56 @@ export default {
   component: Camera,
 };
 
-export const BlankProps = {
-  args: {},
-};
-
-// Store security camera
-export const BodegaMainCamera = {
+export const Basic = {
   args: {
-    id: 'bodega-main-cam',
-    location: 'Lucky Star Bodega - Main entrance',
-    coverage: 'Front door, register area, first 3 aisles',
+    id: 'CAM-BODEGA-01',
+    location: 'Lucky Star Bodega — Main Entrance',
     status: 'ACTIVE',
     recording: true,
     storage: 'Local server (basement office)',
     timeline: [
-      '22:47 - Elderly woman purchases cigarettes',
-      '23:12 - Suspicious figure loiters near entrance',
-      '23:15 - Figure enters store, face obscured by hood',
-      '23:17 - Register drawer opened forcefully',
-      '23:18 - ⚠ ALERT: Glass shattered (camera angle shows partial struggle)',
-      '23:19 - Camera briefly loses signal',
-      '23:21 - Signal restored, store empty',
+      '23:15 — Figure enters, face obscured by hood',
+      '23:17 — Register drawer opened forcefully',
+      '23:18 — ⚠ Glass shattered, partial struggle visible',
+      '23:19 — Signal lost briefly',
+      '23:21 — Signal restored, store empty',
     ],
-    lastService: 'March 15, 2024',
+    lastService: 'March 15, 2067',
   },
 };
 
-// Warehouse security
-export const WarehouseCamera = {
+export const Offline = {
   args: {
-    id: 'wh-07-secure',
-    location: 'SecureCargo Warehouse - Container yard 7',
-    coverage: 'Containers 7A-7D, loading dock entrance, guard station',
-    status: 'RECORDING',
-    recording: true,
-    storage: 'Cloud backup + local DVR (30-day retention)',
-    timeline: [
-      '01:45 - Night shift guard begins patrol',
-      '02:12 - Delivery truck arrives at loading dock',
-      '02:18 - Guard escorts driver to container 7B',
-      '02:23 - ⚠ Motion detected near perimeter fence (sector 7C)',
-      '02:24 - Guard investigates, leaves frame',
-      '02:27 - LOST SIGNAL (cause unknown)',
-      '02:35 - Signal restored automatically',
-      '02:36 - Container 7B door ajar, guard unconscious nearby',
-      '02:41 - Backup guards arrive, secure area',
-    ],
-    lastService: 'January 8, 2025',
-  },
-};
-
-// Casino surveillance
-export const CasinoCamera = {
-  args: {
-    id: 'lf-vip-03',
-    location: 'Lucky Flight Casino - VIP lounge area',
-    coverage: 'Poker tables 1-4, bar area, VIP entrance',
-    status: 'ACTIVE',
-    recording: true,
-    storage: 'Encrypted server (90-day retention, legal requirement)',
-    timeline: [
-      '20:15 - VIP guest enters with security escort',
-      '20:22 - High-stakes poker game begins (table 2)',
-      '21:45 - Waitress spills drink near table 3',
-      '22:10 - Guest at table 1 appears intoxicated, escorted out',
-      '23:30 - Maintenance crew cleans bar area',
-      '00:05 - Unidentified individual lingers near manager office',
-    ],
-    lastService: 'December 2, 2024',
-  },
-};
-
-// Apartment building
-export const ApartmentCamera = {
-  args: {
-    id: 'apt-lobby-1',
-    location: 'Riverside Apartments - Main lobby',
-    coverage: 'Entrance doors, mailboxes, elevator access',
-    status: 'ACTIVE',
-    recording: true,
-    storage: 'Building management server (14-day loop)',
-    timeline: [
-      '22:15 - Resident returns with groceries',
-      '22:48 - Pizza delivery to unit 3B',
-      '23:05 - Maintenance worker exits building',
-      '23:52 - Unknown person attempts door (locked)',
-      '00:17 - Same person tests side entrance (also locked)',
-    ],
-    lastService: 'November 20, 2024',
-  },
-};
-
-// Offline camera
-export const OfflineCamera = {
-  args: {
-    id: 'st-alley-02',
-    location: 'Stone Street Alley - North entrance',
-    coverage: 'Alley entrance, dumpster area, fire escape',
+    id: 'CAM-ALLEY-02',
+    location: 'Stone Street Alley — North Entrance',
     status: 'OFFLINE',
     recording: false,
     storage: 'Local server (connection lost)',
     timeline: [
-      '18:30 - Delivery truck unloads supplies',
-      '19:15 - Rat activity near dumpsters',
-      '20:42 - ⚠ Camera feed becomes unstable',
-      '20:45 - SIGNAL LOST (camera offline)',
-      '20:46 - NO DATA AVAILABLE',
+      '20:42 — ⚠ Feed becomes unstable',
+      '20:45 — SIGNAL LOST',
     ],
-    lastService: 'October 5, 2024',
+    lastService: 'October 5, 2067',
   },
 };
 
-// Corporate data center
-export const DataCenterCamera = {
+export const Commercial = {
   args: {
-    id: 'dc-s7-sl3-main',
-    location: 'Corporate Data Center - Sector 7, Sublevel 3',
-    coverage: 'Main server corridor, biometric access point, emergency exits',
-    status: 'RECORDING',
-    recording: true,
-    storage: 'Redundant encrypted servers (indefinite retention)',
-    timeline: [
-      '21:45 - Shift change begins',
-      '21:52 - Guard patrol passes mainframe access',
-      '22:00 - All guards report to security office',
-      '22:08 - Biometric access logged: Employee #4782',
-      '22:15 - ⚠ Unusual activity: Multiple failed access attempts (terminal 7)',
-      '22:18 - Security alerted, guards dispatched',
-      '22:22 - Employee #4782 exits sector normally',
-      '22:45 - Area secured, incident logged',
-    ],
-    lastService: 'January 18, 2025',
-  },
-};
-
-// Street camera
-export const StreetCamera = {
-  args: {
-    id: 'ports-dist-09',
-    location: 'Ports District - Canal Street & 5th intersection',
-    coverage: 'Street intersection, canal pier entrance, pedestrian crossing',
+    cameraId: 'CAM-CPT-FOYER',
+    location: 'Central Plaza Tower — Ground Floor Atrium',
+    coverage: 'Main entrance, security desk, elevator bank',
     status: 'ACTIVE',
     recording: true,
-    storage: 'Municipal server (30-day retention)',
-    timeline: [
-      '19:30 - Heavy foot traffic (rush hour)',
-      '20:15 - Water taxi docks at pier',
-      '21:00 - Traffic density decreases',
-      '22:30 - ⚠ Suspicious vehicle circles block (3 passes)',
-      '22:45 - Vehicle parks near pier entrance',
-      '23:00 - Multiple figures exit vehicle',
-      '23:15 - Vehicle departs rapidly',
+    storage: 'Encrypted server (30-day retention)',
+    details: [
+      '4K resolution, 120° wide angle',
+      'Night vision: Active',
+      'Motion detection: Enabled',
     ],
-    lastService: 'January 10, 2025',
-  },
-};
-
-// Minimal camera (basic security)
-export const MinimalCamera = {
-  args: {
-    id: 'shop-01',
-    location: 'Corner Shop - Front counter',
-    coverage: 'Register and front door',
-    status: 'ACTIVE',
-    recording: true,
-    storage: 'USB drive (3-day loop)',
-    timeline: [
-      '14:30 - Customer purchases snacks',
-      '15:45 - Owner takes break',
-      '16:20 - Delivery arrives',
+    alerts: [
+      { time: '14:32', message: 'High foot traffic — Unit 4201 party guests' },
+      { time: '09:45', message: 'Delivery authorization logged — Unit 4201' },
     ],
-  },
-};
-
-// High-security installation
-export const MaxSecurityCamera = {
-  args: {
-    id: 'vault-omega-1',
-    location: 'Bigmosse Corporate HQ - Executive vault level',
-    coverage: '360° coverage, thermal imaging, motion sensors integrated',
-    status: 'RECORDING',
-    recording: true,
-    storage: 'Military-grade encrypted servers (permanent archive)',
-    timeline: [
-      '09:00 - Vault access: Executive clearance verified',
-      '09:15 - Asset retrieval logged (item #VLT-8847)',
-      '09:22 - Vault sealed, multiple authentication confirmed',
-      '12:00 - Automated security sweep (all clear)',
-      '15:30 - Maintenance crew denied access (insufficient clearance)',
-      '18:00 - Evening security protocol activated',
-      '22:00 - Motion sensors: ACTIVE, thermal scan: NEGATIVE',
-      '23:30 - ⚠ ALERT: Unauthorized proximity detected (perimeter)',
-      '23:31 - Response team deployed (ETA 4 minutes)',
-      '23:34 - False alarm: Maintenance bot malfunction',
-      '23:40 - All systems confirmed secure',
-    ],
-    lastService: 'January 20, 2025 (daily inspection protocol)',
+    lastService: 'November 10, 2067',
   },
 };

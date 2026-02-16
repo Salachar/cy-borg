@@ -1,7 +1,6 @@
 import {
   Box,
   Line,
-  Divider,
   KeyValue,
   InsetBox,
 } from '@terminal/TerminalComponents';
@@ -103,7 +102,6 @@ export const FUN_COMMANDS = {
               "Repair queue: 3 items waiting",
             ]}
           >
-            <Divider />
             <InsetBox title="STANDARD STOCK:">
               <Line neon>Smart TVs: 8 units (refurbished, various brands)</Line>
               <Line neon>Tablets: 15 units (mixed condition)</Line>
@@ -143,7 +141,6 @@ export const FUN_COMMANDS = {
               "POCKET CREATURES",
             ]}
           >
-            <Divider />
             <InsetBox title="HIGH SCORES:">
               <Line yellow>Life Simulator VR: R_Sanchez — 55 years (off the grid ending)</Line>
               <Line yellow>Dimension Jumper: Morty — 2.4M points (second place)</Line>
@@ -219,12 +216,12 @@ export const FUN_COMMANDS = {
         tagline="Treasures. Trash. Tales."
         network="PAWN_SHOP_PUBLIC"
         signalStrength="medium"
-        status="✓ OPEN"
+        status="OPEN"
         statusColor="neon"
         notes={[
           "Free appraisals (first 3 items)",
           "Golden statue NOT for sale",
-          "Locals claim the shop is cursed"
+          "Don't... touch... that... byook",
         ]}
         theme="friendly"
       >
@@ -240,23 +237,14 @@ export const FUN_COMMANDS = {
         content: (
           <PersonnelFile
             employeeId="PAWN-OWNER-008"
-            name="Roger Smith"
+            name="Lee Gal Bizznizz"
             age={42}
             position="Owner / Pawnbroker"
             department="Independent Retail"
             supervisor="Self-employed"
             clearanceLevel={5}
             district="Near waterfront (unknown residence)"
-            emergencyContact="None listed"
-            performance={78}
-            notes={[
-              "Eighth owner of this shop - all previous owners met unfortunate ends",
-              "Changes persona/disguises regularly (collection in safe)",
-              "Refuses to sell golden statue despite high offers",
-              "Reputation: Mysterious but fair, customers wary of 'curse'",
-              "Known for: Voice recognition that changes weekly",
-              "Previous owners: Disappeared, suicide, murdered, accidents (see records)"
-            ]}
+            emergencyContact="Staniel"
             status="ACTIVE"
           />
         ),
@@ -264,8 +252,8 @@ export const FUN_COMMANDS = {
 
       "Shop Safe": {
         password: {
-          pw: "persona",
-          hint: "What the owner seems to change regularly",
+          pw: "listerine",
+          hint: "It's a booze cause it's green",
           difficulty: "easy",
           content: <Locked theme="safe" title="SHOP SAFE" />
         },
@@ -282,7 +270,7 @@ export const FUN_COMMANDS = {
                 id: "pawn_cash",
                 label: "Cash",
                 description: "daily receipts + emergency fund",
-                value: 200,
+                value: 100,
                 isCredits: true
               },
               {
@@ -301,8 +289,7 @@ export const FUN_COMMANDS = {
               {
                 id: "pawn_credchip",
                 label: "Credchip",
-                description: "18¤",
-                value: 18,
+                value: 25,
                 isCredits: true
               },
             ]}
@@ -312,8 +299,8 @@ export const FUN_COMMANDS = {
 
       "Pawn Records": {
         password: {
-          pw: "goldenturd",
-          hint: "What locals call the shop mascot statue",
+          pw: "deathdogs",
+          hint: "They have an absurd amount of nitrates",
           difficulty: "hard",
           content: <Locked theme="terminal" title="PAWN RECORDS" />
         },
@@ -328,10 +315,8 @@ export const FUN_COMMANDS = {
               "Active loans & recent transactions",
               "Last 7 days of pawn activity",
               "High-value inventory tracked",
-              "Owner history documented (all 8 owners)"
             ]}
           >
-            <Divider />
             <InsetBox title="RECENT PAWNS (Last 7 days):">
               <Line neon>Item: Electric guitar, Loan: 75¤, Due: 28 days</Line>
               <Line neon>Item: Smartwatch, Loan: 50¤, Due: 24 days</Line>
@@ -344,9 +329,7 @@ export const FUN_COMMANDS = {
               <Line cyan>Antique music box: 180¤ (plays haunting melody)</Line>
             </InsetBox>
             <InsetBox title="BACK ROOM (Not For Sale):">
-              <Line pink>The golden statue (shop mascot, mysterious origins)</Line>
-              <Line pink>Owner's personal effects (changes with each owner)</Line>
-              <Line pink>Previous owners' belongings (unclaimed)</Line>
+              <Line pink>Golden statue (shop mascot, mysterious origins)</Line>
             </InsetBox>
           </MaintenanceAccess>
         ),
@@ -361,7 +344,7 @@ export const FUN_COMMANDS = {
         tagline="Data Recovery. System Security. Discretion Guaranteed."
         network="CIPHER_GUEST"
         signalStrength="strong"
-        status="✓ ACCEPTING CLIENTS"
+        status="ACCEPTING CLIENTS"
         statusColor="neon"
         notes={[
           "Appointments only",
@@ -399,7 +382,6 @@ export const FUN_COMMANDS = {
               "Known for: Military-grade encryption, quantum-secured safe",
               "Motto: 'Your secrets are safe. From everyone except me.'"
             ]}
-            status="ACTIVE"
           />
         ),
       },
@@ -446,7 +428,6 @@ export const FUN_COMMANDS = {
           <Safe
             id="cipher-office-safe"
             model="DS-500X"
-            location="Suite 307, wall-mounted behind desk"
             owner="Cipher (proprietor)"
             security="Biometric + quantum encryption"
             lastAccess="Yesterday evening"
@@ -454,8 +435,8 @@ export const FUN_COMMANDS = {
               {
                 id: "cipher_cash",
                 label: "Cash",
-                description: "680¤ (client payments, emergency fund)",
-                value: 680,
+                description: "client payments, emergency fund",
+                value: 400,
                 isCredits: true
               },
             ]}
@@ -463,7 +444,7 @@ export const FUN_COMMANDS = {
               {
                 id: "cipher_business_credchip",
                 label: "Credchip",
-                description: "95¤ (business account)",
+                description: "business account",
                 value: 95,
                 isCredits: true
               },
@@ -544,16 +525,13 @@ export const FUN_COMMANDS = {
             clearanceLevel={5}
             district="Tech district (lives in apartment above bar)"
             emergencyContact="Dev Patel (sibling)"
-            performance={89}
+            performance={100}
             notes={[
               "Former software engineer - left tech to open bar",
               "Knows programming, creates themed drinks and menu items",
               "Hosts weekly coding meetups (popular with local devs)",
               "Reputation: Friendly, tech-savvy, understands the crowd",
-              "Known for: Whiteboard wall, free gigabit wifi",
-              "Bar motto: '// TODO: Get another drink'"
             ]}
-            status="ACTIVE"
           />
         ),
       },
@@ -586,7 +564,6 @@ export const FUN_COMMANDS = {
           <Safe
             id="compiler-bar-safe"
             model="DS-300"
-            location="Behind bar, under counter"
             owner="Morgan Patel (bar owner)"
             security="Electronic keypad"
             lastAccess="6 hours ago (shift change)"
@@ -594,7 +571,7 @@ export const FUN_COMMANDS = {
               {
                 id: "compiler_cash",
                 label: "Cash",
-                description: "340¤ (daily receipts)",
+                description: "daily receipts",
                 value: 340,
                 isCredits: true
               },
@@ -613,17 +590,11 @@ export const FUN_COMMANDS = {
               {
                 id: "compiler_petty_cash",
                 label: "Credchip",
-                description: "32¤ (bar petty cash)",
+                description: "bar petty cash",
                 value: 32,
                 isCredits: true
               },
-              {
-                id: "compiler_coupon",
-                label: "Coupon code",
-                description: "COMPILER25 (25% off next meetup event, expires in 1 month)"
-              },
             ]}
-            notes="Safe checked at opening (14:00) and closing (02:00)"
           />
         ),
       },
@@ -649,7 +620,6 @@ export const FUN_COMMANDS = {
               "Most ordered: Coffee, Beer, Energy drinks"
             ]}
           >
-            <Divider />
             <InsetBox title="INVENTORY ALERTS:">
               <Line yellow>Low stock: Imported whiskey, craft beer (IPA)</Line>
               <Line yellow>Reorder needed: Coffee beans, energy drinks</Line>
@@ -681,7 +651,6 @@ export const FUN_COMMANDS = {
           "Maintained by: Cynergy Infrastructure Division"
         ]}
       >
-        <Divider />
         <InsetBox title="CURRENT TIMING:">
           <Line neon>Innovation Ave (East-West): 40 seconds green</Line>
           <Line neon>7th St (North-South): 30 seconds green</Line>
@@ -720,7 +689,6 @@ export const FUN_COMMANDS = {
           hours="10:00 - 22:00"
           days="Every Day"
         />
-        <Divider />
         <InsetBox title="UPCOMING TOURNAMENT:">
           <Line cyan>Date: This Saturday, 14:00</Line>
           <Line cyan>Prize: 200¤ + Rare chip code</Line>
@@ -752,7 +720,6 @@ export const FUN_COMMANDS = {
           <Line yellow>Gold: 2,500¤/month (individual), 7,500¤/month (family)</Line>
           <Line yellow>Silver: 800¤/month (individual), 2,000¤/month (family)</Line>
         </InsetBox>
-        <Divider />
         <InsetBox title="COVERAGE AREAS:">
           <Line cyan>Central districts: Full air coverage</Line>
           <Line cyan>Mid-tier districts: Ground priority</Line>

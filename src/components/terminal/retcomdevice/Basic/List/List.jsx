@@ -11,6 +11,7 @@ export default function List({
   campaignCommandList = [],
   setInputCallback = () => {},
   discoveredPasswords = {},
+  parentPath = '',
 }) {
   // Load expanded state from localStorage
   const [expandedSections, setExpandedSections] = useState(() => {
@@ -115,7 +116,7 @@ export default function List({
         <Line neon>No access points available</Line>
       ) : (
         <div className="list-tree">
-          {renderCommandTree(campaignCommandList)}
+          {renderCommandTree(campaignCommandList, 0, parentPath)}
         </div>
       )}
     </>

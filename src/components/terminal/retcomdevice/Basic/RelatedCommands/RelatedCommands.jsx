@@ -1,49 +1,28 @@
-import { Line } from '@terminal/TerminalComponents';
-import CommandButton from '../CommandButton/CommandButton';
+import List from '../List/List';
 
-import { getDiscoveredSecrets, getDiscoveredPasswords } from '@utils/terminal';
+import {
+  getDiscoveredSecrets,
+  getDiscoveredPasswords,
+} from '@utils/terminal';
 
-export default function RelatedCommands({ commands = [], commandList = [], onSelect }) {
-  if (commands.length === 0) return null;
+export default function RelatedCommands({ related_commands = {}, parentPath = '', onSelect }) {
+  if (!related_commands || Object.keys(related_commands).length === 0) return null;
 
-  const discoveredSecrets = getDiscoveredSecrets();
-  const discoveredPasswords = getDiscoveredPasswords();
+  const listCommands = Object.entries(related_commands).map(([id, cmdDef]) => ({
+    id,
+    password: cmdDef.password,
+    mastermind: cmdDef.mastermind,
+    icebreaker: cmdDef.icebreaker,
+    related_commands: cmdDef.related_commands,
+  }));
 
   return (
-    <>
-      <Line cyan bold style={{ marginTop: '0.75rem', marginBottom: '0.75rem' }}>
-        ┌─ AVAILABLE ACCESS POINTS ─┐
-      </Line>
-
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        {commands.map((fullPath, idx) => {
-          // Get metadata for this command
-          const cmdMeta = commandList[idx] || {};
-          const displayName = fullPath.split('/').pop();
-
-          const isDiscovered = discoveredSecrets.includes(fullPath);
-          const hasBlocker = !!(cmdMeta.password || cmdMeta.mastermind || cmdMeta.icebreaker);
-          const isBypassed = discoveredPasswords[fullPath];
-          const bypassLabel = cmdMeta.password ? 'PW' : 'HACK';
-
-          return (
-            <CommandButton
-              key={fullPath}
-              fullPath={fullPath}
-              displayName={displayName}
-              isDiscovered={isDiscovered}
-              hasBlocker={hasBlocker}
-              isBypassed={isBypassed}
-              bypassLabel={bypassLabel}
-              onClick={() => onSelect(fullPath)}
-            />
-          );
-        })}
-      </div>
-
-      <Line smoke style={{ marginTop: '0.75rem', fontSize: '0.75rem' }}>
-        Click to execute | Also available via 'list' command
-      </Line>
-    </>
+    <List
+      discoveredSecrets={getDiscoveredSecrets()}
+      discoveredPasswords={getDiscoveredPasswords()}
+      campaignCommandList={listCommands}
+      setInputCallback={onSelect}
+      parentPath={parentPath}
+    />
   );
 }
