@@ -205,12 +205,3 @@
 .ms-reset-button {
   font-size: 2.25rem;
 }
-
-.ms-button:hover {
-  opacity: 0.8;
-  transform: translateY(-1px);
-}
-
-.ms-button:active {
-  transform: translateY(0);
-}

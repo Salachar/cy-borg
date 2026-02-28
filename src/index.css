@@ -49,6 +49,7 @@
 /* Tailwind custom theme */
 @theme {
   --color-cy-cyan: #00ffff;
+  --color-cy-cyan-subtle: #76f2f2;
   --color-cy-pink: #ff0080;
   --color-cy-yellow: #ffff00;
   --color-cy-blue: #0080ff;
@@ -191,14 +192,7 @@ button {
   font-weight: 600;
   letter-spacing: 0.05em;
   transition: all 0.2s ease;
-}
-
-button:hover {
-  transform: translateY(-1px);
-}
-
-button:active {
-  transform: translateY(0);
+  cursor: pointer;
 }
 
 @keyframes pulse-text {

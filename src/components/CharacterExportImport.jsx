@@ -103,33 +103,28 @@ export default function AppDataExportImport({
     event.target.value = '';
   };
 
+  const buttonClass = "px-4 py-2 bg-gray-800 border-2 border-cy-cyan-subtle text-white font-bold uppercase text-sm transition-all shadow-lg shadow-cy-cyan/30";
+  const buttonStyles = {
+    minWidth: "8rem",
+    color: "white",
+    cursor: "pointer",
+  };
+
   return (
     <div>
       <div className="flex justify-end gap-3 mb-4">
         <button
           onClick={handleExport}
-          className="
-            px-4 py-2
-            bg-cy-cyan/10 border border-cy-cyan
-            text-cy-cyan font-bold uppercase text-sm
-            hover:bg-cy-cyan hover:text-black
-            transition-all duration-200
-          "
+          className={buttonClass}
+          style={buttonStyles}
           title="Export all app data including characters, settings, and preferences"
         >
           Export All Data
         </button>
 
         <label
-          className="
-            px-4 py-2
-            bg-cy-yellow/10 border border-cy-yellow
-            text-cy-yellow font-bold uppercase text-sm
-            hover:bg-cy-yellow hover:text-black
-            cursor-pointer
-            transition-all duration-200
-            inline-block
-          "
+          className={buttonClass}
+          style={buttonStyles}
           title="Import app data backup (will replace all current data)"
         >
           Import Backup
@@ -143,19 +138,12 @@ export default function AppDataExportImport({
         </label>
 
         <button
-          type="button"
           onClick={() => {
             character.toggleLock();
             onUpdate();
           }}
-          className="
-            w-28 h-10
-            bg-gray-800 hover:bg-gray-700
-            border-2 border-cy-cyan
-            text-cy-cyan font-bold uppercase text-sm
-            transition-all
-            shadow-lg shadow-cy-cyan/30
-          "
+          className={buttonClass}
+          style={buttonStyles}
         >
           {character.locked ? "Locked" : "Unlocked"}
         </button>

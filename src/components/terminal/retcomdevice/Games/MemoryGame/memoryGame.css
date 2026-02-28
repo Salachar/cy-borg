@@ -171,15 +171,6 @@
   padding: 0.5rem 1rem;
 }
 
-.mem-button:hover {
-  opacity: 0.8;
-  transform: translateY(-1px);
-}
-
-.mem-button:active {
-  transform: translateY(0);
-}
-
 .mem-win-message {
   padding: 1rem;
   margin-top: 1rem;
