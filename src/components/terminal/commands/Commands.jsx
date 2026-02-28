@@ -6,34 +6,29 @@ import {
 } from '@terminal/TerminalComponents';
 
 import List from '@terminal/retcomdevice/Basic/List/List';
+import { Message } from "@terminal/retcomdevice";
+
 import TerminalWallet from '@terminal/retcomdevice/Basic/TerminalWallet/TerminalWallet'
 
 export const SYSTEM_COMMANDS = {
   "Help": () => ({
     content: (
-      <>
-        <Line smoke large bold>RCD-7 RETINAL INTERFACE v2.047</Line>
+      <Message
+        title="Help"
+        subtitle="RCD-7 RETINAL INTERFACE v2.047"
+        theme="corporate"
+      >
         <InsetBox title="BASIC COMMANDS:">
-          <Line neon>help - Display this message</Line>
-          <Line neon>list - View all access points and status</Line>
-          <Line neon>clear - Clear terminal display</Line>
+          <Line yellow>• <b>Help</b> - Display this message</Line>
+          <Line yellow>• <b>List</b> - View all access points and status</Line>
+          <Line yellow>• <b>Clear</b> - Clear terminal display</Line>
         </InsetBox>
         <InsetBox title="NAVIGATION:">
           <Line yellow top>• Type or tap any command name to execute</Line>
           <Line yellow top>• Commands marked [PW] require password authentication</Line>
           <Line yellow top>• Click ▶/▼ to expand/collapse command groups</Line>
         </InsetBox>
-        <InsetBox title="PASSWORD SYSTEM:">
-          <Line yellow top>• Passwords discovered through exploration, NPCs, documents</Line>
-          <Line yellow top>• Once entered correctly, passwords are saved automatically</Line>
-          <Line yellow top>• Virtual keyboard shows only valid characters</Line>
-        </InsetBox>
-        <InsetBox title="PROGRESS:">
-          <Line yellow top>• Access points unlock related sub-commands when accessed</Line>
-          <Line yellow top>• Terminal history persists between sessions</Line>
-          <Line yellow top>• All discoveries saved to device memory</Line>
-        </InsetBox>
-      </>
+      </Message>
     )
   }),
 

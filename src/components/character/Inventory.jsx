@@ -27,8 +27,6 @@ export default function Inventory({
   sections = [],
   onUpdate = () => {},
 }) {
-  console.log(character);
-
   const [newItemName, setNewItemName] = useState("");
   const [newItemDesc, setNewItemDesc] = useState("");
   const [showAddForm, setShowAddForm] = useState(false);
@@ -220,6 +218,7 @@ export default function Inventory({
           </div>
         </div>
       )}
+      defaultOpen
     >
       {/* Starting Items - Compact Display */}
       {character.locked && startingItems.length > 0 && (

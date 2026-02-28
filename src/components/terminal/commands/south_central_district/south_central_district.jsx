@@ -54,7 +54,7 @@ export const SOUTH_CENTRAL_DISTRICT_COMMANDS = {
       </DistrictPortal>
     ),
     related_commands: {
-      "South Central CCTV": {
+      "South Central CityCam": {
         content: (
           <CCTV
             src={south_central_cctv}

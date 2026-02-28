@@ -39,7 +39,7 @@ export const LUCKY_FLIGHT_CASINO = {
       <LuckyFlightAd />
     ),
     related_commands: {
-      "Lucky Flight CCTV": {
+      "Lucky Flight CityCam": {
         content: (
           <CCTV
             src={lfc_cctv}

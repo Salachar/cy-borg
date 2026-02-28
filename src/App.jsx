@@ -7,7 +7,6 @@ import Combat from './pages/Combat';
 import Classes from './pages/Classes';
 import RetComDevice from './pages/RetComDevice';
 import Artwork from './pages/Artwork';
-// import PDF from './pages/PDF';
 
 // Scroll position storage
 const scrollPositions = {};
@@ -61,11 +60,10 @@ export default function App() {
 
         <div className="relative flex items-center h-16 px-4">
           <CyNavLink to="/" label="Home" color="cyan" end />
+          <CyNavLink to="/artwork" label="Artwork" color="yellow" />
           <CyNavLink to="/rules" label="Rules" color="yellow" />
           <CyNavLink to="/combat" label="Combat" color="pink" />
           <CyNavLink to="/classes" label="Classes" color="pink" />
-          <CyNavLink to="/artwork" label="Artwork" color="yellow" />
-          {/* <CyNavLink to="/pdf" label="PDF" color="cyan" /> */}
           <CyNavLink to="/retcomdevice" label="RetComDevice" color="green" />
         </div>
 
@@ -86,7 +84,6 @@ export default function App() {
             <Route path="/combat" element={<Combat />} />
             <Route path="/classes/:slug?" element={<Classes />} />
             <Route path="/artwork" element={<Artwork />} />
-            {/* <Route path="/pdf" element={<PDF />} /> */}
           </Routes>
         </div>
       )}

@@ -1,7 +1,7 @@
 export default function Message({
   title,
-  subtitle = "INTERNAL SYSTEMS",
-  message = "EMPLOYEE ACCESS GRANTED",
+  subtitle, //  = "INTERNAL SYSTEMS",
+  message, // "EMPLOYEE ACCESS GRANTED",
   note,
   children,
   theme = 'corporate',
@@ -50,23 +50,25 @@ export default function Message({
             fontWeight: 'bold',
             color: 'rgb(148, 163, 184)',
             fontFamily: 'monospace',
-            marginBottom: '0.5rem',
+            marginBottom: message ? '0.5rem' : '0',
             textTransform: 'uppercase',
             letterSpacing: '0.05em',
           }}
         >
-          {title} - {subtitle}
+          {title}{subtitle && ` - ${subtitle}`}
         </div>
-        <div
-          style={{
-            color: config.accentColor,
-            fontSize: '0.875rem',
-            fontWeight: 'bold',
-            fontFamily: 'monospace',
-          }}
-        >
-          {message}
-        </div>
+        {message && (
+          <div
+            style={{
+              color: config.accentColor,
+              fontSize: '0.875rem',
+              fontWeight: 'bold',
+              fontFamily: 'monospace',
+            }}
+          >
+            {message}
+          </div>
+        )}
       </div>
 
       {Boolean(children) && (

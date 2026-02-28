@@ -9,7 +9,7 @@ export default function ClassButtons({
     <div className="bg-black border-b border-gray-800 py-4">
       <div className="max-w-7xl mx-auto px-4">
         {/* Class Cards Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-3">
           {CLASSES.map((character_class, index) => {
             const ci = character_class.instance;
             const isActive = currentIndex === index;

@@ -94,7 +94,7 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
           </PublicPortal>
         ),
         related_commands: {
-          "Atrium CCTV": {
+          "Atrium CityCam": {
             content: (
               <CCTV
                 src={central_tower_atrium_cctv_image}

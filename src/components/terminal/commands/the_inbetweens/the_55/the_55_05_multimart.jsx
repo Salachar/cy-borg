@@ -35,7 +35,7 @@ export const THE_55_MULTIMART_COMMANDS = {
       />
     ),
     related_commands: {
-      "CCTV": {
+      "CityCam": {
         content: (
           <CCTV
             src={cctv_image}

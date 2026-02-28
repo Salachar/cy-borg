@@ -263,7 +263,7 @@ export default function CharacterTemplate({
 
           {!character.locked && (
             <>
-              <Callout title="NanoPaower, Infestations, Cyberdeck, Cybertech">
+              <Callout title="NanoPowers, Infestations, Cyberdeck, Cybertech">
                 <p className="text-gray-300 leading-relaxed">
                   You don't start with these unless your class uniques explicity state so. Any class can acquire them during gameplay though, and some in the market.
                 </p>

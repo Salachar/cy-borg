@@ -8,10 +8,7 @@ import {
 export default function Home() {
   return (
     <Page>
-      <PageHeader
-        title="CY_BORG"
-        subtitle="Character Creator & Combat Assistant"
-      />
+      <PageHeader title="CY_BORG" />
 
       <PageBox title="Welcome to 20X3_">
         <p className="text-lg text-gray-300 leading-relaxed mb-4">
@@ -219,29 +216,6 @@ export default function Home() {
             name="THE INBETWEENS"
             vibe="Salaryfolk. Cubicle zombies. Bland tenement slabs under endless ads."
           />
-        </div>
-      </section>
-
-      {/* Getting Started */}
-      <section className="mb-8">
-        <div className="bg-gradient-to-br from-cy-yellow/10 via-transparent to-cy-cyan/10 border-2 border-cy-yellow p-8">
-          <h2 className="text-3xl font-black text-cy-yellow mb-6 uppercase">
-            Ready to Jack In?
-          </h2>
-          <div className="space-y-3 text-gray-300">
-            <p className="text-lg">
-              <span className="text-cy-cyan font-bold">→</span> Hit{" "}
-              <span className="text-cy-cyan font-bold">Classes</span> to create your punk
-            </p>
-            <p className="text-lg">
-              <span className="text-cy-yellow font-bold">→</span> Check{" "}
-              <span className="text-cy-yellow font-bold">Rules</span> for complete mechanics
-            </p>
-            <p className="text-lg">
-              <span className="text-cy-cyan font-bold">→</span> Use{" "}
-              <span className="text-cy-cyan font-bold">Combat</span> during fights
-            </p>
-          </div>
         </div>
       </section>
     </Page>

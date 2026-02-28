@@ -89,7 +89,7 @@ export default class ShunnedNanomancer extends BaseClass {
     {
       type: "rollable",
       name: "physical_mutation",
-      label: "You're Physical Mutation...",
+      label: "Your Physical Mutation...",
       select_mode: "single",
       entries: [
         {

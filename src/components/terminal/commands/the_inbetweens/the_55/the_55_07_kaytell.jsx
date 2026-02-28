@@ -34,7 +34,7 @@ export const THE_55_KAYTELL_MANUFACTURING_COMMANDS = {
       />
     ),
     related_commands: {
-      "CCTV": {
+      "CityCam": {
         content: (
           <CCTV
             src={cctv_image}

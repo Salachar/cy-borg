@@ -120,7 +120,7 @@ export const GLASS_GARDENS_COMMANDS = {
       <GlassGardensPortal />
     ),
     related_commands: {
-      "Glass Gardens CCTV": {
+      "Glass Gardens CityCam": {
         content: (
           <CCTV
             src={glass_gardens_camera_image}

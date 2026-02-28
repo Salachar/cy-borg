@@ -5,7 +5,7 @@ export const DRUGS = [
     id: "red_juice",
     label: "Red-Juice",
     cost: "40¤ / 10¤",
-    description: <>Heals d10 HP once per day. Cost after / is for weaker, recreational doses.</>,
+    description: <>Heals d10 HP once per day.</>,
   },
   {
     id: "adrenachrome",

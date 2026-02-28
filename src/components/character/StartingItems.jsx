@@ -175,6 +175,7 @@ export default function StartingItems({
       character={character}
       headerClass="bg-gradient-to-r from-green-900/20 via-gray-900 to-green-900/20 border-2 border-green-600/50 p-4 mb-4"
       headerTextClass="text-green-400"
+      defaultOpen
     >
       <div className="space-y-2">
         {sections.map((section, index) => {

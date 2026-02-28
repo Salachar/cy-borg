@@ -1,6 +1,5 @@
 import {
   Line,
-  Divider,
   InsetBox,
 } from '@terminal/TerminalComponents';
 import {
@@ -22,7 +21,7 @@ import {
   NetworkTrafficMonitor,
 } from "@terminal/retcomdevice"
 
-export const WAREHOUSE_COMMANDS = {
+export const ALLIANSEN_WAREHOUSE_COMMANDS = {
   "Alliansen Inc. Warehouse": {
     content: (
       <FacilityPortal
@@ -742,4 +741,4 @@ export const WAREHOUSE_COMMANDS = {
   },
 };
 
-export default WAREHOUSE_COMMANDS;
+export default ALLIANSEN_WAREHOUSE_COMMANDS;

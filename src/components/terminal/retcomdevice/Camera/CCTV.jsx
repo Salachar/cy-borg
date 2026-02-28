@@ -186,7 +186,7 @@ export default function CCTV({
           zIndex: 10,
         }}
       >
-        CCTV images are for reference only — not an exact representation
+        CityCam images are for reference only — not an exact representation
       </div>
 
       {/* Corner brackets (aesthetic) */}

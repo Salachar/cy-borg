@@ -3,19 +3,22 @@ import {
   Line,
 } from '@terminal/TerminalComponents';
 import {
+  CCTV,
   DistrictPortal,
 } from "@terminal/retcomdevice"
 
 import { BODEGA_COMMANDS } from './bodega';
 import { STONE_EELS_COMMANDS } from './caveclub';
 import { LUCKY_FLIGHT_CASINO } from './casino';
-import { NEIGHBORHOOD_COMMANDS } from './neighborhood';
-import { FUN_COMMANDS } from './fun';
-import { WAREHOUSE_COMMANDS } from './warehouse';
-import { PORTS_BIGMOSSE_ADDITIONAL_LOCATIONS } from "./major_locations";
+import { BUSINESS_COMMANDS } from './business';
+import { PUBLIC_COMMANDS } from './public';
+import { ALLIANSEN_WAREHOUSE_COMMANDS } from './warehouse';
+import { RESIDENTIAL_COMMANDS } from './residential';
+
+import bigmosse_ports_cctv from '@images/locations/bigmosse_ports_cctv.png';
 
 export const BIGMOSSE_PORTS_COMMANDS = {
-  "Ports & Bigmosse": {
+  "Bigmosse & Ports": {
     content: (
       <DistrictPortal
         districtName="BIGMOSSE & PORTS"
@@ -67,13 +70,22 @@ export const BIGMOSSE_PORTS_COMMANDS = {
       </DistrictPortal>
     ),
     related_commands: {
+      "Bigmosse CityCam": {
+        content: (
+          <CCTV
+            src={bigmosse_ports_cctv}
+            theme="amber"
+            height={500}
+          />
+        ),
+      },
       ...BODEGA_COMMANDS,
       ...LUCKY_FLIGHT_CASINO,
       ...STONE_EELS_COMMANDS,
-      ...NEIGHBORHOOD_COMMANDS,
-      ...FUN_COMMANDS,
-      ...WAREHOUSE_COMMANDS,
-      ...PORTS_BIGMOSSE_ADDITIONAL_LOCATIONS,
+      ...BUSINESS_COMMANDS,
+      ...PUBLIC_COMMANDS,
+      ...ALLIANSEN_WAREHOUSE_COMMANDS,
+      ...RESIDENTIAL_COMMANDS,
     },
   },
 }
