@@ -221,8 +221,8 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
 
               "Management Portal": {
                 password: {
-                  pw: "chromelux2067",
-                  hint: "Current year + company name",
+                  pw: "chromium24",
+                  hint: "Such a precious material",
                   difficulty: "easy",
                   content: <Locked theme="terminal" title="CHROMELUX STAFF PORTAL" />
                 },

@@ -73,7 +73,7 @@ export const BUSINESS_COMMANDS = {
       "Patient Records [CONFIDENTIAL]": {
         password: {
           pw: "scalpel",
-          hint: "Surgical cutting tool",
+          hint: "Slicey slicey time tool",
           difficulty: "medium",
           content: <Locked theme="terminal" title="PATIENT DATABASE" />
         },
@@ -519,7 +519,7 @@ export const BUSINESS_COMMANDS = {
 
       "ATM": {
         password: {
-          pw: "cash",
+          pw: "cashmoney",
           hint: "What everyone wants from an ATM",
           difficulty: "easy",
           content: <Locked theme="terminal" title="ATM ACCESS" />

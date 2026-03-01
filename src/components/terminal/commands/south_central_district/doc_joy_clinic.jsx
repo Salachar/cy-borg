@@ -344,8 +344,8 @@ export const DOC_JOY_CLINIC_COMMANDS = {
 
           "MedCryo Storage": {
             password: {
-              pw: "pharmacy_2067",
-              hint: "Standard medical storage password format: pharmacy_[year]",
+              pw: "iceicebaby",
+              hint: "Gotta keep everything nice and cold",
               difficulty: "medium",
               content: <Locked theme="safe" title="MEDICAL STORAGE" />
             },
@@ -413,7 +413,7 @@ export const DOC_JOY_CLINIC_COMMANDS = {
           "Office Workstation": {
             password: {
               pw: "reaperdoc",
-              hint: "What Doc Joy's profession is called",
+              hint: "Best job in the business",
               difficulty: "easy",
               content: <Locked theme="terminal" title="OFFICE COMPUTER" />
             },

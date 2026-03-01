@@ -98,6 +98,19 @@ export default function Locked({
       borderColor: 'rgba(59, 130, 246, 0.4)',
       glowColor: 'rgba(59, 130, 246, 0.5)',
     },
+    home: {
+      icon: (
+        <svg width="48" height="48" viewBox="0 0 64 64" fill="none">
+          <path d="M12 28L32 10L52 28V54H38V40H26V54H12V28Z" stroke="currentColor" strokeWidth="3" strokeLinejoin="round"/>
+          <rect x="28" y="40" width="8" height="14" rx="1" fill="currentColor" opacity="0.3"/>
+          <circle cx="32" cy="32" r="4" stroke="currentColor" strokeWidth="2"/>
+          <line x1="32" y1="36" x2="32" y2="42" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+        </svg>
+      ),
+      accentColor: 'rgb(251, 146, 60)',
+      borderColor: 'rgba(251, 146, 60, 0.4)',
+      glowColor: 'rgba(251, 146, 60, 0.5)',
+    },
   };
 
   const config = themeConfig[theme] || themeConfig.terminal;

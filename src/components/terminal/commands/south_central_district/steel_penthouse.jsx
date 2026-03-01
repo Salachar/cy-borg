@@ -28,6 +28,12 @@ import cyberlich_painting_image from '@images/cyberlich_painting.png';
 
 export const STEEL_PENTHOUSE_COMMANDS = {
   "Steel Jackhammer's Penthouse - Smart Home System": {
+    password: {
+      pw: 'unkillable',
+      hint: "Can't take down the champ!",
+      decoyLetters: "p,r,m",
+      content: <Locked theme="home" />
+    },
     content: (
       <Message
         title="PENTHOUSE SMART HOME"
@@ -48,6 +54,10 @@ export const STEEL_PENTHOUSE_COMMANDS = {
     ),
     related_commands: {
       "Building Services": {
+        password: {
+          pw: 'steel4201',
+          content: <Locked theme="terminal" />
+        },
         content: (
           <MaintenanceAccess
             title="[BUILDING SYSTEMS - UNIT 4201]"
@@ -141,6 +151,11 @@ export const STEEL_PENTHOUSE_COMMANDS = {
       },
 
       "Internal Access": {
+        password: {
+          pw: 'TWOKROKS2',
+          hint: "The actual amount that weren't drugged",
+          content: <Locked theme="terminal" />
+        },
         content: (
           <MaintenanceAccess
             title="[SECURITY SYSTEMS HUB]"
@@ -883,16 +898,27 @@ export const STEEL_PENTHOUSE_COMMANDS = {
             ),
             related_commands: {
               "Wall Safe": {
+                password: {
+                  pw: 'password',
+                  hint: "Default",
+                  content: <Locked theme="safe" />
+                },
                 content: (
                   <Safe
                     id="penthouse-master-safe"
                     model="SafeBox Mini"
                     location="Master Bedroom - Small wall safe"
                     owner="Steel Jackhammer"
-                    security="Mechanical lock"
                     lastAccess="4 days ago (pre-party)"
                     physical={[]}
-                    digital={[]}
+                    digital={[
+                      {
+                        id: "jackhammer_master_safe",
+                        label: "Quick emergency funds",
+                        value: 100,
+                        isCredits: true,
+                      },
+                    ]}
                   />
                 ),
               },

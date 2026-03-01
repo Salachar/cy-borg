@@ -168,8 +168,8 @@ export const STONE_EELS_COMMANDS = {
 
           "VIP Management": {
             password: {
-              pw: "clearance",
-              hint: "You don't have it",
+              pw: "contrictor",
+              hint: "The walls are closing in",
               difficulty: "expert",
               content: <Locked theme="terminal" title="VIP GUEST SYSTEM" />
             },
@@ -272,9 +272,9 @@ export const STONE_EELS_COMMANDS = {
 
           "Back Office Safe": {
             password: {
-              pw: "ekans",
-              hint: "Leader's favorite Pokemon",
-              difficulty: "corporate",
+              pw: "ekansorarbok",
+              hint: "Favorite pokemon, its one of two...",
+              difficulty: "medium",
               decoyLetters: "r,b,o,x,z,h",
               content: <Locked theme="safe" title="MANAGEMENT SAFE" />
             },

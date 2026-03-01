@@ -188,8 +188,8 @@ export const GLASS_GARDENS_COMMANDS = {
 
       "Internal Access": {
         password: {
-          pw: "lattice",
-          hint: "The name of the members club",
+          pw: "crystalchalice",
+          hint: "Whats kings drink from",
           hintStrength: 1,
         },
         content: (

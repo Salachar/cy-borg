@@ -151,8 +151,8 @@ export const ALLIANSEN_WAREHOUSE_COMMANDS = {
 
       "Internal Network": {
         password: {
-          pw: "logistics47",
-          hint: "Facility number + warehouse function (all lowercase)",
+          pw: "administraitor",
+          hint: "What you get when an admin turns on you",
           difficulty: "medium",
           content: <Locked theme="terminal" title="EMPLOYEE NETWORK" />
         },
@@ -249,8 +249,8 @@ export const ALLIANSEN_WAREHOUSE_COMMANDS = {
 
           "Supervisor's Terminal": {
             password: {
-              pw: "webb2041",
-              hint: "Supervisor's last name + birth year (check personnel file)",
+              pw: "werehouse",
+              hint: "What do you get when a wolf bits a house?",
               difficulty: "medium",
               content: <Locked theme="terminal" title="SUPERVISOR WORKSTATION" />
             },
@@ -480,8 +480,8 @@ export const ALLIANSEN_WAREHOUSE_COMMANDS = {
 
               "Supervisor's Office Safe": {
                 password: {
-                  pw: "fisherman",
-                  hint: "Marcus Webb's favorite hobby (check his profile)",
+                  pw: "phishing",
+                  hint: "Hackers favorite hobbby",
                   difficulty: "medium",
                   content: <Locked theme="safe" title="SUPERVISOR SAFE" />
                 },
