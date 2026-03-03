@@ -268,7 +268,7 @@ export default function PasswordPrompt({
             >
               Submit
             </button>
-            <button
+            {/* <button
               onClick={() => {
                 setShowSuccess(true);
                 onSubmit(command, commandDef, password);
@@ -281,7 +281,7 @@ export default function PasswordPrompt({
               }}
             >
               Override
-            </button>
+            </button> */}
           </div>
         </>
       )}

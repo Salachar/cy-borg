@@ -50,7 +50,7 @@ export default function TerminalShell({
 }) {
   return (
     <div
-      className="flex-1 flex overflow-hidden relative pb-6"
+      className="flex-1 flex overflow-hidden relative pb-14"
       style={{ backgroundColor: COLORS.bg.main }}
     >
       {/* Main terminal area - left aligned, slight offset */}
