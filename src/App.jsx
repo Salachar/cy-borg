@@ -1,5 +1,5 @@
 import { Routes, Route, NavLink, useLocation } from 'react-router-dom';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState, createContext } from 'react';
 
 import Home from './pages/Home';
 import Rules from './pages/Rules';
@@ -11,21 +11,22 @@ import Artwork from './pages/Artwork';
 // Scroll position storage
 const scrollPositions = {};
 
+export const NavExtraContext = createContext({ setNavExtra: () => {} });
+
 export default function App() {
   const location = useLocation();
   const contentRef = useRef(null);
+  const [navExtra, setNavExtra] = useState(null);
 
   // Save scroll position before route changes
   useEffect(() => {
     const currentPath = location.pathname;
 
-    // Skip scroll management for RetComDevice and Classes routes (they have dynamic/complex layouts)
     const isRetComDevice = currentPath === '/retcomdevice';
     const isClasses = currentPath.startsWith('/classes');
 
     if (isRetComDevice || isClasses) return;
 
-    // Restore scroll position for this route (with slight delay to ensure DOM is ready)
     if (contentRef.current && scrollPositions[currentPath] !== undefined) {
       requestAnimationFrame(() => {
         if (contentRef.current) {
@@ -34,7 +35,6 @@ export default function App() {
       });
     }
 
-    // Save scroll position when navigating away
     return () => {
       if (contentRef.current && !isRetComDevice && !isClasses) {
         scrollPositions[currentPath] = contentRef.current.scrollTop;
@@ -43,51 +43,60 @@ export default function App() {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden">
-      {/* Fixed Cyberpunk Nav */}
-      <nav className="relative bg-black border-b border-cy-cyan/30 overflow-hidden flex-shrink-0">
-        {/* Background grid pattern */}
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: '20px 20px'
-          }}
-        />
+    <NavExtraContext.Provider value={{ setNavExtra }}>
+      <div className="flex flex-col h-screen overflow-hidden">
+        {/* Fixed Cyberpunk Nav */}
+        <nav className="relative bg-black border-b border-cy-cyan/30 overflow-hidden flex-shrink-0">
+          {/* Background grid pattern */}
+          <div
+            className="absolute inset-0 opacity-5"
+            style={{
+              backgroundImage: `
+                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px)
+              `,
+              backgroundSize: '20px 20px'
+            }}
+          />
 
-        <div className="relative flex items-center h-16 px-4">
-          <CyNavLink to="/" label="Home" color="cyan" end />
-          <CyNavLink to="/artwork" label="Artwork" color="yellow" />
-          <CyNavLink to="/rules" label="Rules" color="yellow" />
-          <CyNavLink to="/combat" label="Combat" color="pink" />
-          <CyNavLink to="/classes" label="Classes" color="pink" />
-          <CyNavLink to="/retcomdevice" label="RetComDevice" color="green" />
-        </div>
+          <div className="relative flex items-center h-16 px-4">
+            <CyNavLink to="/" label="Home" color="cyan" end />
+            <CyNavLink to="/artwork" label="Artwork" color="yellow" />
+            <CyNavLink to="/rules" label="Rules" color="yellow" />
+            <CyNavLink to="/combat" label="Combat" color="pink" />
+            <CyNavLink to="/classes" label="Classes" color="pink" />
+            <CyNavLink to="/retcomdevice" label="RetComDevice" color="green" />
 
-        {/* Bottom glowing line */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cy-cyan to-transparent" />
-      </nav>
+            {/* Nav extra slot — right side */}
+            {navExtra && (
+              <div className="ml-auto flex-shrink-0">
+                {navExtra}
+              </div>
+            )}
+          </div>
 
-      {/* Scrollable content area - except for RetComDevice which manages its own scroll */}
-      {location.pathname === '/retcomdevice' ? (
-        <Routes>
-          <Route path="/retcomdevice" element={<RetComDevice />} />
-        </Routes>
-      ) : (
-        <div ref={contentRef} className="flex-1 overflow-y-auto overflow-x-hidden">
+          {/* Bottom glowing line */}
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cy-cyan to-transparent" />
+        </nav>
+
+        {/* Scrollable content area */}
+        {location.pathname === '/retcomdevice' ? (
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/rules" element={<Rules />} />
-            <Route path="/combat" element={<Combat />} />
-            <Route path="/classes/:slug?" element={<Classes />} />
-            <Route path="/artwork" element={<Artwork />} />
+            <Route path="/retcomdevice" element={<RetComDevice />} />
           </Routes>
-        </div>
-      )}
-    </div>
+        ) : (
+          <div ref={contentRef} className="flex-1 overflow-y-auto overflow-x-hidden">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/rules" element={<Rules />} />
+              <Route path="/combat" element={<Combat />} />
+              <Route path="/classes/:slug?" element={<Classes />} />
+              <Route path="/artwork" element={<Artwork />} />
+            </Routes>
+          </div>
+        )}
+      </div>
+    </NavExtraContext.Provider>
   );
 }
 

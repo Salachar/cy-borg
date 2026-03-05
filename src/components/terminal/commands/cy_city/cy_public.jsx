@@ -46,7 +46,7 @@ export const CY_CITY_NETWORK = {
     ),
   },
 
-  "Cy City Public Access": {
+  "Public Utilities": {
     content: (
       <CyCityPublicAccessBanner />
     ),
@@ -445,7 +445,7 @@ export const CY_CITY_NETWORK = {
     }
   },
 
-  "Cy City Corporate Portals": {
+  "Corporate Portals": {
     content: (
       <CyCityCorporatePortalsBanner />
     ),

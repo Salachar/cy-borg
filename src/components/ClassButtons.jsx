@@ -1,106 +1,115 @@
+import { useState, useEffect } from "react";
 import { CLASSES } from "../data/builder";
+
+const STORAGE_KEY = "cyborg_class_buttons_open";
+
+function getOpen() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved !== null ? JSON.parse(saved) : false;
+  } catch (e) {
+    return false;
+  }
+}
+
+function saveOpen(value) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
+  } catch (e) {}
+}
 
 export default function ClassButtons({
   currentIndex = null,
   onClick = () => {},
   onAdd = () => {},
 }) {
+  const [isOpen, setIsOpen] = useState(() => getOpen());
+
+  const handleToggle = () => {
+    const next = !isOpen;
+    setIsOpen(next);
+    saveOpen(next);
+  };
+
   return (
-    <div className="bg-black border-b border-gray-800 py-4">
-      <div className="max-w-7xl mx-auto px-4">
-        {/* Class Cards Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-3">
-          {CLASSES.map((character_class, index) => {
-            const ci = character_class.instance;
-            const isActive = currentIndex === index;
+    <div className="border-b border-gray-800">
+      {/* Subtle toggle header */}
+      <button
+        onClick={handleToggle}
+        className="w-full flex items-center justify-between px-4 py-2 text-left"
+        style={{ backgroundColor: 'transparent' }}
+      >
+        <span className="text-xs font-bold uppercase tracking-widest text-gray-600">
+          Classes
+        </span>
+        <span className="text-xs text-gray-700">
+          {isOpen ? '▲' : '▼'}
+        </span>
+      </button>
 
-            return (
-              <div
-                key={`class_${index}`}
-                className="relative group"
-              >
-                {/* Main Class Button */}
-                <button
-                  onClick={() => onClick({ ...character_class, index })}
-                  className={`
-                    relative w-full h-24
-                    flex flex-col items-center justify-center
-                    bg-gradient-to-br from-gray-900 to-gray-950
-                    border-2 transition-all duration-200
-                    overflow-hidden
-                    ${isActive
-                      ? 'border-[var(--class-color)] shadow-lg'
-                      : 'border-gray-800 hover:border-gray-700'
-                    }
-                  `}
-                  style={{
-                    '--class-color': ci.color,
-                    opacity: typeof currentIndex === "number" ? (isActive ? 1 : 0.6) : 0.8,
-                    boxShadow: isActive ? `0 0 20px ${ci.color}40` : 'none',
-                  }}
-                >
-                  {/* Background pattern */}
-                  <div
-                    className="absolute inset-0 opacity-5"
-                    style={{
-                      backgroundImage: `
-                        repeating-linear-gradient(
-                          45deg,
-                          ${ci.color} 0,
-                          ${ci.color} 2px,
-                          transparent 2px,
-                          transparent 10px
-                        )
-                      `,
-                    }}
-                  />
+      {/* Collapsible content */}
+      {isOpen && (
+        <div className="px-4 pb-4">
+          <div className="grid grid-cols-4 md:grid-cols-7 gap-2">
+            {CLASSES.map((character_class, index) => {
+              const ci = character_class.instance;
+              const isActive = currentIndex === index;
 
-                  {/* Class Name */}
-                  <span
-                    className="relative z-10 text-sm font-bold uppercase tracking-wider text-center px-2 transition-all"
+              return (
+                <div key={`class_${index}`} className="relative group">
+                  {/* Main Class Button */}
+                  <button
+                    onClick={() => onClick({ ...character_class, index })}
+                    className="relative w-full h-20 flex flex-col items-center justify-center border-2 transition-all duration-200 overflow-hidden"
                     style={{
-                      color: isActive ? ci.color : '#9ca3af',
-                      textShadow: isActive ? `0 0 10px ${ci.color}80` : 'none',
+                      backgroundColor: isActive ? `${ci.color}15` : 'rgb(17, 17, 17)',
+                      borderColor: isActive ? ci.color : 'rgb(40, 40, 40)',
+                      opacity: typeof currentIndex === "number" ? (isActive ? 1 : 0.55) : 0.75,
+                      boxShadow: isActive ? `0 0 16px ${ci.color}30` : 'none',
                     }}
                   >
-                    {ci.class}
-                  </span>
-
-                  {/* Active Indicator */}
-                  {isActive && (
+                    {/* Background pattern */}
                     <div
-                      className="absolute bottom-0 left-0 right-0 h-1"
-                      style={{ backgroundColor: ci.color }}
+                      className="absolute inset-0 opacity-5"
+                      style={{
+                        backgroundImage: `repeating-linear-gradient(45deg, ${ci.color} 0, ${ci.color} 2px, transparent 2px, transparent 10px)`,
+                      }}
                     />
-                  )}
-                </button>
 
-                {/* Add Character Button (floating) */}
-                <button
-                  onClick={() => onAdd({ ...character_class, index })}
-                  className="
-                    absolute -top-2 -right-2 z-20
-                    w-8 h-8
-                    flex items-center justify-center
-                    bg-gray-800 hover:bg-gray-700
-                    border-2 border-gray-700 hover:border-cy-green
-                    text-cy-green font-bold text-lg
-                    rounded-full
-                    transition-all duration-200
-                    shadow-lg
-                  "
-                  style={{
-                    textShadow: '0 0 5px rgba(0, 255, 65, 0.5)',
-                  }}
-                  title={`Create new ${ci.class}`}
-                >
-                  +
-                </button>
-              </div>
-            );
-          })}
+                    {/* Class Name */}
+                    <span
+                      className="relative z-10 text-xs font-bold uppercase tracking-wider text-center px-1"
+                      style={{
+                        color: isActive ? ci.color : '#6b7280',
+                        textShadow: isActive ? `0 0 8px ${ci.color}60` : 'none',
+                      }}
+                    >
+                      {ci.class}
+                    </span>
+
+                    {/* Active Indicator */}
+                    {isActive && (
+                      <div
+                        className="absolute bottom-0 left-0 right-0 h-0.5"
+                        style={{ backgroundColor: ci.color }}
+                      />
+                    )}
+                  </button>
+
+                  {/* Add Character Button */}
+                  <button
+                    onClick={() => onAdd({ ...character_class, index })}
+                    className="absolute -top-2 -right-2 z-20 w-6 h-6 flex items-center justify-center bg-gray-900 border border-gray-700 text-gray-500 font-bold text-sm rounded-full transition-all duration-200 shadow-lg hover:border-cy-green hover:text-cy-green"
+                    title={`Create new ${ci.class}`}
+                  >
+                    +
+                  </button>
+                </div>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

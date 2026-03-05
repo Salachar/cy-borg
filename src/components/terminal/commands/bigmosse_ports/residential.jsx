@@ -1,8 +1,13 @@
+import ApartmentIcon from '@mui/icons-material/Apartment';
+const ICON_STYLE = { fontSize: 20, color: 'rgb(79, 209, 197)' };
+
 import {
   Line,
   KeyValue,
   InsetBox,
+  NodePreview,
 } from '@terminal/TerminalComponents';
+
 import {
   Safe,
   GameConsole,
@@ -56,6 +61,12 @@ export const RESIDENTIAL_COMMANDS = {
   },
 
   "Torres Apartments": {
+    favicon: <ApartmentIcon style={ICON_STYLE} />,
+    preview: (
+      <NodePreview>
+        <Line span smoke> · Studio vacancies available</Line>
+      </NodePreview>
+    ),
     content: (
       <PublicPortal
         name="TORRES APARTMENTS"
@@ -198,7 +209,6 @@ export const RESIDENTIAL_COMMANDS = {
             password: {
               pw: "maintenance",
               hint: "The resident's department at the casino",
-              difficulty: "medium",
               content: <Locked theme="safe" title="PERSONAL SAFE" />
             },
             content: (
@@ -252,7 +262,6 @@ export const RESIDENTIAL_COMMANDS = {
         password: {
           pw: "localhost",
           hint: "This terminal doesn't trust the outside world",
-          difficulty: "easy",
           content: <Locked theme="safe" title="PERSONAL SAFE" />
         },
         content: (
@@ -293,7 +302,6 @@ export const RESIDENTIAL_COMMANDS = {
         password: {
           pw: "dealer",
           hint: "The resident's job at the casino",
-          difficulty: "medium",
           content: <Locked theme="safe" title="PERSONAL SAFE" />
         },
         content: (
@@ -329,7 +337,6 @@ export const RESIDENTIAL_COMMANDS = {
         password: {
           pw: "blind",
           hint: "You pay before you see",
-          difficulty: "medium",
           content: <Locked theme="terminal" title="BUILDING MANAGEMENT" />
         },
         content: (

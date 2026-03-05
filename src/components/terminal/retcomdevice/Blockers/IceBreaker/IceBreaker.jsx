@@ -69,6 +69,7 @@ export default function IceBreaker({
   const [beamState, setBeamState] = useState(null); // null, 'hit', 'miss'
   const [isSuccess, setIsSuccess] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
 
   const animationFrameRef = useRef(null);
   const lastTimeRef = useRef(Date.now());
@@ -323,6 +324,41 @@ export default function IceBreaker({
             )}
           </div>
         </div>
+      </div>
+
+      {/* Help */}
+      <div style={{ marginBottom: '0.5rem' }}>
+        <button
+          onClick={() => setShowHelp(v => !v)}
+          className="icebreaker-button"
+          style={{ width: '100%', textAlign: 'left', opacity: 0.6 }}
+        >
+          {showHelp ? '[▲ HIDE INSTRUCTIONS]' : '[▼ HOW TO PLAY]'}
+        </button>
+
+        {showHelp && (
+          <div style={{
+            marginTop: '0.5rem',
+            padding: '0.75rem',
+            border: '1px solid rgba(79, 209, 197, 0.3)',
+            borderRadius: '4px',
+            backgroundColor: 'rgba(19, 23, 34, 0.8)',
+            color: 'rgb(148, 163, 184)',
+            fontFamily: 'monospace',
+            fontSize: '0.75rem',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.4rem',
+          }}>
+            <div style={{ color: 'rgb(79, 209, 197)', fontWeight: 'bold', marginBottom: '0.25rem' }}>ICEBREAKER v2.1 — INSTRUCTIONS</div>
+            <div>→ The shield rotates around the corporate vault. Your gun fires from the <span style={{ color: 'rgb(251, 191, 36)' }}>left</span>.</div>
+            <div>→ The shield has a <span style={{ color: 'rgb(251, 191, 36)' }}>gap</span>. You must fire through it to breach the vault.</div>
+            <div>→ Press <span style={{ color: 'rgb(79, 209, 197)' }}>[FIRE]</span> or tap anywhere to charge and shoot. The shot fires after a short delay — time it early.</div>
+            <div>→ If you miss, the gun cools down before you can fire again. The shield keeps spinning.</div>
+            <div>→ Hit the gap to crack the ICE and unlock access.</div>
+            <div style={{ color: 'rgba(252, 129, 129, 0.8)', marginTop: '0.25rem' }}>Higher difficulties = smaller gap + faster rotation.</div>
+          </div>
+        )}
       </div>
 
       {/* Controls */}

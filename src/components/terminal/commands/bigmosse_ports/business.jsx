@@ -74,7 +74,6 @@ export const BUSINESS_COMMANDS = {
         password: {
           pw: "scalpel",
           hint: "Slicey slicey time tool",
-          difficulty: "medium",
           content: <Locked theme="terminal" title="PATIENT DATABASE" />
         },
         content: (
@@ -175,7 +174,6 @@ export const BUSINESS_COMMANDS = {
         password: {
           pw: "razor",
           hint: "The shop owner's nickname",
-          difficulty: "easy",
           content: <Locked theme="terminal" title="INVENTORY SYSTEM" />
         },
         content: (
@@ -293,7 +291,6 @@ export const BUSINESS_COMMANDS = {
         password: {
           pw: "boxesboxesboxes",
           hint: "So many boxes",
-          difficulty: "easy",
           content: <Locked theme="terminal" title="SHOP SYSTEMS" />
         },
         content: (
@@ -430,7 +427,6 @@ export const BUSINESS_COMMANDS = {
         password: {
           pw: "crustacean",
           hint: "Crabs and such",
-          difficulty: "medium",
           content: <Locked theme="safe" title="BAR SAFE" />
         },
         content: (
@@ -521,7 +517,6 @@ export const BUSINESS_COMMANDS = {
         password: {
           pw: "cashmoney",
           hint: "What everyone wants from an ATM",
-          difficulty: "easy",
           content: <Locked theme="terminal" title="ATM ACCESS" />
         },
         content: (
@@ -547,7 +542,6 @@ export const BUSINESS_COMMANDS = {
         password: {
           pw: "thehouse",
           hint: "It always wins",
-          difficulty: "easy",
           content: <Locked theme="terminal" title="PAWN RECORDS" />
         },
         content: (
@@ -801,7 +795,6 @@ export const BUSINESS_COMMANDS = {
         password: {
           pw: "listerine",
           hint: "It's a booze cause it's green",
-          difficulty: "easy",
           content: <Locked theme="safe" title="SHOP SAFE" />
         },
         content: (
@@ -848,7 +841,6 @@ export const BUSINESS_COMMANDS = {
         password: {
           pw: "deathdogs",
           hint: "They have an absurd amount of nitrates",
-          difficulty: "hard",
           content: <Locked theme="terminal" title="PAWN RECORDS" />
         },
         content: (
@@ -937,7 +929,6 @@ export const BUSINESS_COMMANDS = {
         password: {
           pw: "encryption",
           hint: "What Cipher specializes in for security",
-          difficulty: "medium",
           content: <Locked theme="terminal" title="WORKSTATION ACCESS" />
         },
         content: (
@@ -968,7 +959,6 @@ export const BUSINESS_COMMANDS = {
         password: {
           pw: "decryption",
           hint: "Opposite of encryption",
-          difficulty: "easy",
           content: <Locked theme="safe" title="OFFICE SAFE" />
         },
         content: (
@@ -1104,7 +1094,6 @@ export const BUSINESS_COMMANDS = {
         password: {
           pw: "algorithm",
           hint: "What programmers write to solve problems",
-          difficulty: "medium",
           content: <Locked theme="safe" title="BAR SAFE" />
         },
         content: (
@@ -1150,7 +1139,6 @@ export const BUSINESS_COMMANDS = {
         password: {
           pw: "debug",
           hint: "What programmers do when code doesn't work",
-          difficulty: "hard",
           content: <Locked theme="terminal" title="BAR SYSTEMS" />
         },
         content: (
@@ -1185,7 +1173,6 @@ export const BUSINESS_COMMANDS = {
 
   "Royal West Shipping Warehouse": {
     password: {
-      difficulty: 'corporate',
       pw: 'royalwestisthebest',
       decoyLetters: "z,p,u,x",
     },

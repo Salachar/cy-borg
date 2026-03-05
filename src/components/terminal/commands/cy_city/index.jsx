@@ -1,7 +1,18 @@
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import MapIcon from '@mui/icons-material/Map';
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+// import CasinoIcon from '@mui/icons-material/Casino';
+
+const ICON_STYLE = { fontSize: 20, color: 'rgb(79, 209, 197)' };
+const ICON_STYLE_YELLOW = { fontSize: 20, color: 'rgb(251, 191, 36)' };
+
 import {
   Line,
   InsetBox,
+  NodePreview,
 } from '@terminal/TerminalComponents';
+
 import CityPortal from './CityPortal';
 
 import BIGMOSSE_PORTS_COMMANDS from "../bigmosse_ports/bigmosse_ports";
@@ -9,6 +20,7 @@ import THE_INBETWEENS_DISTRICT from '../the_inbetweens/the_inbetweens';
 import CENTRAL_DISTRICT from '../central_district/central_district';
 import SOUTH_CENTRAL_DISTRICT_COMMANDS from '../south_central_district/south_central_district';
 
+import TerminalWallet from '@terminal/retcomdevice/Basic/TerminalWallet/TerminalWallet';
 import GamesBanner from '@terminal/retcomdevice/Games/GamesBanner/GamesBanner';
 import MinesweeperGame from '@terminal/retcomdevice/Games/MinesweeperGame/MinesweeperGame';
 import MemoryGame from '@terminal/retcomdevice/Games/MemoryGame/MemoryGame';
@@ -21,7 +33,28 @@ import { CY_CITY_NETWORK } from "./cy_public";
 // ============================================================================
 
 export const CY_CITY_PORTAL = {
-  "Cy": {
+  "Wallet": {
+    favicon: <AccountBalanceWalletIcon style={ICON_STYLE_YELLOW} />,
+    preview: (
+      <NodePreview>
+        <span style={{ color: 'rgb(251, 191, 36)' }}>★</span> Keeps track of all collected credits and items in the RetComDevice
+      </NodePreview>
+    ),
+    content: <TerminalWallet />,
+  },
+  "Cy Public": {
+    favicon: <LocationCityIcon style={ICON_STYLE} />,
+    preview: (
+      <NodePreview>
+        <Line red span bold>THREAT: CRITICAL</Line>
+        {' · '}Population 2.8M official, 4M+ estimated
+        {' · '}Pre-Incident ruins. Corporate glass. Slum fires.
+        <Line top>
+          Public access terminal. City news, weather, corp announcements.{' '}
+          <Line span style={{ opacity: 0.6 }}>No secured nodes — just what they want you to know.</Line>
+        </Line>
+      </NodePreview>
+    ),
     content: (
       <CityPortal
         cityName="CY"
@@ -98,7 +131,22 @@ export const CY_CITY_PORTAL = {
       ...CY_CITY_NETWORK,
     },
   },
-  "Cy Districts": {
+  "Cy City Network": {
+    favicon: <MapIcon style={ICON_STYLE} />,
+    preview: (
+      <NodePreview>
+        <Line>
+          <Line teal span bold>7 districts · 40+ nodes</Line>
+          {' '}— corps, gangs, black markets, and worse.
+        </Line>
+        <Line top>
+          Expand a district to find locations. Locations have{' '}
+          <Line yellow span>secured nodes</Line>
+          {' '}— hack smart systems, crack safes, access cameras, find hidden credits and items. Some are password locked. Some need ICE broken first.
+        </Line>
+        <Line teal top>Pick a district and start digging. Everything useful is behind something.</Line>
+      </NodePreview>
+    ),
     content: (
       <CityPortal
         cityName="Districts"
@@ -160,6 +208,13 @@ export const CY_CITY_PORTAL = {
     },
   },
   "Cy Games": {
+    favicon: <SportsEsportsIcon style={ICON_STYLE} />,
+    preview: (
+      <NodePreview>
+        <span style={{ color: 'rgb(0, 255, 65)' }}>3 games</span>
+        {' '}available — Nanobomb Defusal, Netrunner Memory Deck, and Cyber Poker.
+      </NodePreview>
+    ),
     content: (
       <GamesBanner />
     ),

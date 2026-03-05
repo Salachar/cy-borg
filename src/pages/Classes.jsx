@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { CLASSES } from "../data/builder";
@@ -9,33 +9,74 @@ import CharacterTabs from "../components/CharacterTabs";
 import CharacterTemplate from "../components/CharacterTemplate";
 import AppDataExportImport from "../components/CharacterExportImport";
 
+import { NavExtraContext } from "../App";
+
 const setClassColor = (classData) => {
   let data = classData;
   if (classData.instance) classData = classData.instance;
   if (!classData.color) return;
   document.documentElement.style.setProperty('--color-class', classData.color);
+};
+
+// Lock button rendered in the nav
+function NavLockButton({ character, onUpdate }) {
+  if (!character?.toggleLock) return null;
+
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        character.toggleLock();
+        onUpdate();
+      }}
+      className="
+        h-8 px-3
+        bg-gray-800
+        border border-cy-cyan
+        text-cy-cyan font-bold uppercase text-xs
+        transition-all
+      "
+    >
+      {character.locked ? 'Locked' : 'Unlocked'}
+    </button>
+  );
 }
 
-export default function Classes () {
+export default function Classes() {
   const navigate = useNavigate();
   const { slug } = useParams();
+  const { setNavExtra } = useContext(NavExtraContext);
 
   const [tabIndex, setTabIndex] = useState(null);
-
   const [currentCharacter, setCurrentCharacter] = useState(null);
   const [isBuilder, setIsBuilder] = useState(false);
-
-  // Needed to trigger UI updates from the classes
   const [timestamp, setTimestamp] = useState(Date.now());
 
   useEffect(() => {
     checkCharacters(null, slug);
   }, []);
 
+  // Keep nav lock button in sync with current character and lock state
+  useEffect(() => {
+    if (isBuilder && currentCharacter?.toggleLock) {
+      setNavExtra(
+        <NavLockButton
+          key={timestamp} // re-renders on update so locked label stays current
+          character={currentCharacter}
+          onUpdate={onUpdate}
+        />
+      );
+    } else {
+      setNavExtra(null);
+    }
+
+    return () => setNavExtra(null);
+  }, [isBuilder, currentCharacter, timestamp]);
+
   const setCharAndColor = (character) => {
     setCurrentCharacter(character);
     setClassColor(character);
-  }
+  };
 
   const checkCharacters = (currentCharacterOverride, slug) => {
     let currChar = currentCharacter;
@@ -78,7 +119,6 @@ export default function Classes () {
       }
     }
 
-    // Check for last selected first
     const lastSelectedId = BuilderManager.lastSelectedId;
     if (lastSelectedId && chars[lastSelectedId]) {
       setIsBuilder(true);
@@ -94,12 +134,12 @@ export default function Classes () {
       setCharAndColor(firstChar);
       BuilderManager.setLastSelected(firstChar.id);
     }
-  }
+  };
 
   const onUpdate = () => {
     BuilderManager.save();
     setTimestamp(Date.now());
-  }
+  };
 
   const hasCharacters = Object.keys(BuilderManager.characters).length > 0;
 
@@ -107,13 +147,13 @@ export default function Classes () {
     <>
       <ClassButtons
         currentIndex={tabIndex}
-        onClick={({instance, index}) => {
+        onClick={({ instance, index }) => {
           setTabIndex(index);
           setCharAndColor(instance);
           setIsBuilder(false);
           navigate(`/classes/${instance.class_id}`);
         }}
-        onAdd={({constructor}) => {
+        onAdd={({ constructor }) => {
           const new_character = new constructor();
           BuilderManager.addCharacter(new_character);
           setTabIndex(null);
@@ -124,9 +164,6 @@ export default function Classes () {
       />
 
       <div className="page-content">
-        {/* Stacked Layout: Tabs above character sheet */}
-
-        {/* Character Tabs (if any exist) */}
         {hasCharacters && (
           <div className="mb-6">
             <CharacterTabs
@@ -157,7 +194,6 @@ export default function Classes () {
           </div>
         )}
 
-        {/* Character Sheet */}
         {currentCharacter && (
           <CharacterTemplate
             builder={isBuilder}

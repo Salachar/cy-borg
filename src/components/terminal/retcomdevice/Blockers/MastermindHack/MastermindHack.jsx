@@ -91,6 +91,7 @@ export default function MastermindHack({
   const [guesses, setGuesses] = useState([]);
   const [attemptsLeft, setAttemptsLeft] = useState(config.attempts);
   const [isComplete, setIsComplete] = useState(false);
+  const [showHelp, setShowHelp] = useState(false);
 
   const [showRetry, setShowRetry] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -277,6 +278,53 @@ export default function MastermindHack({
         {isComplete && (
           <div className={`mastermind-status ${guesses[guesses.length - 1]?.isCorrect ? 'success' : 'failure'}`}>
             {guesses[guesses.length - 1]?.isCorrect ? '✓ ICE BROKEN - ACCESS GRANTED' : '✗ ICE INTACT - ACCESS DENIED'}
+          </div>
+        )}
+      </div>
+
+      {/* Help */}
+      <div style={{ marginBottom: '0.5rem', fontFamily: 'monospace' }}>
+        <button
+          onClick={() => setShowHelp(v => !v)}
+          style={{
+            width: '100%',
+            textAlign: 'left',
+            background: 'transparent',
+            border: '1px solid rgba(79, 209, 197, 0.2)',
+            color: 'rgba(79, 209, 197, 0.5)',
+            padding: '0.35rem 0.75rem',
+            fontSize: '0.72rem',
+            cursor: 'pointer',
+            letterSpacing: '0.05em',
+            fontFamily: 'monospace',
+          }}
+        >
+          {showHelp ? '▲ HIDE INSTRUCTIONS' : '▼ HOW TO PLAY'}
+        </button>
+
+        {showHelp && (
+          <div style={{
+            padding: '0.75rem',
+            border: '1px solid rgba(79, 209, 197, 0.2)',
+            borderTop: 'none',
+            backgroundColor: 'rgba(19, 23, 34, 0.8)',
+            color: 'rgb(148, 163, 184)',
+            fontSize: '0.75rem',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.4rem',
+          }}>
+            <div style={{ color: 'rgb(79, 209, 197)', fontWeight: 'bold', marginBottom: '0.25rem' }}>SEQUENCE BREAKER — INSTRUCTIONS</div>
+            <div>→ A <span style={{ color: 'rgb(251, 191, 36)' }}>target sequence</span> is hidden among the garbage in the terminal. Find and select it.</div>
+            <div>→ Sequences are groups of colored symbols. Tap any symbol in a sequence to guess it.</div>
+            <div>→ After each guess you get feedback on every position:</div>
+            <div style={{ paddingLeft: '1rem', display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
+              <div><span style={{ color: 'rgb(0, 255, 65)' }}>■ Exact</span> — correct symbol AND correct color in this position</div>
+              <div><span style={{ color: 'rgb(251, 191, 36)' }}>■ Partial</span> — correct symbol OR correct color, but not both</div>
+              <div><span style={{ color: 'rgb(77, 77, 77)' }}>■ None</span> — neither symbol nor color matches</div>
+            </div>
+            <div>→ Use the feedback to narrow down which sequence is correct. You have a limited number of attempts.</div>
+            <div style={{ color: 'rgba(252, 129, 129, 0.8)', marginTop: '0.25rem' }}>Run out of attempts and the ICE holds. You can retry if that happens, and the sequence changes.</div>
           </div>
         )}
       </div>

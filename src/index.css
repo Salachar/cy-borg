@@ -199,3 +199,21 @@ button {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.4; }
 }
+
+@keyframes rcd-pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+@keyframes rcd-blink {
+  0%, 90%, 100% { opacity: 1; }
+  95% { opacity: 0.15; }
+}
+@keyframes rcd-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pw-cursor {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.3; }
+}

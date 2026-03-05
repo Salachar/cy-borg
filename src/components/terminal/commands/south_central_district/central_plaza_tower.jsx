@@ -1,7 +1,11 @@
+import BusinessIcon from '@mui/icons-material/Business';
+const ICON_STYLE = { fontSize: 20, color: 'rgb(79, 209, 197)' };
+
 import {
   Line,
   Divider,
   InsetBox,
+  NodePreview,
 } from '@terminal/TerminalComponents';
 
 import {
@@ -31,6 +35,12 @@ import central_tower_atrium_cctv_image from '@images/locations/central_tower_atr
 
 export const CENTRAL_PLAZA_TOWER_COMMANDS = {
   "Central Plaza Tower": {
+    favicon: <BusinessIcon style={ICON_STYLE} />,
+    preview: (
+      <NodePreview>
+        <Line span smoke> · Home to the famous Steel Jackhammer!</Line>
+      </NodePreview>
+    ),
     content: (
       <DistrictPortal
         districtName="CENTRAL PLAZA TOWER"
@@ -223,7 +233,6 @@ export const CENTRAL_PLAZA_TOWER_COMMANDS = {
                 password: {
                   pw: "chromium24",
                   hint: "Such a precious material",
-                  difficulty: "easy",
                   content: <Locked theme="terminal" title="CHROMELUX STAFF PORTAL" />
                 },
                 content: (

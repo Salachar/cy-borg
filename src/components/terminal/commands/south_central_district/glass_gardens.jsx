@@ -190,7 +190,6 @@ export const GLASS_GARDENS_COMMANDS = {
         password: {
           pw: "crystalchalice",
           hint: "Whats kings drink from",
-          hintStrength: 1,
         },
         content: (
           <MaintenanceAccess

@@ -1,7 +1,9 @@
 export const STORAGE_KEY = 'cyborg_terminal_secrets';
 export const PASSWORD_STORAGE_KEY = 'cyborg_terminal_passwords';
+export const PASSWORD_ATTEMPTS_STORAGE_KEY = 'cyborg_terminal_password_attempts';
 export const HISTORY_KEY = 'cyborg_terminal_history';
 export const COLLAPSED_STORAGE_KEY = 'terminal_commands_expanded';
+export const COLLAPSED_CONTENT_STORAGE_KEY = 'terminal_commands_content_expanded'
 export const TREE_STORAGE_KEY = 'terminal-tree-expanded';
 
 export function getDiscoveredSecrets() {

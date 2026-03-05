@@ -43,6 +43,7 @@ export const Line = ({
   pulse,
   loading = false,
   style = {},
+  span = false,
   children,
 }) => {
   let appliedClassname = className;
@@ -84,8 +85,28 @@ export const Line = ({
   if (small) appliedClassname += " text-sm";
   if (large) appliedClassname += " text-lg";
 
+  if (span) {
+    return (
+      <span className={appliedClassname} style={appliedStyles}>{children}{loading ? "..." : ""}</span>
+    );
+  } else {
+    return (
+      <div className={appliedClassname} style={appliedStyles}>{children}{loading ? "..." : ""}</div>
+    );
+  }
+};
+
+export const NodePreview = ({ children }) => {
   return (
-    <div className={appliedClassname} style={appliedStyles}>{children}{loading ? "..." : ""}</div>
+    <div
+      style={{
+        fontFamily: 'monospace',
+        fontSize: '0.72rem',
+        color: 'rgb(148, 163, 184)',
+      }}
+    >
+      {children}
+    </div>
   );
 };
 

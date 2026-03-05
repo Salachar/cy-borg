@@ -2,6 +2,7 @@ import {
   Line,
   Divider,
   DataTable,
+  NodePreview,
 } from '@terminal/TerminalComponents';
 import {
   Safe,
@@ -21,6 +22,11 @@ import StoneEelsAd from './caveclub_ad';
 
 export const STONE_EELS_COMMANDS = {
   "Cave Club": {
+    preview: (
+      <NodePreview>
+        <Line span neon> · Stone Eels territory</Line>
+      </NodePreview>
+    ),
     content: (
       <StoneEelsAd />
     ),
@@ -125,7 +131,6 @@ export const STONE_EELS_COMMANDS = {
         password: {
           pw: "python",
           hint: "Gives the best hugs",
-          difficulty: "medium",
           content: <Locked theme="terminal" title="CAVE CLUB NETWORK" />
         },
         content: (
@@ -170,7 +175,6 @@ export const STONE_EELS_COMMANDS = {
             password: {
               pw: "contrictor",
               hint: "The walls are closing in",
-              difficulty: "expert",
               content: <Locked theme="terminal" title="VIP GUEST SYSTEM" />
             },
             content: (
@@ -272,9 +276,8 @@ export const STONE_EELS_COMMANDS = {
 
           "Back Office Safe": {
             password: {
-              pw: "ekansorarbok",
+              pw: "ekans or arbok",
               hint: "Favorite pokemon, its one of two...",
-              difficulty: "medium",
               decoyLetters: "r,b,o,x,z,h",
               content: <Locked theme="safe" title="MANAGEMENT SAFE" />
             },

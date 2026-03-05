@@ -1,9 +1,13 @@
+import CasinoIcon from '@mui/icons-material/Casino';
+const ICON_STYLE = { fontSize: 20, color: 'rgb(79, 209, 197)' };
+
 import {
   InsetBox,
   Line,
   Box,
   Divider,
   DataTable,
+  NodePreview,
 } from '@terminal/TerminalComponents';
 
 import {
@@ -35,6 +39,12 @@ import floor2Image from '@images/blueprints/lucky_flight_floor_2.png';
 
 export const LUCKY_FLIGHT_CASINO = {
   "Lucky Flight Casino!": {
+    favicon: <CasinoIcon style={ICON_STYLE} />,
+    preview: (
+      <NodePreview>
+        <Line span neon> · Your favorite 24/7 neighborhood casino!</Line>
+      </NodePreview>
+    ),
     content: (
       <LuckyFlightAd />
     ),
@@ -54,7 +64,6 @@ export const LUCKY_FLIGHT_CASINO = {
         password: {
           pw: "liquidity",
           hint: "You don't need more money. You need to move it.",
-          difficulty: "expert",
         },
         content: (
           <ATM
@@ -186,7 +195,6 @@ export const LUCKY_FLIGHT_CASINO = {
             password: {
               pw: "quantum",
               hint: "Top selling soda",
-              difficulty: "medium",
             },
             content: (
              <MaintenanceAccess
@@ -232,9 +240,9 @@ export const LUCKY_FLIGHT_CASINO = {
 
       "Casino Internal Network": {
         password: {
-          pw: "loadeddice",
+          pw: "loaded dice",
           hint: "Better not get caught",
-          difficulty: "expert",
+          decoyLetters: 'y,z',
         },
         content: (
           <MaintenanceAccess
@@ -256,7 +264,6 @@ export const LUCKY_FLIGHT_CASINO = {
             password: {
               pw: "architecture",
               hint: "What blueprints are a form of",
-              difficulty: "medium",
             },
             content: (
               <MaintenanceAccess
@@ -370,9 +377,8 @@ export const LUCKY_FLIGHT_CASINO = {
           },
           "Personnel Files": {
             password: {
-              pw: "Slevin",
+              pw: "slevin",
               hint: "Lucky number Kelevra",
-              difficulty: "hard",
             },
             content: (
               <MaintenanceAccess
@@ -515,7 +521,6 @@ export const LUCKY_FLIGHT_CASINO = {
                 password: {
                   pw: "database",
                   hint: "Please help! I've been turned into a living...",
-                  difficulty: "corporate",
                 },
                 content: (
                   <Box color="pink">
@@ -557,7 +562,6 @@ export const LUCKY_FLIGHT_CASINO = {
             password: {
               pw: "surveillance",
               hint: "What cameras are used for",
-              difficulty: "hard",
             },
             content: (
               <MaintenanceAccess
@@ -580,7 +584,6 @@ export const LUCKY_FLIGHT_CASINO = {
                 password: {
                   pw: "keycard",
                   hint: "What employees swipe to get in",
-                  difficulty: "medium",
                   content: <Locked theme="terminal" title="ACCESS CONTROL" />
                 },
                 content: (
@@ -670,7 +673,6 @@ export const LUCKY_FLIGHT_CASINO = {
             password: {
               pw: "debt",
               hint: "What casino uses to control neighborhood",
-              difficulty: "hard",
             },
             content: (
               <MaintenanceAccess
@@ -735,7 +737,6 @@ export const LUCKY_FLIGHT_CASINO = {
             password: {
               pw: "packets",
               hint: "What travels across a network",
-              difficulty: "medium",
               content: <Locked theme="terminal" title="NETWORK MONITOR" />
             },
             content: (
@@ -781,7 +782,6 @@ export const LUCKY_FLIGHT_CASINO = {
                 password: {
                   pw: "chaos",
                   hint: "Casino's natural state",
-                  difficulty: "expert",
                 },
                 content: (
                   <IncidentLog
@@ -833,7 +833,6 @@ export const LUCKY_FLIGHT_CASINO = {
                 password: {
                   pw: "unstable",
                   hint: "Condition of Room 16",
-                  difficulty: "easy",
                 },
                 content: (
                   <MaintenanceAccess

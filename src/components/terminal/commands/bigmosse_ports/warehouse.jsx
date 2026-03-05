@@ -153,7 +153,6 @@ export const ALLIANSEN_WAREHOUSE_COMMANDS = {
         password: {
           pw: "administraitor",
           hint: "What you get when an admin turns on you",
-          difficulty: "medium",
           content: <Locked theme="terminal" title="EMPLOYEE NETWORK" />
         },
         content: (
@@ -251,7 +250,6 @@ export const ALLIANSEN_WAREHOUSE_COMMANDS = {
             password: {
               pw: "werehouse",
               hint: "What do you get when a wolf bits a house?",
-              difficulty: "medium",
               content: <Locked theme="terminal" title="SUPERVISOR WORKSTATION" />
             },
             content: (
@@ -481,8 +479,7 @@ export const ALLIANSEN_WAREHOUSE_COMMANDS = {
               "Supervisor's Office Safe": {
                 password: {
                   pw: "phishing",
-                  hint: "Hackers favorite hobbby",
-                  difficulty: "medium",
+                  hint: "Hackers favorite hobby",
                   content: <Locked theme="safe" title="SUPERVISOR SAFE" />
                 },
                 content: (

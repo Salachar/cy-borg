@@ -124,7 +124,6 @@ export const BODEGA_COMMANDS = {
             password: {
               pw: "java",
               hint: "Dan really hates it",
-              difficulty: 'expert',
               content: <DigitalWallet isLocked />
             },
             content: (
@@ -144,6 +143,9 @@ export const BODEGA_COMMANDS = {
       },
 
       "Arcade Machine": {
+        icebreaker: {
+          difficulty: 'easy',
+        },
         content: (
           <ArcadeCabinet
             credits={15}
@@ -183,7 +185,6 @@ export const BODEGA_COMMANDS = {
             password: {
               pw: "refresh",
               hint: "What you do to restock the machine",
-              difficulty: 'hard',
             },
             content: (
               <MaintenanceAccess />
@@ -304,9 +305,10 @@ export const BODEGA_COMMANDS = {
 
       "Internal Network": {
         password: {
-          pw: "payday",
+          pw: "pay day",
           hint: "Niece's favorite day and candybar",
-          difficulty: 'medium',
+          showFirst: true,
+          showCount: true,
           content: <Locked theme="terminal" />
         },
         content: (
@@ -381,7 +383,6 @@ export const BODEGA_COMMANDS = {
                 password: {
                   pw: "community",
                   hint: "What Batu cares about more than profit",
-                  difficulty: 'hard',
                 },
                 content: (
                   <PersonnelFile
@@ -478,7 +479,7 @@ export const BODEGA_COMMANDS = {
             password: {
               pw: "zara",
               hint: "His niece's name",
-              difficulty: 'hard',
+              showFrequency: true,
             },
             content: (
               <Safe

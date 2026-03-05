@@ -234,7 +234,6 @@ export const SOUTH_CENTRAL_FUN_COMMANDS = {
         password: {
           pw: "olympus",
           hint: "The highest membership tier",
-          difficulty: "medium",
           content: <Locked theme="terminal" title="MEMBER RECORDS" />
         },
         content: (
@@ -272,7 +271,6 @@ export const SOUTH_CENTRAL_FUN_COMMANDS = {
         password: {
           pw: "platinum",
           hint: "The most common membership tier",
-          difficulty: "easy",
           content: <Locked theme="safe" title="MEMBER LOCKER" />
         },
         content: (
@@ -422,7 +420,6 @@ export const SOUTH_CENTRAL_FUN_COMMANDS = {
         password: {
           pw: "union",
           hint: "What the workers at this bar believe in",
-          difficulty: "easy",
           content: <Locked theme="safe" title="BAR SAFE" />
         },
         content: (
@@ -529,7 +526,6 @@ export const SOUTH_CENTRAL_FUN_COMMANDS = {
         password: {
           pw: "secops",
           hint: "What the security personnel are called",
-          difficulty: "easy",
           content: <Locked theme="terminal" title="DUTY ROSTER" />
         },
         content: (
@@ -570,7 +566,6 @@ export const SOUTH_CENTRAL_FUN_COMMANDS = {
         password: {
           pw: "evidence",
           hint: "What's stored in this room",
-          difficulty: "medium",
           content: <Locked theme="vault" title="EVIDENCE STORAGE" />
         },
         content: (

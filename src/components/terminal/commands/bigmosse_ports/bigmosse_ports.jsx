@@ -1,6 +1,7 @@
 import {
   InsetBox,
   Line,
+  NodePreview,
 } from '@terminal/TerminalComponents';
 import {
   CCTV,
@@ -19,6 +20,11 @@ import bigmosse_ports_cctv from '@images/locations/bigmosse_ports_cctv.png';
 
 export const BIGMOSSE_PORTS_COMMANDS = {
   "Bigmosse & Ports": {
+    preview: (
+      <NodePreview>
+        <Line span yellow> · Lucky Flight Casino</Line> open 24/7!
+      </NodePreview>
+    ),
     content: (
       <DistrictPortal
         districtName="BIGMOSSE & PORTS"

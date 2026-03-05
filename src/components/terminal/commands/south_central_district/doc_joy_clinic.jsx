@@ -164,7 +164,6 @@ export const DOC_JOY_CLINIC_COMMANDS = {
             password: {
               pw: "restock",
               hint: "What you do when inventory runs low",
-              difficulty: "medium",
               content: <Locked theme="terminal" title="VENDING MAINTENANCE" />
             },
             content: (
@@ -203,7 +202,6 @@ export const DOC_JOY_CLINIC_COMMANDS = {
         password: {
           pw: "reaperwork",
           hint: "What Doc Joy calls his specialty contract jobs (check services menu)",
-          difficulty: "medium",
           content: <Locked theme="terminal" title="STAFF ACCESS" />
         },
         content: (
@@ -303,7 +301,6 @@ export const DOC_JOY_CLINIC_COMMANDS = {
             password: {
               pw: "prototype",
               hint: "What was stolen from the lab",
-              difficulty: "medium",
               content: <Locked theme="vault" title="SECURE STORAGE" />
             },
             content: (
@@ -346,7 +343,6 @@ export const DOC_JOY_CLINIC_COMMANDS = {
             password: {
               pw: "iceicebaby",
               hint: "Gotta keep everything nice and cold",
-              difficulty: "medium",
               content: <Locked theme="safe" title="MEDICAL STORAGE" />
             },
             content: (
@@ -414,7 +410,6 @@ export const DOC_JOY_CLINIC_COMMANDS = {
             password: {
               pw: "reaperdoc",
               hint: "Best job in the business",
-              difficulty: "easy",
               content: <Locked theme="terminal" title="OFFICE COMPUTER" />
             },
             content: (
