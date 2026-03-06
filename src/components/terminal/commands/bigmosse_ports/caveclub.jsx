@@ -1,9 +1,14 @@
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
+
+const ICON_STYLE = { fontSize: 20, color: 'rgb(79, 209, 197)' };
+
 import {
   Line,
   Divider,
   DataTable,
   NodePreview,
 } from '@terminal/TerminalComponents';
+
 import {
   Safe,
   PersonnelFile,
@@ -22,6 +27,7 @@ import StoneEelsAd from './caveclub_ad';
 
 export const STONE_EELS_COMMANDS = {
   "Cave Club": {
+    favicon: <MusicNoteIcon style={ICON_STYLE} />,
     preview: (
       <NodePreview>
         <Line span neon> · Stone Eels territory</Line>

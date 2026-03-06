@@ -2,6 +2,7 @@ import {
   Line,
   InsetBox,
 } from '@terminal/TerminalComponents';
+
 import {
   Camera,
   Safe,

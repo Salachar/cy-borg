@@ -1,8 +1,25 @@
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import BusinessIcon from '@mui/icons-material/Business';
+import ScienceIcon from '@mui/icons-material/Science';
+import StorefrontIcon from '@mui/icons-material/Storefront';
+import LocalHospitalIcon from '@mui/icons-material/LocalHospital';
+import BuildIcon from '@mui/icons-material/Build';
+import SportsBarIcon from '@mui/icons-material/SportsBar';
+import DiamondIcon from '@mui/icons-material/Diamond';
+import LockIcon from '@mui/icons-material/Lock';
+import CodeIcon from '@mui/icons-material/Code';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+
+const ICON_STYLE = { fontSize: 20, color: 'rgb(79, 209, 197)' };
+const ICON_STYLE_YELLOW = { fontSize: 20, color: 'rgb(251, 191, 36)' };
+
 import {
   Line,
   KeyValue,
   InsetBox,
 } from '@terminal/TerminalComponents';
+
 import {
   ArcadeCabinet,
   ATM,
@@ -21,6 +38,7 @@ import {
 
 export const BUSINESS_COMMANDS = {
   "Fingers' Clinic": {
+    favicon: <LocalHospitalIcon style={ICON_STYLE} />,
     content: (
       <MaintenanceAccess
         title="[FINGERS' MEDICAL SERVICES]"
@@ -110,6 +128,7 @@ export const BUSINESS_COMMANDS = {
   },
 
   "Razor's Garage": {
+    favicon: <BuildIcon style={ICON_STYLE} />,
     content: (
       <MaintenanceAccess
         title="[RAZOR'S TECHNICAL SERVICES]"
@@ -214,6 +233,7 @@ export const BUSINESS_COMMANDS = {
   },
 
   "Mira's Corner Shop": {
+    favicon: <StorefrontIcon style={ICON_STYLE} />,
     content: (
       <PublicPortal
         name="MIRA'S CORNER SHOP"
@@ -324,6 +344,7 @@ export const BUSINESS_COMMANDS = {
   },
 
   "The Rusty Anchor": {
+    favicon: <SportsBarIcon style={ICON_STYLE} />,
     content: (
       <PublicPortal
         name="THE RUSTY ANCHOR"
@@ -463,6 +484,7 @@ export const BUSINESS_COMMANDS = {
   },
 
   "Lucky's Pawn & Trade": {
+    favicon: <DiamondIcon style={ICON_STYLE} />,
     content: (
       <PublicPortal
         name="LUCKY'S PAWN & TRADE"
@@ -581,6 +603,7 @@ export const BUSINESS_COMMANDS = {
   },
 
   "Sanchez Electronics & Repair": {
+    favicon: <ScienceIcon style={ICON_STYLE} />,
     content: (
       <PublicPortal
         name="SANCHEZ ELECTRONICS & REPAIR"
@@ -751,6 +774,7 @@ export const BUSINESS_COMMANDS = {
   },
 
   "Gilded Oddities Pawn": {
+    favicon: <DiamondIcon style={ICON_STYLE_YELLOW} />,
     content: (
       <PublicPortal
         name="GILDED ODDITIES PAWN"
@@ -877,6 +901,7 @@ export const BUSINESS_COMMANDS = {
   },
 
   "Cipher Solutions": {
+    favicon: <LockIcon style={ICON_STYLE} />,
     content: (
       <PublicPortal
         name="CIPHER SOLUTIONS"
@@ -994,6 +1019,7 @@ export const BUSINESS_COMMANDS = {
   },
 
   "The Compiler Bar": {
+    favicon: <CodeIcon style={ICON_STYLE} />,
     content: (
       <PublicPortal
         name="THE COMPILER BAR"
@@ -1172,6 +1198,7 @@ export const BUSINESS_COMMANDS = {
   },
 
   "Royal West Shipping Warehouse": {
+    favicon: <LocalShippingIcon style={ICON_STYLE_YELLOW} />,
     password: {
       pw: 'royalwestisthebest',
       decoyLetters: "z,p,u,x",
